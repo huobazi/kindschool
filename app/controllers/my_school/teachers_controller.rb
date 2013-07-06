@@ -70,4 +70,24 @@ class  MySchool::TeachersController < MySchool::ManageController
     end
   end
 
+  def set_class_teacher_for_squad_view
+    @squad = Squad.find_by_id(params[:squad_id])
+
+  end
+
+  def set_class_teacher_for_squad
+    if staff = Staff.find_by_id(params[:staff_id]) && squad = Squad.find_by_id(params[:squad_id])
+      if Teacher.create(:squad_id => params[:squad_id], :staff_id => params[:staff_id])
+        flash[:success] = "操作成功"
+        redirect_to :controller => "/my_school/teachers", :action => :set_class_teacher_for_squad_view, :squad_id => params[:squad_id]
+      else
+        flash[:error] = "操作失败"
+        redirect_to :controller => "/my_school/teachers", :action => :set_class_teacher_for_squad_view, :squad_id => params[:squad_id]
+      end
+    else
+      flash[:notice] = "不能找到该教职工或班级"
+      redirect_to :controller => "/my_school/squads", :action => :index
+    end
+  end
+
 end
