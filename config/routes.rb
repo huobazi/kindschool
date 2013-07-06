@@ -21,6 +21,7 @@ School::Application.routes.draw do
     resources :messages do
       collection do
         get :get_kindergarten,:get_grade,:get_student
+        post :get_grades_all
       end
     end
     resources :home do

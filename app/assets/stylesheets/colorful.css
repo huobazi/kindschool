@@ -817,6 +817,11 @@ table.user_attributes td {
 #change_users{
     color: #008FDC;
 }
+.ranges_resource{
+    display: none;
+    width: 100%;
+    float: left;
+}
 .tab{ width: 100%;float: left;}
 .tab-hd { background:#F0EBE2; overflow:hidden; zoom:1;
           border: 1px solid #DDDDDD;
@@ -837,19 +842,19 @@ table.user_attributes td {
 .tab .tab-bd{
 
 }
-.tab .check_rangs{
+.tab .check_rangs,.tab .check_grades{
     float: left;
-    padding: 10px;
-    width: 120px;
+    padding: 6px;
+    width: 147px;
 }
 .tab .rangs_tag{
     width: 100%;
     float: left;
 }
-.tab .check_rangs input{
+.tab .check_rangs input,.tab .check_grades input{
     float: left;
 }
-.tab .check_rangs label{
+.tab .check_rangs label,.tab .check_grades label{
     float: left;
 }
 

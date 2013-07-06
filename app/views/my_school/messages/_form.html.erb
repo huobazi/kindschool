@@ -56,6 +56,9 @@
         $(this).parent().remove();
       }
     });
+    $(".check_rangs input").click(function(){
+      $(".ranges_resource").hide();
+    })
     $("#rangs_0").click(function(){
       $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_student) %>");
     });
@@ -66,8 +69,16 @@
       $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_kindergarten) %>");
     });
     $("#rangs_3").click(function(){
-      $("#show_resource")
-      //$("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_kindergarten) %>");
+      $("#grade_resource").show();
+    });
+    $(".check_grades input").click(function(){
+      var ids = []
+      $(".check_grades input:checked").each(function(){
+        ids.push($(this).val());
+      });
+      if(ids.length > 0){
+        $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_grades_all) %>",{"ids":ids});
+      }
     });
     
   })

@@ -62,7 +62,7 @@ class MySchool::MessagesController < MySchool::ManageController
     data = current_user.get_users_ranges
     if data[:tp] == :all
       @data = @kind.users.where(:tp=>0,:status=>"start").group_by(&:tp)
-      render :partial => "grade",:layout=>false
+      render :partial => "users",:layout=>false
     else
       render :text=>"获取全部学生"
     end
@@ -72,7 +72,7 @@ class MySchool::MessagesController < MySchool::ManageController
     data = current_user.get_users_ranges
     if data[:tp] == :all
       @data = @kind.users.where(:status=>"start").group_by(&:tp)
-      render :partial => "kindergarten",:layout=>false
+      render :partial => "users",:layout=>false
     else
       render :text=>"您无法选择全院"
     end
@@ -82,7 +82,22 @@ class MySchool::MessagesController < MySchool::ManageController
     data = current_user.get_users_ranges
     if data[:tp] == :all
       @data = @kind.users.where(:tp=>1,:status=>"start").group_by(&:tp)
-      render :partial => "grade",:layout=>false
+      render :partial => "users",:layout=>false
+    else
+      render :text=>"您无法选择全教职工"
+    end
+  end
+
+  #选取了年级的学生
+  def get_grades_all
+    data = current_user.get_users_ranges
+    if data[:tp] == :all
+      @data = @kind.users.where(:tp=>0,
+        :status=>"start",
+        "squads.grade_id"=>params[:ids].collect{|obj| obj.to_i}).joins("LEFT JOIN student_infos ON(users.id = student_infos.user_id) \
+LEFT JOIN squads ON(squads.id = student_infos.squad_id) \
+LEFT JOIN grades ON(grades.id = squads.grade_id) ").group_by(&:tp)
+      render :partial => "users",:layout=>false
     else
       render :text=>"您无法选择全教职工"
     end
