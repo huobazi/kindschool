@@ -137,7 +137,7 @@
             <label class="control-label" >入职时间</label>
             <div class="controls">
               <label class="show_label">
-                <%= @staff.come_in_at.to_short_datetime %>
+                <%= @staff.come_in_at ? @staff.come_in_at.to_short_datetime : nil %>
               </label>
             </div>
           </div>
@@ -145,7 +145,7 @@
             <label class="control-label" >出生日期</label>
             <div class="controls">
               <label class="show_label">
-                <%= @staff.birthday.to_short_datetime %>
+                <%= @staff.birthday ? @staff.birthday.to_short_datetime : nil %>
               </label>
             </div>
           </div>
@@ -162,7 +162,7 @@
                 <th>年级</th>
                 <th>班级</th>
                 <th>是否班主任</th>
-                <th colspan="2">操作</th>
+                <th>操作</th>
               </tr>
               <% @staff.teachers.each do |teacher| %>
                 <tr>
@@ -182,7 +182,7 @@
             暂时没有负责的班级
           <% end %>
         </div>
-  </fieldset>
+    </fieldset>
 
 
   </div>
