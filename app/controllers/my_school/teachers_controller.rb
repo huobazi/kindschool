@@ -47,14 +47,26 @@ class  MySchool::TeachersController < MySchool::ManageController
       end
       if @teacher.update_attributes(:tp => 1)
         flash[:success] = "操作成功"
-        redirect_to :controller => "/my_school/staffs", :action => :show, :id => params[:staff_id]
+        if params[:if_squad]
+          redirect_to :controller => "/my_school/squads", :action => :show, :id => params[:squad_id]
+        else
+          redirect_to :controller => "/my_school/staffs", :action => :show, :id => params[:staff_id]
+        end
       else
         flash[:error] = "操作失败"
-        redirect_to :controller => "/my_school/staffs", :action => :show, :id => params[:staff_id]
+        if params[:if_squad]
+          redirect_to :controller => "/my_school/squads", :action => :show, :id => params[:squad_id]
+        else
+          redirect_to :controller => "/my_school/staffs", :action => :show, :id => params[:staff_id]
+        end
       end
     else
       flash[:error] = "不能为将该负责人设置为班主任"
-      redirect_to :controller => "/my_school/staffs", :action => :show, :id => params[:staff_id]
+      if params[:if_squad]
+        redirect_to :controller => "/my_school/squads", :action => :show, :id => params[:squad_id]
+      else
+        redirect_to :controller => "/my_school/staffs", :action => :show, :id => params[:staff_id]
+      end
     end
   end
 
