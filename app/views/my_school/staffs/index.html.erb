@@ -43,10 +43,7 @@
             <th><input type="checkbox" name="" value="" alt="全选"></th>
             <th>名称</th>
             <th>账号</th>
-            <th>电话号码</th>
             <th>性别</th>
-            <th>所属幼儿园</th>
-            <th>所属类别</th>
             <th>微信号</th>
             <th colspan="2">操作</th>
           </tr>
@@ -55,10 +52,7 @@
               <td><input type="checkbox" name="" value="" ></td>
               <td><%= link_to staff.user.name, my_school_staff_path(staff) %></td>
               <td><%= staff.user.login %></td>
-              <td><%= staff.user.phone %></td>
-              <td><%= staff.user.gender %></td>
-              <td><%= staff.user.kindergarten_label %></td>
-              <td><%= staff.user.tp_label %></td>
+              <td><%= staff.user.gender == "M" ? "男" : "女" %></td>
               <td><%= staff.user.weixin_code %></td>
 
               <td><%= link_to "查看", my_school_staff_path(staff), :class => "show" %></td>

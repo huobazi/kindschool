@@ -93,7 +93,7 @@ ActiveAdmin.register Squad do
           unless squad.teachers.blank?
             table_for(squad.teachers) do |t|
               t.column("名字") {|item| item.staff.user.name}
-              t.column("班级") {|item| auto_link item }
+              t.column("班级") {|item| auto_link item.squad.name }
               t.column("身份证号码") {|item| item.staff.card_code}
               t.column("教育背景") {|item| item.staff.education}
               t.column("考勤卡号") {|item| item.staff.attendance_code}
