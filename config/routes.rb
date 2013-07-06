@@ -49,6 +49,8 @@ School::Application.routes.draw do
         get :allocation
         post :update_allocation
         get :set_class_teacher
+        get :set_class_teacher_for_squad_view
+        get :set_class_teacher_for_squad
       end
     end
   end
