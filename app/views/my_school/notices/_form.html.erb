@@ -1,0 +1,19 @@
+<% f = form %>
+<script type="text/javascript">
+  jQuery(function() {
+    $('#notice_send_date').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+  });
+</script>
+<%= f.input :title , :required => true,:input_html=>{:class=>"span5"}%>
+<%= f.input :send_date , :required => true,:as=>:string ,:class=>"input-mediun"%>
+<%= f.input :send_range,:as=>:select,:collection=>Notice::SEND_RANGE_DATA.invert %>
+<%= f.input :content, :required => true ,:input_html=>{:class=>"span5"}%>
+
+<div class="control-group">
+  <div class="controls">
+    <%= f.button :submit %>
+  </div>
+</div>

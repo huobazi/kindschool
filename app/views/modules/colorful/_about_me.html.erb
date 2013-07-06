@@ -1,0 +1,47 @@
+<% page_content = about_me %>
+<table class="table table-bordered">
+  <tr>
+    <th>内容</th>
+    <th>操作</th>
+  </tr>
+  <% if page_content.content_entries.blank? %>
+    <tr>
+      <td>没有内容</td>
+      <td></td>
+    </tr>
+  <%else%>
+    <% entry = page_content.content_entries.first%>
+    <tr>
+      <td><%= raw entry.content %></td>
+      <td>
+        <%= link_to "编辑",:controller=>"/my_school/page_contents",:action=>:edit_content,:id=>page_content.id,:entry_id=>entry.id %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<div class="control-group">
+  <label class="control-label"><span class="required">*</span>内容</label>
+</div>
+<div class="control-group">
+  <% if action_name == "edit_content" %>
+    <%= text_field_tag :content,"#{@entry.content}", :class => 'profile_input required'%>
+    <%= hidden_field_tag "entry_id",@entry.id %>
+  <% else %>
+    <%= text_field_tag :content,"", :class => 'profile_input '%>
+  <% end %>
+</div>
+<div class="control-group">
+  <div class="controls">
+    <%= button_tag "提交" ,:class=>"btn"%>
+    <%= hidden_field_tag "tp","about_me" %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var editor;
+  KindEditor.ready(function(K) {
+    editor = K.create('#content', {
+      allowFileManager : true
+    });
+  });
+</script>

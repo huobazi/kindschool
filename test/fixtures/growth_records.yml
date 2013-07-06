@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kindergarten_id: 1
+  tp: false
+  start_at: 2013-06-27 16:31:30
+  end_at: 2013-06-27 16:31:30
+  content: MyText
+  creater_id: 1
+  student_info_id: 1
+  squad_name: MyString
+
+two:
+  kindergarten_id: 1
+  tp: false
+  start_at: 2013-06-27 16:31:30
+  end_at: 2013-06-27 16:31:30
+  content: MyText
+  creater_id: 1
+  student_info_id: 1
+  squad_name: MyString

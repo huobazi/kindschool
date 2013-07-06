@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kindergarten_id: 1
+  graduation: false
+  add_squad: 1
+  from_id: 1
+  to_id: 1
+
+two:
+  kindergarten_id: 1
+  graduation: false
+  add_squad: 1
+  from_id: 1
+  to_id: 1

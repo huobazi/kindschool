@@ -1,0 +1,102 @@
+<div class="login">
+  <div class="logo">
+    <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" width="152px" height="44px" alt="Logo"/>
+  </div>
+  <div class="login_window">
+    <div class="login_head">
+
+    </div>
+    <div class="login_span">
+      <div class="login_imgs">
+        <div class="login_img_left">
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img1.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img2.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img3.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img4.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img5.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img6.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img7.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img8.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img9.png" alt="效果"/>
+          </div>
+        </div>
+        <div class="login_img_right">
+          <div class="login_img_big">
+            <img src="/t/colorful/login_img10.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img11.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img12.png" alt="效果"/>
+          </div>
+        </div>
+      </div>
+      <div class="login_form">
+        <div class="login_welcome">
+          <img src="/t/colorful/welcome.png" alt="欢迎来到我们幼儿园!"/>
+        </div>
+        <div class="login_form_span">
+          <%= form_tag url_for(:action=>:login),:id=>"longin_form" do  %>
+
+            <%= text_field_tag :login,"",:placeholder=>"账号", :class => 'login_input'%>
+            <br/>
+            <br/>
+            <%= password_field :password,"",:placeholder=>"登陆密码",:name=>"password", :class => 'password_input'%>
+            <div class="tip_login">
+              <div class="next_login">
+                <!--
+                <input type="checkbox" id="next_input" />
+                <label for="next_input">下次自动登陆</label>
+                -->
+              </div>
+              <div class="forgot_password">
+                <%= link_to "忘记密码?","/" %>
+              </div>
+            </div>
+            <div class="login_submit_div">
+              <div class="login_submit">
+                <a href="###" class="button_xun">&nbsp;</a>
+              </div>
+            </div>
+            <div class="error_div">
+              <% if @user_errors %>
+                <label class="error_label">
+                  <%= @user_errors %>
+                </label>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="login_food">
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $(function(){
+    $(".button_xun").click(function(){
+      $("#longin_form").submit();
+    })
+  })
+</script>

@@ -1,0 +1,74 @@
+<% f = form %>
+<script type="text/javascript">
+  $(function() {
+    $('#message_send_date').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+    $("#dialog_change_users" ).dialog({
+      autoOpen: false,
+      height: 600,
+      width:700
+    });
+    $( "#change_users" ).click(function() {
+      $( "#dialog_change_users" ).dialog("open");
+    });
+  });
+</script>
+<div class="control-group">
+  <label class="control-label">收件人</label>
+  <div class="controls">
+    <label class="show_label">
+      <%= link_to "点击选择","###" ,:id=>"change_users"%>
+    </label>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label">已选名单</label>
+  <div class="controls">
+    <label class="show_label">
+      <div id="message_inputs">
+
+      </div>
+    </label>
+  </div>
+</div>
+
+<%= f.input :title , :required => true,:input_html=>{:class=>"span5"}%>
+<%= f.input :content, :required => true ,:input_html=>{:class=>"span5"}%>
+
+<%= f.input :send_date , :required => true,:as=>:string ,:class=>"input-mediun"%>
+<div class="control-group">
+  <div class="controls">
+    <%= f.button :submit %>
+  </div>
+</div>
+<div id="dialog_change_users"  title="选择收件人">
+  <%= render :partial => "inbox" %>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    $("#message_inputs .message_user label").live('click',function(){
+      if($(this).parent().siblings().size() == 1){
+        $(this).parent().parent().remove();
+      }else{
+        $(this).parent().remove();
+      }
+    });
+    $("#rangs_0").click(function(){
+      $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_student) %>");
+    });
+    $("#rangs_1").click(function(){
+      $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_grade) %>");
+    });
+    $("#rangs_2").click(function(){
+      $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_kindergarten) %>");
+    });
+    $("#rangs_3").click(function(){
+      $("#show_resource")
+      //$("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_kindergarten) %>");
+    });
+    
+  })
+</script>

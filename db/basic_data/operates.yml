@@ -1,0 +1,251 @@
+DEFAULTS: &DEFAULTS
+  visible: true
+  authable: true
+#==================根
+root:
+  id: 1
+  name: "root"
+  level: 0
+  sequence: 0
+  note: "权限的根"
+  <<: *DEFAULTS
+#===================模块，id从2~99
+notice:
+  id: 2
+  parent_id: 1
+  name: "公告通知"
+  level: 1
+  sequence: 0
+  note: "公告通知"
+  <<: *DEFAULTS
+forum:
+  id: 3
+  parent_id: 1
+  name: "论坛功能"
+  level: 1
+  sequence: 1
+  note: "论坛功能"
+  <<: *DEFAULTS
+Home:
+  id: 4
+  parent_id: 1
+  name: "Home"
+  level: 1
+  sequence: 1
+  note: "Home"
+  <<: *DEFAULTS
+personnel:
+  id: 5
+  parent_id: 1
+  name: "人员管理"
+  level: 1
+  sequence: 1
+  note: "人员管理"
+  <<: *DEFAULTS
+system:
+  id: 6
+  parent_id: 1
+  name: "系统配置"
+  level: 1
+  sequence: 1
+  note: "系统配置"
+  <<: *DEFAULTS
+
+
+
+#---------------------------功能
+
+#||||||||||||||||||||||||||公告通知功能
+notice_send:
+  id: 2001
+  parent_id: 2
+  name: "发通知"
+  level: 2
+  sequence: 0
+  note: "发通知"
+  controller: "my_school/notices"
+  action: "new"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+notice_approve:
+  id: 2002
+  parent_id: 2
+  name: "审核通知信息"
+  level: 2
+  sequence: 1
+  note: "审核通知信息"
+  controller: "my_school/notices"
+  action: "approve"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+notice_delete:
+  id: 2003
+  parent_id: 2
+  name: "删除通知信息"
+  level: 2
+  sequence: 0
+  note: "删除通知信息"
+  controller: "my_school/notices"
+  action: "destroy"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+notice_edit:
+  id: 2004
+  parent_id: 2
+  name: "编辑通知信息"
+  level: 2
+  sequence: 0
+  note: "编辑通知信息"
+  controller: "my_school/notices"
+  action: "edit"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+notice_index:
+  id: 2005
+  parent_id: 2
+  name: "通知信息"
+  level: 2
+  sequence: 0
+  note: "通知信息"
+  controller: "my_school/notices"
+  action: "index"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+message_send:
+  id: 2006
+  parent_id: 2
+  name: "发信息"
+  level: 2
+  sequence: 0
+  note: "发信息"
+  controller: "my_school/messages"
+  action: "new"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+message_index:
+  id: 2007
+  parent_id: 2
+  name: "收件箱"
+  level: 2
+  sequence: 0
+  note: "收件箱"
+  controller: "my_school/messages"
+  action: "index"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+#||||||||||||||||||||||||||论坛帖子能
+forum_send:
+  id: 3001
+  parent_id: 3
+  name: "发帖子"
+  level: 2
+  sequence: 0
+  note: "发帖子"
+  controller: ""
+  action: ""
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+forum_approve:
+  id: 3002
+  parent_id: 3
+  name: "审核发帖子"
+  level: 2
+  sequence: 1
+  note: "审核发送信息"
+  controller: ""
+  action: ""
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+forum_delete:
+  id: 3003
+  parent_id: 3
+  name: "删除帖子"
+  level: 2
+  sequence: 2
+  note: "删除帖子"
+  controller: ""
+  action: ""
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+#||||||||||||||||||||||||||人员管理功能
+squad_manage:
+  id: 4001
+  parent_id: 5
+  name: "班级管理"
+  level: 2
+  sequence: 1
+  note: "班级管理"
+  controller: "my_school/squads"
+  action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+
+grade_manage:
+  id: 4002
+  parent_id: 5
+  name: "年级管理"
+  level: 2
+  sequence: 2
+  note: "年级管理"
+  controller: "my_school/grades"
+  action: "index"
+  protocol: ""
+
+staff_manage:
+  id: 4003
+  parent_id: 5
+  name: "教职工管理"
+  level: 2
+  sequence: 3
+  note: "教职工管理"
+  controller: "my_school/staffs"
+  action: "index"
+  protocol: ""
+
+student_manage:
+  id: 4004
+  parent_id: 5
+  name: "学籍管理"
+  level: 2
+  sequence: 4
+  note: "学籍管理"
+  controller: "my_school/student_infos"
+  action: "index"
+  protocol: ""
+
+#--------------------------system
+template_config:
+  id: 5001
+  parent_id: 6
+  name: "模板配置"
+  level: 2
+  sequence: 0
+  note: "模板配置"
+  controller: "/myschool/templates"
+  action: "set_default_template_view"
+  protocol: ""
+
+page_content_config:
+  id: 5002
+  parent_id: 6
+  name: "内容配置"
+  level: 2
+  sequence: 0
+  note: "模板配置"
+  controller: "my_school/page_contents"
+  action: "index"
+  protocol: ""
+

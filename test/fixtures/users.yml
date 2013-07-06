@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  number: MyString
+  name: MyString
+  note: MyText
+  kindergarten_id: 1
+  tp: 1
+  status: 1
+  logo: MyString
+
+two:
+  number: MyString
+  name: MyString
+  note: MyText
+  kindergarten_id: 1
+  tp: 1
+  status: 1
+  logo: MyString

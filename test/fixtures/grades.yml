@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  kindergarten_id: 1
+  note: MyText
+  sequence: 1
+
+two:
+  name: MyString
+  kindergarten_id: 1
+  note: MyText
+  sequence: 1

@@ -1,0 +1,13 @@
+﻿defaults: &defaults
+  #微信token
+  weixin_token: "weiyi"
+  
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

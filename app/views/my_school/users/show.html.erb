@@ -1,0 +1,161 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>
+          <% if current_user.tp == 0 %>
+            学员信息
+          <% elsif current_user.tp == 1 %>
+            教职工信息
+          <% else %>
+            管理员信息
+          <% end %>
+        </label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li>人员管理</li>
+            <li>/</li>
+            <li>查看用户</li>
+          </ul>
+        </div>
+      </div>
+      <% if current_user.tp == 0 %>
+        <ul class="work_action">
+          <li>
+          <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:edit,:id=>current_user.student_info.id) %>" title="编辑">
+              <div class="work_action_edit">
+              </div>
+              <div class="work_action_edit_move">
+              </div>
+            </a>
+          </li>
+        </ul>
+      <% else %>
+        <ul class="work_action">
+          <li>
+            <a href="<%=url_for(:controller=>"/my_school/users",:action=>:edit,:id=>current_user.id)%>" title="编辑">
+              <div class="work_action_edit">
+              </div>
+              <div class="work_action_edit_move">
+              </div>
+            </a>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+
+
+
+    <div class="work_list">
+
+
+      <table class="user_attributes" align="center">
+        <tr>
+          <th>名称</th>
+          <td><%= current_user.name %></td>
+          <th>账号</th>
+          <td><%= current_user.login %></td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+          <th>性别</th>
+          <td><%= User::GENDER_DATA[current_user.gender] %></td>
+          <th>类型</th>
+          <td><%= current_user.tp_label %></td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+          <th>手机号</th>
+          <td><%= current_user.phone %></td>
+          <th>微信ID</th>
+          <td><%= current_user.weixin_code %></td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+          <th>所属幼儿园</th>
+          <td><%= current_user.kindergarten_label %></td>
+        </tr>
+
+
+        <% if current_user.tp == 0 %>
+          <tr>
+            <th>年级</th>
+            <td><%= current_user.student_info.squad.grade.name unless current_user.student_info.squad.grade.nil? %></td>
+            <th>班级</th>
+            <td><%= current_user.student_info.squad.name %></td>
+          </tr>
+          <tr>
+            <th>入园时间</th>
+            <td><%= current_user.student_info.come_in_at %></td>
+            <th>出生日期</th>
+            <td><%= current_user.student_info.birthday %></td>
+          </tr>
+          <tr>
+            <th>监护人名字</th>
+            <td><%= current_user.student_info.guardian %></td>
+            <th>监护人证件类别</th>
+            <td><%= current_user.student_info.guardian_card_category_label %></td>
+          </tr>
+          <tr>
+            <th>国籍</th>
+            <td><%= current_user.student_info.nationality %></td>
+            <th>民族</th>
+            <td><%= current_user.student_info.nation %></td>
+          </tr>
+          <tr>
+            <th>港澳台侨</th>
+            <td><%= current_user.student_info.overseas_chinese_label %></td>
+            <th>户口性质</th>
+            <td><%= current_user.student_info.household_label %></td>
+          </tr>
+          <tr>
+            <th>出生地</th>
+            <td><%= current_user.student_info.birthplace %></td>
+            <th>籍贯</th>
+            <td><%= current_user.student_info.native %></td>
+          </tr>
+          <tr>
+            <th>户口所在地</th>
+            <td><%= current_user.student_info.domicile_place %></td>
+            <th>籍贯</th>
+            <td><%= current_user.student_info.family_address %></td>
+          </tr>
+          <tr>
+            <th>是否寄宿生</th>
+            <td><%= current_user.student_info.lodging ? "是" : "否" %></td>
+            <th>是否独生子女</th>
+            <td><%= current_user.student_info.only_child ? "是" : "否" %></td>
+          </tr>
+        <% elsif current_user.tp == 1 %>
+          <tr>
+            <th>身份证号</th>
+            <td><%= current_user.staff.card_code %></td>
+            <th>教育背景</th>
+            <td><%= current_user.staff.education %></td>
+          </tr>
+          <tr>
+            <th>入职时间</th>
+            <td><%= current_user.staff.come_in_at.to_short_datetime %></td>
+            <th>出生日期</th>
+            <td><%= current_user.staff.birthday.to_short_datetime %></td>
+          </tr>
+          <tr>
+            <th>考勤卡号</th>
+            <td><%= current_user.staff.attendance_code %></td>
+          </tr>
+        <% else %>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+</div>
+

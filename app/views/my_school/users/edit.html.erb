@@ -1,0 +1,70 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>用户信息</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li><%= link_to "人员管理","/"%></li>
+            <li>/</li>
+            <li><%= link_to "班级管理","/"%></li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+        <a href="<%=url_for(:controller=>"/my_school/users",:action=>:show, :id => @user.id)%>" title="返回">
+          <div class="work_action_return">
+          </div>
+          <div class="work_action_return_move">
+          </div>
+        </a>
+        </li>
+
+      </ul>
+    </div>
+
+
+
+    <div class="work_list">
+      <%= form_for(@user, :url => my_school_users_path, :html => {:class => "form-horizontal"}) do |f| %>
+        <div class="control-group">
+          <%= f.label :name, :class => "control-label" %>&nbsp;&nbsp;
+          <%= f.text_field :name %>
+        </div>
+        <div class="control-group">
+          <%= f.label :gender, :class => "control-label" %>&nbsp;&nbsp;
+          <%= f.text_field :gender %>
+        </div>
+        <div class="control-group">
+          <%= f.label :phone, :class => "control-label" %>&nbsp;&nbsp;
+          <%= f.text_field :phone %>
+        </div>
+        <div class="control-group">
+          <%= f.label :weixin_code, :class => "control-label" %>&nbsp;&nbsp;
+          <%= f.text_field :weixin_code %>
+        </div>
+        <div class="control-group">
+          <%= f.label :tp_label, :class => "control-label" %>&nbsp;&nbsp;
+          <%= f.text_field :tp_label, :html => { :disabled => true } %>
+        </div>
+        <div class="control-group">
+          <%= f.label :kindergarten_label, :class => "control-label" %>&nbsp;&nbsp;
+          <%= f.text_field :kindergarten_label, :html => { :disabled => true } %>
+        </div>
+        <div class="form-actions">
+          <%= f.submit :class => "btn btn-large" %>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+
+</div>
+
+

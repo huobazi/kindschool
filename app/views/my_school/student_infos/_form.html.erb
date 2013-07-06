@@ -1,0 +1,92 @@
+<% f = form %>
+<script type="text/javascript">
+  jQuery(function() {
+    $('#student_info_birthday').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+    $('#student_info_come_in_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+    $('#student_info_family_birthday').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+  });
+</script>
+
+<fieldset>
+  <legend><label><strong>账号信息</strong></label></legend>
+    <%= f.simple_fields_for :user do |p| %>
+          <%= p.input :name %>
+          <%= p.input :login %>
+          <%= p.input :phone %>
+          <%= p.input :gender, :as => :radio, :collection => {"女" => "M", "男" => "G"}, :required => true %>
+          <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
+          <%= p.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
+          <%= p.input :tp,:as=>:hidden %>
+          <%= p.input :kindergarten_id,:as=>:hidden %>
+    <% end %>
+</fieldset>
+<fieldset>
+  <legend><label><strong>学员信息</strong></label></legend>
+    <%= f.input :birthday, :required => true, :as => :string, :class => "input-mediun"  %>
+    <%= f.input :come_in_at, :required => true, :as => :string, :class => "input-mediun" %>
+    <%= f.input :card_code %>
+    <%= f.input :education, :input_html => {:class => "span5"} %>
+    <%= f.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
+    <%= f.input :squad, :required => true, :as=>:select, :collection=>Hash[f.object.kindergarten.squads.map{|squad| ["#{squad.name}",squad.id]}] ,:input_html => { :name=>"student_info[squad_id]" } %>
+    <%= f.input :card_code %>
+    <%= f.input :guardian %>
+    <%= f.input :guardian_card_category, :as => :select,:collection=>StudentInfo::CARD_CATEGORY_DATA.invert %>
+    <%= f.input :guardian_card_code %>
+    <%= f.input :nationality %>
+    <%= f.input :nation %>
+    <%= f.input :overseas_chinese,:as=>:select,:collection=>StudentInfo::OVERSEAS_CHINESE_DATA.invert %>
+    <%= f.input :household,:as=>:select,:collection=>StudentInfo::HOUSEHOLD_DATA.invert %>
+    <%= f.input :birthplace %>
+    <%= f.input :native %>
+    <%= f.input :domicile_place %>
+    <%= f.input :family_address %>
+    <%= f.input :lodging %>
+    <%= f.input :only_child %>
+    <%= f.input :orphan %>
+    <%= f.input :leftover_children %>
+    <%= f.input :employofficialt %>
+    <%= f.input :insured %>
+    <%= f.input :subsidize %>
+    <%= f.input :deformity %>
+    <%= f.input :deformity_category %>
+    <%= f.input :housing,:as=>:select,:collection=>StudentInfo::HOUSING_DATA.invert %>
+    <%= f.input :live_family,:as=>:select,:collection=>StudentInfo::LIVE_FAMILY_DATA.invert %>
+    <%= f.input :brothers %>
+    <%= f.input :children_number %>
+    <%= f.input :head_url %>
+    <%= f.input :kindergarten_id,:as=>:hidden %>
+</fieldset>
+
+<fieldset>
+  <legend><label><strong>家庭信息</strong></label></legend>
+    <%= f.input :family_ties %>
+    <%= f.input :family_name %>
+    <%= f.input :politics_status %>
+    <%= f.input :family_birthday, :as => :string, :class => "input-mediun" %>
+    <%= f.input :profession %>
+    <%= f.input :duties %>
+    <%= f.input :working %>
+    <%= f.input :family_register %>
+    <%= f.input :family_phone %>
+    <%= f.input :family_email %>
+    <%= f.input :living_time %>
+    <%= f.input :family_marital %>
+    <%= f.input :education %>
+    <%= f.input :safe_box %>
+</fieldset>
+
+<div class="control-group">
+  <div class="controls">
+    <%= f.button :submit %>
+  </div>
+</div>
+

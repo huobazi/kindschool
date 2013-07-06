@@ -1,0 +1,13 @@
+<% f = form %>
+
+
+<%= f.input :old_password, :required => true, :input_html => {:class => "span5",:name=>"old_password"} %>
+
+<%= f.input :password, :required => true, :input_html => {:class => "span5"} %>
+<%= f.input :password_confirmation, :required => true, :input_html => {:class => "span5"} %>
+
+<div class="control-group">
+  <div class="controls">
+    <%= f.button :submit %>
+  </div>
+</div>

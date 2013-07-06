@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kindergarten_id: 1
+  creater_id: 1
+  title: MyString
+  content: MyText
+  tp: 1
+  squad_id: 1
+  is_show: false
+  is_top: false
+  status: MyString
+  approve_status: MyString
+  approver_id: 1
+  show_count: 1
+
+two:
+  kindergarten_id: 1
+  creater_id: 1
+  title: MyString
+  content: MyText
+  tp: 1
+  squad_id: 1
+  is_show: false
+  is_top: false
+  status: MyString
+  approve_status: MyString
+  approver_id: 1
+  show_count: 1

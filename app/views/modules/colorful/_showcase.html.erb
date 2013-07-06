@@ -1,0 +1,77 @@
+<div class="showcase">
+  <script type="text/javascript">
+    $(function() {
+      $(".jCarouselLite").jCarouselLite({
+        btnNext: ".main .next",
+        btnPrev: ".main .prev",
+        auto: 2000,
+        onMouse:true
+      });
+      $(".fancybox").fancybox();
+    });
+  </script>
+
+  <div class="carousel main">
+    <div class="prev">
+      <div class="left">
+      </div>
+      &nbsp;
+    </div>
+    <div class="jCarouselLite">
+      <% if(root_showcase = @kind.page_contents.find_by_number("root_showcase")) && !root_showcase.content_entries.blank? && root_showcase.content_entries.count > 2 %>
+        <ul>
+          <% root_showcase.content_entries.each do |entry| %>
+            <% if entry.page_img %>
+              <li>
+                <a href="<%= entry.page_img.public_filename %>" class="fancybox"  title="<%= entry.title %>">
+                  <img src="<%= entry.page_img.public_filename(:middle) %>" alt="" width="239" height="177"/>
+                </a>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      <% else %>
+        <ul>
+          <li>
+            <a href="/t/colorful/Home_26-10.jpg" class="fancybox"  title="">
+              <img src="/t/colorful/Home_26-10.jpg" alt="" width="239" height="177"/>
+            </a>
+          </li>
+          <li>
+            <a href="/t/colorful/Home_24.jpg" class="fancybox" title="">
+              <img src="/t/colorful/Home_24.jpg" alt="" width="239" height="177"/>
+            </a>
+          </li>
+          <li>
+            <a href="/t/colorful/Home_26-10.jpg" class="fancybox" title="">
+              <img src="/t/colorful/Home_26-10.jpg" alt="" width="239" height="177"/>
+            </a>
+          </li>
+          <li>
+            <a href="/t/colorful/Home_24.jpg" class="fancybox" title="">
+              <img src="/t/colorful/Home_24.jpg" alt="" width="239" height="177"/>
+            </a>
+          </li>
+          <li>
+            <a href="/t/colorful/Home_26-10.jpg" class="fancybox" title="">
+              <img src="/t/colorful/Home_26-10.jpg" alt="" width="239" height="177"/>
+            </a>
+          </li>
+          <li>
+            <a href="/t/colorful/Home_24.jpg" class="fancybox" title="测试">
+              <img src="/t/colorful/Home_24.jpg" alt="" width="239" height="177"/>
+            </a>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+    <div class="next">
+      <div class="right">
+
+      </div>
+      &nbsp;
+    </div>
+    <div class="clear"></div>
+  </div>
+
+</div>

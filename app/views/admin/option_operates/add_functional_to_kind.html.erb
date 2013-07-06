@@ -1,0 +1,28 @@
+<%= semantic_form_for @kind, :url =>url_for(:controller=>"/admin/option_operates",:action=>"update_functional"), :method => :post do |f| %>
+  <%= f.inputs '幼儿园信息' do %>
+    <%= f.input :number, :as => :string, :input_html => { :disabled => true } %>
+    <%= f.input :name, :as => :string, :input_html => {:disabled => true} %>
+    <%= f.input :status, :as => :string, :input_html => {:disabled => true} %>
+    <%= f.input :template, :input_html => {:disabled => true} %>
+    <%= f.input :note, :as => :text, :input_html => {:disabled => true} %>
+  <% end %>
+  <%= f.inputs "给班级分配权限" do %>
+    <% @operate_root.children.each do |c| %>
+      <li class='check_boxes'>
+      <fieldset>
+        <legend class="label"><label><%= c.name %></label></legend>
+        <ol>
+          <% c.children.each do |operate| %>
+            <li>
+            <label for="operate_<%= operate.id %>">
+            <input id="operate_<%= operate.id %>" name="operate[]" type="checkbox" value="<%= operate.id %>" <%= @kind.operates.include?(operate) ? "checked=true": nil %> /> <%= operate.name %> </label>
+            </li>
+          <% end %>
+        </ol>
+      </fieldset>
+      </li>
+    <% end %>
+    <%= f.input :id,:as=>:hidden, :input_html => {:name => "kindergarten_id"}%>
+    <%= f.actions %>
+  <% end %>
+<% end %>

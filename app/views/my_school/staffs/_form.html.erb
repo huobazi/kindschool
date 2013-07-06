@@ -1,0 +1,43 @@
+<% f = form %>
+<script type="text/javascript">
+  jQuery(function() {
+    $('#staff_birthday').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+    $('#staff_come_in_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+
+  });
+</script>
+<fieldset>
+  <legend><label><strong>账号信息</strong></label></legend>
+    <%= f.simple_fields_for :user do |p| %>
+          <%= p.input :name %>
+          <%= p.input :login %>
+          <%= p.input :password, :required => true %>
+          <%= p.input :password_confirmation, :required => true %>
+          <%= p.input :phone %>
+          <%= p.input :gender, :as => :radio, :collection => {"女" => "M", "男" => "G"}, :required => true %>
+          <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
+          <%= p.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
+          <%= p.input :tp,:as=>:hidden %>
+          <%= p.input :kindergarten_id,:as=>:hidden %>
+    <% end %>
+</fieldset>
+<fieldset>
+  <legend><label><strong>教职工信息</strong></label></legend>
+    <%= f.input :birthday, :required => true, :as => :string, :class => "input-mediun"  %>
+    <%= f.input :come_in_at, :required => true, :as => :string, :class => "input-mediun" %>
+    <%= f.input :card_code %>
+    <%= f.input :attendance_code %>
+    <%= f.input :education, :input_html => {:class => "span5"} %>
+</fieldset>
+
+<div class="control-group">
+  <div class="controls">
+    <%= f.button :submit %>
+  </div>
+</div>

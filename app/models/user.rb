@@ -1,0 +1,155 @@
+#encoding:utf-8
+require 'digest/sha1'
+class User < ActiveRecord::Base
+  attr_accessible :kindergarten_id, :logo,:login, :name, :note, :number, :status,
+    :tp,:crypted_password,:salt,:role_id,:remember_token,:remember_token_expires_at,
+    :gender,:phone,:area_id,:weixin_code,:token_key,:token_secret,:token_at, :email
+
+  attr_accessible :password, :password_confirmation
+  attr_accessor :password, :password_confirmation
+
+
+  belongs_to :kindergarten
+  has_one :student_info
+  has_one :staff
+  belongs_to :role
+
+  before_save :encrypt_password
+
+  validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
+  validates_length_of :phone, :in => 11..11, :if => Proc.new { |user| user.phone.present? && user.phone.to_i != 0 }
+
+  validates :name,:kindergarten,:gender,:presence => true
+
+  GENDER_DATA = {"M"=>"女","G"=>"男"}
+  TP_DATA = {"0"=>"学员","1"=>"教职工","2"=>"管理员"}
+  STATUS_DATA = {"start"=>"在园","graduate"=>"毕业","leave"=>"离开","freeze"=>"冻结"}
+
+  def gender_label
+    User::GENDER_DATA[self.gender.to_s]
+  end
+  def tp_label
+    User::TP_DATA[self.tp.to_s]
+  end
+
+  def kindergarten_label
+    self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
+  end
+
+
+  # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
+  def self.authenticate(login, password)
+    raise StandardError,"请输入用户名." if login.empty?
+    u = find_by_login(login)
+    #    if(login.include?("@"))
+    #      u = find_by_login(login) # need to get the salt
+    #    else
+    #      u = find_by_phone(login) # need to get the salt
+    #    end
+
+    raise StandardError,"不存在该用户." unless u
+    #    raise StandardError,"普通用户无法登录该系统." if (user = User.find_by_login(login) ) && user.role.number== 'user'
+    #    raise "用户已被锁定,请联系系统管理员." if u.locked?
+    raise StandardError,"密码错误." unless u.authenticated?(password)
+    u && u.authenticated?(password) ? u : nil
+  end
+  def authenticated?(password)
+    crypted_password == encrypt(password)
+  end
+  def forget_me
+    self.remember_token_expires_at = nil
+    self.remember_token            = nil
+    save(:validate => false)
+  end
+  # These create and unset the fields required for remembering users between browser closes
+  def remember_me
+    self.remember_token_expires_at = 2.weeks.from_now.utc
+    self.remember_token            = encrypt("#{login}--#{remember_token_expires_at}")
+    save(:validate => false)
+  end
+  # Encrypts some data with the salt.
+  def self.encrypt(password, salt)
+    Digest::SHA1.hexdigest("--#{salt}--#{password}--")
+  end
+
+  # Encrypts the password with the user salt
+  def encrypt(password)
+    self.class.encrypt(password, salt)
+  end
+
+  def operates
+    unless @operates
+      @operates=[]
+      if self.tp == 2
+        role_operates = self.kindergarten.option_operates
+      else
+        role_operates = self.role.option_operates unless self.role.blank?#RoleOperate.where(:role_id=>self.role_users.collect{|ru|ru.role_id}).includes(:permission)
+      end
+      (role_operates|| []).each do |rr|
+        @operates<<rr.operate
+      end
+    end
+    @operates
+  end
+
+  def authed_menus(t)
+    mymenus = []
+    root = []
+    all_openrates = self.operates
+    if t.blank?
+      menus = Menu.find(:all,:conditions=>["(operate_id in(?) or operate_id=0)",all_openrates],:order=>"sequence asc")
+    else
+      menus = Menu.find(:all,:conditions=>["height_level = ? and (operate_id in(?) or operate_id=0)",t,all_openrates],:order=>"sequence asc")
+    end
+    menus.each do |mm|
+      if root.include?(mm.root)
+        mymenus.each{|item| item[:children]<< {:id=>mm.id,:number=>mm.number , :name=>mm.name , :url=>mm.url} if item[:id]==mm.root.id }
+      else
+        root << mm.root
+        me = {:id=>mm.root.id ,:number=>mm.root.number, :name=>mm.root.name , :url=> mm.root.url , :children=>[]}
+        me[:children] << {:id=>mm.id,:number=>mm.number,:name=>mm.name , :url=>mm.url}
+        mymenus << me
+      end
+    end
+    mymenus
+  end
+
+
+  #返回tp 是all表示全部都应该能看到，
+  #返回tp是teachers表示负责老师，需要根据:squads、:grades判断负责的班级和年级
+  #返回tp是student表示学生
+  #返回tp是only表示其他人员
+  def get_users_ranges
+    range_data = {}
+    if self.tp == 2 || (self.tp == 1 && self.role && self.role.admin)
+      range_data[:tp] = :all
+    elsif self.tp == 1 #&& self.role && !self.role.admin
+      range_data[:tp] = :teachers
+      if self.staff
+        range_data[:squads] = self.staff.squads
+        range_data[:grades] = self.staff.grades
+      end
+    elsif self.tp == 0
+      range_data[:tp] = :student
+      if self.student_info
+        range_data[:squad] = self.student_info.squad
+        #TODO：考虑兴趣班
+      end
+    else
+      range_data[:tp] = :only
+    end
+    return range_data
+  end
+
+  protected
+  # before filter
+  def encrypt_password
+    return if password.blank?
+    self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
+    self.crypted_password = encrypt(password)
+  end
+
+  def password_required?
+    crypted_password.blank? || !password.blank?
+  end
+end

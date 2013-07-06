@@ -1,0 +1,45 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>育苗记录</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        
+      </ul>
+    </div>
+
+    <div class="work_list">
+      <table class="table table-striped table-hover">
+        <tr>
+          <th><input type="checkbox" name="" value="" alt="全选"></th>
+          <th>学员</th>
+          <th>育苗名称</th>
+          <th>描述</th>
+          <th>注射时间</th>
+          <th>过期时间</th>
+        </tr>
+        <% (@seedlings || []).each do |seedling| %>
+          <tr>
+            <td><input type="checkbox" name="" value="" ></td>
+            <td><%= seedling.student_info_id %></td>
+            <td><%= seedling.name %></td>
+            <td><%= seedling.note %></td>
+            <td><%= seedling.shot_at %></td>
+            <td><%= seedling.expire_at %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+</div>

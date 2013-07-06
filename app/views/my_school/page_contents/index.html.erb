@@ -1,0 +1,52 @@
+<script type="text/javascript">
+  $(function() {
+    $(".fancybox").fancybox();
+  })
+</script>
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>页面内容设置</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li>系统设置</li>
+            <li>/</li>
+            <li>页面内容设置</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="work_list">
+      <table class="table table-striped table-hover">
+        <tr>
+          <th style="width: 90px;">名称</th>
+          <th>效果图</th>
+          <th style="width: 200px;">说明</th>
+          <th>操作</th>
+        </tr>
+        <% @page_contents.each do |page_content| %>
+          <tr>
+            <td><%= page_content.name %></td>
+            <td>
+              <a href="<%= page_content.logo_url %>" class="fancybox"  title="效果图">
+                <img src="<%= page_content.logo_url %>" alt="效果图" width="300px;" />
+              </a>
+            </td>
+            <td><%= page_content.note %></td>
+            <td>
+              <%= link_to '设置', my_school_page_content_path(page_content) %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+</div>

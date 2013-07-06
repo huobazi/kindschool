@@ -1,0 +1,28 @@
+<%= semantic_form_for @role, :url =>url_for(:controller=>"/admin/roles",:action=>"update_allocation"), :method => :post do |f| %>
+  <%= f.inputs '角色信息' do %>
+    <%= f.input :name, :as => :string, :input_html => { :disabled => true } %>
+    <%= f.input :kindergarten_label, :as => :string, :input_html => {:disabled => true} %>
+    <%= f.input :number, :as => :string, :input_html => {:disabled => true} %>
+    <%= f.input :note, :as => :text, :input_html => {:disabled => true} %>
+  <% end %>
+  <%= f.inputs "给角色分配权限" do %>
+    <% @option_operates.group_by{|option_operate| option_operate.operate.parent.name}.each do |k, v| %>
+      <li class='check_boxes'>
+      <fieldset>
+        <legend class="label"><label><%= k %></label></legend>
+        <ol>
+          <% v.each do |operate| %>
+            <li>
+            <label for="operate_<%= operate.id %>">
+            <input id="operate_<%= operate.id %>" name="operate[]" type="checkbox" value="<%= operate.id %>" <%= @role.option_operates.include?(operate) ? "checked=true" : nil %> /> <%= operate.operate.name %>    </label>
+            </li>
+          <% end %>
+        </ol>
+      </fieldset>
+      </li>
+    <% end %>
+    <%= f.actions %>
+    <%= f.input :id, :as => :hidden, :input_html => {:name => "role_id"} %>
+  <% end %>
+<% end %>
+

@@ -1,0 +1,97 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  squad_id: 1
+  grade_id: 1
+  kindergarten_id: 1
+  birthday: 2013-06-18 14:54:41
+  come_in_at: 2013-06-18 14:54:41
+  card_category: 1
+  card_code: MyString
+  guardian: MyString
+  guardian_card_category: 1
+  guardian_card_code: MyString
+  nationality: MyString
+  nation: MyString
+  overseas_chinese: MyString
+  household: MyString
+  birthplace: MyString
+  native: MyString
+  domicile_place: MyString
+  family_address: MyString
+  leftover_children: false
+  employofficialt: false
+  insured: false
+  subsidize: false
+  deformity: false
+  deformity_category: MyString
+  lodging: false
+  orphan: false
+  housing: MyString
+  live_family: MyString
+  only_child: false
+  brothers: 1
+  children_number: 1
+  family_ties: MyString
+  family_name: MyString
+  politics_status: MyString
+  family_birthday: 2013-06-18 14:54:41
+  profession: MyString
+  duties: MyString
+  working: MyString
+  family_register: MyString
+  family_phone: MyString
+  family_email: MyString
+  living_time: MyString
+  family_marital: MyString
+  education: MyString
+  safe_box: MyString
+  head_url: MyString
+
+two:
+  squad_id: 1
+  grade_id: 1
+  kindergarten_id: 1
+  birthday: 2013-06-18 14:54:41
+  come_in_at: 2013-06-18 14:54:41
+  card_category: 1
+  card_code: MyString
+  guardian: MyString
+  guardian_card_category: 1
+  guardian_card_code: MyString
+  nationality: MyString
+  nation: MyString
+  overseas_chinese: MyString
+  household: MyString
+  birthplace: MyString
+  native: MyString
+  domicile_place: MyString
+  family_address: MyString
+  leftover_children: false
+  employofficialt: false
+  insured: false
+  subsidize: false
+  deformity: false
+  deformity_category: MyString
+  lodging: false
+  orphan: false
+  housing: MyString
+  live_family: MyString
+  only_child: false
+  brothers: 1
+  children_number: 1
+  family_ties: MyString
+  family_name: MyString
+  politics_status: MyString
+  family_birthday: 2013-06-18 14:54:41
+  profession: MyString
+  duties: MyString
+  working: MyString
+  family_register: MyString
+  family_phone: MyString
+  family_email: MyString
+  living_time: MyString
+  family_marital: MyString
+  education: MyString
+  safe_box: MyString
+  head_url: MyString

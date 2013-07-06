@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kindergarten_id: 1
+  title: MyString
+  content: MyText
+  logo: MyString
+  creater_id: 1
+  approve_status: 1
+  approver_id: 1
+  start_at: 2013-07-02 16:06:15
+  end_at: 2013-07-02 16:06:15
+  note: MyText
+  send_range: 1
+  send_range_ids: 1
+  tp: 1
+
+two:
+  kindergarten_id: 1
+  title: MyString
+  content: MyText
+  logo: MyString
+  creater_id: 1
+  approve_status: 1
+  approver_id: 1
+  start_at: 2013-07-02 16:06:15
+  end_at: 2013-07-02 16:06:15
+  note: MyText
+  send_range: 1
+  send_range_ids: 1
+  tp: 1

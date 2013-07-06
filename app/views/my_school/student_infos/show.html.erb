@@ -1,0 +1,453 @@
+<div class="show_publicity">
+  <img src="/t/colorful/small_publicity.jpg" alt="展示图"/>
+</div>
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>学籍管理信息</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li>人员管理</li>
+            <li>/</li>
+            <li><%= link_to "学籍管理", my_school_student_infos_path %></li>
+            <li>/</li>
+            <li>查看学员</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+          <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:new)%>" title="添加">
+            <div class="work_action_add">
+            </div>
+            <div class="work_action_add_move">
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:edit,:id=>@student_info.id)%>" title="编辑">
+            <div class="work_action_edit">
+            </div>
+            <div class="work_action_edit_move">
+            </div>
+          </a>
+        </li>
+        <li>
+          <%= link_to(url_for(:controller=>"/my_school/student_infos",:action=>:destroy,:id=>@student_info.id),:method=>:delete, :confirm => "您确定删除该通知吗?") do %>
+            <div class="work_action_delete">
+            </div>
+            <div class="work_action_delete_move">
+            </div>
+          <% end %>
+        </li>
+        <li>
+          <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:index)%>" title="返回">
+            <div class="work_action_return">
+            </div>
+            <div class="work_action_return_move">
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="work_form">
+      <div class="form_div">
+        <form class="form-horizontal">
+          <fieldset>
+            <legend><label><strong>账号信息</strong></label></legend>
+              <div class="control-group">
+                <label class="control-label">名称</label>
+                <div class="controls">
+                  <label class="show_label">
+                    <%=@student_info.user.name%>
+                  </label>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" >账号</label>
+                <div class="controls">
+                  <label class="show_label">
+                    <%= @student_info.user.login %>
+                  </label>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" >电话号码</label>
+                <div class="controls">
+                  <label class="show_label">
+                    <%= @student_info.user.phone %>
+                  </label>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" >性别</label>
+                <div class="controls">
+                  <label class="show_label">
+                    <%= @student_info.user.gender %>
+                  </label>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" >所属类别</label>
+                <div class="controls">
+                  <label class="show_label">
+                    <%= @student_info.user.tp_label %>
+                  </label>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" >微信号</label>
+                <div class="controls">
+                  <label class="show_label">
+                    <%= @student_info.user.weixin_code %>
+                  </label>
+                </div>
+              </div>
+        </fieldset>
+        <fieldset>
+          <legend><label><strong>学员信息</strong></label></legend>
+            <div class="control-group">
+              <label class="control-label" >年级</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.squad.grade_label %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >班级</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.squad.name %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >出生日期</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.birthday ? @student_info.birthday.to_short_datetime : "" %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >入职时间</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.come_in_at ? @student_info.come_in_at.to_short_datetime : "" %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >证件类别</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.card_category_label %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >证件号</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.card_code %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >监护人名字</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.guardian %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >国籍</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.nationality %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >民族</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.nation %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >港澳台侨</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.overseas_chinese_label %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >户口性质</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.household_label %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >出生地</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.birthplace %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >籍贯</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.native %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >户口所在地</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.domicile_place %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >家庭地址</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.family_address %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >是否寄宿生</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.lodging ? "是" : "否" %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >是否独生子女</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.only_child ? "是" : "否" %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >是否孤儿</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.orphan ? "是" : "否" %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >是否留守儿童</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.leftover_children ? "是" : "否" %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >是否进城务工人员子女</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.employofficialt ? "是" : "否" %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >是否低保</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.insured ? "是" : "否" %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >是否接受资助</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.subsidize ? "是" : "否" %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >是否残疾儿童</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.subsidize ? "是" : "否" %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >残疾儿童类型</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.deformity_category %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >住房性质</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.housing_label %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >是否接受资助</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.subsidize ? "是" : "否" %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >家中兄妹数</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.brothers %>
+                </label>
+              </div>
+            </div>
+        </fieldset>
+        <fieldset>
+          <legend><label><strong>家庭关系</strong></label></legend>
+            <div class="control-group">
+              <label class="control-label" >关系</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.family_ties %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >姓名</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.family_name %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >政治面貌</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.politics_status %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >职业</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.profession %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >职务</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.duties %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >关系</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.family_ties %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >工作单位</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.working %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >户籍类型</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.family_register %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >移动电话</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.family_phone %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >电子邮箱</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.family_email %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >父母在深连续居住时间</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.living_time %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >婚姻状况</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.family_marital %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >学历</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.education %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >社会保险箱</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.safe_box %>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

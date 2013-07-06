@@ -1,0 +1,70 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>年级管理信息</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li>人员管理</li>
+            <li>/</li>
+            <li>年级管理</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+          <a href="<%=url_for(:controller=>"/my_school/grades",:action=>:new)%>" title="添加">
+            <div class="work_action_add">
+            </div>
+            <div class="work_action_add_move">
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="/" title="删除">
+            <div class="work_action_delete">
+            </div>
+            <div class="work_action_delete_move">
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="work_list">
+      <% if @grades.any? %>
+        <table class="table table-striped table-hover">
+          <tr>
+            <th><input type="checkbox" name="" value="" alt="全选"></th>
+            <th>名称</th>
+            <th>所属幼儿园</th>
+            <th>描述</th>
+            <th colspans="2">操作</th>
+          </tr>
+          <% @grades.each do |grade| %>
+            <tr>
+              <td><input type="checkbox" name="" value="" ></td>
+              <td><%= link_to grade.name, my_school_grade_path(grade) %></td>
+              <td><%= grade.kindergarten_label %></td>
+              <td><%= grade.note %></td>
+              <td><%= link_to "查看", my_school_grade_path(grade), :class => "show" %></td>
+              <td><%= link_to "编辑", edit_my_school_grade_path(grade), :class => "show" %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <td><%= link_to "删除" %></td>
+          </tr>
+        </table>
+        <%= paginate @grades %>
+      <% else %>
+        暂时没有年级
+      <% end %>
+    </div>
+  </div>
+
+</div>

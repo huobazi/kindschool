@@ -1,0 +1,9 @@
+<div class="cut_work_all">
+  <div class="show_work_all">
+    <% if(about_me = @kind.page_contents.find_by_number("about_me")) && (entry = about_me.content_entries.first) %>
+      <%= raw entry.content %>
+    <% else %>
+      还未录入信息。
+    <% end %>
+  </div>
+</div>  

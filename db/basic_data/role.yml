@@ -1,0 +1,85 @@
+role1: 
+  name: "园管理员"
+  number: "admin"
+  admin: true
+  operates:
+    - 2001
+    - 2002
+    - 2003
+    - 2004
+    - 2005
+    - 2006
+    - 6001
+
+role2:
+  name: "园长"
+  number: "principal"
+  admin: true
+  operates:
+
+role3:
+  name: "副园长"
+  number: "vice_principal"
+  admin: true
+  operates:
+
+role4:
+  name: "园长助理"
+  number: "assistant_principal"
+  admin: true
+  operates:
+
+role5:
+  name: "年级组长"
+  number: "senior_leader"
+  admin: false
+  operates:
+
+role6:
+  name: "老师"
+  number: "teacher"
+  admin: false
+  operates:
+
+role7:
+  name: "园医"
+  number: "park_hospital"
+  admin: false
+  operates:
+
+role8:
+  name: "物管员"
+  number: "management_staff"
+  admin: false
+  operates:
+
+role9:
+  name: "会计"
+  number: "accounting"
+  admin: false
+  operates:
+
+
+role10:
+  name: "行政人员"
+  number: "administrative_staff"
+  admin: false
+  operates:
+
+role11:
+  name: "工作人员"
+  number: "staff"
+  admin: false
+  operates:
+
+role13:
+  name: "后勤人员"
+  number: "logistics_personnel"
+  admin: false
+  operates:
+
+role14:
+  name: "学生"
+  number: "student"
+  admin: false
+  operates:

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kindergarten_id: 1
+  start_at: 2013-06-27 09:48:48
+  end_at: 2013-06-27 09:48:48
+  range_tp: 1
+  content: MyText
+  creater_id: 1
+
+two:
+  kindergarten_id: 1
+  start_at: 2013-06-27 09:48:48
+  end_at: 2013-06-27 09:48:48
+  range_tp: 1
+  content: MyText
+  creater_id: 1

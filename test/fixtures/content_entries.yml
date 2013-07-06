@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  page_content_id: 1
+  title: MyString
+  number: MyString
+  content: MyText
+  resource_type: MyString
+  resource_id: 1
+
+two:
+  page_content_id: 1
+  title: MyString
+  number: MyString
+  content: MyText
+  resource_type: MyString
+  resource_id: 1

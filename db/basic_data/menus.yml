@@ -1,0 +1,169 @@
+- id: 10000
+  number: "personnel"
+  name: "人员管理"
+  height_level: "a"
+  url: "###"
+  sequence: 100
+  operate_id: 5
+  children:
+  - id: 11000
+    name: "年级管理"
+    number: 11000
+    operate_id: 4002
+    url: "/my_school/grades"
+    title: "年级管理"
+    height_level: "a"
+    sequence: 110
+  - id: 12000
+    name: "班级管理"
+    number: 12000
+    operate_id: 4001
+    url: "/my_school/squads"
+    title: "班级管理"
+    height_level: "a"
+    sequence: 120
+  - id: 13000
+    name: "教职工管理"
+    operate_id: 4003
+    number: 13000
+    url: "/my_school/staffs"
+    title: "教职工管理"
+    height_level: "a"
+    sequence: 130
+  - id: 14000
+    name: "学籍管理"
+    operate_id: 4004
+    number: 14000
+    url: "/my_school/student_infos"
+    title: "学籍管理"
+    height_level: "a"
+    sequence: 140
+- id: 20000
+  number: "approve"
+  name: "审核发布"
+  height_level: "a"
+  url: "###"
+  sequence: 200
+- id: 30000
+  number: "system"
+  name: "系统设置"
+  operate_id: 6
+  height_level: "a"
+  url: "###"
+  sequence: 300
+  children:
+  - id: 31000
+    name: "模板配置"
+    operate_id: 5001
+    url: "/my_school/templates/set_default_template_view"
+    number: 31000
+    title: "模板配置"
+    height_level: "a"
+    sequence: 310
+  - id: 32000
+    name: "内容配置"
+    operate_id: 5002
+    number: 32000
+    url: "/my_school/page_contents"
+    title: "内容配置"
+    height_level: "a"
+  - id: 33000
+    name: "升学策略配置"
+    number: 33000
+    url: "###"
+    title: "升学策略配置"
+    height_level: "a"
+    sequence: 320
+- id: 40000
+  number: "statistics"
+  name: "统计"
+  height_level: "a"
+  url: "###"
+  sequence: 400
+- id: 50000
+  number: "home"
+  name: "/t/colorful/home.png"
+  height_level: "b"
+  url: "/my_school/home"
+  sequence: 500
+  operate_id: 0
+  children:
+  - id: 51000
+    name: "home"
+    operate_id: 0
+    number: "home"
+    url: "/my_school/home"
+    title: "home"
+    height_level: "b"
+    sequence: 510
+- id: 60000
+  number: 60000
+  name: "通知公告"
+  operate_id: 2
+  height_level: "b"
+  url: "/my_school/notices"
+  sequence: 600
+  children:
+  - id: 61000
+    name: "发信息"
+    operate_id: 2006
+    number: 61000
+    url: "/my_school/messages/new"
+    title: "发信息"
+    height_level: "b"
+    sequence: 610
+  - id: 61001
+    name: "收件箱"
+    number: 61000
+    url: "/my_school/messages"
+    title: "收件箱"
+    height_level: "b"
+    sequence: 611
+    operate_id: 2007
+  - id: 61002
+    name: "发通知"
+    number: 61002
+    url: "/my_school/notices/new"
+    title: "发通知"
+    height_level: "b"
+    sequence: 613
+    operate_id: 2001
+  - id: 62003
+    name: "通知信息"
+    operate_id: 2003
+    number: 62003
+    url: "/my_school/notices"
+    title: "通知信息"
+    height_level: "b"
+    sequence: 624
+    operate_id: 2005
+- id: 70000
+  number: 70000
+  name: "班级活动"
+  height_level: "b"
+  url: "###"
+  sequence: 700
+- id: 80000
+  number: 80000
+  name: "照片集锦"
+  height_level: "b"
+  url: "###"
+  sequence: 800
+- id: 90000
+  number: 90000
+  name: "饮食保健"
+  height_level: "b"
+  url: "###"
+  sequence: 900
+- id: 100000
+  number: 100000
+  name: "成长记录"
+  height_level: "b"
+  url: "###"
+  sequence: 1000
+- id: 110000
+  number: 110000
+  name: "信息论坛"
+  height_level: "b"
+  url: "###"
+  sequence: 1100

@@ -1,0 +1,21 @@
+﻿defaults: &defaults
+  #发送短信地址
+  send_url: "http://210.5.158.31/hy/"
+  uid: 30022
+  login: rcfs
+  password: rcfs2468
+  encode: gbk
+  #获取短信回复地址
+  get_url: "http://210.5.158.31/hy/mo"
+  #查询余额地址
+  get_balance_url: "http://210.5.158.31/hy/m"
+  
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

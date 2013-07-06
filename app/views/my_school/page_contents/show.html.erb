@@ -1,0 +1,73 @@
+<script type="text/javascript">
+  $(function() {
+    $(".fancybox").fancybox();
+  })
+</script>
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>设置<%=@page_content.name%></label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li>系统设置</li>
+            <li>/</li>
+            <li><%= link_to "页面内容设置",my_school_page_contents_path%></li>
+            <li>/</li>
+            <li>设置<%=@page_content.name%></li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+          <a href="<%=my_school_page_contents_path%>" title="返回">
+            <div class="work_action_return">
+            </div>
+            <div class="work_action_return_move">
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="work_form">
+      <div class="form_div">
+        <%= form_tag url_for(:controller=>'/my_school/page_contents',:action=>:add_content,:id=>@page_content.id),:id=>"page_content_form", :multipart => true,:class=>"form-horizontal" do%>
+          <div class="control-group">
+            <label class="control-label">名称</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=@page_content.name%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">效果图</label>
+            <div class="controls">
+              <label class="show_label">
+                <a href="<%= @page_content.logo_url %>" class="fancybox"  title="效果图">
+                  <img src="<%= @page_content.logo_url %>" alt="效果图" width="300px;" />
+                </a>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">说明</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= @page_content.note %>
+              </label>
+            </div>
+          </div>
+          <%= render :partial => "/modules/colorful/#{@page_content.number}", :object => @page_content %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>

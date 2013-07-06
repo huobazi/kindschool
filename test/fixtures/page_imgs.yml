@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kindergarten_id: 1
+  content_entry_id: 1
+  filename: MyString
+  content_type: MyString
+  resource_type: MyString
+  resource_id: 1
+  size: 1
+  width: 1
+  height: 1
+  parent_id: 1
+  thumbnail: MyString
+  alt: MyString
+  created_at: 2013-07-03 09:40:11
+
+two:
+  kindergarten_id: 1
+  content_entry_id: 1
+  filename: MyString
+  content_type: MyString
+  resource_type: MyString
+  resource_id: 1
+  size: 1
+  width: 1
+  height: 1
+  parent_id: 1
+  thumbnail: MyString
+  alt: MyString
+  created_at: 2013-07-03 09:40:11

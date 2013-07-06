@@ -1,0 +1,5 @@
+colorful:
+  name: "五彩缤纷"
+  number: colorful
+  is_default: 1
+  image_url: "/t/colorful.jpg"
