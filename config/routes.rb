@@ -48,6 +48,7 @@ School::Application.routes.draw do
       collection do
         get :allocation
         post :update_allocation
+        get :set_class_teacher
       end
     end
   end

@@ -167,9 +167,14 @@
               <% @staff.teachers.each do |teacher| %>
                 <tr>
                   <td><%= teacher.squad.grade ? teacher.squad.grade.name : "" %></td>
-                  <td><%= teacher.squad.name %></td>
+                  <td><%= link_to teacher.squad.name, :controller => "/my_school/squads", :action => :show, :id => teacher.squad_id %></td>
                   <td><%= teacher.tp == 1 ? "是" : "否" %></td>
-                  <td><%= link_to "设置班主任" %></td>
+                  <td>
+                    <% if teacher.tp == 0 %>
+                      <%= link_to "设为班主任", :controller => "/my_school/teachers", :action => :set_class_teacher, :teacher_id => teacher.id, :squad_id => teacher.squad_id, :staff_id => @staff.id %></td>
+                  <% else %>
+                    <%= nil %>
+                  <% end %>
                 </tr>
               <% end %>
             </table>
