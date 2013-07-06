@@ -105,7 +105,7 @@
       </div>
     </div>
 
-    <fieldset>
+    <fieldset id="teachers">
       <legend><label>为该班级分配负责老师</label></legend>
         <div class="work_list">
           <% if @kind.staffs.any? %>
@@ -131,9 +131,9 @@
                   </td>
                   <td>
                   <% if staff.teachers.any? && staff.squad_ids.include?(@squad.id) %>
-                    <%= nil %>
+                    <%= link_to "取消负责老师", :controller => "/my_school/teachers", :action => :cancel_class_teacher, :staff_id => staff.id, :squad_id => @squad.id %>
                   <% else %>
-                    <%= link_to "设为负责老师", :controller => "/my_school/teachers", :action => "set_class_teacher_for_squad", :staff_id => staff.id, :squad_id => @squad.id %>
+                    <%= link_to "设为负责老师", :controller => "/my_school/teachers", :action => :set_class_teacher_for_squad, :staff_id => staff.id, :squad_id => @squad.id %>
                   <% end %>
                   </td>
                 </tr>

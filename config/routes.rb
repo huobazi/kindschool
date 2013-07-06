@@ -5,7 +5,10 @@ School::Application.routes.draw do
   match 'my_school/about' => 'my_school/main#about'
   match 'my_school/contact_us' => 'my_school/main#contact_us'
   namespace :my_school do
-    resources :seedlings
+    resources :seedlings do 
+      collection {get :grade_class}
+      collection {get :class_student}
+    end
     resources :users do
       collection do
         get :login,:logout,:error_notice
@@ -52,6 +55,7 @@ School::Application.routes.draw do
         get :set_class_teacher
         get :set_class_teacher_for_squad_view
         get :set_class_teacher_for_squad
+        get :cancel_class_teacher
       end
     end
   end
