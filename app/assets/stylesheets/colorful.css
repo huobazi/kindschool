@@ -1,11 +1,15 @@
 /*
  *= require jquery.ui.all
 */
+
 body{
     background-color: #f0ebe2;
     margin: 0;
     padding: 0;
     position: relative;
+}
+.wrapper input {
+    height: auto;
 }
 ul,li{
     margin: 0;
