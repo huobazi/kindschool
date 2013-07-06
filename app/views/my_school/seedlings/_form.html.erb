@@ -1,15 +1,89 @@
 <%#= f.text_field :name ,:class => "span5" %>
 <%#= render 'shared/form_error_messages', :model => @category %>
-<table>
-    <tbody>
-      <tr>
-          <th> <%=f.label :name, 'nnnn' %></th>
-          <td>
+<script type="text/javascript">
+  jQuery(function() {
+    $('#seedling_record_shot_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+  });
+  jQuery(function() {
+    $('#seedling_record_expire_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+    $("#grade").change(function(){
+        	alert("111111");
+            $.get( "/my_school/seedlings/grade_class",
+                    { grade: $('#grade').val()},
+                    function(result){
+                        $("#class_number_partial").html(result);
+                     })
+                   });
+  });
+  $('#grade').trigger('change'); 
+  // $("#grade").change();
+</script>
+<div class="control-group">
+ 	<%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
+<div class="controls">
+     <%= text_field_tag(:kindergarten,@kind.name, disabled: true) %>
+</div>
+</div>
+ <div class="control-group">
+ 	<%=f.label :name, '育苗名称:' ,:class=>"control-label"%>
+<div class="controls">
+     <%= f.text_field :name %>
+</div>
+ </div>
+ <div class="control-group">
+ 	<%=f.label :note, '描述: ' ,:class=>"control-label"%>
+<div class="controls">
+     <%= f.text_area(:note, size: "30x5",:class=>"span4") %>
+</div>
+</div>
+<div class="control-group">
+	<%=f.label :shot_at, '注射时间: ' ,:class=>"control-label"%>
+<div class="controls">
+    <%= f.text_field(:shot_at) %>
+</div>
+</div>
+<div class="control-group">
+	<%=f.label :expire_at, '过期时间: ' ,:class=>"control-label"%>
+<div class="controls">
+	<%= f.text_field(:expire_at) %>
+</div>
+</div>
+<div class="control-group">
+	<%=f.label :student_info_id, '学生: ' ,:class=>"control-label"%>
+<div class="controls">
+    <span>年级<%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]})%></span>
+     <div id="class_number_partial">
+       <%unless @squads.blank? %>
+        <span>班级<%= select_tag "class_number", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])) %></span>
+       <%end%>
+    <div id="student_partial">
+       <span >学生：
+       	<%(@student_infos||[]).each do |st_in|%>
+        <%=radio_button_tag("seedling_record[student_info_id]",st_in.id)%><%=st_in.name%>
+        <%end%>
+       </span>
+      </div>
+    </div>
 
-            <%= f.text_field :name %>
-          </td>
-      </tr>
-      
-    </tbody>
-</table>
- 
+</div>
+</div>
+ <div class="control-group">
+<div class="controls">
+<%= f.submit('创建',:class=>"btn") %>
+</div>
+</div>
+<script>
+$("#class_number").change(function(){
+    $.get( "/my_school/seedlings/class_student",
+            { grade: $('#grade').val(), class_number: $('#class_number').val()},
+            function(result){
+                $("#student_partial").html(result);
+            });
+});
+</script>

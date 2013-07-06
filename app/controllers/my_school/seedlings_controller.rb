@@ -29,6 +29,38 @@ class MySchool::SeedlingsController < MySchool::ManageController
    end
 
    def new
-     @seedling = SeedlingRecord.new
+     @seedling = @kind.seedling_records.new
+     if @grades = @kind.grades
+        if @squads = @grades.first.squads
+          @student_infos = @squads.first.student_infos 
+        end
+     end
+   end
+   
+   def create
+    @seedling = @kind.seedling_records.new(params[:seedling_record])
+     respond_to do |format|
+      if @seedling.save
+        format.html { redirect_to my_school_seedlings_path, notice: 'Push tag was successfully created.' }
+      else
+        format.html { render action: "new" }
+      end
+    end
+   end
+
+   def grade_class
+    if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
+      @squads = grade.squads
+    end
+     render "grade_class", :layout => false
+   end
+
+   def class_student
+    if grade=@kind.grades.where(:id=>params[:grade].to_i).first
+      if squad = grade.squads.where(:id=>params[:class_number].to_i).first
+         @student_infos = squad.student_infos   
+      end
+    end
+    render "class_student", :layout => false
    end
 end
