@@ -51,6 +51,7 @@ School::Application.routes.draw do
         get :set_class_teacher
         get :set_class_teacher_for_squad_view
         get :set_class_teacher_for_squad
+        get :cancel_class_teacher
       end
     end
   end
