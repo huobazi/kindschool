@@ -1,15 +1,14 @@
 <%#= f.text_field :name ,:class => "span5" %>
 <%#= render 'shared/form_error_messages', :model => @category %>
-<table>
-    <tbody>
-      <tr>
-          <th> <%=f.label :name, 'nnnn' %></th>
-          <td>
-
-            <%= f.text_field :name %>
-          </td>
-      </tr>
-      
-    </tbody>
-</table>
- 
+<div class="control-group">
+ 	<%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
+<div class="controls">
+     <%= text_field_tag(:kindergarten,@kind.name, disabled: true) %>
+</div>
+</div>
+ <div class="control-group">
+ 	<%=f.label :name, '育苗名称' ,:class=>"control-label"%>
+<div class="controls">
+     <%= f.text_field :name %>
+</div>
+ </div>
