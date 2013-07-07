@@ -49,6 +49,7 @@ gem 'bootstrap-datepicker-rails'
 gem "kaminari", "~> 0.14.1"
 gem "kaminari-bootstrap", "~> 0.1.2"
 gem 'simple_form'
+gem 'NextNumber'
 
 group :development do
   gem "pry-rails"

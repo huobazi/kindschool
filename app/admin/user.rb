@@ -55,6 +55,7 @@ ActiveAdmin.register User do
       f.input :email, :required => true
       f.input :name, :required => true
       f.input :phone, :required => true
+      f.input :role,:as=>:select,:collection=> Hash[f.object.kindergarten.roles.map{|role| ["#{role.name}",role.id]}]
       f.input :gender,:as=>:radio,:collection=>{"女"=>"M","男"=>"G"}, :required => true
       f.input :weixin_code
       f.input :tp_label, :as => :string, :input_html => { :disabled => true }
@@ -70,6 +71,7 @@ ActiveAdmin.register User do
       row :login
       row :email
       row :phone
+      row :role
       row :gender do
         User::GENDER_DATA[user.gender]
       end

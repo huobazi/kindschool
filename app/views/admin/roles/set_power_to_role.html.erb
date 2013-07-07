@@ -6,7 +6,7 @@
     <%= f.input :note, :as => :text, :input_html => {:disabled => true} %>
   <% end %>
   <%= f.inputs "给角色分配权限" do %>
-    <% @option_operates.group_by{|option_operate| option_operate.operate.parent.name}.each do |k, v| %>
+    <% @option_operates.group_by{|option_operate| option_operate.operate && option_operate.operate.parent ? option_operate.operate.parent.name : ""}.each do |k, v| %>
       <li class='check_boxes'>
       <fieldset>
         <legend class="label"><label><%= k %></label></legend>

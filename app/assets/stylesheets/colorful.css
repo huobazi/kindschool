@@ -8,6 +8,9 @@ body{
     padding: 0;
     position: relative;
 }
+div.ui-dialog{
+    position: fixed;
+}
 .wrapper input {
     height: auto;
 }
@@ -782,7 +785,7 @@ table.user_attributes td {
 
 /*======发件人选名单==============*/
 #message_inputs{
-    width: 455px;
+    width: 480px;
     background-color: white;
     border: 1px solid #CCCCCC;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
@@ -796,7 +799,7 @@ table.user_attributes td {
 #message_inputs label{
     width: 426px;
     float: left;
-    padding-top: 10px;
+    padding-top: 2px;
     padding-left: 10px;
     color: #008FDC;
 }
@@ -809,10 +812,35 @@ table.user_attributes td {
 }
 #message_inputs .message_user{
     float: left;
-    width: 115px;
+    width: 100px;
     padding-bottom: 2px;
     padding-left: 10px;
     padding-top: 2px;
+}
+.tab .show_users_data{
+    float: right;
+    font-size: 16px;
+    padding-right: 10px;
+    padding-top: 6px;
+}
+.tab .show_users_data label{
+    text-decoration: underline;
+    color: #008FDC;
+}
+.tab .show_users_data label i{
+    margin-top: 4px;
+}
+.tab .squad_users_div{
+    display: none;
+}
+.tab .ranges_resource_div{
+    display: none;
+}
+.tab .gray{
+    background-color: #CCCCCC;
+}
+.tab .light_gray{
+    background-color: #EFEBE3;
 }
 #change_users{
     color: #008FDC;
@@ -821,6 +849,15 @@ table.user_attributes td {
     display: none;
     width: 100%;
     float: left;
+}
+.tab .checkall{
+    float: left;
+    width: 100%;
+}
+.tab .checkall_div{
+    float: left;
+    padding: 6px;
+    width: 147px;
 }
 .tab{ width: 100%;float: left;}
 .tab-hd { background:#F0EBE2; overflow:hidden; zoom:1;
@@ -851,10 +888,7 @@ table.user_attributes td {
     width: 100%;
     float: left;
 }
-.tab .check_rangs input,.tab .check_grades input{
-    float: left;
-}
-.tab .check_rangs label,.tab .check_grades label{
+.tab .check_rangs input,.tab .check_grades input,.tab .checkall input,.tab .checkall label,.tab .check_rangs label,.tab .check_grades label{
     float: left;
 }
 

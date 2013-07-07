@@ -141,6 +141,37 @@ class User < ActiveRecord::Base
     return range_data
   end
 
+  #获取用户可以发送的人
+  def get_sender_users(ids=[])
+    data = self.get_users_ranges
+    if data[:tp] == :all
+      return (self.kindergarten.users.collect{|user| user.id.to_s} & ids).uniq
+    elsif data[:tp] == :teachers
+      squads = data[:squads]
+      unless data[:grades].blank?
+        data[:grades].each do |grade|
+          squads = grade.squads | squads
+        end
+      end
+      users_ids = []
+      squads.each do |squad|
+        users_ids += squad.users.collect{|user| user.id.to_s}
+      end
+      users_ids += self.kindergarten.users.where(:status=>"start",:tp=>1).collect{|user| user.id.to_s}
+      return (users_ids & ids).uniq
+    elsif data[:tp] == :student
+      user_ids = []
+      squad = data[:squad]
+      if squad.grade && squad.grade.staff && (user = squad.grade.staff.user)
+        user_ids << user.id.to_s
+      end
+      user_ids += squad.staffs.collect{|staff| staff.user ? staff.user.id.to_s : "0"}
+      return (user_ids & ids).uniq
+    else
+      return []
+    end
+  end
+
   protected
   # before filter
   def encrypt_password

@@ -41,9 +41,9 @@ class MySchool::SeedlingsController < MySchool::ManageController
     @seedling = @kind.seedling_records.new(params[:seedling_record])
      respond_to do |format|
       if @seedling.save
-        format.html { redirect_to my_school_seedlings_path, notice: 'Push tag was successfully created.' }
+        format.html { redirect_to my_school_seedlings_path, notice=> 'Push tag was successfully created.' }
       else
-        format.html { render action: "new" }
+        format.html { render :action=> "new" }
       end
     end
    end

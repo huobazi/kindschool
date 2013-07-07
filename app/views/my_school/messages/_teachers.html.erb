@@ -1,0 +1,37 @@
+<hr/>
+<% if @data[:tp] == :all || @data[:tp] == :teachers%>
+  <% @kind.staffs.where("users.status"=>"start").order("users.name").group_by{|o| o.user ? o.user.role : ""}.each do |k,staffs| %>
+    <div class="checkall gray">
+      <div class="checkall_div"><input type="checkbox" id="role_users_checkall_<%= k.blank? ? '' : k.id %>" for="#role_div_<%= k.blank? ? '' : k.id %>"/><label for="role_users_checkall_<%= k.blank? ? '' : k.id %>"><%=k.blank? ? "未绑定角色" : k.name%></label></div>
+    </div>
+    <div id="role_div_<%= k.blank? ? '' : k.id %>">
+      <% staffs.each do |staff| %>
+        <% if user = staff.user %>
+          <div class="check_grades"><input type="checkbox" name="teachsers" value="<%=user.id%>" id="teachsers_<%=user.id%>"/><label for="teachsers_<%=user.id%>" ><%=user.name%></label></div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+<% elsif @data[:tp] == :student %>
+  <% unless @data[:squad].blank? %>
+    <% squad = @data[:squad] %>
+    <% if squad.grade && squad.grade.staff && (user = squad.grade.staff.user) %>
+      <div class="checkall gray">
+        <div class="checkall_div"><input type="checkbox" id="role_users_checkall_0" for="#role_div_0"/><label for="role_users_checkall_0">年级组长</label></div>
+      </div>
+      <div id="role_div_0">
+        <div class="check_grades"><input type="checkbox" name="teachsers" value="<%=user.id%>" id="teachsers_<%=user.id%>"/><label for="teachsers_<%=user.id%>" ><%=user.name%></label></div>
+      </div>
+    <% end %>
+    <div class="checkall gray">
+      <div class="checkall_div"><input type="checkbox" id="role_users_checkall_1" for="#role_div_1"/><label for="role_users_checkall_1">班级负责老师</label></div>
+    </div>
+    <div id="role_div_1">
+      <% squad.staffs.each do |staff| %>
+        <% if user = staff.user %>
+          <div class="check_grades"><input type="checkbox" name="teachsers" value="<%=user.id%>" id="teachsers_<%=user.id%>"/><label for="teachsers_<%=user.id%>" ><%=user.name%></label></div>
+          <% end %>
+        <% end %>
+    </div>
+  <% end %>
+<% end %>
