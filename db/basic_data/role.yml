@@ -77,7 +77,6 @@ role13:
   number: "logistics_personnel"
   admin: false
   operates:
-
 role14:
   name: "学生"
   number: "student"

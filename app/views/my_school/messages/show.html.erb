@@ -1,0 +1,91 @@
+<div class="show_publicity">
+  <img src="/t/colorful/small_publicity.jpg" alt="展示图"/>
+</div>
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>收件箱</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li><%= link_to "通知公告", my_school_notices_path %></li>
+            <li>/</li>
+            <li>查看通知</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+          <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:new)%>" title="添加">
+            <div class="work_action_add">
+            </div>
+            <div class="work_action_add_move">
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:edit,:id=>@message.id)%>" title="编辑">
+            <div class="work_action_edit">
+            </div>
+            <div class="work_action_edit_move">
+            </div>
+          </a>
+        </li>
+        <li>
+          <%= link_to(url_for(:controller=>"/my_school/messages",:action=>:destroy,:id=>@message.id),:method=>:delete, :confirm => "您确定删除该消息吗?") do %>
+            <div class="work_action_delete">
+            </div>
+            <div class="work_action_delete_move">
+            </div>
+          <% end %>
+        </li>
+        <li>
+          <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:index)%>" title="返回">
+            <div class="work_action_return">
+            </div>
+            <div class="work_action_return_move">
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="work_form">
+      <div class="form_div">
+        <form class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label">标题</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=@message.title%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >发布时间</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= @message.send_date ? @message.send_date.to_short_datetime : "" %>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >内容</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= @message.content %>
+              </label>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

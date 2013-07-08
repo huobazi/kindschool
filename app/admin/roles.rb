@@ -75,7 +75,7 @@ ActiveAdmin.register Role do
         br
         panel "拥有的权限" do
           unless role.option_operates.blank?
-            options = role.option_operates.group_by{|option| option.operate.parent.name}
+            options = role.option_operates.group_by{|option| option.operate && option.operate.parent ? option.operate.parent.name : ""}
             puts options
             table_for([]) do
               options.each do |k, v|

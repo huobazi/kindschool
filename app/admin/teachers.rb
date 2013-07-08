@@ -70,6 +70,21 @@ ActiveAdmin.register Teacher do
     end
   end
 
+  collection_action :cancel_class_teacher, :method => :get do
+    if (teacher = Teacher.find_by_squad_id_and_staff_id(params[:squad_id], params[:staff_id])) && staff = Staff.find_by_id(params[:staff_id])
+      if teacher.update_attributes(:tp => 0)
+        flash[:success] = "操作成功"
+        redirect_to :controller => "/admin/users", :action => :show, :id => staff.user.id, :anchor => "show_teachers"
+      else
+        flash[:error] = "操作失败"
+        redirect_to :controller => "/admin/users", :action => :show, :id => staff.user.id, :anchor => "show_teachers"
+      end
+    else
+      flash[:notice] = "不能找到该教职工或班级"
+      redirect_to :controller => "/admin/staffs", :action => :index
+    end
+  end
+
   controller do
     def new
       @teacher = Teacher.new()

@@ -16,7 +16,11 @@ class Kindergarten < ActiveRecord::Base
   has_many :users   #所有用户
   has_many :operates
   has_many :grades,:order=>:sequence  #年级
+  has_many :grade_teachers,:through=>:grades, :source => :staff  #年级组长
+
   has_many :squads,:order=>[:grade_id,:sequence] #班级
+  has_many :squads_teachers,:through=>:squads, :source => :teachers  #班级负责老师
+
   has_many :student_infos,:include=>:user,:order=>"users.name DESC",:conditions=>"users.tp=0"  #学员信息
 
   has_many :staff_users,:class_name=>"User",:order=>:name,:conditions=>"tp=1"

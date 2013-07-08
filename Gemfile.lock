@@ -1,6 +1,7 @@
 GEM
   remote: http://ruby.taobao.org/
   specs:
+    NextNumber (0.0.1)
     actionmailer (3.2.13)
       actionpack (= 3.2.13)
       mail (~> 2.5.3)
@@ -186,6 +187,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  NextNumber
   activeadmin
   acts_as_tree
   anjlab-bootstrap-rails (>= 2.1)
