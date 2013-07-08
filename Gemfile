@@ -50,6 +50,8 @@ gem "kaminari", "~> 0.14.1"
 gem "kaminari-bootstrap", "~> 0.1.2"
 gem 'simple_form'
 gem 'NextNumber'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
 
 group :development do
   gem "pry-rails"
