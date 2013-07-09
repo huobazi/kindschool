@@ -4,10 +4,11 @@ class MySchool::SeedlingsController < MySchool::ManageController
    def index 
    	 all_roles = ['admin','principal','vice_principal','assistant_principal','park_hospital']
    	 userrole = current_user.get_users_ranges
-   	 if all_roles.include?(@role)
+   	 if @flag=all_roles.include?(@role)
    	    @seedlings = @kind.seedling_records
      elsif userrole[:tp] == :all
         @seedlings = @kind.seedling_records
+        @flag = true
      elsif userrole[:tp] == :teachers
         @seedlings = []
         squads = []
@@ -41,12 +42,61 @@ class MySchool::SeedlingsController < MySchool::ManageController
     @seedling = @kind.seedling_records.new(params[:seedling_record])
      respond_to do |format|
       if @seedling.save
-        format.html { redirect_to my_school_seedlings_path, notice: 'Push tag was successfully created.' }
+        format.html { redirect_to my_school_seedlings_path, notice: '学员的育苗 was successfully created.' }
       else
         format.html { render action: "new" }
       end
     end
    end
+
+   def edit
+     @seedling = @kind.seedling_records.find(params[:id])
+     if @grades = @kind.grades
+        if @squads = @grades.first.squads
+          @student_infos = @squads.first.student_infos 
+        end
+     end
+   end
+
+   def update
+    @seedling = @kind.seedling_records.find(params[:id])
+    respond_to do |format|
+      if @seedling.update_attributes(params[:seedling_record])
+        puts @seedling.inspect
+        format.html { redirect_to my_school_seedlings_path, notice: '学员育苗 was successfully updated.' }
+      else
+        format.html { render action: "edit" }
+      end
+    end
+  end
+   
+  def show
+  end
+
+  def destroy
+    @seedlings = @kind.seedling_records.where(:id=>params[:id])
+    @seedlings.each do |seedling|
+     seedling.destroy
+     end
+
+    respond_to do |format|
+      format.html { redirect_to my_school_seedlings_path }
+      format.json { head :no_content }
+    end
+  end
+
+  def destory_choose
+    
+    @seedlings = @kind.seedling_records.where(:id=>params[:id])
+    @seedlings.each do |seedling|
+     seedling.destroy
+     end
+
+    respond_to do |format|
+      format.html { redirect_to my_school_seedlings_path }
+      format.json { head :no_content }
+    end
+  end
 
    def grade_class
     if  grade=@kind.grades.where(:id=>params[:grade].to_i).first

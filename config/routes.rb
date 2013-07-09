@@ -8,7 +8,11 @@ School::Application.routes.draw do
     resources :seedlings do 
       collection {get :grade_class}
       collection {get :class_student}
+      collection {post :destory_choose}
     end
+    resources :physical_records do
+    end
+    resources :cook_books
     resources :users do
       collection do
         get :login,:logout,:error_notice
@@ -58,9 +62,9 @@ School::Application.routes.draw do
     end
   end
 
-  namespace :weixin do
-    resources :api
-  end
+  # namespace :weixin do
+  #   resources :api
+  # end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -119,6 +123,6 @@ School::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+  # devise_for :admin_users, ActiveAdmin::Devise.config
+  # ActiveAdmin.routes(self)
 end
