@@ -7,6 +7,7 @@ class  MySchool::SquadsController < MySchool::ManageController
   def new
     @squad = Squad.new
     @squad.kindergarten_id = @kind.id
+    @squad.historyreview = Time.now.year.to_s + "届"
   end
 
   def create
