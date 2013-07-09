@@ -15,10 +15,12 @@
          <%end%>
          <%menu[:children].each do |mm|%>
           <%#= menu[:name]==mm[:name] ? "".html_safe : "<li>".html_safe%>
+          <%if menu[:name]!=mm[:name] %>
           <li>
-            <%='<div class="work_selected"></div>'.html_safe if mm[:current] && menu[:name]!=mm[:name] %>
+            <%='<div class="work_selected"></div>'.html_safe if mm[:current] %>
             <%= link_to  mm[:name].match(/^\//) ? image_tag("/t/colorful/#{mm[:name]}.png") : mm[:name], mm[:url] ,:class=>"#{mm[:current] ? 'a_selected' : ''}"%> 
           </li>
+          <%end%>
          <%end%>
          <%end%>
         <% end %>
