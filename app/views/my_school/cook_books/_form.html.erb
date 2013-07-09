@@ -19,13 +19,13 @@
  <div class="control-group">
  	<%=f.label :start_at, '开始时间:' ,:class=>"control-label"%>
 <div class="controls">
-     <%= f.text_field(:start_at) %>
+     <%= f.text_field(:start_at , :validate => true) %>
 </div>
  </div>
 <div class="control-group">
 	<%=f.label :end_at, '结束时间: ' ,:class=>"control-label"%>
 <div class="controls">
-    <%= f.text_field(:end_at) %>
+    <%= f.text_field(:end_at , :validate => true) %>
 </div>
 </div>
 <div class="control-group">
