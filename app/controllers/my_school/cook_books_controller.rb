@@ -12,7 +12,11 @@ end
 
 end
 def new
- @cook_book = @kind.cook_books.new
+ if content_pattern = @kind.content_patterns.where(:number=>'cook_book').first
+    @cook_book = @kind.cook_books.new(:content=>content_pattern.content)
+ else
+    @cook_book = @kind.cook_books.new 
+ end
 end
 
 def create

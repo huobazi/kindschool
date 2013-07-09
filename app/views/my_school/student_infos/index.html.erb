@@ -56,10 +56,10 @@
               <td><%= link_to student.user.name, my_school_student_info_path(student) %></td>
               <td><%= student.user.login %></td>
               <td><%= student.user.phone %></td>
-              <td><%= student.user.gender %></td>
+              <td><%= student.user.gender == M "男" ? "女" %></td>
               <td><%= student.user.kindergarten_label %></td>
               <td><%= student.user.tp_label %></td>
-              <td><%= student.user.weixin_code %></td>
+              <td><%= student.user.weixin_code ? student.user.weixin_code : "暂无" %></td>
 
               <td><%= link_to "查看", my_school_student_info_path(student), :class => "show" %></td>
               <td><%= link_to "编辑", edit_my_school_student_info_path(student), :class => "show" %></td>

@@ -51,7 +51,7 @@ class Kindergarten < ActiveRecord::Base
 
   has_many :albums
 
-  has_many :content_pattern
+  has_many :content_patterns
 
   has_many :activities
 
@@ -82,7 +82,7 @@ class Kindergarten < ActiveRecord::Base
          self.option_operates << option_operate
       end
 
-      #self.roles.delete_all
+      self.roles.delete_all
       self.roles.each  do |role|
         role.destroy
       end 
@@ -102,7 +102,18 @@ class Kindergarten < ActiveRecord::Base
            role.save!
          end
       end
-      
+      #创建所需要的表格
+      content_patterns = YAML.load_file("#{Rails.root}/db/basic_data/content_patterns.yml")
+      if !content_patterns.blank?
+        content_patterns.each do |k,pattern|
+          puts pattern.inspect
+         unless content_pattern = self.content_patterns.where(:number=>pattern["number"]).first
+            content_pattern = ContentPattern.new(pattern)
+            content_pattern.kindergarten = self
+            content_pattern.save
+          end
+        end 
+      end
     self.save!
   end
 end

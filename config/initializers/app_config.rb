@@ -46,6 +46,17 @@ MENUS ={"home"=>{
    "93000"=>{
     "my_school/cook_books"=>['index','new','edit','show']
    }
+   },
+   "30000"=>{
+    "31000"=>{},
+    "32000"=>{},
+    "33000"=>{},
+    "34000"=>{
+      "my_school/content_patterns"=>['index','edit']
+    }
+
    }
+
+
 }
 

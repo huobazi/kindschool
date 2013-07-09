@@ -1,0 +1,27 @@
+<% f = form %>
+<script type="text/javascript">
+  jQuery(function() {
+    $('#growth_record_start_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+    $('#growth_record_end_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+  });
+</script>
+<%= f.input :start_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun"} %>
+<%= f.input :end_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun"} %>
+<%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
+
+<%= f.input :content, :input_html => {:rows => "10", :class => "span5"}%>
+<%= f.input :kindergarten_id, :as => :hidden %>
+<%= f.input :tp, :as => :radio, :collection => {"宝宝在园" => 0, "宝宝在家" => 1}, :required => true %>
+<%= f.input :student_info_id, :required => true, :as => :select, :collection => Hash[f.object.kindergarten.student_infos.map{|student| ["#{student.user.name}", student.id] }] %>
+
+<div class="control-group">
+  <div class="controls">
+    <%= f.button :submit %>
+  </div>
+</div>

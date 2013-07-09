@@ -4,7 +4,7 @@
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label>添加育苗</label>
+        <label>编辑表格</label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
@@ -14,13 +14,13 @@
         </div>
       </div>
       <ul class="work_action">
-
+        
       </ul>
     </div>
 
     <div class="work_form">
       <div class="form_div">
-        <%= form_for(@seedling, :validate => true, :url=>my_school_seedlings_path(@seedling), :html =>{:class=>"form-horizontal"}) do |f| %>
+       <%= form_for([:my_school,@content_pattern], :html =>{:class=>"form-horizontal"}) do |f| %>
           <%= render 'form', :f=>f %>
        <% end %>
       </div>

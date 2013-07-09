@@ -1,43 +1,44 @@
-<div class="show_publicity">
-  <img src="/t/colorful/small_publicity.jpg" alt="展示图"/>
-</div>
 <div class="show_work">
   <%= render :partial => "/modules/colorful/work_menu" %>
   <div class="work">
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label>发消息</label>
+        <label>宝宝在园管理信息</label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
           </a>
           <ul>
-            <li><%= link_to "通知公告", my_school_notices_path %></li>
+            <li>成长记录管理</li>
             <li>/</li>
-            <li>新增通知</li>
+            <li><%= link_to "成长记录管理", my_school_growth_records_path %></li>
+            <li>/</li>
+            <li>添加成长记录</li>
           </ul>
         </div>
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:index)%>" title="返回">
+          <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:index)%>" title="返回">
             <div class="work_action_return">
             </div>
             <div class="work_action_return_move">
             </div>
           </a>
         </li>
-
       </ul>
     </div>
 
     <div class="work_form">
       <div class="form_div">
-        <%= simple_form_for @message, :validate => true, :url => {:controller=>"/my_school/messages",:action=>:create}, :html =>{:class=>"form-horizontal"} do |f| %>
-          <%= render :partial => "form",:object=>f %>
+        <%= simple_form_for(@growth_record, :validate => true, :url => my_school_growth_records_path, :html => {:class => "form-horizontal"}) do |f| %>
+          <%= render :partial => "form", :object => f %>
         <% end %>
       </div>
     </div>
   </div>
+
 </div>
+
+

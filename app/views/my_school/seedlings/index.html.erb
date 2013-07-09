@@ -50,8 +50,8 @@
             <td><%= seedling.student_info.user.try(:name) unless seedling.student_info.blank? %></td>
             <td><%= seedling.name %></td>
             <td><%= seedling.note %></td>
-            <td><%= seedling.shot_at %></td>
-            <td><%= seedling.expire_at %></td>
+            <td><%= seedling.shot_at.try(:to_short_datetime) %></td>
+            <td><%= seedling.expire_at.try(:to_short_datetime) %></td>
             <td><%if @flag%><%= link_to '编辑', edit_my_school_seedling_path(seedling) %>|<%= link_to '删除',my_school_seedling_path(seedling) , method: :delete, data: { confirm: '确定要删除么?' } %><%end%></td>
           </tr>
         <% end %>
