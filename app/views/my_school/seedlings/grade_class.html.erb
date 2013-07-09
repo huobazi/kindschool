@@ -7,3 +7,12 @@ options_for_select(@squads.collect{|s|[s.name,s.id]} )  %></span>
 <%end%>
 </div>
 <%end%>
+<script>
+$("#class_number").change(function(){
+    $.get( "/my_school/seedlings/class_student",
+            { grade: $('#grade').val(), class_number: $('#class_number').val()},
+            function(result){
+                $("#student_partial").html(result);
+            });
+});
+</script>
