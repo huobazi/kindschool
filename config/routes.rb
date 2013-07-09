@@ -62,6 +62,8 @@ School::Application.routes.draw do
         get :cancel_class_teacher
       end
     end
+
+    resources :growth_records
   end
 
   # namespace :weixin do

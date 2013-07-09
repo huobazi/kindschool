@@ -487,6 +487,7 @@ zh-CN:
         creater_id: "创建人"
         squad_name: "班级名"
         student_info: "学员"
+        student_info_id: "学员"
         tp: "类型"
       seedling_record:
         kindergarten: "幼儿园"
