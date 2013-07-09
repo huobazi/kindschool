@@ -6,6 +6,10 @@ class Message < ActiveRecord::Base
   belongs_to :sender, :class_name => "User",:foreign_key=>:sender_id
   has_many :message_entries
 
+  validates :title, :content, :send_date, :presence => true
+
+  validates :content, :length => { :minimum => 5 }
+
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"

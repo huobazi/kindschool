@@ -5,10 +5,22 @@ class SeedlingRecord < ActiveRecord::Base
   just_define_datetime_picker :shot_at, :add_to_attr_accessible => true
   just_define_datetime_picker :expire_at, :add_to_attr_accessible => true
 
+  validates :name, :presence => true, :uniqueness => true
+  validates :note, :length => { :minimum => 5 }
+
   belongs_to :student_info
   belongs_to :kindergarten
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
+  end
+
+  validate :end_at_large_than_start_at
+  private
+  def end_at_large_than_start_at
+    if expire_at < shot_at
+      errors[:shot_at] << "shot_at must less than end_at"
+      errors[:expire_at] << "expire_at must large than start_at"
+    end
   end
 end

@@ -19,7 +19,8 @@ class User < ActiveRecord::Base
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
   validates_length_of :phone, :in => 11..11, :if => Proc.new { |user| user.phone.present? && user.phone.to_i != 0 }
 
-  validates :name,:kindergarten,:gender,:presence => true
+  validates :name, :login, :kindergarten,:gender,:presence => true
+  validates :login, :uniqueness => true
 
   GENDER_DATA = {"M"=>"女","G"=>"男"}
   TP_DATA = {"0"=>"学员","1"=>"教职工","2"=>"管理员"}
@@ -182,5 +183,15 @@ class User < ActiveRecord::Base
 
   def password_required?
     crypted_password.blank? || !password.blank?
+  end
+
+  validate :end_at_large_than_start_at
+
+  private
+  def end_at_large_than_start_at
+    if come_in_at < birthday
+      errors[:birthday] << "start_at must less than end_at"
+      errors[:come_in_at] << "end_at must large than start_at"
+    end
   end
 end
