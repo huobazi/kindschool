@@ -1,6 +1,7 @@
 GEM
   remote: http://ruby.taobao.org/
   specs:
+    NextNumber (0.0.1)
     actionmailer (3.2.13)
       actionpack (= 3.2.13)
       mail (~> 2.5.3)
@@ -55,6 +56,10 @@ GEM
       sass (>= 3.2.0)
       thor
     builder (3.0.4)
+    client_side_validations (3.2.5)
+    client_side_validations-simple_form (2.1.0)
+      client_side_validations (~> 3.2.5)
+      simple_form (~> 2.1.0)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -186,10 +191,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  NextNumber
   activeadmin
   acts_as_tree
   anjlab-bootstrap-rails (>= 2.1)
   bootstrap-datepicker-rails
+  client_side_validations
+  client_side_validations-simple_form
   coffee-rails (~> 3.2.1)
   daemons
   delayed_job_active_record

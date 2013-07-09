@@ -297,6 +297,7 @@ zh-CN:
         name: "名称"
         note: "描述"
         sequence: "排序"
+        graduate: "是否已毕业"
         created_at: "创建时间"
         updated_at: "更新时间"
       student_info:

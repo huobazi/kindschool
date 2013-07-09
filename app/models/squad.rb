@@ -1,7 +1,7 @@
 #encoding:utf-8
 #班级
 class Squad < ActiveRecord::Base
-  attr_accessible :grade_id, :kindergarten_id, :name, :note, :sequence,:historyreview
+  attr_accessible :grade_id, :kindergarten_id, :name, :note, :sequence,:historyreview,:graduate
 
   validates :name,:presence => true,:uniqueness => true
   validates :kindergarten,:presence => true
@@ -9,6 +9,7 @@ class Squad < ActiveRecord::Base
   belongs_to :kindergarten  #幼儿园
   belongs_to :grade  #年级
   has_many :student_infos  #学生信息
+  has_many :users,:through=>:student_infos #学生的用户信息
   has_many :teachers
   has_many :staffs, :through => :teachers
   has_many :topics #贴子

@@ -5,7 +5,7 @@ class CreateMessageEntries < ActiveRecord::Migration
       t.integer :receiver_id
       t.string :receiver_name
       t.integer :status
-      t.integer :sms
+      t.integer :sms #短信服务
       t.string :phone
       t.text :content
 

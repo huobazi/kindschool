@@ -26,6 +26,7 @@ ActiveAdmin.register Squad do
     column :kindergarten
     column :historyreview
     column :grade
+    column :graduate
     column :sequence
     column :note
     column :created_at
@@ -42,6 +43,7 @@ ActiveAdmin.register Squad do
       f.input :kindergarten_label, :as => :string, :input_html => { :disabled => true }
       f.input :historyreview
       f.input :grade,:as=>:select,:collection=>Hash[f.object.kindergarten.grades.map{|grade| ["#{grade.name}",grade.id]}]
+      f.input :graduate
       f.input :sequence, :required => true,:as=>:number,:number=>:integer
       f.input :note
       f.input :kindergarten_id,:as=>:hidden
@@ -54,6 +56,7 @@ ActiveAdmin.register Squad do
       row :kindergarten
       row :historyreview
       row :grade
+      row :graduate
       row :sequence
       row :note
       row :created_at

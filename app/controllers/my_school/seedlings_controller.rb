@@ -44,7 +44,7 @@ class MySchool::SeedlingsController < MySchool::ManageController
       if @seedling.save
         format.html { redirect_to my_school_seedlings_path, notice: '学员的育苗 was successfully created.' }
       else
-        format.html { render action: "new" }
+        format.html { render :action=> "new" }
       end
     end
    end
