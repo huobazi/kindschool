@@ -54,7 +54,7 @@
             <td><%= message.sender ? message.sender.name : ""%></td>
             <td><%= link_to message.title,:action=>:show,:id=>message.id %></td>
             <td><%= message.send_date ? message.send_date.to_short_datetime : "" %></td>
-            <td class="option"></td>
+            <td class="option"><%= link_to "查看",:action=>:show,:id=>message.id %></td>
           </tr>
         <% end %>
       </table>
