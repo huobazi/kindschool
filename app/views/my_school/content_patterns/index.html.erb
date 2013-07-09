@@ -1,0 +1,39 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>表格管理</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+      </ul>
+    </div>
+
+    <div class="work_list">
+      <table class="table table-striped table-hover">
+        <tr>
+          <th>表格</th>
+          <th>表格名字</th>
+          <th></th>          
+        </tr>
+        <% (@content_patterns || []).each do |content_pattern| %>
+          <tr>
+            <td><%=raw content_pattern.content %></td>
+            <!-- <td><%#= content_pattern.number %></td> -->
+            <td><%= content_pattern.name %></td>
+            <td><%= link_to '编辑', edit_my_school_content_pattern_path(content_pattern) %>|<%#= link_to '删除',my_school_cook_book_path(cook_book) , method: :delete, data: { confirm: '确定要删除么?' } %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+</div>

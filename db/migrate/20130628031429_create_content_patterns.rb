@@ -4,6 +4,7 @@ class CreateContentPatterns < ActiveRecord::Migration
       t.integer :kindergarten_id
       t.string :number
       t.text :content
+      t.string :name
 
       t.timestamps
     end

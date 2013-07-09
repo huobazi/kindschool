@@ -36,7 +36,7 @@
             <td><%= check_box_tag('physical_record[id]',physical_record.id)%></td>
             <td><%= physical_record.student_info.user.try(:name) unless physical_record.student_info.blank? %></td>
             <td><%= physical_record.content %></td>
-            <td><%= physical_record.send_date %></td>
+            <td><%= physical_record.send_date.try(:to_short_datetime) %></td>
             <td><%if @flag%><%= link_to '编辑', edit_my_school_physical_record_path(physical_record) %>|<%= link_to '删除',my_school_physical_record_path(physical_record) , method: :delete, data: { confirm: '确定要删除么?' } %><%end%>
            </td>
           </tr>

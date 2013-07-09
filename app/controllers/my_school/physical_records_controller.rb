@@ -30,7 +30,11 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
   end
    
    def new
-     @physical_record = @kind.physical_records.new
+   if content_pattern = @kind.content_patterns.where(:number=>'physical_record').first
+      @physical_record = @kind.physical_records.new(:content=>content_pattern.content)
+   else
+      @physical_record = @kind.physical_records.new
+   end 
      if @grades = @kind.grades
         if @squads = @grades.first.squads
           @student_infos = @squads.first.student_infos 

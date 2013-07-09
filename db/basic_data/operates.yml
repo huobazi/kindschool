@@ -257,6 +257,17 @@ page_content_config:
   action: "index"
   protocol: ""
 
+content_pattern_index:
+  id: 5003
+  parent_id: 6
+  name: "表格管理"
+  level: 2
+  sequence: 0
+  note: "表格管理"
+  controller: "my_school/content_patterns"
+  action: "index"
+  protocol: ""
+
 #==============================健康饮食
 seedlings_index:
   id: 6001
