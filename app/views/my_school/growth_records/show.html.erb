@@ -7,7 +7,13 @@
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label>宝宝在园管理信息</label>
+        <label>
+          <% if @growth_record.tp == 0 %>
+            宝宝在园管理信息
+          <% else %>
+            宝宝在家管理信息
+          <% end %>
+        </label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
@@ -109,7 +115,13 @@
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label" >在园表现</label>
+            <label class="control-label" >
+              <% if @growth_record.tp == 0 %>
+                在园表现
+              <% else %>
+                在家表现
+              <% end %>
+            </label>
             <div class="controls">
               <label class="show_label">
                 <%= @growth_record.content %>
@@ -117,7 +129,7 @@
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label" >在园表现</label>
+            <label class="control-label" >类型</label>
             <div class="controls">
               <label class="show_label">
                 <%= @growth_record.tp == 0 ? "宝宝在园" : "宝宝在家" %>

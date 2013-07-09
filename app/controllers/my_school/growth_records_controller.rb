@@ -7,6 +7,13 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     end
   end
 
+  def home
+    if current_user.get_users_ranges[:tp] == :student
+      @growth_records = GrowthRecord.where(:student_info_id => current_user.student_info.id).page(params[:page] || 1).per(10).order("created_at DESC")
+    end
+    render :index
+  end
+
   def new
     @growth_record = GrowthRecord.new
     @growth_record.kindergarten_id = @kind.id
@@ -14,15 +21,20 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
   end
 
   def create
-    @growth_record = GrowthRecord.new(params[:growth_record])
-    @growth_record.creater_id = current_user.id
-
-    if @growth_record.save!
-      flash[:success] = "添加成长记录成功"
-      redirect_to :controller => "/my_school/growth_records", :action => :show, :id => @growth_record.id
+    if current_user.get_users_ranges[:tp] = :student && params[:growth_record][:tp] == "0"
+      flash[:notice] = "没有权限,请联系管理员"
+      redirect_to :controller => "/my_school/growth_records", :action => :home
     else
-      flash[:error] = "添加成长记录失败"
-      render :new
+      @growth_record = GrowthRecord.new(params[:growth_record])
+      @growth_record.creater_id = current_user.id
+
+      if @growth_record.save!
+        flash[:success] = "添加成长记录成功"
+        redirect_to :controller => "/my_school/growth_records", :action => :show, :id => @growth_record.id
+      else
+        flash[:error] = "添加成长记录失败"
+        render :new
+      end
     end
   end
 
@@ -32,7 +44,16 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
   end
 
   def edit
-    @growth_record = GrowthRecord.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    if current_user.get_users_ranges[:tp] = :student
+      if current_user.student_info.growth_record_ids.include?(params[:id])
+        @growth_record = GrowthRecord.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+      else
+        flash[:notice] = "只能修改自己的成长记录"
+        redirect_to :controller => "/my_school/growth_records", :action => :home
+      end
+    else
+      @growth_record = GrowthRecord.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    end
   end
 
   def update

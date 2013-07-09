@@ -67,7 +67,12 @@ School::Application.routes.draw do
       end
     end
 
-    resources :growth_records
+    resources :growth_records do
+      collection do
+        get :home
+        get :garden
+      end
+    end
   end
 
   # namespace :weixin do
