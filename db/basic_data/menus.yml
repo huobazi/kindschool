@@ -153,8 +153,34 @@
   number: 90000
   name: "饮食保健"
   height_level: "b"
-  url: "###"
+  operate_id: 7
+  url: "/my_school/seedlings"
   sequence: 900
+  children:
+  - id: 91000
+    name: "育苗记录"
+    operate_id: 6001
+    number: 91000
+    url: "/my_school/seedlings"
+    title: "育苗记录"
+    height_level: "b"
+    sequence: 910
+  - id: 92000
+    name: "体检记录"
+    operate_id: 7001
+    number: 92000
+    url: "/my_school/physical_records"
+    title: "体检记录"
+    height_level: "b"
+    sequence: 920
+  - id: 93000
+    name: "菜谱"
+    operate_id: 8001 
+    number: 93000
+    url: "/my_school/cook_books"
+    title: "菜谱"
+    height_level: "b"
+    sequence: 930
 - id: 100000
   number: 100000
   name: "成长记录"

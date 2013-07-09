@@ -32,5 +32,17 @@ MENUS ={"home"=>{
   "my_school/staffs" => ["index", "new", "show", "edit"]},
   "14000" => {
   "my_school/student_infos" => ["index", "new", "show", "edit"]}
+},
+   "90000"=>{
+   "91000"=>{
+    "my_school/seedlings"=>['index','new','edit','show']
+    },
+   "92000"=>{
+    "my_school/physical_records"=>['index','new','edit','show']
+   },
+   "93000"=>{
+    "my_school/cook_books"=>['index','new','edit','show']
+   }
+   }
 }
-}
+
