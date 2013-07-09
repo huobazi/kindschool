@@ -13,7 +13,6 @@
       format:"yyyy-mm-dd"
     });
     $("#grade").change(function(){
-        	alert("111111");
             $.get( "/my_school/seedlings/grade_class",
                     { grade: $('#grade').val()},
                     function(result){

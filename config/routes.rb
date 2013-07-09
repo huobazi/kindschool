@@ -5,6 +5,7 @@ School::Application.routes.draw do
   match 'my_school/about' => 'my_school/main#about'
   match 'my_school/contact_us' => 'my_school/main#contact_us'
   namespace :my_school do
+    resources :content_patterns
     resources :seedlings do 
       collection {get :grade_class}
       collection {get :class_student}

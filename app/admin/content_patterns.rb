@@ -6,6 +6,7 @@ ActiveAdmin.register ContentPattern do
     column :number
     column :kindergarten
     column :content
+    column :name
     default_actions
   end
 
@@ -14,6 +15,7 @@ ActiveAdmin.register ContentPattern do
       f.input :kindergarten_label, :required => true, :input_html => { :disabled => true }
       f.input :number
       f.input :content
+      f.input :name
       f.input :kindergarten_id, :as => :hidden
     end
     f.actions
@@ -23,6 +25,7 @@ ActiveAdmin.register ContentPattern do
     attributes_table do
       row :number
       row :content
+      row :name
       row :kindergarten
     end
   end

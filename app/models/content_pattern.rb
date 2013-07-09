@@ -1,6 +1,6 @@
 #encoding:utf-8
 class ContentPattern < ActiveRecord::Base
-  attr_accessible :content, :kindergarten_id, :number
+  attr_accessible :name,:content, :kindergarten_id, :number
 
   belongs_to :kindergarten
 

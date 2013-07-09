@@ -67,6 +67,7 @@
     url: "/my_school/page_contents"
     title: "内容配置"
     height_level: "a"
+    sequence: 315
   - id: 33000
     name: "升学策略配置"
     number: 33000
@@ -74,6 +75,14 @@
     title: "升学策略配置"
     height_level: "a"
     sequence: 320
+  - id: 34000
+    name: "表格管理"
+    number: 34000
+    url: "/my_school/content_patterns"
+    title: "表格管理"
+    height_level: "a"
+    sequence: 330
+    operate_id: 5003
 - id: 40000
   number: "statistics"
   name: "统计"

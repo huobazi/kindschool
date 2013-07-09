@@ -6,8 +6,8 @@ class CookBook < ActiveRecord::Base
 
   validates :kindergarten_id, :presence => true
 
-  just_define_datetime_picker :start_at, :add_to_attr_accessible => true
-  just_define_datetime_picker :end_at, :add_to_attr_accessible => true
+  # just_define_datetime_picker :start_at, :add_to_attr_accessible => true
+  # just_define_datetime_picker :end_at, :add_to_attr_accessible => true
 
   RANGE_TP_DATA = {"0" => "周菜谱", "1" => "日菜谱"}
 
