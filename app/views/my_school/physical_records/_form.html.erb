@@ -14,7 +14,7 @@
                      })
                    });
   });
-  $('#grade').trigger('change'); 
+  $('#grade').trigger('change');
   var editor;
   KindEditor.ready(function(K) {
     editor = K.create('#physical_record_content', {
@@ -32,13 +32,13 @@
  <div class="control-group">
  	<%=f.label :content, '体检记录:' ,:class=>"control-label"%>
 <!-- <div class="controls"> -->
-     <%= f.text_field(:content,:class=>"profile_input") %>
+  <%= f.text_field(:content, :validate => true, :class=>"profile_input") %>
 <!-- </div> -->
  </div>
 <div class="control-group">
 	<%=f.label :send_date, '体检时间: ' ,:class=>"control-label"%>
 <div class="controls">
-    <%= f.text_field(:send_date) %>
+  <%= f.text_field(:send_date, :validate => true) %>
 </div>
 </div>
 <div class="control-group">

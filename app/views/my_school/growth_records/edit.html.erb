@@ -32,7 +32,7 @@
     </div>
     <div class="work_form">
       <div class="form_div">
-        <%= simple_form_for @growth_record , :url => {:controller=>"/my_school/growth_records",:action=>:update}, :html =>{:class=>"form-horizontal"} do |f| %>
+        <%= simple_form_for @growth_record, :validate => true, :url => {:controller=>"/my_school/growth_records",:action=>:update}, :html =>{:class=>"form-horizontal"} do |f| %>
           <%= render :partial => "form",:object=>f %>
         <% end %>
       </div>

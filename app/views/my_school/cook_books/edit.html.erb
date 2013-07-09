@@ -14,13 +14,13 @@
         </div>
       </div>
       <ul class="work_action">
-        
+
       </ul>
     </div>
 
     <div class="work_form">
       <div class="form_div">
-       <%= form_for([:my_school,@cook_book], :html =>{:class=>"form-horizontal"}) do |f| %>
+        <%= form_for([:my_school,@cook_book], :validate => true, :html =>{:class=>"form-horizontal"}) do |f| %>
           <%= render 'form', :f=>f %>
        <% end %>
       </div>

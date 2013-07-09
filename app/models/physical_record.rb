@@ -8,6 +8,8 @@ class PhysicalRecord < ActiveRecord::Base
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end
 
+  validates :content, :send_date, :presence => true
+
   belongs_to :kindergarten
   belongs_to :student_info
 end
