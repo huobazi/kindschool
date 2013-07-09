@@ -2,11 +2,7 @@
 class  MySchool::GrowthRecordsController < MySchool::ManageController
 
   def index
-    if current_user.tp == 0
-      @growth_records = current_user.student_infos.growth_records.page(params[:page] || 1).per(10).order("created_at DESC")
-    else if current_user.tp == 1
-
-    else
+    if current_user.get_users_ranges[:tp] == :all
       @growth_records = @kind.growth_records.page(params[:page] || 1).per(10).order("created_at DESC")
     end
   end
