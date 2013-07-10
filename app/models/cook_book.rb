@@ -5,7 +5,10 @@ class CookBook < ActiveRecord::Base
   belongs_to :kindergarten
 
   validates :kindergarten_id, :presence => true
-   
+  validates :content, :presence => true
+
+  validates :start_at, :end_at, :presence => true
+
   just_define_datetime_picker :start_at, :add_to_attr_accessible => true
   just_define_datetime_picker :end_at, :add_to_attr_accessible => true
 
@@ -20,7 +23,7 @@ class CookBook < ActiveRecord::Base
   private
 
   def end_at_large_than_start_at
-    if !end_at.blank && !start_at.blank
+    if !end_at.blank? && !start_at.blank?
       if end_at < start_at
         errors[:start_at] << "start_at must less than end_at"
         errors[:end_at] << "end_at must large than start_at"

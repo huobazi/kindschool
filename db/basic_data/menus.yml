@@ -193,9 +193,27 @@
 - id: 100000
   number: 100000
   name: "成长记录"
+  operate_id: 8
   height_level: "b"
-  url: "###"
+  url: "/my_school/growth_records/home"
   sequence: 1000
+  children:
+  - id: 101000
+    name: "宝宝在家"
+    operate_id: 8004
+    number: 101000
+    url: "/my_school/growth_records/home"
+    title: "宝宝在家"
+    height_level: "b"
+    sequence: 1010
+  - id: 102000
+    name: "宝宝在园"
+    operate_id: 8005
+    number: 102000
+    url: "/my_school/garden_growth_records/garden"
+    title: "宝宝在园"
+    height_level: "b"
+    sequence: 1020
 - id: 110000
   number: 110000
   name: "信息论坛"

@@ -1,0 +1,2 @@
+module MySchool::AlbumsHelper
+end

@@ -22,24 +22,28 @@
     </div>
 
     <div class="work_list">
-      <table class="table table-striped table-hover">
-        <tr>
-          <th>开始时间</th>
-          <th>结束时间</th>
-          <th>内容</th>
-          <th>菜谱类型</th>
-          <th></th>          
-        </tr>
-        <% (@cook_books || []).each do |cook_book| %>
-          <tr>
-            <td><%= cook_book.start_at.try(:to_short_datetime)%></td>
-            <td><%= cook_book.end_at.try(:to_short_datetime)%></td>
-            <td><%=raw cook_book.content %></td>
-            <td><%= CookBook::RANGE_TP_DATA[cook_book.range_tp.to_s] %></td>
-            <td><%if @flag%><%= link_to '编辑', edit_my_school_cook_book_path(cook_book) %>|<%= link_to '删除',my_school_cook_book_path(cook_book) , method: :delete, data: { confirm: '确定要删除么?' } %><%end%></td>
-          </tr>
+        <% if @cook_books.any? %>
+          <table class="table table-striped table-hover">
+            <tr>
+              <th>开始时间</th>
+              <th>结束时间</th>
+              <th>内容</th>
+              <th>菜谱类型</th>
+              <th></th>
+            </tr>
+              <% (@cook_books || []).each do |cook_book| %>
+                <tr>
+                  <td><%= cook_book.start_at.try(:to_short_datetime)%></td>
+                  <td><%= cook_book.end_at.try(:to_short_datetime)%></td>
+                  <td><%=raw cook_book.content %></td>
+                  <td><%= CookBook::RANGE_TP_DATA[cook_book.range_tp.to_s] %></td>
+                  <td><%if @flag%><%= link_to '编辑', edit_my_school_cook_book_path(cook_book) %>|<%= link_to '删除',my_school_cook_book_path(cook_book) , method: :delete, data: { confirm: '确定要删除么?' } %><%end%></td>
+                </tr>
+              <% end %>
+          </table>
+        <% else %>
+          "暂无菜谱"
         <% end %>
-      </table>
     </div>
   </div>
 

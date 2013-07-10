@@ -46,5 +46,5 @@ Template.transaction do
       puts ".\n"
    end
 
-  
+
 end

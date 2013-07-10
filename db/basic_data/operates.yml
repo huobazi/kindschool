@@ -59,7 +59,14 @@ healthy_eating:
   note: "健康饮食"
   <<: *DEFAULTS
 
-
+growth_record:
+  id: 8
+  parent_id: 1
+  name: "成长记录"
+  level: 1
+  sequence: 1
+  note: "成长记录"
+  <<: *DEFAULTS
 
 #---------------------------功能
 
@@ -371,6 +378,100 @@ cook_books_edit:
   sequence: 0
   note: "菜谱"
   controller: "my_school/cook_books"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+growth_records_home:
+  id: 8004
+  parent_id: 8
+  name: "宝宝在家"
+  level: 2
+  sequence: 0
+  note: "宝宝在家"
+  controller: "my_school/growth_records"
+  action: "home"
+  protocol: ""
+  <<: *DEFAULTS
+
+growth_records_garden:
+  id: 8005
+  parent_id: 8
+  name: "宝宝在园"
+  level: 2
+  sequence: 0
+  note: "宝宝在园"
+  controller: "my_school/garden_growth_records"
+  action: "garden"
+  protocol: ""
+  <<: *DEFAULTS
+
+growth_records_new:
+  id: 8006
+  parent_id: 8
+  name: "创建成长记录(宝宝在家)"
+  level: 2
+  sequence: 0
+  note: "宝宝在家"
+  controller: "my_school/growth_records"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+growth_records_show:
+  id: 8008
+  parent_id: 8
+  name: "查看成长记录(宝宝在家)"
+  level: 2
+  sequence: 0
+  note: "宝宝在家"
+  controller: "my_school/growth_records"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+growth_records_edit:
+  id: 8009
+  parent_id: 8
+  name: "编辑成长记录(宝宝在家)"
+  level: 2
+  sequence: 0
+  note: "宝宝在家"
+  controller: "my_school/growth_records"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+garden_growth_records_new:
+  id: 8010
+  parent_id: 8
+  name: "创建成长记录(宝宝在园)"
+  level: 2
+  sequence: 0
+  note: "宝宝在园"
+  controller: "my_school/garden_growth_records"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+garden_growth_records_show:
+  id: 8011
+  parent_id: 8
+  name: "查看成长记录(宝宝在园)"
+  level: 2
+  sequence: 0
+  note: "宝宝在园"
+  controller: "my_school/garden_growth_records"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+garden_growth_records_edit:
+  id: 8012
+  parent_id: 8
+  name: "查看成长记录(宝宝在园)"
+  level: 2
+  sequence: 0
+  note: "宝宝在园"
+  controller: "my_school/garden_growth_records"
   action: "edit"
   protocol: ""
   <<: *DEFAULTS

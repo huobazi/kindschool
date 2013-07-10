@@ -6,7 +6,7 @@ class Album < ActiveRecord::Base
   belongs_to :squad
   belongs_to :grade
   has_many :album_entries
-
+  
 
   def grade_label
     self.grade ? self.grade.name : "未设置年级"
