@@ -85,3 +85,4 @@ role14:
   number: "student"
   admin: false
   operates:
+  - 8004

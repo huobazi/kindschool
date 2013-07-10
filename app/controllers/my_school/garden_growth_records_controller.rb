@@ -1,5 +1,5 @@
 #encoding:utf-8
-class  MySchool::GrowthRecordsController < MySchool::ManageController
+class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
 
   def garden
     if current_user.get_users_ranges[:tp] == :student
@@ -7,16 +7,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     else
       @growth_records = @kind.growth_records.page(params[:page] || 1).per(10).order("created_at DESC")
     end
-    render :index
-  end
-
-  def home
-    if current_user.get_users_ranges[:tp] == :student
-      @growth_records = GrowthRecord.where(:student_info_id => current_user.student_info.id).page(params[:page] || 1).per(10).order("created_at DESC")
-    else
-      @growth_records = @kind.growth_records.page(params[:page] || 1).per(10).order("created_at DESC")
-    end
-    render :index
+    render "my_school/growth_records/index"
   end
 
   def new
@@ -24,6 +15,8 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     @growth_record.kindergarten_id = @kind.id
     @growth_record.creater_id = current_user.id
     @growth_record.tp = params[:tp] unless params[:tp].nil?
+
+    render "my_school/growth_records/new"
   end
 
   def create

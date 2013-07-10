@@ -55,6 +55,14 @@ MENUS ={"home"=>{
       "my_school/content_patterns"=>['index','edit']
     }
 
+   },
+   "100000"=>{
+    "101000" => {
+      "my_school/growth_records" => ["home", "new", "edit", "show"]
+   },
+     "101100" => {
+     "my_school/garden_growth_records" => ["garden", "new", "edit", "show"]
+   }
    }
 
 
