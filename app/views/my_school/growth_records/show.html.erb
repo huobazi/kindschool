@@ -8,10 +8,10 @@
       <div class="headline_title">
         <div class="messages_root"></div>
         <label>
-          <% if @growth_record.tp == 0 %>
-            宝宝在园管理信息
-          <% else %>
+          <% if @growth_record.tp == true %>
             宝宝在家管理信息
+          <% else %>
+            宝宝在园管理信息
           <% end %>
         </label>
         <div class="crumbs">
@@ -19,7 +19,12 @@
             <div class="icon_home"></div>
           </a>
           <ul>
-            <li><%= link_to "成长记录管理", my_school_growth_records_path %></li>
+            <li>
+            <% if @growth_record.tp == true %>
+              <%= link_to "宝宝在家", home_my_school_growth_records_path %></li>
+            <% else %>
+              <%= link_to "宝宝在园", garden_my_school_garden_growth_records_path %></li>
+            <% end %>
             <li>/</li>
             <li>查看成长记录</li>
           </ul>
@@ -27,7 +32,11 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new)%>" title="添加">
+          <% if @growth_record.tp == true %>
+            <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new, :tp=>1)%>" title="添加">
+          <% else %>
+            <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new, :tp=>0)%>" title="添加">
+          <% end %>
             <div class="work_action_add">
             </div>
             <div class="work_action_add_move">
@@ -35,7 +44,11 @@
           </a>
         </li>
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:edit,:id=>@growth_record.id)%>" title="编辑">
+          <% if @growth_record.tp == true %>
+            <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:edit,:id=>@growth_record.id, :tp=>1)%>" title="编辑">
+          <% else %>
+            <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:edit,:id=>@growth_record.id, :tp=>0)%>" title="编辑">
+          <% end %>
             <div class="work_action_edit">
             </div>
             <div class="work_action_edit_move">
@@ -51,7 +64,11 @@
           <% end %>
         </li>
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:index)%>" title="返回">
+          <% if @growth_record.tp == 1 %>
+            <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:home)%>" title="返回">
+          <% else %>
+            <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:garden)%>" title="返回">
+          <% end %>
             <div class="work_action_return">
             </div>
             <div class="work_action_return_move">
@@ -116,10 +133,10 @@
           </div>
           <div class="control-group">
             <label class="control-label" >
-              <% if @growth_record.tp == 0 %>
-                在园表现
-              <% else %>
+              <% if @growth_record.tp == true %>
                 在家表现
+              <% else %>
+                在园表现
               <% end %>
             </label>
             <div class="controls">
@@ -132,7 +149,7 @@
             <label class="control-label" >类型</label>
             <div class="controls">
               <label class="show_label">
-                <%= @growth_record.tp == 0 ? "宝宝在园" : "宝宝在家" %>
+                <%= @growth_record.tp == true ? "宝宝在家" : "宝宝在园" %>
               </label>
             </div>
           </div>

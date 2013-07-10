@@ -70,6 +70,11 @@ School::Application.routes.draw do
     resources :growth_records do
       collection do
         get :home
+      end
+    end
+
+    resources :garden_growth_records do
+      collection do
         get :garden
       end
     end

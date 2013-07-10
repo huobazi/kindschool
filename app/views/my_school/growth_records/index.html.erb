@@ -24,7 +24,11 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new)%>" title="添加">
+          <% if action_name == "home" %>
+            <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new, :tp=>1)%>" title="添加">
+          <% else %>
+            <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new, :tp=>0)%>" title="添加">
+          <% end %>
             <div class="work_action_add">
             </div>
             <div class="work_action_add_move">
@@ -62,7 +66,7 @@
               <td><%= growth.end_at.to_short_datetime %></td>
 
               <td><%= link_to "查看", my_school_growth_record_path(growth), :class => "show" %></td>
-              <td><%= link_to "编辑", edit_my_school_growth_record_path(growth), :class => "show" %></td>
+              <td><%= link_to "编辑", edit_my_school_garden_growth_record_path(growth), :class => "show" %></td>
             </tr>
           <% end %>
         </table>
