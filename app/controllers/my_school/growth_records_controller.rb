@@ -2,9 +2,7 @@
 class  MySchool::GrowthRecordsController < MySchool::ManageController
 
   def index
-    if current_user.get_users_ranges[:tp] == :all
-      @growth_records = @kind.growth_records.page(params[:page] || 1).per(10).order("created_at DESC")
-    end
+    @growth_records = @kind.growth_records.page(params[:page] || 1).per(10).order("created_at DESC")
   end
 
   def home
@@ -45,7 +43,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
 
   def edit
     if current_user.get_users_ranges[:tp] = :student
-      if current_user.student_info.growth_record_ids.include?(params[:id])
+      if current_user.student_info.growth_record_ids.include?(params[:id].to_i)
         @growth_record = GrowthRecord.find_by_id_and_kindergarten_id(params[:id], @kind.id)
       else
         flash[:notice] = "只能修改自己的成长记录"
