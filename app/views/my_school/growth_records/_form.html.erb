@@ -11,8 +11,13 @@
     });
   });
 </script>
-<%= f.input :start_at, :required => true, :as => :string, :input_html => {:class => "input-mediun"} %>
-<%= f.input :end_at, :required => true, :as => :string, :input_html => {:class => "input-mediun"} %>
+<% if action_name == "new" %>
+  <%= f.input :start_at, :required => true, :as => :string, :input_html => {:class => "input-mediun"} %>
+  <%= f.input :end_at, :required => true, :as => :string, :input_html => {:class => "input-mediun"} %>
+<% else %>
+  <%= f.input :start_at, :required => true, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.start_at.to_short_datetime}"} %>
+  <%= f.input :end_at, :required => true, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.end_at.to_short_datetime}"} %>
+<% end %>
 <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
 
 <%= f.input :content, :input_html => {:rows => "10", :class => "span5"}%>

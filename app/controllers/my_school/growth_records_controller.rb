@@ -15,10 +15,10 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
 
   def new
     if current_user.get_users_ranges[:tp] == :student && params[:tp] == "0"
-      flash[:notice] = "权限不够,请联系管理员"
+      flash[:notice] = "权限不够"
       redirect_to :controller => "/my_school/growth_records", :action => :home
     elsif current_user.get_users_ranges[:tp] == :teachers && params[:tp] == "1"
-      flash[:notice] = "权限不够,请联系管理员"
+      flash[:notice] = "权限不够"
       redirect_to :controller => "/my_school/growth_records", :action => :home
     else
       @growth_record = GrowthRecord.new
@@ -33,10 +33,10 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     @growth_record.creater_id = current_user.id
 
     if @growth_record.save!
-      flash[:success] = "添加成长记录成功"
+      flash[:success] = "添加宝宝在家成长记录成功"
       redirect_to :controller => "/my_school/growth_records", :action => :show, :id => @growth_record.id
     else
-      flash[:error] = "添加成长记录失败"
+      flash[:error] = "添加宝宝在家成长记录失败"
       render :new
     end
   end
@@ -74,7 +74,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
         redirect_to :controller => "/my_school/growth_records", :action => :home
       end
     elsif current_user.get_users_ranges[:tp] == :teachers
-      flash[:notice] = "没有权限,请联系负责人"
+      flash[:notice] = "没有权限"
       redirect_to :controller => "/my_school/growth_records", :action => :home
     else
       @growth_record = GrowthRecord.find_by_id_and_kindergarten_id(params[:id], @kind.id)
@@ -85,7 +85,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     @growth_record = GrowthRecord.find_by_id_and_kindergarten_id(params[:id], @kind.id)
     respond_to do |format|
       if @growth_record.update_attributes(params[:growth_record])
-        flash[:notice] = '更新通知成功.'
+        flash[:notice] = '更新宝宝在家成长记录成功.'
         format.html { redirect_to(:action=>:show,:id=>@growth_record.id) }
         format.xml  { head :ok }
       else

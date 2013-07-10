@@ -36,10 +36,10 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
       @growth_record.creater_id = current_user.id
 
       if @growth_record.save!
-        flash[:success] = "添加成长记录成功"
+        flash[:success] = "添加宝宝在园成长记录成功"
         redirect_to :controller => "/my_school/garden_growth_records", :action => :show, :id => @growth_record.id
       else
-        flash[:error] = "添加成长记录失败"
+        flash[:error] = "添加宝宝在园成长记录失败"
         render "my_school/growth_records/new"
       end
     end
@@ -62,7 +62,7 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
         render "my_school/growth_records/show"
       else
         flash[:notice] = "不能查看他人的成长记录或该记录不存在"
-        redirect_to home_my_school_growth_records_path
+        redirect_to garden_my_school_garden_growth_records_path
       end
     else
       @growth_record = GrowthRecord.find_by_id(params[:id])
@@ -83,11 +83,12 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
     elsif current_user.get_users_ranges[:tp] == :teachers
       squads = current_user.get_users_ranges[:squads]
       @growth_records = GrowthRecord.where("student_infos.squad_id=? and tp=0",squads.collect(&:id)).joins("LEFT JOIN student_infos on(student_infos.id = growth_records.student_info_id)")
-      unless (@growth_record = GrowthRecord.find_by_id(params[:id])) && @growth_records.include?(@growth_record)
-        flash[:notice] = "不能查看他人的成长记录或该记录不存在"
+      if (@growth_record = GrowthRecord.find_by_id(params[:id])) && @growth_records.include?(@growth_record)
+        render "my_school/growth_records/edit"
+      else
+        flash[:notice] = "不能编辑他人的成长记录或该记录不存在"
         redirect_to garden_my_school_garden_growth_records_path
       end
-      render "my_school/growth_records/edit"
     else
       @growth_record = GrowthRecord.find_by_id_and_kindergarten_id(params[:id], @kind.id)
       render "my_school/growth_records/edit"
@@ -98,7 +99,7 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
     @growth_record = GrowthRecord.find_by_id_and_kindergarten_id(params[:id], @kind.id)
     respond_to do |format|
       if @growth_record.update_attributes(params[:growth_record])
-        flash[:notice] = '更新通知成功.'
+        flash[:notice] = '更新宝宝在园成长记录成功.'
         format.html { redirect_to(:action=>:show,:id=>@growth_record.id) }
         format.xml  { head :ok }
       else
