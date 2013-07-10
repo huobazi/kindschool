@@ -58,10 +58,13 @@ MENUS ={"home"=>{
    },
    "100000"=>{
     "101000" => {
-      "my_school/growth_records" => ["home", "new", "edit", "show"]
+      "my_school/growth_records" => ["home", "new", "edit", "show"],
+      "my_school/growth_records/home" => ["home", "new", "edit", "show"]
    },
      "101100" => {
-     "my_school/garden_growth_records" => ["garden", "new", "edit", "show"]
+     "my_school/garden_growth_records" => ["garden", "new", "edit", "show"],
+      "my_school/garden_growth_records/garden" => ["garden", "new", "edit", "show"]
+
    }
    }
 

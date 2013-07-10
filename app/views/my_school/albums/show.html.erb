@@ -56,7 +56,7 @@
     </div>
 
     <div class="work_form">
-      <div class="form_div">
+      <div class="form_div" style="float:left;width:700px">
         <form class="form-horizontal">
           <div class="control-group">
             <label class="control-label">标题</label>
@@ -83,9 +83,10 @@
             </div>
           </div>
         </form>
+        <%=render 'album_image'%>
         <div class="work_form">
-         <div class="form_div">
-         <%= form_for(@album_entry,:url=>my_school_album_album_entries_path(@album.id,@album_entry),:html =>{:class=>"form-horizontal"}) do |f| %>
+         <div class="form_div" style="float:left">
+         <%= form_for(@album_entry,:url=>my_school_album_album_entries_path(@album.id,@album_entry),:html =>{:multipart=>true,:class=>"form-horizontal"},) do |f| %>
           <%= render 'form2', :f=>f %>
        <% end %>
        </div>

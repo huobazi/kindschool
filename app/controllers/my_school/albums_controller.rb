@@ -40,7 +40,8 @@ class MySchool::AlbumsController  < MySchool::ManageController
 
    def show
       @album = Album.find(params[:id])
-      @album_entry = @album.album_entries.new() 
+      @album.album_entries 
+      @album_entry=AlbumEntry.new()
    end
 
 end
