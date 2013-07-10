@@ -24,7 +24,7 @@ class MySchool::BaseController < ApplicationController
       if template = Template.find_by_is_default(1)
         template.number
       else
-        raise "模板信息确实，请联系管理员"
+        raise "模板信息缺失，请联系管理员"
       end
     end
   end

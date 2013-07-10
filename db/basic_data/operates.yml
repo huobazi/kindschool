@@ -408,7 +408,7 @@ growth_records_garden:
 growth_records_new:
   id: 8006
   parent_id: 8
-  name: "创建成长记录(宝宝在家)页面"
+  name: "创建成长记录(宝宝在家)"
   level: 2
   sequence: 0
   note: "宝宝在家"

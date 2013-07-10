@@ -4,7 +4,13 @@
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label>成长记录管理信息</label>
+        <label>
+          <% if action_name == "home" %>
+            宝宝在家管理信息
+          <% else %>
+            宝宝在园管理信息
+          <% end %>
+        </label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
@@ -65,8 +71,20 @@
               <td><%= growth.start_at.to_short_datetime %></td>
               <td><%= growth.end_at.to_short_datetime %></td>
 
-              <td><%= link_to "查看", my_school_growth_record_path(growth), :class => "show" %></td>
-              <td><%= link_to "编辑", edit_my_school_garden_growth_record_path(growth), :class => "show" %></td>
+              <td>
+                <% if growth.tp == true %>
+                  <%= link_to "查看", my_school_growth_record_path(growth), :class => "show" %>
+                <% else %>
+                  <%= link_to "查看", my_school_garden_growth_record_path(growth), :class => "show" %>
+                <% end %>
+              </td>
+              <td>
+                <% if growth.tp == true %>
+                  <%= link_to "编辑", edit_my_school_growth_record_path(growth), :class => "show" %>
+                <% else %>
+                  <%= link_to "编辑", edit_my_school_garden_growth_record_path(growth), :class => "show" %>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </table>
