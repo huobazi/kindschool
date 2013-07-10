@@ -35,7 +35,7 @@
             <td><%= album.title%></td>
             <td><%= album.content%></td>
             <td><%= album.try(:squad_name)%></td>
-            <td><%= %></td>
+            <td><%= link_to "show",my_school_album_path(album)%></td>
             <td></td>
           </tr>
         <% end %>
