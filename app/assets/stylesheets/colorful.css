@@ -898,3 +898,9 @@ table.user_attributes td {
     float: left;
 }
 
+#image_wall li{
+    float: left;
+}
+.blue{
+    color: blue;
+}

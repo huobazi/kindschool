@@ -6,7 +6,8 @@ School::Application.routes.draw do
   match 'my_school/contact_us' => 'my_school/main#contact_us'
   namespace :my_school do
     resources :albums do
-      
+      collection {get :grade_class}
+      resources :album_entries
     end
     resources :content_patterns
     resources :seedlings do 
@@ -76,6 +77,15 @@ School::Application.routes.draw do
     resources :garden_growth_records do
       collection do
         get :garden
+      end
+    end
+  end
+
+  match 'weixin' => 'weixin/main#index'
+  namespace :weixin do
+    resources :main do
+      collection do
+        get :bind_user
       end
     end
   end
