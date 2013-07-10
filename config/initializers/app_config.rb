@@ -60,7 +60,7 @@ MENUS ={"home"=>{
     "101000" => {
       "my_school/growth_records" => ["home", "new", "edit", "show"]
    },
-     "101100" => {
+     "102000" => {
      "my_school/garden_growth_records" => ["garden", "new", "edit", "show"]
    }
    }

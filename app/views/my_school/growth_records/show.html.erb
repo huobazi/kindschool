@@ -56,15 +56,7 @@
           </a>
         </li>
         <li>
-          <%= link_to(url_for(:controller=>"/my_school/growth_records",:action=>:destroy,:id=>@growth_record.id),:method=>:delete, :confirm => "您确定删除该通知吗?") do %>
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
-          <% end %>
-        </li>
-        <li>
-          <% if @growth_record.tp == 1 %>
+          <% if @growth_record.tp == true %>
             <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:home)%>" title="返回">
           <% else %>
             <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:garden)%>" title="返回">
