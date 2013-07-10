@@ -467,7 +467,7 @@ garden_growth_records_show:
 garden_growth_records_edit:
   id: 8012
   parent_id: 8
-  name: "查看成长记录(宝宝在园)"
+  name: "编辑成长记录(宝宝在园)"
   level: 2
   sequence: 0
   note: "宝宝在园"
