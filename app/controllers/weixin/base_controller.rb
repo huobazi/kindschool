@@ -24,13 +24,12 @@ class Weixin::BaseController < ApplicationController
 
 
   def get_validate_data
-#    @validate_data = []
-#    @validate_data << (params[:nonce] || "")
-#    @validate_data << (params[:timestamp] || "")
-#    token = (@required_type == :www ? @kind.weixin_token : WEBSITE_CONFIG["weixin_token"])
-#    @validate_data << (token || "")
-#    @validate_data.sort.join("")
-  return "abc"
+    @validate_data = []
+    @validate_data << (params[:nonce] || "")
+    @validate_data << (params[:timestamp] || "")
+    token = (@required_type == :www ? @kind.weixin_token : WEBSITE_CONFIG["weixin_token"])
+    @validate_data << (token || "")
+    @validate_data.sort.join("")
   end
 
   def validate_nonce
