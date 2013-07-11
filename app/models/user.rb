@@ -189,9 +189,11 @@ class User < ActiveRecord::Base
 
   private
   def end_at_large_than_start_at
-    if come_in_at < birthday
-      errors[:birthday] << "start_at must less than end_at"
-      errors[:come_in_at] << "end_at must large than start_at"
+    if !end_at.blank? && !start_at.blank?
+      if come_in_at < birthday
+        errors[:birthday] << "start_at must less than end_at"
+        errors[:come_in_at] << "end_at must large than start_at"
+      end
     end
   end
 end
