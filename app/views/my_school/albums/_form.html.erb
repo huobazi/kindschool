@@ -10,6 +10,14 @@
      <%= f.text_field(:title , :validate => true) %>
 </div>
  </div>
+ <div class="control-group">
+  <%=f.label :is_show, '是否显示:' ,:class=>"control-label"%>
+<div class="controls">
+    <%= radio_button(:album, :is_show, "1") %>是
+    <%= radio_button(:album, :is_show, "0") %>否
+  <%=%>
+</div>
+ </div>
 <div class="control-group">
 	<%=f.label :content, '内容: ' ,:class=>"control-label"%>
   <%= f.text_field(:content,:class => 'profile_input') %>

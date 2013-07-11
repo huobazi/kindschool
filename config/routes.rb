@@ -7,7 +7,9 @@ School::Application.routes.draw do
   namespace :my_school do
     resources :albums do
       collection {get :grade_class}
-      resources :album_entries
+      resources :album_entries do
+      member {post :choose_main_img} 
+      end
     end
     resources :content_patterns
     resources :seedlings do 

@@ -93,6 +93,17 @@ class User < ActiveRecord::Base
     @operates
   end
 
+  def user_operates(controller_name,view_name)
+     flag =false
+      if operates = self.operates#.where(:controller=>controller_name,:view=>view_name).first
+        operates.each do |operate|
+          if operate.controller==controller_name && operate.view.include?(view_name)
+             flag =true
+           end 
+        end
+     end
+  end
+
   def authed_menus(t)
     mymenus = []
     root = []

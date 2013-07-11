@@ -68,6 +68,17 @@ growth_record:
   note: "成长记录"
   <<: *DEFAULTS
 
+album_record:
+  id: 9
+  parent_id: 1
+  name: "照片集锦"
+  level: 1
+  sequence: 1
+  note: "照片集锦"
+  <<: *DEFAULTS
+
+
+
 #---------------------------功能
 
 #||||||||||||||||||||||||||公告通知功能
@@ -475,3 +486,68 @@ garden_growth_records_edit:
   action: "edit"
   protocol: ""
   <<: *DEFAULTS
+
+
+album_record_index:
+  id: 9000
+  parent_id: 9
+  name: "照片集锦"
+  level: 2
+  sequence: 0
+  note: "照片集锦"
+  controller: "my_school/albums"
+  action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+
+album_record_new:
+  id: 9001
+  parent_id: 9
+  name: "创建照片集锦"
+  level: 2
+  sequence: 0
+  note: "创建照片集锦"
+  controller: "my_school/albums"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+album_record_show:
+  id: 9002
+  parent_id: 9
+  name: "显示照片集锦"
+  level: 2
+  sequence: 0
+  note: "显示照片集锦"
+  controller: "my_school/albums"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+album_record_grade_class:
+  id: 9003
+  parent_id: 9
+  name: "照片集锦_年级班级选择"
+  level: 2
+  sequence: 0
+  note: "照片集锦_年级班级选择"
+  controller: "my_school/albums"
+  action: "grade_class"
+  protocol: ""
+  <<: *DEFAULTS
+
+album_record_create:
+  id: 9004
+  parent_id: 9
+  name: "照片集锦_创建"
+  level: 2
+  sequence: 0
+  note: "照片集锦_创建"
+  controller: "my_school/albums"
+  action: "create"
+  protocol: ""
+  <<: *DEFAULTS
+
+
+
+

@@ -2,7 +2,14 @@
 #相册锦集
 class MySchool::AlbumsController  < MySchool::ManageController
    def index
-     @albums = @kind.albums
+     user = current_user
+     arr = ['new','edit','destroy']
+     if user.user_operates(controller_name,arr)
+        @albums = @kind.albums
+        @flag = true
+      else  
+        @albums = @kind.albums.where(:is_show=>1)
+     end  
    end
 
    def new
@@ -39,9 +46,18 @@ class MySchool::AlbumsController  < MySchool::ManageController
    end
 
    def show
-      @album = Album.find(params[:id])
+      @album = @kind.albums.find(params[:id])
       @album.album_entries 
       @album_entry=AlbumEntry.new()
    end
+
+  def destroy
+     @album = @kind.albums.find(params[:id])
+     @album.destroy
+      respond_to do |format|
+      format.html { redirect_to my_school_albums_path }
+      format.json { head :no_content }
+    end
+  end
 
 end
