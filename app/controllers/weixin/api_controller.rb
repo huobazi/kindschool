@@ -1,9 +1,12 @@
 #encoding:utf-8
 class Weixin::ApiController < Weixin::BaseController
   
-  before_filter :token ,:if=>@required_type == :www && @kind.weixin_status == 0
+  before_filter :token_validate  if (@required_type != :www && @required_type != "") #&& @kind.weixin_status == 0
   #交互接口
   def index
+    render :text=>"==@required_type====#{@required_type}===@kind.weixin_status=#{@kind.weixin_status}"
+    return
+
     if @required_type == :www
       
     else
@@ -51,8 +54,8 @@ class Weixin::ApiController < Weixin::BaseController
   private
 
 
-  def load_token
-    render params[:echostr]
+  def token_validate
+    render :text=>params[:echostr]
     return
   end
 
