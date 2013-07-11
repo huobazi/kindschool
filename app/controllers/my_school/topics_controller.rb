@@ -7,6 +7,10 @@ class  MySchool::TopicsController < MySchool::ManageController
   def show
     @topic = Topic.find_by_id_and_kindergarten_id(params[:id], @kind.id)
     @topic_creater = User.find_by_id(@topic.creater_id)
+    @topic_entry = TopicEntry.new
+    @topic_entry.topic_id = @topic.id
+    @topic_entry.creater_id = current_user.id
+    @topic_entries = @topic.topic_entries
   end
 
   def new

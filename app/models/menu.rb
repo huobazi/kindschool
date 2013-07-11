@@ -6,6 +6,6 @@ class Menu < ActiveRecord::Base
   has_many :children, :class_name=>'Menu', :foreign_key=>'parent_id'
   validates  :number,:name,:url , :presence => true#:kindergarten, #必须输入/不为空
 
-  validates_uniqueness_of  :number,:uniqueness => true ,:scope=>:kindergarten_id  #同一幼儿园不允许重复
+  validates_uniqueness_of  :number ,:scope=>:kindergarten_id  #同一幼儿园不允许重复
 
 end
