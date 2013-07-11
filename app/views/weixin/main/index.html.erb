@@ -17,8 +17,8 @@
         <li class="menu_li"><a href="###" class="growth" for="#growth_div"><div class="show_div"></div><img src="/t/colorful/growth_img.png" alt="宝宝成长" /><label>宝宝成长</label></a>
           <div id="growth_div" class="hide menu_second">
             <ul>
-              <li><img src="/t/colorful/login_img11.png" alt="头像"/><label>宝宝在园</label></li>
-              <li ><img src="/t/colorful/login_img9.png" alt="头像"/><label>宝宝在家</label></li>
+              <li><a href="###"><div class="s_arrow"></div><img src="/t/colorful/login_img11.png" alt="头像"/><label>宝宝在园</label></a></li>
+              <li ><a href="###"><div class="s_arrow"></div><img src="/t/colorful/login_img9.png" alt="头像"/><label>宝宝在家</label></a></li>
             </ul>
           </div>
         </li>
@@ -27,7 +27,50 @@
     </div>
   </div>
 </div>
-
+<div class="menu_one">
+  <a href="###" class="menu_one_a hide_div" for="#user_infos" ><div class="w_arrow"></div><label>孩子的信息</label></a>
+  <div id="user_infos">
+    <div class="b_arr">
+    </div>
+    <div class="user_title">
+      <div class="user_logo">
+        <img src="/t/colorful/login_img8.png" alt="头像" class="img-polaroid"/>
+      </div>
+      <div class="user_name">
+        <label>林小明</label>
+        <label>学生</label>
+      </div>
+    </div>
+    <div class="user_entry">
+      <table class="table table-bordered">
+        <tr><td><b>学籍信息</b></td><td>学籍信息</td></tr>
+        <tr><td><b>学籍信息</b></td><td>学籍信息</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="menu_one">
+  <a href="###" class="menu_one_a" for="#teacher_infos"><div class="w_arrow"></div><label>老师的信息</label></a>
+  <div id="teacher_infos">
+    <div class="b_arr">
+    </div>
+    <div class="user_title">
+      <div class="user_logo">
+        <img src="/t/colorful/login_img8.png" alt="头像" class="img-polaroid"/>
+      </div>
+      <div class="user_name">
+        <label>詹雨</label>
+        <label>老师</label>
+      </div>
+    </div>
+    <div class="user_entry">
+      <table class="table table-bordered">
+        <tr><td><b>手机号</b></td><td>13916816888</td></tr>
+        <tr><td><b>座机号</b></td><td>0755 8323459</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
 <script type="text/javascript">
   $(function() {
     $(".phone,.growth").click(function(){
@@ -40,12 +83,19 @@
         div.show();
       }
     })
+    $(".menu_one_a").click(function(){
+      var div = $($(this).attr("for"));
+      if(div.css("display") == "block"){
+        if($(this).attr("for") == "#user_infos"){
+          $(this).addClass("hide_div");
+        }
+        div.hide();
+      }else{
+        if($(this).attr("for") == "#user_infos"){
+          $(this).removeClass("hide_div");
+        }
+        div.show();
+      }
+    })
   })
 </script>
-
-<% if @kind %>
-  <%= @kind.number %><br/>
-  <%= @kind.name %>
-<% else %>
-  没找到该幼儿园
-<% end %>

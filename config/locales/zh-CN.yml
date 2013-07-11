@@ -231,6 +231,7 @@ zh-CN:
       content_entry: "内容详细"
       page_img: "页面图片资源"
       activity_img: "活动图片"
+      topic_category: "贴子分类"
     attributes:
       admin_user:
         current_sign_in_at: "当前登陆时间"
@@ -433,6 +434,8 @@ zh-CN:
         status: "状态"
         approve_status: "审核状态"
         approver_id: "审核人"
+        topic_category: "贴子分类"
+        topic_category_label: "贴子分类"
         show_count: "浏览次数"
       topic_entry:
         topic: "回复的贴子"
@@ -571,6 +574,10 @@ zh-CN:
         filename: "图片"
         content_type: "图片类型"
         uploaded_data: "上传图片"
+      topic_category:
+        name: "名称"
+        kindergarten_label: "所属幼儿园"
+        kindergarten: "幼儿园"
     errors:
       <<: *errors
   views:

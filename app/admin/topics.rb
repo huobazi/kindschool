@@ -7,9 +7,6 @@ ActiveAdmin.register Topic do
       @topic = Topic.new()
       if kindergarten = Kindergarten.find_by_id(params[:kindergarten_id])
         @topic.kindergarten = kindergarten
-        if params[:squad_id] && (squad = Squad.find_by_id_and_kindergarten_id(params[:squad_id], params[:kindergarten_id]))
-          @topic.squad = squad
-        end
       else
         flash[:notice] = "需要指定所属幼儿园."
         redirect_to :action => :index,:controller=>"/admin/kindergartens"
@@ -25,8 +22,6 @@ ActiveAdmin.register Topic do
     end
     column :creater_id
     column :kindergarten
-    column :tp
-    column :squad
     column :status
     column :show_count
     default_actions
@@ -36,10 +31,10 @@ ActiveAdmin.register Topic do
     f.inputs "发贴子" do
       f.input :title, :required => true
       f.input :content, :required => true
+      f.input :topic_category_id, :as => :select, :collection=>Hash[f.object.kindergarten.topic_categories.map{|topic_category| ["#{topic_category.name}",topic_category.id]}]
       f.input :kindergarten_label, :as => :string, :input_html => { :disabled => true }
-      f.input :squad_label, :as => :string, :input_html => { :disabled => true }
       f.input :kindergarten_id,:as=>:hidden
-      f.input :squad_id, :as => :hidden
+      f.input :creater_id, :as => :hidden
     end
     f.actions
   end
@@ -49,8 +44,6 @@ ActiveAdmin.register Topic do
       row :title
       row :creater_id
       row :kindergarten
-      row :tp
-      row :squad
       row :is_show
       row :is_top
       row :approve_status

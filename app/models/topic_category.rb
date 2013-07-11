@@ -1,10 +1,12 @@
 #encoding:utf-8
-class ContentPattern < ActiveRecord::Base
-  attr_accessible :name,:content, :kindergarten_id, :number
-
-  belongs_to :kindergarten
+class TopicCategory < ActiveRecord::Base
+  attr_accessible :kindergarten_id, :name
 
   validates :name, :presence => true, :uniqueness => { :scope => :kindergarten_id }
+  validates :kindergarten_id, :presence => true
+
+  belongs_to :kindergarten
+  has_many :topics
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"

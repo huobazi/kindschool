@@ -81,10 +81,14 @@ School::Application.routes.draw do
         get :garden
       end
     end
+
+    resources :topics
+    resources :topic_entries
   end
 
   match 'weixin' => 'weixin/main#index'
   namespace :weixin do
+    resources :api
     resources :main do
       collection do
         get :bind_user

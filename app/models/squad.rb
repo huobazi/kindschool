@@ -12,7 +12,6 @@ class Squad < ActiveRecord::Base
   has_many :users,:through=>:student_infos #学生的用户信息
   has_many :teachers
   has_many :staffs, :through => :teachers
-  has_many :topics #贴子
   has_many :albums
 
   def grade_label
