@@ -12,8 +12,8 @@
   });
 </script>
 <% if action_name == "new" %>
-  <%= f.input :start_at, :required => true, :as => :string, :input_html => {:class => "input-mediun"} %>
-  <%= f.input :end_at, :required => true, :as => :string, :input_html => {:class => "input-mediun"} %>
+  <%= f.input :start_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun"} %>
+  <%= f.input :end_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun"} %>
 <% else %>
   <%= f.input :start_at, :required => true, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.start_at.to_short_datetime}"} %>
   <%= f.input :end_at, :required => true, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.end_at.to_short_datetime}"} %>
