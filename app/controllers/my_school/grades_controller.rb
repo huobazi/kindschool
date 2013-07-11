@@ -23,7 +23,7 @@ class  MySchool::GradesController < MySchool::ManageController
     @grade.destroy
 
     respond_to do |format|
-      flash[:notice] = '删除通知成功.'
+      flash[:notice] = '删除年级成功.'
       format.html { redirect_to(:action=>:index) }
       format.xml  { head :ok }
     end
