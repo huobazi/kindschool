@@ -7,6 +7,8 @@ class Notice < ActiveRecord::Base
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
   validates :title,:content,:presence => true
 
+  validates :content, :length => { :minimum => 5 }
+
   
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"

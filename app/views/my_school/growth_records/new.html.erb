@@ -1,0 +1,61 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>
+          <% if params[:tp] == 1 %>
+            宝宝在家管理信息
+          <% else %>
+            宝宝在园管理信息
+          <% end %>
+        </label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li>成长记录管理</li>
+            <li>/</li>
+            <li>
+            <% if params[:tp] == 1 %>
+              <%= link_to "宝宝在家", home_my_school_growth_records_path %></li>
+            <% else %>
+              <%= link_to "宝宝在园", garden_my_school_garden_growth_records_path %></li>
+            <% end %>
+            <li>/</li>
+            <li>添加成长记录</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+          <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:index)%>" title="返回">
+            <div class="work_action_return">
+            </div>
+            <div class="work_action_return_move">
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="work_form">
+      <div class="form_div">
+        <% if params[:tp] == 1 %>
+          <%= simple_form_for(@growth_record, :validate => true, :url => my_school_growth_records_path, :html => {:class => "form-horizontal"}) do |f| %>
+            <%= render :partial => "form", :object => f %>
+          <% end %>
+        <% else %>
+          <%= simple_form_for(@growth_record, :validate => true, :url => my_school_garden_growth_records_path, :html => {:class => "form-horizontal"}) do |f| %>
+            <%= render :partial => "my_school/growth_records/form", :object => f %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

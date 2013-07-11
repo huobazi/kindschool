@@ -7,7 +7,7 @@
   <% if page_content.content_entries.blank? %>
     <tr>
       <td>没有内容</td>
-      <td></td>
+      <td>&nbsp;</td>
     </tr>
   <%else%>
     <% entry = page_content.content_entries.first%>
@@ -41,7 +41,8 @@
   var editor;
   KindEditor.ready(function(K) {
     editor = K.create('#content', {
-      allowFileManager : true
+      allowFileManager : true,
+      height:400
     });
   });
 </script>

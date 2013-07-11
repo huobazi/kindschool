@@ -1,0 +1,219 @@
+body {
+    background-color: #f0ebe2;
+}
+.head {
+    position: relative;
+}
+.head a{
+    display: inline;
+    text-decoration: none;
+}
+.head a img{
+    max-width: 10%;
+}
+.head .logo{
+    display: inline;
+    max-width: 75px;
+}
+.head .logo img{
+    max-width: 25%;
+}
+.head button{
+    float: right;
+    height: 39px;
+    width: 114px;
+    border: none;
+    background-image: url("/t/colorful/message_btn.png");
+    text-align: left;
+    color: #8e8e8e;
+    padding-left: 15px;
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.head .message_count{
+    background-image: url("/t/colorful/message_count.png");
+    color: white;
+    font-size: 16px;
+    height: 28px;
+    line-height: 22px;
+    position: absolute;
+    right: 10px;
+    text-align: center;
+    width: 28px;
+    z-index: 2;
+    top: -1px;
+}
+.head .message_img{
+    background-image: url("/t/colorful/message_img.png");
+    height: 28px;
+    position: absolute;
+    right: 10px;
+    top: 14px;
+    width: 28px;
+    z-index: 1;
+}
+.weixin_ad{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.weixin_menu li.menu_li img{
+    max-width: 20%;
+    min-width: 42px;
+    display: inline;
+}
+.menu_li a{
+    position: relative;
+}
+.weixin_menu{
+}
+.menu_li label{
+    display: inline;
+    vertical-align: middle;
+    padding-left: 5px;
+    color:white;
+}
+.navbar .nav-collapse .weixin_menu .activity{
+    background-color: #008FDC;
+}
+.navbar .nav-collapse  .weixin_menu .activity:hover,.navbar .nav-collapse  .weixin_menu .activity:focus{
+    background-color: #006dcc;
+}
+.navbar .nav-collapse .weixin_menu .cook{
+    background-color: #EF554C;
+}
+.navbar .nav-collapse  .weixin_menu .cook:hover,.navbar .nav-collapse  .weixin_menu .cook:focus{
+    background-color: #EF2540;
+}
+.navbar .nav-collapse .weixin_menu .phone{
+    background-color: #A4C400;
+}
+.navbar .nav-collapse  .weixin_menu .phone:hover,.navbar .nav-collapse  .weixin_menu .phone:focus{
+    background-color: #A4D40C;
+}
+.navbar .nav-collapse .weixin_menu .growth{
+    background-color: #f6ab1d;
+}
+.navbar .nav-collapse  .weixin_menu .growth:hover,.navbar .nav-collapse  .weixin_menu .growth:focus{
+    background-color: #f6Bb1d;
+}
+.navbar .nav-collapse .weixin_menu .topic{
+    background-color: #DE6DC3;
+}
+.navbar .nav-collapse  .weixin_menu .topic:hover,.navbar .nav-collapse  .weixin_menu .topic:focus{
+    background-color: #DE2DC3;
+}
+
+.show_div{
+    background-image: url("/t/colorful/add.png");
+    height: 25px;
+    position: absolute;
+    right: 3px;
+    width: 25px;
+    top: 50%;
+    margin-top: -13px;
+}
+.del_div{
+    background-image: url("/t/colorful/del.png");
+    height: 25px;
+    position: absolute;
+    right: 3px;
+    width: 25px;
+}
+.hide{
+    display: none;
+}
+#growth_div ul{
+    margin: 0px;
+    padding: 0px;
+}
+#growth_div li{
+    border-bottom: 1px dashed #B2AEA6;
+    padding: 5px;
+    list-style-type: none;
+}
+#growth_div label{
+    color: #494542;
+}
+.menu_second a{
+    display: inherit;
+    width: 100%;
+    text-decoration: none;
+}
+.s_arrow {
+    background-image: url("/t/colorful/s_arrow.png");
+    top: 50%;
+    margin-top: -7px;
+    position: absolute;
+    width: 9px;
+    height: 14px;
+    right: 3px;
+}
+.w_arrow {
+    background-image: url("/t/colorful/w_arrow.png");
+    top: 50%;
+    margin-top: -6px;
+    position: absolute;
+    width: 7px;
+    height: 11px;
+    right: 3px;
+}
+
+.food_content{
+    text-align: center;
+    color: #008FDC;
+}
+.food_content hr{
+    border-color: #008FDC;
+}
+.food_content a,.food_content label{
+    color: #008FDC;
+}
+.menu_one_a{
+    display: inherit;
+    color: white;
+    position: relative;
+    background-color: #008FDC;
+    padding: 15px 15px 15px 10%;
+}
+.menu_one_a:hover,.menu_one_a:focus{
+    color: white;
+}
+.hide_div{
+    border-bottom: 1px dashed white;
+}
+#user_infos,#teacher_infos{
+    display: none;
+}
+.b_arr{
+    background-image: url("/t/colorful/b_arr.png");
+    height: 13px;
+    background-repeat: no-repeat;
+    background-position: 10% 0px;
+    width: 100%;
+}
+.user_title{
+    width: 100%;
+}
+.user_logo{
+    display: inline-block;
+    padding-left: 10%;
+    padding-top: 5px;
+}
+.user_name{
+    display: inline-block;
+}
+
+.user_name label{
+    padding: 5px;
+}
+.user_entry{
+    padding: 5px;
+}
+.user_entry table{
+    background-color: white;
+}
+
+/*.navbar-inverse .nav-collapse .nav > li > a:hover, .navbar-inverse .nav-collapse .nav > li > a:focus, .navbar-inverse .nav-collapse .dropdown-menu a:hover, .navbar-inverse .nav-collapse .dropdown-menu a:focus {
+    background-color: inherit;
+}*/

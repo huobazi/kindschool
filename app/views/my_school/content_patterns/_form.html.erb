@@ -1,0 +1,30 @@
+<div class="control-group">
+ 	<%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
+<div class="controls">
+     <%= text_field_tag(:kindergarten,@kind.name, disabled: true) %>
+</div>
+</div>
+<div class="control-group">
+  <%=f.label :name, '表格名字: ' ,:class=>"control-label"%>
+<div class="controls">
+  <%=f.text_field(:name, :validate => true) %>
+</div>
+</div>
+<div class="control-group">
+	<%=f.label :content, '内容: ' ,:class=>"control-label"%>
+  <%= f.text_field(:content,:class => 'profile_input') %>
+
+</div>
+ <div class="control-group">
+<div class="controls">
+<%= f.submit('提交',:class=>"btn") %>
+</div>
+</div>
+<script type="text/javascript">
+  var editor;
+  KindEditor.ready(function(K) {
+    editor = K.create('#content_pattern_content', {
+      allowFileManager : true , height:300
+    });
+  });
+</script>

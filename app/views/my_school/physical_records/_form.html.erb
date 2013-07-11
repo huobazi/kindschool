@@ -1,0 +1,76 @@
+<%#= f.text_field :name ,:class => "span5" %>
+<%#= render 'shared/form_error_messages', :model => @category %>
+<script type="text/javascript">
+  jQuery(function() {
+    $('#physical_record_send_date').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+    $("#grade").change(function(){
+            $.get( "/my_school/seedlings/grade_class",
+                    { grade: $('#grade').val()},
+                    function(result){
+                        $("#class_number_partial").html(result);
+                     })
+                   });
+  });
+  $('#grade').trigger('change');
+  var editor;
+  KindEditor.ready(function(K) {
+    editor = K.create('#physical_record_content', {
+      allowFileManager : true,height:300
+    });
+  });
+  // $("#grade").change();
+</script>
+<div class="control-group">
+ 	<%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
+<div class="controls">
+     <%= text_field_tag(:kindergarten,@kind.name, disabled: true) %>
+</div>
+</div>
+ <div class="control-group">
+ 	<%=f.label :content, '体检记录:' ,:class=>"control-label"%>
+<!-- <div class="controls"> -->
+  <%= f.text_field(:content, :validate => true, :class=>"profile_input") %>
+<!-- </div> -->
+ </div>
+<div class="control-group">
+	<%=f.label :send_date, '体检时间: ' ,:class=>"control-label"%>
+<div class="controls">
+  <%= f.text_field(:send_date, :validate => true) %>
+</div>
+</div>
+<div class="control-group">
+	<%=f.label :student_info_id, '学生: ' ,:class=>"control-label"%>
+<div class="controls">
+    <span>年级<%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]})%></span>
+     <div id="class_number_partial">
+       <%unless @squads.blank? %>
+        <span>班级<%= select_tag "class_number", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])) %></span>
+       <%end%>
+    <div id="student_partial">
+       <span >学生：
+       	<%(@student_infos||[]).each do |st_in|%>
+        <%=radio_button_tag("physical_record[student_info_id]",st_in.id)%><%=st_in.name%>
+        <%end%>
+       </span>
+      </div>
+    </div>
+
+</div>
+</div>
+ <div class="control-group">
+<div class="controls">
+<%= f.submit('创建',:class=>"btn") %>
+</div>
+</div>
+<script>
+$("#class_number").change(function(){
+    $.get( "/my_school/seedlings/class_student",
+            { grade: $('#grade').val(), class_number: $('#class_number').val()},
+            function(result){
+                $("#student_partial").html(result);
+            });
+});
+</script>

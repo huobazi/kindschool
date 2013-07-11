@@ -23,7 +23,7 @@ class  MySchool::GradesController < MySchool::ManageController
     @grade.destroy
 
     respond_to do |format|
-      flash[:notice] = '删除通知成功.'
+      flash[:notice] = '删除年级成功.'
       format.html { redirect_to(:action=>:index) }
       format.xml  { head :ok }
     end
@@ -33,7 +33,7 @@ class  MySchool::GradesController < MySchool::ManageController
     @grade = Grade.find_by_id_and_kindergarten_id(params[:id],@kind.id)
     respond_to do |format|
       if @grade.update_attributes(params[:grade])
-        flash[:notice] = '更新通知成功.'
+        flash[:notice] = '修改年级信息成功.'
         format.html { redirect_to(:action=>:show,:id=>@grade.id) }
         format.xml  { head :ok }
       else

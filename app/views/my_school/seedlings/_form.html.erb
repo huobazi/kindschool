@@ -13,7 +13,6 @@
       format:"yyyy-mm-dd"
     });
     $("#grade").change(function(){
-        	alert("111111");
             $.get( "/my_school/seedlings/grade_class",
                     { grade: $('#grade').val()},
                     function(result){
@@ -21,7 +20,7 @@
                      })
                    });
   });
-  $('#grade').trigger('change'); 
+  $('#grade').trigger('change');
   // $("#grade").change();
 </script>
 <div class="control-group">
@@ -33,25 +32,25 @@
  <div class="control-group">
  	<%=f.label :name, '育苗名称:' ,:class=>"control-label"%>
 <div class="controls">
-     <%= f.text_field :name %>
+  <%= f.text_field :name, :validate => true %>
 </div>
  </div>
  <div class="control-group">
  	<%=f.label :note, '描述: ' ,:class=>"control-label"%>
 <div class="controls">
-     <%= f.text_area(:note, size: "30x5",:class=>"span4") %>
+  <%= f.text_area(:note, :validate => true, size: "30x5",:class=>"span4") %>
 </div>
 </div>
 <div class="control-group">
 	<%=f.label :shot_at, '注射时间: ' ,:class=>"control-label"%>
 <div class="controls">
-    <%= f.text_field(:shot_at) %>
+  <%= f.text_field(:shot_at, :validate => true) %>
 </div>
 </div>
 <div class="control-group">
 	<%=f.label :expire_at, '过期时间: ' ,:class=>"control-label"%>
 <div class="controls">
-	<%= f.text_field(:expire_at) %>
+  <%= f.text_field(:expire_at, :validate => true) %>
 </div>
 </div>
 <div class="control-group">

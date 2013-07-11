@@ -1,0 +1,19 @@
+<% f = form %>
+
+<%= f.input :title, :validate => true, :required => true, :input_html => {:class => "span5 profile_input required"} %>
+<%= f.input :content, :validate => true, :required => true %>
+<%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
+<% if action_name == "new" %>
+  <%= f.input :topic_category, :validate => true, :as => :select, :collection => Hash[f.object.kindergarten.topic_categories.map{|topic_category| ["#{topic_category.name}", topic_category.id]}],:input_html=>{:name=>"topic[topic_category_id]"} %>
+<% else %>
+  <%= f.input :topic_category_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
+<% end %>
+<%= f.input :kindergarten_id, :as => :hidden %>
+<%= f.input :creater_id, :as => :hidden %>
+
+
+<div class="control-group">
+  <div class="controls">
+    <%= f.button :submit %>
+  </div>
+</div>

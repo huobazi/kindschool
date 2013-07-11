@@ -13,6 +13,7 @@ class CreateAlbums < ActiveRecord::Migration
       t.integer :squad_id
       t.string :squad_name
       t.integer :grade_id
+      t.integer :album_entry_id
 
       t.timestamps
     end

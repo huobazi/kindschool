@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>School</title>
+    <link rel="stylesheet" media="all" href=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <%= stylesheet_link_tag    "app_bootstrap", :media => "all" %>
+    <%= stylesheet_link_tag    "colorful_responsive","colorful_weixin", :media => "all" %>
+
+    <%= javascript_include_tag "colorful_weixin" %>
+    <%= csrf_meta_tags %>
+    <!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
+  </head>
+  <body lang="en">
+    <%= yield %>
+    <%= render :partial => "/modules/colorful/weixin_foot" %>
+  </body>
+</html>

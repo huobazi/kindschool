@@ -5,8 +5,7 @@ class CreateTopics < ActiveRecord::Migration
       t.integer :creater_id
       t.string :title
       t.text :content
-      t.integer :tp
-      t.integer :squad_id
+      t.integer :topic_category_id
       t.boolean :is_show, :default => true
       t.boolean :is_top
       t.string :status

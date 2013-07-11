@@ -1,6 +1,6 @@
 <% f = form %>
 
-<%= f.input :name, :required => true, :input_html => {:class => "span5"} %>
+<%= f.input :name, :validate => true, :required => true, :input_html => {:class => "span5"} %>
 <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
 <%= f.input :grade, :as => :select, :collection => Hash[f.object.kindergarten.grades.map{|grade| ["#{grade.name}", grade.id]}],:input_html=>{:name=>"squad[grade_id]"} %>
 <%= f.input :historyreview %>

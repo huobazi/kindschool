@@ -1,0 +1,9 @@
+physical_record:
+  number: 'physical_record'
+  content: '<p>physical_record</p>'
+  name: '体检表格'
+
+cook_book:
+  number: 'cook_book'
+  content: '<p>cook_book</p>'
+  name: '菜谱表格'

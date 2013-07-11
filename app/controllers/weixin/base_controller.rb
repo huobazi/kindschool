@@ -31,16 +31,40 @@ class Weixin::BaseController < ApplicationController
   end
 
   def validate_nonce
-    if Digest::SHA1.hexdigest(get_validate_data) == params[:signature]
-      if xml_data = params[:xml]
-        @user =  User.find_by_weixin_code(xml_data[:FromUserName])
+    if params[:signature].blank?
+      @current_user ||= session[:user] && User.find_by_id(session[:user]) || :false
+    else
+      if Digest::SHA1.hexdigest(get_validate_data) == params[:signature]
+        if xml_data = params[:xml]
+          if @current_user = User.find_by_weixin_code(xml_data[:FromUserName])
+            session[:user] = @current_user.id
+          else
+            session[:user] = nil
+            @current_user = :false
+          end
+        else
+          render :text=>"请通过微信访问"
+          return
+        end
       else
-        render :text=>"非法请求"
+        render :text=>"请通过微信访问"
         return
       end
-    else
-      render :text=>"非法请求"
+    end
+    if @current_user == :false
+      render :text=>"请通过微信访问"
       return
+    end
+  end
+  def load_layout
+    if @kind && @kind.template
+      @kind.template.number
+    else
+      if template = Template.find_by_is_default(1)
+        template.number
+      else
+        raise "模板信息缺失，请联系管理员"
+      end
     end
   end
 end

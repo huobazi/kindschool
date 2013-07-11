@@ -5,10 +5,19 @@ School::Application.routes.draw do
   match 'my_school/about' => 'my_school/main#about'
   match 'my_school/contact_us' => 'my_school/main#contact_us'
   namespace :my_school do
+    resources :albums do
+      collection {get :grade_class}
+      resources :album_entries
+    end
+    resources :content_patterns
     resources :seedlings do 
       collection {get :grade_class}
       collection {get :class_student}
+      collection {post :destory_choose}
     end
+    resources :physical_records do
+    end
+    resources :cook_books
     resources :users do
       collection do
         get :login,:logout,:error_notice
@@ -58,11 +67,34 @@ School::Application.routes.draw do
         get :cancel_class_teacher
       end
     end
+
+    resources :growth_records do
+      collection do
+        get :home
+      end
+    end
+
+    resources :garden_growth_records do
+      collection do
+        get :garden
+      end
+    end
+
+    resources :topics
   end
 
+  match 'weixin' => 'weixin/main#index'
   namespace :weixin do
-    resources :api
+    resources :main do
+      collection do
+        get :bind_user
+      end
+    end
   end
+
+  # namespace :weixin do
+  #   resources :api
+  # end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

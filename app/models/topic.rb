@@ -1,20 +1,21 @@
 #encoding:utf-8
 class Topic < ActiveRecord::Base
-  attr_accessible :approve_status, :approver_id, :content, :creater_id, :is_show, :is_top, :kindergarten_id, :show_count, :squad_id, :status, :title, :tp
+  attr_accessible :approve_status, :approver_id, :content, :creater_id, :is_show, :is_top, :kindergarten_id, :show_count, :status, :title, :tp, :topic_category_id
 
-  validates :kindergarten_id, :presence => true
+  validates :kindergarten_id, :creater_id, :topic_category, :presence => true
 
   belongs_to :kindergarten
-  belongs_to :squad
+  belongs_to :topic_category
 
   has_many :topic_entries
 
-  def squad_label
-    self.squad ? self.squad.name : "未设置班级"
-  end
-
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
+  end
+
+
+  def topic_category_label
+    self.topic_category ? self.topic_category.name : "贴子分类信息丢失"
   end
 
 end

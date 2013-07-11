@@ -67,6 +67,7 @@
     url: "/my_school/page_contents"
     title: "内容配置"
     height_level: "a"
+    sequence: 315
   - id: 33000
     name: "升学策略配置"
     number: 33000
@@ -74,6 +75,14 @@
     title: "升学策略配置"
     height_level: "a"
     sequence: 320
+  - id: 34000
+    name: "表格管理"
+    number: 34000
+    url: "/my_school/content_patterns"
+    title: "表格管理"
+    height_level: "a"
+    sequence: 330
+    operate_id: 5003
 - id: 40000
   number: "statistics"
   name: "统计"
@@ -114,7 +123,7 @@
     sequence: 610
   - id: 61001
     name: "收件箱"
-    number: 61000
+    number: 61001
     url: "/my_school/messages"
     title: "收件箱"
     height_level: "b"
@@ -153,14 +162,58 @@
   number: 90000
   name: "饮食保健"
   height_level: "b"
-  url: "###"
+  operate_id: 7
+  url: "/my_school/seedlings"
   sequence: 900
+  children:
+  - id: 91000
+    name: "育苗记录"
+    operate_id: 6001
+    number: 91000
+    url: "/my_school/seedlings"
+    title: "育苗记录"
+    height_level: "b"
+    sequence: 910
+  - id: 92000
+    name: "体检记录"
+    operate_id: 7001
+    number: 92000
+    url: "/my_school/physical_records"
+    title: "体检记录"
+    height_level: "b"
+    sequence: 920
+  - id: 93000
+    name: "菜谱"
+    operate_id: 8001 
+    number: 93000
+    url: "/my_school/cook_books"
+    title: "菜谱"
+    height_level: "b"
+    sequence: 930
 - id: 100000
   number: 100000
   name: "成长记录"
+  operate_id: 8
   height_level: "b"
-  url: "###"
+  url: "/my_school/growth_records/home"
   sequence: 1000
+  children:
+  - id: 101000
+    name: "宝宝在家"
+    operate_id: 8004
+    number: 101000
+    url: "/my_school/growth_records/home"
+    title: "宝宝在家"
+    height_level: "b"
+    sequence: 1010
+  - id: 102000
+    name: "宝宝在园"
+    operate_id: 8005
+    number: 102000
+    url: "/my_school/garden_growth_records/garden"
+    title: "宝宝在园"
+    height_level: "b"
+    sequence: 1020
 - id: 110000
   number: 110000
   name: "信息论坛"

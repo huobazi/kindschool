@@ -50,8 +50,23 @@ system:
   sequence: 1
   note: "系统配置"
   <<: *DEFAULTS
+healthy_eating:
+  id: 7
+  parent_id: 1
+  name: "健康饮食"
+  level: 1
+  sequence: 1
+  note: "健康饮食"
+  <<: *DEFAULTS
 
-
+growth_record:
+  id: 8
+  parent_id: 1
+  name: "成长记录"
+  level: 1
+  sequence: 1
+  note: "成长记录"
+  <<: *DEFAULTS
 
 #---------------------------功能
 
@@ -249,3 +264,214 @@ page_content_config:
   action: "index"
   protocol: ""
 
+content_pattern_index:
+  id: 5003
+  parent_id: 6
+  name: "表格管理"
+  level: 2
+  sequence: 0
+  note: "表格管理"
+  controller: "my_school/content_patterns"
+  action: "index"
+  protocol: ""
+
+#==============================健康饮食
+seedlings_index:
+  id: 6001
+  parent_id: 7
+  name: "育苗记录"
+  level: 2
+  sequence: 0
+  note: "育苗记录"
+  controller: "my_school/seedlings"
+  action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+seedlings_new:
+  id: 6002
+  parent_id: 7
+  name: "育苗记录新建"
+  level: 2
+  sequence: 0
+  note: "育苗记录新建"
+  controller: "my_school/seedlings"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+seedlings_edit:
+  id: 6003
+  parent_id: 7
+  name: "育苗记录编辑"
+  level: 2
+  sequence: 0
+  note: "育苗记录编辑"
+  controller: "my_school/seedlings"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+physical_records_index:
+  id: 7001
+  parent_id: 7
+  name: "体检记录"
+  level: 2
+  sequence: 0
+  note: "体检记录"
+  controller: "my_school/physical_records"
+  action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+
+physical_records_new:
+  id: 7002
+  parent_id: 7
+  name: "体检记录新建"
+  level: 2
+  sequence: 0
+  note: "体检记录"
+  controller: "my_school/physical_records"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+physical_records_edit:
+  id: 7003
+  parent_id: 7
+  name: "体检记录编辑"
+  level: 2
+  sequence: 0
+  note: "体检记录"
+  controller: "my_school/physical_records"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+cook_books_index:
+  id: 8001
+  parent_id: 7
+  name: "菜谱"
+  level: 2
+  sequence: 0
+  note: "菜谱"
+  controller: "my_school/cook_books"
+  action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+
+cook_books_new:
+  id: 8002
+  parent_id: 7
+  name: "菜谱新建"
+  level: 2
+  sequence: 0
+  note: "菜谱"
+  controller: "my_school/cook_books"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+cook_books_edit:
+  id: 8003
+  parent_id: 7
+  name: "菜谱编辑"
+  level: 2
+  sequence: 0
+  note: "菜谱"
+  controller: "my_school/cook_books"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+growth_records_home:
+  id: 8004
+  parent_id: 8
+  name: "宝宝在家"
+  level: 2
+  sequence: 0
+  note: "宝宝在家"
+  controller: "my_school/growth_records"
+  action: "home"
+  protocol: ""
+  <<: *DEFAULTS
+
+growth_records_garden:
+  id: 8005
+  parent_id: 8
+  name: "宝宝在园"
+  level: 2
+  sequence: 0
+  note: "宝宝在园"
+  controller: "my_school/garden_growth_records"
+  action: "garden"
+  protocol: ""
+  <<: *DEFAULTS
+
+growth_records_new:
+  id: 8006
+  parent_id: 8
+  name: "创建成长记录(宝宝在家)"
+  level: 2
+  sequence: 0
+  note: "宝宝在家"
+  controller: "my_school/growth_records"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+growth_records_show:
+  id: 8008
+  parent_id: 8
+  name: "查看成长记录(宝宝在家)"
+  level: 2
+  sequence: 0
+  note: "宝宝在家"
+  controller: "my_school/growth_records"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+growth_records_edit:
+  id: 8009
+  parent_id: 8
+  name: "编辑成长记录(宝宝在家)"
+  level: 2
+  sequence: 0
+  note: "宝宝在家"
+  controller: "my_school/growth_records"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+garden_growth_records_new:
+  id: 8010
+  parent_id: 8
+  name: "创建成长记录(宝宝在园)"
+  level: 2
+  sequence: 0
+  note: "宝宝在园"
+  controller: "my_school/garden_growth_records"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+garden_growth_records_show:
+  id: 8011
+  parent_id: 8
+  name: "查看成长记录(宝宝在园)"
+  level: 2
+  sequence: 0
+  note: "宝宝在园"
+  controller: "my_school/garden_growth_records"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+garden_growth_records_edit:
+  id: 8012
+  parent_id: 8
+  name: "编辑成长记录(宝宝在园)"
+  level: 2
+  sequence: 0
+  note: "宝宝在园"
+  controller: "my_school/garden_growth_records"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS

@@ -13,7 +13,6 @@ ActiveAdmin.register User do
       @user.kindergarten = @kindergarten
     else
       flash[:notice] = "需要指定所属幼儿园."
-      redirect_to :action => :index,:controller=>"/admin/kindergartens"
       return
     end
   end
@@ -267,8 +266,13 @@ ActiveAdmin.register User do
                     t.column("年级") {|item| item.squad && item.squad.grade ? (auto_link item.squad.grade) : "无"}
                     t.column("班级") {|item| item.squad ? (auto_link item.squad) : "无"}
                     t.column("是否班主任") {|item| item.tp == 1 ? "是" : "否"}
-
-                    t.column("操作") {|item| link_to "#{item.tp == 0 ? '设置为班主任' : nil}",url_for(:controller=>"/admin/teachers",:action=>:set_class_teacher,:teacher_id=>item.id, :squad_id => item.squad_id, :back_to_user_controller => true)}
+                    t.column("操作") do |item|
+                      if item.tp == 0
+                        link_to "设置为班主任",url_for(:controller=>"/admin/teachers",:action=>:set_class_teacher,:teacher_id=>item.id, :squad_id => item.squad_id, :back_to_user_controller => true, :anchor => "show_teachers")
+                      else
+                        link_to "取消班主任",url_for(:controller=>"/admin/teachers",:action=>:cancel_class_teacher, :squad_id => item.squad_id, :staff_id => staff.id, :back_to_user_controller => true, :anchor => "show_teachers")
+                      end
+                    end
                   end
                 end
               end

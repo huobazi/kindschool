@@ -1,0 +1,64 @@
+<div class="show_publicity">
+  <img src="/t/colorful/small_publicity.jpg" alt="展示图"/>
+</div>
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>
+          <% if params[:tp] == 1 %>
+            宝宝在家管理信息
+          <% else %>
+            宝宝在园管理信息
+          <% end %>
+        </label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li>
+              <% if params[:tp] == "1" %>
+                <%= link_to "宝宝在家管理", home_my_school_growth_records_path %>
+              <% else %>
+                <%= link_to "宝宝在园管理", garden_my_school_garden_growth_records_path %>
+              <% end %>
+            </li>
+            <li>/</li>
+            <li>成长记录编辑</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+          <% if params[:tp] == "1" %>
+            <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:home)%>" title="返回">
+          <% else %>
+            <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:garden)%>" title="返回">
+          <% end %>
+            <div class="work_action_return">
+            </div>
+            <div class="work_action_return_move">
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="work_form">
+      <div class="form_div">
+        <% if params[:tp] == "1" %>
+          <%= simple_form_for @growth_record, :validate => true, :url => {:controller=>"/my_school/growth_records",:action=>:update}, :html =>{:class=>"form-horizontal"} do |f| %>
+            <%= render :partial => "form",:object=>f %>
+          <% end %>
+        <% else %>
+          <%= simple_form_for @growth_record, :validate => true, :url => {:controller=>"/my_school/garden_growth_records",:action=>:update}, :html =>{:class=>"form-horizontal"} do |f| %>
+            <%= render :partial => "my_school/growth_records/form",:object=>f %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>

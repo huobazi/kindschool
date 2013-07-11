@@ -40,6 +40,9 @@ role6:
   number: "teacher"
   admin: false
   operates:
+    - 6001
+    - 7001
+    - 8001
 
 role7:
   name: "园医"
@@ -82,3 +85,4 @@ role14:
   number: "student"
   admin: false
   operates:
+  - 8004

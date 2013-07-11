@@ -34,10 +34,10 @@
   </div>
 </div>
 
-<%= f.input :title , :required => true,:input_html=>{:class=>"span5"}%>
-<%= f.input :content, :required => true ,:input_html=>{:class=>"span5"}%>
+<%= f.input :title, :validate => true, :required => true,:input_html=>{:class=>"span5"}%>
+<%= f.input :content, :validate => true, :required => true ,:input_html=>{:class=>"span5"}%>
 
-<%= f.input :send_date , :required => true,:as=>:string ,:class=>"input-mediun"%>
+<%= f.input :send_date, :validate => true, :required => true,:as=>:string ,:class=>"input-mediun"%>
 <div class="control-group">
   <div class="controls">
     <%= f.button :submit %>

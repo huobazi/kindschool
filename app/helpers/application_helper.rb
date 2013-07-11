@@ -22,7 +22,7 @@ module ApplicationHelper
       end
     end
     if miss && menus[0] && menus[0][:children] && menus[0][:children][0]
-        #  menus[0][:current] = true
+          menus[0][:current] = true
     end
     menus
   end
