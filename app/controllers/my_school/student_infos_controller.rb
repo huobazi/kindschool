@@ -26,11 +26,20 @@ class  MySchool::StudentInfosController < MySchool::ManageController
   end
 
   def edit
-    if current_user.student_info.id != params[:id].to_i
-      flash[:notice] = "不能编辑他人的信息"
-      redirect_to :controller => "/my_school/users", :action => :show, :id => current_user.id
-    else
-      current_user
+    if current_user.get_users_ranges[:tp] == :student
+      if current_user.student_info.id != params[:id].to_i
+        flash[:notice] = "不能编辑他人的信息"
+        redirect_to :controller => "/my_school/users", :action => :show, :id => current_user.id
+      else
+        @student_info = StudentInfo.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+      end
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      if (@student_info = StudentInfo.find_by_id_and_kindergarten_id(params[:id], @kind.id)) && current_user.staff.squads.include?(@student_info.squad)
+      else
+        flash[:notice] = "没有权限"
+        redirect_to :controller => "/my_school/users", :action => :show, :id => current_user.id
+      end
+    else current_user.get_users_ranges[:tp] == :all
       @student_info = StudentInfo.find_by_id_and_kindergarten_id(params[:id], @kind.id)
     end
   end

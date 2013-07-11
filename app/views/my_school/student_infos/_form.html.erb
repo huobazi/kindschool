@@ -21,12 +21,16 @@
     <%= f.simple_fields_for :user do |p| %>
       <%= p.input :name, :validate => true, :required => true %>
       <%= p.input :login, :validate => true, :required => true %>
-          <%= p.input :phone %>
-          <%= p.input :gender, :as => :radio, :collection => {"女" => "M", "男" => "G"}, :required => true %>
-          <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
-          <%= p.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
-          <%= p.input :tp,:as=>:hidden %>
-          <%= p.input :kindergarten_id,:as=>:hidden %>
+      <% if action_name == "new" %>
+        <%= p.input :password, :required => true %>
+        <%= p.input :password_confirmation, :required => true %>
+      <% end %>
+      <%= p.input :phone %>
+      <%= p.input :gender, :as => :radio, :collection => {"女" => "M", "男" => "G"}, :required => true %>
+      <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
+      <%= p.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
+      <%= p.input :tp,:as=>:hidden %>
+      <%= p.input :kindergarten_id,:as=>:hidden %>
     <% end %>
 </fieldset>
 <fieldset>
@@ -35,7 +39,7 @@
     <%= f.input :come_in_at, :required => true, :as => :string, :class => "input-mediun" %>
     <%= f.input :education, :input_html => {:class => "span5"} %>
     <%= f.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
-    <%= f.input :squad, :required => true, :as=>:select, :collection=>Hash[f.object.kindergarten.squads.map{|squad| ["#{squad.name}",squad.id]}] ,:input_html => { :name=>"student_info[squad_id]" } %>
+    <%= f.input :squad, :validate => true, :required => true, :as=>:select, :collection=>Hash[f.object.kindergarten.squads.map{|squad| ["#{squad.name}",squad.id]}] ,:input_html => { :name=>"student_info[squad_id]" } %>
     <%= f.input :card_code %>
     <%= f.input :guardian %>
     <%= f.input :guardian_card_category, :as => :select,:collection=>StudentInfo::CARD_CATEGORY_DATA.invert %>
