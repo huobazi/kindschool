@@ -19,9 +19,11 @@ class SeedlingRecord < ActiveRecord::Base
   validate :end_at_large_than_start_at
   private
   def end_at_large_than_start_at
-    if expire_at < shot_at
-      errors[:shot_at] << "shot_at must less than end_at"
-      errors[:expire_at] << "expire_at must large than start_at"
+    if !expire_at.blank? && !shot_at.blank?
+      if expire_at < shot_at
+        errors[:shot_at] << "shot_at must less than end_at"
+        errors[:expire_at] << "expire_at must large than start_at"
+      end
     end
   end
 end
