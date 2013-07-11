@@ -29,9 +29,11 @@ class GrowthRecord < ActiveRecord::Base
   private
 
   def end_at_large_than_start_at
-    if end_at < start_at
-      errors[:start_at] << "start_at must less than end_at"
-      errors[:end_at] << "end_at must large than start_at"
+    if !end_at.blank? && !start_at.blnak?
+      if end_at < start_at
+        errors[:start_at] << "start_at must less than end_at"
+        errors[:end_at] << "end_at must large than start_at"
+      end
     end
   end
 
