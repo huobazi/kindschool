@@ -30,7 +30,7 @@ class Weixin::BaseController < ApplicationController
 #    token = (@required_type == :www ? @kind.weixin_token : WEBSITE_CONFIG["weixin_token"])
 #    @validate_data << (token || "")
 #    @validate_data.sort.join("")
-  "abc"
+  return "abc"
   end
 
   def validate_nonce
