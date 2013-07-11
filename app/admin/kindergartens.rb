@@ -319,6 +319,31 @@ ActiveAdmin.register Kindergarten do
         end
       end
 
+      div do
+        br
+        panel "贴子分类信息" do
+          unless kind.topic_categories.blank?
+            table_for(kind.topic_categories) do |t|
+              t.column("名称") {|item| item.name}
+              tr :class => "odd" do
+                td ""
+                td "页面内容总数", :style => "text-align: right;"
+                td "#{kind.topic_categories.count}"
+                td ""
+              end
+            end
+          else
+            "不创建贴子分类"
+          end
+        end
+
+        ul do
+          li do
+            link_to "创建贴子分类", :controller => "/admin/topic_categories", :action => :new, :kindergarten_id => kind.id
+          end
+        end
+      end
+
 
 
     end

@@ -59,6 +59,8 @@ class Kindergarten < ActiveRecord::Base
 
   has_many :roles
 
+  has_many :topic_categories
+
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img
 
