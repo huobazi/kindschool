@@ -139,6 +139,28 @@
             </div>
           </div>
         </form>
+
+        <hr />
+
+        <div id="topic_entries">
+          <% if @topic_entries.any? %>
+            <% @topic_entries.each do |topic_entry| %>
+              <div id="topic_entry_#{topic_entry.id}" class="topic_entry">
+                <span><%= User.find_by_id(topic_entry.creater_id).name %></span>: <%= simple_format topic_entry.content, :class => "topic_entry_content" %> 
+                <% if destroy_topic_entry?(topic_entry) %>
+                  <span class="destroy"><%= link_to "x", my_school_topic_entry_path(topic_entry), :method => :delete %></span>
+                <% end %>
+              </div>
+            <% end %>
+          <% else %>
+            暂无回复
+          <% end %>
+        </div>
+
+
+        <%= simple_form_for(@topic_entry, :validate => true, :url => my_school_topic_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
+          <%= render :partial => "topic_form", :object => f %>
+        <% end %>
       </div>
     </div>
   </div>

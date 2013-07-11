@@ -26,4 +26,15 @@ module ApplicationHelper
     end
     menus
   end
+  
+  def destroy_topic_entry?(topic_entry)
+    if current_user.tp == 2
+      true
+    elsif topic_entry.creater_id == current_user.id
+      true
+    else
+      false
+    end
+  end
+
 end

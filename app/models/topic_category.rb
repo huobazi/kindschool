@@ -2,7 +2,7 @@
 class TopicCategory < ActiveRecord::Base
   attr_accessible :kindergarten_id, :name
 
-  validates :name, :presence => true, :uniqueness => true
+  validates :name, :presence => true, :uniqueness => { :scope => :kindergarten_id }
   validates :kindergarten_id, :presence => true
 
   belongs_to :kindergarten
