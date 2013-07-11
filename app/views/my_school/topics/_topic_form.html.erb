@@ -1,0 +1,12 @@
+<% f = topic_form %>
+
+<%= f.input :content, :validate => true, :required => true, :input_html => { :rows => "15" } %>
+<%= f.input :creater_id, :as => :hidden %>
+<%= f.input :topic_id, :as => :hidden %>
+
+
+<div class="control-group">
+  <div class="controls">
+    <%= f.button :submit %>
+  </div>
+</div>

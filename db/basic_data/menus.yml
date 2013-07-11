@@ -218,5 +218,15 @@
   number: 110000
   name: "信息论坛"
   height_level: "b"
-  url: "###"
+  url: "/my_school/topics"
   sequence: 1100
+  operate_id: 3
+  children:
+  - id: 111000
+    name: "发贴子"
+    operate_id: 3001
+    number: 111000
+    url: "/my_school/topics/new"
+    title: "论坛管理"
+    height_level: "b"
+    sequence: 1110

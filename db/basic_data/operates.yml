@@ -165,8 +165,8 @@ forum_send:
   level: 2
   sequence: 0
   note: "发帖子"
-  controller: ""
-  action: ""
+  controller: "my_school/topics"
+  action: "new"
   params: ""
   protocol: ""
   <<: *DEFAULTS
@@ -189,8 +189,20 @@ forum_delete:
   level: 2
   sequence: 2
   note: "删除帖子"
-  controller: ""
-  action: ""
+  controller: "my_school/topics"
+  action: "destroy"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+forum_edit:
+  id: 3004
+  parent_id: 3
+  name: "编辑贴子"
+  level: 2
+  sequence: 1
+  note: "编辑贴子"
+  controller: "my_school/topics"
+  action: "edit"
   params: ""
   protocol: ""
   <<: *DEFAULTS

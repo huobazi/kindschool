@@ -904,3 +904,34 @@ table.user_attributes td {
 .blue{
     color: blue;
 }
+
+#topic_entries {
+  margin-bottom: 20px;
+}
+#topic_entries .topic_entry_content {
+  padding-left: 100px;
+}
+
+#topic_entries .topic_entry {
+  border-top: 1px solid #999;
+  padding-top: 14px;
+  position: relative;
+}
+
+#topic_entries .topic_entry:last-child {
+  border-bottom: 1px solid #999;
+}
+
+#topic_entries .topic_entry span.destroy {
+  display: block;
+  position: absolute;
+  right: 10px;
+  top: 0px;
+}
+
+#topic_entries .topic_entry span.destroy a:hover {
+  underline: none;
+}
+#topic_entries .topic_entry span.destroy a {
+  color: #222;
+}
