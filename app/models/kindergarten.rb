@@ -111,7 +111,7 @@ class Kindergarten < ActiveRecord::Base
           puts pattern.inspect
          unless content_pattern = self.content_patterns.where(:number=>pattern["number"]).first
             content_pattern = ContentPattern.new(pattern)
-            content_pattern.kindergarten = self
+            content_pattern.kindergarten_id = self.id
             content_pattern.save
           end
         end 
