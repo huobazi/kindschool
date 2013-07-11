@@ -5,15 +5,17 @@ class Weixin::BaseController < ApplicationController
   
   private
   def my_school
-    if is_www?
-      @required_type = :www
-    else
-      if @kind = Kindergarten.find_by_number(@subdomain)
-        @required_type = :kindergarten
-      else
-        render :text=>"幼儿园不存在."
-      end
-    end
+    @kind = Kindergarten.first
+    puts "=============@kind====#{@kind.inspect}"
+#    if is_www?
+#      @required_type = :www
+#    else
+#      if @kind = Kindergarten.find_by_number(@subdomain)
+#        @required_type = :kindergarten
+#      else
+#        render :text=>"幼儿园不存在."
+#      end
+#    end
   end
 
   def is_www?
