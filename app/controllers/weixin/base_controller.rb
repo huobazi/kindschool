@@ -37,6 +37,7 @@ class Weixin::BaseController < ApplicationController
       @current_user ||= session[:user] && User.find_by_id(session[:user]) || :false
     else
       if Digest::SHA1.hexdigest(get_validate_data) == params[:signature]
+        puts "4=================="
         if xml_data = params[:xml]
           if @current_user = User.find_by_weixin_code(xml_data[:FromUserName])
             session[:user] = @current_user.id
@@ -44,9 +45,6 @@ class Weixin::BaseController < ApplicationController
             session[:user] = nil
             @current_user = :false
           end
-        else
-          render :text=>"请通过微信访问"
-          return
         end
       else
         render :text=>"请通过微信访问"
