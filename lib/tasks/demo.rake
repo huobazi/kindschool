@@ -47,7 +47,7 @@ namespace :db do
     #添加6个学生
     (1..60).to_a.each do |i|
       user = User.create(:weixin_code=>"weixin_code#{i}",:login=>"student#{i}",:name=>"学生#{i}",:note=>"我是学生#{i}",:tp=>0,:password=>"111111",:password_confirmation=>"111111",:kindergarten_id=>kind.id)
-      StudentInfo.create!(:card_code=>"1000#{i}",:birthday=>Time.now,:squad_id=>kind.squads.random.id,:user_id=>user.id,:kindergarten_id=>kind.id)
+      StudentInfo.create!(:card_code=>i == 1 ? "ofHgAj0UF75WoUvgUC-9dtccnYfQ" : "1000#{i}",:birthday=>Time.now,:squad_id=>kind.squads.random.id,:user_id=>user.id,:kindergarten_id=>kind.id)
       print "."
     end
     puts "demo添加完毕."
