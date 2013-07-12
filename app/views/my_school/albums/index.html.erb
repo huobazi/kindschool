@@ -35,8 +35,13 @@
            </span>
            <span>
             <%= album.try(:squad_name)%>
+            <%if choose_operate_show('my_school/albums/destroy')%>
             <%= link_to 'Destroy', my_school_album_path(album), method: :delete, data: { confirm: 'Are you sure?' },:class=> "blue" %>
+            <%end%>
            </span>
+          <%if choose_operate_show('my_school/albums/edit')%>
+           <span><%=link_to 'edit',edit_my_school_album_path(album)%></span>
+           <%end%>
           </li>
           <% end %>
           </ul>

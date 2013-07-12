@@ -4,9 +4,9 @@ class MySchool::AlbumsController  < MySchool::ManageController
    def index
      user = current_user
      arr = ['new','edit','destroy']
-     if user.user_operates(controller_name,arr)
+     controller_view='my_school/albums/new'
+     if session[:operates].include?(controller_view)
         @albums = @kind.albums
-        @flag = true
       else  
         @albums = @kind.albums.where(:is_show=>1)
      end  
@@ -43,6 +43,34 @@ class MySchool::AlbumsController  < MySchool::ManageController
        @squads = grade.squads
     end
      render "grade_class", :layout => false
+   end
+
+   def edit
+      @album = @kind.albums.find(params[:id])
+      if @grades = @kind.grades
+        if @squads = @grades.first.squads
+          @student_infos = @squads.first.student_infos 
+        end
+     end
+   end
+
+   def update
+      @album = @kind.albums.find(params[:id])
+      unless params[:class_number].blank?
+       if squad = Squad.find(params[:class_number].to_i)#where(:id=>params[:class_number].to_i).first
+        @album.squad =  squad
+        @album.squad_name = squad.name
+      end 
+    end
+     @album.save
+    respond_to do |format|
+      if @album.update_attributes(params[:album])
+        format.html { redirect_to my_school_cook_books_path, notice: '学员菜谱 was successfully updated.' }
+      else
+        format.html { render action: "edit" }
+      end
+    end
+
    end
 
    def show

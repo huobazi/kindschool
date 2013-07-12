@@ -207,7 +207,7 @@ forum_delete:
   <<: *DEFAULTS
 forum_edit:
   id: 3004
-  parent_id: 3
+  parent_id: 3choose_operate_show
   name: "编辑贴子"
   level: 2
   sequence: 1
@@ -556,6 +556,42 @@ album_record_create:
   sequence: 0
   note: "照片集锦_创建"
   controller: "my_school/albums"
+  action: "create"
+  protocol: ""
+  <<: *DEFAULTS
+
+album_record_create:
+  id: 9005
+  parent_id: 9
+  name: "照片集锦_创建"
+  level: 2
+  sequence: 0
+  note: "照片集锦_创建"
+  controller: "my_school/albums"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+album_record_destroy:
+  id: 9006
+  parent_id: 9
+  name: "照片集锦_删除"
+  level: 2
+  sequence: 0
+  note: "照片集锦_删除"
+  controller: "my_school/albums"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
+
+album_entry_record_create:
+  id: 9007
+  parent_id: 9
+  name: "照片集锦_单张图片上传"
+  level: 2
+  sequence: 0
+  note: "照片集锦_单张图片上传"
+  controller: "my_school/album_entries"
   action: "create"
   protocol: ""
   <<: *DEFAULTS

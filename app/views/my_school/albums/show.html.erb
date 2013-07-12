@@ -84,6 +84,7 @@
           </div>
         </form>
         <%=render 'album_image'%>
+        <%if choose_operate_show('my_school/albums/create')%>
         <div class="work_form">
          <div class="form_div" style="float:left">
          <%= form_for(@album_entry,:url=>my_school_album_album_entries_path(@album.id,@album_entry),:html =>{:multipart=>true,:class=>"form-horizontal"},) do |f| %>
@@ -91,6 +92,7 @@
        <% end %>
        </div>
     </div>
+    <%end%>
       </div>
     </div>
   </div>

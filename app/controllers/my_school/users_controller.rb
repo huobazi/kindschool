@@ -3,6 +3,7 @@ class MySchool::UsersController < MySchool::ManageController
 
   before_filter :correct_user, :only => [:edit]
 
+  
   protect_from_forgery :except=>:signup
   #提示界面
   def index
@@ -26,6 +27,9 @@ class MySchool::UsersController < MySchool::ManageController
           cookies[:auth_token] = { :value => self.current_user.remember_token ,
             :expires => self.current_user.remember_token_expires_at }
         end
+        operates_data = self.current_user.operates.collect{ |operate| "#{operate.controller}/#{operate.action}"}
+        operates_data.uniq!
+        session[:operates] = operates_data
         flash[:notice] = "登陆成功."
         redirect_to :action => :index,:controller=>"/my_school/home"
         cookies.delete :login_times
