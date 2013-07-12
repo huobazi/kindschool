@@ -4,7 +4,7 @@
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label>修改相册</label>
+        <label><%=link_to @album.title , my_school_album_path(@album),:class=>'blue'%>->修改相册</label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>

@@ -48,7 +48,6 @@ class MySchool::AlbumsController  < MySchool::ManageController
       @album = @kind.albums.find(params[:id])
       if @grades = @kind.grades
         if @squads = @grades.first.squads
-          @student_infos = @squads.first.student_infos 
         end
      end
    end

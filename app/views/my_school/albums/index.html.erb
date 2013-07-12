@@ -14,9 +14,13 @@
         </div>
       </div>
       <ul class="work_action">
-         <li><%#=(link_to "<div class='work_action_add'>
+         <li>
+          <%if choose_operate_show('my_school/albums/new')%>
+          <%=link_to "<div class='work_action_add'>
             </div><div class='work_action_add_move'>
-            </div>".html_safe ,new_my_school_cook_book_path) unless @flag.blank? %>
+            </div>".html_safe ,new_my_school_album_path%>
+            <%end%>
+          </li>
         </li>
       </ul>
     </div>

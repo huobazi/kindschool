@@ -67,7 +67,7 @@ MENUS ={"home"=>{
    },
     "80000" => {
       "81000" =>{
-        "my_school/albums" => ["index","new","show"]
+        "my_school/albums" => ["index","new","show","edit"]
       } 
     }
 
