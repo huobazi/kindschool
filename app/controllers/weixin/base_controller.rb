@@ -6,15 +6,15 @@ class Weixin::BaseController < ApplicationController
   private
   def my_school
     @kind = Kindergarten.first
-#    if is_www?
-#      @required_type = :www
-#    else
-#      if @kind = Kindergarten.find_by_number(@subdomain)
-#        @required_type = :kindergarten
-#      else
-#        render :text=>"幼儿园不存在."
-#      end
-#    end
+    #    if is_www?
+    #      @required_type = :www
+    #    else
+    #      if @kind = Kindergarten.find_by_number(@subdomain)
+    #        @required_type = :kindergarten
+    #      else
+    #        render :text=>"幼儿园不存在."
+    #      end
+    #    end
   end
 
   def is_www?
@@ -26,7 +26,8 @@ class Weixin::BaseController < ApplicationController
     @validate_data = []
     @validate_data << (params[:nonce] || "")
     @validate_data << (params[:timestamp] || "")
-    token = (@required_type == :www ? @kind.weixin_token : WEBSITE_CONFIG["weixin_token"])
+    #    token = (@required_type == :www ? @kind.weixin_token : WEBSITE_CONFIG["weixin_token"])
+    token = @kind.weixin_token
     @validate_data << (token || "")
     @validate_data.sort.join("")
   end
@@ -35,6 +36,8 @@ class Weixin::BaseController < ApplicationController
     if params[:signature].blank?
       @current_user ||= session[:user] && User.find_by_id(session[:user]) || :false
     else
+      puts "========get_validate_data====#{get_validate_data.inspect}"
+      puts "==#{Digest::SHA1.hexdigest(get_validate_data)}=======#{params[:signature]}===="
       if Digest::SHA1.hexdigest(get_validate_data) == params[:signature]
         if xml_data = params[:xml]
           if @current_user = User.find_by_weixin_code(xml_data[:FromUserName])
@@ -48,10 +51,6 @@ class Weixin::BaseController < ApplicationController
         render :text=>"请通过微信访问"
         return
       end
-    end
-    if @current_user == :false
-      render :text=>"请通过微信访问"
-      return
     end
   end
   def load_layout

@@ -1,15 +1,15 @@
 #encoding:utf-8
 class Weixin::ApiController < Weixin::BaseController
-    protect_from_forgery :except=>:index
+  protect_from_forgery :except=>:index
   include AuthenticatedSystem
   before_filter :token_validate , :if=>proc {|c| (@required_type != :www && @required_type != "") && @kind.weixin_status == 0 }
   #交互接口
   def index
     if @required_type == :www || @required_type == ""
+      load_platform
     else
       load_school
     end
-    render :text=>"demo"
   end
 
 
@@ -25,9 +25,10 @@ class Weixin::ApiController < Weixin::BaseController
           :FromUserName=>xml_data[:ToUserName],
           :CreateTime=>Time.now.to_i,
           :MsgType=>"text",
-          :Content=>"欢迎关注#{@kind.name}\r#{get_menu}\r ",
+          :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
           :FuncFlag=>0
         })
+      puts  "==x_data===========#{x_data.inspect}====="
     else
       xml_data[:Content]
       #图片形式
@@ -47,6 +48,7 @@ class Weixin::ApiController < Weixin::BaseController
   #平台接口
   def load_platform
     xml_data = params[:xml]
+    render :text=>"平台"
   end
 
   private
@@ -59,9 +61,9 @@ class Weixin::ApiController < Weixin::BaseController
 
   def get_menu
     if logged_in?
-      '1、进行账号绑定\r2、查看幼儿园介绍'
+      "1、进行账号绑定\n\r 2、查看幼儿园介绍"
     else
-      '1、查看通知消息\r2、幼儿园介绍\r3、班级活动\r4、每周菜谱\r5、照片集锦\r6、宝宝成长\r6、信息论坛'
+      "1、查看通知消息\n\r 2、幼儿园介绍\n\r 3、班级活动\n\r 4、每周菜谱\n\r 5、照片集锦\n\r 6、宝宝成长\n\r 6、信息论坛"
     end
   end
 
