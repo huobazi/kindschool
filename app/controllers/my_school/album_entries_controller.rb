@@ -24,6 +24,11 @@ class MySchool::AlbumEntriesController < MySchool::ManageController
     end
 
    end
+
+   def new
+      @album = @kind.albums.find(params[:album_id])
+      @album_entry=AlbumEntry.new()
+   end
    
    def update
     @album = @kind.albums.find(params[:album_id])

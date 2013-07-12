@@ -1,1 +1,23 @@
-<p>nihao</p>
+<div class="control-group">
+ 	<%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
+<div class="controls">
+     <%= text_field_tag(:kindergarten,@kind.name, disabled: true) %>
+</div>
+</div>
+<div class="control-group">
+ 	<%=f.label :title, '相片标题:' ,:class=>"control-label"%>
+<div class="controls">
+     <%= f.text_field(:title , :validate => true) %>
+</div>
+ </div>
+ <div class="control-group">
+ 	<%=f.label nil, '相片文件:' ,:class=>"control-label"%>
+<div class="controls">
+     <%= file_field_tag "uploaded_data" %>
+</div>
+ </div>
+  <div class="control-group">
+   <div class="controls">
+    <%= f.submit('创建',:class=>"btn") %>
+   </div>
+  </div>
