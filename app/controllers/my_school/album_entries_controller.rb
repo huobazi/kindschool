@@ -46,4 +46,16 @@ class MySchool::AlbumEntriesController < MySchool::ManageController
       format.json { head :no_content }
     end
   end
+
+  def choose_main_img
+    @album = @kind.albums.find(params[:album_id])
+    @album_entry = @album.album_entries.find(params[:id])
+    @album.album_entry_id =@album_entry.id
+     if @album.save
+         redirect_to  my_school_album_path(@album), notice: '图片上传 was successfully created.' 
+      else
+         render :action=> "new" 
+      end
+  end
+
 end

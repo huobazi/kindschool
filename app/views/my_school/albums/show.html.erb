@@ -7,51 +7,16 @@
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label>通知信息</label>
+        <label><%=link_to '相册锦集',my_school_albums_path,:class=>"blue"%>-><%=@album.title%></label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
           </a>
           <ul>
-            <li><%#= link_to "通知公告", my_school_notices_path %></li>
-            <li>/</li>
-            <li>查看通知</li>
           </ul>
         </div>
       </div>
       <ul class="work_action">
-        <li>
-          <a href="<%#=url_for(:controller=>"/my_school/notices",:action=>:new)%>" title="添加">
-            <div class="work_action_add">
-            </div>
-            <div class="work_action_add_move">
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="<%#=url_for(:controller=>"/my_school/notices",:action=>:edit,:id=>@notice.id)%>" title="编辑">
-            <div class="work_action_edit">
-            </div>
-            <div class="work_action_edit_move">
-            </div>
-          </a>
-        </li>
-        <li>
-          <%#= link_to(url_for(:controller=>"/my_school/notices",:action=>:destroy,:id=>@notice.id),:method=>:delete, :confirm => "您确定删除该通知吗?") do %>
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
-          <%# end %>
-        </li>
-        <li>
-          <a href="<%#=url_for(:controller=>"/my_school/notices",:action=>:index)%>" title="返回">
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
-          </a>
-        </li>
       </ul>
     </div>
 
@@ -59,15 +24,7 @@
       <div class="form_div" style="float:left;width:700px">
         <form class="form-horizontal">
           <div class="control-group">
-            <label class="control-label">标题</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=@album.title%>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >时间</label>
+            <label class="control-label" >创建时间</label>
             <div class="controls">
               <label class="show_label">
                 <%= @album.created_at.try(:to_short_datetime) %>
@@ -84,6 +41,7 @@
           </div>
         </form>
         <%=render 'album_image'%>
+        <%if choose_operate_show('my_school/album_entries/create')%>
         <div class="work_form">
          <div class="form_div" style="float:left">
          <%= form_for(@album_entry,:url=>my_school_album_album_entries_path(@album.id,@album_entry),:html =>{:multipart=>true,:class=>"form-horizontal"},) do |f| %>
@@ -91,6 +49,7 @@
        <% end %>
        </div>
     </div>
+    <%end%>
       </div>
     </div>
   </div>

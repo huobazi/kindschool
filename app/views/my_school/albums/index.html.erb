@@ -14,32 +14,41 @@
         </div>
       </div>
       <ul class="work_action">
-         <li><%#=(link_to "<div class='work_action_add'>
+         <li>
+          <%if choose_operate_show('my_school/albums/new')%>
+          <%=link_to "<div class='work_action_add'>
             </div><div class='work_action_add_move'>
-            </div>".html_safe ,new_my_school_cook_book_path) unless @flag.blank? %>
+            </div>".html_safe ,new_my_school_album_path%>
+            <%end%>
+          </li>
         </li>
       </ul>
     </div>
 
-    <div class="work_list">
-      <table class="table table-striped table-hover">
-        <tr>
-          <th>相册标题</th>
-          <th>内容</th>
-          <th>所属班级</th>
-          <th></th>
-          <th></th>          
-        </tr>
-        <% (@albums || []).each do |album| %>
-          <tr>
-            <td><%= album.title%></td>
-            <td><%= album.content%></td>
-            <td><%= album.try(:squad_name)%></td>
-            <td><%= link_to "show",my_school_album_path(album)%></td>
-            <td></td>
-          </tr>
-        <% end %>
-      </table>
+    <div class="work_list" >
+      
+       <ul id="album_wall" >
+          <% (@albums || []).each do |album| %>
+          <li style="width:228px;" >
+          <span><%=raw album.title%></span>
+          <a href="<%= my_school_album_path(album)%>">
+          <img src="<%= album.show_main_img ? album.show_main_img.public_filename(:middle) : '/t/colorful/logo.png' %>" width="226px" height="226px" alt="<%=album.title%>"/>
+            </a>
+           <span class="actions">
+           <%=raw album.content%>
+           </span>
+           <span>
+            <%= album.try(:squad_name)%>
+            <%if choose_operate_show('my_school/albums/destroy')%>
+            <%= link_to 'Destroy', my_school_album_path(album), method: :delete, data: { confirm: 'Are you sure?' },:class=> "blue" %>
+            <%end%>
+           </span>
+          <%if choose_operate_show('my_school/albums/edit')%>
+           <span><%=link_to 'edit',edit_my_school_album_path(album)%></span>
+           <%end%>
+          </li>
+          <% end %>
+          </ul>
     </div>
   </div>
 

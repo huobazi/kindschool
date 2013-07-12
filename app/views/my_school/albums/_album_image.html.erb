@@ -2,7 +2,7 @@
           <ul id="image_wall">
           <% @album.album_entries.each do |a_e| %>
           <li style="width:228px;">
-          <span><%=raw a_e.title%></span>
+          <span><%=raw a_e.title%><%= a_e.id == @album.album_entry_id ? "---相册封面" : ""%></span>
           <a href="<%=a_e.asset_img.public_filename%>" class="fancybox"  title="">
                 <img src="<%= a_e.asset_img ? a_e.asset_img.public_filename(:middle) : '/t/colorful/logo.png' %>" width="226px" height="226px" alt="<%=a_e.title%>"/>
             </a>
@@ -10,7 +10,7 @@
            <span class="actions">
            <%= link_to 'Edit',"###",:class=> "blue a_album_edit", :for=>"#album_entry_#{a_e.id}"%>
            <%= link_to 'Destroy', my_school_album_album_entry_path(@album.id,a_e), method: :delete, data: { confirm: 'Are you sure?' },:class=> "blue" %>
-           <%= button_to '设置为相册封面','###',:class=>'set_as_album_cover'%>
+           <%= button_to '设置为相册封面',choose_main_img_my_school_album_album_entry_path(@album.id,a_e),:class=>'set_as_album_cover'%>
            </span>
            <div id="album_entry_<%=a_e.id%>" class="album_entry_title" style="display:none">
             <%= form_for(a_e,:url=>my_school_album_album_entry_path(@album.id,a_e),:html =>{:multipart=>true,:class=>"form-horizontal"},) do |f| %>
