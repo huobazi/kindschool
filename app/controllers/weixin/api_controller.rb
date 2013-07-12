@@ -61,9 +61,9 @@ class Weixin::ApiController < Weixin::BaseController
 
   def get_menu
     if logged_in?
-      '1、进行账号绑定\r 2、查看幼儿园介绍'
+      "1、进行账号绑定\r 2、查看幼儿园介绍"
     else
-      '1、查看通知消息\r 2、幼儿园介绍\r 3、班级活动\r 4、每周菜谱\r 5、照片集锦\r 6、宝宝成长\r 6、信息论坛'
+      "1、查看通知消息\r 2、幼儿园介绍\r 3、班级活动\r 4、每周菜谱\r 5、照片集锦\r 6、宝宝成长\r 6、信息论坛"
     end
   end
 
