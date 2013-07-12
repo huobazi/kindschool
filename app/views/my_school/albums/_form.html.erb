@@ -23,10 +23,10 @@
   <%= f.text_field(:content,:class => 'profile_input') %>
 </div>
 <div class="controls">
-    <span>年级<%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]})%></span>
+    <span>年级<%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}.unshift(["全部",0]),(@grade.id unless @grade.blank?) ) %></span>
      <div id="class_number_partial">
        <%unless @squads.blank? %>
-        <span>班级<%= select_tag "class_number", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])) %></span>
+        <span>班级<%= select_tag "class_number", options_for_select((@squads.collect{|s|[s.name,s.id]} || []),(@squad.id unless @squad.blank?)) %></span>
        <%end%>
     </div>
 
