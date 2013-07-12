@@ -6,7 +6,6 @@ class Weixin::BaseController < ApplicationController
   private
   def my_school
     @kind = Kindergarten.first
-    puts "=============@kind====#{@kind.inspect}"
 #    if is_www?
 #      @required_type = :www
 #    else
@@ -37,7 +36,6 @@ class Weixin::BaseController < ApplicationController
       @current_user ||= session[:user] && User.find_by_id(session[:user]) || :false
     else
       if Digest::SHA1.hexdigest(get_validate_data) == params[:signature]
-        puts "4=================="
         if xml_data = params[:xml]
           if @current_user = User.find_by_weixin_code(xml_data[:FromUserName])
             session[:user] = @current_user.id
