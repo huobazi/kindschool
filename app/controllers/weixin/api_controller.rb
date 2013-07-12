@@ -1,5 +1,6 @@
 #encoding:utf-8
 class Weixin::ApiController < Weixin::BaseController
+    protect_from_forgery :except=>:index
   include AuthenticatedSystem
   before_filter :token_validate , :if=>proc {|c| (@required_type != :www && @required_type != "") && @kind.weixin_status == 0 }
   #交互接口
