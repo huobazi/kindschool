@@ -17,6 +17,11 @@
         </div>
       </div>
       <ul class="work_action">
+        <%#if choose_operate_show('my_school/album_entries/new')%>
+          <%=link_to "<div class='work_action_add'>
+            </div><div class='work_action_add_move'>
+            </div>".html_safe ,new_my_school_album_album_entry_path(@album.id)%>
+            <%#end%>
       </ul>
     </div>
 
@@ -41,15 +46,15 @@
           </div>
         </form>
         <%=render 'album_image'%>
-        <%if choose_operate_show('my_school/album_entries/create')%>
+        <%#if choose_operate_show('my_school/album_entries/create')%>
         <div class="work_form">
          <div class="form_div" style="float:left">
-         <%= form_for(@album_entry,:url=>my_school_album_album_entries_path(@album.id,@album_entry),:html =>{:multipart=>true,:class=>"form-horizontal"},) do |f| %>
-          <%= render 'form2', :f=>f %>
-       <% end %>
+         <%#= form_for(@album_entry,:url=>my_school_album_album_entries_path(@album.id,@album_entry),:html =>{:multipart=>true,:class=>"form-horizontal"},) do |f| %>
+          <%#= render 'form2', :f=>f %>
+       <%# end %>
        </div>
     </div>
-    <%end%>
+    <%#end%>
       </div>
     </div>
   </div>
