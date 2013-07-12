@@ -49,10 +49,6 @@ class Weixin::BaseController < ApplicationController
         return
       end
     end
-    if @current_user == :false
-      render :text=>"请通过微信访问"
-      return
-    end
   end
   def load_layout
     if @kind && @kind.template

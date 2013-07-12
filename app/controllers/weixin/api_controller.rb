@@ -1,15 +1,18 @@
 #encoding:utf-8
 class Weixin::ApiController < Weixin::BaseController
-    protect_from_forgery :except=>:index
+  protect_from_forgery :except=>:index
   include AuthenticatedSystem
   before_filter :token_validate , :if=>proc {|c| (@required_type != :www && @required_type != "") && @kind.weixin_status == 0 }
   #交互接口
   def index
+    puts "1================"
     if @required_type == :www || @required_type == ""
+      puts "2================"
+      load_platform
     else
+      puts "3================"
       load_school
     end
-    render :text=>"demo"
   end
 
 
@@ -28,6 +31,7 @@ class Weixin::ApiController < Weixin::BaseController
           :Content=>"欢迎关注#{@kind.name}\r#{get_menu}\r ",
           :FuncFlag=>0
         })
+      puts  "==x_data===========#{x_data.inspect}====="
     else
       xml_data[:Content]
       #图片形式
@@ -47,6 +51,7 @@ class Weixin::ApiController < Weixin::BaseController
   #平台接口
   def load_platform
     xml_data = params[:xml]
+    render :text=>"平台"
   end
 
   private
