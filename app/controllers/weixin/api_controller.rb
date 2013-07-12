@@ -5,12 +5,9 @@ class Weixin::ApiController < Weixin::BaseController
   before_filter :token_validate , :if=>proc {|c| (@required_type != :www && @required_type != "") && @kind.weixin_status == 0 }
   #交互接口
   def index
-    puts "1================"
     if @required_type == :www || @required_type == ""
-      puts "2================"
       load_platform
     else
-      puts "3================"
       load_school
     end
   end
@@ -28,7 +25,7 @@ class Weixin::ApiController < Weixin::BaseController
           :FromUserName=>xml_data[:ToUserName],
           :CreateTime=>Time.now.to_i,
           :MsgType=>"text",
-          :Content=>"欢迎关注#{@kind.name}\r#{get_menu}\r ",
+          :Content=>"欢迎关注#{@kind.name}\r #{get_menu} ",
           :FuncFlag=>0
         })
       puts  "==x_data===========#{x_data.inspect}====="
@@ -64,9 +61,9 @@ class Weixin::ApiController < Weixin::BaseController
 
   def get_menu
     if logged_in?
-      '1、进行账号绑定\r2、查看幼儿园介绍'
+      '1、进行账号绑定\r 2、查看幼儿园介绍'
     else
-      '1、查看通知消息\r2、幼儿园介绍\r3、班级活动\r4、每周菜谱\r5、照片集锦\r6、宝宝成长\r6、信息论坛'
+      '1、查看通知消息\r 2、幼儿园介绍\r 3、班级活动\r 4、每周菜谱\r 5、照片集锦\r 6、宝宝成长\r 6、信息论坛'
     end
   end
 
