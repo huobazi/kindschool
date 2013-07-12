@@ -16,7 +16,6 @@ class MySchool::AlbumsController  < MySchool::ManageController
      @album = @kind.albums.new
      if @grades = @kind.grades
         if @squads = @grades.first.squads
-          @student_infos = @squads.first.student_infos 
         end
      end
    end
