@@ -36,6 +36,8 @@ class Weixin::BaseController < ApplicationController
     if params[:signature].blank?
       @current_user ||= session[:user] && User.find_by_id(session[:user]) || :false
     else
+      puts "========get_validate_data====#{get_validate_data.inspect}"
+      puts "==#{Digest::SHA1.hexdigest(get_validate_data)}=======#{params[:signature]}===="
       if Digest::SHA1.hexdigest(get_validate_data) == params[:signature]
         if xml_data = params[:xml]
           if @current_user = User.find_by_weixin_code(xml_data[:FromUserName])
