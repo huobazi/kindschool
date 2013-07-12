@@ -15,8 +15,8 @@ class MySchool::AlbumsController  < MySchool::ManageController
    def new
      @album = @kind.albums.new
      if @grades = @kind.grades
-        if @squads = @grades.first.squads
-        end
+     #    if @squads = @grades.first.squads
+     #    end
      end
    end
    
@@ -50,6 +50,12 @@ class MySchool::AlbumsController  < MySchool::ManageController
         if @squads = @grades.first.squads
         end
      end
+      if @squad = @album.squad
+          @grade = @squad.grade       
+      else
+          @squads  = []
+      end
+      
    end
 
    def update

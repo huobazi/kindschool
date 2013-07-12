@@ -28,7 +28,6 @@ class Weixin::ApiController < Weixin::BaseController
           :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
           :FuncFlag=>0
         })
-      puts  "==x_data===========#{x_data.inspect}====="
     else
       xml_data[:Content]
       #图片形式
@@ -42,6 +41,7 @@ class Weixin::ApiController < Weixin::BaseController
           :FuncFlag=>0
         })
     end
+    puts "=============x_data====#{x_data.inspect}"
     render :text=>x_data
   end
 
@@ -60,10 +60,11 @@ class Weixin::ApiController < Weixin::BaseController
   end
 
   def get_menu
+    puts "=======logged_in?====#{logged_in?}"
     if logged_in?
-      "1、进行账号绑定\n\r 2、查看幼儿园介绍"
-    else
       "1、查看通知消息\n\r 2、幼儿园介绍\n\r 3、班级活动\n\r 4、每周菜谱\n\r 5、照片集锦\n\r 6、宝宝成长\n\r 6、信息论坛"
+    else
+      "1、进行账号绑定\n\r 2、查看幼儿园介绍"
     end
   end
 
