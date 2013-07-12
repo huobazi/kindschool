@@ -196,15 +196,5 @@ class User < ActiveRecord::Base
     crypted_password.blank? || !password.blank?
   end
 
-  validate :end_at_large_than_start_at
-
-  private
-  def end_at_large_than_start_at
-    if !come_in_at.blank? && !birthday.blank?
-      if come_in_at < birthday
-        errors[:birthday] << "start_at must less than end_at"
-        errors[:come_in_at] << "end_at must large than start_at"
-      end
-    end
-  end
+  
 end

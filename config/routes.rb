@@ -84,6 +84,7 @@ School::Application.routes.draw do
 
     resources :topics
     resources :topic_entries
+    resources :activities
   end
 
   match 'weixin' => 'weixin/main#index'
