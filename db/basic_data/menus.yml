@@ -156,8 +156,20 @@
   number: 80000
   name: "照片集锦"
   height_level: "b"
-  url: "###"
+  url: "/my_school/albums"
   sequence: 800
+  children:
+  - id: 81000
+    name: "照片集锦"
+    operate_id: 9000
+    number: 81000
+    url: "/my_school/albums"
+    title: "照片集锦"
+    height_level: "b"
+    sequence: 810
+
+
+
 - id: 90000
   number: 90000
   name: "饮食保健"

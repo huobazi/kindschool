@@ -7,7 +7,9 @@ School::Application.routes.draw do
   namespace :my_school do
     resources :albums do
       collection {get :grade_class}
-      resources :album_entries
+      resources :album_entries do
+      member {post :choose_main_img} 
+      end
     end
     resources :content_patterns
     resources :seedlings do 
@@ -87,7 +89,12 @@ School::Application.routes.draw do
 
   match 'weixin' => 'weixin/main#index'
   namespace :weixin do
-    resources :api
+    resources :api do
+      collection do
+        post :index
+        get :index
+      end
+    end
     resources :main do
       collection do
         get :bind_user

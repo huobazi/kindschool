@@ -64,7 +64,13 @@ MENUS ={"home"=>{
      "102000" => {
      "my_school/garden_growth_records" => ["garden", "new", "edit", "show"]
    }
-   }
+   },
+    "80000" => {
+      "81000" =>{
+        "my_school/albums" => ["index","new","show","edit"],
+        "my_school/album_entries" => ["index","new","show","edit"]
+      } 
+    }
 
 
 }

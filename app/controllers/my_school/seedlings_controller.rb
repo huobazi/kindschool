@@ -62,7 +62,6 @@ class MySchool::SeedlingsController < MySchool::ManageController
     @seedling = @kind.seedling_records.find(params[:id])
     respond_to do |format|
       if @seedling.update_attributes(params[:seedling_record])
-        puts @seedling.inspect
         format.html { redirect_to my_school_seedlings_path, notice: '学员育苗 was successfully updated.' }
       else
         format.html { render action: "edit" }

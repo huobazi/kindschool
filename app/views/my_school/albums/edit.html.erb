@@ -1,0 +1,31 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label><%=link_to @album.title , my_school_album_path(@album),:class=>'blue'%>->修改相册</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+
+      </ul>
+    </div>
+
+    <div class="work_form">
+      <div class="form_div">
+        <%= form_for( [:my_school,@album] , :html =>{:class=>"form-horizontal"}) do |f| %>
+          <%= render 'form', :f=>f %>
+       <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
+

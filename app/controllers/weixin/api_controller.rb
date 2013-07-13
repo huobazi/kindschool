@@ -1,15 +1,14 @@
 #encoding:utf-8
 class Weixin::ApiController < Weixin::BaseController
-  
-  before_filter :token_validate  if (@required_type != :www && @required_type != "") #&& @kind.weixin_status == 0
+  protect_from_forgery :except=>:index
+  include AuthenticatedSystem
+  before_filter :token_validate , :if=>proc {|c| (@required_type != :www && @required_type != "") && @kind.weixin_status == 0 }
   #交互接口
   def index
-    render :text=>"==@required_type====#{@required_type}===@kind.weixin_status=#{@kind.weixin_status}"
-    return
-
-    if @required_type == :www
-      
+    if @required_type == :www || @required_type == ""
+      load_platform
     else
+      load_school
     end
   end
 
@@ -26,12 +25,11 @@ class Weixin::ApiController < Weixin::BaseController
           :FromUserName=>xml_data[:ToUserName],
           :CreateTime=>Time.now.to_i,
           :MsgType=>"text",
-          :Content=>"回复数字进行操作\n\r ",
+          :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
           :FuncFlag=>0
         })
     else
       xml_data[:Content]
-      
       #图片形式
       x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
           :FromUserName=>xml_data[:ToUserName],
@@ -43,12 +41,14 @@ class Weixin::ApiController < Weixin::BaseController
           :FuncFlag=>0
         })
     end
+    puts "=============x_data====#{x_data.inspect}"
     render :text=>x_data
   end
 
   #平台接口
   def load_platform
     xml_data = params[:xml]
+    render :text=>"平台"
   end
 
   private
@@ -57,6 +57,15 @@ class Weixin::ApiController < Weixin::BaseController
   def token_validate
     render :text=>params[:echostr]
     return
+  end
+
+  def get_menu
+    puts "=======logged_in?====#{logged_in?}"
+    if logged_in?
+      "1、查看通知消息\n\r 2、幼儿园介绍\n\r 3、班级活动\n\r 4、每周菜谱\n\r 5、照片集锦\n\r 6、宝宝成长\n\r 6、信息论坛"
+    else
+      "1、进行账号绑定\n\r 2、查看幼儿园介绍"
+    end
   end
 
   def mas_data(option = {})
