@@ -35,15 +35,23 @@
             <th>标题</th>
             <th>创建人</th>
             <th>类型</th>
-            <th>描述</th>
+            <th>LOGO</th>
             <th colspans="2">操作</th>
           </tr>
           <% @activities.each do |activity| %>
             <tr>
-              <td><%= link_to activity.name, my_school_activity_path(activity) %></td>
-              <td><%= activity.creater_id %></td>
-              <td><%= activity.tp %></td>
-              <td><%= activity.note %></td>
+              <td><%= link_to activity.title, my_school_activity_path(activity) %></td>
+              <td><%= User.find_by_id(activity.creater_id).name unless activity.creater_id.nil? %></td>
+              <td>
+                <%= activity.tp == 0 ? "活动" : "兴趣讨论" %>
+              </td>
+              <td>
+                <% if activity.asset_img.blank? %>
+                  图片不存在
+                <% else %>
+                  <img src="<%= activity.asset_img.public_filename(:tiny) %>" />
+                <% end %>
+              </td>
               <td><%= link_to "查看", my_school_activity_path(activity), :class => "show" %></td>
               <td><%= link_to "编辑", edit_my_school_activity_path(activity), :class => "show" %></td>
             </tr>

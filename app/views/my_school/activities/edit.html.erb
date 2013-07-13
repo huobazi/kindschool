@@ -1,0 +1,42 @@
+<div class="show_publicity">
+  <img src="/t/colorful/small_publicity.jpg" alt="展示图"/>
+</div>
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>活动信息管理</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li><%= link_to "活动管理", my_school_activities_path %></li>
+            <li>/</li>
+            <li>修改活动</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+          <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:index)%>" title="返回">
+            <div class="work_action_return">
+            </div>
+            <div class="work_action_return_move">
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="work_form">
+      <div class="form_div">
+        <%= simple_form_for @activity, :validate => true, :url => {:controller=>"/my_school/activities",:action=>:update}, :html =>{:class=>"form-horizontal"} do |f| %>
+          <%= render :partial => "form",:object=>f %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
