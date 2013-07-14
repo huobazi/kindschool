@@ -14,7 +14,7 @@ class CreateOperates < ActiveRecord::Migration
       # 是否需要授权
       t.column :authable,:boolean,:default=>true
       # 是否显示在主界面上
-      t.column :visible,:boolean,:default =>true
+      t.column :visible,:boolean,:default =>false
     end
   end
 

@@ -904,6 +904,10 @@ table.user_attributes td {
 .blue{
     color: blue;
 }
+.table a.red{
+    color: red;
+}
+
 
 #topic_entries {
   margin-bottom: 20px;
