@@ -1,2 +1,0 @@
-module MySchool::ContentPatternsHelper
-end
