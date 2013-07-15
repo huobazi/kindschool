@@ -60,7 +60,6 @@ MENUS ={"home"=>{
    "100000"=>{
     "101000" => {
       "my_school/growth_records" => ["home", "new", "edit", "show"],
-      "my_school/growth_records/home" => ["home", "new", "edit", "show"]
    },
      "102000" => {
      "my_school/garden_growth_records" => ["garden", "new", "edit", "show"]
@@ -71,6 +70,11 @@ MENUS ={"home"=>{
         "my_school/albums" => ["index","new","show","edit"],
         "my_school/album_entries" => ["index","new","show","edit"]
       } 
+    },
+    "110000" => {
+      "111000" => {
+        "my_school/topics" => ["index", "new", "edit", "show"]
+      }
     }
 
 

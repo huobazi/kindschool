@@ -243,10 +243,10 @@
   operate_id: 3
   children:
   - id: 111000
-    name: "发贴子"
-    operate_id: 3001
+    name: "账子管理"
+    operate_id: 3005
     number: 111000
-    url: "/my_school/topics/new"
+    url: "/my_school/topics"
     title: "论坛管理"
     height_level: "b"
     sequence: 1110
