@@ -45,6 +45,7 @@ class  MySchool::StudentInfosController < MySchool::ManageController
   end
 
   def update
+    binding.pry
     @student_info = StudentInfo.find_by_id_and_kindergarten_id(params[:id], @kind.id)
     respond_to do |format|
       if @student_info.update_attributes(params[:student_info])

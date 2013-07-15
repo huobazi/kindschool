@@ -292,6 +292,7 @@ zh-CN:
         updated_at: "更新时间"
       squad:
         kindergarten_label: "所属幼儿园"
+        grade_label: "所属年级"
         historyreview: "届"
         kindergarten: "所属幼儿园"
         grade: "年级"
@@ -305,6 +306,7 @@ zh-CN:
         user: "学员姓名"
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"
+        squad_label: "所属班级"
         grade: "年级"
         squad: "班级"
         squad_id: "班级"

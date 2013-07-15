@@ -22,6 +22,10 @@ class StudentInfo < ActiveRecord::Base
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end
 
+  def squad_label
+    self.squad ? self.squad.name : "丢失班级信息"
+  end
+
 
   attr_accessible :user_attributes
   accepts_nested_attributes_for :user
