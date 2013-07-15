@@ -213,7 +213,53 @@ body {
 .user_entry table{
     background-color: white;
 }
+/*====绑定用户界面===============*/
+.bind{
 
-/*.navbar-inverse .nav-collapse .nav > li > a:hover, .navbar-inverse .nav-collapse .nav > li > a:focus, .navbar-inverse .nav-collapse .dropdown-menu a:hover, .navbar-inverse .nav-collapse .dropdown-menu a:focus {
-    background-color: inherit;
-}*/
+}
+.bind .title{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.bind .bind_user{
+    padding: 5px;
+}
+.bind .bind_user table{
+    background-color: white;
+}
+.bind input{
+    height: 32px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    width: 80%;
+}
+.bind .bind_user table b{
+    vertical-align: middle;
+}
+
+.bind .button_xun{
+    background-image: url("/t/colorful/login_btn.png");
+    display: block;
+    height: 57px;
+    width: 156px;
+    text-decoration: none;
+}
+.bind .button_xun:hover{
+    background-image: url("/t/colorful/login_btn.png");
+    background-position: 0 -57px;
+    display: block;
+    height: 57px;
+    width: 156px;
+}
+.bind .login_submit{
+    text-align: left;
+}
+.login_submit_div{
+    padding: 20px 20px 20px 0;
+}
+.error_div{
+    padding-top: 5px;
+}
+.error_label{
+    color: #EF2540;
+}

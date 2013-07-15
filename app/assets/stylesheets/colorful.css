@@ -969,6 +969,7 @@ a.album_a .album_img{
     display: inherit;
     float: left;
     height: 300px;
+    margin-bottom: 5px;
     margin-left: 25px;
     position: relative;
     width: 248px;

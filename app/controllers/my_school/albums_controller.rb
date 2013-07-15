@@ -30,7 +30,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
     end
      respond_to do |format|
       if @album.save
-        format.html { redirect_to my_school_albums_path, notice: '学员的育苗 was successfully created.' }
+        format.html { redirect_to my_school_albums_path, notice: '相册锦集创建成功.' }
       else
         format.html { render :action=> "new" }
       end
@@ -69,7 +69,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
      @album.save
     respond_to do |format|
       if @album.update_attributes(params[:album])
-        format.html { redirect_to my_school_cook_books_path, notice: '学员菜谱 was successfully updated.' }
+        format.html { redirect_to my_school_cook_books_path, notice: '相册锦集修改成功.' }
       else
         format.html { render action: "edit" }
       end

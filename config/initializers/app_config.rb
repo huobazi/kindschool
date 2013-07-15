@@ -47,17 +47,15 @@ MENUS ={"home"=>{
     "my_school/cook_books"=>['index','new','edit','show']
    }
    },
-   "30000"=>{
-    "31000"=>{},
-    "32000"=>{},
-    "33000"=>{},
+   "system"=>{
+    "31000"=>{"my_school/templates"=>['set_default_template_view']},
+    "32000"=>{"my_school/page_contents"=>['index','edit','new','show']},
     "34000"=>{
       "my_school/content_patterns"=>['index','edit']
     },
     "35000"=>{
       "my_school/smarties" => ['index','create']
     }
-
    },
    "100000"=>{
     "101000" => {

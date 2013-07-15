@@ -14,7 +14,7 @@ class MySchool::AlbumEntriesController < MySchool::ManageController
       if @album_entry.save && @album_entry.asset_img.save
         @album_entry.asset_img_id = @album_entry.asset_img.id
         @album_entry.save
-        format.html { redirect_to  my_school_album_path(@album), notice: '图片上传 was successfully created.' }
+        format.html { redirect_to  my_school_album_path(@album), notice: '图片上传成功.' }
       else
         format.html { render :action=> "new" }
       end
@@ -35,7 +35,7 @@ class MySchool::AlbumEntriesController < MySchool::ManageController
    	@album_entry = @album.album_entries.find(params[:id])
    	respond_to do |format|
       if @album_entry.update_attributes(params[:album_entry])
-        format.html { redirect_to my_school_album_path(@album), notice: '照片标题 was successfully updated.' }
+        format.html { redirect_to my_school_album_path(@album), notice: '照片标题修改成功.' }
       else
         format.html { render action: "edit" }
       end
@@ -57,7 +57,7 @@ class MySchool::AlbumEntriesController < MySchool::ManageController
     @album_entry = @album.album_entries.find(params[:id])
     @album.album_entry_id =@album_entry.id
      if @album.save
-         redirect_to  my_school_album_path(@album), notice: '图片上传 was successfully created.' 
+         redirect_to  my_school_album_path(@album), notice: '设置成功.' 
       else
          render :action=> "new" 
       end
