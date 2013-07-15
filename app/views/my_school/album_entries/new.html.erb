@@ -4,17 +4,29 @@
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label><%=link_to '相册锦集',my_school_albums_path,:class=>"blue"%>-><%=link_to @album.title , my_school_album_path(@album),:class=>'blue'%>->上传相片</label>
+        <label>相册锦集
+         <!--  <%#=link_to '相册锦集',my_school_albums_path,:class=>"blue"%>-><%#=link_to @album.title , my_school_album_path(@album),:class=>'blue'%> -->
+          <!-- ->上传相片 --></label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
           </a>
           <ul>
+             <li><%= link_to "相册锦集", my_school_albums_path %></li>
+            <li>/</li>
+            <li><%=link_to @album.title , my_school_album_path(@album),:class=>'blue'%></li>
+            <li>/</li>
+            <li>上传相片</li>
           </ul>
         </div>
       </div>
       <ul class="work_action">
-
+         <li>
+          <%=link_to "<div class='work_action_return'>
+            </div>
+            <div class='work_action_return_move'>
+            </div>".html_safe ,my_school_album_path(@album)%>
+          </li>
       </ul>
     </div>
 
