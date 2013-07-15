@@ -46,7 +46,11 @@ School::Application.routes.draw do
         get :about,:contact_us
       end
     end
-    resources :grades
+    resources :grades do
+      collection do
+        delete :destroy_multiple
+      end
+    end
     resources :staffs
     resources :page_contents do
       member do
