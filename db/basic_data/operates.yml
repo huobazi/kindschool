@@ -300,6 +300,29 @@ content_pattern_index:
   visible: true
   protocol: ""
 
+smarties_index:
+  id: 5004
+  parent_id: 6
+  name: "常用功能管理"
+  level: 2
+  sequence: 0
+  note: "常用功能管理"
+  controller: "my_school/smarties"
+  action: "index"
+  visible: true
+  protocol: ""
+
+smarties_create:
+  id: 5005
+  parent_id: 6
+  name: "常用功能创建"
+  level: 2
+  sequence: 0
+  note: "常用功能创建"
+  controller: "my_school/smarties"
+  action: "create"
+  protocol: ""
+
 #==============================健康饮食
 seedlings_index:
   id: 6001
