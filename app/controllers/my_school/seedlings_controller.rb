@@ -42,7 +42,7 @@ class MySchool::SeedlingsController < MySchool::ManageController
     @seedling = @kind.seedling_records.new(params[:seedling_record])
      respond_to do |format|
       if @seedling.save
-        format.html { redirect_to my_school_seedlings_path, notice: '学员的育苗 was successfully created.' }
+        format.html { redirect_to my_school_seedlings_path, notice: '学员的育苗创建成功.' }
       else
         format.html { render :action=> "new" }
       end
@@ -62,7 +62,7 @@ class MySchool::SeedlingsController < MySchool::ManageController
     @seedling = @kind.seedling_records.find(params[:id])
     respond_to do |format|
       if @seedling.update_attributes(params[:seedling_record])
-        format.html { redirect_to my_school_seedlings_path, notice: '学员育苗 was successfully updated.' }
+        format.html { redirect_to my_school_seedlings_path, notice: '学员育苗更新成功.' }
       else
         format.html { render action: "edit" }
       end
