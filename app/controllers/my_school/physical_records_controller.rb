@@ -56,8 +56,8 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
 
    def edit
      @physical_record = @kind.physical_records.find(params[:id])
-     if @grades = @kind.grades
-        if @squads = @grades.first.squads
+     if (@grades = @kind.grades) && !@grades.blank?
+        if (@squads = @grades.first.squads) && !@squads.blank?
           @student_infos = @squads.first.student_infos 
         end
      end
