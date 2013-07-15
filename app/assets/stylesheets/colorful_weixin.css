@@ -242,7 +242,6 @@ body {
     display: block;
     height: 57px;
     width: 156px;
-    margin: 0 auto;
     text-decoration: none;
 }
 .bind .button_xun:hover{
@@ -254,4 +253,13 @@ body {
 }
 .bind .login_submit{
     text-align: center;
+}
+.login_submit_div{
+    padding: 20px 20px 20px 0;
+}
+.error_div{
+    padding-top: 5px;
+}
+.error_label{
+    color: #EF2540;
 }
