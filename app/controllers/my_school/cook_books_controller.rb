@@ -46,4 +46,19 @@ def update
     end
   end
 
+def destroy
+    @cook_books = @kind.cook_books.where(:id=>params[:id])
+    @cook_books.each do |cook_book|
+     cook_book.destroy
+     end
+
+    respond_to do |format|
+      format.html { redirect_to my_school_cook_books_path }
+      format.json { head :no_content }
+    end
+  end
+ def show
+    @cook_book = @kind.cook_books.find(params[:id])
+ end
+
 end

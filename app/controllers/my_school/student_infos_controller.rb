@@ -12,7 +12,7 @@ class  MySchool::StudentInfosController < MySchool::ManageController
   def new
     @student_info = StudentInfo.new
     @student_info.kindergarten = @kind
-    @student_info.user = User.new(:kindergarten_id => @kind.id, :tp => 1)
+    @student_info.user = User.new(:kindergarten_id => @kind.id, :tp => 0)
   end
 
   def create
@@ -45,11 +45,10 @@ class  MySchool::StudentInfosController < MySchool::ManageController
   end
 
   def update
-    binding.pry
     @student_info = StudentInfo.find_by_id_and_kindergarten_id(params[:id], @kind.id)
     respond_to do |format|
       if @student_info.update_attributes(params[:student_info])
-        flash[:notice] = '更新通知成功.'
+        flash[:notice] = '更新学员成功.'
         format.html { redirect_to(:action=>:show,:id=>@student_info.id) }
         format.xml  { head :ok }
       else

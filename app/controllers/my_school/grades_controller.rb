@@ -54,4 +54,12 @@ class  MySchool::GradesController < MySchool::ManageController
     end
   end
 
+  def destroy_multiple
+    Grade.destroy(params[:grade])
+    respond_to do |format|
+      format.html { redirect_to my_school_grades_path }
+      format.json { head :no_content }
+    end
+  end
+
 end
