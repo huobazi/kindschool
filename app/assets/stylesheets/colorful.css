@@ -974,3 +974,9 @@ a.album_a .album_img{
     position: relative;
     width: 248px;
 }
+
+.paginate_div{
+    width: 100%;
+    display: inherit;
+    float: left;
+}

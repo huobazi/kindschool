@@ -1,6 +1,6 @@
 <div id="records">
           <ul id="image_wall">
-          <% @album.album_entries.each do |a_e| %>
+          <% @album_entries.each do |a_e| %>
           <li style="width:228px;">
           <span><%=raw a_e.title%><%= a_e.id == @album.album_entry_id ? "---相册封面" : ""%></span>
           <a href="<%=a_e.asset_img.public_filename%>" class="fancybox"  title="">
@@ -23,6 +23,9 @@
           </li>
           <% end %>
           </ul>
+          <div class="paginate_div">
+           <%= paginate @album_entries  %>
+          </div> 
 </div>
 <script type="text/javascript">
 $(".a_album_edit").click(function(){
