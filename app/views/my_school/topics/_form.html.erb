@@ -23,7 +23,14 @@
   KindEditor.ready(function(K) {
     editor = K.create('#topic_content', {
       allowFileManager : true,
-      height:400,
+      height: "400px",
+      width: "300px"
     });
   });
+
+ $("input[type='submit']").click(function(){
+    if (editor.html().length < 9 or editor.isEmpty()) {
+        return false;
+    }
+ })
 </script>
