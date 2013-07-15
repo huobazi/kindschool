@@ -34,7 +34,7 @@ class Weixin::ApiController < Weixin::BaseController
         Rails.logger.info("a================")
         if xml_data[:Content] == "1"
           Rails.logger.info("b================")
-          mas_data({:ToUserName=>xml_data[:FromUserName],
+          x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
               :MsgType=>"text",
@@ -46,7 +46,7 @@ class Weixin::ApiController < Weixin::BaseController
         Rails.logger.info("c================")
         if xml_data[:Content] == "1"
           Rails.logger.info("d================")
-          mas_data({:ToUserName=>xml_data[:FromUserName],
+          x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
               :MsgType=>"text",
