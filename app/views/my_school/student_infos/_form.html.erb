@@ -29,6 +29,7 @@
         <%= p.input :password, :validate => true, :required => true %>
         <%= p.input :password_confirmation, :validate => true, :required => true %>
       <% end %>
+      <%= f.input :squad_id, :validate => true, :required => true, :as=>:select, :collection=>Hash[f.object.kindergarten.squads.map{|squad| ["#{squad.name}",squad.id]}] ,:input_html => { :name=>"student_info[squad_id]" } %>
       <%= p.input :phone %>
       <%= p.input :gender, :as => :radio, :collection => {"男" => "M", "女" => "G"}, :required => true %>
       <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
@@ -43,7 +44,6 @@
     <%= f.input :come_in_at, :as => :string, :class => "input-mediun" %>
     <%= f.input :education, :input_html => {:class => "span5"} %>
     <%= f.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
-    <%= f.input :squad, :validate => true, :required => true, :as=>:select, :collection=>Hash[f.object.kindergarten.squads.map{|squad| ["#{squad.name}",squad.id]}] ,:input_html => { :name=>"student_info[squad_id]" } %>
     <%= f.input :card_code %>
     <%= f.input :guardian %>
     <%= f.input :guardian_card_category, :as => :select,:collection=>StudentInfo::CARD_CATEGORY_DATA.invert %>

@@ -2,7 +2,7 @@
 class StudentInfo < ActiveRecord::Base
   attr_accessible :user_id,:birthday, :birthplace, :brothers, :card_category, :card_code, :children_number, :come_in_at, :deformity, :deformity_category, :domicile_place, :duties, :education, :employofficialt, :family_address, :family_birthday, :family_email, :family_marital, :family_name, :family_phone, :family_register, :family_ties, :grade_id, :guardian, :guardian_card_category, :guardian_card_code, :head_url, :household, :housing, :insured, :kindergarten_id, :leftover_children, :live_family, :living_time, :lodging, :nation, :nationality, :native, :only_child, :orphan, :overseas_chinese, :politics_status, :profession, :safe_box, :squad_id, :subsidize, :working
 
-  validates :kindergarten,:user,:squad_id,:presence => true#
+  validates :kindergarten,:user,:squad_id, :presence => true#
 
   belongs_to :user  #账户
   belongs_to :squad  #班级
