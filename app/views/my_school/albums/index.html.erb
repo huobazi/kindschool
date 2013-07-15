@@ -14,41 +14,41 @@
         </div>
       </div>
       <ul class="work_action">
-         <li>
+        <li>
           <%if choose_operate_show('my_school/albums/new')%>
-          <%=link_to "<div class='work_action_add'>
-            </div><div class='work_action_add_move'>
-            </div>".html_safe ,new_my_school_album_path%>
-            <%end%>
-          </li>
+            <%=link_to "<div class='work_action_add'>
+  </div><div class='work_action_add_move'>
+  </div>".html_safe ,new_my_school_album_path%>
+          <%end%>
         </li>
       </ul>
     </div>
-
     <div class="work_list" >
-      
-       <ul id="album_wall" >
-          <% (@albums || []).each do |album| %>
-          <li style="width:228px;" >
-          <span><%=raw album.title%></span>
-          <a href="<%= my_school_album_path(album)%>">
-          <img src="<%= album.show_main_img ? album.show_main_img.public_filename(:middle) : '/t/colorful/logo.png' %>" width="226px" height="226px" alt="<%=album.title%>"/>
+      <ul id="album_wall" >
+        <% (@albums || []).each do |album| %>
+          <li>
+            <a href="<%= my_school_album_path(album)%>" class="album_a ">
+              <div class="album_window"></div>
+              <div class="album_img">
+                <img src="<%= album.show_main_img ? album.show_main_img.public_filename(:middle) : '/t/colorful/login_img10.png' %>"  alt="<%=album.title%>"/>
+              </div>
             </a>
-           <span class="actions">
-           <%=raw album.content%>
-           </span>
-           <span>
-            <%= album.try(:squad_name)%>
-            <%if choose_operate_show('my_school/albums/destroy')%>
-            <%= link_to 'Destroy', my_school_album_path(album), method: :delete, data: { confirm: 'Are you sure?' },:class=> "blue" %>
+            <span><%=raw album.title%></span>
+            <span class="actions">
+              <%=raw album.content%>
+            </span>
+            <span>
+              <%= album.try(:squad_name)%>
+              <%if choose_operate_show('my_school/albums/destroy')%>
+                <%= link_to 'Destroy', my_school_album_path(album), :method=> :delete, :data=> { :confirm=> 'Are you sure?' },:class=> "blue" %>
+              <%end%>
+            </span>
+            <%if choose_operate_show('my_school/albums/edit')%>
+              <span><%=link_to 'edit',edit_my_school_album_path(album)%></span>
             <%end%>
-           </span>
-          <%if choose_operate_show('my_school/albums/edit')%>
-           <span><%=link_to 'edit',edit_my_school_album_path(album)%></span>
-           <%end%>
           </li>
-          <% end %>
-          </ul>
+        <% end %>
+      </ul>
     </div>
   </div>
 

@@ -1,0 +1,76 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>常用功能设置</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+        </li>
+        <li>
+          <!-- <a href="/" title="删除">
+            <div class='work_action_delete'>
+            </div>
+            <div class='work_action_delete_move'>
+            </div>
+          </a> -->
+        </li>
+      </ul>
+    </div>
+  <div id='role_operates'>
+    <div class="work_list">
+      <% unless @roles.blank? %>
+        <table class="table table-striped table-hover">
+          <tr>
+             <%@roles.each do |role|%>
+            <td><span><%=link_to role.name ,my_school_smarties_path(:role_id=>role.id),:class=>"a_role_name  #{role.number==@role.number ? 'red' : ''}",:for=>role.id%></span></td>
+            <%end%>
+          </tr>
+        </table>
+        <%=form_tag(my_school_smarties_path(:role_id=>@role.id),:id=>"role_forms", :authenticity_token => 'external_token') do%>
+        <table class="table table-striped table-hover">
+          <tr>
+            <th>编号</th>
+            <th>所属栏目</th>
+            <th>默认名称</th>
+            <th>自定义名称</th>
+            <th>是否显示</th>
+          </tr>
+          
+          <%@role_operates.each_with_index do |operate,index|%> 
+          <tr>
+            <td><%=index+1%></td>
+            <td><%= operate[:parent_name]%></td>
+            <td><%=operate[:name]%></td>
+            <td><%=text_field_tag('name',operate[:rename])%></td>
+            <td><%=check_box_tag 'operate[ids][]',operate[:id],operate[:result] %> </td>
+          </tr>
+
+          <%end%>
+          <tr>
+            <td></td>
+            <td></td>
+            <td><%=button_tag "确定",:id=>"submit_form"%></td>
+          <td></td>
+          <td></td>
+        </tr>
+        
+        </table>
+        <%end%>
+      </div>
+      <% else %>
+        "暂无记录"
+      <% end %>
+      </div>
+  </div>
+
+</div>

@@ -12,7 +12,7 @@ class CookBook < ActiveRecord::Base
   just_define_datetime_picker :start_at, :add_to_attr_accessible => true
   just_define_datetime_picker :end_at, :add_to_attr_accessible => true
 
-  RANGE_TP_DATA = {"0" => "周菜谱", "1" => "日菜谱"}
+  RANGE_TP_DATA = {"0" => "周菜谱"}#, "1" => "日菜谱"}
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"

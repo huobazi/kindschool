@@ -1,7 +1,7 @@
 #encoding:utf-8
 #功能
 class OptionOperate < ActiveRecord::Base
-  attr_accessible :kindergarten_id, :operate_id,:visible
+  attr_accessible :rename,:kindergarten_id, :operate_id,:visible
 
   has_and_belongs_to_many :roles
   has_many :smarties
