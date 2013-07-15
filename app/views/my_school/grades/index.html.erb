@@ -41,7 +41,7 @@
             </tr>
             <% @grades.each do |grade| %>
               <tr>
-                <td><input id="grade_<%= grade.id %>" name="grade[]" type="checkbox" value="<%= grade.id %>" /></td>
+                <td><input id="grade_<%= grade.id %>" class="grade_check" name="grade[]" type="checkbox" value="<%= grade.id %>" /></td>
                 <td><%= link_to grade.name, my_school_grade_path(grade) %></td>
                 <td><%= grade.kindergarten_label %></td>
                 <td><%= grade.note %></td>
@@ -65,6 +65,10 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    
+  $("#grade_all").click(function(){
+    $(".grade_check").each(function(){
+       $(this).click();
+      });
+    }); 
   });
 </script>
