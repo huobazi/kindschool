@@ -32,7 +32,7 @@ namespace :db do
     #添加班级
     (1..4).to_a.each do |i|
       squad = Squad.new(:name=>"班级#{i}",:note=>"这是班级#{i}",:grade_id=>kind.grades.random.id,:kindergarten_id=>kind.id,:historyreview=>"2013")
-      squad.save
+      squad.save!
       print "."
     end
     puts "关联负责老师"
