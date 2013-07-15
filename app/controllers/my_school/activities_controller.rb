@@ -17,7 +17,6 @@ class MySchool::ActivitiesController < MySchool::ManageController
   end
 
   def create
-    binding.pry
     @activity = Activity.new(params[:activity])
 
     if @activity.save!

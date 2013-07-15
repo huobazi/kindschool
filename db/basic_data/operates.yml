@@ -166,6 +166,7 @@ message_index:
   action: "index"
   params: ""
   protocol: ""
+  visible: true
   <<: *DEFAULTS
 
 #||||||||||||||||||||||||||论坛帖子能
@@ -296,6 +297,7 @@ content_pattern_index:
   note: "表格管理"
   controller: "my_school/content_patterns"
   action: "index"
+  visible: true
   protocol: ""
 
 #==============================健康饮食
@@ -309,6 +311,7 @@ seedlings_index:
   controller: "my_school/seedlings"
   action: "index"
   protocol: ""
+  visible: true
   <<: *DEFAULTS
 seedlings_new:
   id: 6002

@@ -5,6 +5,9 @@ School::Application.routes.draw do
   match 'my_school/about' => 'my_school/main#about'
   match 'my_school/contact_us' => 'my_school/main#contact_us'
   namespace :my_school do
+    resources :smarties do
+      collection {get :role_operates}  
+    end
     resources :albums do
       collection {get :grade_class}
       resources :album_entries do

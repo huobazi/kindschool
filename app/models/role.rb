@@ -5,6 +5,7 @@ class Role < ActiveRecord::Base
 
   belongs_to :kindergarten
   has_and_belongs_to_many :option_operates
+  has_many :operates,:through=>:option_operates
   has_many :users
   has_many :smarties
   validates    :name ,:kindergarten, :presence => true    #必须输入/不为空
