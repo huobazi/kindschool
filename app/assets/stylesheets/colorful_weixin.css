@@ -18,6 +18,9 @@ body {
 .head .logo img{
     max-width: 25%;
 }
+.logo{
+    margin-bottom: 5px;
+}
 .head button{
     float: right;
     height: 39px;
