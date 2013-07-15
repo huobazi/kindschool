@@ -1,0 +1,2 @@
+module MySchool::SeedlingHelper
+end
