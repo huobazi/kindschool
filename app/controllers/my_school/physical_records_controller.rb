@@ -47,7 +47,7 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
     @physical_record.student_info_id = params[:seedling_record][:student_info_id] unless params[:seedling_record].blank?
      respond_to do |format|
       if @physical_record.save
-        format.html { redirect_to my_school_physical_records_path, notice: '学员体检 was successfully created.' }
+        format.html { redirect_to my_school_physical_records_path, notice: '学员体检创建成功.' }
       else
         format.html { render action: "new" }
       end
@@ -68,7 +68,7 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
     @physical_record.student_info_id = params[:seedling_record][:student_info_id] unless params[:seedling_record].blank?
     respond_to do |format|
       if @physical_record.update_attributes(params[:physical_record])
-        format.html { redirect_to my_school_physical_records_path, notice: '学员体检 was successfully updated.' }
+        format.html { redirect_to my_school_physical_records_path, notice: '学员体检更新成功.' }
       else
         format.html { render action: "edit" }
       end
