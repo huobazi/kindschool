@@ -30,7 +30,7 @@
         <%= p.input :password_confirmation, :validate => true, :required => true %>
       <% end %>
       <%= p.input :phone %>
-      <%= p.input :gender, :as => :radio, :collection => {"女" => "M", "男" => "G"}, :required => true %>
+      <%= p.input :gender, :as => :radio, :collection => {"男" => "M", "女" => "G"}, :required => true %>
       <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
       <%= p.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
       <%= p.input :tp,:as=>:hidden %>
