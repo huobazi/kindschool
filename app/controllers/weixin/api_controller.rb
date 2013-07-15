@@ -29,7 +29,7 @@ class Weixin::ApiController < Weixin::BaseController
           :FuncFlag=>0
         })
     else
-      Rails.logger.info("=====xml_data[:Content]=========#{xml_data[:Content]}")
+      Rails.logger.info("=====xml_data[:Content]=========#{xml_data[:Content]}=====#{xml_data[:Content] == 1}===or==#{xml_data[:Content] == "1"}")
       if logged_in?
         Rails.logger.info("a================")
         if xml_data[:Content] == 1
