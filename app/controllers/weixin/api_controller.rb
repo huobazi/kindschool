@@ -31,7 +31,7 @@ class Weixin::ApiController < Weixin::BaseController
     else
       Rails.logger.info("=====xml_data[:Content]=========#{xml_data[:Content]}")
       if logged_in?
-        if xml_data[:Content] == "1"
+        if xml_data[:Content] == 1
           mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
@@ -41,7 +41,7 @@ class Weixin::ApiController < Weixin::BaseController
             })
         end
       else
-        if xml_data[:Content] == "1"
+        if xml_data[:Content] == 1
           mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
