@@ -62,9 +62,9 @@ class Weixin::ApiController < Weixin::BaseController
   def get_menu
     puts "=======logged_in?====#{logged_in?}"
     if logged_in?
-      "1、#{request.uri}查看通知消息\n\r 2、幼儿园介绍\n\r 3、班级活动\n\r 4、每周菜谱\n\r 5、照片集锦\n\r 6、宝宝成长\n\r 6、信息论坛"
+      "1、#{request.host_with_port}<a herf='#{request.host_with_port}/weixin/main/bind_user'>查看通知消息</a>\n\r 2、幼儿园介绍\n\r 3、班级活动\n\r 4、每周菜谱\n\r 5、照片集锦\n\r 6、宝宝成长\n\r 6、信息论坛"
     else
-      "1、#{request.uri}进行账号绑定\n\r 2、查看幼儿园介绍"
+      "1、#{request.host_with_port}进行账号绑定\n\r 2、查看幼儿园介绍"
     end
   end
 
