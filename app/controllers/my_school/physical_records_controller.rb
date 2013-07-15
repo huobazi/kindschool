@@ -87,4 +87,8 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
     end
   end
 
+  def show
+  @physical_record = @kind.physical_records.find(params[:id])
+  end
+
 end
