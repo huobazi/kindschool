@@ -79,6 +79,9 @@ class Weixin::ApiController < Weixin::BaseController
     arr.each do |key|
       signature += "#{key}=#{params[key]}&"
     end
+    if params[:xml] && (code = params[:xml][:FromUserName])
+      signature += "xml[FromUserName]=#{code}&"
+    end
     return signature
   end
 
