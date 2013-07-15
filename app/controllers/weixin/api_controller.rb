@@ -1,7 +1,7 @@
 #encoding:utf-8
 class Weixin::ApiController < Weixin::BaseController
   protect_from_forgery :except=>:index
-#  include AuthenticatedSystem
+  #  include AuthenticatedSystem
   before_filter :token_validate , :if=>proc {|c| (@required_type != :www && @required_type != "") && @kind.weixin_status == 0 }
   #交互接口
   def index
@@ -38,7 +38,7 @@ class Weixin::ApiController < Weixin::BaseController
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
               :MsgType=>"text",
-              :Content=>"欢迎关注#{@kind.name}\n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_user?code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
+              :Content=>"欢迎关注#{@kind.name}\n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_user?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
               :FuncFlag=>0
             })
         end
@@ -50,26 +50,39 @@ class Weixin::ApiController < Weixin::BaseController
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
               :MsgType=>"text",
-              :Content=>"欢迎关注#{@kind.name}\n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_user?code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
+              :Content=>"欢迎关注#{@kind.name}\n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_user?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
               :FuncFlag=>0
             })
         end
       end
-#      xml_data[:Content]
-#      #图片形式
-#      x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
-#          :FromUserName=>xml_data[:ToUserName],
-#          :CreateTime=>Time.now.to_i,
-#          :MsgType=>"news",
-#          :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
-#          :ArticleCount=>2,
-#          :Articles=>[{:Title=>"标题",:Description=>"描述",:PicUrl=>"图片地址",:Url=>"跳转地址"}],
-#          :FuncFlag=>0
-#        })
+      #      xml_data[:Content]
+      #      #图片形式
+      #      x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+      #          :FromUserName=>xml_data[:ToUserName],
+      #          :CreateTime=>Time.now.to_i,
+      #          :MsgType=>"news",
+      #          :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
+      #          :ArticleCount=>2,
+      #          :Articles=>[{:Title=>"标题",:Description=>"描述",:PicUrl=>"图片地址",:Url=>"跳转地址"}],
+      #          :FuncFlag=>0
+      #        })
     end
     puts "=============x_data====#{x_data.inspect}"
     Rails.logger.info "=============x_data====#{x_data.inspect}"
     render :text=>x_data
+  end
+
+  #原样返回链接验证
+  def get_validate_string
+    signature = ""
+    arr = [:nonce,:timestamp,:signature]
+    arr.each do |key|
+      signature += "#{key}=#{params[key]}&"
+    end
+    if params[:xml] && (code = params[:xml][:FromUserName])
+      signature += "xml[FromUserName]=#{code}&"
+    end
+    return signature
   end
 
   #平台接口
