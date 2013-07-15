@@ -1,3 +1,15 @@
+<script type="text/javascript">
+  jQuery(function() {
+    $('#cook_book_start_at_equals').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+    $('#cook_book_end_at_equals').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+  });
+</script>
 <div class="show_work">
   <%= render :partial => "/modules/colorful/work_menu" %>
   <div class="work">
@@ -19,6 +31,15 @@
             </div>".html_safe ,new_my_school_cook_book_path) unless @flag.blank? %>
         </li>
       </ul>
+    </div>
+    <div>
+     <%= form_tag '/my_school/cook_books' , :method=>"get" do %>
+      <b>开始时间：</b>
+      <%= text_field :cook_book,:start_at_equals,:style=>"width:100px;" ,:value=>"#{params[:cook_book][:start_at_equals] if params[:cook_book] }"  %>
+      <b>结束时间：</b>
+      <%= text_field :cook_book,:end_at_equals,:style=>"width:100px;" ,:value=>"#{params[:cook_book][:end_at_equals] if params[:cook_book] }"  %>
+      <%= submit_tag "搜索" %>
+      <%end%>
     </div>
 
     <div class="work_list">

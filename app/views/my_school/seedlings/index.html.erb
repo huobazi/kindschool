@@ -1,3 +1,12 @@
+<script type="text/javascript">
+  jQuery(function() {
+    $('#seedling_shot_at_equals').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+  })
+
+</script>
 <div class="show_work">
   <%= render :partial => "/modules/colorful/work_menu" %>
   <div class="work">
@@ -32,6 +41,16 @@
         </li>
       </ul>
     </div>
+    <div>
+     <%= form_tag '/my_school/seedlings' , :method=>"get" do %>
+     <b>学员：</b>
+      <%= text_field :seedling,:student_info_user_name_like,:style=>"width:100px;" ,:value=>"#{params[:seedling][:student_info_user_name_like] if params[:seedling] }"%>
+      <b>育苗名称：</b><%= text_field :seedling,:name_like,:style=>"width:100px;" ,:class=>"control-label",:value=>"#{params[:seedling][:name_like] if params[:seedling] }" %>
+      <b>体检时间：</b>
+      <%= text_field :seedling,:shot_at_equals,:style=>"width:100px;" ,:value=>"#{params[:seedling][:shot_at_equals] if params[:seedling] }"  %>
+      <%= submit_tag "搜索" %>
+      <%end%>
+    </div>
 
     <div class="work_list">
       <% unless @seedlings.blank? %>
@@ -57,7 +76,7 @@
               </tr>
             <% end %>
         </table>
-        <%= paginate @seedlings %>
+        <%#= paginate @seedlings %>
       <% else %>
         暂无育苗记录
       <% end %>
