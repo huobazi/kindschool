@@ -29,19 +29,46 @@ class Weixin::ApiController < Weixin::BaseController
           :FuncFlag=>0
         })
     else
-      xml_data[:Content]
-      #图片形式
-      x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
-          :FromUserName=>xml_data[:ToUserName],
-          :CreateTime=>Time.now.to_i,
-          :MsgType=>"news",
-          :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
-          :ArticleCount=>2,
-          :Articles=>[{:Title=>"标题",:Description=>"描述",:PicUrl=>"图片地址",:Url=>"跳转地址"}],
-          :FuncFlag=>0
-        })
+      Rails.logger.info("=====xml_data[:Content]=========#{xml_data[:Content]}=====#{xml_data[:Content] == 1}===or==#{xml_data[:Content] == "1"}")
+      if logged_in?
+        Rails.logger.info("a================")
+        if xml_data[:Content] == "1"
+          Rails.logger.info("b================")
+          x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
+              :FromUserName=>xml_data[:ToUserName],
+              :CreateTime=>Time.now.to_i,
+              :MsgType=>"text",
+              :Content=>"欢迎关注#{@kind.name}\n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_user?code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
+              :FuncFlag=>0
+            })
+        end
+      else
+        Rails.logger.info("c================")
+        if xml_data[:Content] == "1"
+          Rails.logger.info("d================")
+          x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+              :FromUserName=>xml_data[:ToUserName],
+              :CreateTime=>Time.now.to_i,
+              :MsgType=>"text",
+              :Content=>"欢迎关注#{@kind.name}\n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_user?code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
+              :FuncFlag=>0
+            })
+        end
+      end
+#      xml_data[:Content]
+#      #图片形式
+#      x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+#          :FromUserName=>xml_data[:ToUserName],
+#          :CreateTime=>Time.now.to_i,
+#          :MsgType=>"news",
+#          :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
+#          :ArticleCount=>2,
+#          :Articles=>[{:Title=>"标题",:Description=>"描述",:PicUrl=>"图片地址",:Url=>"跳转地址"}],
+#          :FuncFlag=>0
+#        })
     end
     puts "=============x_data====#{x_data.inspect}"
+    Rails.logger.info "=============x_data====#{x_data.inspect}"
     render :text=>x_data
   end
 
@@ -61,10 +88,11 @@ class Weixin::ApiController < Weixin::BaseController
 
   def get_menu
     puts "=======logged_in?====#{logged_in?}"
+    Rails.logger.info("==============#{request.host_with_port}===")
     if logged_in?
-      "1、#{request.uri}查看通知消息\n\r 2、幼儿园介绍\n\r 3、班级活动\n\r 4、每周菜谱\n\r 5、照片集锦\n\r 6、宝宝成长\n\r 6、信息论坛"
+      "1、查看通知消息\n\r 2、幼儿园介绍\n\r 3、班级活动\n\r 4、每周菜谱\n\r 5、照片集锦\n\r 6、宝宝成长\n\r 6、信息论坛"
     else
-      "1、#{request.uri}进行账号绑定\n\r 2、查看幼儿园介绍"
+      "1、进行账号绑定\n\r 2、查看幼儿园介绍"
     end
   end
 

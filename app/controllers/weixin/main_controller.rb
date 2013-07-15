@@ -3,6 +3,7 @@ class Weixin::MainController < Weixin::BaseController
   layout proc{ |controller| get_layout }
   #平台首页
   def index
+    Rails.logger.info("==============#{request.host_with_port}===")
     if @subdomain == "" || @subdomain == "www"
     else
       if kind = Kindergarten.find_by_number(@subdomain)
