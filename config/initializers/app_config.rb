@@ -53,6 +53,9 @@ MENUS ={"home"=>{
     "33000"=>{},
     "34000"=>{
       "my_school/content_patterns"=>['index','edit']
+    },
+    "35000"=>{
+      "my_school/smarties" => ['index','create']
     }
 
    },
