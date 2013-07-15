@@ -65,7 +65,7 @@ class Weixin::BaseController < ApplicationController
     else
       if Digest::SHA1.hexdigest(get_validate_data) == params[:signature]
         if xml_data = params[:xml]
-          Rails.logger.info("--login----------------")
+          Rails.logger.info("--login-----------#{xml_data[:FromUserName]}-----")
           if @current_user = User.find_by_weixin_code(xml_data[:FromUserName])
             Rails.logger.info("--login-----add session-----------")
             session[:user] = @current_user.id
