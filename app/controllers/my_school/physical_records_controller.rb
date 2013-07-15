@@ -35,8 +35,8 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
    else
       @physical_record = @kind.physical_records.new
    end 
-     if @grades = @kind.grades
-        if @squads = @grades.first.squads
+     if (@grades = @kind.grades) && !@grades.blank?
+        if (@squads = @grades.first.squads) && !@squads.blank?
           @student_infos = @squads.first.student_infos 
         end
      end
