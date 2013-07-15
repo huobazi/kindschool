@@ -24,7 +24,7 @@ def create
      
     respond_to do |format|
       if @cook_book.save
-        format.html { redirect_to my_school_cook_books_path, notice: '菜谱 was successfully created.' }
+        format.html { redirect_to my_school_cook_books_path, notice: '菜谱创建成功.' }
       else
         format.html { render action: "new" }
       end
@@ -39,7 +39,7 @@ def update
     @cook_book = @kind.cook_books.find(params[:id])
     respond_to do |format|
       if @cook_book.update_attributes(params[:cook_book])
-        format.html { redirect_to my_school_cook_books_path, notice: '学员菜谱 was successfully updated.' }
+        format.html { redirect_to my_school_cook_books_path, notice: '学员菜谱更新成功.' }
       else
         format.html { render action: "edit" }
       end
