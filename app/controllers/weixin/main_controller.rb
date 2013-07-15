@@ -30,9 +30,12 @@ class Weixin::MainController < Weixin::BaseController
       redirect_to :action => :error_messages
       return
     end
+    unless params[:code].blank?
+      session[:weixin_code] = params[:code]
+    end
     session[:weixin_code] ||= params[:code]
     if wexin_user = User.find_by_weixin_code(session[:weixin_code])
-      flash[:notice] = "请先进行登陆."
+      flash[:notice] = "该微信账号已绑定，请进行登陆."
       redirect_to :action => :login,:controller=>"/weixin/users"
       return
     end
