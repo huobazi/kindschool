@@ -50,17 +50,17 @@ class Weixin::ApiController < Weixin::BaseController
             })
         end
       end
-      xml_data[:Content]
-      #图片形式
-      x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
-          :FromUserName=>xml_data[:ToUserName],
-          :CreateTime=>Time.now.to_i,
-          :MsgType=>"news",
-          :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
-          :ArticleCount=>2,
-          :Articles=>[{:Title=>"标题",:Description=>"描述",:PicUrl=>"图片地址",:Url=>"跳转地址"}],
-          :FuncFlag=>0
-        })
+#      xml_data[:Content]
+#      #图片形式
+#      x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+#          :FromUserName=>xml_data[:ToUserName],
+#          :CreateTime=>Time.now.to_i,
+#          :MsgType=>"news",
+#          :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
+#          :ArticleCount=>2,
+#          :Articles=>[{:Title=>"标题",:Description=>"描述",:PicUrl=>"图片地址",:Url=>"跳转地址"}],
+#          :FuncFlag=>0
+#        })
     end
     puts "=============x_data====#{x_data.inspect}"
     Rails.logger.info "=============x_data====#{x_data.inspect}"
