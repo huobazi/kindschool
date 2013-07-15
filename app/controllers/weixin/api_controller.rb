@@ -35,7 +35,7 @@ class Weixin::ApiController < Weixin::BaseController
           :FromUserName=>xml_data[:ToUserName],
           :CreateTime=>Time.now.to_i,
           :MsgType=>"news",
-          :Content=>"回复数字进行操作\n\r ",
+          :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
           :ArticleCount=>2,
           :Articles=>[{:Title=>"标题",:Description=>"描述",:PicUrl=>"图片地址",:Url=>"跳转地址"}],
           :FuncFlag=>0
@@ -62,9 +62,9 @@ class Weixin::ApiController < Weixin::BaseController
   def get_menu
     puts "=======logged_in?====#{logged_in?}"
     if logged_in?
-      "1、查看通知消息\n\r 2、幼儿园介绍\n\r 3、班级活动\n\r 4、每周菜谱\n\r 5、照片集锦\n\r 6、宝宝成长\n\r 6、信息论坛"
+      "1、#{request.uri}查看通知消息\n\r 2、幼儿园介绍\n\r 3、班级活动\n\r 4、每周菜谱\n\r 5、照片集锦\n\r 6、宝宝成长\n\r 6、信息论坛"
     else
-      "1、进行账号绑定\n\r 2、查看幼儿园介绍"
+      "1、#{request.uri}进行账号绑定\n\r 2、查看幼儿园介绍"
     end
   end
 

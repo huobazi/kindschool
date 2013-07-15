@@ -100,7 +100,8 @@ School::Application.routes.draw do
     end
     resources :main do
       collection do
-        get :bind_user
+        get :bind_user,:error_messages
+        post :bind_user
       end
     end
   end
