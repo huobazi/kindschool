@@ -2,7 +2,7 @@
 
 <%= f.input :name, :validate => true, :required => true, :input_html => {:class => "span5 profile_input required"} %>
 <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
-<%= f.input :note, :input_html => {:rows => "10", :class => "span5"}%>
+<%= f.input :note, :validate => true, :input_html => {:rows => "10", :class => "span5"}%>
 
 <div class="control-group">
   <div class="controls">

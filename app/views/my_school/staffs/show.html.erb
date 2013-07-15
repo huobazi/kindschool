@@ -89,7 +89,7 @@
             <label class="control-label" >性别</label>
             <div class="controls">
               <label class="show_label">
-                <%= @staff.user.gender %>
+                <%= @staff.user.gender == "M" ? "男" : "女" %>
               </label>
             </div>
           </div>
