@@ -59,6 +59,10 @@ class MySchool::SeedlingsController < MySchool::ManageController
      end
    end
 
+   def show
+    @seedling = @kind.seedling_records.find(params[:id])
+   end
+
    def update
     @seedling = @kind.seedling_records.find(params[:id])
     respond_to do |format|
@@ -70,9 +74,6 @@ class MySchool::SeedlingsController < MySchool::ManageController
     end
   end
    
-  def show
-  end
-
   def destroy
     @seedlings = @kind.seedling_records.where(:id=>params[:id])
     @seedlings.each do |seedling|

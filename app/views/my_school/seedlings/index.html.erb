@@ -49,7 +49,7 @@
               <tr>
                 <td><%= check_box_tag('seedling[id]',seedling.id)%></td>
                 <td><%= seedling.student_info.user.try(:name) unless seedling.student_info.blank? %></td>
-                <td><%= seedling.name %></td>
+                <td><%=link_to seedling.name,:action=>:show,:id=>seedling.id  %></td>
                 <td><%= seedling.note %></td>
                 <td><%= seedling.shot_at.try(:to_short_datetime) %></td>
                 <td><%= seedling.expire_at.try(:to_short_datetime) %></td>
