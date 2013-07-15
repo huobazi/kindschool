@@ -238,14 +238,14 @@ body {
 }
 
 .bind .button_xun{
-    background-image: url("/t/colorful/login_btn.png");
+    background-image: url("/t/colorful/submit.png");
     display: block;
     height: 57px;
     width: 156px;
     text-decoration: none;
 }
 .bind .button_xun:hover{
-    background-image: url("/t/colorful/login_btn.png");
+    background-image: url("/t/colorful/submit.png");
     background-position: 0 -57px;
     display: block;
     height: 57px;
@@ -262,4 +262,7 @@ body {
 }
 .error_label{
     color: #EF2540;
+}
+.login_body{
+    background-color: #A3C43F;
 }

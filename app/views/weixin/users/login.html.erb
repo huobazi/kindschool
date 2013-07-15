@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>School</title>
+    <link rel="stylesheet" media="all" href=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <%= stylesheet_link_tag    "app_bootstrap", :media => "all" %>
+    <%= stylesheet_link_tag    "colorful_responsive","colorful_weixin", :media => "all" %>
+
+    <%= javascript_include_tag "colorful_weixin" %>
+    <%= csrf_meta_tags %>
+    <!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
+  </head>
+  <body lang="en" class="login_body">
+    <div class="container">
+      <div class="bind">
+        <div class="logo">
+          <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/weixin_logo.png' %>" width="100" height="79" alt="Logo"/>
+        </div>
+        <div class="bind_user">
+          <%= form_tag url_for(:action=>:login),:id=>"longin_form" do  %>
+            <fieldset>
+              <legend><label>登陆</label></legend>
+              <label>账户</label>
+              <%= text_field_tag :login,"",:placeholder=>"账号", :class => 'login_input'%>
+              <span class="help-block"></span>
+              <label>密码</label>
+              <%= password_field :password,"",:placeholder=>"登陆密码",:name=>"password", :class => 'password_input'%>
+              <div class="error_div">
+                <% if @user_errors %>
+                  <label class="error_label">
+                    <%= @user_errors %>
+                  </label>
+                <% end %>
+              </div>
+              <div class="login_submit_div">
+                <div class="login_submit">
+                  <a href="###" class="button_xun">&nbsp;</a>
+                </div>
+              </div>
+            </fieldset>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(function(){
+        $(".button_xun").click(function(){
+          $("#longin_form").submit();
+        })
+      })
+    </script>
+  </body>
+</html>
