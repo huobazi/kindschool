@@ -6,7 +6,7 @@
     <div class="bind_user">
       <%= form_tag url_for(:action=>:bind_user),:id=>"longin_form" do  %>
         <fieldset>
-          <legend>绑定用户</legend>
+          <legend><label>绑定用户</label></legend>
           <label>账户</label>
           <%= text_field_tag :login,"",:placeholder=>"账号", :class => 'login_input'%>
           <span class="help-block"></span>

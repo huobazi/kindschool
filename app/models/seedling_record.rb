@@ -11,7 +11,6 @@ class SeedlingRecord < ActiveRecord::Base
 
   belongs_to :student_info
   belongs_to :kindergarten
-
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end

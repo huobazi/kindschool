@@ -2,6 +2,32 @@
 class Weixin::BaseController < ApplicationController
   before_filter :my_school
   before_filter :validate_nonce
+  include AuthenticatedSystem
+
+  protected
+  # Redirect as appropriate when an access request fails.
+  #
+  # The default action is to redirect to the login screen.
+  #
+  # Override this method in your controllers if you want to have special
+  # behavior in case the user is not authorized
+  # to access the requested action.  For example, a popup window might
+  # simply close itself.
+  def access_denied
+    respond_to do |accepts|
+      accepts.html do
+        store_location
+        redirect_to url_for(:controller=>"/weixin/users",:action=>:login)
+      end
+      accepts.xml do
+        headers["Status"]           = "Unauthorized"
+        headers["WWW-Authenticate"] = %(Basic realm="Web Password")
+        render :text => "Could't authenticate you", :status => '401 Unauthorized'
+      end
+    end
+    false
+  end
+
   
   private
   def my_school
@@ -36,8 +62,6 @@ class Weixin::BaseController < ApplicationController
     if params[:signature].blank?
       @current_user ||= session[:user] && User.find_by_id(session[:user]) || :false
     else
-      puts "========get_validate_data====#{get_validate_data.inspect}"
-      puts "==#{Digest::SHA1.hexdigest(get_validate_data)}=======#{params[:signature]}===="
       if Digest::SHA1.hexdigest(get_validate_data) == params[:signature]
         if xml_data = params[:xml]
           if @current_user = User.find_by_weixin_code(xml_data[:FromUserName])
