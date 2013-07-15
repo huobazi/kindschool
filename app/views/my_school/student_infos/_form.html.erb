@@ -20,7 +20,11 @@
   <legend><label><strong>账号信息</strong></label></legend>
     <%= f.simple_fields_for :user do |p| %>
       <%= p.input :name, :validate => true, :required => true %>
-      <%= p.input :login, :validate => true, :required => true %>
+      <% if action_name == "new" %>
+        <%= p.input :login, :validate => true, :required => true, :input_html => { :autocomplete => "off" } %>
+      <% else %>
+        <%= p.input :login, :validate => true, :required => true %>
+      <% end %>
       <% if action_name == "new" %>
         <%= p.input :password, :validate => true, :required => true %>
         <%= p.input :password_confirmation, :validate => true, :required => true %>
