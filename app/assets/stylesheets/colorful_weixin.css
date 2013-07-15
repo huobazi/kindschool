@@ -252,7 +252,7 @@ body {
     width: 156px;
 }
 .bind .login_submit{
-    text-align: center;
+    text-align: left;
 }
 .login_submit_div{
     padding: 20px 20px 20px 0;
