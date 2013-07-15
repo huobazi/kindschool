@@ -59,9 +59,9 @@ class Weixin::BaseController < ApplicationController
   end
 
   def validate_nonce
-    Rails.logger.info("--validate_nonce----------------")
+    Rails.logger.info("--validate_nonce---------session[:user]-----#{session[:user]}--")
     if params[:signature].blank?
-#      @current_user ||= session[:user] && User.find_by_id(session[:user]) || :false
+      @current_user ||= session[:user] && User.find_by_id(session[:user]) || :false
     else
       if Digest::SHA1.hexdigest(get_validate_data) == params[:signature]
         if xml_data = params[:xml]
