@@ -15,14 +15,22 @@ School::Application.routes.draw do
       end
     end
     resources :content_patterns
-    resources :seedlings do 
+    resources :seedlings do
       collection {get :grade_class}
       collection {get :class_student}
       collection {post :destory_choose}
+      collection {delete :destroy_multiple}
     end
     resources :physical_records do
+      collection do
+        delete :destroy_multiple
+      end
     end
-    resources :cook_books
+    resources :cook_books do
+      collection do
+        delete :destroy_multiple
+      end
+    end
     resources :users do
       collection do
         get :login,:logout,:error_notice
@@ -55,14 +63,22 @@ School::Application.routes.draw do
         delete :destroy_multiple
       end
     end
-    resources :staffs
+    resources :staffs do
+      collection do
+        delete :destroy_multiple
+      end
+    end
     resources :page_contents do
       member do
         get :delete_content,:edit_content
         post :add_content,:update_content
       end
     end
-    resources :student_infos
+    resources :student_infos do
+      collection do
+        delete :destroy_multiple
+      end
+    end
     resources :templates do
       collection do
         get :set_default_template_view

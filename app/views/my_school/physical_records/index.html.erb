@@ -25,23 +25,28 @@
     <div class="work_list">
       <% if @physical_records.any? %>
         <table class="table table-striped table-hover">
-          <tr>
-            <th></th>
-            <th>学员</th>
-            <th>体检记录</th>
-            <th>体检时间</th>
-            <th></th>
-          </tr>
-          <% (@physical_records || []).each do |physical_record| %>
+          <%= form_tag destroy_multiple_my_school_physical_records_path, method: :delete do %>
             <tr>
-              <td><%= check_box_tag('physical_record[id]',physical_record.id)%></td>
-              <td><%= physical_record.student_info.user.try(:name) unless physical_record.student_info.blank? %></td>
-              <td><%=raw physical_record.content %></td>
-              <td><%= physical_record.send_date.try(:to_short_datetime) %></td>
-              <td>
-                <%=link_to '查看',my_school_physical_record_path(physical_record)%>
-                <%if @flag%><%= link_to '编辑', edit_my_school_physical_record_path(physical_record) %>|<%= link_to '删除',my_school_physical_record_path(physical_record) , method: :delete, data: { confirm: '确定要删除么?' } %><%end%>
-             </td>
+              <th><input type="checkbox" name="" value="" alt="全选" id="physical_record_all">全选</th>
+              <th>学员</th>
+              <th>体检记录</th>
+              <th>体检时间</th>
+              <th></th>
+            </tr>
+            <% (@physical_records || []).each do |physical_record| %>
+              <tr>
+                <td><input id="physical_record_<%= physical_record.id %>" class="physical_record_check" name="physical_record[]" type="checkbox" value="<%= physical_record.id %>" /></td>
+                <td><%= physical_record.student_info.user.try(:name) unless physical_record.student_info.blank? %></td>
+                <td><%=raw physical_record.content %></td>
+                <td><%= physical_record.send_date.try(:to_short_datetime) %></td>
+                <td>
+                  <%=link_to '查看',my_school_physical_record_path(physical_record)%>
+                  <%if @flag%><%= link_to '编辑', edit_my_school_physical_record_path(physical_record) %>|<%= link_to '删除',my_school_physical_record_path(physical_record) , method: :delete, data: { confirm: '确定要删除么?' } %><%end%>
+               </td>
+              </tr>
+            <% end %>
+            <tr>
+              <td><%= submit_tag "删除", :class => 'btn' %></td>
             </tr>
           <% end %>
         </table>
@@ -53,3 +58,13 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+  $("#physical_record_all").click(function(){
+    $(".physical_record_check").each(function(){
+       $(this).click();
+      });
+    });
+  });
+</script>
