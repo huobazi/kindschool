@@ -114,4 +114,13 @@ class MySchool::SeedlingsController < MySchool::ManageController
     end
     render "class_student", :layout => false
    end
+
+
+  def destroy_multiple
+    SeedlingRecord.destroy(params[:seedling])
+    respond_to do |format|
+      format.html { redirect_to my_school_seedlings_path }
+      format.json { head :no_content }
+    end
+  end
 end

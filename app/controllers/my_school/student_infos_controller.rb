@@ -69,4 +69,11 @@ class  MySchool::StudentInfosController < MySchool::ManageController
     end
   end
 
+  def destroy_multiple
+    StudentInfo.destroy(params[:student])
+    respond_to do |format|
+      format.html { redirect_to my_school_student_infos_path }
+      format.json { head :no_content }
+    end
+  end
 end

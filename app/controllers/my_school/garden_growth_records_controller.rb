@@ -109,4 +109,12 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
     end
   end
 
+  def destroy_multiple
+    GrowthRecord.destroy(params[:growth])
+    respond_to do |format|
+      format.html { redirect_to garden_my_school_garden_growth_records_path }
+      format.json { head :no_content }
+    end
+  end
+
 end

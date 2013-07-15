@@ -98,4 +98,12 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
   @physical_record = @kind.physical_records.find(params[:id])
   end
 
+  def destroy_multiple
+    PhysicalRecord.destroy(params[:physical_record])
+    respond_to do |format|
+      format.html { redirect_to my_school_physical_records_path }
+      format.json { head :no_content }
+    end
+  end
+
 end

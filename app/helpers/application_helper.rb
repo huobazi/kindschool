@@ -30,7 +30,7 @@ module ApplicationHelper
     # end
     menus
   end
-  
+
   def destroy_topic_entry?(topic_entry)
     if current_user.tp == 2
       true
@@ -38,6 +38,14 @@ module ApplicationHelper
       true
     else
       false
+    end
+  end
+
+  def growth_record_controller
+    if controller_name == "growth_records"
+      destroy_multiple_my_school_growth_records_path
+    else
+      destroy_multiple_my_school_garden_growth_records_path
     end
   end
 
