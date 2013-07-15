@@ -61,6 +61,7 @@ class Weixin::ApiController < Weixin::BaseController
 
   def get_menu
     puts "=======logged_in?====#{logged_in?}"
+    Rails.logger.info("==============#{request.host_with_port}===")
     if logged_in?
       "1、#{request.host_with_port}<a herf='#{request.host_with_port}/weixin/main/bind_user'>查看通知消息</a>\n\r 2、幼儿园介绍\n\r 3、班级活动\n\r 4、每周菜谱\n\r 5、照片集锦\n\r 6、宝宝成长\n\r 6、信息论坛"
     else
