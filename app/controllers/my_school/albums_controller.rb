@@ -6,9 +6,9 @@ class MySchool::AlbumsController  < MySchool::ManageController
      arr = ['new','edit','destroy']
      controller_view='my_school/albums/new'
      if session[:operates].include?(controller_view)
-        @albums = @kind.albums
+        @albums = @kind.albums.page(params[:page] || 1).per(6).order("created_at DESC")
       else  
-        @albums = @kind.albums.where(:is_show=>1)
+        @albums = @kind.albums.where(:is_show=>1).page(params[:page] || 1).per(6).order("created_at DESC")
      end  
    end
 
@@ -79,7 +79,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
 
    def show
       @album = @kind.albums.find(params[:id])
-      @album.album_entries 
+      @album_entries=@album.album_entries.page(params[:page] || 1).per(6).order("created_at DESC") 
       @album_entry=AlbumEntry.new()
    end
 
