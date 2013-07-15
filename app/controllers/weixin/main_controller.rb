@@ -16,7 +16,6 @@ class Weixin::MainController < Weixin::BaseController
 
   #绑定用户
   def bind_user
-    
   end
   
   private

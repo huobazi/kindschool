@@ -213,7 +213,14 @@ body {
 .user_entry table{
     background-color: white;
 }
-
-/*.navbar-inverse .nav-collapse .nav > li > a:hover, .navbar-inverse .nav-collapse .nav > li > a:focus, .navbar-inverse .nav-collapse .dropdown-menu a:hover, .navbar-inverse .nav-collapse .dropdown-menu a:focus {
-    background-color: inherit;
-}*/
+/*====绑定用户界面===============*/
+.bind{
+    
+}
+.bind .title{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.bind .bind_user{
+    background-color: white;
+}
