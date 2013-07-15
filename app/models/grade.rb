@@ -5,6 +5,7 @@ class Grade < ActiveRecord::Base
 
   validates :name,:presence => true,:uniqueness => true
   validates :kindergarten,:sequence,:presence => true
+  validates :note, :length => { :minimum => 5 }, :allow_blank => true
 
   belongs_to :kindergarten #幼儿园
   belongs_to :staff        #年级组长

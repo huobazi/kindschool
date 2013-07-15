@@ -13,6 +13,8 @@
       language: "zh-CN",
       format:"yyyy-mm-dd"
     });
+    $("#student_info_user_attributes_login").val("")
+    $("#student_info_user_attributes_password").val("")
   });
 </script>
 
@@ -20,13 +22,23 @@
   <legend><label><strong>账号信息</strong></label></legend>
     <%= f.simple_fields_for :user do |p| %>
       <%= p.input :name, :validate => true, :required => true %>
-      <%= p.input :login, :validate => true, :required => true %>
+
+      <% if action_name == "new" %>
+        <%= p.input :login, :validate => true, :required => true, :hint => "之后不能改变" %>
+      <% else %>
+        <%= p.input :login, :disabled => true, :hint => "你不能改变你的用户名" %>
+      <% end %>
       <% if action_name == "new" %>
         <%= p.input :password, :validate => true, :required => true %>
         <%= p.input :password_confirmation, :validate => true, :required => true %>
       <% end %>
+      <% if action_name == "new" %>
+        <%= f.input :squad_id, :validate => true, :required => true, :as=>:select, :collection=>Hash[f.object.kindergarten.squads.map{|squad| ["#{squad.name}",squad.id]}] ,:input_html => { :name=>"student_info[squad_id]" } %>
+      <% else %>
+        <%= f.input :squad_label, :as => :string, :disabled => true %>
+      <% end %>
       <%= p.input :phone %>
-      <%= p.input :gender, :as => :radio, :collection => {"女" => "M", "男" => "G"}, :required => true %>
+      <%= p.input :gender, :as => :radio, :collection => {"男" => "M", "女" => "G"}, :required => true %>
       <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
       <%= p.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
       <%= p.input :tp,:as=>:hidden %>
@@ -35,11 +47,15 @@
 </fieldset>
 <fieldset>
   <legend><label><strong>学员信息</strong></label></legend>
-    <%= f.input :birthday, :as => :string, :class => "input-mediun"  %>
-    <%= f.input :come_in_at, :as => :string, :class => "input-mediun" %>
+    <% if action_name == "new" %>
+      <%= f.input :birthday, :as => :string, :class => "input-mediun"  %>
+      <%= f.input :come_in_at, :as => :string, :class => "input-mediun" %>
+    <% else %>
+      <%= f.input :birthday, :as => :string, :class => "input-mediun", :input_html => {:value=>(f.object.birthday ? f.object.birthday.to_short_datetime : "") }  %>
+      <%= f.input :come_in_at, :as => :string, :class => "input-mediun", :input_html => {:value => (f.object.come_in_at ? f.object.come_in_at.to_short_datetime : "")} %>
+    <% end %>
     <%= f.input :education, :input_html => {:class => "span5"} %>
     <%= f.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
-    <%= f.input :squad, :validate => true, :required => true, :as=>:select, :collection=>Hash[f.object.kindergarten.squads.map{|squad| ["#{squad.name}",squad.id]}] ,:input_html => { :name=>"student_info[squad_id]" } %>
     <%= f.input :card_code %>
     <%= f.input :guardian %>
     <%= f.input :guardian_card_category, :as => :select,:collection=>StudentInfo::CARD_CATEGORY_DATA.invert %>
