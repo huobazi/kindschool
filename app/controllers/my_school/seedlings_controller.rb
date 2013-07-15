@@ -31,8 +31,8 @@ class MySchool::SeedlingsController < MySchool::ManageController
 
    def new
      @seedling = @kind.seedling_records.new
-     if @grades = @kind.grades
-        if @squads = @grades.first.squads
+     if (@grades = @kind.grades) && !@grades.blank?
+        if (@squads = @grades.first.squads) && !@squads.blank?
           @student_infos = @squads.first.student_infos 
         end
      end
