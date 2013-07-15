@@ -28,4 +28,9 @@
     });
   });
 
+ $("input[type='submit']").click(function(){
+    if (editor.html().length < 9 or editor.isEmpty()) {
+        return false;
+    }
+ })
 </script>
