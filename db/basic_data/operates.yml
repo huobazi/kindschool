@@ -170,6 +170,18 @@ message_index:
   <<: *DEFAULTS
 
 #||||||||||||||||||||||||||论坛帖子能
+forum_manage:
+  id: 3005
+  parent_id: 3
+  name: "帖子管理"
+  level: 2
+  sequence: 0
+  note: "帖子管理"
+  controller: "my_school/topics"
+  action: "index"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
 forum_send:
   id: 3001
   parent_id: 3
