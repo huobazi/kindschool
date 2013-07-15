@@ -1,7 +1,7 @@
 #encoding:utf-8
 class  MySchool::TopicsController < MySchool::ManageController
   def index
-    @topics = @kind.topics.page(params[:page] || 1).per(10).order("created_at DESC")
+    @topics = @kind.topics.search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
   end
 
   def show

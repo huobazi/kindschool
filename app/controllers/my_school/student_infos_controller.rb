@@ -2,7 +2,7 @@
 class  MySchool::StudentInfosController < MySchool::ManageController
 
   def index
-    @student_infos = @kind.student_infos.page(params[:page] || 1).per(10)
+    @student_infos = @kind.student_infos.search(params[:student_info] || {}).page(params[:page] || 1).per(10)
   end
 
   def show

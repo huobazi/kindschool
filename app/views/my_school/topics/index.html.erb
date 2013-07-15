@@ -27,7 +27,14 @@
         </li>
       </ul>
     </div>
-
+    
+    <div>
+     <%= form_tag '/my_school/topics' , :method=>"get" do %>
+      <b>标题：</b>
+      <%= text_field :topic,:title_like,:style=>"width:100px;" ,:value=>"#{params[:topic][:title_like] if params[:topic] }"  %>
+      <%= submit_tag "搜索" %>
+      <%end%>
+    </div>
     <div class="work_list">
       <% if @topics.any? %>
         <table class="table table-striped table-hover">

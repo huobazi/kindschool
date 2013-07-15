@@ -35,7 +35,15 @@
         </li>
       </ul>
     </div>
-
+    <div>
+     <%= form_tag '/my_school/squads' , :method=>"get" do %>
+      <b>名称：</b>
+      <%= text_field :squad,:name_like,:style=>"width:100px;" ,:value=>"#{params[:squad][:name_like] if params[:squad] }"  %>
+      <b>年级：</b>
+      <%= text_field :squad,:grade_name_like,:style=>"width:100px;" ,:value=>"#{params[:squad][:grade_name_like] if params[:squad] }"  %>
+      <%= submit_tag "搜索" %>
+      <%end%>
+    </div>
     <div class="work_list">
       <% if @squads.any? %>
         <table class="table table-striped table-hover">
