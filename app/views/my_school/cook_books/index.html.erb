@@ -41,8 +41,9 @@
                 </tr>
               <% end %>
           </table>
+          <%= paginate @cook_books  %>
         <% else %>
-          "暂无菜谱"
+          暂无菜谱
         <% end %>
     </div>
   </div>

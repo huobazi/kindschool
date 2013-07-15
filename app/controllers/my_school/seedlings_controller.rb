@@ -5,12 +5,12 @@ class MySchool::SeedlingsController < MySchool::ManageController
    	 all_roles = ['admin','principal','vice_principal','assistant_principal','park_hospital']
    	 userrole = current_user.get_users_ranges
    	 if @flag=all_roles.include?(@role)
-   	    @seedlings = @kind.seedling_records
+   	    @seedlings = @kind.seedling_records.page(params[:page] || 1).per(10).order("created_at DESC")
      elsif userrole[:tp] == :all
-        @seedlings = @kind.seedling_records
+        @seedlings = @kind.seedling_records.page(params[:page] || 1).per(10).order("created_at DESC")
         @flag = true
      elsif userrole[:tp] == :teachers
-        @seedlings = []
+        # @seedlings = []
         squads = []
         if userrole[:grades]
           userrole[:grades].each do |grade|
@@ -20,12 +20,13 @@ class MySchool::SeedlingsController < MySchool::ManageController
           else 
             squads = userrole[:squads]
         end
-          studentinfos =  StudentInfo.where(:squad_id=>squads)
-          studentinfos.each do |stu_info|
-           @seedlings += stu_info.seedling_records
-          end  
+          # studentinfos =  StudentInfo.where(:squad_id=>squads)
+          # studentinfos.each do |stu_info|
+          #  @seedlings += stu_info.seedling_records
+          # end 
+         @seedlings =SeedlingRecord.where(["student_infos.squad_id in(?)",squads]).joins("LEFT JOIN student_infos on (student_infos.id = seedling_records.student_info_id)").page(params[:page] || 1).per(10).order("created_at DESC")
      elsif userrole[:tp] == :student
-     	  @seedlings =  current_user.student_info.seedling_records
+     	  @seedlings =  current_user.student_info.seedling_records.page(params[:page] || 1).per(10).order("created_at DESC")
    	 end
    end
 
