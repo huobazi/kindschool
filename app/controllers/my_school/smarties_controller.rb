@@ -18,7 +18,7 @@ def index
         @role_operate[:id] = operate.id
         @role_operate[:parent_name] = operate.parent.name
         @role_operate[:name] = operate.name 
-        @role_operates[:rename] = option_operate.rename
+        # @role_operates[:rename] = option_operate.rename
         if @role.smarties.where(:option_operate_id=>option_operate.id).first
             @role_operate[:result] = true
         else

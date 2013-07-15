@@ -83,6 +83,14 @@
     height_level: "a"
     sequence: 330
     operate_id: 5003
+  - id: 35000
+    name: "常用功能管理"
+    number: 35000
+    url: "/my_school/smarties"
+    title: "常用功能管理"
+    height_level: "a"
+    sequence: 330
+    operate_id: 5004
 - id: 40000
   number: "statistics"
   name: "统计"

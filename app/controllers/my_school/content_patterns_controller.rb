@@ -8,7 +8,7 @@ class MySchool::ContentPatternsController < MySchool::ManageController
   def edit
     @content_pattern =  @kind.content_patterns.find(params[:id])  
   end
-  
+
    def update
     @content_pattern =  @kind.content_patterns.find(params[:id])  
     respond_to do |format|
@@ -19,7 +19,5 @@ class MySchool::ContentPatternsController < MySchool::ManageController
       end
     end
   end
-
-
 
 end
