@@ -11,7 +11,7 @@ School::Application.routes.draw do
     resources :albums do
       collection {get :grade_class}
       resources :album_entries do
-      member {post :choose_main_img} 
+        member {post :choose_main_img}
       end
     end
     resources :content_patterns
@@ -102,6 +102,12 @@ School::Application.routes.draw do
       collection do
         get :bind_user,:error_messages
         post :bind_user
+      end
+    end
+    resources :users do
+      collection do
+        get :login,:error_messages
+        post :login
       end
     end
   end
