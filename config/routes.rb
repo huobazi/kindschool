@@ -33,7 +33,11 @@ School::Application.routes.draw do
         post :change_password
       end
     end
-    resources :squads
+    resources :squads do
+      collection do
+        delete :destroy_multiple
+      end
+    end
     resources :notices
     resources :messages do
       collection do
@@ -80,12 +84,14 @@ School::Application.routes.draw do
     resources :growth_records do
       collection do
         get :home
+        delete :destroy_multiple
       end
     end
 
     resources :garden_growth_records do
       collection do
         get :garden
+        delete :destroy_multiple
       end
     end
 

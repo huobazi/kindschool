@@ -53,5 +53,13 @@ class  MySchool::SquadsController < MySchool::ManageController
       end
     end
   end
+
+  def destroy_multiple
+    Squad.destroy(params[:squad])
+      respond_to do |format|
+        format.html { redirect_to my_school_squads_path }
+        format.json { head :no_content }
+      end
+    end
 end
 
