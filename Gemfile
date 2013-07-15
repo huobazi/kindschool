@@ -52,7 +52,8 @@ gem 'simple_form'
 gem 'NextNumber'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
-
+#搜索
+gem 'rd_searchlogic',"~> 3.0.1"
 group :development do
   gem "pry-rails"
 end

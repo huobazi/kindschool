@@ -2,7 +2,6 @@
 #学员菜谱
 class MySchool::CookBooksController < MySchool::ManageController
   def index
-
     @cook_books = @kind.cook_books.page(params[:page] || 1).per(10).order("created_at DESC")
     all_roles = ['admin','principal','vice_principal','assistant_principal','park_hospital']
 
@@ -17,13 +16,13 @@ class MySchool::CookBooksController < MySchool::ManageController
    if content_pattern = @kind.content_patterns.where(:number=>'cook_book').first
       @cook_book = @kind.cook_books.new(:content=>content_pattern.content)
    else
-      @cook_book = @kind.cook_books.new 
+      @cook_book = @kind.cook_books.new
    end
   end
 
   def create
      @cook_book = @kind.cook_books.new(params[:cook_book])
-       
+
       respond_to do |format|
         if @cook_book.save
           format.html { redirect_to my_school_cook_books_path, notice: '菜谱创建成功.' }
