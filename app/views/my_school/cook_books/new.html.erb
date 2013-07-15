@@ -4,17 +4,25 @@
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label>添加菜谱</label>
+        <label>菜谱</label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
           </a>
           <ul>
+             <li><%= link_to "菜谱", my_school_cook_books_path %></li>
+            <li>/</li>
+            <li>添加菜谱</li>
           </ul>
         </div>
       </div>
       <ul class="work_action">
-
+       <a href="<%=url_for(:controller=>"/my_school/cook_books",:action=>:index)%>" title="返回">
+            <div class="work_action_return">
+            </div>
+            <div class="work_action_return_move">
+            </div>
+          </a>
       </ul>
     </div>
 
