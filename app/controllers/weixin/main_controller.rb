@@ -17,11 +17,11 @@ class Weixin::MainController < Weixin::BaseController
 
   #绑定用户
   def bind_user
-    if params[:code].blank?
-      flash[:error] = "微信信息不正确"
-      redirect_to :action => :error_messages
-      return
-    end
+#    if params[:code].blank?
+#      flash[:error] = "微信信息不正确"
+#      redirect_to :action => :error_messages
+#      return
+#    end
     return unless request.post?
     begin
       user = User.authenticate(params[:login], params[:password])
