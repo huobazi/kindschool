@@ -2,6 +2,11 @@ body {
     background-color: #f0ebe2;
     padding-top: 10px;
 }
+.about{
+    background-color: white;
+    padding: 10px;
+    word-wrap: break-word;
+}
 .head {
     position: relative;
 }

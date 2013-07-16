@@ -117,6 +117,8 @@ School::Application.routes.draw do
   end
 
   match 'weixin' => 'weixin/main#index'
+  match 'weixin/about' => 'weixin/main#about'
+  match 'weixin/contact_us' => 'weixin/main#contact_us'
   namespace :weixin do
     resources :api do
       collection do

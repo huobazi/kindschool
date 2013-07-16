@@ -3,7 +3,7 @@ class Weixin::MainController < Weixin::BaseController
   layout proc{ |controller| get_layout }
 
   before_filter :login_from_cookie
-  before_filter :login_required, :except => [:bind_user,:error_messages]
+  before_filter :login_required, :except => [:bind_user,:error_messages,:about,:contact_us]
 
   #平台首页
   def index
@@ -53,6 +53,14 @@ class Weixin::MainController < Weixin::BaseController
     rescue StandardError => error
       @user_errors = error
     end
+  end
+
+  def about
+    
+  end
+  
+  def contact_us
+
   end
 
   #出错信息
