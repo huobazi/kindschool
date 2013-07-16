@@ -54,11 +54,6 @@
             <td><%= link_to message.title,outbox_show_my_school_message_path(message) %></td>
             <td><%= message.send_date ? message.send_date.to_short_datetime : "" %></td>
             <td><%= message.tp ? "是" : "否"%></td>
-            <td>
-              <%message.message_entries.each do |m_e|%>
-              <%=m_e.receiver.try(:name)%>
-              <%end%>
-            </td>
           </tr>
         <% end %>
       </table>
