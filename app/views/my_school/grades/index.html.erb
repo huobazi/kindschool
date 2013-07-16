@@ -27,13 +27,19 @@
         </li>
       </ul>
     </div>
-
+    <div>
+     <%= form_tag '/my_school/grades' , :method=>"get" do %>
+      <b>名称：</b>
+      <%= text_field :grade,:name_like,:style=>"width:100px;" ,:value=>"#{params[:grade][:name_like] if params[:grade] }"  %>
+      <%= submit_tag "搜索" %>
+      <%end%>
+    </div>
     <div class="work_list">
       <% if @grades.any? %>
         <table class="table table-striped table-hover">
           <%= form_tag destroy_multiple_my_school_grades_path, method: :delete do %>
             <tr>
-              <th><input type="checkbox" name="" value="" alt="全选" id="grade_all"></th>
+              <th><input type="checkbox" name="" value="" alt="全选" id="grade_all">全选</th>
               <th>名称</th>
               <th>所属幼儿园</th>
               <th>描述</th>
@@ -41,7 +47,7 @@
             </tr>
             <% @grades.each do |grade| %>
               <tr>
-                <td><input id="grade_<%= grade.id %>" name="grade[]" type="checkbox" value="<%= grade.id %>" /></td>
+                <td><input id="grade_<%= grade.id %>" class="grade_check" name="grade[]" type="checkbox" value="<%= grade.id %>" /></td>
                 <td><%= link_to grade.name, my_school_grade_path(grade) %></td>
                 <td><%= grade.kindergarten_label %></td>
                 <td><%= grade.note %></td>
@@ -65,6 +71,10 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    
+  $("#grade_all").click(function(){
+    $(".grade_check").each(function(){
+       $(this).click();
+      });
+    });
   });
 </script>

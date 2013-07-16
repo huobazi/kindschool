@@ -1,7 +1,7 @@
 #encoding:utf-8
 class PhysicalRecord < ActiveRecord::Base
   attr_accessible :content, :creater_id, :kindergarten_id, :send_date, :student_info_id
-
+   # attr_accessible :content_like
   just_define_datetime_picker :send_date, :add_to_attr_accessible => true
 
   def kindergarten_label

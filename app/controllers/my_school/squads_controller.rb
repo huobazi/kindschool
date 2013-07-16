@@ -1,7 +1,7 @@
 #encoding:utf-8
 class  MySchool::SquadsController < MySchool::ManageController
   def index
-    @squads = @kind.squads.page(params[:page] || 1).per(10).order("created_at DESC")
+    @squads = @kind.squads.search(params[:squad] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
   end
 
   def new
@@ -53,5 +53,13 @@ class  MySchool::SquadsController < MySchool::ManageController
       end
     end
   end
+
+  def destroy_multiple
+    Squad.destroy(params[:squad])
+      respond_to do |format|
+        format.html { redirect_to my_school_squads_path }
+        format.json { head :no_content }
+      end
+    end
 end
 

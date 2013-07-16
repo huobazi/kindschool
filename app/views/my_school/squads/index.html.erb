@@ -35,32 +35,42 @@
         </li>
       </ul>
     </div>
-
+    <div>
+     <%= form_tag '/my_school/squads' , :method=>"get" do %>
+      <b>名称：</b>
+      <%= text_field :squad,:name_like,:style=>"width:100px;" ,:value=>"#{params[:squad][:name_like] if params[:squad] }"  %>
+      <b>年级：</b>
+      <%= text_field :squad,:grade_name_like,:style=>"width:100px;" ,:value=>"#{params[:squad][:grade_name_like] if params[:squad] }"  %>
+      <%= submit_tag "搜索" %>
+      <%end%>
+    </div>
     <div class="work_list">
       <% if @squads.any? %>
         <table class="table table-striped table-hover">
-          <tr>
-            <th><input type="checkbox" name="" value="" alt="全选"></th>
-            <th>名称</th>
-            <th>届</th>
-            <th>年级</th>
-            <th>描述</th>
-            <th colspans="2">操作</th>
-          </tr>
-          <% @squads.each do |squad| %>
+          <%= form_tag destroy_multiple_my_school_squads_path, method: :delete do %>
             <tr>
-              <td><input type="checkbox" name="" value="" ></td>
-              <td><%= link_to squad.name, my_school_squad_path(squad) %></td>
-              <td><%= squad.kindergarten_label %></td>
-              <td><%= squad.grade_label %></td>
-              <td><%= squad.note %></td>
-              <td><%= link_to "查看", my_school_squad_path(squad), :class => "show" %></td>
-              <td><%= link_to "编辑", edit_my_school_squad_path(squad), :class => "show" %></td>
+              <th><input type="checkbox" name="" value="" alt="全选" id="squad_all">全选</th>
+              <th>名称</th>
+              <th>届</th>
+              <th>年级</th>
+              <th>描述</th>
+              <th colspans="2">操作</th>
+            </tr>
+            <% @squads.each do |squad| %>
+              <tr>
+                <td><input id="squad_<%= squad.id %>" class="squad_check" name="squad[]" type="checkbox" value="<%= squad.id %>" /></td>
+                <td><%= link_to squad.name, my_school_squad_path(squad) %></td>
+                <td><%= squad.kindergarten_label %></td>
+                <td><%= squad.grade_label %></td>
+                <td><%= squad.note %></td>
+                <td><%= link_to "查看", my_school_squad_path(squad), :class => "show" %></td>
+                <td><%= link_to "编辑", edit_my_school_squad_path(squad), :class => "show" %></td>
+              </tr>
+            <% end %>
+            <tr>
+              <td><%= submit_tag "删除", :class => 'btn' %></td>
             </tr>
           <% end %>
-          <tr>
-            <td><%= link_to "删除" %></td>
-          </tr>
         </table>
         <%= paginate @squads %>
       <% else %>
@@ -70,3 +80,13 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+  $("#squad_all").click(function(){
+    $(".squad_check").each(function(){
+       $(this).click();
+      });
+    });
+  });
+</script>
