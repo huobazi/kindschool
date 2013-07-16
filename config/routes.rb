@@ -53,7 +53,7 @@ School::Application.routes.draw do
     end
     resources :messages do
       member do
-        get :outbox_show 
+        get :outbox_show
       end
       collection do
         get :outbox,:get_kindergarten,:get_grade,:get_student

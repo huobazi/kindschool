@@ -983,3 +983,8 @@ a.album_a .album_img{
 .search_form{
     padding: 20px;
 }
+
+.control-group .controls .show_label .message_entry {
+  background: #DBDBDB;
+  margin-right: 10px;
+}

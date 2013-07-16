@@ -45,7 +45,7 @@
           <% end %>
         </li>
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:index)%>" title="返回">
+        <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:outbox)%>" title="返回">
             <div class="work_action_return">
             </div>
             <div class="work_action_return_move">
@@ -82,7 +82,18 @@
               </label>
             </div>
           </div>
-
+          <div class="control-group">
+            <label class="control-label" >发件人</label>
+            <div class="controls">
+              <label class="show_label">
+                <% @message.message_entries.each do |m_e| %>
+                  <span class="message_entry">
+                    <%= m_e.receiver.try(:name) %>
+                  </span>
+                <% end %>
+              </label>
+            </div>
+          </div>
         </form>
       </div>
     </div>
