@@ -16,10 +16,11 @@ class MySchool::MessagesController < MySchool::ManageController
     @message = Message.new
     @data = current_user.get_users_ranges
   end
-  
+
   def edit
     @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
   end
+
   def destroy
     @message = NotMessageice.find_by_id_and_kindergarten_id(params[:id],@kind.id)
     @message.destroy
@@ -53,6 +54,11 @@ class MySchool::MessagesController < MySchool::ManageController
         @message.message_entries << MessageEntry.new(:receiver_id=>user.id,:receiver_name=>user.name,:sms=>user.phone)
       end
     end
+    if params[:draft]
+      @message.status = 0
+    else
+      @message.status = 1
+    end
     respond_to do |format|
       if @message.save
         flash[:notice] = '提交信息成功.'
@@ -70,7 +76,7 @@ class MySchool::MessagesController < MySchool::ManageController
     respond_to do |format|
       if @message.update_attributes(params[:message])
         flash[:notice] = '更新消息成功.'
-        format.html { redirect_to(:action=>:show,:id=>@message.id) }
+        format.html { redirect_to(:action=>:outbox_show,:id=>@message.id) }
         format.xml  { head :ok }
       else
         format.html { render :action => :edit }
