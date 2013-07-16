@@ -28,7 +28,7 @@
       </ul>
     </div>
     
-    <div>
+    <div class="search_form">
      <%= form_tag '/my_school/topics' , :method=>"get" do %>
       <b>标题：</b>
       <%= text_field :topic,:title_like,:style=>"width:100px;" ,:value=>"#{params[:topic][:title_like] if params[:topic] }"  %>

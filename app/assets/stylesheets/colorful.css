@@ -980,3 +980,6 @@ a.album_a .album_img{
     display: inherit;
     float: left;
 }
+.search_form{
+    padding: 20px;
+}

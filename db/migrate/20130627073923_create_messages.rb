@@ -6,7 +6,7 @@ class CreateMessages < ActiveRecord::Migration
       t.string :sender_name
       t.string :title
       t.text :content
-      t.integer :tp # 分两种,只发站内,站内加短信
+      t.integer :tp ,:default => 0# 分两种,只发站内(0),站内加短信(1)
       t.boolean :status, :default => 0 # 0是草稿,1是已发送
       t.integer :approve_status
       t.integer :approver_id

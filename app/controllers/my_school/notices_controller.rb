@@ -2,7 +2,7 @@
 class MySchool::NoticesController < MySchool::ManageController
   #列表界面
   def index
-    @notices = @kind.notices.page(params[:page] || 1).per(10).order("send_date DESC")
+    @notices = @kind.notices.search(params[:notice] || {}).page(params[:page] || 1).per(10).order("send_date DESC")
   end
 
   def new
