@@ -41,7 +41,7 @@
         </li>
       </ul>
     </div>
-    <div>
+    <div class="search_form">
      <%= form_tag '/my_school/seedlings' , :method=>"get" do %>
      <b>学员：</b>
       <%= text_field :seedling,:student_info_user_name_like,:style=>"width:100px;" ,:value=>"#{params[:seedling][:student_info_user_name_like] if params[:seedling] }"%>

@@ -27,7 +27,7 @@
         </li>
       </ul>
     </div>
-    <div>
+    <div class="search_form">
      <%= form_tag '/my_school/grades' , :method=>"get" do %>
       <b>名称：</b>
       <%= text_field :grade,:name_like,:style=>"width:100px;" ,:value=>"#{params[:grade][:name_like] if params[:grade] }"  %>

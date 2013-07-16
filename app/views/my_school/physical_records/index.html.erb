@@ -30,7 +30,7 @@
         </li>
       </ul>
     </div>
-    <div>
+    <div class="search_form">
      <%= form_tag '/my_school/physical_records' , :method=>"get" do %>
      <b>学员：</b>
       <%= text_field :physical_record,:student_info_user_name_like,:style=>"width:100px;" ,:value=>"#{params[:physical_record][:student_info_user_name_like] if params[:physical_record] }"%>

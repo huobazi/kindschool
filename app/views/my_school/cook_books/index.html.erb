@@ -32,7 +32,7 @@
         </li>
       </ul>
     </div>
-    <div>
+    <div class="search_form">
      <%= form_tag '/my_school/cook_books' , :method=>"get" do %>
       <b>开始时间：</b>
       <%= text_field :cook_book,:start_at_equals,:style=>"width:100px;" ,:value=>"#{params[:cook_book][:start_at_equals] if params[:cook_book] }"  %>

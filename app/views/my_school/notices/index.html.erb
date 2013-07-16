@@ -47,7 +47,7 @@
       </ul>
     </div>
 
-    <div>
+    <div class="search_form">
      <%= form_tag '/my_school/notices' , :method=>"get" do %>
       <b>发布人：</b>
       <%= text_field :notice,:creater_name_like,:style=>"width:100px;" ,:value=>"#{params[:notice][:creater_name_like] if params[:notice] }"%>
