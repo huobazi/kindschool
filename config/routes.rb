@@ -46,7 +46,11 @@ School::Application.routes.draw do
         delete :destroy_multiple
       end
     end
-    resources :notices
+    resources :notices do
+      collection do
+        delete :destroy_multiple
+      end
+    end
     resources :messages do
       member do
         get :outbox_show 
@@ -54,6 +58,7 @@ School::Application.routes.draw do
       collection do
         get :outbox,:get_kindergarten,:get_grade,:get_student
         post :get_grades_all,:get_squads_all,:get_roles_all,:get_users_all
+        delete :destroy_multiple
       end
     end
     resources :home do
@@ -114,7 +119,11 @@ School::Application.routes.draw do
       end
     end
 
-    resources :topics
+    resources :topics do
+      collection do
+        delete :destroy_multiple
+      end
+    end
     resources :topic_entries
     resources :activities
   end

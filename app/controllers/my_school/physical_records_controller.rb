@@ -99,10 +99,10 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
   end
 
   def destroy_multiple
-    if params[:physical_records].nil?
+    if params[:physical_record].nil?
       flash[:notice] = "必须先选择体检记录"
     else
-      params[:physical_records].each do |physical|
+      params[:physical_record].each do |physical|
         @kind.physical_records.destroy(physical)
       end
     end

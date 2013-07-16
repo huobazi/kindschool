@@ -54,4 +54,18 @@ class MySchool::NoticesController < MySchool::ManageController
       end
     end
   end
+
+  def destroy_multiple
+    if params[:notice].nil?
+      flash[:notice] = "必须选择通知"
+    else
+      params[:notice].each do |notice|
+        @kind.notices.destroy(notice)
+      end
+    end
+    respond_to do |format|
+      format.html { redirect_to my_school_notices_path }
+      format.json { head :no_content }
+    end
+  end
 end
