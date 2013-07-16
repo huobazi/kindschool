@@ -95,11 +95,17 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
   end
 
   def show
-  @physical_record = @kind.physical_records.find(params[:id])
+    @physical_record = @kind.physical_records.find(params[:id])
   end
 
   def destroy_multiple
-    PhysicalRecord.destroy(params[:physical_record])
+    if params[:physical_records].nil?
+      flash[:notice] = "必须先选择体检记录"
+    else
+      params[:physical_records].each do |physical|
+        @kind.physical_records.destroy(physical)
+      end
+    end
     respond_to do |format|
       format.html { redirect_to my_school_physical_records_path }
       format.json { head :no_content }
