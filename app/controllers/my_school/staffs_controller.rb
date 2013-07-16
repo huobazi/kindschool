@@ -1,7 +1,7 @@
 #encoding:utf-8
 class  MySchool::StaffsController < MySchool::ManageController
   def index
-    @staffs = @kind.staffs.page(params[:page] || 1).per(10).order("created_at DESC")
+    @staffs = @kind.staffs.search(params[:staff] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
   end
 
   def show

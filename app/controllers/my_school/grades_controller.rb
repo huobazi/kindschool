@@ -2,7 +2,7 @@
 class  MySchool::GradesController < MySchool::ManageController
 
   def index
-    @grades = @kind.grades.page(params[:page] || 1).per(10).order("created_at DESC")
+    @grades = @kind.grades.search(params[:grade] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
   end
 
   def show

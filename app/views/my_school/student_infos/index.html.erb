@@ -28,6 +28,16 @@
       </ul>
     </div>
 
+    <div>
+     <%= form_tag '/my_school/student_infos' , :method=>"get" do %>
+      <b>名称：</b>
+      <%= text_field :student_info,:user_name_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:user_name_like] if params[:student_info] }"  %>
+      <b>账号：</b>
+      <%= text_field :student_info,:user_login_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:user_login_like] if params[:student_info] }"  %>
+      <%= submit_tag "搜索" %>
+      <%end%>
+    </div>
+
     <div class="work_list">
       <% unless @student_infos.blank? %>
         <table class="table table-striped table-hover">

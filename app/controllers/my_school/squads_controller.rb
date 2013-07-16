@@ -1,7 +1,7 @@
 #encoding:utf-8
 class  MySchool::SquadsController < MySchool::ManageController
   def index
-    @squads = @kind.squads.page(params[:page] || 1).per(10).order("created_at DESC")
+    @squads = @kind.squads.search(params[:squad] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
   end
 
   def new
