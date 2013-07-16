@@ -32,6 +32,7 @@ class Weixin::ApiController < Weixin::BaseController
       Rails.logger.info("=====xml_data[:Content]=========#{xml_data[:Content]}=====#{xml_data[:Content] == 1}===or==#{xml_data[:Content] == "1"}")
       if logged_in?
         Rails.logger.info("a================")
+        #查看通知消息
         if xml_data[:Content] == "1"
           Rails.logger.info("b================")
           x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
@@ -43,14 +44,22 @@ class Weixin::ApiController < Weixin::BaseController
             })
         end
       else
-        Rails.logger.info("c================")
         if xml_data[:Content] == "1"
-          Rails.logger.info("d================")
+          #绑定
           x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
               :MsgType=>"text",
               :Content=>"欢迎关注#{@kind.name}\n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_user?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
+              :FuncFlag=>0
+            })
+        elsif xml_data[:Content] == "2"
+          #幼儿园介绍
+          x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+              :FromUserName=>xml_data[:ToUserName],
+              :CreateTime=>Time.now.to_i,
+              :MsgType=>"text",
+              :Content=>"#{@kind.name}\n\r #{@kind.note}",
               :FuncFlag=>0
             })
         end
@@ -105,7 +114,7 @@ class Weixin::ApiController < Weixin::BaseController
     if logged_in?
       "1、查看通知消息\n\r 2、幼儿园介绍\n\r 3、班级活动\n\r 4、每周菜谱\n\r 5、照片集锦\n\r 6、宝宝成长\n\r 6、信息论坛"
     else
-      "1、进行账号绑定\n\r 2、查看幼儿园介绍"
+      "1、进行账号绑定\n\r 2、幼儿园介绍"
     end
   end
 

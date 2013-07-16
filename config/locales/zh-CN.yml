@@ -481,6 +481,7 @@ zh-CN:
         message: "消息"
         receiver_name: "收接者"
         status: "状态"
+        read_status: "阅读状态"
         sms: "短信服务"
         phone: "手机号"
         content: "内容"
