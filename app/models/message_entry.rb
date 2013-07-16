@@ -1,3 +1,4 @@
+#encoding:utf-8
 class MessageEntry < ActiveRecord::Base
   attr_accessible :content, :message_id, :phone, :receiver_id, :receiver_name, :sms, :status,:read_status
 
