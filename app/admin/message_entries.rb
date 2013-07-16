@@ -7,6 +7,7 @@ ActiveAdmin.register MessageEntry do
     column :message
     column :receiver_name
     column :status
+    column :read_status_label
     column :sms
     column :phone
     default_actions
@@ -17,6 +18,7 @@ ActiveAdmin.register MessageEntry do
       row :message
       row :receiver_name
       row :status
+      row :read_status
       row :sms
       row :phone
       row :content

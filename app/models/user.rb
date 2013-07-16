@@ -186,6 +186,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  #获取未读信息
+  def get_read_new_count
+    Message.where("messages.kindergarten_id=:kind_id and message_entries.receiver_id=:user_id",
+      {:kind_id=>self.kindergarten_id,:user_id=>self.id}).joins("LEFT JOIN message_entries ON(messages.id = message_entries.message_id)").count("1")
+  end
+
   protected
   # before filter
   def encrypt_password

@@ -12,8 +12,6 @@ class Weixin::ApiController < Weixin::BaseController
     end
   end
 
-
-
   protected
   
   #学校api接口
@@ -29,17 +27,14 @@ class Weixin::ApiController < Weixin::BaseController
           :FuncFlag=>0
         })
     else
-      Rails.logger.info("=====xml_data[:Content]=========#{xml_data[:Content]}=====#{xml_data[:Content] == 1}===or==#{xml_data[:Content] == "1"}")
       if logged_in?
-        Rails.logger.info("a================")
-        #查看通知消息
+        #查看消息
         if xml_data[:Content] == "1"
-          Rails.logger.info("b================")
           x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
               :MsgType=>"text",
-              :Content=>"欢迎关注#{@kind.name}\n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_user?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
+              :Content=>"#{current_user.name}您好!\n\r #{get_read_new_message}",
               :FuncFlag=>0
             })
         end
@@ -76,8 +71,6 @@ class Weixin::ApiController < Weixin::BaseController
       #          :FuncFlag=>0
       #        })
     end
-    puts "=============x_data====#{x_data.inspect}"
-    Rails.logger.info "=============x_data====#{x_data.inspect}"
     render :text=>x_data
   end
 
@@ -109,12 +102,19 @@ class Weixin::ApiController < Weixin::BaseController
   end
 
   def get_menu
-    puts "=======logged_in?====#{logged_in?}"
-    Rails.logger.info("==============#{request.host_with_port}===")
     if logged_in?
-      "1、查看通知消息\n\r 2、幼儿园介绍\n\r 3、班级活动\n\r 4、每周菜谱\n\r 5、照片集锦\n\r 6、宝宝成长\n\r 6、信息论坛"
+      "1、查看消息\n\r 2、幼儿园介绍\n\r 3、班级活动\n\r 4、每周菜谱\n\r 5、照片集锦\n\r 6、宝宝成长\n\r 6、信息论坛"
     else
       "1、进行账号绑定\n\r 2、幼儿园介绍"
+    end
+  end
+
+  def get_read_new_message
+    count = current_user.get_read_new_count
+    if count > 0
+      return "您有#{count}条未读消息\n\r <a href=\"http://#{request.host_with_port}/weixin/messages/index?#{get_validate_string}\"> 点击查看</a>"
+    else
+      return "您没有未读消息\n\r <a href=\"http://#{request.host_with_port}/weixin/messages/index?#{get_validate_string}\"> 查看历史消息</a>"
     end
   end
 
