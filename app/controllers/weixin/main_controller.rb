@@ -20,7 +20,6 @@ class Weixin::MainController < Weixin::BaseController
 
   #绑定用户
   def bind_user
-    Rails.logger.info("=current_user===========#{current_user.inspect}=======")
     if logged_in?
       flash[:notice] = "您已经绑定微信账户"
       redirect_to :controller => "/weixin/main",:action=>:index
