@@ -23,7 +23,10 @@ MENUS ={"home"=>{
 },
   "62003"=>{
   "my_school/notices"=>["index","show"]
-}
+},
+  "63000"=>{
+  "my_school/messages"=>["outbox"]
+ }
 },
   "personnel"=>{
   "11000"=>{

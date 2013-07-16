@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_one :staff
   belongs_to :role
 
+  has_many :messages, :class_name => "Message",:foreign_key=>:sender_id
+
   before_save :encrypt_password
 
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?

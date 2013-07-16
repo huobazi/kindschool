@@ -147,13 +147,20 @@
     operate_id: 2001
   - id: 62003
     name: "通知信息"
-    operate_id: 2003
     number: 62003
     url: "/my_school/notices"
     title: "通知信息"
     height_level: "b"
     sequence: 624
     operate_id: 2005
+  - id: 63000
+    name: "发件箱"
+    number: 63000
+    url: "/my_school/messages/outbox"
+    title: "发件箱"
+    height_level: "b"
+    sequence: 624
+    operate_id: 2008
 - id: 70000
   number: 70000
   name: "班级活动"

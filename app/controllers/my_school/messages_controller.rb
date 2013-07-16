@@ -5,6 +5,11 @@ class MySchool::MessagesController < MySchool::ManageController
     @message = Message.where("messages.kindergarten_id=:kind_id and message_entries.receiver_id=:user_id",
       {:kind_id=>@kind.id,:user_id=>current_user.id}).joins("LEFT JOIN message_entries ON(messages.id = message_entries.message_id)").page(params[:page] || 1).per(10).order("messages.send_date DESC")
   end
+  
+  #
+  def outbox
+    @messages = current_user.messages#.where("messages.kindergarten_id=:kind_id")
+  end
 
   def new
     @message = Message.new
@@ -25,6 +30,10 @@ class MySchool::MessagesController < MySchool::ManageController
     end
   end
   def show
+    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+  end
+
+  def outbox_show
     @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
   end
 

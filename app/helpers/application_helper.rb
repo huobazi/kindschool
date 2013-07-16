@@ -9,11 +9,7 @@ module ApplicationHelper
       if mmm=current_menus[m[:number]]
         current_menu.each do |cu|
          if mmmm=mmm[cu[:number]]#!mmm[cu[:number]].blank?#.include?(params[:action])
-            puts "2222222222222222222"
-            puts mmmm.inspect
             if control=mmmm[params[:controller]]
-              puts "11111111111111111111111"
-              puts control.inspect
              if control.include?(params[:action])
                 cu[:current] = true
                 m[:current] = true

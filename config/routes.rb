@@ -48,8 +48,11 @@ School::Application.routes.draw do
     end
     resources :notices
     resources :messages do
+      member do
+        get :outbox_show 
+      end
       collection do
-        get :get_kindergarten,:get_grade,:get_student
+        get :outbox,:get_kindergarten,:get_grade,:get_student
         post :get_grades_all,:get_squads_all,:get_roles_all,:get_users_all
       end
     end
