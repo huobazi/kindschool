@@ -348,6 +348,17 @@ smarties_create:
   action: "create"
   protocol: ""
 
+role_index:
+  id: 5006
+  parent_id: 6
+  name: ""
+  level: 2
+  sequence: 0
+  note: ""
+  controller: "my_school/roles"
+  action: "index"
+  protocol: ""
+
 #==============================健康饮食
 seedlings_index:
   id: 6001

@@ -58,6 +58,9 @@ MENUS ={"home"=>{
     },
     "35000"=>{
       "my_school/smarties" => ['index','create']
+    },
+    "36000"=>{
+      "my_school/roles"=>['index']
     }
    },
    "100000"=>{

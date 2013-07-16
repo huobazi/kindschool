@@ -110,8 +110,6 @@ class User < ActiveRecord::Base
     if role = self.role
       smarties = role.smarties
     end
-    puts "2222222222222222\n\n\n\n"
-    puts smarties.inspect
     smarties
   end
 
