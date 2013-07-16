@@ -3,12 +3,12 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
 
   def home
     if current_user.get_users_ranges[:tp] == :student
-      @growth_records = GrowthRecord.search(params[:growth_record] || {}).where(:student_info_id => current_user.student_info.id).page(params[:page] || 1).per(10).order("created_at DESC")
+      @growth_records = GrowthRecord.search(params[:growth_record] || {}).where(:student_info_id => current_user.student_info.id, :tp => 1).page(params[:page] || 1).per(10).order("created_at DESC")
     elsif current_user.get_users_ranges[:tp] == :teachers
       squads = current_user.get_users_ranges[:squads]
       @growth_records = GrowthRecord.search(params[:growth_record] || {}).where("student_infos.squad_id=? and tp=1",squads.collect(&:id)).joins("LEFT JOIN student_infos on(student_infos.id = growth_records.student_info_id)").page(params[:page] || 1).per(10).order("created_at DESC")
     else
-      @growth_records = @kind.growth_records.search(params[:growth_record] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+      @growth_records = @kind.growth_records.search(params[:growth_record] || {}).where(:tp => 1).page(params[:page] || 1).per(10).order("created_at DESC")
     end
     render :index
   end
@@ -96,7 +96,11 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
   end
 
   def destroy_multiple
-    GrowthRecord.destroy(params[:growth])
+    if params[:growth].nil?
+      flash[:notice] = "必须选择宝宝在家成长记录"
+    else
+      GrowthRecord.destroy(params[:growth])
+    end
     respond_to do |format|
       format.html { redirect_to home_my_school_growth_records_path }
       format.json { head :no_content }

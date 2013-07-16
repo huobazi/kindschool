@@ -117,7 +117,13 @@ class MySchool::SeedlingsController < MySchool::ManageController
 
 
   def destroy_multiple
-    SeedlingRecord.destroy(params[:seedling])
+    if params[:seedling].nil?
+      flash[:notice] = "必须先选择育苗记录"
+    else
+      params[:seedling].each do |seeding|
+        @kind.seedling_records.destroy(seeding)
+      end
+    end
     respond_to do |format|
       format.html { redirect_to my_school_seedlings_path }
       format.json { head :no_content }

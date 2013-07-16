@@ -8,6 +8,7 @@ class Topic < ActiveRecord::Base
 
   belongs_to :kindergarten
   belongs_to :topic_category
+  belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
 
   has_many :topic_entries
 

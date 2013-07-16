@@ -274,4 +274,18 @@ LEFT JOIN squads ON(squads.id = student_infos.squad_id)")
       render :text=>"您无法选择操作"
     end
   end
+
+  def destroy_multiple
+    if params[:message].nil?
+      flash[:notice] = "必须选择消息"
+    else
+      params[:message].each do |message|
+        @kind.messages.destroy(message)
+      end
+    end
+    respond_to do |format|
+      format.html { redirect_to my_school_messages_path }
+      format.json { head :no_content }
+    end
+  end
 end

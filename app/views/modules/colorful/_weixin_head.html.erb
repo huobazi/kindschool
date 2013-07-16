@@ -1,6 +1,5 @@
 <h1>
   <div class="head">
-
     <a href="<%= url_for(:controller=>"/weixin/main",:action=>:index) %>" title="首页">
       <img src="/t/colorful/w_home.png" alt="首页"/>
     </a>
@@ -8,12 +7,13 @@
       <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" height="22" alt="Logo"/>
     </div>
     <div class="message_count">
-      99
+      <% message_count =current_user.get_read_new_count %>
+      <%= message_count > 99 ? "99" : message_count %>
     </div>
     <div class="message_img">
       &nbsp;
     </div>
-    <%= button_tag "通知消息" %>
+    <%= button_tag "通知消息" ,:id=>"show_messages"%>
   </div>
 </h1>
 <div>
@@ -52,3 +52,10 @@
     </div>
   <% end %>
 </div>
+<script type="text/javascript">
+  $(function() {
+    $("#show_messages").click(function(){
+      window.location.href="<%= url_for(:action=>:index,:controller=>"/weixin/messages") %>";
+    })
+  })
+</script>
