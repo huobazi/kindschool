@@ -114,7 +114,7 @@ class Weixin::ApiController < Weixin::BaseController
     if count > 0
       return "您有#{count}条未读消息\n\r <a href=\"http://#{request.host_with_port}/weixin/messages/index?#{get_validate_string}\"> 点击查看</a>"
     else
-      return "您没有未读消息"
+      return "您没有未读消息\n\r <a href=\"http://#{request.host_with_port}/weixin/messages/index?#{get_validate_string}\"> 查看历史消息</a>"
     end
   end
 
