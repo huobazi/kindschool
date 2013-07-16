@@ -1,7 +1,7 @@
 # encoding: utf-8
 module ApplicationHelper
    def sys_admin_menus(t=nil)
-     current_menus = MENUS
+    current_menus = MENUS
     menus = current_user.authed_menus(t)
     miss = true
     menus.each do |m|
@@ -21,11 +21,16 @@ module ApplicationHelper
         end
       end
     end
-    # if miss && menus[0] && menus[0][:children] && menus[0][:children][0]
-    #       menus[0][:current] = true
-    # end
     menus
   end
+  
+  #常用功能菜单
+  def useful_features_menu
+    menus = current_user.smarty_menu
+    
+
+  end
+
 
   def destroy_topic_entry?(topic_entry)
     if current_user.tp == 2

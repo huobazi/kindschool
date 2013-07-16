@@ -105,6 +105,15 @@ class User < ActiveRecord::Base
         end
      end
   end
+   #常用功能菜单
+  def smarty_menu
+    if role = self.role
+      smarties = role.smarties
+    end
+    puts "2222222222222222\n\n\n\n"
+    puts smarties.inspect
+    smarties
+  end
 
   def authed_menus(t)
     mymenus = []
