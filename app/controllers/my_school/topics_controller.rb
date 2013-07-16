@@ -57,4 +57,19 @@ class  MySchool::TopicsController < MySchool::ManageController
       format.xml  { head :ok }
     end
   end
+
+  def destroy_multiple
+    if params[:topic].nil?
+      flash[:notice] = "必须选择贴子"
+    else
+      params[:topic].each do |topic|
+        @kind.topics.destroy(topic)
+      end
+    end
+
+    respond_to do |format|
+      format.html {redirect_to my_school_topics_path}
+      format.json { header :no_content }
+    end
+  end
 end

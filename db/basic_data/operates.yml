@@ -168,6 +168,19 @@ message_index:
   protocol: ""
   visible: true
   <<: *DEFAULTS
+message_outbox:
+  id: 2008
+  parent_id: 2
+  name: "发件箱"
+  level: 2
+  sequence: 0
+  note: "发件箱"
+  controller: "my_school/messages"
+  action: "outbox"
+  params: ""
+  protocol: ""
+  visible: true
+  <<: *DEFAULTS
 
 #||||||||||||||||||||||||||论坛帖子能
 forum_manage:

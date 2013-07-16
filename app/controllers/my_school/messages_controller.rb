@@ -5,6 +5,12 @@ class MySchool::MessagesController < MySchool::ManageController
     @message = Message.where("messages.kindergarten_id=:kind_id and message_entries.receiver_id=:user_id",
       {:kind_id=>@kind.id,:user_id=>current_user.id}).joins("LEFT JOIN message_entries ON(messages.id = message_entries.message_id)").page(params[:page] || 1).per(10).order("messages.send_date DESC")
   end
+  
+  #
+  def outbox
+    @messages = current_user.messages.page(params[:page] || 1).per(10).order("messages.send_date DESC")
+#.where("messages.kindergarten_id=:kind_id")
+  end
 
   def new
     @message = Message.new
@@ -25,6 +31,10 @@ class MySchool::MessagesController < MySchool::ManageController
     end
   end
   def show
+    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+  end
+
+  def outbox_show
     @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
   end
 
@@ -262,6 +272,20 @@ LEFT JOIN squads ON(squads.id = student_infos.squad_id)")
       render :partial => "users",:layout=>false
     else
       render :text=>"您无法选择操作"
+    end
+  end
+
+  def destroy_multiple
+    if params[:message].nil?
+      flash[:notice] = "必须选择消息"
+    else
+      params[:message].each do |message|
+        @kind.messages.destroy(message)
+      end
+    end
+    respond_to do |format|
+      format.html { redirect_to my_school_messages_path }
+      format.json { head :no_content }
     end
   end
 end

@@ -55,11 +55,17 @@ class  MySchool::SquadsController < MySchool::ManageController
   end
 
   def destroy_multiple
-    Squad.destroy(params[:squad])
-      respond_to do |format|
-        format.html { redirect_to my_school_squads_path }
-        format.json { head :no_content }
+    if params[:squad].nil?
+      flash[:notice] = "必须先选择班级"
+    else
+      params[:squad].each do |squad|
+        @kind.squads.destroy(squad)
       end
     end
+    respond_to do |format|
+        format.html { redirect_to my_school_squads_path }
+        format.json { head :no_content }
+    end
+  end
 end
 

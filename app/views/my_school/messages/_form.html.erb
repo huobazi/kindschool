@@ -13,6 +13,9 @@
     $( "#change_users" ).click(function() {
       $( "#dialog_change_users" ).dialog("open");
     });
+    $("#close_dialog_button").click(function(){
+      $( "#dialog_change_users" ).dialog("close");
+    });
   });
 </script>
 <div class="control-group">
@@ -35,9 +38,23 @@
 </div>
 
 <%= f.input :title, :validate => true, :required => true,:input_html=>{:class=>"span5"}%>
+<div style="float:right;">
+<p  id="numtj"><var style="color:#C00">--</var>/<%=calculated_figures%></p>
+</div>
 <%= f.input :content, :validate => true, :required => true ,:input_html=>{:class=>"span5"}%>
 
 <%= f.input :send_date, :validate => true, :required => true,:as=>:string ,:class=>"input-mediun"%>
+
+<%unless current_user.is_send%>
+ <div class="control-group">
+<label class="control-label" for="inputPassword">是否发送短信</label>
+<div class="controls">
+  <%end%>
+<input id="message_tp" class="boolean required" type="checkbox" value="1" name="message[tp]" data-validate="true">
+</div>
+</div>
+
+
 <div class="control-group">
   <div class="controls">
     <%= f.button :submit %>
@@ -45,9 +62,20 @@
 </div>
 <div id="dialog_change_users"  title="选择收件人">
   <%= render :partial => "inbox" %>
-  <%=button_to "确定",:id=>'close_dialog_button'%>
+  <%=button_to "确定",'###',:id=>'close_dialog_button'%>
 </div>
-
+<script type="text/javascript">
+$(document).ready(function(){
+  var text=$("#message_content").val();
+  var counter=text.length;
+  $("#numtj var").text(<%=calculated_figures%>-counter);
+  $(document).keyup(function() {
+    var text=$("#message_content").val();
+    var counter=text.length;
+  $("#numtj var").text(<%=calculated_figures%>-counter);
+  });
+});
+</script>
 <script type="text/javascript">
   $(function() {
     $("#message_inputs .message_user label").live('click',function(){

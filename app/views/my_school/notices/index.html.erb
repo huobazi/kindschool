@@ -37,7 +37,7 @@
           </a>
         </li>
         <li>
-          <a href="/" title="删除">
+          <a href="/" title="删除" id="destroy_multiple">
             <div class="work_action_delete">
             </div>
             <div class="work_action_delete_move">
@@ -62,28 +62,42 @@
     <div class="work_list">
       <% if @notices.any? %>
         <table class="list">
-          <tr>
-            <th><input type="checkbox" name="" value="" alt="全选"/></th>
-            <th>发布人</th>
-            <th>标题</th>
-            <th>发布时间</th>
-            <th>通知范围</th>
-          </tr>
-          <% @notices.each do |notice| %>
-          <tr>
-            <td><input type="checkbox" name="" value="" /></td>
-            <td><%= notice.creater ? notice.creater.name : ""%></td>
-            <td><%= link_to notice.title,:action=>:show,:id=>notice.id %></td>
-            <td><%= notice.send_date ? notice.send_date.to_short_datetime : "" %></td>
-            <td class="option"><%= notice.send_range_label  %></td>
-          </tr>
+          <%= form_tag destroy_multiple_my_school_notices_path, method: :delete, :id => "destroy_multi_form" do %>
+            <tr>
+              <th><input type="checkbox" name="" value="" alt="全选" id="notice_all">全选</th>
+              <th>发布人</th>
+              <th>标题</th>
+              <th>发布时间</th>
+              <th>通知范围</th>
+            </tr>
+            <% @notices.each do |notice| %>
+            <tr>
+              <td><input id="notice_<%= notice.id %>" class="notice_check" name="notice[]" type="checkbox" value="<%= notice.id %>" /></td>
+              <td><%= notice.creater ? notice.creater.name : ""%></td>
+              <td><%= link_to notice.title,:action=>:show,:id=>notice.id %></td>
+              <td><%= notice.send_date ? notice.send_date.to_short_datetime : "" %></td>
+              <td class="option"><%= notice.send_range_label  %></td>
+            </tr>
+            <% end %>
           <% end %>
         </table>
         <%= paginate @notices %>
       <% else %>
-        暂时没有消息
+        暂时没有通知
       <% end %>
     </div>
   </div>
 
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#notice_all").click(function(){
+    $(".notice_check").attr("checked",this.checked);
+  });
+  $("#destroy_multiple").click(function(){
+      $("#destroy_multi_form").submit();
+      return false;
+  });
+});
+</script>
