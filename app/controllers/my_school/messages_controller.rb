@@ -8,7 +8,8 @@ class MySchool::MessagesController < MySchool::ManageController
   
   #
   def outbox
-    @messages = current_user.messages#.where("messages.kindergarten_id=:kind_id")
+    @messages = current_user.messages.page(params[:page] || 1).per(10).order("messages.send_date DESC")
+#.where("messages.kindergarten_id=:kind_id")
   end
 
   def new

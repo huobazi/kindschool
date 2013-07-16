@@ -25,7 +25,7 @@ MENUS ={"home"=>{
   "my_school/notices"=>["index","show"]
 },
   "63000"=>{
-  "my_school/messages"=>["outbox"]
+  "my_school/messages"=>["outbox","outbox_show"]
  }
 },
   "personnel"=>{
