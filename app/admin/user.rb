@@ -33,6 +33,8 @@ ActiveAdmin.register User do
     column :weixin_code
     column :created_at
     column :updated_at
+    column :is_send
+    column :is_receive
     default_actions
   end
 
@@ -61,6 +63,8 @@ ActiveAdmin.register User do
       f.input :kindergarten_label, :as => :string, :input_html => { :disabled => true }
       f.input :tp,:as=>:hidden
       f.input :kindergarten_id,:as=>:hidden
+      f.input :is_send
+      f.input :is_receive
     end
     f.actions
   end
@@ -79,6 +83,8 @@ ActiveAdmin.register User do
       row :weixin_code
       row :created_at
       row :updated_at
+      row :is_send
+      row :is_receive
       div do
         br
         if user.tp == 0

@@ -3,7 +3,7 @@ class Weixin::MainController < Weixin::BaseController
   layout proc{ |controller| get_layout }
 
   before_filter :login_from_cookie
-  before_filter :login_required, :except => [:bind_user,:error_messages]
+  before_filter :login_required, :except => [:bind_user,:error_messages,:about,:contact_us]
 
   #平台首页
   def index
@@ -20,7 +20,6 @@ class Weixin::MainController < Weixin::BaseController
 
   #绑定用户
   def bind_user
-    Rails.logger.info("=current_user===========#{current_user.inspect}=======")
     if logged_in?
       flash[:notice] = "您已经绑定微信账户"
       redirect_to :controller => "/weixin/main",:action=>:index
@@ -54,6 +53,14 @@ class Weixin::MainController < Weixin::BaseController
     rescue StandardError => error
       @user_errors = error
     end
+  end
+
+  def about
+    
+  end
+  
+  def contact_us
+
   end
 
   #出错信息

@@ -5,9 +5,9 @@ class MySchool::SeedlingsController < MySchool::ManageController
    	 all_roles = ['admin','principal','vice_principal','assistant_principal','park_hospital']
    	 userrole = current_user.get_users_ranges
    	 if @flag=all_roles.include?(@role)
-   	    @seedlings = @kind.seedling_records.page(params[:page] || 1).per(10).order("created_at DESC")
+   	    @seedlings = @kind.seedling_records.search(params[:seedling] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
      elsif userrole[:tp] == :all
-        @seedlings = @kind.seedling_records.page(params[:page] || 1).per(10).order("created_at DESC")
+        @seedlings = @kind.seedling_records.search(params[:seedling] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
         @flag = true
      elsif userrole[:tp] == :teachers
         # @seedlings = []
@@ -24,9 +24,9 @@ class MySchool::SeedlingsController < MySchool::ManageController
           # studentinfos.each do |stu_info|
           #  @seedlings += stu_info.seedling_records
           # end 
-         @seedlings =SeedlingRecord.where(["student_infos.squad_id in(?)",squads]).joins("LEFT JOIN student_infos on (student_infos.id = seedling_records.student_info_id)").page(params[:page] || 1).per(10).order("created_at DESC")
+         @seedlings =SeedlingRecord.where(["student_infos.squad_id in(?)",squads]).joins("LEFT JOIN student_infos on (student_infos.id = seedling_records.student_info_id)").search(params[:seedling] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
      elsif userrole[:tp] == :student
-     	  @seedlings =  current_user.student_info.seedling_records.page(params[:page] || 1).per(10).order("created_at DESC")
+     	  @seedlings =  current_user.student_info.seedling_records.search(params[:seedling] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
    	 end
    end
 
@@ -114,4 +114,13 @@ class MySchool::SeedlingsController < MySchool::ManageController
     end
     render "class_student", :layout => false
    end
+
+
+  def destroy_multiple
+    SeedlingRecord.destroy(params[:seedling])
+    respond_to do |format|
+      format.html { redirect_to my_school_seedlings_path }
+      format.json { head :no_content }
+    end
+  end
 end

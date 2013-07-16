@@ -139,7 +139,7 @@ a{
     width: 14px;
     height: 63px;
     position: absolute;
-    left:-12px;
+    left:-14px;
 }
 .menu_right{
     background-image: url(/t/colorful/menu_right.jpg);
@@ -979,4 +979,7 @@ a.album_a .album_img{
     width: 100%;
     display: inherit;
     float: left;
+}
+.search_form{
+    padding: 20px;
 }

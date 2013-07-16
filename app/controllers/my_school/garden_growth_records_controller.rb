@@ -3,12 +3,12 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
 
   def garden
     if current_user.get_users_ranges[:tp] == :student
-      @growth_records = GrowthRecord.where(:student_info_id => current_user.student_info.id).page(params[:page] || 1).per(10).order("created_at DESC")
+      @growth_records = GrowthRecord.search(params[:growth_record] || {}).where(:student_info_id => current_user.student_info.id).page(params[:page] || 1).per(10).order("created_at DESC")
     elsif current_user.get_users_ranges[:tp] == :teachers
       squads = current_user.get_users_ranges[:squads]
-      @growth_records = GrowthRecord.where("student_infos.squad_id=? and tp=0",squads.collect(&:id)).joins("LEFT JOIN student_infos on(student_infos.id = growth_records.student_info_id)").page(params[:page] || 1).per(10).order("created_at DESC")
+      @growth_records = GrowthRecord.search(params[:growth_record] || {}).where("student_infos.squad_id=? and tp=0",squads.collect(&:id)).joins("LEFT JOIN student_infos on(student_infos.id = growth_records.student_info_id)").page(params[:page] || 1).per(10).order("created_at DESC")
     else
-      @growth_records = @kind.growth_records.page(params[:page] || 1).per(10).order("created_at DESC")
+      @growth_records = @kind.growth_records.search(params[:growth_record] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
     end
     render "my_school/growth_records/index"
   end
@@ -106,6 +106,14 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
         format.html { render :action => :edit }
         format.xml  { render :xml => @growth_record.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy_multiple
+    GrowthRecord.destroy(params[:growth])
+    respond_to do |format|
+      format.html { redirect_to garden_my_school_garden_growth_records_path }
+      format.json { head :no_content }
     end
   end
 

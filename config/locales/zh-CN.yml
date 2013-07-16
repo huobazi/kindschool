@@ -281,6 +281,8 @@ zh-CN:
         old_password: "原始密码"
         created_at: "创建时间"
         updated_at: "更新时间"
+        is_send: '是否能够发短信'
+        is_receive: '是否能够接受短信'
       grade:
         kindergarten_label: "所属幼儿园"
         kindergarten: "所属幼儿园"
@@ -481,6 +483,7 @@ zh-CN:
         message: "消息"
         receiver_name: "收接者"
         status: "状态"
+        read_status: "阅读状态"
         sms: "短信服务"
         phone: "手机号"
         content: "内容"

@@ -1,3 +1,12 @@
+<script type="text/javascript">
+  jQuery(function() {
+    $('#seedling_shot_at_equals').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+  })
+
+</script>
 <div class="show_work">
   <%= render :partial => "/modules/colorful/work_menu" %>
   <div class="work">
@@ -32,32 +41,47 @@
         </li>
       </ul>
     </div>
+    <div class="search_form">
+     <%= form_tag '/my_school/seedlings' , :method=>"get" do %>
+     <b>学员：</b>
+      <%= text_field :seedling,:student_info_user_name_like,:style=>"width:100px;" ,:value=>"#{params[:seedling][:student_info_user_name_like] if params[:seedling] }"%>
+      <b>育苗名称：</b><%= text_field :seedling,:name_like,:style=>"width:100px;" ,:class=>"control-label",:value=>"#{params[:seedling][:name_like] if params[:seedling] }" %>
+      <b>体检时间：</b>
+      <%= text_field :seedling,:shot_at_equals,:style=>"width:100px;" ,:value=>"#{params[:seedling][:shot_at_equals] if params[:seedling] }"  %>
+      <%= submit_tag "搜索" %>
+      <%end%>
+    </div>
 
     <div class="work_list">
       <% unless @seedlings.blank? %>
         <table class="table table-striped table-hover">
-          <tr>
-            <th></th>
-            <th>学员</th>
-            <th>育苗名称</th>
-            <th>描述</th>
-            <th>注射时间</th>
-            <th>过期时间</th>
-            <th></th>
-          </tr>
-            <% (@seedlings || []).each do |seedling| %>
+          <%= form_tag destroy_multiple_my_school_seedlings_path, method: :delete do %>
+            <tr>
+              <th><input type="checkbox" name="" value="" alt="全选" id="seedling_all">全选</th>
+              <th>学员</th>
+              <th>育苗名称</th>
+              <th>描述</th>
+              <th>注射时间</th>
+              <th>过期时间</th>
+              <th></th>
+            </tr>
+              <% (@seedlings || []).each do |seedling| %>
+                <tr>
+                  <td><input id="seedling_<%= seedling.id %>" class="seedling_check" name="seedling[]" type="checkbox" value="<%= seedling.id %>" /></td>
+                  <td><%= seedling.student_info.user.try(:name) unless seedling.student_info.blank? %></td>
+                  <td><%=link_to seedling.name,:action=>:show,:id=>seedling.id  %></td>
+                  <td><%= seedling.note %></td>
+                  <td><%= seedling.shot_at.try(:to_short_datetime) %></td>
+                  <td><%= seedling.expire_at.try(:to_short_datetime) %></td>
+                  <td><%if @flag%><%= link_to '编辑', edit_my_school_seedling_path(seedling) %>|<%= link_to '删除',my_school_seedling_path(seedling) , method: :delete, data: { confirm: '确定要删除么?' } %><%end%></td>
+                </tr>
+              <% end %>
               <tr>
-                <td><%= check_box_tag('seedling[id]',seedling.id)%></td>
-                <td><%= seedling.student_info.user.try(:name) unless seedling.student_info.blank? %></td>
-                <td><%=link_to seedling.name,:action=>:show,:id=>seedling.id  %></td>
-                <td><%= seedling.note %></td>
-                <td><%= seedling.shot_at.try(:to_short_datetime) %></td>
-                <td><%= seedling.expire_at.try(:to_short_datetime) %></td>
-                <td><%if @flag%><%= link_to '编辑', edit_my_school_seedling_path(seedling) %>|<%= link_to '删除',my_school_seedling_path(seedling) , method: :delete, data: { confirm: '确定要删除么?' } %><%end%></td>
+                <td><%= submit_tag "删除", :class => 'btn' %></td>
               </tr>
             <% end %>
         </table>
-        <%= paginate @seedlings %>
+        <%#= paginate @seedlings %>
       <% else %>
         暂无育苗记录
       <% end %>
@@ -65,3 +89,13 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+  $("#seedling_all").click(function(){
+    $(".seedling_check").each(function(){
+       $(this).click();
+      });
+    });
+  });
+</script>

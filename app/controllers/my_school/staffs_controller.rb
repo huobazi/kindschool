@@ -1,7 +1,7 @@
 #encoding:utf-8
 class  MySchool::StaffsController < MySchool::ManageController
   def index
-    @staffs = @kind.staffs.page(params[:page] || 1).per(10).order("created_at DESC")
+    @staffs = @kind.staffs.search(params[:staff] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
   end
 
   def show
@@ -49,6 +49,14 @@ class  MySchool::StaffsController < MySchool::ManageController
         format.html { render :action => :edit }
         format.xml  { render :xml => @staff.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy_multiple
+    Staff.destroy(params[:staff])
+    respond_to do |format|
+      format.html { redirect_to my_school_staffs_path }
+      format.json { head :no_content }
     end
   end
 

@@ -7,7 +7,7 @@ class GrowthRecord < ActiveRecord::Base
 
   validates :start_at, :end_at, :presence => true
   validates :content, :length => { :minimum => 5 }
-  validates :student_info, :presence => true
+  validates :student_info_id, :presence => true
 
   just_define_datetime_picker :start_at, :add_to_attr_accessible => true
   just_define_datetime_picker :end_at, :add_to_attr_accessible => true

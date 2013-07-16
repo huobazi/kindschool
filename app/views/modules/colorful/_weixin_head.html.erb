@@ -16,3 +16,39 @@
     <%= button_tag "通知消息" %>
   </div>
 </h1>
+<div>
+  <% if flash.any? %>
+    <div id="flash-messages">
+      <% if flash[:notice] %>
+        <div class="alert alert-notice">
+          <a class="close" data-dismiss="alert">x</a>
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="alert">
+          <a class="close" data-dismiss="alert">x</a>
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+      <% if flash[:success] %>
+        <div class="alert alert-success">
+          <a class="close" data-dismiss="alert">x</a>
+          <%= flash[:success] %>
+        </div>
+      <% end %>
+      <% if flash[:info] %>
+        <div class="alert alert-info">
+          <a class="close" data-dismiss="alert">x</a>
+          <%= flash[:info] %>
+        </div>
+      <% end %>
+      <% if flash[:error] %>
+        <div class="alert alert-error">
+          <a class="close" data-dismiss="alert">x</a>
+          <%= flash[:error] %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

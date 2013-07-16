@@ -15,14 +15,22 @@ School::Application.routes.draw do
       end
     end
     resources :content_patterns
-    resources :seedlings do 
+    resources :seedlings do
       collection {get :grade_class}
       collection {get :class_student}
       collection {post :destory_choose}
+      collection {delete :destroy_multiple}
     end
     resources :physical_records do
+      collection do
+        delete :destroy_multiple
+      end
     end
-    resources :cook_books
+    resources :cook_books do
+      collection do
+        delete :destroy_multiple
+      end
+    end
     resources :users do
       collection do
         get :login,:logout,:error_notice
@@ -33,7 +41,11 @@ School::Application.routes.draw do
         post :change_password
       end
     end
-    resources :squads
+    resources :squads do
+      collection do
+        delete :destroy_multiple
+      end
+    end
     resources :notices
     resources :messages do
       collection do
@@ -51,14 +63,22 @@ School::Application.routes.draw do
         delete :destroy_multiple
       end
     end
-    resources :staffs
+    resources :staffs do
+      collection do
+        delete :destroy_multiple
+      end
+    end
     resources :page_contents do
       member do
         get :delete_content,:edit_content
         post :add_content,:update_content
       end
     end
-    resources :student_infos
+    resources :student_infos do
+      collection do
+        delete :destroy_multiple
+      end
+    end
     resources :templates do
       collection do
         get :set_default_template_view
@@ -80,12 +100,14 @@ School::Application.routes.draw do
     resources :growth_records do
       collection do
         get :home
+        delete :destroy_multiple
       end
     end
 
     resources :garden_growth_records do
       collection do
         get :garden
+        delete :destroy_multiple
       end
     end
 
@@ -95,6 +117,8 @@ School::Application.routes.draw do
   end
 
   match 'weixin' => 'weixin/main#index'
+  match 'weixin/about' => 'weixin/main#about'
+  match 'weixin/contact_us' => 'weixin/main#contact_us'
   namespace :weixin do
     resources :api do
       collection do

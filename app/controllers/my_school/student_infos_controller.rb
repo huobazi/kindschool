@@ -2,7 +2,7 @@
 class  MySchool::StudentInfosController < MySchool::ManageController
 
   def index
-    @student_infos = @kind.student_infos.page(params[:page] || 1).per(10)
+    @student_infos = @kind.student_infos.search(params[:student_info] || {}).page(params[:page] || 1).per(10)
   end
 
   def show
@@ -69,4 +69,11 @@ class  MySchool::StudentInfosController < MySchool::ManageController
     end
   end
 
+  def destroy_multiple
+    StudentInfo.destroy(params[:student])
+    respond_to do |format|
+      format.html { redirect_to my_school_student_infos_path }
+      format.json { head :no_content }
+    end
+  end
 end

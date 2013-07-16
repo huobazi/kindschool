@@ -24,7 +24,7 @@
 <%= f.input :kindergarten_id, :as => :hidden %>
 <%= f.input :tp, :as => :hidden %>
 <% if action_name == "new" %>
-  <%= f.input :student_info_id, :required => true, :as => :select, :collection => Hash[f.object.kindergarten.student_infos.map{|student| ["#{student.user.name}", student.id] }] %>
+  <%= f.input :student_info_id, :validate => true, :required => true, :as => :select, :collection => Hash[f.object.kindergarten.student_infos.map{|student| ["#{student.user.name}", student.id] }] %>
 <% else %>
   <%= f.input :student_info_label, :required => true, :as => :string, :input_html => { :disabled => true }  %>
 <% end %>
