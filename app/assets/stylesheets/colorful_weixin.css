@@ -292,22 +292,35 @@ body {
     background-position: 0 bottom;
     height: 52px;
 }
+.message_div .message_filter select{
+    margin-left: 10px;
+    margin-top: 10px;
+    width: auto;
+}
 .message_div .message_list li{
     border: 1px solid #CBCBCB;
     list-style-type: none;
     margin: 5px;
     border-radius:5px;
 }
+.message_div .message_list li:hover{
+    border: 1px solid #80C2DB;
+    background-color: #EBFCFB;
+}
+.message_div .message_list li a{
+    text-decoration: none;
+}
 .message_div .message_list ul{
     padding: 0px;
     margin: 0px;
 }
 .message_div .message_list li .message_user{
-    display: -moz-stack;
+    float: left;
     padding-top: 5px;
     text-align: left;
     vertical-align: top;
     width: 48%;
+    color: #485154;
 }
 .message_div .message_list li .message_time{
     display: inline-block;
@@ -330,4 +343,11 @@ body {
 }
 .message_div .message_more label{
     padding: 15px 10px 10px;
+}
+.message_div #message_more{
+    text-decoration: none;
+    color: #494542;
+}
+.message_div #message_more:hover,.message_div #message_more:focus{
+    color: #494542;
 }

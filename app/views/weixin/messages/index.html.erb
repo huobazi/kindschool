@@ -6,29 +6,36 @@
     消息通知
   </div>
   <div class="message_filter">
-    按时间 按状态
+    <%= form_tag '/weixin/messages' , :method=>"get",:id=>"message_search" do %>
+      <%= select_tag "messages[send_date]",options_for_select(@send_date) %>
+    <%end%>
   </div>
   <div class="message_list">
     <ul>
+      <% @messages.each do |message| %>
       <li>
-        <div><label class="message_user">发件人:管理员</label><label class="message_time">2013-6-17 10:30</label></div>
-        <div class="message_content">测试测试测试</div>
+        <a href="###">
+          <div><label class="message_user">发件人:管理员</label><label class="message_time">2013-6-17 10:30</label></div>
+          <div class="message_content">测试测试测试</div>
+        </a>
       </li>
-      <li>
-        <div><label class="message_user">发件人:管理员</label><label class="message_time">2013-6-17 10:30</label></div>
-        <div class="message_content">测试测试测试</div>
-      </li>
-      <li>
-        <div><label class="message_user">发件人:管理员</label><label class="message_time">2013-6-17 10:30</label></div>
-        <div class="message_content">测试测试测试</div>
-      </li>
+      <% end %>
     </ul>
   </div>
   <div class="message_more">
-    <div class="show_div"></div>
-    <label>显示更多消息</label>
+    <a href="###" id="message_more" title="查看更多">
+      <div class="show_div"></div>
+      <label>显示更多消息</label>
+    </a>
   </div>
 </div>
 <%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
 <%= render :partial => "/modules/colorful/weixin_menu_one"%>
+<script type="text/javascript">
+  $(function(){
+    $("#messages_send_date").change(function(){
+      $("#message_search").submit();
+    })
+  })
 
+</script>
