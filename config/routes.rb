@@ -138,6 +138,7 @@ School::Application.routes.draw do
         post :login
       end
     end
+    resources :messages
   end
 
   # namespace :weixin do

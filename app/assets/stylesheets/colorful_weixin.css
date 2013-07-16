@@ -275,3 +275,59 @@ body {
 .login_body{
     background-color: #A3C43F;
 }
+
+/*=======消息模块===============*/
+.message_div{
+    background-color: #FFFFFF;
+    margin-bottom: 10px;
+}
+.message_div .message_title{
+    background-image: url("/t/colorful/title_bg.png");
+    color: #FFFFFF;
+    padding: 10px;
+}
+.message_div .message_filter{
+    background-image: url("/t/colorful/weixin_bg0.png");
+    background-repeat: repeat-x;
+    background-position: 0 bottom;
+    height: 52px;
+}
+.message_div .message_list li{
+    border: 1px solid #CBCBCB;
+    list-style-type: none;
+    margin: 5px;
+    border-radius:5px;
+}
+.message_div .message_list ul{
+    padding: 0px;
+    margin: 0px;
+}
+.message_div .message_list li .message_user{
+    display: -moz-stack;
+    padding-top: 5px;
+    text-align: left;
+    vertical-align: top;
+    width: 48%;
+}
+.message_div .message_list li .message_time{
+    display: inline-block;
+    padding-top: 5px;
+    text-align: right;
+    width: 50%;
+    color: #787b80;
+}
+.message_div .message_list li .message_content{
+    padding: 5px;
+    word-wrap: break-word;
+    color: #485154;
+}
+.message_div .message_more{
+    background-image: url("/t/colorful/weixin_bg1.png");
+    background-position: 0 -38px;
+    background-repeat: repeat-x;
+    height: 55px;
+    position: relative;
+}
+.message_div .message_more label{
+    padding: 15px 10px 10px;
+}
