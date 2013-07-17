@@ -1,0 +1,39 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>角色管理</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+             <li><%= link_to "角色管理", my_school_roles_path %></li>
+            <li>/</li>
+            <li>添加角色</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+      <a href="<%=url_for(:controller=>"/my_school/roles",:action=>:index)%>" title="返回">
+            <div class="work_action_return">
+            </div>
+            <div class="work_action_return_move">
+            </div>
+          </a>
+      </ul>
+    </div>
+
+    <div class="work_form">
+      <div class="form_div">
+        <%= form_for(@role, :validate => true, :url=>my_school_roles_path(@role), :html =>{:class=>"form-horizontal"}) do |f| %>
+          <%= render 'form', :f=>f %>
+       <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
