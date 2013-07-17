@@ -84,7 +84,6 @@ class Kindergarten < ActiveRecord::Base
          self.option_operates << option_operate
       end
 
-      self.roles.delete_all
       self.roles.each  do |role|
         role.destroy
       end 

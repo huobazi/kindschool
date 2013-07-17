@@ -1,0 +1,35 @@
+<div class="control-group">
+ 	<%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
+<div class="controls">
+     <%= text_field_tag(:kindergarten,@kind.name, disabled: true) %>
+</div>
+</div>
+<div class="control-group">
+	<%=f.label :name, '名称*:' ,:class=>"control-label"%>
+<div class="controls">
+  <%= f.text_field(:name, :validate => true) %>
+</div>
+</div>
+<div class="control-group">
+	<%=f.label :number, '编号:' ,:class=>"control-label"%>
+<div class="controls">
+  <%= f.text_field(:number) %>
+</div>
+</div>
+<div class="control-group">
+	<%=f.label :admin, '是否为管理员:' ,:class=>"control-label"%>
+<div class="controls">
+  <%= check_box(:role, :admin, {:checked=>false}, true, false)  %>
+</div>
+</div>
+<div class="control-group">
+	<%=f.label :note, '描述:' ,:class=>"control-label"%>
+<div class="controls">
+  <%= f.text_area(:note,:size=>"20x5",) %>
+</div>
+</div>
+<div class="control-group">
+<div class="controls">
+<%= f.submit('保存',:class=>"btn") %>
+</div>
+</div>

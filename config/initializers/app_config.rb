@@ -60,7 +60,7 @@ MENUS ={"home"=>{
       "my_school/smarties" => ['index','create']
     },
     "36000"=>{
-      "my_school/roles"=>['index']
+      "my_school/roles"=>['index','show','edit','new']
     }
    },
    "100000"=>{

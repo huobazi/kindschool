@@ -351,10 +351,10 @@ smarties_create:
 role_index:
   id: 5006
   parent_id: 6
-  name: ""
+  name: "角色管理"
   level: 2
   sequence: 0
-  note: ""
+  note: "角色管理"
   controller: "my_school/roles"
   action: "index"
   protocol: ""
