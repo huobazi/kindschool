@@ -35,4 +35,11 @@
         }
       );
   });
+  $(".career_strategy_graduation input").change(function() {
+      if ($(".career_strategy_graduation input:checked").val() == "true")
+         $(".to_squad").hide()
+      else
+         $(".to_squad").show()
+      end
+  });
 </script>
