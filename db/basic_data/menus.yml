@@ -130,7 +130,7 @@
   sequence: 600
   children:
   - id: 61000
-    name: "发信息"
+    name: "发消息"
     operate_id: 2006
     number: 61000
     url: "/my_school/messages/new"
