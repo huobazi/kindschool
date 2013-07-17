@@ -53,7 +53,7 @@
                   <%if role.users.blank?%>
                   <%= link_to '删除',my_school_role_path(role) , method: :delete, data: { confirm: '确定要删除么?' } %>
                   <%end%>
-                  <%= link_to '设置权限' %>
+                  <%= link_to '设置权限',set_operate_to_role_my_school_role_path(role) %>
                </td>
               </tr>
             <% end %>

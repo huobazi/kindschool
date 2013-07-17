@@ -2,7 +2,7 @@
 #角色的管理
 class MySchool::RolesController < MySchool::ManageController
    def index
-	 @roles = @kind.roles.page(params[:page] || 1).per(10).order("created_at DESC")
+	 @roles = @kind.roles.page(params[:page] || 1).per(10)#.order("created_at DESC")
    end
    def new
    	 @role = @kind.roles.new()
@@ -49,5 +49,38 @@ class MySchool::RolesController < MySchool::ManageController
       format.json { head :no_content }
     end
    end
+   #为该角色分配权限
+   def set_operate_to_role
+     @role = @kind.roles.where(:id=>params[:id]).first
+     @option_operates = @kind.option_operates.group_by{|option_operate| option_operate.operate && option_operate.operate.parent ? option_operate.operate.parent.name : ""}
+   end
+   
+   def save_operate_to_role
+   	 if  @role = @kind.roles.where(:id=>params[:id]).first
+     ids = params[:operate] || []
+      if ids.blank?
+        @role.option_operates.each do |operate|
+          operate.destroy   
+        end
+      else
+        @role.option_operates.each do |option|
+          unless ids.include?(option.id.to_s)
+            @role.option_operates.destroy(option)
+          end
+        end
+      end
+      ids.each do |option_operate_id|
+        if option = OptionOperate.find_by_id_and_kindergarten_id(option_operate_id,@role.kindergarten_id)
+          @role.option_operates << option unless @role.option_operates.include?(option)
+        end
+      end
+      @role.save!
+  else
 
+  end
+    respond_to do |format|
+      format.html { redirect_to my_school_roles_path }
+      format.json { head :no_content }
+    end
+   end
 end

@@ -12,7 +12,7 @@
           <ul>
              <li><%= link_to "角色管理", my_school_roles_path %></li>
             <li>/</li>
-            <li>编辑角色</li>
+            <li>角色分配权限</li>
           </ul>
         </div>
       </div>
@@ -28,8 +28,8 @@
 
     <div class="work_form">
       <div class="form_div">
-       <%= form_for([:my_school,@role], :html =>{:class=>"form-horizontal"}) do |f| %>
-          <%= render 'form', :f=>f %>
+       <%= form_for(@role,:method=>'post',:url=>save_operate_to_role_my_school_role_path(@role), :html =>{:class=>"form-horizontal"}) do |f| %>
+          <%= render 'set_operate', :f=>f %>
        <% end %>
       </div>
     </div>
