@@ -1,0 +1,65 @@
+<div class="show_publicity">
+  <img src="/t/colorful/small_publicity.jpg" alt="展示图"/>
+</div>
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>修改信息</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li><%= link_to "发件箱", outbox_my_school_messages_path %></li>
+            <li>/</li>
+            <li>修改信息</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+          <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:outbox)%>" title="返回">
+            <div class="work_action_return">
+            </div>
+            <div class="work_action_return_move">
+            </div>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="work_form">
+      <div class="form_div">
+        <%= simple_form_for @message, :validate => true, :url => {:controller=>"/my_school/messages",:action=>:update}, :html =>{:class=>"form-horizontal"} do |f| %>
+          <%= f.input :title, :required => true %>
+          <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
+
+          <%= f.input :kindergarten_id, :as => :hidden %>
+          <%= f.input :content, :input_html => { :class => "span5" }%>
+          <%= f.input :send_date, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.send_date.to_short_datetime}", :disabled => true } %>
+          <%= f.input :sender, :input_html => { :value => "#{f.object.sender.name if f.object.sender}", :disabled => true } %>
+
+          <div class="control-group">
+            <div class="controls">
+              <%= f.button :submit %>
+            </div>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  jQuery(function() {
+    $('#message_send_date').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+  });
+</script>

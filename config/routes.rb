@@ -5,6 +5,7 @@ School::Application.routes.draw do
   match 'my_school/about' => 'my_school/main#about'
   match 'my_school/contact_us' => 'my_school/main#contact_us'
   namespace :my_school do
+    resources :roles
     resources :smarties do
       collection {get :role_operates}  
     end
@@ -54,11 +55,15 @@ School::Application.routes.draw do
     resources :messages do
       member do
         get :outbox_show
+        get :draft_show
+        get :draft_edit
+        post :draft_update
       end
       collection do
         get :outbox,:get_kindergarten,:get_grade,:get_student
         post :get_grades_all,:get_squads_all,:get_roles_all,:get_users_all
         delete :destroy_multiple
+        get :draft_box
       end
     end
     resources :home do

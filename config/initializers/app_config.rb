@@ -16,7 +16,7 @@ MENUS ={"home"=>{
   "my_school/messages"=>["new"]
 },
   "61001"=>{
-  "my_school/messages"=>['index',"show","edit","create","update"]
+  "my_school/messages"=>['index',"show","create"]
 },
   "61002"=>{
   "my_school/notices"=>['new']
@@ -25,7 +25,10 @@ MENUS ={"home"=>{
   "my_school/notices"=>["index","show"]
 },
   "63000"=>{
-  "my_school/messages"=>["outbox","outbox_show"]
+  "my_school/messages"=>["outbox","outbox_show", "edit", "update"]
+ },
+   "64000"=>{
+  "my_school/messages"=>["draft_box", "draft_show", "draft_edit"]
  }
 },
   "personnel"=>{
@@ -58,6 +61,9 @@ MENUS ={"home"=>{
     },
     "35000"=>{
       "my_school/smarties" => ['index','create']
+    },
+    "36000"=>{
+      "my_school/roles"=>['index']
     }
    },
    "100000"=>{
@@ -82,4 +88,3 @@ MENUS ={"home"=>{
 
 
 }
-
