@@ -7,33 +7,41 @@
   </div>
   <div class="message_filter">
     <%= form_tag '/weixin/messages' , :method=>"get",:id=>"message_search" do %>
-      <%= select_tag "messages[send_date]",options_for_select(@send_date) %>
+      <%= select_tag "send_date",options_for_select(@send_date,(params[:send_date]).to_s) %>
+      <%= select_tag "messages[message_entries_read_status_equals]",options_for_select([["阅读状态",""],["未读","0"],["已读","1"]],(params[:messages] ? params[:messages][:message_entries_read_status_equals] : "").to_s) %>
     <%end%>
   </div>
   <div class="message_list">
     <ul>
-      <% @messages.each do |message| %>
-      <li>
-        <a href="###">
-          <div><label class="message_user">发件人:管理员</label><label class="message_time">2013-6-17 10:30</label></div>
-          <div class="message_content">测试测试测试</div>
-        </a>
-      </li>
+      <% if @messages.blank? %>
+        <li><div class="message_content">您还没有收到信息。</div></li>
+      <% else %>
+        <% @messages.each do |message| %>
+          <li>
+            <a href="<%= url_for(:action=>:show,:id=>message.id) %>" title="查看信息">
+              <div><label class="message_user">发件人:<%=message.sender ? message.sender.name : ""%></label><label class="message_time"><%=message.send_date ? message.send_date.to_long_datetime : ""%></label></div>
+              <div class="message_content"><%= message.title %></div>
+            </a>
+          </li>
+        <% end %>
       <% end %>
     </ul>
+    <br/>
   </div>
-  <div class="message_more">
-    <a href="###" id="message_more" title="查看更多">
-      <div class="show_div"></div>
-      <label>显示更多消息</label>
-    </a>
-  </div>
+  <% unless  @messages.blank? %>
+    <div class="message_more">
+      <a href="###" id="message_more" title="查看更多">
+        <div class="show_div"></div>
+        <label>显示更多消息</label>
+      </a>
+    </div>
+  <% end %>
 </div>
 <%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
 <%= render :partial => "/modules/colorful/weixin_menu_one"%>
 <script type="text/javascript">
   $(function(){
-    $("#messages_send_date").change(function(){
+    $("#message_search select").change(function(){
       $("#message_search").submit();
     })
   })

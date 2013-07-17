@@ -10,6 +10,8 @@ class Message < ActiveRecord::Base
 
   validates :content, :length => { :minimum => 5 }
 
+  STATUS_DATA = {"0"=>"草稿","1"=>"已发送"}
+  TP_DATA = {"0"=>"站内信","1"=>"站内加短信"}
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"

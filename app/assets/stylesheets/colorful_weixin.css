@@ -351,3 +351,64 @@ body {
 .message_div #message_more:hover,.message_div #message_more:focus{
     color: #494542;
 }
+
+.show_title{
+    background-color: #EBF7FC;
+    border-bottom: 2px #8ED2FC solid;
+}
+.message_title a{
+    background-image: url("/t/colorful/weixin_back.png");
+    color: white;
+    float: left;
+    font-size: 18px;
+    height: 31px;
+    line-height: 28px;
+    margin-top: -3px;
+    text-align: center;
+    text-decoration: none;
+    width: 52px;
+}
+.show_title .title{
+    padding: 5px 5px 5px 10px;
+    font-weight: bold;
+}
+.show_title .limit_title{
+    padding: 5px 5px 5px 10px;
+}
+.message_list label.message_content{
+    padding: 15px 5px 5px 10px;
+    margin-bottom: 25px;
+    word-wrap: break-word;
+}
+.return_div{
+    background-color: #F4F4F4;
+    position: relative;
+    border-top: 1px #D5D5D5 solid;
+}
+.return_div .swoosh{
+    background-image: url("/t/colorful/weixin_icon.png");
+    background-position: -10px 405px;
+    height: 25px;
+    left: 30%;
+    position: absolute;
+    top: -24px;
+    width: 30px;
+}
+.return_div label{
+    padding: 15px 5px 5px 10px;
+    font-weight: bold;
+}
+.return_div .return_text{
+    padding: 10px;
+}
+.return_div .return_input{
+    width: 60%;
+}
+.return_div .return_submit{
+    background-image: url("/t/colorful/weixin_icon.png");
+    background-position: -240px 465px;
+    border: medium none;
+    color: white;
+    height: 50px;
+    width: 60px;
+}
