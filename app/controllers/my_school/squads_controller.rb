@@ -91,6 +91,19 @@ class  MySchool::SquadsController < MySchool::ManageController
 
   def add_strategy
     binding.pry
+
+    @career_strategy = CareerStrategy.new(params[:career_strategy])
+
+    if params[:career_strategy][:graduation]
+      flash[:success] = "该班已毕业"
+    end
+    if @career_strategy.save!
+      flash[:success] += "操作成功"
+    else
+      flash[:error] += "操作失败"
+    end
+
+    redirect_to my_school_squad_path(params[:squad_id])
   end
 end
 
