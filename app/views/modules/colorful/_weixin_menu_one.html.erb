@@ -45,16 +45,6 @@
 
 <script type="text/javascript">
   $(function() {
-    $(".phone,.growth").click(function(){
-      var div = $($(this).attr("for"));
-      if(div.css("display") == "block"){
-        $(this).children("div").removeClass("del_div");
-        div.hide();
-      }else{
-        $(this).children("div").addClass("del_div");
-        div.show();
-      }
-    })
     $(".menu_one_a").click(function(){
       var div = $($(this).attr("for"));
       if(div.css("display") == "block"){
