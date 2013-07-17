@@ -35,7 +35,7 @@
 
 <%= f.input :title, :validate => true, :required => true,:input_html=>{:class=>"span5"}%>
 <div style="float:right;">
-<p  id="numtj"><var style="color:#C00">--</var>/<%=calculated_figures%></p>
+<p  id="numtj"><var style="color:#C00">--</var>/<span id="numcalcu">800</span></p>
 </div>
 <%= f.input :content, :validate => true, :required => true ,:input_html=>{:class=>"span5"}%>
 
@@ -60,16 +60,30 @@
   <%=button_to "确定",'###',:id=>'close_dialog_button'%>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){
+
+$(function() {
+    $("#message_tp").click(function() {               //checkBox点击事件
+        if($("#message_tp").attr("checked"))              //判断是否选中
+          { $("#numcalcu").text(<%=calculated_figures%>);
+           load_length();}
+           else
+           { $("#numcalcu").text(800);
+           load_length();}
+        });
+    });
+function load_length(){
   var text=$("#message_content").val();
   var counter=text.length;
-  $("#numtj var").text(<%=calculated_figures%>-counter);
+  $("#numtj var").text($("#numcalcu").text()-counter);
   $(document).keyup(function() {
     var text=$("#message_content").val();
     var counter=text.length;
-  $("#numtj var").text(<%=calculated_figures%>-counter);
+  $("#numtj var").text($("#numcalcu").text()-counter);
   });
-});
+};
+$(document).ready(load_length());
+
+
 </script>
 <script type="text/javascript">
   $(function() {

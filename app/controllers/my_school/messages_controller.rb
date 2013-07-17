@@ -22,7 +22,7 @@ class MySchool::MessagesController < MySchool::ManageController
   end
 
   def destroy
-    @message = NotMessageice.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
     @message.destroy
 
     respond_to do |format|

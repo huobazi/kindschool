@@ -1,6 +1,7 @@
 #encoding:utf-8
 #教职工
 class Staff < ActiveRecord::Base
+  acts_as_paranoid
   attr_accessible :user_id, :card_code, :attendance_code, :education, :birthday, :come_in_at
 
   belongs_to :user

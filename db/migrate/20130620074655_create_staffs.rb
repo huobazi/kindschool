@@ -7,7 +7,7 @@ class CreateStaffs < ActiveRecord::Migration
       t.string   :attendance_code
       t.timestamp :come_in_at
       t.timestamp :birthday
-
+      t.timestamp :deleted_at
       t.timestamps
     end
   end
