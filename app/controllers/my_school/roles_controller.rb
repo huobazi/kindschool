@@ -75,11 +75,12 @@ class MySchool::RolesController < MySchool::ManageController
         end
       end
       @role.save!
+      @nitice = '角色设置权限成功.' 
   else
-
+      @nitice = '角色不存在,没有设置权限.'
   end
     respond_to do |format|
-      format.html { redirect_to my_school_roles_path }
+      format.html { redirect_to my_school_roles_path,notice:@nitice  }
       format.json { head :no_content }
     end
    end
