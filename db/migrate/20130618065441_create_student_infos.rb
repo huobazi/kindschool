@@ -49,7 +49,7 @@ class CreateStudentInfos < ActiveRecord::Migration
       t.string :education          #学历
       t.string :safe_box           #社会保险箱
       t.string :head_url           #头像
-
+      t.timestamp :deleted_at
       t.timestamps
     end
   end

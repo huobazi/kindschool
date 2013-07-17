@@ -1,6 +1,7 @@
 #encoding:utf-8
 require 'digest/sha1'
 class User < ActiveRecord::Base
+  acts_as_paranoid
   attr_accessible :kindergarten_id, :logo,:login, :name, :note, :number, :status,
     :tp,:crypted_password,:salt,:role_id,:remember_token,:remember_token_expires_at,
     :gender,:phone,:area_id,:weixin_code,:token_key,:token_secret,:token_at, :email
