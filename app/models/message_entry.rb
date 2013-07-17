@@ -1,5 +1,6 @@
 #encoding:utf-8
 class MessageEntry < ActiveRecord::Base
+  acts_as_paranoid
   attr_accessible :content, :message_id, :phone, :receiver_id, :receiver_name, :sms, :status,:read_status
 
   belongs_to :message

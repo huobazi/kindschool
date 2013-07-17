@@ -1,5 +1,6 @@
 #encoding:utf-8
 class Message < ActiveRecord::Base
+  acts_as_paranoid
   attr_accessible :approve_status, :approver_id, :chain_code, :content, :entry_id, :kindergarten_id, :parent_id, :send_date, :sender_id, :sender_name, :status, :title, :tp
 
   belongs_to :kindergarten
@@ -7,7 +8,7 @@ class Message < ActiveRecord::Base
   has_many :message_entries
 
   #回复的信息
-  has_many :return_messages, :class_name => "Message",:foreign_key=>:entry_id,:order=>"send_date DESC"
+  has_many :return_messages, :class_name => "Message",:foreign_key=>:entry_id,:order=>"send_date DESC", :dependent => :destroy
   belongs_to :parent_message, :class_name => "Message",:foreign_key=>:entry_id
 
   validates :content,:sender_id,:send_date, :presence => true

@@ -9,7 +9,7 @@ class CreateMessageEntries < ActiveRecord::Migration
       t.integer :sms #短信服务
       t.string :phone
       t.text :content
-
+      t.timestamp :deleted_at
       t.timestamps
     end
   end

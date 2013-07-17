@@ -57,3 +57,4 @@ gem 'rd_searchlogic',"~> 3.0.1"
 group :development do
   gem "pry-rails"
 end
+gem "acts_as_paranoid", "~>0.4.0"
