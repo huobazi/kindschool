@@ -59,6 +59,9 @@ class  MySchool::GradesController < MySchool::ManageController
       flash[:notice] = "必须选择年级"
     else
       params[:grade].each do |grade|
+        if grade.squads.any?
+          next
+        end
         @kind.grades.destroy(grade)
       end
     end

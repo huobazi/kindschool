@@ -420,6 +420,7 @@ zh-CN:
         is_default: "是否默认"
         image_url: "图片信息"
       career_strategy:
+        kindergarten_label: "所属幼儿园"
         kindergarten: "幼儿园"
         graduation: "毕业"
         add_squad: "新增的班级"

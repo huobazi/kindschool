@@ -59,6 +59,9 @@ class  MySchool::SquadsController < MySchool::ManageController
       flash[:notice] = "必须先选择班级"
     else
       params[:squad].each do |squad|
+        if squad.student_infos.any?
+          next
+        end
         @kind.squads.destroy(squad)
       end
     end
@@ -66,6 +69,28 @@ class  MySchool::SquadsController < MySchool::ManageController
         format.html { redirect_to my_school_squads_path }
         format.json { head :no_content }
     end
+  end
+
+  def add_strategy_view
+    @squad = @kind.squads.find_by_id(params[:id])
+    @career_strategy = CareerStrategy.new
+    @career_strategy.kindergarten_id = @kind.id
+    @career_strategy.from_id = @squad.id
+  end
+
+  def to_squads
+    if grade = @kind.grades.where(:id => params[:grade].to_i).first
+      @squads = grade.squads
+    end
+    if @squads.blank?
+      render :text => "还未创建班级"
+    else
+      render "to_squads", :layout => false
+    end
+  end
+
+  def add_strategy
+    binding.pry
   end
 end
 

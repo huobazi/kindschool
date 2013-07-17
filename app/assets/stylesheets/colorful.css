@@ -988,3 +988,9 @@ a.album_a .album_img{
   background: #DBDBDB;
   margin-right: 10px;
 }
+
+fieldset.to_squad {
+  width:300px;
+  padding: 20px;
+  padding-top: 0;
+}
