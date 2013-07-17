@@ -47,7 +47,6 @@ class Weixin::BaseController < ApplicationController
     return @subdomain == "" || @subdomain == "www"
   end
 
-  #c897963afaebf0e3722422c9362c2f779ca511cd
   def get_validate_data
     @validate_data = []
     @validate_data << (params[:nonce] || "")
