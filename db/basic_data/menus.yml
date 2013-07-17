@@ -167,8 +167,16 @@
     url: "/my_school/messages/outbox"
     title: "发件箱"
     height_level: "b"
-    sequence: 624
+    sequence: 625
     operate_id: 2008
+  - id: 64000
+    name: "草稿箱"
+    number: 64000
+    url: "/my_school/messages/draft_box"
+    title: "草稿箱"
+    height_level: "b"
+    sequence: 626
+    operate_id: 2009
 - id: 70000
   number: 70000
   name: "班级活动"
@@ -219,7 +227,7 @@
     sequence: 920
   - id: 93000
     name: "菜谱"
-    operate_id: 8001 
+    operate_id: 8001
     number: 93000
     url: "/my_school/cook_books"
     title: "菜谱"

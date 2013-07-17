@@ -181,6 +181,45 @@ message_outbox:
   protocol: ""
   visible: true
   <<: *DEFAULTS
+message_draft_box:
+  id: 2009
+  parent_id: 2
+  name: "草稿箱"
+  level: 2
+  sequence: 0
+  note: "草稿箱"
+  controller: "my_school/messages"
+  action: "draft_box"
+  params: ""
+  protocol: ""
+  visible: true
+  <<: *DEFAULTS
+message_draft_show:
+  id: 2010
+  parent_id: 2
+  name: "查看草稿"
+  level: 2
+  sequence: 0
+  note: "查看草稿"
+  controller: "my_school/messages"
+  action: "draft_show"
+  params: ""
+  protocol: ""
+  visible: true
+  <<: *DEFAULTS
+message_draft_edit:
+  id: 2011
+  parent_id: 2
+  name: "修改草稿"
+  level: 2
+  sequence: 0
+  note: "修改草稿"
+  controller: "my_school/messages"
+  action: "draft_edit"
+  params: ""
+  protocol: ""
+  visible: true
+  <<: *DEFAULTS
 
 #||||||||||||||||||||||||||论坛帖子能
 forum_manage:

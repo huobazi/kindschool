@@ -1,10 +1,6 @@
 <% f = form %>
 <script type="text/javascript">
   $(function() {
-    $('#message_send_date').datepicker({
-      language: "zh-CN",
-      format:"yyyy-mm-dd"
-    });
     $("#dialog_change_users" ).dialog({
       autoOpen: false,
       height:500,
@@ -42,8 +38,6 @@
 <p  id="numtj"><var style="color:#C00">--</var>/<%=calculated_figures%></p>
 </div>
 <%= f.input :content, :validate => true, :required => true ,:input_html=>{:class=>"span5"}%>
-
-<%= f.input :send_date, :validate => true, :required => true,:as=>:string ,:class=>"input-mediun"%>
 
 <%if current_user.is_send%>
   <div class="control-group">

@@ -21,15 +21,11 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:new)%>" title="添加">
-            <div class="work_action_add">
-            </div>
-            <div class="work_action_add_move">
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:edit,:id=>@message.id)%>" title="编辑">
+          <% if action_name == "draft_show" %>
+            <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:draft_edit,:id=>@message.id)%>" title="编辑">
+          <% else %>
+            <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:edit,:id=>@message.id)%>" title="编辑">
+          <% end %>
             <div class="work_action_edit">
             </div>
             <div class="work_action_edit_move">
@@ -45,11 +41,15 @@
           <% end %>
         </li>
         <li>
-        <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:outbox)%>" title="返回">
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
+          <% if action_name == "draft_box" %>
+            <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:draft_box)%>" title="返回">
+          <% else %>
+            <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:outbox)%>" title="返回">
+          <% end %>
+          <div class="work_action_return">
+          </div>
+          <div class="work_action_return_move">
+          </div>
           </a>
         </li>
       </ul>

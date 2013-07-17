@@ -26,6 +26,9 @@ MENUS ={"home"=>{
 },
   "63000"=>{
   "my_school/messages"=>["outbox","outbox_show", "edit", "update"]
+ },
+   "64000"=>{
+  "my_school/messages"=>["draft_box", "draft_show", "draft_edit"]
  }
 },
   "personnel"=>{
