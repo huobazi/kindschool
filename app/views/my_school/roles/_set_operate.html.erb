@@ -1,0 +1,22 @@
+<% @option_operates.each do |k, v| %>
+      <li class='check_boxes'>
+        <%if k != 'root' && !k.blank? %>
+      <fieldset>
+        <legend class="label"><label><%= k %></label></legend>
+        <ol>
+          <% v.each do |operate| %>
+            <li>
+            <label for="operate_<%= operate.id %>">
+            <input id="operate_<%= operate.id %>" name="operate[]" type="checkbox" value="<%= operate.id %>" <%= @role.option_operates.include?(operate) ? "checked=true" : nil %> /> <%= operate.operate.name %>    </label>
+            </li>
+          <% end %>
+        </ol>
+      </fieldset>
+      <%end%>
+      </li>
+    <% end %>
+    <div class="control-group">
+<div class="controls">
+<%= f.submit('保存',:class=>"btn") %>
+</div>
+</div>

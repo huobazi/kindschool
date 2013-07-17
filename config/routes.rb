@@ -5,7 +5,12 @@ School::Application.routes.draw do
   match 'my_school/about' => 'my_school/main#about'
   match 'my_school/contact_us' => 'my_school/main#contact_us'
   namespace :my_school do
-    resources :roles
+    resources :roles do
+      member do
+        get :set_operate_to_role
+        post :save_operate_to_role 
+      end
+    end
     resources :smarties do
       collection {get :role_operates}  
     end
@@ -162,9 +167,9 @@ School::Application.routes.draw do
     end
   end
 
-  # namespace :weixin do
-  #   resources :api
-  # end
+  namespace :weixin do
+    resources :api
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
