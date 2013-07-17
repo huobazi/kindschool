@@ -27,7 +27,7 @@
           </a>
         </li>
         <li>
-          <a href="/" title="删除">
+          <a href="/" title="删除" id="destroy_multiple">
             <div class="work_action_delete">
             </div>
             <div class="work_action_delete_move">
@@ -39,34 +39,49 @@
 
     <div class="work_list">
       <%unless @messages.blank? %>
-      <table class="list">
-        <tr>
-          <th><input type="checkbox" name="" value="" alt="全选"/></th>
-          <th>发送人</th>
-          <th>标题</th>
-          <th>发布时间</th>
-          <th>是否发短信</th>
-        </tr>
-        <% (@messages || []).each do |message| %>
+      <table class="table table-striped table-hover">
+        <%= form_tag destroy_multiple_my_school_messages_path, method: :delete, :id => "destroy_multi_form" do %>
           <tr>
-            <td><input type="checkbox" name="" value="" /></td>
-            <td><%= message.sender.try(:name)%></td>
-            <td><%= link_to message.title,outbox_show_my_school_message_path(message) %></td>
-            <td><%= message.send_date ? message.send_date.to_short_datetime : "" %></td>
-            <td><%= message.tp ? "是" : "否"%></td>
-            <td>
-              <%message.message_entries.each do |m_e|%>
-              <%=m_e.receiver.try(:name)%>
-              <%end%>
-            </td>
+            <th><input type="checkbox" name="" value="" alt="全选" id="message_all">全选</th>
+            <th>发送人</th>
+            <th>标题</th>
+            <th>发布时间</th>
+            <th>是否发短信</th>
           </tr>
+          <% (@messages || []).each do |message| %>
+            <tr>
+              <td><input id="message_<%= message.id %>" class="message_check" name="message[]" type="checkbox" value="<%= message.id %>" /></td>
+              <td><%= message.sender.try(:name)%></td>
+              <td>
+                <% if action_name == "draft_box" %>
+                  <%= link_to message.title,draft_show_my_school_message_path(message) %>
+                <% else %>
+                  <%= link_to message.title,outbox_show_my_school_message_path(message) %>
+                <% end %>
+              </td>
+              <td><%= message.send_date ? message.send_date.to_short_datetime : "" %></td>
+              <td><%= message.tp ? "是" : "否"%></td>
+            </tr>
+          <% end %>
         <% end %>
       </table>
       <%else%>
-      暂无发信息
+        暂无发信息
       <%end%>
       <%= paginate @messages %>
     </div>
   </div>
 
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#message_all").click(function(){
+    $(".message_check").attr("checked",this.checked);
+  })
+  $("#destroy_multiple").click(function(){
+      $("#destroy_multi_form").submit();
+      return false;
+  });
+});
+</script>

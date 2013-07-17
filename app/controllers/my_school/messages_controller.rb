@@ -8,7 +8,7 @@ class MySchool::MessagesController < MySchool::ManageController
   
   #
   def outbox
-    @messages = current_user.messages.page(params[:page] || 1).per(10).order("messages.send_date DESC")
+    @messages = current_user.messages.where(:status => true).page(params[:page] || 1).per(10).order("messages.send_date DESC")
 #.where("messages.kindergarten_id=:kind_id")
   end
 
@@ -16,10 +16,11 @@ class MySchool::MessagesController < MySchool::ManageController
     @message = Message.new
     @data = current_user.get_users_ranges
   end
-  
+
   def edit
     @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
   end
+
   def destroy
     @message = NotMessageice.find_by_id_and_kindergarten_id(params[:id],@kind.id)
     @message.destroy
@@ -41,6 +42,7 @@ class MySchool::MessagesController < MySchool::ManageController
   def create
     @message = Message.new(params[:message])
     @message.kindergarten = @kind
+    @message.send_date = Time.now.utc
     @message.sender = current_user
     if params[:ids].blank?
       flash[:error]="收件人不能为空"
@@ -52,6 +54,11 @@ class MySchool::MessagesController < MySchool::ManageController
       if user = User.find_by_id_and_kindergarten_id(user_id,@kind.id)
         @message.message_entries << MessageEntry.new(:receiver_id=>user.id,:receiver_name=>user.name,:sms=>user.phone)
       end
+    end
+    if params[:draft]
+      @message.status = 0
+    else
+      @message.status = 1
     end
     respond_to do |format|
       if @message.save
@@ -70,7 +77,7 @@ class MySchool::MessagesController < MySchool::ManageController
     respond_to do |format|
       if @message.update_attributes(params[:message])
         flash[:notice] = '更新消息成功.'
-        format.html { redirect_to(:action=>:show,:id=>@message.id) }
+        format.html { redirect_to(:action=>:outbox_show,:id=>@message.id) }
         format.xml  { head :ok }
       else
         format.html { render :action => :edit }
@@ -282,10 +289,43 @@ LEFT JOIN squads ON(squads.id = student_infos.squad_id)")
       params[:message].each do |message|
         @kind.messages.destroy(message)
       end
+      flash[:success] = "删除成功"
     end
     respond_to do |format|
       format.html { redirect_to my_school_messages_path }
       format.json { head :no_content }
     end
   end
+
+  def draft_box
+   @messages = current_user.messages.where(:status => false).page(params[:page] || 1).per(10).order("messages.send_date DESC")
+   render "my_school/messages/outbox"
+  end
+
+  def draft_show
+    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+    render "my_school/messages/outbox_show"
+  end
+
+  def draft_edit
+    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+  end
+
+  def draft_update
+    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+    if params[:send]
+      params[:message].merge(:send_date => Time.now.utc)
+    end
+    respond_to do |format|
+      if @message.update_attributes(params[:message])
+        flash[:notice] = '更新消息成功.'
+        format.html { redirect_to(:action=>:outbox_show,:id=>@message.id) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => :edit }
+        format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
 end

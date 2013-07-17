@@ -1,0 +1,42 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    <a href="<%= url_for(:action=>:index) %>" title="返回">返回</a>消息通知
+  </div>
+  <div class="show_title">
+    <div class="title">
+      <label><%= @message.title %></label>
+    </div>
+    <div class="title">
+      <label>发件人:<%= @message.sender ? @message.sender.name : "" %></label>
+    </div>
+    <div class="limit_title">
+      <label>时 间:<%= @message.send_date ? @message.send_date.to_long_datetime : "" %></label>
+    </div>
+  </div>
+  <div class="message_list">
+    <label class="message_content"><%= @message.content %></label>
+    <br/>
+  </div>
+  <div class="return_div">
+    <div class="swoosh"></div>
+    <label>回复</label>
+    <div class="return_text">
+      <%= form_tag "" do %>
+      <%= text_area_tag :return,"",:placeholder=>"说点什么:)", :class => 'return_input',:rows => 2%>
+      <%= submit_tag "回复",:class=>"return_submit" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
+<script type="text/javascript">
+  $(function(){
+    $("#message_search select").change(function(){
+      $("#message_search").submit();
+    })
+  })
+</script>
