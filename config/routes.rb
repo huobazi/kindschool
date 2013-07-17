@@ -155,7 +155,11 @@ School::Application.routes.draw do
         post :login
       end
     end
-    resources :messages
+    resources :messages do
+      member do
+        post :return_message
+      end
+    end
   end
 
   # namespace :weixin do

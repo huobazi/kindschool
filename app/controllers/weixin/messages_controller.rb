@@ -18,6 +18,42 @@ class Weixin::MessagesController < Weixin::ManageController
   end
 
   def show
-    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+    if @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+      if entry = @message.message_entries.find_by_receiver_id(current_user.id)
+        if !entry.read_status
+          entry.update_attribute(:read_status, true)
+        end
+      else
+        flash[:error] = "消息不存在"
+        redirect_to :action => :index
+        return
+      end
+      @return_messages = @message.return_messages.where(:sender_id=>current_user.id).page(params[:page] || 1).per(5)
+    else
+      flash[:error] = "消息不存在"
+      redirect_to :action => :index
+    end
+  end
+
+  def return_message
+    if @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+      unless @message.message_entries.find_by_receiver_id(current_user.id)
+        flash[:error] = "消息不存在"
+        redirect_to :action => :index
+        return
+      end
+      @content = params[:content]
+      message = Message.new(:kindergarten_id=>@kind.id,:entry_id=>@message.id,:content=>params[:content],:status=>1,:tp=>0,:sender_id=>current_user.id,:send_date=>Time.now)
+      message.message_entries << MessageEntry.new(:receiver_id=>@message.sender_id)
+      message.save!
+      flash[:notice] = "回复成功"
+      redirect_to :action => :show,:id=>@message.id
+    else
+      flash[:error] = "消息不存在"
+      redirect_to :action => :index
+    end
+  rescue Exception=>ex
+    flash[:error] = ex.message
+    redirect_to :action => :show,:id=>@message.id
   end
 end

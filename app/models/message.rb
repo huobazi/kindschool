@@ -6,7 +6,12 @@ class Message < ActiveRecord::Base
   belongs_to :sender, :class_name => "User",:foreign_key=>:sender_id
   has_many :message_entries
 
-  validates :title, :content, :send_date, :presence => true
+  #回复的信息
+  has_many :return_messages, :class_name => "Message",:foreign_key=>:entry_id,:order=>"send_date DESC"
+  belongs_to :parent_message, :class_name => "Message",:foreign_key=>:entry_id
+
+  validates :content,:sender_id,:send_date, :presence => true
+  validates :title, :presence => {:if => :if_return?}
 
   validates :content, :length => { :minimum => 5 }
 
@@ -15,5 +20,20 @@ class Message < ActiveRecord::Base
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
+  end
+
+  def before_create
+    if self.sender
+      self.sender_name = self.sender.name
+    elsif self.sender_id
+      if user = User.find_by_id_and_kindergarten_id(self.sender_id,self.kindergarten_id)
+        self.sender_name = user.name
+      end
+    end
+  end
+
+  #是否是回复的
+  def if_return?
+    self.entry_id.blank?
   end
 end

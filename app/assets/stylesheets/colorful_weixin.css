@@ -297,13 +297,13 @@ body {
     margin-top: 10px;
     width: auto;
 }
-.message_div .message_list li{
+.message_div .message_list .data_list li{
     border: 1px solid #CBCBCB;
     list-style-type: none;
     margin: 5px;
     border-radius:5px;
 }
-.message_div .message_list li:hover{
+.message_div .message_list .data_list li:hover{
     border: 1px solid #80C2DB;
     background-color: #EBFCFB;
 }
@@ -314,7 +314,7 @@ body {
     padding: 0px;
     margin: 0px;
 }
-.message_div .message_list li .message_user{
+.message_div .message_list .data_list li .message_user{
     float: left;
     padding-top: 5px;
     text-align: left;
@@ -322,17 +322,18 @@ body {
     width: 48%;
     color: #485154;
 }
-.message_div .message_list li .message_time{
+.message_div .message_list .data_list li .message_time{
     display: inline-block;
     padding-top: 5px;
     text-align: right;
     width: 50%;
     color: #787b80;
 }
-.message_div .message_list li .message_content{
+.message_div .message_list .data_list li .message_content{
     padding: 5px;
     word-wrap: break-word;
     color: #485154;
+    line-height: 27px;
 }
 .message_div .message_more{
     background-image: url("/t/colorful/weixin_bg1.png");
@@ -379,6 +380,7 @@ body {
     padding: 15px 5px 5px 10px;
     margin-bottom: 25px;
     word-wrap: break-word;
+    line-height: 27px;
 }
 .return_div{
     background-color: #F4F4F4;
@@ -393,6 +395,9 @@ body {
     position: absolute;
     top: -24px;
     width: 30px;
+}
+.return_li{
+    background-color: #D5D5D5;
 }
 .return_div label{
     padding: 15px 5px 5px 10px;
@@ -411,4 +416,17 @@ body {
     color: white;
     height: 50px;
     width: 60px;
+}
+.paginate_div{
+    text-align: center;
+}
+.paginate_div .pagination {
+    margin: 0px;
+    padding-top: 12px;
+}
+.paginate_div .pagination a{
+    color: #787b80;
+}
+.pagination ul > li > a, .pagination ul > li > span{
+    padding: 6px 4px;
 }
