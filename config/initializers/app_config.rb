@@ -35,7 +35,7 @@ MENUS ={"home"=>{
   "11000"=>{
   "my_school/grades"=>["index","new", "show", "edit"]
 }, "12000"=>{
-  "my_school/squads" => ["index", "new", "show", "edit"]
+  "my_school/squads" => ["index", "new", "show", "edit", "add_strategy_view"]
 }, "13000" => {
 
   "my_school/staffs" => ["index", "new", "show", "edit"]},

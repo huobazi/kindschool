@@ -1,7 +1,7 @@
 #encoding:utf-8
 #学员育苗
 class MySchool::SeedlingsController < MySchool::ManageController
-   def index 
+   def index
    	 all_roles = ['admin','principal','vice_principal','assistant_principal','park_hospital']
    	 userrole = current_user.get_users_ranges
    	 if @flag=all_roles.include?(@role)

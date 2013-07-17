@@ -1,0 +1,38 @@
+<% f = strategy %>
+
+<%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
+<%= f.input :from_id, :as => :hidden %>
+
+<%= f.input :graduation, :as => :radio_buttons %>
+<fieldset class="to_squad">
+  <legend><label>选择升到的班级</label></legend>
+    <div class="control-group">
+      <label class="select optional control-label" for="grades">年级</label>
+      <div class="controls">
+        <%= select_tag "grades", options_from_collection_for_select(@kind.grades, "id", "name") %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="select optional control-label" for="to_id">班级</label>
+      <div class="controls" id="squad_partial">
+      </div>
+    </div>
+</fieldset>
+
+<div class="control-group">
+  <div class="controls">
+    <%= f.button :submit %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $("#grades").change(function(){
+      $.get(
+        "/my_school/squads/to_squads",
+        { grade: $("#grades").val()},
+        function(result) {
+          $("#squad_partial").html(result);
+        }
+      );
+  });
+</script>
