@@ -10,7 +10,7 @@ namespace :db do
     kind.loading!
     puts "添加管理员"
     #添加管理员
-    User.create(:login=>"huolg",:name=>"幼儿园管理员",:note=>"我是管理员",:tp=>2,:password=>"111111",:password_confirmation=>"111111",:kindergarten_id=>kind.id)
+    User.create(:login=>"huolg",:is_send=>true,:name=>"幼儿园管理员",:note=>"我是管理员",:tp=>2,:password=>"111111",:password_confirmation=>"111111",:kindergarten_id=>kind.id)
     puts "添加教职工"
     kind.reload
     #添加5个教职工
