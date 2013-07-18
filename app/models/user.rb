@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   acts_as_paranoid
   attr_accessible :kindergarten_id, :logo,:login, :name, :note, :number, :status,
     :tp,:crypted_password,:salt,:role_id,:remember_token,:remember_token_expires_at,
-    :gender,:phone,:area_id,:weixin_code,:token_key,:token_secret,:token_at, :email
+    :gender,:phone,:area_id,:weixin_code,:token_key,:token_secret,:token_at, :email,:is_send,:is_receive
 
   attr_accessible :password, :password_confirmation
   attr_accessor :password, :password_confirmation

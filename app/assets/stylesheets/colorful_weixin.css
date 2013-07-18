@@ -382,6 +382,19 @@ body {
     word-wrap: break-word;
     line-height: 27px;
 }
+
+.data_list div.center{
+    text-align: center;
+    margin-top: 5px;
+}
+.data_list p{
+    margin: 0px;
+}
+.data_list a{
+    color: #485154;
+    text-decoration: none;
+}
+
 .return_div{
     background-color: #F4F4F4;
     position: relative;
