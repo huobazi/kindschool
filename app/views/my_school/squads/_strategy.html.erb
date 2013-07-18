@@ -11,12 +11,14 @@
     <div class="control-group">
       <label class="select optional control-label" for="grades">年级</label>
       <div class="controls">
-        <%= select_tag "grades", options_from_collection_for_select(@kind.grades, "id", "name") %>
+        <%= up_to_default_grade(params[:id]).name %>
       </div>
     </div>
     <div class="control-group">
       <label class="select optional control-label" for="to_id">班级</label>
       <div class="controls" id="squad_partial">
+
+        <%= select_tag "to_id", options_from_collection_for_select(up_to_default_grade(params[:id]).squads, "id", "name"), :name => "career_strategy[to_id]" %>
       </div>
     </div>
 </fieldset>
@@ -28,15 +30,6 @@
 </div>
 
 <script type="text/javascript">
-  $("#grades").change(function(){
-      $.get(
-        "/my_school/squads/to_squads",
-        { grade: $("#grades").val()},
-        function(result) {
-          $("#squad_partial").html(result);
-        }
-      );
-  });
   $(".career_strategy_graduation input").change(function() {
       if ($(".career_strategy_graduation input:checked").val() == "true")
          $(".to_squad").hide()

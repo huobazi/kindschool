@@ -50,7 +50,6 @@ School::Application.routes.draw do
     resources :squads do
       collection do
         delete :destroy_multiple
-        get :to_squads
         post :add_strategy
       end
       member do
