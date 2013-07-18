@@ -1,0 +1,52 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    菜谱列表
+  </div>
+  <div class="message_filter">
+    <%= form_tag '/weixin/cook_books' , :method=>"get",:id=>"message_search" do %>
+      <%= select_tag "send_date",options_for_select(@send_date,(params[:send_date]).to_s) %>
+      <%= select_tag "messages[message_entries_read_status_equals]",options_for_select([["阅读状态",""],["未读","0"],["已读","1"]],(params[:messages] ? params[:messages][:message_entries_read_status_equals] : "").to_s) %>
+    <%end%>
+  </div>
+  <div class="message_list">
+    <ul class="data_list">
+      <% if @cook_books.blank? %>
+        <li><div class="message_content">您还没有收到信息。</div></li>
+      <% else %>
+        <% @cook_books.each do |message| %>
+          <li class="<%= message.entry_id.blank? ? "" : "return_li"%>">
+            <a href="<%= url_for(:action=>:show,:id=>message.id) %>" title="查看信息">
+              <div><label class="message_user">发件人:<%=message.sender ? message.sender.name : ""%></label><label class="message_time"><%=message.send_date ? message.send_date.to_long_datetime : ""%></label></div>
+              <% if message.entry_id %>
+                <div class="message_content">回复内容:<%= truncate(message.content) %></div>
+              <% else %>
+                <div class="message_content">信息内容:<%= message.title %></div>
+              <% end %>
+            </a>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+    <br/>
+  </div>
+  <% unless  @cook_books.blank? %>
+    <div class="message_more">
+      <div class="paginate_div">
+        <%= paginate @cook_books, :window => 1%>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
+<script type="text/javascript">
+  $(function(){
+    $("#message_search select").change(function(){
+      $("#message_search").submit();
+    })
+  })
+
+</script>

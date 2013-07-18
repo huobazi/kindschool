@@ -165,6 +165,7 @@ School::Application.routes.draw do
         post :login
       end
     end
+    resources :cook_books
     resources :messages do
       member do
         post :return_message
