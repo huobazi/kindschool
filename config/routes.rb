@@ -60,6 +60,7 @@ School::Application.routes.draw do
     resources :notices do
       collection do
         delete :destroy_multiple
+        get :approve
       end
     end
     resources :messages do
@@ -67,7 +68,9 @@ School::Application.routes.draw do
         get :outbox_show
         get :draft_show
         get :draft_edit
+        get :get_edit_ids
         post :draft_update
+        post :return_message
       end
       collection do
         get :outbox,:get_kindergarten,:get_grade,:get_student

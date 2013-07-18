@@ -47,6 +47,7 @@
             <th>标题</th>
             <th>发布时间</th>
             <th>是否发短信</th>
+            <th></th>
           </tr>
           <% (@messages || []).each do |message| %>
             <tr>
@@ -56,11 +57,12 @@
                 <% if action_name == "draft_box" %>
                   <%= link_to message.title,draft_show_my_school_message_path(message) %>
                 <% else %>
-                  <%= link_to message.title,outbox_show_my_school_message_path(message) %>
+                  <%= link_to "#{message.title}",outbox_show_my_school_message_path(message) %>
                 <% end %>
               </td>
-              <td><%= message.send_date ? message.send_date.to_short_datetime : "" %></td>
-              <td><%= message.tp ? "是" : "否"%></td>
+              <td><%= message.send_date ? message.send_date.to_all_datetime : "" %></td>
+              <td><%= message.tp==1 ? "是" : "否"%></td>
+              <td><%= link_to "查看",outbox_show_my_school_message_path(message)%></td>
             </tr>
           <% end %>
         <% end %>

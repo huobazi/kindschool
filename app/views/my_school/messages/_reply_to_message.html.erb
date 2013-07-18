@@ -1,0 +1,19 @@
+<div class="work_form">
+      <div class="form_div">
+        <%= form_for(@message, :url=>return_message_my_school_message_path(@message),:method=>'post', :html =>{:class=>"form-horizontal"}) do |f| %>
+          <div class="control-group">
+	       <%=f.label :content, '内容: ' ,:class=>"control-label"%>
+	       <div class="controls">
+           <%= f.text_area(:content,:class=>"text required span5",:size=>"20x8") %>
+          </div>
+         </div>
+        <div class="control-group">
+          <div class="controls">
+          <%= f.submit('发送',:class=>"btn") %>|
+          <%=link_to "取消" , "###" ,:class=>"blue", :id=>"cancel_reply_message"%>
+      </div>
+          </div>
+        </div>
+       <% end %>
+       
+    </div>
