@@ -130,6 +130,12 @@ School::Application.routes.draw do
       end
     end
 
+    resources :topic_categories do
+      collection do
+        delete :destroy_multiple
+      end
+    end
+
     resources :garden_growth_records do
       collection do
         get :garden
