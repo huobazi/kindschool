@@ -40,10 +40,13 @@ class MySchool::MessagesController < MySchool::ManageController
   end
 
   def create
+    puts "pppppppppppppppp\n\n\n\n"
+    puts params.inspect
     @message = Message.new(params[:message])
     @message.kindergarten = @kind
     @message.send_date = Time.now.utc
     @message.sender = current_user
+    if params[:submit] == "发送消息"
     if params[:ids].blank?
       flash[:error]="收件人不能为空"
       render :action => "new"
@@ -54,6 +57,7 @@ class MySchool::MessagesController < MySchool::ManageController
       if user = User.find_by_id_and_kindergarten_id(user_id,@kind.id)
         @message.message_entries << MessageEntry.new(:receiver_id=>user.id,:receiver_name=>user.name,:sms=>user.phone)
       end
+    end
     end
     if params[:draft]
       @message.status = 0

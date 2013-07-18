@@ -2,6 +2,8 @@
 
 <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
 <%= f.input :from_id, :as => :hidden %>
+<%= f.input :kindergarten_id, :as => :hidden %>
+<%= f.input :squad_id, :as => :hidden, :input_html => {:value => "#{params[:id]}", :name => "squad_id"} %>
 
 <%= f.input :graduation, :as => :radio_buttons %>
 <fieldset class="to_squad">

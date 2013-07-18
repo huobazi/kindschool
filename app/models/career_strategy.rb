@@ -4,6 +4,8 @@ class CareerStrategy < ActiveRecord::Base
 
   belongs_to :kindergarten
 
+  validates :kindergarten_id, :presence => true
+
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end

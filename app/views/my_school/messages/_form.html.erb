@@ -50,9 +50,9 @@
 
 <div class="control-group">
   <div class="controls">
-    <%= f.button :submit %>
+    <%= f.submit "发送消息",:class => 'btn' %>
     &nbsp;&nbsp;
-    <%= submit_tag '存为草稿', :name => 'draft', :class => 'btn' %>
+    <%= f.submit  "存为草稿", :name => 'draft', :class => 'btn' %>
   </div>
 </div>
 <div id="dialog_change_users"  title="选择收件人">
