@@ -266,7 +266,7 @@
   operate_id: 3
   children:
   - id: 111000
-    name: "账子管理"
+    name: "贴子管理"
     operate_id: 3005
     number: 111000
     url: "/my_school/topics"
