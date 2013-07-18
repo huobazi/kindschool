@@ -60,7 +60,7 @@
     </div>
 
     <div class="work_list">
-      <% if @notices.any? %>
+      <% unless @notices.blank? %>
         <table class="list">
           <%= form_tag destroy_multiple_my_school_notices_path, method: :delete, :id => "destroy_multi_form" do %>
             <tr>
