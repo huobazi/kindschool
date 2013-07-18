@@ -89,7 +89,7 @@
     url: "/my_school/smarties"
     title: "常用功能管理"
     height_level: "a"
-    sequence: 330
+    sequence: 340
     operate_id: 5004
   - id: 36000
     name: "角色管理"
@@ -97,16 +97,23 @@
     url: "/my_school/roles"
     title: "角色管理"
     height_level: "a"
-    sequence: 330
+    sequence: 350
     operate_id: 5006
-  - id: 37000
-    name: "贴子分类管理"
+    name: "升学策略"
     number: 37000
+    url: "/my_school/career_strategies"
+    title: "升学策略"
+    height_level: "a"
+    sequence: 360
+    operate_id: 5007
+  - id: 38000
+    name: "贴子分类管理"
+    number: 38000
     url: "/my_school/topic_categories"
     title: "贴子分类管理"
     height_level: "a"
-    sequence: 330
-    operate_id: 5007
+    sequence: 370
+    operate_id: 5011
 - id: 40000
   number: "statistics"
   name: "统计"

@@ -21,7 +21,7 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:outbox)%>" title="返回">
+          <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:draft_box)%>" title="返回">
             <div class="work_action_return">
             </div>
             <div class="work_action_return_move">
@@ -34,24 +34,19 @@
 
     <div class="work_form">
       <div class="form_div">
-        <%= simple_form_for @message, :validate => true, :url => {:controller=>"/my_school/messages",:action=>:draft_update}, :html =>{:class=>"form-horizontal", :method => "post"} do |f| %>
-          <%= f.input :title, :required => true %>
-          <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
-
-          <%= f.input :kindergarten_id, :as => :hidden %>
-          <%= f.input :content, :input_html => { :class => "span5" }%>
-          <%= f.input :sender, :input_html => { :value => "#{f.object.sender.name if f.object.sender}", :disabled => true } %>
-
-          <div class="control-group">
-            <div class="controls">
-              <%= submit_tag '发送', :name => 'send', :class => 'btn' %>
-              <%= submit_tag '存为草稿', :name => 'draft', :class => 'btn' %>
-              &nbsp;&nbsp;
-            </div>
-          </div>
-
+         <%= simple_form_for @message, :validate => true, :url => {:controller=>"/my_school/messages",:action=>:draft_update},:method=>'post', :html =>{:class=>"form-horizontal"} do |f| %>
+          <%= render :partial => "form",:object=>f %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  jQuery(function() {
+    $('#message_send_date').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+  });
+</script>

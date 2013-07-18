@@ -1,0 +1,80 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>升学策略</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <%if choose_operate_show('my_school/career_strategies/create')%>
+          <li><%=(link_to "<div class='work_action_add'>
+    </div><div class='work_action_add_move'>
+    </div>".html_safe ,new_my_school_career_strategy_path)  %>
+          <% end %>
+        </li>
+        <%if choose_operate_show('my_school/career_strategies/destroy')%>
+          <li>
+            <a href="/" title="删除" id="destroy_multiple">
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="work_list">
+      <% if @career_strategies.any? %>
+        <table class="table table-striped table-hover">
+          <%= form_tag destroy_multiple_my_school_career_strategies_path, :method=> :delete, :id => "destroy_multi_form" do %>
+            <tr>
+              <th><input type="checkbox" name="" value="" alt="全选" id="career_strategy_all"/>全选</th>
+              <th>策略</th>
+              <th></th>
+            </tr>
+            <% (@career_strategies || []).each do |career_strategy| %>
+              <tr>
+
+                <td><input id="career_strategy_<%= career_strategy.id %>" class="career_strategy_check" name="career_strategy[]" type="checkbox" value="<%= career_strategy.id %>" /></td>
+                <td></td>
+                <td>
+                  <%=link_to '查看',my_school_career_strategy_path(career_strategy)%>
+                  <%if choose_operate_show('my_school/career_strategies/create')%>
+                    <%= link_to '编辑', edit_my_school_career_strategy_path(career_strategy) %>
+                  <% end %>
+                  <%if choose_operate_show('my_school/career_strategies/destroy')%>|
+                    <%= link_to '删除',my_school_career_strategy_path(career_strategy) , method: :delete, data: { confirm: '确定要删除么?' } %>
+                  <%end%>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+      <% else %>
+        暂无升学策略
+      <% end %>
+    </div>
+  </div>
+
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#career_strategy_all").click(function(){
+      $(".career_strategy_check").attr("checked",this.checked);
+    })
+    $("#destroy_multiple").click(function(){
+      $("#destroy_multi_form").submit();
+      return false;
+    });
+  });
+</script>

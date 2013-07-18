@@ -66,6 +66,9 @@ MENUS ={"home"=>{
       "my_school/roles"=>['index','show','edit','new','set_operate_to_role']
     },
     "37000"=>{
+      "my_school/career_strategies"=>['index','show','edit','new']
+    },
+    "38000"=>{
       "my_school/topic_categories"=>["index", "show", "edit", "new"]
     }
    },

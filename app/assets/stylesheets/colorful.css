@@ -139,7 +139,7 @@ a{
     width: 14px;
     height: 63px;
     position: absolute;
-    left:-14px;
+    left:-12px;
 }
 .menu_right{
     background-image: url(/t/colorful/menu_right.jpg);
@@ -567,7 +567,7 @@ a{
 }
 /*===========表单==============*/
 .work_form{
-    padding: 20px;
+    padding: 20px 20px 20px 35px;
 }
 .work_form .form_div{
     border: 1px solid #e3e3e3;
@@ -587,7 +587,7 @@ a{
 }
 /*===========表格==============*/
 .work_list{
-    padding: 20px;
+    padding: 20px 20px 20px 35px;
 }
 .work table.list{
     width: 100%;
@@ -981,7 +981,7 @@ a.album_a .album_img{
     float: left;
 }
 .search_form{
-    padding: 20px;
+    padding: 20px 20px 20px 35px;
 }
 
 .control-group .controls .show_label .message_entry {

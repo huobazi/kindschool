@@ -41,11 +41,8 @@
           <% end %>
         </li>
         <li>
-          <% if action_name == "draft_box" %>
-            <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:draft_box)%>" title="返回">
-          <% else %>
-            <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:outbox)%>" title="返回">
-          <% end %>
+
+            <a href="<%=url_for(:controller=>"/my_school/messages",:action=>@message.status ? :outbox : :draft_show)%>" title="返回">
           <div class="work_action_return">
           </div>
           <div class="work_action_return_move">
@@ -58,8 +55,24 @@
     <div class="work_form">
       <div class="form_div">
         <form class="form-horizontal">
+           <div class="control-group">
+            <label class="control-label" >收件人:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%if (@m_e = @message.message_entries) && !@m_e.blank?%>
+                <% @m_e.each do |m_e| %>
+                  <span class="message_entry">
+                    <%= m_e.receiver.try(:name) %>
+                  </span>
+                <% end %>
+                <%else%>
+                <span>无</span>
+                <%end%>
+              </label>
+            </div>
+          </div>
           <div class="control-group">
-            <label class="control-label">标题</label>
+            <label class="control-label">标题:</label>
             <div class="controls">
               <label class="show_label">
                 <%=@message.title%>
@@ -67,15 +80,15 @@
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label" >发布时间</label>
+            <label class="control-label" >发布时间:</label>
             <div class="controls">
               <label class="show_label">
-                <%= @message.send_date ? @message.send_date.to_short_datetime : "" %>
+                <%= @message.send_date.try(:to_all_datetime) %>
               </label>
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label" >内容</label>
+            <label class="control-label" >内容:</label>
             <div class="controls">
               <label class="show_label">
                 <%= @message.content %>
@@ -83,14 +96,10 @@
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label" >发件人</label>
+            <label class="control-label" >发送类型:</label>
             <div class="controls">
               <label class="show_label">
-                <% @message.message_entries.each do |m_e| %>
-                  <span class="message_entry">
-                    <%= m_e.receiver.try(:name) %>
-                  </span>
-                <% end %>
+                <%= @message.tp == 1 ? "短信" : "站内信" %>
               </label>
             </div>
           </div>
