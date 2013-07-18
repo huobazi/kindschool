@@ -1,0 +1,11 @@
+<% f = form %>
+
+<%= f.input :name, :validate => true, :required => true, :input_html => {:class => "span5 profile_input required"} %>
+<%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
+<%= f.input :kindergarten_id, :as => :hidden %>
+
+<div class="control-group">
+  <div class="controls">
+    <%= f.button :submit %>
+  </div>
+</div>

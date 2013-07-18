@@ -64,6 +64,9 @@ MENUS ={"home"=>{
     },
     "36000"=>{
       "my_school/roles"=>['index','show','edit','new','set_operate_to_role']
+    },
+    "37000"=>{
+      "my_school/topic_categories"=>["index", "show", "edit", "new"]
     }
    },
    "100000"=>{
@@ -83,6 +86,11 @@ MENUS ={"home"=>{
     "110000" => {
       "111000" => {
         "my_school/topics" => ["index", "new", "edit", "show"]
+      }
+    },
+    "120000" => {
+      "121000" => {
+        "my_school/activities" => ["index", "new", "edit", "show"]
       }
     }
 

@@ -99,6 +99,14 @@
     height_level: "a"
     sequence: 330
     operate_id: 5006
+  - id: 37000
+    name: "贴子分类管理"
+    number: 37000
+    url: "/my_school/topic_categories"
+    title: "贴子分类管理"
+    height_level: "a"
+    sequence: 330
+    operate_id: 5007
 - id: 40000
   number: "statistics"
   name: "统计"
@@ -273,3 +281,20 @@
     title: "论坛管理"
     height_level: "b"
     sequence: 1110
+
+- id: 120000
+  number: 120000
+  name: "活动信息"
+  height_level: "b"
+  url: "/my_school/activities"
+  sequence: 1200
+  operate_id: 10
+  children:
+  - id: 121000
+    name: "活动管理"
+    operate_id: 10000
+    number: 121000
+    url: "/my_school/activities"
+    title: "活动管理"
+    height_level: "b"
+    sequence: 1210
