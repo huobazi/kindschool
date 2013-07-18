@@ -11,6 +11,10 @@ class  MySchool::TopicsController < MySchool::ManageController
     @topic_entry.topic_id = @topic.id
     @topic_entry.creater_id = current_user.id
     @topic_entries = @topic.topic_entries
+
+    @topic.show_count += 1
+    @topic.save!
+
   end
 
   def new

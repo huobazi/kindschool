@@ -77,7 +77,14 @@ album_record:
   note: "照片集锦"
   <<: *DEFAULTS
 
-
+activity:
+  id: 10
+  parent_id: 1
+  name: "活动信息"
+  level: 1
+  sequence: 1
+  note: "活动信息"
+  <<: *DEFAULTS
 
 #---------------------------功能
 
@@ -437,6 +444,16 @@ career_strategy_destroy:
   controller: "my_school/career_strategies"
   action: "destroy"
   protocol: ""
+topic_categories_index:
+  id: 5011
+  parent_id: 6
+  name: "贴子分类管理"
+  level: 2
+  sequence: 0
+  note: "贴子分类管理"
+  controller: "my_school/categories"
+  action: "index"
+  protocol: ""
 
 #==============================健康饮食
 seedlings_index:
@@ -737,6 +754,14 @@ album_entry_record_create:
   protocol: ""
   <<: *DEFAULTS
 
-
-
-
+activity_index:
+  id: 10000
+  parent_id: 10
+  name: "活动管理"
+  level: 2
+  sequence: 0
+  note: "活动管理"
+  controller: "my_school/activities"
+  action: "index"
+  protocol: ""
+  <<: *DEFAULTS 

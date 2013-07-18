@@ -37,7 +37,7 @@
           </a>
         </li>
         <li>
-          <%= link_to(url_for(:controller=>"/my_school/activities",:action=>:destroy,:id=>@activity.id),:method=>:delete, :confirm => "您确定删除该通知吗?") do %>
+          <%= link_to(url_for(:controller=>"/my_school/activities",:action=>:destroy,:id=>@activity.id),:method=>:delete, :confirm => "您确定删除该活动吗?") do %>
             <div class="work_action_delete">
             </div>
             <div class="work_action_delete_move">
@@ -97,7 +97,9 @@
                 <% if @activity.asset_img.blank? %>
                   图片不存在
                 <% else %>
-                  <img src="<%= @activity.asset_img.public_filename(:tiny) %>" />
+                  <a href="<%= @activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
+                    <img src="<%= @activity.asset_img.public_filename(:tiny) %>" />
+                  </a>
                 <% end %>
               </label>
             </div>
@@ -124,3 +126,9 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      $(".fancybox").fancybox();
+  });
+</script>
