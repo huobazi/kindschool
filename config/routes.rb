@@ -20,6 +20,7 @@ School::Application.routes.draw do
         member {post :choose_main_img}
       end
     end
+    resources :career_strategies
     resources :content_patterns
     resources :seedlings do
       collection {get :grade_class}
@@ -50,7 +51,6 @@ School::Application.routes.draw do
     resources :squads do
       collection do
         delete :destroy_multiple
-        get :to_squads
         post :add_strategy
       end
       member do
@@ -168,6 +168,7 @@ School::Application.routes.draw do
         post :login
       end
     end
+    resources :cook_books
     resources :messages do
       member do
         post :return_message

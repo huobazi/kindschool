@@ -1,0 +1,49 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    菜谱列表
+  </div>
+  <div class="message_filter">
+    <%= form_tag '/weixin/cook_books' , :method=>"get",:id=>"cook_books_search" do %>
+      <%= select_tag "send_date",options_for_select(@send_date,(params[:send_date]).to_s) %>
+    <%end%>
+  </div>
+  <div class="message_list">
+    <ul class="data_list">
+      <% if @cook_books.blank? %>
+        <li><div class="message_content">没有菜谱信息。</div></li>
+      <% else %>
+        <% @cook_books.each do |cook_book| %>
+          <li>
+            <a href="<%= url_for(:action=>:show,:id=>cook_book.id) %>" title="查看菜谱信息">
+              <div class="center">
+              <label>时间:<%= cook_book.start_at.try(:to_short_datetime)%>/<%= cook_book.end_at.try(:to_short_datetime)%></label>
+              </div>
+              <%= raw cook_book.content %>
+            </a>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+    <br/>
+  </div>
+  <% unless  @cook_books.blank? %>
+    <div class="message_more">
+      <div class="paginate_div">
+        <%= paginate @cook_books, :window => 1%>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
+<script type="text/javascript">
+  $(function(){
+    $("#message_search select").change(function(){
+      $("#message_search").submit();
+    })
+  })
+
+</script>

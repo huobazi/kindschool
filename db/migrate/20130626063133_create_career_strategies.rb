@@ -6,7 +6,7 @@ class CreateCareerStrategies < ActiveRecord::Migration
       t.integer :add_squad
       t.integer :from_id
       t.integer :to_id
-
+      t.integer :squad_name #存，目标班级名称
       t.timestamps
     end
   end

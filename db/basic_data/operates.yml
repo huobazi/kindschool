@@ -397,6 +397,46 @@ role_index:
   controller: "my_school/roles"
   action: "index"
   protocol: ""
+career_strategy_index:
+  id: 5007
+  parent_id: 6
+  name: "升学策略"
+  level: 2
+  sequence: 0
+  note: "升学策略"
+  controller: "my_school/career_strategies"
+  action: "index"
+  protocol: ""
+career_strategy_create:
+  id: 5008
+  parent_id: 6
+  name: "新建升学策略"
+  level: 2
+  sequence: 0
+  note: "新建升学策略"
+  controller: "my_school/career_strategies"
+  action: "create"
+  protocol: ""
+career_strategy_update:
+  id: 5009
+  parent_id: 6
+  name: "更新升学策略"
+  level: 2
+  sequence: 0
+  note: "更新升学策略"
+  controller: "my_school/career_strategies"
+  action: "update"
+  protocol: ""
+career_strategy_destroy:
+  id: 5010
+  parent_id: 6
+  name: "删除升学策略"
+  level: 2
+  sequence: 0
+  note: "删除升学策略"
+  controller: "my_school/career_strategies"
+  action: "destroy"
+  protocol: ""
 
 #==============================健康饮食
 seedlings_index:
