@@ -78,25 +78,14 @@ class  MySchool::SquadsController < MySchool::ManageController
     @career_strategy.from_id = @squad.id
   end
 
-  def to_squads
-    if grade = @kind.grades.where(:id => params[:grade].to_i).first
-      @squads = grade.squads
-    end
-    if @squads.blank?
-      render :text => "还未创建班级"
-    else
-      render "to_squads", :layout => false
-    end
-  end
-
   def add_strategy
-    binding.pry
 
     @career_strategy = CareerStrategy.new(params[:career_strategy])
 
     if params[:career_strategy][:graduation]
       flash[:success] = "该班已毕业"
     end
+
     if @career_strategy.save!
       flash[:success] += "操作成功"
     else

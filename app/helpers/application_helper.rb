@@ -48,4 +48,16 @@ module ApplicationHelper
     end
   end
 
+  def up_to_default_grade(squad_id)
+    squad = Squad.find_by_id(squad_id)
+
+    if grade = Grade.find_by_id(squad.grade_id)
+      # 选择年级序号大于该班级所属年级的所有班级的第一个,也就是升到的年级
+      default_grade = Grade.where("sequence > ?", grade.sequence).first
+      return default_grade
+    else
+      "没年级的班不做升学"
+    end
+  end
+
 end
