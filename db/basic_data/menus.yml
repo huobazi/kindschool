@@ -99,6 +99,14 @@
     height_level: "a"
     sequence: 330
     operate_id: 5006
+  - id: 37000
+    name: "升学策略"
+    number: 37000
+    url: "/my_school/career_strategies"
+    title: "升学策略"
+    height_level: "a"
+    sequence: 330
+    operate_id: 5007
 - id: 40000
   number: "statistics"
   name: "统计"
