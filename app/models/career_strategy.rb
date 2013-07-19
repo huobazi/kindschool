@@ -8,7 +8,7 @@ class CareerStrategy < ActiveRecord::Base
   belongs_to :to_grade, :class_name => "Grade", :foreign_key => "to_grade_id"
 
   validates :kindergarten_id, :presence => true
-  validates :from_id, :uniqueness => {:scope=>:kindergarten_id}
+  validates :from_id, :uniqueness => {:scope=>:kindergarten_id},:presence=>true
   validates :to_id,:presence =>{:if=>:is_graduation?}, :uniqueness => {:scope=>:kindergarten_id,:if=>:is_add_squad?}
 
   def kindergarten_label
