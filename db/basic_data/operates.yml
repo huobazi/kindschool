@@ -599,6 +599,54 @@ seedlings_edit:
   protocol: ""
   <<: *DEFAULTS
 
+seedlings_destroy:
+  id: 6004
+  parent_id: 7
+  name: "育苗记录_删除"
+  level: 2
+  sequence: 0
+  note: "育苗记录_删除"
+  controller: "my_school/seedlings"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
+
+seedlings_create:
+  id: 6005
+  parent_id: 7
+  name: "育苗记录_create"
+  level: 2
+  sequence: 0
+  note: "育苗记录_create"
+  controller: "my_school/seedlings"
+  action: "create"
+  protocol: ""
+  <<: *DEFAULTS
+
+seedlings_update:
+  id: 6006
+  parent_id: 7
+  name: "育苗记录_update"
+  level: 2
+  sequence: 0
+  note: "育苗记录_update"
+  controller: "my_school/seedlings"
+  action: "update"
+  protocol: ""
+  <<: *DEFAULTS
+
+seedlings_show:
+  id: 6007
+  parent_id: 7
+  name: "育苗记录_显示"
+  level: 2
+  sequence: 0
+  note: "育苗记录_显示"
+  controller: "my_school/seedlings"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
 physical_records_index:
   id: 7001
   parent_id: 7
