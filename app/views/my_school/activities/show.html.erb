@@ -7,29 +7,55 @@
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label>活动信息管理</label>
+        <label>
+          <% if controller_name == "activities" %>
+            活动信息
+          <% else %>
+            兴趣讨论信息
+          <% end %>
+        </label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
           </a>
           <ul>
-            <li><%= link_to "活动管理", my_school_activities_path %></li>
+            <li>
+              <% if controller_name == "activities" %>
+                活动信息管理
+              <% else %>
+                兴趣讨论管理
+              <% end %>
+            </li>
             <li>/</li>
-            <li>查看活动</li>
+            <li>
+              <% if controller_name == "activities" %>
+                查看活动
+              <% else %>
+                查看兴趣讨论
+              <% end %>
+            </li>
           </ul>
         </div>
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:new)%>" title="添加">
-            <div class="work_action_add">
-            </div>
-            <div class="work_action_add_move">
-            </div>
+          <% if controller_name == "activities" %>
+            <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:new, :tp => 0)%>" title="添加">
+          <% else %>
+            <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:new, :tp => 1)%>" title="添加">
+          <% end %>
+          <div class="work_action_add">
+          </div>
+          <div class="work_action_add_move">
+          </div>
           </a>
         </li>
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:edit,:id=>@activity.id)%>" title="编辑">
+          <% if controller_name == "activities" %>
+            <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:edit,:id=>@activity.id)%>" title="编辑">
+          <% else %>
+            <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:edit,:id=>@activity.id)%>" title="编辑">
+          <% end %>
             <div class="work_action_edit">
             </div>
             <div class="work_action_edit_move">
@@ -37,15 +63,28 @@
           </a>
         </li>
         <li>
-          <%= link_to(url_for(:controller=>"/my_school/activities",:action=>:destroy,:id=>@activity.id),:method=>:delete, :confirm => "您确定删除该活动吗?") do %>
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
+          <% if controller_name == "activities" %>
+            <%= link_to(url_for(:controller=>"/my_school/activities",:action=>:destroy,:id=>@activity.id),:method=>:delete, :confirm => "您确定删除该活动吗?") do %>
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+            <% end %>
+          <% else %>
+            <%= link_to(url_for(:controller=>"/my_school/interest_activities",:action=>:destroy,:id=>@activity.id),:method=>:delete, :confirm => "您确定删除该兴趣讨论吗?") do %>
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+            <% end %>
           <% end %>
         </li>
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:index)%>" title="返回">
+          <% if controller_name == "activities" %>
+            <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:index)%>" title="返回">
+          <% else %>
+            <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:index)%>" title="返回">
+          <% end %>
             <div class="work_action_return">
             </div>
             <div class="work_action_return_move">
@@ -121,6 +160,35 @@
             </div>
           </div>
         </form>
+
+        <hr />
+
+        <div id="activity_entries">
+          <% if @activity_entries.any? %>
+            <% @activity_entries.each do |activity_entry| %>
+              <div id="activity_entry#{topic_entry.id}" class="activity_entry">
+                <span><%= activity_entry.creater ? activity_entry.creater.name : "丢失回复人信息" %></span>: <%= simple_format activity_entry.note, :class => "activity_entry_note" %> 
+                <% if destroy_activity_entry?(activity_entry) %>
+                  <span class="destroy"><%= link_to "x", my_school_activity_entry_path(activity_entry), :method => :delete %></span>
+                <% end %>
+              </div>
+            <% end %>
+          <% else %>
+            暂无回复
+          <% end %>
+        </div>
+
+
+        <% if controller_name == "activities" %>
+          <%= simple_form_for(@activity_entry, :validate => true, :url => my_school_activity_entries_path, :html => {:class => "form-horizontal"}, :a => "sss") do |f| %>
+            <%= render :partial => "activity_form", :object => f %>
+          <% end %>
+        <% else %>
+          <%= simple_form_for(@activity_entry, :validate => true, :url => my_school_activity_entries_path, :html => {:class => "form-horizontal"}, :a => "sss") do |f| %>
+            <%= render :partial => "my_school/activities/activity_form", :object => f %>
+          <% end %>
+        <% end %>
+
       </div>
     </div>
   </div>

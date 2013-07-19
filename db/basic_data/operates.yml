@@ -775,4 +775,136 @@ activity_index:
   controller: "my_school/activities"
   action: "index"
   protocol: ""
-  <<: *DEFAULTS 
+  <<: *DEFAULTS
+
+activity_new:
+  id: 10001
+  parent_id: 10
+  name: "添加活动"
+  level: 2
+  sequence: 0
+  note: "添加活动"
+  controller: "my_school/activities"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+activity_edit:
+  id: 10002
+  parent_id: 10
+  name: "修改活动"
+  level: 2
+  sequence: 0
+  note: "修改活动"
+  controller: "my_school/activities"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+activity_show:
+  id: 10003
+  parent_id: 10
+  name: "查看活动"
+  level: 2
+  sequence: 0
+  note: "查看活动"
+  controller: "my_school/activities"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+activity_destroy:
+  id: 10004
+  parent_id: 10
+  name: "删除活动"
+  level: 2
+  sequence: 0
+  note: "删除活动"
+  controller: "my_school/activities"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
+
+activity_destroy_multi:
+  id: 10005
+  parent_id: 10
+  name: "删除多个活动"
+  level: 2
+  sequence: 0
+  note: "删除多个活动"
+  controller: "my_school/activities"
+  action: "destroy_multiple"
+  protocol: ""
+  <<: *DEFAULTS
+
+interest_activity_index:
+  id: 10010
+  parent_id: 10
+  name: "兴趣讨论管理"
+  level: 2
+  sequence: 0
+  note: "兴趣讨论管理"
+  controller: "my_school/interest_activities"
+  action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+
+interest_activity_new:
+  id: 10011
+  parent_id: 10
+  name: "新增兴趣讨论"
+  level: 2
+  sequence: 0
+  note: "新增兴趣讨论"
+  controller: "my_school/interest_activities"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+interest_activity_edit:
+  id: 10012
+  parent_id: 10
+  name: "修改兴趣讨论"
+  level: 2
+  sequence: 0
+  note: "修改兴趣讨论"
+  controller: "my_school/interest_activities"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+interest_activity_show:
+  id: 10013
+  parent_id: 10
+  name: "查看兴趣讨论"
+  level: 2
+  sequence: 0
+  note: "查看兴趣讨论"
+  controller: "my_school/interest_activities"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+interest_activity_destroy:
+  id: 10014
+  parent_id: 10
+  name: "删除兴趣讨论"
+  level: 2
+  sequence: 0
+  note: "删除兴趣讨论"
+  controller: "my_school/interest_activities"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
+
+interest_activity_destroy_multi:
+  id: 10015
+  parent_id: 10
+  name: "删除多个兴趣讨论"
+  level: 2
+  sequence: 0
+  note: "删除多个兴趣讨论"
+  controller: "my_school/interest_activities"
+  action: "destroy_multiple"
+  protocol: ""
+  <<: *DEFAULTS

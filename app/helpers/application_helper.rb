@@ -40,6 +40,16 @@ module ApplicationHelper
     end
   end
 
+  def destroy_activity_entry?(activity_entry)
+    if current_user.tp == 2
+      true
+    elsif activity_entry.creater_id == current_user.id
+      true
+    else
+      false
+    end
+  end
+
   def growth_record_controller
     if controller_name == "growth_records"
       destroy_multiple_my_school_growth_records_path
