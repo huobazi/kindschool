@@ -75,14 +75,14 @@
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label">人员:</label>
+            <label class="control-label">已选名单</label>
             <div class="controls">
-              <label class="show_label">
-                <%@virtual_squad.user_squads.each do |u_s|%>
-                <%=u_s.user.try(:name)%>
-                <%end%>
-              </label>
-            </div>
+            <label class="show_label">
+            <div id="message_inputs">
+
+           </div>
+         </label>
+          </div>
           </div>
           <div class="control-group">
             <label class="control-label" >描述:</label>
@@ -106,3 +106,10 @@
   </div>
 
 </div>
+<script type="text/javascript">
+  $(function() {
+     $(window).load(function(){
+      $("#message_inputs").load("<%= url_for(:controller=>'/my_school/virtual_squads',:action=>:get_edit_ids,:id=>@virtual_squad.id) %>");
+     })
+});
+ </script>
