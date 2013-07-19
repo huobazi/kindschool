@@ -1,0 +1,14 @@
+<% f = activity_form %>
+
+<%= f.input :note, :validate => true, :required => true, :input_html => { :class => "span5" } %>
+
+<%= f.input :creater_id, :as => :hidden %>
+<%= f.input :activity_id, :as => :hidden %>
+<%= f.input :tp, :as => :hidden %>
+
+
+<div class="control-group">
+  <div class="controls">
+    <%= f.button :submit %>
+  </div>
+</div>

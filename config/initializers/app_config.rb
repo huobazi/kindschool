@@ -67,6 +67,9 @@ MENUS ={"home"=>{
     },
     "37000"=>{
       "my_school/career_strategies"=>['index','show','edit','new']
+    },
+    "38000"=>{
+      "my_school/topic_categories"=>["index", "show", "edit", "new"]
     }
    },
    "100000"=>{
@@ -86,6 +89,14 @@ MENUS ={"home"=>{
     "110000" => {
       "111000" => {
         "my_school/topics" => ["index", "new", "edit", "show"]
+      }
+    },
+    "120000" => {
+      "121000" => {
+        "my_school/activities" => ["index", "new", "edit", "show"]
+      },
+      "122000"=>{
+        "my_school/interest_activities" => ["index", "new", "edit", "show"]
       }
     }
 

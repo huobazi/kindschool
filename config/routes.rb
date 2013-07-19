@@ -25,6 +25,9 @@ School::Application.routes.draw do
         delete :destroy_multiple
       end
     end
+
+    resources :interest_activities
+
     resources :content_patterns
     resources :seedlings do
       collection {get :grade_class}
@@ -52,6 +55,7 @@ School::Application.routes.draw do
         post :change_password
       end
     end
+    resources :activity_entries
     resources :squads do
       collection do
         delete :destroy_multiple
@@ -64,6 +68,7 @@ School::Application.routes.draw do
     resources :notices do
       collection do
         delete :destroy_multiple
+        get :approve
       end
     end
     resources :messages do
@@ -71,7 +76,9 @@ School::Application.routes.draw do
         get :outbox_show
         get :draft_show
         get :draft_edit
+        get :get_edit_ids
         post :draft_update
+        post :return_message
       end
       collection do
         get :outbox,:get_kindergarten,:get_grade,:get_student
@@ -127,6 +134,12 @@ School::Application.routes.draw do
     resources :growth_records do
       collection do
         get :home
+        delete :destroy_multiple
+      end
+    end
+
+    resources :topic_categories do
+      collection do
         delete :destroy_multiple
       end
     end

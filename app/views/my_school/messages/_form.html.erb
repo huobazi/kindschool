@@ -43,7 +43,7 @@
   <div class="control-group">
     <label class="control-label" for="inputPassword">是否发送短信</label>
     <div class="controls">
-      <input id="message_tp" class="boolean required" type="checkbox" value="1" name="message[tp]" data-validate="true">
+      <%= check_box_tag('message[tp]',"1",@message.tp==1)%>
     </div>
   </div>
 <%end%>
@@ -82,11 +82,23 @@ function load_length(){
   });
 };
 $(document).ready(load_length());
-
+$(document).ready(function(){
+   if($("#message_tp").attr("checked"))
+   { $("#numcalcu").text(<%=calculated_figures%>);
+           load_length();}
+ else
+   { $("#numcalcu").text(800);
+           load_length();}
+});
 
 </script>
 <script type="text/javascript">
   $(function() {
+    <% if action_name == "draft_edit"%>
+     $(window).load(function(){
+      $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_edit_ids,:id=>@message.id) %>");
+     })
+    <% end %>
     $("#message_inputs .message_user label").live('click',function(){
       if($(this).parent().siblings().size() == 1){
         $(this).parent().parent().remove();

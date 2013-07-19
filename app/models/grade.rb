@@ -3,7 +3,7 @@
 class Grade < ActiveRecord::Base
   attr_accessible :kindergarten_id, :name, :note, :sequence,:staff_id
 
-  validates :name,:presence => true,:uniqueness => true
+  validates :name,:presence => true,:uniqueness => { :scope => :kindergarten_id}
   validates :kindergarten,:sequence,:presence => true
   validates :note, :length => { :minimum => 5 }, :allow_blank => true
 

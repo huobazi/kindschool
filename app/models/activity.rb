@@ -13,6 +13,7 @@ class Activity < ActiveRecord::Base
   has_many :activity_entries
   has_one :asset_img, :class_name => "AssetImg", :as => :resource, :dependent => :destroy #logo，只有一个
 
+  belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
 
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img
