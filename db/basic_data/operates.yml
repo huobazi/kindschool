@@ -359,6 +359,72 @@ virtual_squads_index:
   action: "index"
   protocol: ""
 
+virtual_squads_new:
+  id: 4006
+  parent_id: 5
+  name: "虚拟班管理_新建"
+  level: 2
+  sequence: 4
+  note: "虚拟班管理_新建"
+  controller: "my_school/virtual_squads"
+  action: "new"
+  protocol: ""
+
+virtual_squads_create:
+  id: 4007
+  parent_id: 5
+  name: "虚拟班管理_create"
+  level: 2
+  sequence: 4
+  note: "虚拟班管理_create"
+  controller: "my_school/virtual_squads"
+  action: "create"
+  protocol: ""
+
+virtual_squads_show:
+  id: 4008
+  parent_id: 5
+  name: "虚拟班管理_显示"
+  level: 2
+  sequence: 4
+  note: "虚拟班管理_显示"
+  controller: "my_school/virtual_squads"
+  action: "show"
+  protocol: ""
+
+virtual_squads_edit:
+  id: 4009
+  parent_id: 5
+  name: "虚拟班管理_编辑"
+  level: 2
+  sequence: 4
+  note: "虚拟班管理_编辑"
+  controller: "my_school/virtual_squads"
+  action: "edit"
+  protocol: ""
+
+virtual_squads_update:
+  id: 4010
+  parent_id: 5
+  name: "虚拟班管理_update"
+  level: 2
+  sequence: 4
+  note: "虚拟班管理_update"
+  controller: "my_school/virtual_squads"
+  action: "update"
+  protocol: ""
+
+virtual_squads_destroy:
+  id: 4011
+  parent_id: 5
+  name: "虚拟班管理_删除"
+  level: 2
+  sequence: 4
+  note: "虚拟班管理_删除"
+  controller: "my_school/virtual_squads"
+  action: "destroy"
+  protocol: ""
+
 #--------------------------system
 template_config:
   id: 5001
