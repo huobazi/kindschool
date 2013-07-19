@@ -1,6 +1,6 @@
 <script type="text/javascript">
   jQuery(function() {
-    $('#physical_record_send_date_equals').datepicker({
+    $('#virtual_squad_created_at_equals').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
     });
@@ -39,6 +39,10 @@
       </ul>
     </div>
     <div class="search_form">
+     <%= form_tag '/my_school/virtual_squads' , :method=>"get" do %>
+      <b>虚拟班名：</b><%= text_field :virtual_squad,:name_like,:style=>"width:100px;" ,:class=>"control-label",:value=>"#{params[:virtual_squad][:name_like] if params[:virtual_squad] }" %>
+      <%= submit_tag "搜索" %>
+      <%end%>
     </div>
     <div class="work_list">
       <% unless @virtual_squads.blank? %>
@@ -56,7 +60,7 @@
                 <td><input id="squad_<%= squad.id %>" class="squad_check" name="squad[]" type="checkbox" value="<%= squad.id %>" /></td>
                 <td><%= link_to squad.name, my_school_virtual_squad_path(squad) %>
                 </td>
-                <td><%=squad.created_at.try(:to_all_datetime) %></td>
+                <td><%=squad.created_at.try(:to_short_datetime) %></td>
                 <!-- <td><%#= squad.note %></td> -->
                 <td><%= link_to "查看", my_school_virtual_squad_path(squad), :class => "show" -%><%= link_to "编辑", edit_my_school_virtual_squad_path(squad), :class => "edit" %>
                   <%= link_to '删除',my_school_virtual_squad_path(squad) , method: :delete, data: { confirm: '确定要删除么?' } %>

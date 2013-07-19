@@ -2,8 +2,9 @@
 #虚拟班管理
 class MySchool::VirtualSquadsController < MySchool::ManageController
    def index
-   	@virtual_squads = @kind.squads.where(:tp=>1).page(params[:page] || 1).per(10).order("created_at DESC")
+   	@virtual_squads = @kind.squads.search(params[:virtual_squad] || {}).where(:tp=>1).page(params[:page] || 1).per(10).order("created_at DESC")
    end
+
    def new
    	@virtual_squad = Squad.new()
     @virtual_squad.kindergarten_id = @kind.id
@@ -81,7 +82,7 @@ class MySchool::VirtualSquadsController < MySchool::ManageController
   end
 
   def destroy 
-  	
+
   	unless params[:squad].blank? 
   	  @virtual_squads = @kind.squads.where(:id=>params[:squad],:tp=>1)
     else
