@@ -16,6 +16,7 @@ class Squad < ActiveRecord::Base
   belongs_to :kindergarten  #幼儿园
   belongs_to :grade  #年级
   has_one :career_strategy, :class_name=>"CareerStrategy",:foreign_key=>:from_id #升学策略
+  has_many :source_career_strategies, :class_name=>"CareerStrategy",:foreign_key=>:to_id #升学策略
   
   has_many :student_infos  #学生信息
   has_many :users,:through=>:student_infos #学生的用户信息
