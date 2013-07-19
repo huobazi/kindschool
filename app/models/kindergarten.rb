@@ -128,11 +128,9 @@ class Kindergarten < ActiveRecord::Base
       #所有在读班级，1、进行毕业班级处理，2、进行升学班级的年级替换和名字修改成“升学中班级id”，3、添加新加班级
       squads_data.each do |squad|
         if career_strategy = squad.career_strategy
-          squad_name = squad.name
-          squad_grade_id = squad.grade_id
           #策略如果是毕业
           if career_strategy.graduation
-            squad.update_attributes(:grade_id=>nil,:graduate=>true)
+            squad.update_attributes(:graduate=>true)
           else
             if to_squad = career_strategy.to
               #该升学后班级是否已经有其他班级升过
@@ -151,11 +149,6 @@ class Kindergarten < ActiveRecord::Base
               raise "错误类型2：”#{squad.full_name}”升学后班级不存在"
             end
           end
-          #如果是新增班级
-          if career_strategy.add_squad
-            new_squad = Squad.create!(:name=>squad_name,:grade_id=>squad_grade_id,:kindergarten_id=>squad.kindergarten_id,:note=>squad.note,:sequence=>squad.sequence)
-            CareerStrategy.create!(:kindergarten_id=>career_strategy.kindergarten_id,:graduation=>career_strategy.graduation,:add_squad=>career_strategy.add_squad,:from_id=>new_squad.id,:to_id=>squad.id,:to_grade_id=>career_strategy.to_grade_id,:squad_name=>career_strategy.squad_name)
-          end
         end
       end
       
@@ -163,17 +156,30 @@ class Kindergarten < ActiveRecord::Base
       squads_data.each do |squad|
         if career_strategy = squad.career_strategy
           unless career_strategy.graduation
-            squad.update_attributes!(:grade_id=>career_strategy.to_grade_id,:name=>career_strategy.squad_name) unless squad.graduate
-            
+            unless squad.graduate
+              squad.update_attributes!(:grade_id=>career_strategy.to_grade_id,:name=>career_strategy.squad_name)
+            end
           end
         end
       end
       #修改策略
       squads_data.each do |squad|
+        squad_name = squad.name
+        squad_grade_id = squad.grade_id
         if career_strategy = squad.career_strategy
-          unless career_strategy.graduation
-            #TODO:  修改策略
-
+          #TODO:  修改策略
+          if career_strategy.graduation
+            squad.update_attributes(:grade_id=>nil)
+          else
+            if to_squad = career_strategy.to
+              career_strategy.update_attributes!(:to_grade_id=>to_squad.grade_id,:squad_name=>to_squad.name)
+            end
+          end
+          #如果是新增班级
+          if career_strategy.add_squad
+            new_squad = Squad.create!(:name=>squad_name,:grade_id=>squad_grade_id,:kindergarten_id=>squad.kindergarten_id,:note=>squad.note,:sequence=>squad.sequence)
+            CareerStrategy.create!(:kindergarten_id=>career_strategy.kindergarten_id,:graduation=>career_strategy.graduation,:add_squad=>career_strategy.add_squad,:from_id=>new_squad.id,:to_id=>squad.id)
+            career_strategy.update_attributes!(:add_squad=>false)
           end
         end
       end

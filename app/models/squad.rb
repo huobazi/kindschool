@@ -47,13 +47,12 @@ class Squad < ActiveRecord::Base
     if Squad.find(:first,:select=>"1",:conditions=>["kindergarten_id=? AND name=BINARY ? AND graduate=0",self.kindergarten_id,self.name])
       errors.add(:name,"班级名称已经存在")
       raise "班级名称已经存在"
-    end
+    end unless self.graduate
   end
   def update_validate_name
     if Squad.find(:first,:select=>"1",:conditions=>["kindergarten_id=? AND name=BINARY ? AND graduate=0 and id !=?",self.kindergarten_id,self.name,self.id])
       errors.add(:name,"班级名称已经存在")
       raise "班级名称已经存在"
-    end
+    end unless self.graduate
   end
-
 end
