@@ -989,8 +989,14 @@ a.album_a .album_img{
   margin-right: 10px;
 }
 
-fieldset.to_squad {
+fieldset.to_squad,fieldset.from_squad {
   width:300px;
   padding: 20px;
   padding-top: 0;
+}
+td .index_li{
+    margin: 5px;
+    border: 1px #9B9B9B solid;
+    padding: 2px;
+    border-radius:5px;
 }

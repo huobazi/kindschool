@@ -422,10 +422,10 @@ zh-CN:
       career_strategy:
         kindergarten_label: "所属幼儿园"
         kindergarten: "幼儿园"
-        graduation: "毕业"
-        add_squad: "新增的班级"
+        graduation: "是否是毕业"
+        add_squad: "升学时需新开班级"
         from_id: "原来的班级"
-        to_id: "升到的班级"
+        to_id: "升学后班级"
       topic:
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"

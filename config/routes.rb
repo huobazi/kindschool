@@ -20,7 +20,11 @@ School::Application.routes.draw do
         member {post :choose_main_img}
       end
     end
-    resources :career_strategies
+    resources :career_strategies do
+      collection do
+        delete :destroy_multiple
+      end
+    end
     resources :content_patterns
     resources :seedlings do
       collection {get :grade_class}
