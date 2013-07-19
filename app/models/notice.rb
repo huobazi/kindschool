@@ -14,7 +14,7 @@ class Notice < ActiveRecord::Base
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end
 
-  SEND_RANGE_DATA ={"0"=>"全园通知","1"=>"年级通知","2"=>"班级通知","3"=>"全教职工通知"}
+  SEND_RANGE_DATA ={"0"=>"全园通知","1"=>"全教职工通知","2"=>"全学生通知"}
   def send_range_label
     Notice::SEND_RANGE_DATA["#{self.send_range || 0}"]
   end

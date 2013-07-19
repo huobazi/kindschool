@@ -15,6 +15,12 @@ class  MySchool::StaffsController < MySchool::ManageController
 
   def create
     @staff = Staff.new(params[:staff])
+    if params[:role] && params[:role][:id]
+     role = @kind.roles.find(params[:role][:id])
+     unless role.blank?
+      @staff.user.role = role  
+     end
+    end
     if @staff.save!
       redirect_to my_school_staff_path(@staff), :notice => "操作成功"
     else
