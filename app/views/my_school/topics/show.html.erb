@@ -146,7 +146,7 @@
           <% if @topic_entries.any? %>
             <% @topic_entries.each do |topic_entry| %>
               <div id="topic_entry_#{topic_entry.id}" class="topic_entry">
-                <span><%= User.find_by_id(topic_entry.creater_id).name %></span>: <%= simple_format topic_entry.content, :class => "topic_entry_content" %> 
+                <span><%= topic_entry.creater ? topic_entry.creater.name : "丢失回复人信息" %></span>: <%= simple_format topic_entry.content, :class => "topic_entry_content" %> 
                 <% if destroy_topic_entry?(topic_entry) %>
                   <span class="destroy"><%= link_to "x", my_school_topic_entry_path(topic_entry), :method => :delete %></span>
                 <% end %>

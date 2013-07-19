@@ -21,6 +21,9 @@ School::Application.routes.draw do
       end
     end
     resources :career_strategies
+
+    resources :interest_activities
+
     resources :content_patterns
     resources :seedlings do
       collection {get :grade_class}
@@ -48,6 +51,7 @@ School::Application.routes.draw do
         post :change_password
       end
     end
+    resources :activity_entries
     resources :squads do
       collection do
         delete :destroy_multiple

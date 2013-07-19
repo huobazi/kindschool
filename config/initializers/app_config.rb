@@ -94,6 +94,9 @@ MENUS ={"home"=>{
     "120000" => {
       "121000" => {
         "my_school/activities" => ["index", "new", "edit", "show"]
+      },
+      "122000"=>{
+        "my_school/interest_activities" => ["index", "new", "edit", "show"]
       }
     }
 

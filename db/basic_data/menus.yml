@@ -305,3 +305,11 @@
     title: "活动管理"
     height_level: "b"
     sequence: 1210
+  - id: 122000
+    name: "兴趣讨论管理"
+    operate_id: 10010
+    number: 122000
+    url: "/my_school/interest_activities"
+    title: "兴趣讨论管理"
+    height_level: "b"
+    sequence: 1220

@@ -4,13 +4,25 @@
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label>活动信息</label>
+        <label>
+          <% if controller_name == "activities" %>
+            活动信息
+          <% else %>
+            兴趣讨论信息
+          <% end %>
+        </label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
           </a>
           <ul>
-            <li>活动信息管理</li>
+            <li>
+              <% if controller_name == "activities" %>
+                活动信息管理
+              <% else %>
+                兴趣讨论管理
+              <% end %>
+            </li>
             <li>/</li>
             <li>活动管理</li>
           </ul>
@@ -18,10 +30,22 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:new)%>" title="添加">
+          <% if controller_name == "activities" %>
+            <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:new, :tp => 0)%>" title="添加">
+          <% else %>
+            <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:new, :tp => 1)%>" title="添加">
+          <% end %>
             <div class="work_action_add">
             </div>
             <div class="work_action_add_move">
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="/" title="删除" id="destroy_multiple">
+            <div class="work_action_delete">
+            </div>
+            <div class="work_action_delete_move">
             </div>
           </a>
         </li>
@@ -40,8 +64,14 @@
           </tr>
           <% @activities.each do |activity| %>
             <tr>
-              <td><%= link_to activity.title, my_school_activity_path(activity) %></td>
-              <td><%= User.find_by_id(activity.creater_id).name unless activity.creater_id.nil? %></td>
+              <td>
+                <% if controller_name == "activities" %>
+                  <%= link_to activity.title, my_school_activity_path(activity) %>
+                <% else %>
+                  <%= link_to activity.title, my_school_interest_activity_path(activity) %>
+                <% end %>
+              </td>
+              <td><%= activity.creater ? activity.creater.name : "" %></td>
               <td>
                 <%= activity.tp == 0 ? "活动" : "兴趣讨论" %>
               </td>
@@ -49,11 +79,25 @@
                 <% if activity.asset_img.blank? %>
                   图片不存在
                 <% else %>
-                  <img src="<%= activity.asset_img.public_filename(:tiny) %>" />
+                  <a href="<%= activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
+                    <img src="<%= activity.asset_img.public_filename(:tiny) %>" />
+                  </a>
                 <% end %>
               </td>
-              <td><%= link_to "查看", my_school_activity_path(activity), :class => "show" %></td>
-              <td><%= link_to "编辑", edit_my_school_activity_path(activity), :class => "show" %></td>
+              <td>
+                <% if activity.tp == true %>
+                  <%= link_to "查看", my_school_interest_activity_path(activity), :class => "show" %>
+                <% else %>
+                  <%= link_to "查看", my_school_activity_path(activity), :class => "show" %>
+                <% end %>
+              </td>
+              <td>
+                <% if activity.tp == true %>
+                  <%= link_to "编辑", edit_my_school_interest_activity_path(activity), :class => "show" %>
+                <% else %>
+                  <%= link_to "编辑", edit_my_school_activity_path(activity), :class => "show" %>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </table>
@@ -71,5 +115,6 @@ $(document).ready(function(){
   $("#activity_all").click(function(){
     $(".activity_check").attr("checked",this.checked);
   })
-  });
+  $(".fancybox").fancybox();
+});
 </script>
