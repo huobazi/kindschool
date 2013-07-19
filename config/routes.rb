@@ -150,6 +150,7 @@ School::Application.routes.draw do
     resources :topics do
       collection do
         delete :destroy_multiple
+        get :my
       end
     end
     resources :topic_entries

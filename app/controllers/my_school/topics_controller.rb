@@ -10,11 +10,7 @@ class  MySchool::TopicsController < MySchool::ManageController
     @topic_entry = TopicEntry.new
     @topic_entry.topic_id = @topic.id
     @topic_entry.creater_id = current_user.id
-    @topic_entries = @topic.topic_entries
-
-    @topic.show_count += 1
-    @topic.save!
-
+    @topic_entries = @topic.topic_entries.page(params[:page] || 1).per(10)
   end
 
   def new
@@ -75,5 +71,11 @@ class  MySchool::TopicsController < MySchool::ManageController
       format.html {redirect_to my_school_topics_path}
       format.json { header :no_content }
     end
+  end
+
+  def my
+    @topics = @kind.topics.where(:creater_id => current_user.id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+
+    render "my_school/topics/index"
   end
 end

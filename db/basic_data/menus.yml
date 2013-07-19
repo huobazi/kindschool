@@ -107,10 +107,10 @@
     sequence: 360
     operate_id: 5007
   - id: 38000
-    name: "贴子分类管理"
+    name: "论坛分类管理"
     number: 38000
     url: "/my_school/topic_categories"
-    title: "贴子分类管理"
+    title: "论坛分类管理"
     height_level: "a"
     sequence: 370
     operate_id: 5011
@@ -281,13 +281,21 @@
   operate_id: 3
   children:
   - id: 111000
-    name: "贴子管理"
+    name: "论坛贴子"
     operate_id: 3005
     number: 111000
     url: "/my_school/topics"
-    title: "论坛管理"
+    title: "论坛贴子"
     height_level: "b"
     sequence: 1110
+  - id: 112000
+    name: "我的贴子"
+    operate_id: 3006
+    number: 112000
+    url: "/my_school/topics/my"
+    title: "我的贴子"
+    height_level: "b"
+    sequence: 1120
 
 - id: 120000
   number: 120000
@@ -298,18 +306,18 @@
   operate_id: 10
   children:
   - id: 121000
-    name: "活动管理"
+    name: "活动内容"
     operate_id: 10000
     number: 121000
     url: "/my_school/activities"
-    title: "活动管理"
+    title: "活动内容"
     height_level: "b"
     sequence: 1210
   - id: 122000
-    name: "兴趣讨论管理"
+    name: "兴趣讨论"
     operate_id: 10010
     number: 122000
     url: "/my_school/interest_activities"
-    title: "兴趣讨论管理"
+    title: "兴趣讨论"
     height_level: "b"
     sequence: 1220

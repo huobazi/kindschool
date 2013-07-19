@@ -24,7 +24,7 @@ ActiveAdmin.register TopicCategory do
   end
 
   form do |f|
-    f.inputs "贴子分类详细信息" do
+    f.inputs "论坛分类详细信息" do
       f.input :name
       f.input :kindergarten_label, :as => :string, :input_html => { :disabled => true }
       f.input :kindergarten_id, :as => :hidden
