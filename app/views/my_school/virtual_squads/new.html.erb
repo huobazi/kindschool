@@ -1,27 +1,26 @@
-<div class="show_publicity">
-  <img src="/t/colorful/small_publicity.jpg" alt="展示图"/>
-</div>
 <div class="show_work">
   <%= render :partial => "/modules/colorful/work_menu" %>
   <div class="work">
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label>论坛管理信息</label>
+        <label>虚拟班管理</label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
           </a>
           <ul>
-            <li><%= link_to "论坛贴子", my_school_topics_path %></li>
+            <li>人员管理</li>
             <li>/</li>
-            <li>贴子编辑</li>
+            <li><%= link_to "虚拟班", my_school_virtual_squads_path %></li>
+            <li>/</li>
+            <li>新建虚拟班</li>
           </ul>
         </div>
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:index)%>" title="返回">
+          <a href="<%=url_for(:controller=>"/my_school/virtual_squads",:action=>:index)%>" title="返回">
             <div class="work_action_return">
             </div>
             <div class="work_action_return_move">
@@ -30,15 +29,14 @@
         </li>
       </ul>
     </div>
+
     <div class="work_form">
       <div class="form_div">
-        <%= simple_form_for @topic, :validate => true, :url => {:controller=>"/my_school/topics",:action=>:update}, :html =>{:class=>"form-horizontal"} do |f| %>
-          <%= render :partial => "form",:object=>f %>
-        <% end %>
+          <%= form_for(@virtual_squad, :validate => true, :url=>my_school_virtual_squads_path(@virtual_squad), :html =>{:class=>"form-horizontal"}) do |f| %>
+          <%= render 'form', :f=>f %>
+       <% end %>
       </div>
     </div>
   </div>
 
 </div>
-
-

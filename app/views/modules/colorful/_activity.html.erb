@@ -5,21 +5,11 @@
     </div>
     <div class="activity_list_info">
       <ul>
-        <li>
-          <%= link_to "幼儿园“深圳蒙恩齿科","/" %>
-        </li>
-        <li>
-          <%= link_to "雅安祈福","/" %>
-        </li>
-        <li>
-          <%= link_to "幼儿园开展“家长半日","/" %>
-        </li>
-        <li>
-          <%= link_to "幼儿园“深圳蒙恩齿科","/" %>
-        </li>
-        <li>
-          <%= link_to "雅安祈福","/" %>
-        </li>
+        <% @activities.each do |activity| %>
+          <li>
+            <%= link_to activity.title, my_school_activity_path(activity) %>
+          </li>
+        <% end %>
       </ul>
     </div>
     <div class="activity_more">

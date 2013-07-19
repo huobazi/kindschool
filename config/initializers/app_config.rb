@@ -85,11 +85,14 @@ MENUS ={"home"=>{
       "81000" =>{
         "my_school/albums" => ["index","new","show","edit"],
         "my_school/album_entries" => ["index","new","show","edit"]
-      } 
+      }
     },
     "110000" => {
       "111000" => {
         "my_school/topics" => ["index", "new", "edit", "show"]
+      },
+      "112000" => {
+        "my_school/topics" => ["my"]
       }
     },
     "120000" => {

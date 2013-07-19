@@ -15,11 +15,11 @@
       </div>
       <ul class="work_action">
         <li>
-          <%if choose_operate_show('my_school/albums/new')%>
-            <%=link_to "<div class='work_action_add'>
+          
+            <%=(link_to "<div class='work_action_add'>
   </div><div class='work_action_add_move'>
-  </div>".html_safe ,new_my_school_album_path%>
-          <%end%>
+  </div>".html_safe ,new_my_school_album_path) if choose_operate_show('my_school/albums/new')%>
+        
         </li>
       </ul>
     </div>

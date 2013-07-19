@@ -12,7 +12,7 @@
           <ul>
             <li>论坛信息管理</li>
             <li>/</li>
-            <li>贴子管理</li>
+            <li>论坛贴子</li>
           </ul>
         </div>
       </div>
@@ -40,6 +40,9 @@
      <%= form_tag '/my_school/topics' , :method=>"get" do %>
       <b>标题：</b>
       <%= text_field :topic,:title_like,:style=>"width:100px;" ,:value=>"#{params[:topic][:title_like] if params[:topic] }"  %>
+      <b>内容：</b>
+      <%= text_field :topic,:content_like,:style=>"width:100px;" ,:value=>"#{params[:topic][:content_like] if params[:topic] }"  %>
+
       <%= submit_tag "搜索" %>
       <%end%>
     </div>

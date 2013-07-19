@@ -10,4 +10,6 @@ class ActivityEntry < ActiveRecord::Base
 
   attr_accessible :activity_img_attributes
   accepts_nested_attributes_for :activity_img
+
+  
 end

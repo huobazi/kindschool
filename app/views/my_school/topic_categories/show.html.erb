@@ -7,7 +7,7 @@
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label>查看贴子分类信息</label>
+        <label>查看论坛分类信息</label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
@@ -15,9 +15,9 @@
           <ul>
             <li>系统设置</li>
             <li>/</li>
-            <li><%= link_to "贴子分类管理", my_school_topic_categories_path %></li>
+            <li><%= link_to "论坛分类管理", my_school_topic_categories_path %></li>
             <li>/</li>
-            <li>查看贴子分类</li>
+            <li>查看论坛分类</li>
           </ul>
         </div>
       </div>
@@ -39,7 +39,7 @@
           </a>
         </li>
         <li>
-          <%= link_to(url_for(:controller=>"/my_school/topic_categories",:action=>:destroy,:id=>@topic_category.id),:method=>:delete, :confirm => "您确定删除该贴子分类吗?") do %>
+          <%= link_to(url_for(:controller=>"/my_school/topic_categories",:action=>:destroy,:id=>@topic_category.id),:method=>:delete, :confirm => "您确定删除该论坛分类吗?") do %>
             <div class="work_action_delete">
             </div>
             <div class="work_action_delete_move">

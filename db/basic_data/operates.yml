@@ -232,12 +232,24 @@ message_draft_edit:
 forum_manage:
   id: 3005
   parent_id: 3
-  name: "帖子管理"
+  name: "论坛贴子"
   level: 2
   sequence: 0
-  note: "帖子管理"
+  note: "论坛贴子"
   controller: "my_school/topics"
   action: "index"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+forum_my:
+  id: 3006
+  parent_id: 3
+  name: "我的贴子"
+  level: 2
+  sequence: 0
+  note: "我的贴子"
+  controller: "my_school/topics"
+  action: "my"
   params: ""
   protocol: ""
   <<: *DEFAULTS
@@ -345,6 +357,72 @@ virtual_squads_index:
   note: "虚拟班管理"
   controller: "my_school/virtual_squads"
   action: "index"
+  protocol: ""
+
+virtual_squads_new:
+  id: 4006
+  parent_id: 5
+  name: "虚拟班管理_新建"
+  level: 2
+  sequence: 4
+  note: "虚拟班管理_新建"
+  controller: "my_school/virtual_squads"
+  action: "new"
+  protocol: ""
+
+virtual_squads_create:
+  id: 4007
+  parent_id: 5
+  name: "虚拟班管理_create"
+  level: 2
+  sequence: 4
+  note: "虚拟班管理_create"
+  controller: "my_school/virtual_squads"
+  action: "create"
+  protocol: ""
+
+virtual_squads_show:
+  id: 4008
+  parent_id: 5
+  name: "虚拟班管理_显示"
+  level: 2
+  sequence: 4
+  note: "虚拟班管理_显示"
+  controller: "my_school/virtual_squads"
+  action: "show"
+  protocol: ""
+
+virtual_squads_edit:
+  id: 4009
+  parent_id: 5
+  name: "虚拟班管理_编辑"
+  level: 2
+  sequence: 4
+  note: "虚拟班管理_编辑"
+  controller: "my_school/virtual_squads"
+  action: "edit"
+  protocol: ""
+
+virtual_squads_update:
+  id: 4010
+  parent_id: 5
+  name: "虚拟班管理_update"
+  level: 2
+  sequence: 4
+  note: "虚拟班管理_update"
+  controller: "my_school/virtual_squads"
+  action: "update"
+  protocol: ""
+
+virtual_squads_destroy:
+  id: 4011
+  parent_id: 5
+  name: "虚拟班管理_删除"
+  level: 2
+  sequence: 4
+  note: "虚拟班管理_删除"
+  controller: "my_school/virtual_squads"
+  action: "destroy"
   protocol: ""
 
 #--------------------------system
@@ -458,10 +536,10 @@ career_strategy_destroy:
 topic_categories_index:
   id: 5011
   parent_id: 6
-  name: "贴子分类管理"
+  name: "论坛分类管理"
   level: 2
   sequence: 0
-  note: "贴子分类管理"
+  note: "论坛分类管理"
   controller: "my_school/categories"
   action: "index"
   protocol: ""
@@ -518,6 +596,54 @@ seedlings_edit:
   note: "育苗记录编辑"
   controller: "my_school/seedlings"
   action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+seedlings_destroy:
+  id: 6004
+  parent_id: 7
+  name: "育苗记录_删除"
+  level: 2
+  sequence: 0
+  note: "育苗记录_删除"
+  controller: "my_school/seedlings"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
+
+seedlings_create:
+  id: 6005
+  parent_id: 7
+  name: "育苗记录_create"
+  level: 2
+  sequence: 0
+  note: "育苗记录_create"
+  controller: "my_school/seedlings"
+  action: "create"
+  protocol: ""
+  <<: *DEFAULTS
+
+seedlings_update:
+  id: 6006
+  parent_id: 7
+  name: "育苗记录_update"
+  level: 2
+  sequence: 0
+  note: "育苗记录_update"
+  controller: "my_school/seedlings"
+  action: "update"
+  protocol: ""
+  <<: *DEFAULTS
+
+seedlings_show:
+  id: 6007
+  parent_id: 7
+  name: "育苗记录_显示"
+  level: 2
+  sequence: 0
+  note: "育苗记录_显示"
+  controller: "my_school/seedlings"
+  action: "show"
   protocol: ""
   <<: *DEFAULTS
 

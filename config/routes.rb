@@ -5,7 +5,9 @@ School::Application.routes.draw do
   match 'my_school/about' => 'my_school/main#about'
   match 'my_school/contact_us' => 'my_school/main#contact_us'
   namespace :my_school do
-    resources :virtual_squads
+    resources :virtual_squads  do 
+       collection {get :get_edit_ids}
+      end
     resources :roles do
       member do
         get :set_operate_to_role
@@ -156,10 +158,15 @@ School::Application.routes.draw do
     resources :topics do
       collection do
         delete :destroy_multiple
+        get :my
       end
     end
     resources :topic_entries
-    resources :activities
+    resources :activities do
+      collection do
+        delete :destroy_multiple
+      end
+    end
   end
 
   match 'weixin' => 'weixin/main#index'
