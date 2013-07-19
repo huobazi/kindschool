@@ -465,7 +465,26 @@ topic_categories_index:
   controller: "my_school/categories"
   action: "index"
   protocol: ""
-
+career_strategy_career_class_validate:
+  id: 5012
+  parent_id: 6
+  name: "升学验证"
+  level: 2
+  sequence: 0
+  note: "升学验证"
+  controller: "my_school/career_strategies"
+  action: "career_class_validate"
+  protocol: ""
+career_strategy_career_class:
+  id: 5013
+  parent_id: 6
+  name: "进行升学"
+  level: 2
+  sequence: 0
+  note: "进行升学"
+  controller: "my_school/career_strategies"
+  action: "career_class"
+  protocol: ""
 #==============================健康饮食
 seedlings_index:
   id: 6001

@@ -87,17 +87,19 @@
               </label>
             </div>
           </div>
-          <div class="control-group">
-            <label class="control-label" >升学后班级</label>
-            <div class="controls">
-              <label class="show_label">
-                <% if @career_strategy.to.grade %>
-                  年级：<%= @career_strategy.to.grade.name %>&nbsp;&nbsp;&nbsp;班级：
-                <% end %>
-                <%= @career_strategy.to.name %>
-              </label>
+          <% unless @career_strategy.graduation %>
+            <div class="control-group">
+              <label class="control-label" >升学后班级</label>
+              <div class="controls">
+                <label class="show_label">
+                  <% if @career_strategy.to.grade %>
+                    年级：<%= @career_strategy.to.grade.name %>&nbsp;&nbsp;&nbsp;班级：
+                  <% end %>
+                  <%= @career_strategy.to.name %>
+                </label>
+              </div>
             </div>
-          </div>
+          <% end %>
 
         </form>
       </div>

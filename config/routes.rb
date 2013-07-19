@@ -24,6 +24,7 @@ School::Application.routes.draw do
     resources :career_strategies do
       collection do
         delete :destroy_multiple
+        get :career_class,:career_class_validate
       end
     end
 

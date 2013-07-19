@@ -30,6 +30,26 @@
             </a>
           </li>
         <% end %>
+        <%if choose_operate_show('my_school/career_strategies/career_class_validate')%>
+          <li>
+            <a href="<%=url_for(:action=>:career_class_validate)%>" title="升学验证" >
+              <div class="work_action_career_validate">
+              </div>
+              <div class="work_action_career_validate_move">
+              </div>
+            </a>
+          </li>
+        <% end %>
+        <%if choose_operate_show('my_school/career_strategies/career_class')%>
+          <li>
+            <a href="<%=url_for(:action=>:career_class)%>" title="进行升学">
+              <div class="work_action_career">
+              </div>
+              <div class="work_action_career_move">
+              </div>
+            </a>
+          </li>
+        <% end %>
       </ul>
     </div>
 

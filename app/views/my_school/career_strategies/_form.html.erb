@@ -49,8 +49,11 @@
       function(result){
         $("#from_class_number_partial").html(result);
       })
-    }); 
-    $('#from_grade').trigger('change');
+    });
+    <% if action_name == "new" %>
+      $('#from_grade').trigger('change');
+    <% end %>
+      
     $("#to_grade").change(function(){
       $.get( "/my_school/seedlings/grade_class",
       { grade: $('#to_grade').val(),name:"to_class_number",no_student:1},

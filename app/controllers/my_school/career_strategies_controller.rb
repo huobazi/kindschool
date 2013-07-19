@@ -137,4 +137,22 @@ class MySchool::CareerStrategiesController < MySchool::ManageController
       format.html { redirect_to :action=>:index }
     end
   end
+
+  #进行升学
+  def career_class
+    @kind.transaction do
+      
+    end
+  end
+
+  #升学验证
+  def career_class_validate
+    message = @kind.career_validate
+    if message.blank?
+      flash[:success] = "升学验证通过，可以进行升学操作。"
+    else
+      flash[:error] = message.sort.join("<br/>")
+    end
+    redirect_to :action => :index
+  end
 end
