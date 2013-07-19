@@ -26,7 +26,7 @@
         <li>
           <%=(link_to "<div class='work_action_add'>
             </div><div class='work_action_add_move'>
-            </div>".html_safe ,new_my_school_physical_record_path) if choose_operate_show("my_school/physical_record/new")  %>
+            </div>".html_safe ,new_my_school_physical_record_path) if choose_operate_show("my_school/physical_records/new")  %>
         </li>
         <li>
           <a href="/" title="删除" id="destroy_multiple">
@@ -67,7 +67,7 @@
                 <td><%= physical_record.send_date.try(:to_short_datetime) %></td>
                 <td>
                   <%=link_to '查看',my_school_physical_record_path(physical_record)%>
-                  <%= (link_to '编辑', edit_my_school_physical_record_path(physical_record)) if choose_operate_show("my_school/physical_record/edit") %>|<%= (link_to '删除',my_school_physical_record_path(physical_record) , method: :delete, data: { confirm: '确定要删除么?' }) if choose_operate_show("my_school/physical_record/destroy") %>
+                  <%= (link_to '编辑', edit_my_school_physical_record_path(physical_record)) if choose_operate_show("my_school/physical_records/edit") %>|<%= (link_to '删除',my_school_physical_record_path(physical_record) , method: :delete, data: { confirm: '确定要删除么?' }) if choose_operate_show("my_school/physical_records/destroy") %>
                </td>
               </tr>
             <% end %>

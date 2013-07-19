@@ -25,7 +25,7 @@
       <ul class="work_action">
         <li><%=(link_to "<div class='work_action_add'>
             </div><div class='work_action_add_move'>
-            </div>".html_safe ,new_my_school_seedling_path) if choose_operate_show("my_school/seedling/new")%>
+            </div>".html_safe ,new_my_school_seedling_path) if choose_operate_show("my_school/seedlings/new")%>
         </li>
         <li>
           <a href="/" title="删除" id="destroy_multiple">
@@ -69,7 +69,7 @@
                   <td><%= seedling.note %></td>
                   <td><%= seedling.shot_at.try(:to_short_datetime) %></td>
                   <td><%= seedling.expire_at.try(:to_short_datetime) %></td>
-                  <td><%=(link_to '编辑', edit_my_school_seedling_path(seedling)) if choose_operate_show("my_school/seedling/edit") %>|<%=(link_to '删除',my_school_seedling_path(seedling) , method: :delete, data: { confirm: '确定要删除么?' }) if choose_operate_show("my_school/seedling/destroy")%></td>
+                  <td><%=(link_to '编辑', edit_my_school_seedling_path(seedling)) if choose_operate_show("my_school/seedlings/edit") %>|<%=(link_to '删除',my_school_seedling_path(seedling) , method: :delete, data: { confirm: '确定要删除么?' }) if choose_operate_show("my_school/seedlings/destroy")%></td>
                 </tr>
               <% end %>
               <tr>
