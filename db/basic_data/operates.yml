@@ -336,6 +336,17 @@ student_manage:
   action: "index"
   protocol: ""
 
+virtual_squads_index:
+  id: 4005
+  parent_id: 5
+  name: "虚拟班管理"
+  level: 2
+  sequence: 4
+  note: "虚拟班管理"
+  controller: "my_school/virtual_squads"
+  action: "index"
+  protocol: ""
+
 #--------------------------system
 template_config:
   id: 5001

@@ -14,6 +14,7 @@ class Squad < ActiveRecord::Base
   has_many :teachers
   has_many :staffs, :through => :teachers
   has_many :albums
+  has_many :user_squads , :class_name=>"UserSquad" ,:conditions => "tp = 1"
 
   def grade_label
     self.grade ? self.grade.name : "未设置年级"

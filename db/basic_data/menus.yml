@@ -38,6 +38,14 @@
     title: "学籍管理"
     height_level: "a"
     sequence: 140
+  - id: 15000
+    name: "虚拟班管理"
+    operate_id: 4005
+    number: 15000
+    url: "/my_school/virtual_squads"
+    title: "虚拟班管理"
+    height_level: "a"
+    sequence: 140
 - id: 20000
   number: "approve"
   name: "审核发布"
@@ -99,6 +107,7 @@
     height_level: "a"
     sequence: 350
     operate_id: 5006
+  - id: 37000
     name: "升学策略"
     number: 37000
     url: "/my_school/career_strategies"
