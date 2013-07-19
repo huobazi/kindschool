@@ -141,8 +141,19 @@ class MySchool::CareerStrategiesController < MySchool::ManageController
   #进行升学
   def career_class
     @kind.transaction do
-      
+      message = @kind.career_validate
+      unless message.blank?
+        flash[:error] = message.sort.join("<br/>")
+        redirect_to :action => :index
+        return
+      end
+      message = @kind.career!
     end
+    flash[:success] = "升学成功。"
+    redirect_to :action => :index
+  rescue => e
+    flash[:error] = e.message
+    redirect_to :action => :index
   end
 
   #升学验证

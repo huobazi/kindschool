@@ -118,8 +118,69 @@ class Kindergarten < ActiveRecord::Base
     self.save!
   end
 
+  #升学验证
+  def career!
+    squads_data = self.graduate_career_strategies
+    if squads_data.blank?
+      raise "没有在读班级的升学策略。"
+    else
+      career_hash = {}
+      #所有在读班级，1、进行毕业班级处理，2、进行升学班级的年级替换和名字修改成“升学中班级id”，3、添加新加班级
+      squads_data.each do |squad|
+        if career_strategy = squad.career_strategy
+          squad_name = squad.name
+          squad_grade_id = squad.grade_id
+          #策略如果是毕业
+          if career_strategy.graduation
+            squad.update_attributes(:grade_id=>nil,:graduate=>true)
+          else
+            if to_squad = career_strategy.to
+              #该升学后班级是否已经有其他班级升过
+              if career_hash[to_squad.id].blank?
+                career_hash[to_squad.id] = squad.id
+                squad.update_attributes!(:name=>"升学中班级#{career_strategy.id}")
+              else
+                morge_squad = Squad.find(career_hash[to_squad.id])
+                squad.student_infos.each do |student_info|
+                  morge_squad.student_infos << student_info
+                end
+                morge_squad.save!
+                squad.update_attributes!(:graduation => true)
+              end
+            else
+              raise "错误类型2：”#{squad.full_name}”升学后班级不存在"
+            end
+          end
+          #如果是新增班级
+          if career_strategy.add_squad
+            new_squad = Squad.create!(:name=>squad_name,:grade_id=>squad_grade_id,:kindergarten_id=>squad.kindergarten_id,:note=>squad.note,:sequence=>squad.sequence)
+            CareerStrategy.create!(:kindergarten_id=>career_strategy.kindergarten_id,:graduation=>career_strategy.graduation,:add_squad=>career_strategy.add_squad,:from_id=>new_squad.id,:to_id=>squad.id,:to_grade_id=>career_strategy.to_grade_id,:squad_name=>career_strategy.squad_name)
+          end
+        end
+      end
+      
+      #变化班级名字，1、对升学班级，替换成最终班级名字，2、升级策略改变
+      squads_data.each do |squad|
+        if career_strategy = squad.career_strategy
+          unless career_strategy.graduation
+            squad.update_attributes!(:grade_id=>career_strategy.to_grade_id,:name=>career_strategy.squad_name) unless squad.graduate
+            
+          end
+        end
+      end
+      #修改策略
+      squads_data.each do |squad|
+        if career_strategy = squad.career_strategy
+          unless career_strategy.graduation
+            #TODO:  修改策略
 
-  #升学
+          end
+        end
+      end
+    end
+  end
+
+  #升学验证
   def career_validate
     squads_data = self.graduate_career_strategies
     data,error_message = [], []

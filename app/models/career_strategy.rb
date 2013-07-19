@@ -9,15 +9,19 @@ class CareerStrategy < ActiveRecord::Base
 
   validates :kindergarten_id, :presence => true
   validates :from_id, :uniqueness => {:scope=>:kindergarten_id}
-  validates :to_id, :uniqueness => {:scope=>:kindergarten_id,:if=>:is_graduation?},:presence =>{:if=>:is_graduation?}
+  validates :to_id,:presence =>{:if=>:is_graduation?}, :uniqueness => {:scope=>:kindergarten_id,:if=>:is_add_squad?}
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end
 
-  ADD_SQUAD_DATA = {"1"=>"是","0"=>"否"}
+  ADD_SQUAD_DATA = {"true"=>"是","false"=>"否"}
   GRADUATION_DATA = {"true"=>"是","false"=>"否"}
 
+  #是否新加
+  def is_add_squad?
+    self.add_squad
+  end
   #是否毕业班
   def is_graduation?
     !self.graduation
