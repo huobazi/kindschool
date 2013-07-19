@@ -40,7 +40,8 @@ MENUS ={"home"=>{
 
   "my_school/staffs" => ["index", "new", "show", "edit"]},
   "14000" => {
-  "my_school/student_infos" => ["index", "new", "show", "edit"]}
+  "my_school/student_infos" => ["index", "new", "show", "edit"]},
+  "15000" => {"my_school/virtual_squads"=>['index','new','edit','show']}
 },
    "90000"=>{
    "91000"=>{
