@@ -5,7 +5,8 @@ WEBSITE_CONFIG = YAML.load_file("config/site_config/website.yml")[::Rails.env]
 
 #模板信息
 PAGE_CONTENTS = YAML.load_file("config/site_config/page_contents.yml")
-
+#默认action，可以快速使用，配置菜单功能
+DEFULT_ACTION = ['index','show','edit','new','update','create','destroy']
 MENUS ={"home"=>{
   "home"=>{
   "my_school/home"=>["index"]
@@ -33,11 +34,10 @@ MENUS ={"home"=>{
 },
   "personnel"=>{
   "11000"=>{
-  "my_school/grades"=>["index","new", "show", "edit"]
+  "my_school/grades"=>DEFULT_ACTION
 }, "12000"=>{
-  "my_school/squads" => ["index", "new", "show", "edit", "add_strategy_view"]
+  "my_school/squads" => ["index", "new","create","update", "show", "edit", "add_strategy_view"]
 }, "13000" => {
-
   "my_school/staffs" => ["index", "new", "show", "edit"]},
   "14000" => {
   "my_school/student_infos" => ["index", "new", "show", "edit"]},
@@ -67,7 +67,7 @@ MENUS ={"home"=>{
       "my_school/roles"=>['index','show','edit','new','set_operate_to_role']
     },
     "37000"=>{
-      "my_school/career_strategies"=>['index','show','edit','new']
+      "my_school/career_strategies"=>DEFULT_ACTION
     },
     "38000"=>{
       "my_school/topic_categories"=>["index", "show", "edit", "new"]
@@ -85,11 +85,14 @@ MENUS ={"home"=>{
       "81000" =>{
         "my_school/albums" => ["index","new","show","edit"],
         "my_school/album_entries" => ["index","new","show","edit"]
-      } 
+      }
     },
     "110000" => {
       "111000" => {
         "my_school/topics" => ["index", "new", "edit", "show"]
+      },
+      "112000" => {
+        "my_school/topics" => ["my"]
       }
     },
     "120000" => {

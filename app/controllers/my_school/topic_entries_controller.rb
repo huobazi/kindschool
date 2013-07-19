@@ -5,7 +5,7 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
 
     if @topic_entry.save!
       flash[:success] = "添加回复成功"
-      redirect_to my_school_topic_path(@topic_entry.topic_id)
+      redirect_to my_school_topic_path(@topic_entry.topic_id, :anchor => "topic_entry_#{@topic_entry.id}", :page => @topic_entry.topic.last_page)
     else
       flash[:error] = "操作失败"
       redirect_to :back

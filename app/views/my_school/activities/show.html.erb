@@ -21,9 +21,9 @@
           <ul>
             <li>
               <% if controller_name == "activities" %>
-                活动信息管理
+                活动信息
               <% else %>
-                兴趣讨论管理
+                兴趣讨论
               <% end %>
             </li>
             <li>/</li>
@@ -166,13 +166,14 @@
         <div id="activity_entries">
           <% if @activity_entries.any? %>
             <% @activity_entries.each do |activity_entry| %>
-              <div id="activity_entry#{topic_entry.id}" class="activity_entry">
-                <span><%= activity_entry.creater ? activity_entry.creater.name : "丢失回复人信息" %></span>: <%= simple_format activity_entry.note, :class => "activity_entry_note" %> 
+              <div id="activity_entry_<%= activity_entry.id %>" class="activity_entry">
+                <span><%= activity_entry.creater ? activity_entry.creater.name : "丢失回复人信息" %></span>: &nbsp;&nbsp; <span><%= time_ago_in_words(activity_entry.created_at) %></span> <%= simple_format activity_entry.note, :class => "activity_entry_note" %> 
                 <% if destroy_activity_entry?(activity_entry) %>
-                  <span class="destroy"><%= link_to "x", my_school_activity_entry_path(activity_entry), :method => :delete %></span>
+                  <span class="destroy"><%= link_to "x", my_school_activity_entry_path(activity_entry, :mark => controller_name), :method => :delete %></span>
                 <% end %>
               </div>
             <% end %>
+            <%= paginate @activity_entries %>
           <% else %>
             暂无回复
           <% end %>
@@ -180,11 +181,11 @@
 
 
         <% if controller_name == "activities" %>
-          <%= simple_form_for(@activity_entry, :validate => true, :url => my_school_activity_entries_path, :html => {:class => "form-horizontal"}, :a => "sss") do |f| %>
+          <%= simple_form_for(@activity_entry, :validate => true, :url => my_school_activity_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
             <%= render :partial => "activity_form", :object => f %>
           <% end %>
         <% else %>
-          <%= simple_form_for(@activity_entry, :validate => true, :url => my_school_activity_entries_path, :html => {:class => "form-horizontal"}, :a => "sss") do |f| %>
+          <%= simple_form_for(@activity_entry, :validate => true, :url => my_school_activity_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
             <%= render :partial => "my_school/activities/activity_form", :object => f %>
           <% end %>
         <% end %>

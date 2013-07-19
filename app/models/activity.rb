@@ -21,4 +21,9 @@ class Activity < ActiveRecord::Base
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end
+
+  def last_page
+    page = (self.activity_entries.count.to_f / 10).ceil
+    page > 1 ? page : nil
+  end
 end

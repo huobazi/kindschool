@@ -18,7 +18,11 @@ class Topic < ActiveRecord::Base
 
 
   def topic_category_label
-    self.topic_category ? self.topic_category.name : "贴子分类信息丢失"
+    self.topic_category ? self.topic_category.name : "论坛分类信息丢失"
   end
 
+  def last_page
+    page = (self.topic_entries.count.to_f / 10).ceil
+    page > 1 ? page : nil
+  end
 end

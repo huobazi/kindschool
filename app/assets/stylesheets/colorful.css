@@ -565,6 +565,32 @@ a{
     width: 52px;
     display: none;
 }
+.work_action_career_validate{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -207px 0;
+    height: 46px;
+    width: 52px;
+}
+.work_action_career_validate_move{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -207px -57px;
+    height: 65px;
+    width: 52px;
+    display: none;
+}
+.work_action_career{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -70px 0;
+    height: 46px;
+    width: 52px;
+}
+.work_action_career_move{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -70px -57px;
+    height: 65px;
+    width: 52px;
+    display: none;
+}
 /*===========表单==============*/
 .work_form{
     padding: 20px 20px 20px 35px;
@@ -1021,8 +1047,14 @@ a.album_a .album_img{
   margin-right: 10px;
 }
 
-fieldset.to_squad {
+fieldset.to_squad,fieldset.from_squad {
   width:300px;
   padding: 20px;
   padding-top: 0;
+}
+td .index_li{
+    margin: 5px;
+    border: 1px #9B9B9B solid;
+    padding: 2px;
+    border-radius:5px;
 }

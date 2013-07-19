@@ -19,6 +19,8 @@ class  MySchool::SquadsController < MySchool::ManageController
       flash[:error] = "操作失败"
       redirect_to my_school_squads_path
     end
+  rescue
+    render :action=>'new'
   end
 
   def edit
@@ -52,6 +54,8 @@ class  MySchool::SquadsController < MySchool::ManageController
         format.xml  { render :xml => @squad.errors, :status => :unprocessable_entity }
       end
     end
+  rescue
+    render :action=>'edit'
   end
 
   def destroy_multiple
@@ -66,8 +70,8 @@ class  MySchool::SquadsController < MySchool::ManageController
       end
     end
     respond_to do |format|
-        format.html { redirect_to my_school_squads_path }
-        format.json { head :no_content }
+      format.html { redirect_to my_school_squads_path }
+      format.json { head :no_content }
     end
   end
 

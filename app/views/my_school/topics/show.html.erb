@@ -13,7 +13,7 @@
             <div class="icon_home"></div>
           </a>
           <ul>
-            <li><%= link_to "贴子管理", my_school_topics_path %></li>
+            <li><%= link_to "论坛贴子", my_school_topics_path %></li>
             <li>/</li>
             <li>查看贴子</li>
           </ul>
@@ -145,13 +145,14 @@
         <div id="topic_entries">
           <% if @topic_entries.any? %>
             <% @topic_entries.each do |topic_entry| %>
-              <div id="topic_entry_#{topic_entry.id}" class="topic_entry">
-                <span><%= topic_entry.creater ? topic_entry.creater.name : "丢失回复人信息" %></span>: <%= simple_format topic_entry.content, :class => "topic_entry_content" %> 
+              <div id="topic_entry_<%= topic_entry.id %>" class="topic_entry">
+                <span><%= topic_entry.creater ? topic_entry.creater.name : "丢失回复人信息" %></span>: &nbsp; &nbsp;<span><%= time_ago_in_words(topic_entry.created_at) %></span><%= simple_format topic_entry.content, :class => "topic_entry_content" %> 
                 <% if destroy_topic_entry?(topic_entry) %>
                   <span class="destroy"><%= link_to "x", my_school_topic_entry_path(topic_entry), :method => :delete %></span>
                 <% end %>
               </div>
             <% end %>
+            <%= paginate @topic_entries %>
           <% else %>
             暂无回复
           <% end %>

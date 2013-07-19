@@ -23,7 +23,12 @@ School::Application.routes.draw do
         member {post :choose_main_img}
       end
     end
-    resources :career_strategies
+    resources :career_strategies do
+      collection do
+        delete :destroy_multiple
+        get :career_class,:career_class_validate
+      end
+    end
 
     resources :interest_activities
 
@@ -153,10 +158,15 @@ School::Application.routes.draw do
     resources :topics do
       collection do
         delete :destroy_multiple
+        get :my
       end
     end
     resources :topic_entries
-    resources :activities
+    resources :activities do
+      collection do
+        delete :destroy_multiple
+      end
+    end
   end
 
   match 'weixin' => 'weixin/main#index'
