@@ -28,7 +28,7 @@
       <ul class="work_action">
          <li><%=(link_to "<div class='work_action_add'>
             </div><div class='work_action_add_move'>
-            </div>".html_safe ,new_my_school_cook_book_path) unless @flag.blank? %>
+            </div>".html_safe ,new_my_school_cook_book_path) if  choose_operate_show("my_school/cook_book/new") %>
         </li>
         <li>
           <a href="/" title="删除" id="destroy_multiple">
@@ -72,7 +72,7 @@
                     <td><%= CookBook::RANGE_TP_DATA[cook_book.range_tp.to_s] %></td>
                     <td>
                       <%=link_to '查看',my_school_cook_book_path(cook_book)%>
-                      <%if @flag%><%= link_to '编辑', edit_my_school_cook_book_path(cook_book) %>|<%= link_to '删除',my_school_cook_book_path(cook_book) , method: :delete, data: { confirm: '确定要删除么?' } %><%end%></td>
+                     <%=(link_to '编辑', edit_my_school_cook_book_path(cook_book)) if  choose_operate_show("my_school/cook_book/edit") %>|<%= (link_to '删除',my_school_cook_book_path(cook_book) , method: :delete, data: { confirm: '确定要删除么?' }) if  choose_operate_show("my_school/cook_book/destroy") %></td>
                   </tr>
                 <% end %>
               <% end %>

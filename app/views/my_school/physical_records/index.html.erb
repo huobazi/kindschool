@@ -24,9 +24,6 @@
       </div>
       <ul class="work_action">
         <li>
-          <%#=(link_to "<div class='work_action_add'>
-            </div><div class='work_action_add_move'>
-            </div>".html_safe ,new_my_school_physical_record_path) unless @flag.blank? %>
           <%=(link_to "<div class='work_action_add'>
             </div><div class='work_action_add_move'>
             </div>".html_safe ,new_my_school_physical_record_path) if choose_operate_show("my_school/physical_record/new")  %>
@@ -70,7 +67,7 @@
                 <td><%= physical_record.send_date.try(:to_short_datetime) %></td>
                 <td>
                   <%=link_to '查看',my_school_physical_record_path(physical_record)%>
-                  <%if @flag%><%= link_to '编辑', edit_my_school_physical_record_path(physical_record) %>|<%= link_to '删除',my_school_physical_record_path(physical_record) , method: :delete, data: { confirm: '确定要删除么?' } %><%end%>
+                  <%= (link_to '编辑', edit_my_school_physical_record_path(physical_record)) if choose_operate_show("my_school/physical_record/edit") %>|<%= (link_to '删除',my_school_physical_record_path(physical_record) , method: :delete, data: { confirm: '确定要删除么?' }) if choose_operate_show("my_school/physical_record/destroy") %>
                </td>
               </tr>
             <% end %>
