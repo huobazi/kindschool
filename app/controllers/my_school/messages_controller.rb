@@ -239,7 +239,7 @@ LEFT JOIN squads ON(squads.id = student_infos.squad_id)")
     @data = users_data.group_by(&:tp)
     render :partial => "users",:layout=>false
   else
-    render :text=>"您无法xiugaigaixinxi"
+    render :text=>"您无法修改该信息"
   end
   end
   

@@ -24,9 +24,12 @@
       </div>
       <ul class="work_action">
         <li>
-          <%=(link_to "<div class='work_action_add'>
+          <%#=(link_to "<div class='work_action_add'>
             </div><div class='work_action_add_move'>
             </div>".html_safe ,new_my_school_physical_record_path) unless @flag.blank? %>
+          <%=(link_to "<div class='work_action_add'>
+            </div><div class='work_action_add_move'>
+            </div>".html_safe ,new_my_school_physical_record_path) if choose_operate_show("my_school/physical_record/new")  %>
         </li>
         <li>
           <a href="/" title="删除" id="destroy_multiple">
