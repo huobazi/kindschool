@@ -153,7 +153,11 @@ School::Application.routes.draw do
       end
     end
     resources :topic_entries
-    resources :activities
+    resources :activities do
+      collection do
+        delete :destroy_multiple
+      end
+    end
   end
 
   match 'weixin' => 'weixin/main#index'
