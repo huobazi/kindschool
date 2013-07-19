@@ -5,6 +5,7 @@ School::Application.routes.draw do
   match 'my_school/about' => 'my_school/main#about'
   match 'my_school/contact_us' => 'my_school/main#contact_us'
   namespace :my_school do
+    resources :virtual_squads
     resources :roles do
       member do
         get :set_operate_to_role
@@ -20,7 +21,12 @@ School::Application.routes.draw do
         member {post :choose_main_img}
       end
     end
-    resources :career_strategies
+    resources :career_strategies do
+      collection do
+        delete :destroy_multiple
+        get :career_class,:career_class_validate
+      end
+    end
 
     resources :interest_activities
 

@@ -34,6 +34,7 @@ class Kindergarten < ActiveRecord::Base
   has_many :operates, :through => :option_operates
 
   has_many :career_strategies
+  has_many :graduate_career_strategies,:conditions=>"squads.graduate=0",:through=>:career_strategies,:source=>:from
 
   has_many :topics
 
@@ -76,44 +77,72 @@ class Kindergarten < ActiveRecord::Base
       end
     end
     self.option_operates.each do |operate|
-       operate.destroy 
+      operate.destroy
     end
-      operates = Operate.all
-      operates.each do |op|
-         option_operate = OptionOperate.new(:operate_id=>op.id)
-         self.option_operates << option_operate
-      end
+    operates = Operate.all
+    operates.each do |op|
+      option_operate = OptionOperate.new(:operate_id=>op.id)
+      self.option_operates << option_operate
+    end
 
-      self.roles.each  do |role|
-        role.destroy
-      end 
-      roles = YAML.load_file("#{Rails.root}/db/basic_data/role.yml")
-      if !roles.blank?
-         roles.each do |k,v|
-          operates = v.delete("operates")
-           role = Role.new(v)
-           role.kindergarten = self
-           unless operates.blank?
-            operates.each do |operate_id|
-              if option = OptionOperate.find_by_operate_id_and_kindergarten_id(operate_id,self.id)
-                 role.option_operates << option
-              end
-            end           
-           end
-           role.save!
-         end
-      end
-      #创建所需要的表格
-      content_patterns = YAML.load_file("#{Rails.root}/db/basic_data/content_patterns.yml")
-      if !content_patterns.blank?
-        content_patterns.each do |k,pattern|
-         unless content_pattern = self.content_patterns.where(:number=>pattern["number"]).first
-            content_pattern = ContentPattern.new(pattern)
-            content_pattern.kindergarten_id = self.id
-            content_pattern.save
+    self.roles.each  do |role|
+      role.destroy
+    end
+    roles = YAML.load_file("#{Rails.root}/db/basic_data/role.yml")
+    if !roles.blank?
+      roles.each do |k,v|
+        operates = v.delete("operates")
+        role = Role.new(v)
+        role.kindergarten = self
+        unless operates.blank?
+          operates.each do |operate_id|
+            if option = OptionOperate.find_by_operate_id_and_kindergarten_id(operate_id,self.id)
+              role.option_operates << option
+            end
           end
-        end 
+        end
+        role.save!
       end
+    end
+    #创建所需要的表格
+    content_patterns = YAML.load_file("#{Rails.root}/db/basic_data/content_patterns.yml")
+    if !content_patterns.blank?
+      content_patterns.each do |k,pattern|
+        unless content_pattern = self.content_patterns.where(:number=>pattern["number"]).first
+          content_pattern = ContentPattern.new(pattern)
+          content_pattern.kindergarten_id = self.id
+          content_pattern.save
+        end
+      end
+    end
     self.save!
+  end
+
+
+  #升学
+  def career_validate
+    squads_data = self.graduate_career_strategies
+    data,error_message = [], []
+    squads_data.each do |squad|
+      if career_strategy = squad.career_strategy
+        unless career_strategy.graduation
+          if to_squad = career_strategy.to
+            unless to_squad.career_strategy
+              error_message << "错误类型1：”#{to_squad.full_name}”需要设置升学策略，否则#{squad.full_name}升学后名称重复"
+            end
+          else
+            error_message << "错误类型2：”#{squad.full_name}”升学后班级不存在"
+          end
+        end
+        #新增类型班级
+        if career_strategy.add_squad==1
+          #如果不是毕业的情况，必须还有升学班级，否则报错
+          if !career_strategy.graduation && career_strategy.to.blank?
+            error_message << "错误类型3：”#{squad.full_name}”属于新增班级"
+          end
+        end
+      end
+    end
+    return error_message
   end
 end

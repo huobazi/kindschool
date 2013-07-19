@@ -8,6 +8,7 @@ class CreateSquads < ActiveRecord::Migration
       t.boolean :graduate,:default=>false #是否毕业班级
       t.text :note
       t.integer :sequence,:default=>0
+      t.integer :tp , :default=>0
       t.timestamps
     end
   end
