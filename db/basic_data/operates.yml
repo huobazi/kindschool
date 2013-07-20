@@ -424,7 +424,36 @@ virtual_squads_destroy:
   controller: "my_school/virtual_squads"
   action: "destroy"
   protocol: ""
-
+users_show:
+  id: 4012
+  parent_id: 5
+  name: "个人信息"
+  level: 2
+  sequence: 4
+  note: "个人信息"
+  controller: "my_school/users"
+  action: "show"
+  protocol: ""
+users_edit:
+  id: 4013
+  parent_id: 5
+  name: "个人信息编辑"
+  level: 2
+  sequence: 4
+  note: "个人信息编辑"
+  controller: "my_school/users"
+  action: "edit"
+  protocol: ""
+users_update:
+  id: 4014
+  parent_id: 5
+  name: "个人信息更新"
+  level: 2
+  sequence: 4
+  note: "个人信息更新"
+  controller: "my_school/users"
+  action: "update"
+  protocol: ""
 #--------------------------system
 template_config:
   id: 5001

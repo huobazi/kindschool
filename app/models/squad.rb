@@ -16,6 +16,7 @@ class Squad < ActiveRecord::Base
   belongs_to :kindergarten  #幼儿园
   belongs_to :grade  #年级
   has_one :career_strategy, :class_name=>"CareerStrategy",:foreign_key=>:from_id #升学策略
+  has_many :source_career_strategies, :class_name=>"CareerStrategy",:foreign_key=>:to_id #升学策略
   
   has_many :student_infos  #学生信息
   has_many :users,:through=>:student_infos #学生的用户信息
@@ -47,13 +48,12 @@ class Squad < ActiveRecord::Base
     if Squad.find(:first,:select=>"1",:conditions=>["kindergarten_id=? AND name=BINARY ? AND graduate=0",self.kindergarten_id,self.name])
       errors.add(:name,"班级名称已经存在")
       raise "班级名称已经存在"
-    end
+    end unless self.graduate
   end
   def update_validate_name
     if Squad.find(:first,:select=>"1",:conditions=>["kindergarten_id=? AND name=BINARY ? AND graduate=0 and id !=?",self.kindergarten_id,self.name,self.id])
       errors.add(:name,"班级名称已经存在")
       raise "班级名称已经存在"
-    end
+    end unless self.graduate
   end
-
 end

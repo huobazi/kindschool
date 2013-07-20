@@ -2,7 +2,7 @@
 #升学策略
 class MySchool::CareerStrategiesController < MySchool::ManageController
   def index
-    @career_strategies =  @kind.career_strategies.joins("LEFT JOIN squads ON(squads.id = career_strategies.from_id)").order("squads.grade_id,career_strategies.id DESC")
+    @career_strategies =  @kind.career_strategies.joins("LEFT JOIN squads ON(squads.id = career_strategies.from_id)").where("squads.graduate=0").order("squads.grade_id,squads.graduate,career_strategies.id DESC")
   end
 
   def new
@@ -141,8 +141,19 @@ class MySchool::CareerStrategiesController < MySchool::ManageController
   #进行升学
   def career_class
     @kind.transaction do
-      
+      message = @kind.career_validate
+      unless message.blank?
+        flash[:error] = message.sort.join("<br/>")
+        redirect_to :action => :index
+        return
+      end
+      message = @kind.career!
     end
+    flash[:success] = "升学成功。"
+    redirect_to :action => :index
+  rescue => e
+    flash[:error] = e.message
+    redirect_to :action => :index
   end
 
   #升学验证
