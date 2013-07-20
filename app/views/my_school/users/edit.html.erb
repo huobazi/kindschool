@@ -39,7 +39,8 @@
         </div>
         <div class="control-group">
           <%= f.label :gender, :class => "control-label" %>&nbsp;&nbsp;
-          <%= f.text_field :gender %>
+          <input type="radio" id="user_G" name="user[gender]" value="G" checked="checked" />男
+          <input type="radio" id="user_M" name="user[gender]" value="M" />女
         </div>
         <div class="control-group">
           <%= f.label :phone, :class => "control-label" %>&nbsp;&nbsp;
@@ -51,7 +52,7 @@
         </div>
         <div class="control-group">
           <%= f.label :tp_label, :class => "control-label" %>&nbsp;&nbsp;
-          <%= f.text_field :tp_label, :disabled => true %>
+          <%= f.text_field :tp_label, :disabled => true  %>
         </div>
         <div class="control-group">
           <%= f.label :kindergarten_label, :class => "control-label" %>&nbsp;&nbsp;
