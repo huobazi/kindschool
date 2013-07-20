@@ -49,7 +49,7 @@ class  MySchool::SquadsController < MySchool::ManageController
         #TODO:添加事务
         @squad.source_career_strategies.each do |career_strategy|
           career_strategy.update_attributes(:to_grade_id=>@squad.grade_id,:squad_name=>@squad.name)
-        end
+        end unless @squad.graduate
         flash[:notice] = '更新通知成功.'
         format.html { redirect_to(:action=>:show,:id=>@squad.id) }
         format.xml  { head :ok }
