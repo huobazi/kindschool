@@ -24,29 +24,35 @@
           </ul>
         </div>
       </div>
-      <% if current_user.tp == 0 %>
         <ul class="work_action">
-          <li>
-          <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:edit,:id=>current_user.student_info.id) %>" title="编辑">
-              <div class="work_action_edit">
-              </div>
-              <div class="work_action_edit_move">
-              </div>
-            </a>
-          </li>
+          <% if current_user.tp == 0 %>
+            <li>
+              <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:edit,:id=>current_user.student_info.id) %>" title="编辑">
+                <div class="work_action_edit">
+                </div>
+                <div class="work_action_edit_move">
+                </div>
+              </a>
+            </li>
+         <% else %>
+            <li>
+              <a href="<%=url_for(:controller=>"/my_school/users",:action=>:edit,:id=>current_user.id)%>" title="编辑">
+                <div class="work_action_edit">
+                </div>
+                <div class="work_action_edit_move">
+                </div>
+              </a>
+            </li>
+        <% end %>
+        <li>
+          <a href="<%=url_for(:controller=>"/my_school/users",:action=>:change_password_view,:id=>current_user.id) %>" title="修改密码">
+            <div class="work_action_edit">
+            </div>
+            <div class="work_action_edit_move">
+            </div>
+          </a>
+        </li>
         </ul>
-      <% else %>
-        <ul class="work_action">
-          <li>
-            <a href="<%=url_for(:controller=>"/my_school/users",:action=>:edit,:id=>current_user.id)%>" title="编辑">
-              <div class="work_action_edit">
-              </div>
-              <div class="work_action_edit_move">
-              </div>
-            </a>
-          </li>
-        </ul>
-      <% end %>
     </div>
 
 

@@ -15,13 +15,19 @@
       <% if @cook_books.blank? %>
         <li><div class="message_content">没有菜谱信息。</div></li>
       <% else %>
-        <% @cook_books.each do |cook_book| %>
+        <% @cook_books.each_with_index do |cook_book,index| %>
           <li>
             <a href="<%= url_for(:action=>:show,:id=>cook_book.id) %>" title="查看菜谱信息">
               <div class="center">
               <label>时间:<%= cook_book.start_at.try(:to_short_datetime)%>/<%= cook_book.end_at.try(:to_short_datetime)%></label>
               </div>
+              <div class="center">
+              <label>
+              <%if index ==0%>
               <%= raw cook_book.content %>
+              <% end -%>
+              </label>
+              </div>
             </a>
           </li>
         <% end %>
