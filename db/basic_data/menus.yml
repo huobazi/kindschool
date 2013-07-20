@@ -46,6 +46,14 @@
     title: "虚拟班管理"
     height_level: "a"
     sequence: 140
+  - id: 16000
+    name: "个人信息"
+    operate_id: 4012
+    number: 16000
+    url: "/my_school/users/show"
+    title: "个人信息"
+    height_level: "a"
+    sequence: 141
 - id: 20000
   number: "approve"
   name: "审核发布"

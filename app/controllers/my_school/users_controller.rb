@@ -46,6 +46,10 @@ class MySchool::UsersController < MySchool::ManageController
     @user = User.find_by_id(current_user.id)
   end
 
+  def show
+    @user = current_user
+  end
+
   def change_password_view
     @user = User.find_by_id(current_user.id)
   end

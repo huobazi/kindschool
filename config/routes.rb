@@ -51,7 +51,7 @@ School::Application.routes.draw do
     end
     resources :users do
       collection do
-        get :login,:logout,:error_notice
+        get :login,:logout,:error_notice,:show
         post :login
       end
       collection do
