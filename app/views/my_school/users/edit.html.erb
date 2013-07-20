@@ -32,7 +32,7 @@
 
 
     <div class="work_list">
-      <%= form_for(@user, :url => my_school_users_path, :html => {:class => "form-horizontal"}) do |f| %>
+      <%= form_for(@user, :url => { :controller => "/my_school/users", :action => :update}, :html => {:class => "form-horizontal"}) do |f| %>
         <div class="control-group">
           <%= f.label :name, :class => "control-label" %>&nbsp;&nbsp;
           <%= f.text_field :name %>
@@ -51,11 +51,11 @@
         </div>
         <div class="control-group">
           <%= f.label :tp_label, :class => "control-label" %>&nbsp;&nbsp;
-          <%= f.text_field :tp_label, :html => { :disabled => true } %>
+          <%= f.text_field :tp_label, :disabled => true %>
         </div>
         <div class="control-group">
           <%= f.label :kindergarten_label, :class => "control-label" %>&nbsp;&nbsp;
-          <%= f.text_field :kindergarten_label, :html => { :disabled => true } %>
+          <%= f.text_field :kindergarten_label, :disabled => true %>
         </div>
         <div class="form-actions">
           <%= f.submit :class => "btn btn-large" %>

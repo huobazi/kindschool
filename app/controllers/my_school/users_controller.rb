@@ -1,9 +1,7 @@
 #encoding:utf-8
 class MySchool::UsersController < MySchool::ManageController
 
-  before_filter :correct_user, :only => [:edit]
 
-  
   protect_from_forgery :except=>:signup
   #提示界面
   def index
@@ -44,6 +42,20 @@ class MySchool::UsersController < MySchool::ManageController
 
   def edit
     @user = User.find_by_id(current_user.id)
+    @user.kindergarten_id = @kind.id
+    @user.tp = current_user.tp
+  end
+
+  def update
+    @user = User.find_by_id(params[:id])
+
+    if @user.update_attributes(params[:user])
+      flash[:success] = "修改用户个人信息成功"
+      redirect_to my_school_user_path(@user)
+    else
+      flash[:error] = "操作失败"
+      render :edit
+    end
   end
 
   def change_password_view

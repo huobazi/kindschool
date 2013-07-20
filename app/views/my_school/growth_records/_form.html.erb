@@ -9,7 +9,19 @@
       language: "zh-CN",
       format:"yyyy-mm-dd"
     });
-    $("#growth_record_start_at").change(function() {
+
+    var dt = new Date();
+    var currentDate = new Date()
+    var day = currentDate.getDate()
+    var month = currentDate.getMonth() + 1
+    var year = currentDate.getFullYear()
+    var now = year + "-" + month + "-" + day
+
+    $("#growth_record_start_at").one("click", function() {
+        $(this).val(now);
+    })
+    $("#growth_record_end_at").one("click", function() {
+        $(this).val(now);
     })
   });
 </script>
