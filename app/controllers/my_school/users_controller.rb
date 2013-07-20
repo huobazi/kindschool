@@ -48,7 +48,6 @@ class MySchool::UsersController < MySchool::ManageController
 
   def update
     @user = User.find_by_id(params[:id])
-
     if @user.update_attributes(params[:user])
       flash[:success] = "修改用户个人信息成功"
       redirect_to my_school_user_path(@user)
