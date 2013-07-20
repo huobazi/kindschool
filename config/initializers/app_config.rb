@@ -42,7 +42,7 @@ MENUS ={"home"=>{
   "14000" => {
   "my_school/student_infos" => ["index", "new", "show", "edit"]},
   "15000" => {"my_school/virtual_squads"=>['index','new','edit','show']},
-  "16000" => {"my_school/users"=>['edit','update','show',"change_password"]}
+  "16000" => {"my_school/users"=>['edit','update','show',"change_password","change_password_view"]}
 },
    "90000"=>{
    "91000"=>{
