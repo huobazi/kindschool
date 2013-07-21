@@ -51,16 +51,43 @@ a{
 }
 #main .menu_center{
     background-color: #008FDC;
-    height: 50px;
+    height: 100px;
     width: 100%;
-
+    text-align: center;
 }
 #main .menu_center ul li{
     border-right: 1px solid white;
 }
-#main .main_work{
+.main_work{
     background-color: #EAEAEA;
     min-height: 500px;
+}
+#main .menu_left {
+    background-color: #008FDC;
+    background-image: url("/t/colorful/menu_left.jpg");
+    background-position: 0 50px;
+    background-repeat: no-repeat;
+    height: 113px;
+    left: -14px;
+    position: absolute;
+    width: 14px;
+}
+#main .menu_right {
+    background-color: #008FDC;
+    background-image: url("/t/colorful/menu_right.jpg");
+    background-position: 0 50px;
+    background-repeat: no-repeat;
+    height: 113px;
+    left: 951px;
+    position: absolute;
+    width: 14px;
+}
+#main .menu_center ul{
+    padding: 0px;
+}
+#main .menu_center ul li{
+    float: none;
+    display: inline-block;
 }
 /*=======首页样式======================end*/
 .small_menu{

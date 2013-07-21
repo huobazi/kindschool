@@ -7,22 +7,22 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div id="main" class="wrapper">
+    <div  class="wrapper">
       <div class="main_logo">
         <% if @kind %>
           <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" width="100" height="79" alt="Logo"/>
         <% end %>
       </div>
-      <div class="menu">
+      <div id="main" class="menu">
         <div class="menu_left"> </div>
         <div class="menu_right"> </div>
         <div class="menu_center">
           <ul>
-            <li><a href="###">首页</a></li>
-            <li><a href="###">关于幼儿园</a></li>
-            <li><a href="###">园所特色</a></li>
-            <li><a href="###">招生信息</a></li>
-            <li><a href="###">家园互动</a></li>
+            <li><a href="###"><img src="/t/colorful/w_home.png" alt="首页"/><div>首页</div></a></li>
+            <li><a href="###"><img src="/t/colorful/phone_img.png" alt="首页" width="39px"/><div>关于幼儿园</div></a></li>
+            <li><a href="###"><img src="/t/colorful/cook_img.png" alt="首页" width="39px"/><div>园所特色</div></a></li>
+            <li><a href="###"><img src="/t/colorful/growth_img.png" alt="首页" width="39px"/><div>招生信息</div></a></li>
+            <li><a href="###"><img src="/t/colorful/activity_img.png" alt="首页" width="39px"/><div>家园互动</div></a></li>
           </ul>
         </div>
         <div class="submenu_center">
