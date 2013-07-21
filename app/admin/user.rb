@@ -1,21 +1,29 @@
 #encoding:utf-8
 ActiveAdmin.register User do
   menu :parent => "幼儿园管理", :priority => 2
-  member_action :new, :method => :put do
-    @user = User.new()
-    @user.tp = 2 if params[:tp] == "admin"
-    if @kindergarten = Kindergarten.find_by_id(params[:kindergarten_id])
-      if @kindergarten.admin
-        flash[:notice] = "幼儿园管理员已经存在."
-        redirect_to :action => :show,:controller=>"/admin/users",:id=>@kindergarten.admin.id
+  controller do
+    def new
+      if params[:id]
+        @user = User.find(params[:id])
+      else
+        @user = User.new()
+      end
+
+      @user.tp = 2 if params[:tp] == "admin"
+      if @kindergarten = Kindergarten.find_by_id(params[:kindergarten_id])
+        if @kindergarten.admin
+          flash[:notice] = "幼儿园管理员已经存在."
+          redirect_to :action => :show,:controller=>"/admin/users",:id=>@kindergarten.admin.id
+          return
+        end
+        @user.kindergarten = @kindergarten
+      else
+        flash[:notice] = "需要指定所属幼儿园."
         return
       end
-      @user.kindergarten = @kindergarten
-    else
-      flash[:notice] = "需要指定所属幼儿园."
-      return
     end
   end
+  
   index do
     column :name
     column :login do |user|
@@ -56,15 +64,17 @@ ActiveAdmin.register User do
       f.input :email, :required => true
       f.input :name, :required => true
       f.input :phone, :required => true
-      f.input :role,:as=>:select,:collection=> Hash[f.object.kindergarten.roles.map{|role| ["#{role.name}",role.id]}]
+      f.input :role, :as=>:select,:collection=>Hash[f.object.kindergarten.roles.collect{|role| [role.name,role.id]}]
+#      f.input :role, :as => :string, :input_html => { :disabled => true }
       f.input :gender,:as=>:radio,:collection=>{"女"=>"M","男"=>"G"}, :required => true
       f.input :weixin_code
       f.input :tp_label, :as => :string, :input_html => { :disabled => true }
       f.input :kindergarten_label, :as => :string, :input_html => { :disabled => true }
       f.input :tp,:as=>:hidden
-      f.input :kindergarten_id,:as=>:hidden
       f.input :is_send
       f.input :is_receive
+      f.input :kindergarten_id,:as=>:hidden
+      f.input :kindergarten_id,:as=>:hidden, :input_html => { :name => "kindergarten_id" }
     end
     f.actions
   end

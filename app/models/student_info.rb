@@ -2,7 +2,7 @@
 class StudentInfo < ActiveRecord::Base
   acts_as_paranoid
   attr_accessible :user_id,:birthday, :birthplace, :brothers, :card_category, :card_code, :children_number, :come_in_at, :deformity, :deformity_category, :domicile_place, :duties, :education, :employofficialt, :family_address, :family_birthday, :family_email, :family_marital, :family_name, :family_phone, :family_register, :family_ties, :grade_id, :guardian, :guardian_card_category, :guardian_card_code, :head_url, :household, :housing, :insured, :kindergarten_id, :leftover_children, :live_family, :living_time, :lodging, :nation, :nationality, :native, :only_child, :orphan, :overseas_chinese, :politics_status, :profession, :safe_box, :squad_id, :subsidize, :working
-  validates :kindergarten,:user,:squad_id, :presence => true#
+  validates :kindergarten_id,:user,:squad_id, :presence => true#
 
   belongs_to :user  #账户
   belongs_to :squad  #班级
@@ -25,6 +25,8 @@ class StudentInfo < ActiveRecord::Base
   def squad_label
     self.squad ? self.squad.name : "丢失班级信息"
   end
+
+  after_create :load_role
 
 
   attr_accessible :user_attributes
@@ -78,6 +80,15 @@ class StudentInfo < ActiveRecord::Base
       if come_in_at < birthday
         errors[:birthday] << "start_at must less than end_at"
         errors[:come_in_at] << "end_at must large than start_at"
+      end
+    end
+  end
+
+  #默认角色
+  def load_role
+    if self.user
+      if role = self.kindergarten.roles.find_by_number("student")
+        self.user.update_attribute(:role_id, role.id)
       end
     end
   end

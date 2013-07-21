@@ -15,6 +15,7 @@ class MySchool::MessagesController < MySchool::ManageController
   def new
     @message = Message.new
     @data = current_user.get_users_ranges
+    puts "==@data=============#{@data.inspect}"
   end
 
   def edit

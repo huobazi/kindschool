@@ -1,138 +1,138 @@
 <div class="tab">
-  <% if @data && @data[:tp]== :all %>
-    <ul class="tab-hd"><li>选择群组</li><li>选择个人</li></ul>
-    <ul class="tab-bd">
-      <li>
-        <div class="rangs_tag">
-          <div class="check_rangs"><input type="radio" name="rangs" value="0" id="rangs_0"/><label for="rangs_0" >全园学生</label></div>
-          <div class="check_rangs"><input type="radio" name="rangs" value="1" id="rangs_1"/><label for="rangs_1" >全园教职工</label></div>
-          <div class="check_rangs"><input type="radio" name="rangs" value="2" id="rangs_2"/><label for="rangs_2" >全园教职工学生</label></div>
-          <div class="check_rangs"><input type="radio" name="rangs" value="3" id="rangs_3"/><label for="rangs_3" >全园年级(学生)</label></div>
-          <div class="check_rangs"><input type="radio" name="rangs" value="4" id="rangs_4"/><label for="rangs_4" >全园年级(学生/老师)</label></div>
-          <div class="check_rangs"><input type="radio" name="rangs" value="5" id="rangs_5"/><label for="rangs_5" >全园班级(学生)</label></div>
-          <div class="check_rangs"><input type="radio" name="rangs" value="6" id="rangs_6"/><label for="rangs_6" >全园班级(学生/老师)</label></div>
-          <div class="check_rangs"><input type="radio" name="rangs" value="7" id="rangs_7"/><label for="rangs_7" >全园职务</label></div>
-          <input type="hidden" name="contain_teachers" id="contain_teachers"/>
-          <div id="grade_resource" class="ranges_resource">
-            <hr/>
-            <% if @kind.grades.any? %>
-              <div class="checkall">
-                <div class="checkall_div"><input type="checkbox" id="grades_checkall" /><label for="grades_checkall">全选/取消</label></div>
-              </div>
-            <% end %>
-            <% @kind.grades.each do |grade| %>
-              <div class="check_grades"><input type="checkbox" name="grades" value="<%=grade.id%>" id="grades_<%=grade.id%>"/><label for="grades_<%=grade.id%>" ><%=grade.name%></label></div>
-            <% end %>
-          </div>
-          <div id="squad_resource" class="ranges_resource">
-            <hr/>
-            <% if @kind.squads.where(:graduate=>false).any? %>
-              <div class="checkall">
-                <div class="checkall_div"><input type="checkbox" id="squads_checkall" /><label for="squads_checkall">全选/取消</label></div>
-              </div>
-            <% end %>
-            <% @kind.squads.where(:graduate=>false).each do |squad| %>
-              <div class="check_grades"><input type="checkbox" name="squads" value="<%=squad.id%>" id="squads_<%=squad.id%>"/><label for="squads_<%=squad.id%>" ><%=squad.name%></label></div>
-            <% end %>
-          </div>
-          <div id="role_resource" class="ranges_resource">
-            <hr/>
-            <% if @kind.roles.any? %>
-              <div class="checkall">
-                <div class="checkall_div"><input type="checkbox" id="roles_checkall" /><label for="roles_checkall">全选/取消</label></div>
-              </div>
-            <% end %>
-            <% @kind.roles.each do |role| %>
-              <div class="check_grades"><input type="checkbox" name="roles" value="<%=role.id%>" id="roles_<%=role.id%>"/><label for="roles_<%=role.id%>" ><%=role.name%></label></div>
-            <% end %>
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="rangs_tag">
-          <div class="check_rangs"><input type="checkbox" name="rangs_users" value="0" id="rangs_users_0"/><label for="rangs_users_0" >学生</label></div>
-          <div class="check_rangs"><input type="checkbox" name="rangs_users" value="1" id="rangs_users_1"/><label for="rangs_users_1" >教职工</label></div>
-        </div>
-        <div id="users_resource" class="ranges_resource">
-          <div id="users_resource_div" class="ranges_resource_div">
-            <%= render :partial =>"/my_school/messages/student" %>
-          </div>
-          <div id="teachers_resource_div" class="ranges_resource_div">
-            <%= render :partial =>"/my_school/messages/teachers" %>
-          </div>
-        </div>
-      </li>
-    </ul>
-  <% elsif @data && @data[:tp]== :teachers %>
-    <ul class="tab-hd"><li>选择群组</li><li>选择个人</li></ul>
-    <ul class="tab-bd">
-      <li>
-        <div class="rangs_tag">
-          <% unless @data[:grades].blank? %>
-            <div class="check_rangs"><input type="radio" name="rangs" value="3" id="rangs_3"/><label for="rangs_3" >年级(学生)</label></div>
-            <div class="check_rangs"><input type="radio" name="rangs" value="4" id="rangs_4"/><label for="rangs_4" >年级(学生/老师)</label></div>
-          <% end %>
-          <% unless @data[:squads].blank? %>
-            <div class="check_rangs"><input type="radio" name="rangs" value="5" id="rangs_5"/><label for="rangs_5" >班级(学生)</label></div>
-            <div class="check_rangs"><input type="radio" name="rangs" value="6" id="rangs_6"/><label for="rangs_6" >班级(学生/老师)</label></div>
-          <% end %>
-          <div class="check_rangs"><input type="radio" name="rangs" value="7" id="rangs_7"/><label for="rangs_7" >全园职务</label></div>
-          <input type="hidden" name="contain_teachers" id="contain_teachers"/>
-          <% unless @data[:grades].blank? %>
+  <% unless @data.blank? %>
+    <% if  @data[:tp]== :all %>
+      <ul class="tab-hd"><li>选择群组</li><li>选择个人</li></ul>
+      <ul class="tab-bd">
+        <li>
+          <div class="rangs_tag">
+            <div class="check_rangs"><input type="radio" name="rangs" value="0" id="rangs_0"/><label for="rangs_0" >全园学生</label></div>
+            <div class="check_rangs"><input type="radio" name="rangs" value="1" id="rangs_1"/><label for="rangs_1" >全园教职工</label></div>
+            <div class="check_rangs"><input type="radio" name="rangs" value="2" id="rangs_2"/><label for="rangs_2" >全园教职工学生</label></div>
+            <div class="check_rangs"><input type="radio" name="rangs" value="3" id="rangs_3"/><label for="rangs_3" >全园年级(学生)</label></div>
+            <div class="check_rangs"><input type="radio" name="rangs" value="4" id="rangs_4"/><label for="rangs_4" >全园年级(学生/老师)</label></div>
+            <div class="check_rangs"><input type="radio" name="rangs" value="5" id="rangs_5"/><label for="rangs_5" >全园班级(学生)</label></div>
+            <div class="check_rangs"><input type="radio" name="rangs" value="6" id="rangs_6"/><label for="rangs_6" >全园班级(学生/老师)</label></div>
+            <div class="check_rangs"><input type="radio" name="rangs" value="7" id="rangs_7"/><label for="rangs_7" >全园职务</label></div>
+            <input type="hidden" name="contain_teachers" id="contain_teachers"/>
             <div id="grade_resource" class="ranges_resource">
               <hr/>
-              <div class="checkall">
-                <div class="checkall_div"><input type="checkbox" id="grades_checkall" /><label for="grades_checkall">全选/取消</label></div>
-              </div>
-              <% @data[:grades].each do |grade| %>
+              <% if @kind.grades.any? %>
+                <div class="checkall">
+                  <div class="checkall_div"><input type="checkbox" id="grades_checkall" /><label for="grades_checkall">全选/取消</label></div>
+                </div>
+              <% end %>
+              <% @kind.grades.each do |grade| %>
                 <div class="check_grades"><input type="checkbox" name="grades" value="<%=grade.id%>" id="grades_<%=grade.id%>"/><label for="grades_<%=grade.id%>" ><%=grade.name%></label></div>
               <% end %>
             </div>
-          <% end %>
-          <% unless @data[:squads].blank? %>
             <div id="squad_resource" class="ranges_resource">
               <hr/>
-              <div class="checkall">
-                <div class="checkall_div"><input type="checkbox" id="squads_checkall" /><label for="squads_checkall">全选/取消</label></div>
-              </div>
-              <% @data[:squads].each do |squad| %>
+              <% if @kind.squads.where(:graduate=>false).any? %>
+                <div class="checkall">
+                  <div class="checkall_div"><input type="checkbox" id="squads_checkall" /><label for="squads_checkall">全选/取消</label></div>
+                </div>
+              <% end %>
+              <% @kind.squads.where(:graduate=>false).each do |squad| %>
                 <div class="check_grades"><input type="checkbox" name="squads" value="<%=squad.id%>" id="squads_<%=squad.id%>"/><label for="squads_<%=squad.id%>" ><%=squad.name%></label></div>
               <% end %>
             </div>
-          <% end %>
-          <div id="role_resource" class="ranges_resource">
-            <hr/>
-            <% if @kind.roles.any? %>
-              <div class="checkall">
-                <div class="checkall_div"><input type="checkbox" id="roles_checkall" /><label for="roles_checkall">全选/取消</label></div>
+            <div id="role_resource" class="ranges_resource">
+              <hr/>
+              <% if @kind.roles.any? %>
+                <div class="checkall">
+                  <div class="checkall_div"><input type="checkbox" id="roles_checkall" /><label for="roles_checkall">全选/取消</label></div>
+                </div>
+              <% end %>
+              <% @kind.roles.each do |role| %>
+                <div class="check_grades"><input type="checkbox" name="roles" value="<%=role.id%>" id="roles_<%=role.id%>"/><label for="roles_<%=role.id%>" ><%=role.name%></label></div>
+              <% end %>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="rangs_tag">
+            <div class="check_rangs"><input type="checkbox" name="rangs_users" value="0" id="rangs_users_0"/><label for="rangs_users_0" >学生</label></div>
+            <div class="check_rangs"><input type="checkbox" name="rangs_users" value="1" id="rangs_users_1"/><label for="rangs_users_1" >教职工</label></div>
+          </div>
+          <div id="users_resource" class="ranges_resource">
+            <div id="users_resource_div" class="ranges_resource_div">
+              <%= render :partial =>"/my_school/messages/student" %>
+            </div>
+            <div id="teachers_resource_div" class="ranges_resource_div">
+              <%= render :partial =>"/my_school/messages/teachers" %>
+            </div>
+          </div>
+        </li>
+      </ul>
+    <% elsif @data[:tp] == :teachers %>
+      <ul class="tab-hd"><li>选择群组</li><li>选择个人</li></ul>
+      <ul class="tab-bd">
+        <li>
+          <div class="rangs_tag">
+            <% unless @data[:grades].blank? %>
+              <div class="check_rangs"><input type="radio" name="rangs" value="3" id="rangs_3"/><label for="rangs_3" >年级(学生)</label></div>
+              <div class="check_rangs"><input type="radio" name="rangs" value="4" id="rangs_4"/><label for="rangs_4" >年级(学生/老师)</label></div>
+            <% end %>
+            <% unless @data[:squads].blank? %>
+              <div class="check_rangs"><input type="radio" name="rangs" value="5" id="rangs_5"/><label for="rangs_5" >班级(学生)</label></div>
+              <div class="check_rangs"><input type="radio" name="rangs" value="6" id="rangs_6"/><label for="rangs_6" >班级(学生/老师)</label></div>
+            <% end %>
+            <div class="check_rangs"><input type="radio" name="rangs" value="7" id="rangs_7"/><label for="rangs_7" >全园职务</label></div>
+            <input type="hidden" name="contain_teachers" id="contain_teachers"/>
+            <% unless @data[:grades].blank? %>
+              <div id="grade_resource" class="ranges_resource">
+                <hr/>
+                <div class="checkall">
+                  <div class="checkall_div"><input type="checkbox" id="grades_checkall" /><label for="grades_checkall">全选/取消</label></div>
+                </div>
+                <% @data[:grades].each do |grade| %>
+                  <div class="check_grades"><input type="checkbox" name="grades" value="<%=grade.id%>" id="grades_<%=grade.id%>"/><label for="grades_<%=grade.id%>" ><%=grade.name%></label></div>
+                <% end %>
               </div>
             <% end %>
-            <% @kind.roles.each do |role| %>
-              <div class="check_grades"><input type="checkbox" name="roles" value="<%=role.id%>" id="roles_<%=role.id%>"/><label for="roles_<%=role.id%>" ><%=role.name%></label></div>
+            <% unless @data[:squads].blank? %>
+              <div id="squad_resource" class="ranges_resource">
+                <hr/>
+                <div class="checkall">
+                  <div class="checkall_div"><input type="checkbox" id="squads_checkall" /><label for="squads_checkall">全选/取消</label></div>
+                </div>
+                <% @data[:squads].each do |squad| %>
+                  <div class="check_grades"><input type="checkbox" name="squads" value="<%=squad.id%>" id="squads_<%=squad.id%>"/><label for="squads_<%=squad.id%>" ><%=squad.name%></label></div>
+                <% end %>
+              </div>
             <% end %>
+            <div id="role_resource" class="ranges_resource">
+              <hr/>
+              <% if @kind.roles.any? %>
+                <div class="checkall">
+                  <div class="checkall_div"><input type="checkbox" id="roles_checkall" /><label for="roles_checkall">全选/取消</label></div>
+                </div>
+              <% end %>
+              <% @kind.roles.each do |role| %>
+                <div class="check_grades"><input type="checkbox" name="roles" value="<%=role.id%>" id="roles_<%=role.id%>"/><label for="roles_<%=role.id%>" ><%=role.name%></label></div>
+              <% end %>
+            </div>
           </div>
-        </div>
-      </li>
-      <li>
-        <div class="rangs_tag">
-          <div class="check_rangs"><input type="checkbox" name="rangs_users" value="0" id="rangs_users_0"/><label for="rangs_users_0" >学生</label></div>
-          <div class="check_rangs"><input type="checkbox" name="rangs_users" value="1" id="rangs_users_1"/><label for="rangs_users_1" >教职工</label></div>
-        </div>
-        <div id="users_resource" class="ranges_resource">
-          <div id="users_resource_div" class="ranges_resource_div">
-            <%= render :partial =>"student" %>
+        </li>
+        <li>
+          <div class="rangs_tag">
+            <div class="check_rangs"><input type="checkbox" name="rangs_users" value="0" id="rangs_users_0"/><label for="rangs_users_0" >学生</label></div>
+            <div class="check_rangs"><input type="checkbox" name="rangs_users" value="1" id="rangs_users_1"/><label for="rangs_users_1" >教职工</label></div>
           </div>
-          <div id="teachers_resource_div" class="ranges_resource_div">
-            <%= render :partial =>"teachers" %>
+          <div id="users_resource" class="ranges_resource">
+            <div id="users_resource_div" class="ranges_resource_div">
+              <%= render :partial =>"student" %>
+            </div>
+            <div id="teachers_resource_div" class="ranges_resource_div">
+              <%= render :partial =>"teachers" %>
+            </div>
           </div>
-        </div>
-      </li>
-    </ul>
-  <% elsif @date && @data[:tp]== :student %>
-    <ul class="tab-hd"><li>选择个人</li></ul>
-    <ul class="tab-bd">
-      <li>
-
+        </li>
+      </ul>
+    <% elsif  @data[:tp] == :student %>
+      <ul class="tab-hd"><li>选择个人</li></ul>
+      <ul class="tab-bd">
+        <li>
           <div class="rangs_tag">
             <div class="check_rangs"><input type="checkbox" name="rangs_users" value="1" id="rangs_users_1"/><label for="rangs_users_1" >教职工</label></div>
           </div>
@@ -141,7 +141,8 @@
               <%= render :partial =>"teachers" %>
             </div>
           </div>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    <% end %>
   <% end %>
 </div>
