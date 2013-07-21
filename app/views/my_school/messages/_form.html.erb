@@ -2,15 +2,22 @@
 <script type="text/javascript">
   $(function() {
     $("#dialog_change_users" ).dialog({
+      dialogClass: "no-close",
       autoOpen: false,
       height:500,
-      width:700
+      width:700,
+      buttons: {
+                "确定": function () {
+                    $(this).dialog("close");
+                },
+                "取消": function () {
+                    $("#message_inputs").html("");
+                    $(this).dialog("close");
+                }
+            }
     });
     $( "#change_users" ).click(function() {
       $( "#dialog_change_users" ).dialog("open");
-    });
-    $("#close_dialog_button").click(function(){
-      $( "#dialog_change_users" ).dialog("close");
     });
   });
 </script>
@@ -57,7 +64,6 @@
 </div>
 <div id="dialog_change_users"  title="选择收件人">
   <%= render :partial => "inbox" %>
-  <%=button_to "确定",'###',:id=>'close_dialog_button'%>
 </div>
 <script type="text/javascript">
 

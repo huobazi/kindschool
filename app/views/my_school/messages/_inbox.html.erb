@@ -99,6 +99,11 @@
                 <% @data[:squads].each do |squad| %>
                   <div class="check_grades"><input type="checkbox" name="squads" value="<%=squad.id%>" id="squads_<%=squad.id%>"/><label for="squads_<%=squad.id%>" ><%=squad.name%></label></div>
                 <% end %>
+                <% @data[:playgroup].each do |user_squad| %>
+                  <% if squad = user_squad.squad %>
+                    <div class="check_grades"><input type="checkbox" name="squads" value="<%=squad.id%>" id="squads_<%=squad.id%>"/><label for="squads_<%=squad.id%>" ><%=squad.name%></label></div>
+                  <% end %>
+                <% end %>
               </div>
             <% end %>
             <div id="role_resource" class="ranges_resource">

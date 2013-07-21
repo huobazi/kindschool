@@ -100,9 +100,9 @@
           </tr>
           <tr>
             <th>入园时间</th>
-            <td><%= current_user.student_info.come_in_at %></td>
+            <td><%= current_user.student_info.come_in_at ? current_user.student_info.come_in_at.to_short_datetime : ""%></td>
             <th>出生日期</th>
-            <td><%= current_user.student_info.birthday %></td>
+            <td><%= current_user.student_info.birthday ? current_user.student_info.birthday.to_short_datetime : ""%></td>
           </tr>
           <tr>
             <th>监护人名字</th>
@@ -149,9 +149,9 @@
           </tr>
           <tr>
             <th>入职时间</th>
-            <td><%= current_user.staff.come_in_at.to_short_datetime %></td>
+            <td><%= current_user.staff.come_in_at ? current_user.staff.come_in_at.to_short_datetime : ""%></td>
             <th>出生日期</th>
-            <td><%= current_user.staff.birthday.to_short_datetime %></td>
+            <td><%= current_user.staff.birthday ? current_user.staff.birthday.to_short_datetime : ""%></td>
           </tr>
           <tr>
             <th>考勤卡号</th>

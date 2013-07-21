@@ -186,8 +186,8 @@ class User < ActiveRecord::Base
       if !data[:playgroup].blalk?
         squads = data[:playgroup]
         squads.each do |squad_play|
-          #添加虚拟班的学生
-          users_ids += squad_play.user_squads.where("users.tp=0").collect{|user_play| user_play.id.to_s}
+          #添加虚拟班的学生和老师
+          users_ids += squad_play.get_all.collect{|user_play| user_play.id.to_s}
         end
       end
       users_ids += self.kindergarten.users.where(:status=>"start",:tp=>1).collect{|user| user.id.to_s}
@@ -202,10 +202,9 @@ class User < ActiveRecord::Base
         squads = data[:playgroup]
         squads.each do |squad_play|
           #添加虚拟班的老师
-          users_ids += squad_play.user_squads.where("users.tp=1").collect{|user_play| user_play.id.to_s}
+          users_ids += squad_play.get_teachers.collect{|user_play| user_play.id.to_s}
         end
       end
-
       user_ids += squad.staffs.collect{|staff| staff.user ? staff.user.id.to_s : "0"}
       return (user_ids & ids).uniq
     else

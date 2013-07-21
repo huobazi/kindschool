@@ -1058,3 +1058,7 @@ td .index_li{
     padding: 2px;
     border-radius:5px;
 }
+.no-close .ui-dialog-titlebar-close {
+display: none;
+}
+/*.ui-icon { width: 16px; height: 16px; background-image: url(images/ui-icons_222222_256x240.png); }*/
