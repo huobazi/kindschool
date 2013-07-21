@@ -43,6 +43,26 @@ a{
     padding-left: 35px;
     padding-bottom: 10px;
 }
+/*=======首页样式======================begin*/
+.main_logo{
+    padding-bottom: 5px;
+    padding-top: 5px;
+    text-align: center;
+}
+#main .menu_center{
+    background-color: #008FDC;
+    height: 50px;
+    width: 100%;
+
+}
+#main .menu_center ul li{
+    border-right: 1px solid white;
+}
+#main .main_work{
+    background-color: #EAEAEA;
+    min-height: 500px;
+}
+/*=======首页样式======================end*/
 .small_menu{
     height: 20px;
     width: 100%;
@@ -139,7 +159,7 @@ a{
     width: 14px;
     height: 63px;
     position: absolute;
-    left:-12px;
+    left:-14px;
 }
 .menu_right{
     background-image: url(/t/colorful/menu_right.jpg);
@@ -1043,14 +1063,14 @@ a.album_a .album_img{
 }
 
 .control-group .controls .show_label .message_entry {
-  background: #DBDBDB;
-  margin-right: 10px;
+    background: #DBDBDB;
+    margin-right: 10px;
 }
 
 fieldset.to_squad,fieldset.from_squad {
-  width:300px;
-  padding: 20px;
-  padding-top: 0;
+    width:300px;
+    padding: 20px;
+    padding-top: 0;
 }
 td .index_li{
     margin: 5px;
@@ -1059,6 +1079,6 @@ td .index_li{
     border-radius:5px;
 }
 .no-close .ui-dialog-titlebar-close {
-display: none;
+    display: none;
 }
 /*.ui-icon { width: 16px; height: 16px; background-image: url(images/ui-icons_222222_256x240.png); }*/
