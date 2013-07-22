@@ -2,18 +2,15 @@
 <html>
   <head>
     <title>School</title>
-    <%= stylesheet_link_tag    "colorful", :media => "all" %>
+    <%= stylesheet_link_tag    "colorful_main", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
   <body>
     <div class="wrapper">
-      <div class="logo">
-        <% if @kind %>
-          <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" width="100" height="79" alt="Logo"/>
-        <% end %>
+      <div class="school_logo">
+          <img src="/t/colorful/logo.png" width="100" height="79"/>
       </div>
-      <%= link_to "进入家园互动",:controller=>"/my_school/home",:action=>:index %>
       <%= yield %>
     </div>
   </body>
