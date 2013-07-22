@@ -23,7 +23,7 @@
 <div class="control-group">
   <%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
   <div class="controls">
-    <%= text_field_tag(:kindergarten,@kind.name, disabled: true) %>
+    <%= text_field_tag(:kindergarten,@kind.name, :disabled=> true) %>
   </div>
 </div>
 <div class="control-group">
@@ -35,7 +35,7 @@
 <div class="control-group">
   <%=f.label :note, '描述: ' ,:class=>"control-label"%>
   <div class="controls">
-    <%= f.text_area(:note, :validate => true, size: "30x5",:class=>"span4") %>
+    <%= f.text_area(:note, :validate => true, :size=> "30x5",:class=>"span4") %>
   </div>
 </div>
 <%=render :partial => "personnel_selection"-%>
