@@ -15,7 +15,7 @@ class  MySchool::ManageController < MySchool::BaseController
      if  user =  current_user
       if operate = Operate.where(:controller=>controller_path,:action=>action_name).first#(:conditions => ["controller = ? and action like ?", controller_path, "%[#{action_name}]%"])   
        unless  user.operates.include?(operate)
-         flash[:notice] = ""
+         flash[:notice] = "您没有权限访问"
          redirect_to my_school_home_index_path
        end
      end
