@@ -150,6 +150,7 @@ notice_index:
   params: ""
   protocol: ""
   <<: *DEFAULTS
+#==============================
 message_send:
   id: 2006
   parent_id: 2
@@ -481,9 +482,9 @@ staff_destroy:
   action: "destroy"
   protocol: ""
   <<: *DEFAULTS
-
+#=============================
 student_manage:
-  id: 4004
+  id: 10001
   parent_id: 5
   name: "学籍管理"
   level: 2
