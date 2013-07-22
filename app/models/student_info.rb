@@ -72,6 +72,14 @@ class StudentInfo < ActiveRecord::Base
     StudentInfo::LIVE_FAMILY_DATA[self.live_family.to_s]
   end
 
+  
+  def get_all_teachers
+    teachers = []
+    if self.squad
+      teachers += self.squad.staffs
+    end
+  end
+
   validate :end_at_large_than_start_at
 
   private

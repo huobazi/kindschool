@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   belongs_to :kindergarten
   has_one :student_info
   has_one :staff
+
+  has_one :asset_logo, :class_name => "AssetLogo", :as => :resource, :dependent => :destroy #logo，只有一个
   belongs_to :role
 
   has_many :messages, :class_name => "Message",:foreign_key=>:sender_id

@@ -11,6 +11,7 @@
 /db/*.sqlite3
 /db/schema.rb
 /public/asset_imgs/*
+/public/asset_logos/*
 /public/page_imgs/*
 
 # Ignore all logfiles and tempfiles.

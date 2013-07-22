@@ -18,21 +18,32 @@
       </div>
       <ul class="work_action">
         <li>
-        <a href="<%=url_for(:controller=>"/my_school/users",:action=>:show, :id => @user.id)%>" title="返回">
-          <div class="work_action_return">
-          </div>
-          <div class="work_action_return_move">
-          </div>
-        </a>
+          <a href="<%=url_for(:controller=>"/my_school/users",:action=>:show, :id => @user.id)%>" title="返回">
+            <div class="work_action_return">
+            </div>
+            <div class="work_action_return_move">
+            </div>
+          </a>
         </li>
-
       </ul>
     </div>
-
-
-
     <div class="work_list">
-      <%= form_for(@user, :url => { :controller => "/my_school/users", :action => :update}, :html => {:class => "form-horizontal"}) do |f| %>
+      <%= form_for(@user, :url => { :controller => "/my_school/users", :action => :update}, :multipart => true, :html => {:class => "form-horizontal"}) do |f| %>
+        <div class="control-group">
+          <%= f.label :kindergarten_label, :class => "control-label" %>&nbsp;&nbsp;
+          <%= f.text_field :kindergarten_label, :disabled => true %>
+        </div>
+        <div class="control-group">
+          <%= f.label :tp_label, :class => "control-label" %>&nbsp;&nbsp;
+          <%= f.text_field :tp_label, :disabled => true  %>
+        </div>
+        <div class="control-group">
+          <label class="control-label">头像</label>&nbsp;&nbsp;
+          <%= f.file_field :asset_logo ,:name=>"asset_logo" %>
+          <div>
+           &nbsp;&nbsp; <img src="<%= @user.asset_logo ? @user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="103" alt="头像"/>
+          </div>
+        </div>
         <div class="control-group">
           <%= f.label :name, :class => "control-label" %>&nbsp;&nbsp;
           <%= f.text_field :name %>
@@ -47,19 +58,11 @@
           <%= f.text_field :phone %>
         </div>
         <div class="control-group">
-          <%= f.label :weixin_code, :class => "control-label" %>&nbsp;&nbsp;
-          <%= f.text_field :weixin_code %>
-        </div>
-        <div class="control-group">
-          <%= f.label :tp_label, :class => "control-label" %>&nbsp;&nbsp;
-          <%= f.text_field :tp_label, :disabled => true  %>
-        </div>
-        <div class="control-group">
-          <%= f.label :kindergarten_label, :class => "control-label" %>&nbsp;&nbsp;
-          <%= f.text_field :kindergarten_label, :disabled => true %>
+          <label class="control-label">绑定微信</label>&nbsp;&nbsp;
+          <input value="<%= @user.weixin_code.blank? ? "未绑定" : "已绑定" %>" disabled="disabled" type="text"/>
         </div>
         <div class="form-actions">
-          <%= f.submit :class => "btn btn-large" %>
+          <%= f.submit :class => "btn" %>
         </div>
       <% end %>
     </div>
