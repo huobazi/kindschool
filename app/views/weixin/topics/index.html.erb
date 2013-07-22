@@ -12,7 +12,7 @@
         <li><div class="message_content">您还没有贴子。</div></li>
       <% else %>
         <% @topics.each do |topic| %>
-          <li class="topic_show">
+          <li class="topic_show" data-id="<%= topic.id %>">
             <p class="topic_title"><%= topic.title %></p>
             <p class="topic_created_time"><%= topic.created_at.to_long_datetime %></p>
             <div class="topic_info">
@@ -40,12 +40,13 @@
 </div>
 <%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
 <%= render :partial => "/modules/colorful/weixin_menu_one"%>
+
 <script type="text/javascript">
-  $(function(){
-    $("#message_search select").change(function(){
-      $("#message_search").submit();
+$(document).ready(function() {
+  $(".topic_show").each(function() {
+    $(this).click(function() {
+      window.location.href = "topics/" + $(this).attr("data-id")
     })
   })
-
+})
 </script>
-

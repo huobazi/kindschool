@@ -1,0 +1,19 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    <a href="<%= url_for(:action=>:index) %>" title="返回">返回</a>信息论坛
+  </div>
+  <div class="message_list">
+    <ul class="data_list">
+      <li class="topic">
+      <%= simple_form_for(@topic, :validate => true, :url => {:controller => "/weixin/topics", :action => :update}, :html => {:class => "form"}) do |f| %>
+          <%= render :partial => "form", :object => f %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>

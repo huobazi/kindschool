@@ -448,25 +448,26 @@ body {
 /*========================= 贴子 =================*/
 .message_div .message_list .data_list li {
   margin-top: 20px;
+  cursor: pointer;
 }
-.message_list .data_list .topic_title {
+.message_list .data_list .topic_show .topic_title {
   color: #000000;
   font-size: 34px;
   padding: 20px 20px 0;
 }
-.message_list .data_list .topic_created_time {
+.message_list .data_list .topic_show .topic_created_time {
   color: #5d5d5d;
   font-size: 30px;
   padding: 20px 20px 10px;
 }
-.message_list .data_list .topic_info {
+.message_list .data_list .topic_show .topic_info {
   padding: 20px 20px 10px;
   color: #008fdc;
   font-size: 30px;
   background-color: #EAF7FF;
   position: relative;
 }
-.message_list .data_list .topic_info .topic_reply {
+.message_list .data_list .topic_show .topic_info .topic_reply {
   position: absolute;
   right: 50px;
 }
@@ -485,5 +486,92 @@ body {
 
 .message_div .message_list .data_list li.topic {
   border: none;
+}
+.message_div .message_list .data_list li.topic .topic_title {
+  padding: 10px 20px 25px 20px;
+  font-size: 34px;
+}
 
+.message_div .message_list .data_list li.topic .topic_info {
+  padding: 0 20px 20px 20px;
+  font-size: 27px;
+}
+.message_div .message_list .data_list li.topic .topic_info span {
+  color: #7d7d7d;
+}
+.message_div .message_list .data_list li.topic .topic_info .author {
+  color: #008fdc;
+}
+.message_div .message_list .data_list li.topic .topic_content {
+  padding: 0 20px 20px 20px;
+  text-indent: 20px;
+  line-height: 40px;
+}
+.message_div .message_list .data_list li.reply {
+  border: none;
+  padding: 10px 10px 15px 10px;
+}
+
+.message_div .message_list .data_list li.reply .field .field_prompt {
+  color: #000000;
+  font-size: 25px;
+  padding-left: 5px;
+}
+
+.message_div .message_list .data_list li.reply .text-content {
+  margin-top: 20px;
+  height: 50px;
+  line-height: 50px;
+  width: 350px;
+  font-size: 20px;
+}
+.message_div .message_list .data_list ul.topic_replies {
+  padding: 10px 12px 12px 12px;
+  background-color: #DBEEFD;
+}
+.message_div .message_list .data_list ul.topic_replies li {
+  background-color: white;
+  border-radius: 5px 5px 5px 5px;
+  border: 1px #008fdc solid;
+  padding: 20px;
+}
+.message_div .message_list .data_list ul.topic_replies li .author {
+  color: #008fdc;
+}
+
+.message_div .message_list .data_list ul.topic_replies li .reply_info {
+  margin-bottom: 20px;
+  background: url("/t/colorful/qietu_54.png") no-repeat 400px -240px;
+}
+.field_prompt {
+  color: #008fdc;
+  font-size: 20px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.form {
+  padding: 10px 20px 20px;
+}
+
+.select {
+  height: 55px;
+  padding-top: 10px;
+  font-size: 25px;
+  width: 300px;
+}
+
+.form .field .text-content {
+  height: 40px;
+  line-height: 40px;
+  width: 350px;
+  font-size: 20px;
+}
+
+.form .field .text-area {
+  width: 500px;
+  font-size: 20px;
+  height: 150px;
 }
