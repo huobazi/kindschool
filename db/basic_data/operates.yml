@@ -315,6 +315,53 @@ squad_manage:
   protocol: ""
   <<: *DEFAULTS
 
+squad_new:
+  id: 4111
+  parent_id: 5
+  name: "新增班级"
+  level: 2
+  sequence: 1
+  note: "新增班级"
+  controller: "my_school/squads"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+squad_show:
+  id: 4121
+  parent_id: 5
+  name: "查看班级"
+  level: 2
+  sequence: 1
+  note: "查看班级"
+  controller: "my_school/squads"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+squad_edit:
+  id: 4131
+  parent_id: 5
+  name: "修改班级"
+  level: 2
+  sequence: 1
+  note: "修改班级"
+  controller: "my_school/squads"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+squad_destroy:
+  id: 4141
+  parent_id: 5
+  name: "删除班级"
+  level: 2
+  sequence: 1
+  note: "删除班级"
+  controller: "my_school/squads"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
+
 grade_manage:
   id: 4002
   parent_id: 5
@@ -325,6 +372,55 @@ grade_manage:
   controller: "my_school/grades"
   action: "index"
   protocol: ""
+  <<: *DEFAULTS
+
+grade_new:
+  id: 4112
+  parent_id: 5
+  name: "新增年级"
+  level: 2
+  sequence: 2
+  note: "新增年级"
+  controller: "my_school/grades"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+grade_show:
+  id: 4122
+  parent_id: 5
+  name: "查看年级"
+  level: 2
+  sequence: 2
+  note: "查看年级"
+  controller: "my_school/grades"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+grade_edit:
+  id: 4132
+  parent_id: 5
+  name: "修改年级"
+  level: 2
+  sequence: 2
+  note: "修改年级"
+  controller: "my_school/grades"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+grade_destroy:
+  id: 4142
+  parent_id: 5
+  name: "删除年级"
+  level: 2
+  sequence: 2
+  note: "删除年级"
+  controller: "my_school/grades"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
 
 staff_manage:
   id: 4003
@@ -336,6 +432,55 @@ staff_manage:
   controller: "my_school/staffs"
   action: "index"
   protocol: ""
+  <<: *DEFAULTS
+
+staff_new:
+  id: 4113
+  parent_id: 5
+  name: "新增教职工"
+  level: 2
+  sequence: 3
+  note: "新增教职工"
+  controller: "my_school/staffs"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+staff_show:
+  id: 4123
+  parent_id: 5
+  name: "查看教职工"
+  level: 2
+  sequence: 3
+  note: "查看教职工"
+  controller: "my_school/staffs"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+staff_edit:
+  id: 4133
+  parent_id: 5
+  name: "修改教职工"
+  level: 2
+  sequence: 3
+  note: "修改教职工"
+  controller: "my_school/staffs"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+staff_destroy:
+  id: 4143
+  parent_id: 5
+  name: "删除教职工"
+  level: 2
+  sequence: 3
+  note: "删除教职工"
+  controller: "my_school/staffs"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
 
 student_manage:
   id: 4004
@@ -347,6 +492,55 @@ student_manage:
   controller: "my_school/student_infos"
   action: "index"
   protocol: ""
+  <<: *DEFAULTS
+
+student_new:
+  id: 4114
+  parent_id: 5
+  name: "新增学员"
+  level: 2
+  sequence: 4
+  note: "新增学员"
+  controller: "my_school/student_infos"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+student_show:
+  id: 4124
+  parent_id: 5
+  name: "查看学员"
+  level: 2
+  sequence: 4
+  note: "查看学员"
+  controller: "my_school/student_infos"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+student_edit:
+  id: 4134
+  parent_id: 5
+  name: "修改学员"
+  level: 2
+  sequence: 4
+  note: "修改学员"
+  controller: "my_school/student_infos"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+student_destroy:
+  id: 4144
+  parent_id: 5
+  name: "删除学员"
+  level: 2
+  sequence: 4
+  note: "删除学员"
+  controller: "my_school/student_infos"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
 
 virtual_squads_index:
   id: 4005
@@ -358,6 +552,7 @@ virtual_squads_index:
   controller: "my_school/virtual_squads"
   action: "index"
   protocol: ""
+  <<: *DEFAULTS
 
 virtual_squads_new:
   id: 4006
@@ -369,6 +564,7 @@ virtual_squads_new:
   controller: "my_school/virtual_squads"
   action: "new"
   protocol: ""
+  <<: *DEFAULTS
 
 virtual_squads_create:
   id: 4007
@@ -380,6 +576,7 @@ virtual_squads_create:
   controller: "my_school/virtual_squads"
   action: "create"
   protocol: ""
+  <<: *DEFAULTS
 
 virtual_squads_show:
   id: 4008
@@ -391,6 +588,7 @@ virtual_squads_show:
   controller: "my_school/virtual_squads"
   action: "show"
   protocol: ""
+  <<: *DEFAULTS
 
 virtual_squads_edit:
   id: 4009
@@ -402,6 +600,7 @@ virtual_squads_edit:
   controller: "my_school/virtual_squads"
   action: "edit"
   protocol: ""
+  <<: *DEFAULTS
 
 virtual_squads_update:
   id: 4010
@@ -413,6 +612,7 @@ virtual_squads_update:
   controller: "my_school/virtual_squads"
   action: "update"
   protocol: ""
+  <<: *DEFAULTS
 
 virtual_squads_destroy:
   id: 4011
@@ -424,6 +624,7 @@ virtual_squads_destroy:
   controller: "my_school/virtual_squads"
   action: "destroy"
   protocol: ""
+  <<: *DEFAULTS
 users_show:
   id: 4012
   parent_id: 5
@@ -434,6 +635,7 @@ users_show:
   controller: "my_school/users"
   action: "show"
   protocol: ""
+  <<: *DEFAULTS
 users_edit:
   id: 4013
   parent_id: 5
@@ -444,6 +646,7 @@ users_edit:
   controller: "my_school/users"
   action: "edit"
   protocol: ""
+  <<: *DEFAULTS
 users_update:
   id: 4014
   parent_id: 5
@@ -454,6 +657,7 @@ users_update:
   controller: "my_school/users"
   action: "update"
   protocol: ""
+  <<: *DEFAULTS
 #--------------------------system
 template_config:
   id: 5001
@@ -465,6 +669,7 @@ template_config:
   controller: "/myschool/templates"
   action: "set_default_template_view"
   protocol: ""
+  <<: *DEFAULTS
 
 page_content_config:
   id: 5002
@@ -476,6 +681,7 @@ page_content_config:
   controller: "my_school/page_contents"
   action: "index"
   protocol: ""
+  <<: *DEFAULTS
 
 content_pattern_index:
   id: 5003
@@ -488,6 +694,7 @@ content_pattern_index:
   action: "index"
   visible: true
   protocol: ""
+  <<: *DEFAULTS
 
 smarties_index:
   id: 5004
@@ -500,6 +707,7 @@ smarties_index:
   action: "index"
   visible: true
   protocol: ""
+  <<: *DEFAULTS
 
 smarties_create:
   id: 5005
@@ -511,6 +719,7 @@ smarties_create:
   controller: "my_school/smarties"
   action: "create"
   protocol: ""
+  <<: *DEFAULTS
 
 role_index:
   id: 5006
@@ -522,6 +731,7 @@ role_index:
   controller: "my_school/roles"
   action: "index"
   protocol: ""
+  <<: *DEFAULTS
 career_strategy_index:
   id: 5007
   parent_id: 6
@@ -532,6 +742,7 @@ career_strategy_index:
   controller: "my_school/career_strategies"
   action: "index"
   protocol: ""
+  <<: *DEFAULTS
 career_strategy_create:
   id: 5008
   parent_id: 6
@@ -542,6 +753,7 @@ career_strategy_create:
   controller: "my_school/career_strategies"
   action: "create"
   protocol: ""
+  <<: *DEFAULTS
 career_strategy_update:
   id: 5009
   parent_id: 6
@@ -552,6 +764,7 @@ career_strategy_update:
   controller: "my_school/career_strategies"
   action: "update"
   protocol: ""
+  <<: *DEFAULTS
 career_strategy_destroy:
   id: 5010
   parent_id: 6
@@ -562,6 +775,7 @@ career_strategy_destroy:
   controller: "my_school/career_strategies"
   action: "destroy"
   protocol: ""
+  <<: *DEFAULTS
 topic_categories_index:
   id: 5011
   parent_id: 6
@@ -572,6 +786,7 @@ topic_categories_index:
   controller: "my_school/categories"
   action: "index"
   protocol: ""
+  <<: *DEFAULTS
 career_strategy_career_class_validate:
   id: 5012
   parent_id: 6
@@ -582,6 +797,7 @@ career_strategy_career_class_validate:
   controller: "my_school/career_strategies"
   action: "career_class_validate"
   protocol: ""
+  <<: *DEFAULTS
 career_strategy_career_class:
   id: 5013
   parent_id: 6
@@ -592,6 +808,7 @@ career_strategy_career_class:
   controller: "my_school/career_strategies"
   action: "career_class"
   protocol: ""
+  <<: *DEFAULTS
 #==============================健康饮食
 seedlings_index:
   id: 6001

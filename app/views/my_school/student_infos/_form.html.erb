@@ -48,8 +48,8 @@
 <fieldset>
   <legend><label><strong>学员信息</strong></label></legend>
     <% if action_name == "new" %>
-      <%= f.input :birthday, :as => :string, :class => "input-mediun"  %>
-      <%= f.input :come_in_at, :as => :string, :class => "input-mediun" %>
+      <%= f.input :birthday, :as => :string, :class => "input-mediun time_datepicker"  %>
+      <%= f.input :come_in_at, :as => :string, :class => "input-mediun time_datepicker" %>
     <% else %>
       <%= f.input :birthday, :as => :string, :class => "input-mediun", :input_html => {:value=>(f.object.birthday ? f.object.birthday.to_short_datetime : "") }  %>
       <%= f.input :come_in_at, :as => :string, :class => "input-mediun", :input_html => {:value => (f.object.come_in_at ? f.object.come_in_at.to_short_datetime : "")} %>
@@ -89,7 +89,7 @@
     <%= f.input :family_ties %>
     <%= f.input :family_name %>
     <%= f.input :politics_status %>
-    <%= f.input :family_birthday, :as => :string, :class => "input-mediun" %>
+    <%= f.input :family_birthday, :as => :string, :class => "input-mediun time_datepicker" %>
     <%= f.input :profession %>
     <%= f.input :duties %>
     <%= f.input :working %>
