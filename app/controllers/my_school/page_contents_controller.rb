@@ -53,8 +53,37 @@ class  MySchool::PageContentsController < MySchool::ManageController
             entry = @page_content.content_entries.first
             entry.update_attributes(:content=>(params[:content]||""))
           end
+        elsif params[:tp] == "official_website_about_us"
+          if @page_content.content_entries.blank?
+             entry = ContentEntry.new(:title=>params[:title],:content=>(params[:content]||""))
+            if params[:img]
+              img = PageImg.new(:uploaded_data=> params[:img])
+              entry.page_img = img
+            end
+            @page_content.content_entries << entry
+          else
+          end
+        elsif params[:tp] == "official_website_feature"
+          # if @page_content.content_entries.blank?
+             puts "xxxxxxxxxxxxxxxxx\n\n\n\n"
+             entry = ContentEntry.new(:title=>params[:title],:content=>(params[:content]||""))
+            if params[:img]
+              img = PageImg.new(:uploaded_data=> params[:img])
+              entry.page_img = img
+            end
+            @page_content.content_entries << entry
+          # else
+
+          # end
+        elsif params[:tp] == "official_website_admissions_information"
+           entry = ContentEntry.new(:title=>params[:title],:content=>(params[:content]||""))
+            if params[:img]
+              img = PageImg.new(:uploaded_data=> params[:img])
+              entry.page_img = img
+            end
+            @page_content.content_entries << entry
         end
-        if @page_content.save
+        if @page_content.save!
           flash[:notice] = "添加成功."
         else
           flash[:error] = "添加失败."

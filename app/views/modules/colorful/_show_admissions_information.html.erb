@@ -1,0 +1,45 @@
+ <div class="carousel main">
+    <div class="prev">
+      <div class="left">
+      </div>
+      &nbsp;
+    </div>
+    <div class="jCarouselLite">
+      <% if(root_showcase = @kind.page_contents.find_by_number("official_website_admissions_information")) && !root_showcase.content_entries.blank? %>
+        <ul>
+          <% root_showcase.content_entries.each do |entry| %>
+          <li>
+            <%= entry.title%>
+          </li>
+          <li>
+            <%= entry.content%>
+          </li>
+            <% if entry.page_img %>
+              <li>
+                <a href="<%= entry.page_img.public_filename(:thumb) %>" class="fancybox"  title="<%= entry.title %>">
+                  <img src="<%= entry.page_img.public_filename(:middle) %>" alt="" width="239" height="177"/>
+                </a>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      <% else %>
+        <ul>
+          <li>
+            <a href="/t/colorful/Home_26-10.jpg" class="fancybox"  title="">
+              <img src="/t/colorful/Home_26-10.jpg" alt="" width="239" height="177"/>
+            </a>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+    <div class="next">
+      <div class="right">
+
+      </div>
+      &nbsp;
+    </div>
+    <div class="clear"></div>
+  </div>
+
+</div>
