@@ -7,21 +7,26 @@
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label>发件箱</label>
+        <label><%=action_name=="draft_show" ? "草稿箱": "发件箱"%></label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
           </a>
           <ul>
-            <li><%= link_to "发件箱", outbox_my_school_messages_path %></li>
+            <li>
+              <%if action_name=="draft_show" %>
+              <%= link_to "草稿箱", draft_box_my_school_messages_path %>
+              <%else%>
+              <%= link_to "发件箱", outbox_my_school_messages_path %>
+              <%end%>
+            </li>
             <li>/</li>
-            <li>查看发件箱消息</li>
+            <li>查看<%=action_name=="draft_show" ? "草稿箱": "发件箱"%>消息</li>
           </ul>
         </div>
       </div>
       <ul class="work_action">
         <li>
-          <%=action_name.inspect%>
           <% if action_name == "draft_show" %>
             <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:draft_edit,:id=>@message.id)%>" title="编辑">
           <% else %>
