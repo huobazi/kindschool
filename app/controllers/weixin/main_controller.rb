@@ -67,6 +67,11 @@ class Weixin::MainController < Weixin::BaseController
   def error_messages
   
   end
+
+  #老师信息，动态加载
+  def get_user_all_teachers
+    render :partial=>"modules/colorful/weixin_menu_one_teachers",:layout=>false
+  end
   
   private
   #设置模板

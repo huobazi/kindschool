@@ -72,6 +72,23 @@ class StudentInfo < ActiveRecord::Base
     StudentInfo::LIVE_FAMILY_DATA[self.live_family.to_s]
   end
 
+  #获取班级的所有老师
+  def get_all_teachers
+    teachers = {}
+    if self.squad
+      teachers[:teachers] = self.squad.staffs.where("teachers.tp=0")
+      teachers[:adviser] = self.squad.staffs.where("teachers.tp=1")
+      teachers[:group_leader] = self.squad.grade.staff if self.squad.grade && self.squad.grade.staff
+    end
+    if self.user && !self.user.user_squads.blank?
+      teachers[:user_squads] = []
+      self.user.user_squads.each do |user_squad|
+        teachers[:user_squads] << {user_squad.squad.name=>user_squad.get_teachers} if user_squad.squad
+      end
+    end
+    return teachers
+  end
+
   validate :end_at_large_than_start_at
 
   private

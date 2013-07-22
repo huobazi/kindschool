@@ -211,6 +211,8 @@ body {
 }
 .user_name{
     display: inline-block;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .user_name label{
@@ -473,15 +475,15 @@ body {
 }
 
 .message_div .message_list .data_list .new_topic {
-  background-color: #B0CC20;
-  display: block;
-  margin: 5px;
-  margin-top: 20px;
-  color: white;
-  height: 50px;
-  line-height: 50px;
-  border-radius: 5px 5px 5px 5px;
-  text-align: center;
+    background-color: #B0CC20;
+    display: block;
+    margin: 5px;
+    margin-top: 20px;
+    color: white;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 5px 5px 5px 5px;
+    text-align: center;
 }
 
 .message_div .message_list .data_list li.topic {
@@ -574,4 +576,35 @@ body {
   width: 500px;
   font-size: 20px;
   height: 150px;
+}
+/*===========老师信息==========*/
+.menu_one_info{
+    padding: 10px;
+}
+.menu_one_ul{
+    list-style: none;
+    background-color: white;
+    margin: 0px;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #BFBEB4;
+}
+.menu_one_ul li{
+    padding: 8px;
+    border-bottom: 1px solid #BFBEB4;
+    position: relative;
+}
+.user_logo img{
+
+}
+.li_title{
+    position: relative;
+}
+.li_child{
+    background-color: #E9E9E9;
+}
+.bottom_dotted{
+    border-bottom: 1px dotted #8C8C8C;
+}
+.bottom_dotted:last-child{
+    border-bottom: 0px;
 }

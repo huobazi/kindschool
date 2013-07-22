@@ -6,7 +6,7 @@
       </div>
       <div class="user_title">
         <div class="user_logo">
-          <img src="/t/colorful/login_img8.png" alt="头像" class="img-polaroid"/>
+          <img src="<%= current_user.asset_logo ? current_user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" class="img-polaroid" width="61" alt="头像"/>
         </div>
         <div class="user_name">
           <label><%= current_user.name %></label>
@@ -34,26 +34,8 @@
   </div>
 
   <div class="menu_one">
-    <a href="###" class="menu_one_a" for="#teacher_infos"><div class="w_arrow"></div><label>老师的信息</label></a>
-    <div id="teacher_infos">
-      <div class="b_arr">
-      </div>
-      <div class="user_title">
-        <div class="user_logo">
-          <img src="/t/colorful/login_img8.png" alt="头像" class="img-polaroid"/>
-        </div>
-        <div class="user_name">
-          <label>詹雨</label>
-          <label>老师</label>
-        </div>
-      </div>
-      <div class="user_entry">
-        <table class="table table-bordered">
-          <tr><td><b>手机号</b></td><td>13916816888</td></tr>
-          <tr><td><b>座机号</b></td><td>0755 8323459</td></tr>
-        </table>
-      </div>
-    </div>
+    <a href="###" class="menu_one_a" for="#teacher_infos" id="get_user_all_teachers"><div class="w_arrow"></div><label>老师的信息</label></a>
+    <div id="teacher_infos"></div>
   </div>
 <% elsif  current_user.tp == 1 %>
 
@@ -72,6 +54,11 @@
           $(this).removeClass("hide_div");
         }
         div.show();
+      }
+    })
+    $("#get_user_all_teachers").click(function(){
+      if($("#teacher_infos").html() == ""){
+        $("#teacher_infos").load("<%= url_for(:controller=>"/weixin/main",:action=>"get_user_all_teachers") %>")
       }
     })
   })

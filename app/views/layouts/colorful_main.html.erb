@@ -18,10 +18,18 @@
         <div class="menu_right"> </div>
         <div class="menu_center">
           <ul>
-            <li><a href="###"><img src="/t/colorful/w_home.png" alt="首页"/><div>首页</div></a></li>
-            <li><a href="###"><img src="/t/colorful/phone_img.png" alt="首页" width="39px"/><div>关于幼儿园</div></a></li>
-            <li><a href="###"><img src="/t/colorful/cook_img.png" alt="首页" width="39px"/><div>园所特色</div></a></li>
-            <li><a href="###"><img src="/t/colorful/growth_img.png" alt="首页" width="39px"/><div>招生信息</div></a></li>
+            <li>
+            <%= link_to "<img src='/t/colorful/w_home.png' alt='首页' width='39px'/><div>首页</div>".html_safe,:controller=>"/my_school/main",:action=>:index %>
+            </li>
+            <li>
+               <%= link_to "<img src='/t/colorful/phone_img.png' alt='首页' width='39px'/><div>关于幼儿园</div>".html_safe,:controller=>"/my_school/main",:action=>:show_official_about_us %>
+            </li>
+            <li>
+              <%= link_to "<img src='/t/colorful/cook_img.png' alt='首页' width='39px'/><div>园所特色</div>".html_safe,:controller=>"/my_school/main",:action=>:feature %>
+            </li>
+            <li>
+              <%= link_to "<img src='/t/colorful/growth_img.png' alt='首页' width='39px'/><div>招生信息</div>".html_safe,:controller=>"/my_school/main",:action=>:admissions_information %>
+            </li>
             <li>
               <!-- <a href="#{}"></a> -->
               <%= link_to "<img src='/t/colorful/activity_img.png' alt='首页' width='39px'/><div>家园互动</div>".html_safe,:controller=>"/my_school/home",:action=>:index %>
@@ -33,7 +41,6 @@
         </div>
       </div>
       <div class="main_work">
-        <%= link_to "进入家园互动",:controller=>"/my_school/home",:action=>:index %>
         <%= yield %>
       </div>
     </div>
