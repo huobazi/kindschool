@@ -24,25 +24,25 @@
           </ul>
         </div>
       </div>
-        <ul class="work_action">
-          <% if current_user.tp == 0 %>
-            <li>
-              <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:edit,:id=>current_user.student_info.id) %>" title="编辑">
-                <div class="work_action_edit">
-                </div>
-                <div class="work_action_edit_move">
-                </div>
-              </a>
-            </li>
-         <% else %>
-            <li>
-              <a href="<%=url_for(:controller=>"/my_school/users",:action=>:edit,:id=>current_user.id)%>" title="编辑">
-                <div class="work_action_edit">
-                </div>
-                <div class="work_action_edit_move">
-                </div>
-              </a>
-            </li>
+      <ul class="work_action">
+        <% if current_user.tp == 0 %>
+          <li>
+            <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:edit,:id=>current_user.student_info.id) %>" title="编辑">
+              <div class="work_action_edit">
+              </div>
+              <div class="work_action_edit_move">
+              </div>
+            </a>
+          </li>
+        <% else %>
+          <li>
+            <a href="<%=url_for(:controller=>"/my_school/users",:action=>:edit,:id=>current_user.id)%>" title="编辑">
+              <div class="work_action_edit">
+              </div>
+              <div class="work_action_edit_move">
+              </div>
+            </a>
+          </li>
         <% end %>
         <li>
           <a href="<%=url_for(:controller=>"/my_school/users",:action=>:change_password_view,:id=>current_user.id) %>" title="修改密码">
@@ -52,43 +52,43 @@
             </div>
           </a>
         </li>
-        </ul>
+      </ul>
     </div>
 
 
 
     <div class="work_list">
+      <div class="user_head">
+        <div class="user_head_logo">
+        <img src="/t/colorful/user_logo.png" alt="头像" width="103px;" />
+        </div>
+        <div class="user_head_info">
+          <label>账户：<%= current_user.login %></label>
+          <label>名称：<%= current_user.name %></label>
+          <label>权限：<%= current_user.tp_label %>
+            <% if current_user.role%>
+              （<%= current_user.role.name%>）
+            <% end %>
+          </label>
+        </div>
+      </div>
 
-
-      <table class="user_attributes" align="center">
+      <table class="user_attributes">
         <tr>
-          <th>名称</th>
-          <td><%= current_user.name %></td>
-          <th>账号</th>
-          <td><%= current_user.login %></td>
-        </tr>
-        <tr>
-        </tr>
-        <tr>
+          <th>所属幼儿园</th>
+          <td><%= current_user.kindergarten_label %></td>
           <th>性别</th>
           <td><%= User::GENDER_DATA[current_user.gender] %></td>
-          <th>类型</th>
-          <td><%= current_user.tp_label %></td>
         </tr>
         <tr>
         </tr>
         <tr>
           <th>手机号</th>
           <td><%= current_user.phone %></td>
-          <th>微信ID</th>
-          <td><%= current_user.weixin_code %></td>
+          <th>绑定微信</th>
+          <td><%= current_user.weixin_code.blank? ? "未绑定" : "已绑定" %></td>
         </tr>
-        <tr>
-        </tr>
-        <tr>
-          <th>所属幼儿园</th>
-          <td><%= current_user.kindergarten_label %></td>
-        </tr>
+
 
 
         <% if current_user.tp == 0 %>

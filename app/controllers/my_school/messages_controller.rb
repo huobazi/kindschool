@@ -346,8 +346,12 @@ LEFT JOIN squads ON(squads.id = user_squads.squad_id)")
   end
 
   def draft_box
+        @messages = current_user.messages.where(:status => true).page(params[:page] || 1).per(10).order("messages.send_date DESC")
+
     @messages = current_user.messages.where(:status => false).page(params[:page] || 1).per(10).order("messages.send_date DESC")
-    render "my_school/messages/outbox"
+
+     
+    #render "my_school/messages/outbox"
   end
 
   def draft_show
