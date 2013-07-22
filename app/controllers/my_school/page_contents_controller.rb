@@ -65,7 +65,6 @@ class  MySchool::PageContentsController < MySchool::ManageController
           end
         elsif params[:tp] == "official_website_feature"
           # if @page_content.content_entries.blank?
-             puts "xxxxxxxxxxxxxxxxx\n\n\n\n"
              entry = ContentEntry.new(:title=>params[:title],:content=>(params[:content]||""))
             if params[:img]
               img = PageImg.new(:uploaded_data=> params[:img])
@@ -77,6 +76,13 @@ class  MySchool::PageContentsController < MySchool::ManageController
           # end
         elsif params[:tp] == "official_website_admissions_information"
            entry = ContentEntry.new(:title=>params[:title],:content=>(params[:content]||""))
+            if params[:img]
+              img = PageImg.new(:uploaded_data=> params[:img])
+              entry.page_img = img
+            end
+            @page_content.content_entries << entry
+        elsif params[:tp] == "official_website_home"
+          entry = ContentEntry.new(:title=>params[:title],:content=>(params[:content]||""))
             if params[:img]
               img = PageImg.new(:uploaded_data=> params[:img])
               entry.page_img = img
