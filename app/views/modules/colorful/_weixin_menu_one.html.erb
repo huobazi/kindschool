@@ -34,56 +34,8 @@
   </div>
 
   <div class="menu_one">
-    <a href="###" class="menu_one_a" for="#teacher_infos"><div class="w_arrow"></div><label>老师的信息</label></a>
-    <div id="teacher_infos">
-      <div class="b_arr">
-      </div>
-      <div class="menu_one_info">
-        <ul class="menu_one_ul">
-          <% @kind.roles.where("admin = 1").each do |role| %>
-            <% unless role.users.where("tp=1").blank? %>
-              <li>
-                <div class="li_title">
-                  <div class="s_arrow"></div>
-                  <div>
-                    <label><%= role.name  %> </label>
-                  </div>
-                </div>
-                <div class="li_child">
-                  <% role.users.where("tp=1").each do |user| %>
-                    <div class="user_title bottom_dotted">
-                      <div class="user_logo">
-                        <img src="<%= user.asset_logo ? user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" class="img-polaroid" width="61" alt="头像"/>
-                      </div>
-                      <div class="user_name">
-                        <label><%= user.name %></label>
-                        <label><%= user.phone %></label>
-                      </div>
-                    </div>
-                  <% end %>
-                </div>
-              </li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
-  <%#*<div class="user_title">%>
-  <%#*<div class="user_logo">%>
-  <%#*<img src="/t/colorful/login_img8.png" alt="头像" class="img-polaroid"/>%>
-  <%#*</div>%>
-  <%#*<div class="user_name">%>
-  <%#*<label>詹雨</label>%>
-  <%#*<label>老师</label>%>
-  <%#*</div>%>
-  <%#*</div>%>
-  <%#*<div class="user_entry">%>
-
-  <%#*<table class="table table-bordered">%>
-  <%#*<tr><td><b>手机号</b></td><td>13916816888</td></tr>%>
-  <%#*<tr><td><b>座机号</b></td><td>0755 8323459</td></tr>%>
-  <%#*</table>%>
-  <%#*</div>%>
-    </div>
+    <a href="###" class="menu_one_a" for="#teacher_infos" id="get_user_all_teachers"><div class="w_arrow"></div><label>老师的信息</label></a>
+    <div id="teacher_infos"></div>
   </div>
 <% elsif  current_user.tp == 1 %>
 
@@ -102,6 +54,11 @@
           $(this).removeClass("hide_div");
         }
         div.show();
+      }
+    })
+    $("#get_user_all_teachers").click(function(){
+      if($("#teacher_infos").html() == ""){
+        $("#teacher_infos").load("<%= url_for(:controller=>"/weixin/main",:action=>"get_user_all_teachers") %>")
       }
     })
   })
