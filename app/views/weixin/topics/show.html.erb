@@ -1,0 +1,43 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    <a href="<%= url_for(:action=>:index) %>" title="返回">返回</a>信息论坛
+  </div>
+  <div class="message_list">
+    <ul class="data_list">
+      <li class="topic">
+        <p class="topic_title"><%= @topic.title %></p>
+        <p><span class="author"><%= @topic.creater ? @topic.creater.name : "" %></span><span class="topic_created_time"><%= @topic.created_at.to_long_datetime %></span></p>
+        <div class="topic_content"><%= @topic.content %></div>
+        <div></div>
+        <div></div>
+      </li>
+    </ul>
+  </div>
+  <% unless  @topics.blank? %>
+    <div class="message_more">
+      <div class="paginate_div">
+        <%= paginate @topics, :window => 1%>
+      </div>
+      <!--
+      <a href="###" id="message_more" title="查看更多">
+        <div class="show_div"></div>
+      </a>
+      -->
+    </div>
+  <% end %>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
+<script type="text/javascript">
+  $(function(){
+    $("#message_search select").change(function(){
+      $("#message_search").submit();
+    })
+  })
+
+</script>
+
+
