@@ -362,10 +362,10 @@ virtual_squads_index:
 virtual_squads_new:
   id: 4006
   parent_id: 5
-  name: "虚拟班管理_新建"
+  name: "虚拟班管理新建"
   level: 2
   sequence: 4
-  note: "虚拟班管理_新建"
+  note: "虚拟班管理新建"
   controller: "my_school/virtual_squads"
   action: "new"
   protocol: ""
@@ -373,10 +373,10 @@ virtual_squads_new:
 virtual_squads_create:
   id: 4007
   parent_id: 5
-  name: "虚拟班管理_create"
+  name: "虚拟班管理创建"
   level: 2
   sequence: 4
-  note: "虚拟班管理_create"
+  note: "虚拟班管理创建"
   controller: "my_school/virtual_squads"
   action: "create"
   protocol: ""
@@ -384,10 +384,10 @@ virtual_squads_create:
 virtual_squads_show:
   id: 4008
   parent_id: 5
-  name: "虚拟班管理_显示"
+  name: "虚拟班管理展示"
   level: 2
   sequence: 4
-  note: "虚拟班管理_显示"
+  note: "虚拟班管理展示"
   controller: "my_school/virtual_squads"
   action: "show"
   protocol: ""
@@ -395,10 +395,10 @@ virtual_squads_show:
 virtual_squads_edit:
   id: 4009
   parent_id: 5
-  name: "虚拟班管理_编辑"
+  name: "虚拟班管理编辑"
   level: 2
   sequence: 4
-  note: "虚拟班管理_编辑"
+  note: "虚拟班管理编辑"
   controller: "my_school/virtual_squads"
   action: "edit"
   protocol: ""
@@ -406,10 +406,10 @@ virtual_squads_edit:
 virtual_squads_update:
   id: 4010
   parent_id: 5
-  name: "虚拟班管理_update"
+  name: "虚拟班管理更新"
   level: 2
   sequence: 4
-  note: "虚拟班管理_update"
+  note: "虚拟班管理更新"
   controller: "my_school/virtual_squads"
   action: "update"
   protocol: ""
@@ -417,10 +417,10 @@ virtual_squads_update:
 virtual_squads_destroy:
   id: 4011
   parent_id: 5
-  name: "虚拟班管理_删除"
+  name: "虚拟班管理删除"
   level: 2
   sequence: 4
-  note: "虚拟班管理_删除"
+  note: "虚拟班管理删除"
   controller: "my_school/virtual_squads"
   action: "destroy"
   protocol: ""
@@ -631,10 +631,10 @@ seedlings_edit:
 seedlings_destroy:
   id: 6004
   parent_id: 7
-  name: "育苗记录_删除"
+  name: "育苗记录删除"
   level: 2
   sequence: 0
-  note: "育苗记录_删除"
+  note: "育苗记录删除"
   controller: "my_school/seedlings"
   action: "destroy"
   protocol: ""
@@ -643,10 +643,10 @@ seedlings_destroy:
 seedlings_create:
   id: 6005
   parent_id: 7
-  name: "育苗记录_create"
+  name: "育苗记录创建"
   level: 2
   sequence: 0
-  note: "育苗记录_create"
+  note: "育苗记录创建"
   controller: "my_school/seedlings"
   action: "create"
   protocol: ""
@@ -655,10 +655,10 @@ seedlings_create:
 seedlings_update:
   id: 6006
   parent_id: 7
-  name: "育苗记录_update"
+  name: "育苗记录更新"
   level: 2
   sequence: 0
-  note: "育苗记录_update"
+  note: "育苗记录更新"
   controller: "my_school/seedlings"
   action: "update"
   protocol: ""
@@ -667,10 +667,10 @@ seedlings_update:
 seedlings_show:
   id: 6007
   parent_id: 7
-  name: "育苗记录_显示"
+  name: "育苗记录展示"
   level: 2
   sequence: 0
-  note: "育苗记录_显示"
+  note: "育苗记录展示"
   controller: "my_school/seedlings"
   action: "show"
   protocol: ""
