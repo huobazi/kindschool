@@ -22,7 +22,10 @@
             <li><a href="###"><img src="/t/colorful/phone_img.png" alt="首页" width="39px"/><div>关于幼儿园</div></a></li>
             <li><a href="###"><img src="/t/colorful/cook_img.png" alt="首页" width="39px"/><div>园所特色</div></a></li>
             <li><a href="###"><img src="/t/colorful/growth_img.png" alt="首页" width="39px"/><div>招生信息</div></a></li>
-            <li><a href="###"><img src="/t/colorful/activity_img.png" alt="首页" width="39px"/><div>家园互动</div></a></li>
+            <li>
+              <!-- <a href="#{}"></a> -->
+              <%= link_to "<img src='/t/colorful/activity_img.png' alt='首页' width='39px'/><div>家园互动</div>".html_safe,:controller=>"/my_school/home",:action=>:index %>
+            </li>
           </ul>
         </div>
         <div class="submenu_center">
