@@ -704,6 +704,7 @@ table.user_attributes tr {
 table.user_attributes td {
     text-align: center;
     background-color: #F5F5F5;
+    border-bottom: 1px dotted #DBDBDB;
 }
 
 .table a {
