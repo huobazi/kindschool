@@ -1,0 +1,58 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>角色管理</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+          <%=(link_to "<div class='work_action_add'>
+            </div><div class='work_action_add_move'>
+            </div>".html_safe ,new_my_school_role_path)%>
+        </li>
+      </ul>
+    </div>
+    <div class="work_list">
+      <% unless @roles.blank? %>
+        <table class="table table-striped table-hover">
+            <tr>
+              <th>序号</th>
+              <th>名称</th>
+              <th>编号</th>
+              <th>是否是管理员</th>
+              <th>操作</th>
+            </tr>
+            <% (@roles || []).each_with_index do |role,index| %>
+              <tr>
+                <td><%=index+1%></td>
+                <td><%= role.try(:name)%></td>
+                <td><%=role.number %></td>
+                <td><%=role.admin ? '是' : '否' %></td>
+                <td>
+                  <%=link_to '查看',my_school_role_path(role)%>
+                  <%= link_to '编辑', edit_my_school_role_path(role) %>
+                  <%if role.users.blank?%>
+                  <%= link_to '删除',my_school_role_path(role) , method: :delete, data: { confirm: '确定要删除么?' } %>
+                  <%end%>
+                  <%= link_to '设置权限',set_operate_to_role_my_school_role_path(role) %>
+               </td>
+              </tr>
+            <% end %>
+        </table>
+        <%= paginate @roles %>
+      <% else %>
+        暂无体检记录
+      <% end %>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,78 @@
+<% if  current_user.tp == 0 %>
+  <div class="menu_one">
+    <a href="###" class="menu_one_a hide_div" for="#user_infos" ><div class="w_arrow"></div><label>孩子的信息</label></a>
+    <div id="user_infos">
+      <div class="b_arr">
+      </div>
+      <div class="user_title">
+        <div class="user_logo">
+          <img src="/t/colorful/login_img8.png" alt="头像" class="img-polaroid"/>
+        </div>
+        <div class="user_name">
+          <label><%= current_user.name %></label>
+          <label>学生</label>
+        </div>
+      </div>
+      <div class="user_entry">
+        <table class="table table-bordered">
+          <% if student_info = current_user.student_info %>
+            <% if squad = student_info.squad %>
+              <% if squad.graduate %>
+                <tr><td><b>年级</b></td><td>已毕业</td></tr>
+              <% else %>
+                <tr><td><b>年级</b></td><td><%= squad.grade ? squad.grade.name : "" %></td></tr>
+              <% end %>
+              <tr><td><b>班级</b></td><td><%= squad.name %> </td></tr>
+            <% end %>
+            <tr><td><b>电话号码</b></td><td><%= student_info.user.phone %> </td></tr>
+            <tr><td><b>出生日期</b></td><td><%= student_info.birthday ? student_info.birthday.to_short_datetime : "" %> </td></tr>
+            <tr><td><b>入园时间</b></td><td><%= student_info.come_in_at ? student_info.come_in_at.to_short_datetime : "" %> </td></tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu_one">
+    <a href="###" class="menu_one_a" for="#teacher_infos"><div class="w_arrow"></div><label>老师的信息</label></a>
+    <div id="teacher_infos">
+      <div class="b_arr">
+      </div>
+      <div class="user_title">
+        <div class="user_logo">
+          <img src="/t/colorful/login_img8.png" alt="头像" class="img-polaroid"/>
+        </div>
+        <div class="user_name">
+          <label>詹雨</label>
+          <label>老师</label>
+        </div>
+      </div>
+      <div class="user_entry">
+        <table class="table table-bordered">
+          <tr><td><b>手机号</b></td><td>13916816888</td></tr>
+          <tr><td><b>座机号</b></td><td>0755 8323459</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+<% elsif  current_user.tp == 1 %>
+
+<% end %>
+<script type="text/javascript">
+  $(function() {
+    $(".menu_one_a").click(function(){
+      var div = $($(this).attr("for"));
+      if(div.css("display") == "block"){
+        if($(this).attr("for") == "#user_infos"){
+          $(this).addClass("hide_div");
+        }
+        div.hide();
+      }else{
+        if($(this).attr("for") == "#user_infos"){
+          $(this).removeClass("hide_div");
+        }
+        div.show();
+      }
+    })
+  })
+</script>

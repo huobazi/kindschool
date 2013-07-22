@@ -5,6 +5,15 @@ School::Application.routes.draw do
   match 'my_school/about' => 'my_school/main#about'
   match 'my_school/contact_us' => 'my_school/main#contact_us'
   namespace :my_school do
+    resources :virtual_squads  do 
+       collection {get :get_edit_ids}
+      end
+    resources :roles do
+      member do
+        get :set_operate_to_role
+        post :save_operate_to_role 
+      end
+    end
     resources :smarties do
       collection {get :role_operates}  
     end
@@ -14,6 +23,15 @@ School::Application.routes.draw do
         member {post :choose_main_img}
       end
     end
+    resources :career_strategies do
+      collection do
+        delete :destroy_multiple
+        get :career_class,:career_class_validate
+      end
+    end
+
+    resources :interest_activities
+
     resources :content_patterns
     resources :seedlings do
       collection {get :grade_class}
@@ -33,7 +51,7 @@ School::Application.routes.draw do
     end
     resources :users do
       collection do
-        get :login,:logout,:error_notice
+        get :login,:logout,:error_notice,:show
         post :login
       end
       collection do
@@ -41,16 +59,36 @@ School::Application.routes.draw do
         post :change_password
       end
     end
+    resources :activity_entries
     resources :squads do
       collection do
         delete :destroy_multiple
+        post :add_strategy
+      end
+      member do
+        get :add_strategy_view
       end
     end
-    resources :notices
-    resources :messages do
+    resources :notices do
       collection do
-        get :get_kindergarten,:get_grade,:get_student
+        delete :destroy_multiple
+        get :approve
+      end
+    end
+    resources :messages do
+      member do
+        get :outbox_show
+        get :draft_show
+        get :draft_edit
+        get :get_edit_ids
+        post :draft_update
+        post :return_message
+      end
+      collection do
+        get :outbox,:get_kindergarten,:get_grade,:get_student
         post :get_grades_all,:get_squads_all,:get_roles_all,:get_users_all
+        delete :destroy_multiple
+        get :draft_box
       end
     end
     resources :home do
@@ -104,6 +142,12 @@ School::Application.routes.draw do
       end
     end
 
+    resources :topic_categories do
+      collection do
+        delete :destroy_multiple
+      end
+    end
+
     resources :garden_growth_records do
       collection do
         get :garden
@@ -111,9 +155,18 @@ School::Application.routes.draw do
       end
     end
 
-    resources :topics
+    resources :topics do
+      collection do
+        delete :destroy_multiple
+        get :my
+      end
+    end
     resources :topic_entries
-    resources :activities
+    resources :activities do
+      collection do
+        delete :destroy_multiple
+      end
+    end
   end
 
   match 'weixin' => 'weixin/main#index'
@@ -138,11 +191,17 @@ School::Application.routes.draw do
         post :login
       end
     end
+    resources :cook_books
+    resources :messages do
+      member do
+        post :return_message
+      end
+    end
   end
 
-  # namespace :weixin do
-  #   resources :api
-  # end
+  namespace :weixin do
+    resources :api
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -231,7 +231,8 @@ zh-CN:
       content_entry: "内容详细"
       page_img: "页面图片资源"
       activity_img: "活动图片"
-      topic_category: "贴子分类"
+      topic_category: "论坛分类"
+      user_squad: "虚拟班"
     attributes:
       admin_user:
         current_sign_in_at: "当前登陆时间"
@@ -420,11 +421,12 @@ zh-CN:
         is_default: "是否默认"
         image_url: "图片信息"
       career_strategy:
+        kindergarten_label: "所属幼儿园"
         kindergarten: "幼儿园"
-        graduation: "毕业"
-        add_squad: "新增的班级"
+        graduation: "是否是毕业"
+        add_squad: "升学时需新开班级"
         from_id: "原来的班级"
-        to_id: "升到的班级"
+        to_id: "升学后班级"
       topic:
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"
@@ -439,8 +441,8 @@ zh-CN:
         status: "状态"
         approve_status: "审核状态"
         approver_id: "审核人"
-        topic_category: "贴子分类"
-        topic_category_label: "贴子分类"
+        topic_category: "论坛分类"
+        topic_category_label: "论坛分类"
         show_count: "浏览次数"
       topic_entry:
         topic: "回复的贴子"
@@ -479,6 +481,7 @@ zh-CN:
         approver_id: "审核人"
         chain_code: "扩展号"
         send_date: "发送时间"
+        sender: "发送人"
       message_entry:
         message: "消息"
         receiver_name: "收接者"
@@ -584,12 +587,16 @@ zh-CN:
         name: "名称"
         kindergarten_label: "所属幼儿园"
         kindergarten: "幼儿园"
+      user_squad:
+        user_id: "虚拟班级的用户"
+        squad_id: "虚拟班级"
+
     errors:
       <<: *errors
   views:
     pagination:
-      first: "&laquo; 首页"
-      last: "末页 &raquo;"
+      first: "首页"
+      last: "末页"
       previous: "&laquo; 上一页"
       next: "下一页 &raquo;"
       truncate: "..."

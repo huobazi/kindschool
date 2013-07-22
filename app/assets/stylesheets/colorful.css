@@ -43,6 +43,53 @@ a{
     padding-left: 35px;
     padding-bottom: 10px;
 }
+/*=======首页样式======================begin*/
+.main_logo{
+    padding-bottom: 5px;
+    padding-top: 5px;
+    text-align: center;
+}
+#main .menu_center{
+    background-color: #008FDC;
+    height: 100px;
+    width: 100%;
+    text-align: center;
+}
+#main .menu_center ul li{
+    border-right: 1px solid white;
+}
+.main_work{
+    background-color: #EAEAEA;
+    min-height: 500px;
+}
+#main .menu_left {
+    background-color: #008FDC;
+    background-image: url("/t/colorful/menu_left.jpg");
+    background-position: 0 50px;
+    background-repeat: no-repeat;
+    height: 113px;
+    left: -14px;
+    position: absolute;
+    width: 14px;
+}
+#main .menu_right {
+    background-color: #008FDC;
+    background-image: url("/t/colorful/menu_right.jpg");
+    background-position: 0 50px;
+    background-repeat: no-repeat;
+    height: 113px;
+    left: 951px;
+    position: absolute;
+    width: 14px;
+}
+#main .menu_center ul{
+    padding: 0px;
+}
+#main .menu_center ul li{
+    float: none;
+    display: inline-block;
+}
+/*=======首页样式======================end*/
 .small_menu{
     height: 20px;
     width: 100%;
@@ -565,9 +612,35 @@ a{
     width: 52px;
     display: none;
 }
+.work_action_career_validate{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -207px 0;
+    height: 46px;
+    width: 52px;
+}
+.work_action_career_validate_move{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -207px -57px;
+    height: 65px;
+    width: 52px;
+    display: none;
+}
+.work_action_career{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -70px 0;
+    height: 46px;
+    width: 52px;
+}
+.work_action_career_move{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -70px -57px;
+    height: 65px;
+    width: 52px;
+    display: none;
+}
 /*===========表单==============*/
 .work_form{
-    padding: 20px;
+    padding: 20px 20px 20px 35px;
 }
 .work_form .form_div{
     border: 1px solid #e3e3e3;
@@ -587,7 +660,7 @@ a{
 }
 /*===========表格==============*/
 .work_list{
-    padding: 20px;
+    padding: 20px 20px 20px 35px;
 }
 .work table.list{
     width: 100%;
@@ -939,6 +1012,38 @@ table.user_attributes td {
 #topic_entries .topic_entry span.destroy a {
     color: #222;
 }
+
+#activity_entries {
+    margin-bottom: 20px;
+}
+#activity_entries .activity_entry_note {
+    padding-left: 100px;
+}
+
+#activity_entries .activity_entry {
+    border-top: 1px solid #999;
+    padding-top: 14px;
+    position: relative;
+}
+
+#activity_entries .activity_entry:last-child {
+    border-bottom: 1px solid #999;
+}
+
+#activity_entries .activity_entry span.destroy {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 0px;
+}
+
+#activity_entries .activity_entry span.destroy a:hover {
+    underline: none;
+}
+#activity_entries .activity_entry span.destroy a {
+    color: #222;
+}
+
 a.album_a{
     display: inherit;
     height: 219px;
@@ -981,5 +1086,26 @@ a.album_a .album_img{
     float: left;
 }
 .search_form{
-    padding: 20px;
+    padding: 20px 20px 20px 35px;
 }
+
+.control-group .controls .show_label .message_entry {
+    background: #DBDBDB;
+    margin-right: 10px;
+}
+
+fieldset.to_squad,fieldset.from_squad {
+    width:300px;
+    padding: 20px;
+    padding-top: 0;
+}
+td .index_li{
+    margin: 5px;
+    border: 1px #9B9B9B solid;
+    padding: 2px;
+    border-radius:5px;
+}
+.no-close .ui-dialog-titlebar-close {
+    display: none;
+}
+/*.ui-icon { width: 16px; height: 16px; background-image: url(images/ui-icons_222222_256x240.png); }*/

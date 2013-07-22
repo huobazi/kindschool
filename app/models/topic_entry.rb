@@ -3,5 +3,6 @@ class TopicEntry < ActiveRecord::Base
 
   validates :topic, :creater_id, :presence => true
   validates :content, :presence => true, :length => { :minimum => 10 }
+  belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
   belongs_to :topic
 end

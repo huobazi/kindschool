@@ -13,7 +13,7 @@
             <div class="icon_home"></div>
           </a>
           <ul>
-            <li><%= link_to "通知公告", my_school_notices_path %></li>
+            <li><%= link_to "收件箱", my_school_messages_path %></li>
             <li>/</li>
             <li>收件箱</li>
           </ul>
@@ -29,7 +29,7 @@
           </a>
         </li>
         <li>
-          <a href="/" title="删除">
+          <a href="/" title="删除" id="destroy_multiple">
             <div class="work_action_delete">
             </div>
             <div class="work_action_delete_move">
@@ -40,26 +40,44 @@
     </div>
 
     <div class="work_list">
-      <table class="list">
-        <tr>
-          <th><input type="checkbox" name="" value="" alt="全选"/></th>
-          <th>发送人</th>
-          <th>标题</th>
-          <th>发布时间</th>
-          <th>操作</th>
-        </tr>
-        <% @message.each do |message| %>
-          <tr>
-            <td><input type="checkbox" name="" value="" /></td>
-            <td><%= message.sender ? message.sender.name : ""%></td>
-            <td><%= link_to message.title,:action=>:show,:id=>message.id %></td>
-            <td><%= message.send_date ? message.send_date.to_short_datetime : "" %></td>
-            <td class="option"><%= link_to "查看",:action=>:show,:id=>message.id %></td>
-          </tr>
-        <% end %>
-      </table>
-      <%= paginate @message %>
+      <% if @message.any? %>
+        <table class="list">
+          <%= form_tag destroy_multiple_my_school_messages_path, method: :delete, :id => "destroy_multi_form" do %>
+            <tr>
+              <th><input type="checkbox" name="" value="" alt="全选" id="message_all">全选</th>
+              <th>发送人</th>
+              <th>标题</th>
+              <th>发布时间</th>
+              <th>操作</th>
+            </tr>
+            <% @message.each do |message| %>
+              <tr>
+                <td><input id="message_<%= message.id %>" class="message_check" name="message[]" type="checkbox" value="<%= message.id %>" /></td>
+                <td><%= message.sender ? message.sender.name : ""%></td>
+                <td><%= link_to "#{message.title}",:action=>:show,:id=>message.id %></td>
+                <td><%= message.send_date ? message.send_date.to_all_datetime : "" %></td>
+                <td class="option"><%= link_to "查看",:action=>:show,:id=>message.id %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+        <%= paginate @message %>
+      <% else %>
+        暂时没有消息
+      <% end %>
     </div>
   </div>
 
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#message_all").click(function(){
+    $(".message_check").attr("checked",this.checked);
+  });
+  $("#destroy_multiple").click(function(){
+      $("#destroy_multi_form").submit();
+      return false;
+  });
+});
+</script>

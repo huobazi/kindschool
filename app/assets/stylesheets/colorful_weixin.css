@@ -275,3 +275,171 @@ body {
 .login_body{
     background-color: #A3C43F;
 }
+
+/*=======消息模块===============*/
+.message_div{
+    background-color: #FFFFFF;
+    margin-bottom: 10px;
+}
+.message_div .message_title{
+    background-image: url("/t/colorful/title_bg.png");
+    color: #FFFFFF;
+    padding: 10px;
+}
+.message_div .message_filter{
+    background-image: url("/t/colorful/weixin_bg0.png");
+    background-repeat: repeat-x;
+    background-position: 0 bottom;
+    height: 52px;
+}
+.message_div .message_filter select{
+    margin-left: 10px;
+    margin-top: 10px;
+    width: auto;
+}
+.message_div .message_list .data_list li{
+    border: 1px solid #CBCBCB;
+    list-style-type: none;
+    margin: 5px;
+    border-radius:5px;
+}
+.message_div .message_list .data_list li:hover{
+    border: 1px solid #80C2DB;
+    background-color: #EBFCFB;
+}
+.message_div .message_list li a{
+    text-decoration: none;
+}
+.message_div .message_list ul{
+    padding: 0px;
+    margin: 0px;
+}
+.message_div .message_list .data_list li .message_user{
+    float: left;
+    padding-top: 5px;
+    text-align: left;
+    vertical-align: top;
+    width: 48%;
+    color: #485154;
+}
+.message_div .message_list .data_list li .message_time{
+    display: inline-block;
+    padding-top: 5px;
+    text-align: right;
+    width: 50%;
+    color: #787b80;
+}
+.message_div .message_list .data_list li .message_content{
+    padding: 5px;
+    word-wrap: break-word;
+    color: #485154;
+    line-height: 27px;
+}
+.message_div .message_more{
+    background-image: url("/t/colorful/weixin_bg1.png");
+    background-position: 0 -38px;
+    background-repeat: repeat-x;
+    height: 55px;
+    position: relative;
+}
+.message_div .message_more label{
+    padding: 15px 10px 10px;
+}
+.message_div #message_more{
+    text-decoration: none;
+    color: #494542;
+}
+.message_div #message_more:hover,.message_div #message_more:focus{
+    color: #494542;
+}
+
+.show_title{
+    background-color: #EBF7FC;
+    border-bottom: 2px #8ED2FC solid;
+}
+.message_title a{
+    background-image: url("/t/colorful/weixin_back.png");
+    color: white;
+    float: left;
+    font-size: 16px;
+    height: 31px;
+    line-height: 28px;
+    margin-top: -3px;
+    text-align: center;
+    text-decoration: none;
+    width: 52px;
+}
+.show_title .title{
+    padding: 5px 5px 5px 10px;
+    font-weight: bold;
+}
+.show_title .limit_title{
+    padding: 5px 5px 5px 10px;
+}
+.message_list label.message_content{
+    padding: 15px 5px 5px 10px;
+    margin-bottom: 25px;
+    word-wrap: break-word;
+    line-height: 27px;
+}
+
+.data_list div.center{
+    text-align: center;
+    margin-top: 5px;
+}
+.data_list p{
+    margin: 0px;
+}
+.data_list a{
+    color: #485154;
+    text-decoration: none;
+}
+
+.return_div{
+    background-color: #F4F4F4;
+    position: relative;
+    border-top: 1px #D5D5D5 solid;
+}
+.return_div .swoosh{
+    background-image: url("/t/colorful/weixin_icon.png");
+    background-position: -10px 405px;
+    height: 25px;
+    left: 30%;
+    position: absolute;
+    top: -24px;
+    width: 30px;
+}
+.return_li{
+    background-color: #D5D5D5;
+}
+.return_div label{
+    padding: 15px 5px 5px 10px;
+    font-weight: bold;
+}
+.return_div .return_text{
+    padding: 10px;
+}
+.return_div .return_input{
+    width: 60%;
+}
+.return_div .return_submit{
+    background-image: url("/t/colorful/weixin_icon.png");
+    background-position: -240px 465px;
+    border: medium none;
+    color: white;
+    height: 50px;
+    width: 60px;
+}
+.paginate_div{
+    text-align: center;
+}
+.paginate_div .pagination {
+    margin: 0px;
+    padding-top: 12px;
+}
+.paginate_div .pagination a{
+    color: #787b80;
+}
+.pagination ul > li > a, .pagination ul > li > span{
+    padding: 6px 4px;
+}

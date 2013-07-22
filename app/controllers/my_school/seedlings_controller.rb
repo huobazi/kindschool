@@ -1,7 +1,7 @@
 #encoding:utf-8
 #学员育苗
 class MySchool::SeedlingsController < MySchool::ManageController
-   def index 
+   def index
    	 all_roles = ['admin','principal','vice_principal','assistant_principal','park_hospital']
    	 userrole = current_user.get_users_ranges
    	 if @flag=all_roles.include?(@role)
@@ -117,7 +117,13 @@ class MySchool::SeedlingsController < MySchool::ManageController
 
 
   def destroy_multiple
-    SeedlingRecord.destroy(params[:seedling])
+    if params[:seedling].nil?
+      flash[:notice] = "必须先选择育苗记录"
+    else
+      params[:seedling].each do |seeding|
+        @kind.seedling_records.destroy(seeding)
+      end
+    end
     respond_to do |format|
       format.html { redirect_to my_school_seedlings_path }
       format.json { head :no_content }

@@ -10,7 +10,7 @@ class  MySchool::TopicsController < MySchool::ManageController
     @topic_entry = TopicEntry.new
     @topic_entry.topic_id = @topic.id
     @topic_entry.creater_id = current_user.id
-    @topic_entries = @topic.topic_entries
+    @topic_entries = @topic.topic_entries.page(params[:page] || 1).per(10)
   end
 
   def new
@@ -56,5 +56,26 @@ class  MySchool::TopicsController < MySchool::ManageController
       format.html { redirect_to(:action=>:index) }
       format.xml  { head :ok }
     end
+  end
+
+  def destroy_multiple
+    if params[:topic].nil?
+      flash[:notice] = "必须选择贴子"
+    else
+      params[:topic].each do |topic|
+        @kind.topics.destroy(topic)
+      end
+    end
+
+    respond_to do |format|
+      format.html {redirect_to my_school_topics_path}
+      format.json { header :no_content }
+    end
+  end
+
+  def my
+    @topics = @kind.topics.where(:creater_id => current_user.id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+
+    render "my_school/topics/index"
   end
 end

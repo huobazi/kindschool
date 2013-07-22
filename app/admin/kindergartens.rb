@@ -321,7 +321,7 @@ ActiveAdmin.register Kindergarten do
 
       div do
         br
-        panel "贴子分类信息" do
+        panel "论坛分类信息" do
           unless kind.topic_categories.blank?
             table_for(kind.topic_categories) do |t|
               t.column("名称") {|item| item.name}
@@ -333,13 +333,13 @@ ActiveAdmin.register Kindergarten do
               end
             end
           else
-            "不创建贴子分类"
+            "不创建论坛分类"
           end
         end
 
         ul do
           li do
-            link_to "创建贴子分类", :controller => "/admin/topic_categories", :action => :new, :kindergarten_id => kind.id
+            link_to "创建论坛分类", :controller => "/admin/topic_categories", :action => :new, :kindergarten_id => kind.id
           end
         end
       end

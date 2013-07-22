@@ -1,0 +1,40 @@
+<% f = strategy %>
+
+<%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
+<%= f.input :from_id, :as => :hidden %>
+<%= f.input :kindergarten_id, :as => :hidden %>
+<%= f.input :squad_id, :as => :hidden, :input_html => {:value => "#{params[:id]}", :name => "squad_id"} %>
+
+<%= f.input :graduation, :as => :radio_buttons %>
+<fieldset class="to_squad">
+  <legend><label>选择升到的班级</label></legend>
+    <div class="control-group">
+      <label class="select optional control-label" for="grades">年级</label>
+      <div class="controls">
+        <%= up_to_default_grade(params[:id]).name %>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="select optional control-label" for="to_id">班级</label>
+      <div class="controls" id="squad_partial">
+
+        <%= select_tag "to_id", options_from_collection_for_select(up_to_default_grade(params[:id]).squads, "id", "name"), :name => "career_strategy[to_id]" %>
+      </div>
+    </div>
+</fieldset>
+
+<div class="control-group">
+  <div class="controls">
+    <%= f.button :submit %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(".career_strategy_graduation input").change(function() {
+      if ($(".career_strategy_graduation input:checked").val() == "true")
+         $(".to_squad").hide()
+      else
+         $(".to_squad").show()
+      end
+  });
+</script>

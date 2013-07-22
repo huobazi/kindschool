@@ -1,0 +1,94 @@
+<div class="control-group">
+  <%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
+  <div class="controls">
+    <%= text_field_tag(:kindergarten,@kind.name, :disabled=> true) %>
+  </div>
+</div>
+<fieldset class="from_squad">
+  <legend><label>选择班级</label></legend>
+  <div class="control-group">
+    <label class="select optional control-label">选择班级</label>
+    <div class="controls">
+      <span>年级<%= select_tag "from_grade", options_for_select(@grades.collect{|s|[s.name,s.id]},@from_grade)%></span>
+      <div id="from_class_number_partial">
+        <%unless @squads.blank? %>
+          <span>班级<%= select_tag "from_class_number", options_for_select((@squads.collect{|s|[s.name,s.id]} || []),@from_class) %></span>
+        <%end%>
+      </div>
+    </div>
+  </div>
+  <%= f.input :add_squad, :collection =>{"是"=>"true","否"=>"false"},:include_blank=>false,:input_html=>{:name=>"add_squad"}%>
+  <%= f.input :graduation,  :collection =>{"是"=>"true","否"=>"false"},:include_blank=>false,:input_html=>{:name=>"graduation"} %>
+</fieldset>
+<fieldset class="to_squad">
+  <legend><label>选择升学后班级</label></legend>
+  <div class="control-group">
+    <label class="select optional control-label">升学后班级</label>
+    <div class="controls">
+      <span>年级<%= select_tag "to_grade", options_for_select(@grades.collect{|s|[s.name,s.id]},@to_grade)%></span>
+      <div id="to_class_number_partial">
+        <%if action_name == "new" %>
+          <%unless @squads.blank? %>
+            <span>班级<%= select_tag "to_class_number", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])) %></span>
+          <%end%>
+        <% else %>
+          <%unless @to_squads.blank? %>
+            <span>班级<%= select_tag "to_class_number", options_for_select((@to_squads.collect{|s|[s.name,s.id]} || []),@to_class) %></span>
+          <%end%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</fieldset>
+
+<script type="text/javascript">
+  jQuery(function() {
+    $("#from_grade").change(function(){
+      $.get( "/my_school/seedlings/grade_class",
+      { grade: $('#from_grade').val(),name:"from_class_number",no_student:1},
+      function(result){
+        $("#from_class_number_partial").html(result);
+      })
+    });
+    <% if action_name == "new" %>
+      $('#from_grade').trigger('change');
+    <% end %>
+      
+    $("#to_grade").change(function(){
+      $.get( "/my_school/seedlings/grade_class",
+      { grade: $('#to_grade').val(),name:"to_class_number",no_student:1},
+      function(result){
+        $("#to_class_number_partial").html(result);
+      })
+    });
+    $("#career_strategy_graduation").change(function() {
+      if($("#career_strategy_graduation").val() == "true"){
+        $(".to_squad").hide()
+      }
+      else{
+        $(".to_squad").show()
+      }
+    });
+    $('#career_strategy_graduation').trigger('change');
+    $("#career_submit").click(function(){
+      var from_id = $("#from_class_number").val();
+      var to_id = $("#to_class_number").val();
+      var graduation = $("#career_strategy_graduation").val();
+      if(from_id == undefined){
+        alert("“选择班级“不能为空。");
+        return;
+      }
+      if(graduation == "false"){
+        if(to_id == undefined){
+          alert("“升级后班级“不能为空。");
+          return;
+        }
+        if(from_id == to_id){
+          alert("“选择班级“和“升级后班级“不能一样。");
+          return;
+        }
+      }
+      $("#career_strategy_form").submit();
+    })
+  });
+</script>

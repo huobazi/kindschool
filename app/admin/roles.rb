@@ -13,11 +13,13 @@ ActiveAdmin.register Role do
       ids = params[:operate] || []
 
       if ids.blank?
-        @role.option_operates.delete_all()
+        @role.option_operates.each do |operate|
+          operate.destroy   
+        end
       else
         @role.option_operates.each do |option|
           unless ids.include?(option.id.to_s)
-            @role.option_operates.delete(option)
+            @role.option_operates.destroy(option)
           end
         end
       end

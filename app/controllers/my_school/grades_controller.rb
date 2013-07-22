@@ -55,7 +55,13 @@ class  MySchool::GradesController < MySchool::ManageController
   end
 
   def destroy_multiple
-    Grade.destroy(params[:grade])
+    if params[:grade].nil?
+      flash[:notice] = "必须选择年级"
+    else
+      params[:grade].each do |grade|
+        @kind.grades.destroy(grade)
+      end
+    end
     respond_to do |format|
       format.html { redirect_to my_school_grades_path }
       format.json { head :no_content }

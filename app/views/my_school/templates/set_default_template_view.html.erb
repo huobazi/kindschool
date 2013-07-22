@@ -4,7 +4,7 @@
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label>系统设置</label>
+        <label>模版设置</label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
@@ -36,6 +36,8 @@
               </td>
               <% if template.is_default == false %>
                 <td><%= link_to "设为默认模版", :controller => :templates, :action => :set_default_template, :template_id => template.id, :class => "show" %></td>
+              <% else %>
+                <td>已经是默认模版</td>
               <% end %>
             </tr>
           <% end %>

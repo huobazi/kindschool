@@ -1,9 +1,13 @@
 <div class="work_menu">
   <ul>
-    <li class="root"><div class="option_root"></div><%= link_to "自定义功能","/" %></li>
-    <li><%= link_to "年级管理","/" %></li>
-    <li><%= link_to "班级管理", :controller => "/my_school/squads", :action => :index %></li>
-    <li><%= link_to "教职工管理","/" %></li>
+    <%(useful_features_menu || []).each_with_index do |sm,index|%>
+    <%if index==0%>
+    <li class="root"><div class="option_root"></div><%= link_to "常用功能","/" %></li>
+    <%end%>
+    <li>
+      <%=link_to sm.option_operate.operate.try(:name),{:controller=>sm.option_operate.operate.controller,:action=>sm.option_operate.operate.action} %>
+    </li>
+    <%end%>
   </ul>
   <ul class="work_ul">
     <% sys_admin_menus.each do |menu| %>

@@ -13,15 +13,16 @@
 </script>
 <%= f.input :title, :validate => true, :required => true, :input_html => {:class => "span5 profile_input required"} %>
 <% if action_name == "new" %>
-  <%= f.input :start_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun"} %>
-  <%= f.input :end_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun"} %>
+  <%= f.input :start_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun span5"} %>
+  <%= f.input :end_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun span5"} %>
 <% else %>
   <%= f.input :start_at, :required => true, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.start_at.to_short_datetime}"} %>
   <%= f.input :end_at, :required => true, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.end_at.to_short_datetime}"} %>
 <% end %>
-<%= f.input :content, :validate => true, :required => true, :as => :text %>
+<%= f.input :content, :validate => true, :required => true, :input_html => { :class => "span5 profile_input" } %>
+<div class="clear"></div>
 <%= f.input :note, :input_html => {:rows => "10", :class => "span5"}%>
-<%= f.input :tp, :as => :radio, :collection => {"活动" => 0, "兴趣讨论" => 1}, :required => true %>
+
 <%= f.simple_fields_for :asset_img_attributes do |p| %>
   <%= p.input :uploaded_data, :as => :file, :name => "asset_img"  %>
 <% end %>
@@ -29,6 +30,7 @@
 <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
 <%= f.input :kindergarten_id, :as => :hidden %>
 <%= f.input :creater_id, :as => :hidden %>
+<%= f.input :tp, :as => :hidden %>
 
 <div class="control-group">
   <div class="controls">

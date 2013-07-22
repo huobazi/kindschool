@@ -12,7 +12,7 @@
           <ul>
             <li>论坛信息管理</li>
             <li>/</li>
-            <li>贴子管理</li>
+            <li>论坛贴子</li>
           </ul>
         </div>
       </div>
@@ -25,6 +25,14 @@
             </div>
           </a>
         </li>
+        <li>
+          <a href="/" title="删除" id="destroy_multiple">
+            <div class="work_action_delete">
+            </div>
+            <div class="work_action_delete_move">
+            </div>
+          </a>
+        </li>
       </ul>
     </div>
     
@@ -32,26 +40,33 @@
      <%= form_tag '/my_school/topics' , :method=>"get" do %>
       <b>标题：</b>
       <%= text_field :topic,:title_like,:style=>"width:100px;" ,:value=>"#{params[:topic][:title_like] if params[:topic] }"  %>
+      <b>内容：</b>
+      <%= text_field :topic,:content_like,:style=>"width:100px;" ,:value=>"#{params[:topic][:content_like] if params[:topic] }"  %>
+
       <%= submit_tag "搜索" %>
       <%end%>
     </div>
     <div class="work_list">
       <% if @topics.any? %>
         <table class="table table-striped table-hover">
-          <tr>
-            <th>标题</th>
-            <th>发贴人</th>
-            <th>查看次数</th>
-            <th colspans="2">操作</th>
-          </tr>
-          <% @topics.each do |topic| %>
+          <%= form_tag destroy_multiple_my_school_topics_path, method: :delete, :id => "destroy_multi_form" do %>
             <tr>
-              <td><%= link_to topic.title, my_school_topic_path(topic) %></td>
-              <td><%= User.find_by_id(topic.creater_id).name %></td>
-              <td><%= topic.show_count %></td>
-              <td><%= link_to "查看", my_school_topic_path(topic), :class => "show" %></td>
-              <td><%= link_to "编辑", edit_my_school_topic_path(topic), :class => "show" %></td>
+              <th><input type="checkbox" name="" value="" alt="全选" id="topic_all">全选</th>
+              <th>标题</th>
+              <th>发贴人</th>
+              <th>查看次数</th>
+              <th colspan="2">操作</th>
             </tr>
+            <% @topics.each do |topic| %>
+              <tr>
+                <td><input id="topic_<%= topic.id %>" class="topic_check" name="topic[]" type="checkbox" value="<%= topic.id %>" /></td>
+                <td><%= link_to topic.title, my_school_topic_path(topic) %></td>
+                <td><%= topic.creater ? topic.creater.name : "" %></td>
+                <td><%= topic.show_count %></td>
+                <td><%= link_to "查看", my_school_topic_path(topic), :class => "show" %></td>
+                <td><%= link_to "编辑", edit_my_school_topic_path(topic), :class => "show" %></td>
+              </tr>
+            <% end %>
           <% end %>
         </table>
         <%= paginate @topics %>
@@ -62,3 +77,16 @@
   </div>
 
 </div>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#topic_all").click(function(){
+    $(".topic_check").attr("checked",this.checked);
+  });
+  $("#destroy_multiple").click(function(){
+      $("#destroy_multi_form").submit();
+      return false;
+  });
+});
+</script>

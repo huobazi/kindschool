@@ -1,0 +1,192 @@
+<div class="control-group">
+  <label class="control-label">人员组成</label>
+  <div class="controls">
+    <label class="show_label">
+      <%= link_to "点击选择","###" ,:id=>"change_users"%>
+    </label>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label">已选名单</label>
+  <div class="controls">
+    <label class="show_label">
+      <div id="message_inputs">
+
+      </div>
+    </label>
+  </div>
+</div>
+<script type="text/javascript">
+  $(function() {
+    $("#message_inputs .message_user label").live('click',function(){
+      if($(this).parent().siblings().size() == 1){
+        $(this).parent().parent().remove();
+      }else{
+        $(this).parent().remove();
+      }
+    });
+    //加载年级
+    function load_grades(){
+      var ids = [];
+      $("#grade_resource .check_grades input[type=checkbox]:checked").each(function(){
+        ids.push($(this).val());
+      });
+      var contain_teachers = $("#contain_teachers").val();
+      $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_grades_all) %>",
+      {"ids":ids,"contain_teachers":contain_teachers});
+    };
+    //加载年级
+    function load_squads(){
+      var ids = [];
+      $("#squad_resource .check_grades input[type=checkbox]:checked").each(function(){
+        ids.push($(this).val());
+      });
+      var contain_teachers = $("#contain_teachers").val();
+      $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_squads_all) %>",
+      {"ids":ids,"contain_teachers":contain_teachers});
+    };
+    //加载职务
+    function load_roles(){
+      var ids = [];
+      $("#role_resource .check_grades input[type=checkbox]:checked").each(function(){
+        ids.push($(this).val());
+      });
+      $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_roles_all) %>",
+      {"ids":ids});
+    };
+    //选择个人
+    function load_users(){
+      var ids = [];
+      $("#users_resource .check_grades input[type=checkbox]:checked").each(function(){
+        ids.push($(this).val());
+      });
+      $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_users_all) %>",
+      {"ids":ids});
+    }
+    //点击第一级
+    $(".check_rangs input").click(function(){
+      $(".ranges_resource").hide();
+    })
+    $("#rangs_0").click(function(){
+      $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_student) %>");
+    });
+    $("#rangs_1").click(function(){
+      $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_grade) %>");
+    });
+    $("#rangs_2").click(function(){
+      $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_kindergarten) %>");
+    });
+    //全年级
+    $("#rangs_3").click(function(){
+      $("#contain_teachers").val("0");
+      $("#grade_resource").show();
+      load_grades();
+    });
+    $("#rangs_4").click(function(){
+      $("#contain_teachers").val("1");
+      $("#grade_resource").show();
+      load_grades();
+    });
+    $("#grade_resource .check_grades input").click(function(){
+      load_grades();
+    });
+    $("#grades_checkall").click(function(){
+      if($(this).attr("checked") == "checked"){
+        $("#grade_resource .check_grades input[type=checkbox]").attr("checked", true);
+      }else{
+        $("#grade_resource .check_grades input[type=checkbox]").attr("checked", false);
+      }
+      load_grades();
+    })
+    //全班级
+    $("#rangs_5").click(function(){
+      $("#contain_teachers").val("0")
+      $("#squad_resource").show();
+      load_squads();
+    });
+    $("#rangs_6").click(function(){
+      $("#contain_teachers").val("1")
+      $("#squad_resource").show();
+      load_squads();
+    });
+    $("#squad_resource .check_grades input").click(function(){
+      load_squads();
+    });
+    $("#squads_checkall").click(function(){
+      if($(this).attr("checked") == "checked"){
+        $("#squad_resource .check_grades input[type=checkbox]").attr("checked", true);
+      }else{
+        $("#squad_resource .check_grades input[type=checkbox]").attr("checked", false);
+      }
+      load_squads();
+    })
+    //全园职务
+    $("#rangs_7").click(function(){
+      $("#role_resource").show();
+      load_roles();
+    });
+    $("#role_resource .check_grades input").click(function(){
+      load_roles();
+    });
+    $("#roles_checkall").click(function(){
+      if($(this).attr("checked") == "checked"){
+        $("#role_resource .check_grades input[type=checkbox]").attr("checked", true);
+      }else{
+        $("#role_resource .check_grades input[type=checkbox]").attr("checked", false);
+      }
+      load_roles();
+    });
+
+    //选择个人
+    $("#rangs_users_0").click(function(){
+      if($(this).attr("checked") == "checked"){
+        $("#users_resource").show();
+        $("#users_resource_div").show();
+      }else{
+        $("#users_resource").show();
+        $("#users_resource_div").hide();
+        $("#users_resource_div input[type=checkbox]:checked").attr("checked", false);
+      }
+      load_users();
+    });
+    $(".show_users_data").click(function(){
+      var show_users = $($(this).attr("for"));
+      if(show_users.css("display") == "none"){
+        $(this).html('<label><i class="icon-arrow-up"></i>收缩</label>')
+        show_users.show();
+      }else{
+        $(this).html('<label><i class="icon-arrow-down"></i>展开</label>')
+        show_users.hide();
+      }
+      load_users();
+    });
+    //选择教职工
+    $("#rangs_users_1").click(function(){
+      if($(this).attr("checked") == "checked"){
+        $("#users_resource").show();
+        $("#teachers_resource_div").show();
+      }else{
+        $("#users_resource").show();
+        $("#teachers_resource_div").hide();
+        $("#teachers_resource_div input[type=checkbox]:checked").attr("checked", false);
+      }
+      load_users();
+    });
+
+    $("#users_resource .checkall_div input").click(function(){
+      var show_inputs = $($(this).attr("for") + " input[type=checkbox]");
+      if($(this).attr("checked") =="checked"){
+        show_inputs.attr("checked", true)
+      }else{
+        show_inputs.attr("checked", false)
+      }
+      load_users();
+    });
+
+    $("#users_resource .check_grades input").click(function(){
+      load_users();
+    });
+
+  });
+</script>
+

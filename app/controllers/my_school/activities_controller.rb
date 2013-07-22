@@ -3,11 +3,22 @@ class MySchool::ActivitiesController < MySchool::ManageController
   # 活动
 
   def index
-    @activities = @kind.activities.page(params[:page] || 1).per(10).order("created_at DESC")
+    @activities = @kind.activities.search(params[:activity] || {}).where(:tp => 0).page(params[:page] || 1).per(10).order("created_at DESC")
   end
 
   def show
     @activity = Activity.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+
+    @activity_entries = @activity.activity_entries.page(params[:page] || 1).per(10)
+
+    @activity_entry = ActivityEntry.new
+    @activity_entry.activity_id = @activity.id
+    if current_user.id == @activity.creater_id
+      @activity_entry.tp = 0
+    else
+      @activity_entry.tp = 1
+    end
+    @activity_entry.creater_id = current_user.id
   end
 
   def new

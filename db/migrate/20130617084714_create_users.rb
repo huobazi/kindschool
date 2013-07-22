@@ -24,6 +24,7 @@ class CreateUsers < ActiveRecord::Migration
       t.datetime :token_at
       t.boolean :is_send,:default=>0 #是否能够发短信,0不能，1能
       t.boolean :is_receive,:default=>0 #是否能够接受短信,0不能，1能
+      t.timestamp :deleted_at
       t.timestamps
     end
     add_index :users, :email, :unique => true

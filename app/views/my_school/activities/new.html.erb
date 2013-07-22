@@ -4,13 +4,25 @@
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label>活动信息</label>
+        <label>
+          <% if controller_name == "activities" %>
+            活动信息
+          <% else %>
+            兴趣讨论信息
+          <% end %>
+        </label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
           </a>
           <ul>
-            <li><%= link_to "活动信息管理", my_school_activities_path %></li>
+            <li>
+            <% if controller_name == "activities" %>
+                活动信息
+              <% else %>
+                兴趣讨论
+              <% end %>
+              </li>
             <li>/</li>
             <li>新建活动</li>
           </ul>
@@ -18,11 +30,15 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:index)%>" title="返回">
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
+          <% if controller_name == "activities" %>
+            <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:index)%>" title="返回">
+          <% else %>
+            <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:index)%>" title="返回">
+          <% end %>
+          <div class="work_action_return">
+          </div>
+          <div class="work_action_return_move">
+          </div>
           </a>
         </li>
       </ul>
@@ -30,8 +46,14 @@
 
     <div class="work_form">
       <div class="form_div">
-        <%= simple_form_for(@activity, :validate => true, :url => my_school_activities_path, :html => {:class => "form-horizontal"}) do |f| %>
-          <%= render :partial => "form", :object => f %>
+        <% if controller_name == "activities" %>
+          <%= simple_form_for(@activity, :validate => true, :url => my_school_activities_path, :html => {:class => "form-horizontal"}) do |f| %>
+            <%= render :partial => "form", :object => f %>
+          <% end %>
+        <% else %>
+          <%= simple_form_for(@activity, :validate => true, :url => my_school_interest_activities_path, :html => {:class => "form-horizontal"}) do |f| %>
+            <%= render :partial => "my_school/activities/form", :object => f %>
+          <% end %>
         <% end %>
       </div>
     </div>

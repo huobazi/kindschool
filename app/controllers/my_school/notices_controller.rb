@@ -2,7 +2,20 @@
 class MySchool::NoticesController < MySchool::ManageController
   #列表界面
   def index
-    @notices = @kind.notices.search(params[:notice] || {}).page(params[:page] || 1).per(10).order("send_date DESC")
+     userrole = current_user.get_users_ranges
+    unless userrole.blank?
+    if  userrole[:tp] == :all
+    send_range = [0,1,2]
+    @notices = @kind.notices.where(:send_range=>send_range).search(params[:notice] || {}).page(params[:page] || 1).per(10).order("send_date DESC")
+    elsif userrole[:tp] == :teachers
+     # 如果是老师能够查看到所有的全教职工和全园的信息
+    send_range = [0,1]
+    @notices = @kind.notices.where("send_date < ? or creater_id= ?" ,Time.zone.now,current_user.id).where(:send_range=>send_range).search(params[:notice] || {}).page(params[:page] || 1).per(10).order("send_date DESC")
+    elsif userrole[:tp] == :student
+    send_range = [0,2]
+    @notices = @kind.notices.where("send_date < ?" ,Time.zone.now).where(:send_range=>send_range).search(params[:notice] || {}).page(params[:page] || 1).per(10).order("send_date DESC")
+    end
+   end
   end
 
   def new
@@ -52,6 +65,20 @@ class MySchool::NoticesController < MySchool::ManageController
         format.html { render :action => :edit }
         format.xml  { render :xml => @notice.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy_multiple
+    if params[:notice].nil?
+      flash[:notice] = "必须选择通知"
+    else
+      params[:notice].each do |notice|
+        @kind.notices.destroy(notice)
+      end
+    end
+    respond_to do |format|
+      format.html { redirect_to my_school_notices_path }
+      format.json { head :no_content }
     end
   end
 end

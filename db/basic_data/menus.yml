@@ -38,6 +38,22 @@
     title: "学籍管理"
     height_level: "a"
     sequence: 140
+  - id: 15000
+    name: "虚拟班管理"
+    operate_id: 4005
+    number: 15000
+    url: "/my_school/virtual_squads"
+    title: "虚拟班管理"
+    height_level: "a"
+    sequence: 140
+  - id: 16000
+    name: "个人信息"
+    operate_id: 4012
+    number: 16000
+    url: "/my_school/users/show"
+    title: "个人信息"
+    height_level: "a"
+    sequence: 141
 - id: 20000
   number: "approve"
   name: "审核发布"
@@ -89,8 +105,32 @@
     url: "/my_school/smarties"
     title: "常用功能管理"
     height_level: "a"
-    sequence: 330
+    sequence: 340
     operate_id: 5004
+  - id: 36000
+    name: "角色管理"
+    number: 36000
+    url: "/my_school/roles"
+    title: "角色管理"
+    height_level: "a"
+    sequence: 350
+    operate_id: 5006
+  - id: 37000
+    name: "升学策略"
+    number: 37000
+    url: "/my_school/career_strategies"
+    title: "升学策略"
+    height_level: "a"
+    sequence: 360
+    operate_id: 5007
+  - id: 38000
+    name: "论坛分类管理"
+    number: 38000
+    url: "/my_school/topic_categories"
+    title: "论坛分类管理"
+    height_level: "a"
+    sequence: 370
+    operate_id: 5011
 - id: 40000
   number: "statistics"
   name: "统计"
@@ -122,7 +162,7 @@
   sequence: 600
   children:
   - id: 61000
-    name: "发信息"
+    name: "发消息"
     operate_id: 2006
     number: 61000
     url: "/my_school/messages/new"
@@ -147,13 +187,28 @@
     operate_id: 2001
   - id: 62003
     name: "通知信息"
-    operate_id: 2003
     number: 62003
     url: "/my_school/notices"
     title: "通知信息"
     height_level: "b"
     sequence: 624
     operate_id: 2005
+  - id: 63000
+    name: "发件箱"
+    number: 63000
+    url: "/my_school/messages/outbox"
+    title: "发件箱"
+    height_level: "b"
+    sequence: 625
+    operate_id: 2008
+  - id: 64000
+    name: "草稿箱"
+    number: 64000
+    url: "/my_school/messages/draft_box"
+    title: "草稿箱"
+    height_level: "b"
+    sequence: 626
+    operate_id: 2009
 - id: 70000
   number: 70000
   name: "班级活动"
@@ -204,7 +259,7 @@
     sequence: 920
   - id: 93000
     name: "菜谱"
-    operate_id: 8001 
+    operate_id: 8001
     number: 93000
     url: "/my_school/cook_books"
     title: "菜谱"
@@ -243,10 +298,43 @@
   operate_id: 3
   children:
   - id: 111000
-    name: "账子管理"
+    name: "论坛贴子"
     operate_id: 3005
     number: 111000
     url: "/my_school/topics"
-    title: "论坛管理"
+    title: "论坛贴子"
     height_level: "b"
     sequence: 1110
+  - id: 112000
+    name: "我的贴子"
+    operate_id: 3006
+    number: 112000
+    url: "/my_school/topics/my"
+    title: "我的贴子"
+    height_level: "b"
+    sequence: 1120
+
+- id: 120000
+  number: 120000
+  name: "活动信息"
+  height_level: "b"
+  url: "/my_school/activities"
+  sequence: 1200
+  operate_id: 10
+  children:
+  - id: 121000
+    name: "活动内容"
+    operate_id: 10000
+    number: 121000
+    url: "/my_school/activities"
+    title: "活动内容"
+    height_level: "b"
+    sequence: 1210
+  - id: 122000
+    name: "兴趣讨论"
+    operate_id: 10010
+    number: 122000
+    url: "/my_school/interest_activities"
+    title: "兴趣讨论"
+    height_level: "b"
+    sequence: 1220

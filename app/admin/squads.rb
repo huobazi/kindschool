@@ -116,32 +116,33 @@ ActiveAdmin.register Squad do
           end
         end
       end
-
-      div do
-        br
-        panel "贴子列表" do
-          unless squad.topics.blank?
-            table_for(squad.topics) do |t|
-              t.column("标题") {|item| item.title}
-              t.column("发贴人") {|item| item.creater_id}
-              tr :class => "odd" do
-                td ""
-                td "贴子总数", :style => "text-align: right;"
-                td "#{squad.topics.count}"
-                td ""
-              end
-            end
-          else
-            "未有贴子"
-          end
-        end
-
-        ul do
-          li do
-            link_to "发表贴子", :controller => "/admin/topics", :action => :new, :kindergarten_id => squad.kindergarten.id, :squad_id => squad.id
-          end
-        end
-      end
+#TODO:guo：帖子和班级啥关系？
+#
+#      div do
+#        br
+#        panel "贴子列表" do
+#          unless squad.topics.blank?
+#            table_for(squad.topics) do |t|
+#              t.column("标题") {|item| item.title}
+#              t.column("发贴人") {|item| item.creater_id}
+#              tr :class => "odd" do
+#                td ""
+#                td "贴子总数", :style => "text-align: right;"
+#                td "#{squad.topics.count}"
+#                td ""
+#              end
+#            end
+#          else
+#            "未有贴子"
+#          end
+#        end
+#
+#        ul do
+#          li do
+#            link_to "发表贴子", :controller => "/admin/topics", :action => :new, :kindergarten_id => squad.kindergarten.id, :squad_id => squad.id
+#          end
+#        end
+#      end
     end
   end
 end

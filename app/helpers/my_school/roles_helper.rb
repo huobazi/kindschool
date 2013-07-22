@@ -1,0 +1,2 @@
+module MySchool::RolesHelper
+end

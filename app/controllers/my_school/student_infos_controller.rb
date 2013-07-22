@@ -70,7 +70,13 @@ class  MySchool::StudentInfosController < MySchool::ManageController
   end
 
   def destroy_multiple
-    StudentInfo.destroy(params[:student])
+    if params[:student].nil?
+      flash[:notice] = "必须先选择学员"
+    else
+      params[:student].each do |student|
+        @kind.student_infos.destroy(student)
+      end
+    end
     respond_to do |format|
       format.html { redirect_to my_school_student_infos_path }
       format.json { head :no_content }

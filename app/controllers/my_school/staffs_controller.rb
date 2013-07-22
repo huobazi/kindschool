@@ -15,6 +15,12 @@ class  MySchool::StaffsController < MySchool::ManageController
 
   def create
     @staff = Staff.new(params[:staff])
+    if params[:role] && params[:role][:id]
+     role = @kind.roles.find(params[:role][:id])
+     unless role.blank?
+      @staff.user.role = role  
+     end
+    end
     if @staff.save!
       redirect_to my_school_staff_path(@staff), :notice => "操作成功"
     else
@@ -32,7 +38,7 @@ class  MySchool::StaffsController < MySchool::ManageController
     @staff.destroy
 
     respond_to do |format|
-      flash[:notice] = '删除通知成功.'
+      flash[:notice] = '删除教职工成功.'
       format.html { redirect_to(:action=>:index) }
       format.xml  { head :ok }
     end
@@ -42,7 +48,7 @@ class  MySchool::StaffsController < MySchool::ManageController
     @staff = Staff.find_by_id(params[:id])
     respond_to do |format|
       if @staff.update_attributes(params[:staff])
-        flash[:notice] = '更新通知成功.'
+        flash[:notice] = '修改教职工成功.'
         format.html { redirect_to(:action=>:show,:id=>@staff.id) }
         format.xml  { head :ok }
       else
@@ -53,7 +59,11 @@ class  MySchool::StaffsController < MySchool::ManageController
   end
 
   def destroy_multiple
-    Staff.destroy(params[:staff])
+    if params[:staff].nil?
+      flash[:notice] = "必须先选择教职工"
+    else
+      Staff.destroy(params[:staff])
+    end
     respond_to do |format|
       format.html { redirect_to my_school_staffs_path }
       format.json { head :no_content }

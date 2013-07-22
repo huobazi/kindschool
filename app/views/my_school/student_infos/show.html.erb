@@ -106,7 +106,7 @@
                 <label class="control-label" >微信号</label>
                 <div class="controls">
                   <label class="show_label">
-                    <%= @student_info.user.weixin_code %>
+                    <%= @student_info.user.weixin_code.blank? ? "已绑定" : "未绑定" %>
                   </label>
                 </div>
               </div>
@@ -138,7 +138,7 @@
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label" >入职时间</label>
+              <label class="control-label" >入园时间</label>
               <div class="controls">
                 <label class="show_label">
                   <%= @student_info.come_in_at ? @student_info.come_in_at.to_short_datetime : "" %>

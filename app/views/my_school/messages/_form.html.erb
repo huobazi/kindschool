@@ -1,14 +1,20 @@
 <% f = form %>
 <script type="text/javascript">
   $(function() {
-    $('#message_send_date').datepicker({
-      language: "zh-CN",
-      format:"yyyy-mm-dd"
-    });
     $("#dialog_change_users" ).dialog({
+      dialogClass: "no-close",
       autoOpen: false,
       height:500,
-      width:700
+      width:700,
+      buttons: {
+                "确定": function () {
+                    $(this).dialog("close");
+                },
+                "取消": function () {
+                    $("#message_inputs").html("");
+                    $(this).dialog("close");
+                }
+            }
     });
     $( "#change_users" ).click(function() {
       $( "#dialog_change_users" ).dialog("open");
@@ -35,21 +41,70 @@
 </div>
 
 <%= f.input :title, :validate => true, :required => true,:input_html=>{:class=>"span5"}%>
+<div style="float:right;">
+<p  id="numtj"><var style="color:#C00">--</var>/<span id="numcalcu">800</span></p>
+</div>
 <%= f.input :content, :validate => true, :required => true ,:input_html=>{:class=>"span5"}%>
 
-<%= f.input :send_date, :validate => true, :required => true,:as=>:string ,:class=>"input-mediun"%>
+<%if current_user.is_send%>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">是否发送短信</label>
+    <div class="controls">
+      <%= check_box_tag('message[tp]',"1",@message.tp==1)%>
+    </div>
+  </div>
+<%end%>
+
 <div class="control-group">
   <div class="controls">
-    <%= f.button :submit %>
+    <%= f.submit "发送消息",:class => 'btn' %>
+    &nbsp;&nbsp;
+    <%= f.submit  "存为草稿", :name => 'draft', :class => 'btn' %>
   </div>
 </div>
 <div id="dialog_change_users"  title="选择收件人">
   <%= render :partial => "inbox" %>
-  <%=button_to "确定",:id=>'close_dialog_button'%>
 </div>
+<script type="text/javascript">
 
+$(function() {
+    $("#message_tp").click(function() {               //checkBox点击事件
+        if($("#message_tp").attr("checked"))              //判断是否选中
+          { $("#numcalcu").text(<%=calculated_figures%>);
+           load_length();}
+           else
+           { $("#numcalcu").text(800);
+           load_length();}
+        });
+    });
+function load_length(){
+  var text=$("#message_content").val();
+  var counter=text.length;
+  $("#numtj var").text($("#numcalcu").text()-counter);
+  $(document).keyup(function() {
+    var text=$("#message_content").val();
+    var counter=text.length;
+  $("#numtj var").text($("#numcalcu").text()-counter);
+  });
+};
+$(document).ready(load_length());
+$(document).ready(function(){
+   if($("#message_tp").attr("checked"))
+   { $("#numcalcu").text(<%=calculated_figures%>);
+           load_length();}
+ else
+   { $("#numcalcu").text(800);
+           load_length();}
+});
+
+</script>
 <script type="text/javascript">
   $(function() {
+    <% if action_name == "draft_edit"%>
+     $(window).load(function(){
+      $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_edit_ids,:id=>@message.id) %>");
+     })
+    <% end %>
     $("#message_inputs .message_user label").live('click',function(){
       if($(this).parent().siblings().size() == 1){
         $(this).parent().parent().remove();

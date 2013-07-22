@@ -1,0 +1,27 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    <a href="<%= url_for(:action=>:index) %>" title="返回">返回</a>菜谱
+  </div>
+  <div class="message_list">
+    <ul class="data_list">
+      <li>
+        <a href="<%= url_for(:action=>:show,:id=>@cook_book.id) %>" title="查看菜谱信息">
+          <div class="center">
+            <label>时间:<%= @cook_book.start_at.try(:to_short_datetime)%>/<%= @cook_book.end_at.try(:to_short_datetime)%></label>
+          </div>
+          <div class="center">
+            <label>
+              <%= raw @cook_book.content %>
+            </label>
+          </div>
+        </a>
+      </li>
+    </ul>
+    <br/>
+  </div>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
