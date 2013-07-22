@@ -26,6 +26,14 @@ class  MySchool::StudentInfosController < MySchool::ManageController
   def create
     @student_info = StudentInfo.new(params[:student_info])
     if @student_info.save!
+      if params[:asset_logo] && (user = @student_info.user)
+        if user.asset_logo
+          user.asset_logo.update_attribute(:uploaded_data, params[:asset_logo])
+        else
+          user.asset_logo = AssetLogo.new(:uploaded_data=> params[:asset_logo])
+          user.save
+        end
+      end
       redirect_to my_school_student_info_path(@student_info), :notice => "添加学员成功"
     else
       flash[:error] = "操作失败"
