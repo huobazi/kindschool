@@ -23,7 +23,7 @@
       <%= f.file_field :asset_logo ,:name=>"asset_logo" %>
       <% user = @staff.user %>
       <div>
-        &nbsp;&nbsp; <img src="<%= user.asset_logo ? user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="103px;" alt="头像"/>
+        &nbsp;&nbsp; <img src="<%= user.asset_logo ? user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="103" alt="头像"/>
       </div>
     </div>
     <%= p.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
