@@ -141,10 +141,10 @@ notice_edit:
 notice_index:
   id: 2005
   parent_id: 2
-  name: "通知信息"
+  name: "查看通知信息"
   level: 2
   sequence: 0
-  note: "通知信息"
+  note: "查看通知信息"
   controller: "my_school/notices"
   action: "index"
   params: ""
@@ -165,10 +165,10 @@ message_send:
 message_index:
   id: 2007
   parent_id: 2
-  name: "收件箱"
+  name: "查看收件箱"
   level: 2
   sequence: 0
-  note: "收件箱"
+  note: "查看收件箱"
   controller: "my_school/messages"
   action: "index"
   params: ""
@@ -178,10 +178,10 @@ message_index:
 message_outbox:
   id: 2008
   parent_id: 2
-  name: "发件箱"
+  name: "查看发件箱"
   level: 2
   sequence: 0
-  note: "发件箱"
+  note: "查看发件箱"
   controller: "my_school/messages"
   action: "outbox"
   params: ""
@@ -191,10 +191,10 @@ message_outbox:
 message_draft_box:
   id: 2009
   parent_id: 2
-  name: "草稿箱"
+  name: "查看草稿箱"
   level: 2
   sequence: 0
-  note: "草稿箱"
+  note: "查看草稿箱"
   controller: "my_school/messages"
   action: "draft_box"
   params: ""
@@ -217,10 +217,10 @@ message_draft_show:
 message_draft_edit:
   id: 2011
   parent_id: 2
-  name: "修改草稿"
+  name: "编辑草稿"
   level: 2
   sequence: 0
-  note: "修改草稿"
+  note: "编辑草稿"
   controller: "my_school/messages"
   action: "draft_edit"
   params: ""
@@ -232,10 +232,10 @@ message_draft_edit:
 forum_manage:
   id: 3005
   parent_id: 3
-  name: "论坛贴子"
+  name: "查看论坛贴子"
   level: 2
   sequence: 0
-  note: "论坛贴子"
+  note: "查看论坛贴子"
   controller: "my_school/topics"
   action: "index"
   params: ""
@@ -244,10 +244,10 @@ forum_manage:
 forum_my:
   id: 3006
   parent_id: 3
-  name: "我的贴子"
+  name: "查看我的贴子"
   level: 2
   sequence: 0
-  note: "我的贴子"
+  note: "查看我的贴子"
   controller: "my_school/topics"
   action: "my"
   params: ""
@@ -268,10 +268,10 @@ forum_send:
 forum_approve:
   id: 3002
   parent_id: 3
-  name: "审核发帖子"
+  name: "审核帖子"
   level: 2
   sequence: 1
-  note: "审核发送信息"
+  note: "审核贴子"
   controller: ""
   action: ""
   params: ""
@@ -318,10 +318,10 @@ squad_manage:
 squad_new:
   id: 4111
   parent_id: 5
-  name: "新增班级"
+  name: "创建班级"
   level: 2
   sequence: 1
-  note: "新增班级"
+  note: "创建班级"
   controller: "my_school/squads"
   action: "new"
   protocol: ""
@@ -330,10 +330,10 @@ squad_new:
 squad_show:
   id: 4121
   parent_id: 5
-  name: "查看班级"
+  name: "班级展示"
   level: 2
   sequence: 1
-  note: "查看班级"
+  note: "班级展示"
   controller: "my_school/squads"
   action: "show"
   protocol: ""
@@ -342,10 +342,10 @@ squad_show:
 squad_edit:
   id: 4131
   parent_id: 5
-  name: "修改班级"
+  name: "编辑班级"
   level: 2
   sequence: 1
-  note: "修改班级"
+  note: "编辑班级"
   controller: "my_school/squads"
   action: "edit"
   protocol: ""
@@ -377,10 +377,10 @@ grade_manage:
 grade_new:
   id: 4112
   parent_id: 5
-  name: "新增年级"
+  name: "创建年级"
   level: 2
   sequence: 2
-  note: "新增年级"
+  note: "创建年级"
   controller: "my_school/grades"
   action: "new"
   protocol: ""
@@ -389,10 +389,10 @@ grade_new:
 grade_show:
   id: 4122
   parent_id: 5
-  name: "查看年级"
+  name: "展示年级"
   level: 2
   sequence: 2
-  note: "查看年级"
+  note: "展示年级"
   controller: "my_school/grades"
   action: "show"
   protocol: ""
@@ -401,10 +401,10 @@ grade_show:
 grade_edit:
   id: 4132
   parent_id: 5
-  name: "修改年级"
+  name: "编辑年级"
   level: 2
   sequence: 2
-  note: "修改年级"
+  note: "编辑年级"
   controller: "my_school/grades"
   action: "edit"
   protocol: ""
@@ -437,10 +437,10 @@ staff_manage:
 staff_new:
   id: 4113
   parent_id: 5
-  name: "新增教职工"
+  name: "创建教职工"
   level: 2
   sequence: 3
-  note: "新增教职工"
+  note: "创建教职工"
   controller: "my_school/staffs"
   action: "new"
   protocol: ""
@@ -461,10 +461,10 @@ staff_show:
 staff_edit:
   id: 4133
   parent_id: 5
-  name: "修改教职工"
+  name: "编辑教职工"
   level: 2
   sequence: 3
-  note: "修改教职工"
+  note: "编辑教职工"
   controller: "my_school/staffs"
   action: "edit"
   protocol: ""
@@ -497,10 +497,10 @@ student_manage:
 student_new:
   id: 4114
   parent_id: 5
-  name: "新增学员"
+  name: "创建学员"
   level: 2
   sequence: 4
-  note: "新增学员"
+  note: "创建学员"
   controller: "my_school/student_infos"
   action: "new"
   protocol: ""
@@ -521,10 +521,10 @@ student_show:
 student_edit:
   id: 4134
   parent_id: 5
-  name: "修改学员"
+  name: "编辑学员"
   level: 2
   sequence: 4
-  note: "修改学员"
+  note: "编辑学员"
   controller: "my_school/student_infos"
   action: "edit"
   protocol: ""
@@ -628,10 +628,10 @@ virtual_squads_destroy:
 users_show:
   id: 4012
   parent_id: 5
-  name: "个人信息"
+  name: "查看个人信息"
   level: 2
   sequence: 4
-  note: "个人信息"
+  note: "查看个人信息"
   controller: "my_school/users"
   action: "show"
   protocol: ""
@@ -785,6 +785,39 @@ topic_categories_index:
   note: "论坛分类管理"
   controller: "my_school/categories"
   action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+topic_categories_new:
+  id: 5111
+  parent_id: 6
+  name: "论坛分类创建"
+  level: 2
+  sequence: 0
+  note: "论坛分类创建"
+  controller: "my_school/categories"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+topic_categories_edit:
+  id: 5211
+  parent_id: 6
+  name: "论坛分类编辑"
+  level: 2
+  sequence: 0
+  note: "论坛分类编辑"
+  controller: "my_school/categories"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+topic_categories_edit:
+  id: 5311
+  parent_id: 6
+  name: "论坛分类删除"
+  level: 2
+  sequence: 0
+  note: "论坛分类删除"
+  controller: "my_school/categories"
+  action: "destroy"
   protocol: ""
   <<: *DEFAULTS
 career_strategy_career_class_validate:
