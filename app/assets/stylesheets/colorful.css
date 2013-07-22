@@ -688,9 +688,26 @@ a{
 
 
 /****************用户界面***************/
-
+.user_head {
+    width: 700px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.user_head_logo{
+    float: left;
+    width: 150px;
+}
+.user_head_info{
+    width: 400px;
+    display: inline-block;
+    padding: 10px;
+}
+.user_head_info label{
+    font-weight: bold;
+}
 table.user_attributes {
     width: 700px;
+    
 }
 
 table.user_attributes th {
