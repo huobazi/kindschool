@@ -55,12 +55,10 @@
       </ul>
     </div>
 
-
-
     <div class="work_list">
       <div class="user_head">
         <div class="user_head_logo">
-        <img src="/t/colorful/user_logo.png" alt="头像" width="103px;" />
+        <img src="<%= current_user.asset_logo ? current_user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="103px;" alt="头像"/>
         </div>
         <div class="user_head_info">
           <label>账户：<%= current_user.login %></label>
