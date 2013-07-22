@@ -63,6 +63,22 @@
           <fieldset>
             <legend><label><strong>账号信息</strong></label></legend>
               <div class="control-group">
+                <label class="control-label">头像</label>
+                <div class="controls">
+                  <label class="show_label">
+                    <img src="<%= @student_info.user.asset_logo ? @student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="103px;" alt="头像"/>
+                  </label>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">所属幼儿园</label>
+                <div class="controls">
+                  <label class="show_label">
+                    <%= @student_info.user.kindergarten_label %>
+                  </label>
+                </div>
+              </div>
+              <div class="control-group">
                 <label class="control-label">名称</label>
                 <div class="controls">
                   <label class="show_label">
