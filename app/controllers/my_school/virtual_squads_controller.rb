@@ -1,62 +1,62 @@
 #encoding:utf-8
 #虚拟班管理
 class MySchool::VirtualSquadsController < MySchool::ManageController
-   def index
+  def index
    	@virtual_squads = @kind.squads.search(params[:virtual_squad] || {}).where(:tp=>1).page(params[:page] || 1).per(10).order("created_at DESC")
-   end
+  end
 
-   def new
+  def new
    	@virtual_squad = Squad.new()
     @virtual_squad.kindergarten_id = @kind.id
     @virtual_squad.historyreview = Time.now.year.to_s + "届"
     @data = current_user.get_users_ranges
-   end
+  end
 
-   def create
-     @virtual_squad = Squad.new(params[:squad])
-     @virtual_squad.tp=1
-     @virtual_squad.kindergarten_id = @kind.id
-     users = User.find(params[:ids])
-      users.each do |user|
-      	user_squad=UserSquad.new()
-     	user_squad.user=user
-     	@virtual_squad.user_squads<<user_squad
-       end
-      if @virtual_squad.save!
-         redirect_to my_school_virtual_squads_path, :notice => "操作成功"
-       else
-         flash[:error] = "操作失败"
-         redirect_to my_school_virtual_squads_path
-      end
-   end
+  def create
+    @virtual_squad = Squad.new(params[:squad])
+    @virtual_squad.tp=1
+    @virtual_squad.kindergarten_id = @kind.id
+    users = User.find(params[:ids])
+    users.each do |user|
+      user_squad = UserSquad.new(:user_id=>user.id)
+      user_squad.squad = @virtual_squad
+     	@virtual_squad.user_squads << user_squad
+    end
+    if @virtual_squad.save!
+      redirect_to my_school_virtual_squads_path, :notice => "操作成功"
+    else
+      flash[:error] = "操作失败"
+      redirect_to my_school_virtual_squads_path
+    end
+  end
    
-   def show
-   	 @virtual_squad = @kind.squads.find(params[:id])
-   	  unless  @virtual_squad.tp==1
-   	    redirect_to :controller=>'my_school/main' ,:action=>:no_kindergarten#,:notice=>"操作失误，没有该虚拟班"	
-   	  end
-
+  def show
+    @virtual_squad = @kind.squads.find(params[:id])
+    unless  @virtual_squad.tp==1
+      redirect_to :controller=>'my_school/main' ,:action=>:no_kindergarten#,:notice=>"操作失误，没有该虚拟班"
     end
 
-   def edit
-   	 @virtual_squad = @kind.squads.find(params[:id])
-     unless @virtual_squad.tp==1
+  end
+
+  def edit
+    @virtual_squad = @kind.squads.find(params[:id])
+    unless @virtual_squad.tp==1
      	redirect_to :controller=>'my_school/main' ,:action=>:no_kindergarten#,:notice=>"操作失误，没有该虚拟班"	
    	end
-   end
+  end
 
 
-   def  get_edit_ids
-      if virtual_squad=@kind.squads.where(:id=>params[:id],:tp=>1).first
+  def  get_edit_ids
+    if virtual_squad=@kind.squads.where(:id=>params[:id],:tp=>1).first
       users_data = virtual_squad.user_squads.collect{|u_s| u_s.user}
       @data = users_data.group_by(&:tp)
       render :partial => "/my_school/messages/users",:layout=>false
-      else
+    else
       render :text=>"您无法修改该信息"
     end
-   end
+  end
    
-   def update
+  def update
     @virtual_squad=@kind.squads.where(:id=>params[:id],:tp=>1).first
     
 

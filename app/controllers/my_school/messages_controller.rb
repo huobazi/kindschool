@@ -9,7 +9,7 @@ class MySchool::MessagesController < MySchool::ManageController
   #
   def outbox
     @messages = current_user.messages.where(:status => true).page(params[:page] || 1).per(10).order("messages.send_date DESC")
-#.where("messages.kindergarten_id=:kind_id")
+    #.where("messages.kindergarten_id=:kind_id")
   end
 
   def new
@@ -46,11 +46,11 @@ class MySchool::MessagesController < MySchool::ManageController
     @message.sender = current_user
     if params[:commit] == "发送消息"
       @flag =true
-    if params[:ids].blank?
-      flash[:error]="收件人不能为空"
-      render :action => "new"
-      return
-    end
+      if params[:ids].blank?
+        flash[:error]="收件人不能为空"
+        render :action => "new"
+        return
+      end
     end
     sender_ids = current_user.get_sender_users(params[:ids])
     sender_ids.each do |user_id|
@@ -180,20 +180,44 @@ LEFT JOIN grades ON(grades.id = squads.grade_id) ")
     if data[:tp] == :all || data[:tp] == :teachers
       @data,users_data,ids = {},[],[]
       if data[:tp] == :teachers
-        if !data[:squads].blank? && !params[:ids].blank?
-          ids  = data[:squads].collect{|squad| squad.id.to_s} & (params[:ids])
+        if !params[:ids].blank?
+          squad_ids = []
+          if !data[:squads].blank?
+            squad_ids  += data[:squads].collect{|squad| squad.id.to_s}
+          end
+          if !data[:playgroup].blank?
+            squad_ids  += data[:playgroup].collect{|user_squad| user_squad.squad_id.to_s}
+          end
+          if !data[:grades].blank?
+            data[:grades].each{|grade| squad_ids  += grade.squads.collect{|squad| squad.id.to_s}}
+          end
+          squad_ids.uniq!
+          ids  = squad_ids & (params[:ids])
         end
       else
         ids = params[:ids]
       end
       unless ids.blank?
+        
         users = @kind.users.where(:tp=>0,
           :status=>"start",
+          "squads.tp"=>0,
           "squads.graduate"=>false,
           "squads.id"=>ids).joins("LEFT JOIN student_infos ON(users.id = student_infos.user_id) \
 LEFT JOIN squads ON(squads.id = student_infos.squad_id)")
         if users.any?
           users_data += users
+        end
+
+
+        play_users = User.where(:tp=>(params[:contain_teachers]=="1" ? [0,1] : 0),
+          :status=>"start",
+          "squads.tp"=> 1,
+          "squads.graduate"=>false,
+          "squads.id"=>ids).joins("LEFT JOIN user_squads ON(users.id = user_squads.user_id) \
+LEFT JOIN squads ON(squads.id = user_squads.squad_id)")
+        if play_users.any?
+          users_data += play_users
         end
         
         if params[:contain_teachers]=="1"
@@ -235,12 +259,12 @@ LEFT JOIN squads ON(squads.id = student_infos.squad_id)")
   #
   def get_edit_ids
     if message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
-    users_data = message.message_entries.collect{|entry| entry.receiver}
-    @data = users_data.group_by(&:tp)
-    render :partial => "users",:layout=>false
-  else
-    render :text=>"您无法修改该信息"
-  end
+      users_data = message.message_entries.collect{|entry| entry.receiver}
+      @data = users_data.group_by(&:tp)
+      render :partial => "users",:layout=>false
+    else
+      render :text=>"您无法修改该信息"
+    end
   end
   
   #选取个人用户
@@ -284,6 +308,11 @@ LEFT JOIN squads ON(squads.id = student_infos.squad_id)")
       if squad.grade && squad.grade.staff && (user = squad.grade.staff.user)
         ids << user.id.to_s
       end
+      unless data[:playgroup].blank?
+        data[:playgroup].each do |user_squad|
+          ids += user_squad.get_teachers.collect{|user| user.id.to_s}
+        end
+      end
       ids = squad.staffs.collect{|staff| staff.user ? staff.user.id.to_s : "0"} | ids
       ids = ids & (params[:ids]) if !params[:ids].blank?
       ids.uniq!
@@ -317,8 +346,8 @@ LEFT JOIN squads ON(squads.id = student_infos.squad_id)")
   end
 
   def draft_box
-   @messages = current_user.messages.where(:status => false).page(params[:page] || 1).per(10).order("messages.send_date DESC")
-   render "my_school/messages/outbox"
+    @messages = current_user.messages.where(:status => false).page(params[:page] || 1).per(10).order("messages.send_date DESC")
+    render "my_school/messages/outbox"
   end
 
   def draft_show
@@ -337,11 +366,11 @@ LEFT JOIN squads ON(squads.id = student_infos.squad_id)")
     if params[:commit] == "发送消息"
       @flag =true
       @message.status = 1
-    if params[:ids].blank?
-      flash[:notice] = "收件人不能为空"
-      redirect_to :controller=>'my_school/messages' ,:action=>:draft_edit,:id=>@message.id,:noctie=>@notice
-       return
-    end
+      if params[:ids].blank?
+        flash[:notice] = "收件人不能为空"
+        redirect_to :controller=>'my_school/messages' ,:action=>:draft_edit,:id=>@message.id,:noctie=>@notice
+        return
+      end
     end
     (@message.message_entries || []).each do |m_e|
       m_e.destroy
@@ -358,13 +387,13 @@ LEFT JOIN squads ON(squads.id = student_infos.squad_id)")
     respond_to do |format|
       if @message.save && @message.update_attributes(params[:message])
         flash[:notice] = '更新消息成功.'
-       if @message.status == true
-        format.html { redirect_to(:action=>:outbox_show,:id=>@message.id) }
-        format.xml  { head :ok }
-      else
-        format.html { redirect_to(:action=>:draft_show,:id=>@message.id) }
-        format.xml  { head :ok }
-      end
+        if @message.status == true
+          format.html { redirect_to(:action=>:outbox_show,:id=>@message.id) }
+          format.xml  { head :ok }
+        else
+          format.html { redirect_to(:action=>:draft_show,:id=>@message.id) }
+          format.xml  { head :ok }
+        end
       else
         format.html { render :action => :edit }
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
@@ -392,6 +421,6 @@ LEFT JOIN squads ON(squads.id = student_infos.squad_id)")
   rescue Exception=>ex
     flash[:error] = ex.message
     redirect_to :action => :show,:id=>@message.id
-end
+  end
 
 end

@@ -23,8 +23,9 @@ class User < ActiveRecord::Base
 
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
   validates_length_of :phone, :in => 11..11, :if => Proc.new { |user| user.phone.present? && user.phone.to_i != 0 }
-
-  validates :name, :login, :kindergarten,:gender,:presence => true
+  validates :phone,:presence => true,:uniqueness => { :scope => :kindergarten_id}
+  validates :email,:uniqueness => { :scope => :kindergarten_id}, :allow_blank => true
+  validates :name, :login, :kindergarten_id,:presence => true
   validates :login, :uniqueness => true
 
   GENDER_DATA = {"M"=>"女","G"=>"男"}
@@ -99,16 +100,16 @@ class User < ActiveRecord::Base
   end
 
   def user_operates(controller_name,view_name)
-     flag =false
-      if operates = self.operates#.where(:controller=>controller_name,:view=>view_name).first
-        operates.each do |operate|
-          if operate.controller==controller_name && operate.view.include?(view_name)
-             flag =true
-           end 
+    flag =false
+    if operates = self.operates#.where(:controller=>controller_name,:view=>view_name).first
+      operates.each do |operate|
+        if operate.controller==controller_name && operate.view.include?(view_name)
+          flag =true
         end
-     end
+      end
+    end
   end
-   #常用功能菜单
+  #常用功能菜单
   def smarty_menu
     if role = self.role
       smarties = role.smarties
@@ -152,12 +153,13 @@ class User < ActiveRecord::Base
       if self.staff
         range_data[:squads] = self.staff.squads
         range_data[:grades] = self.staff.grades
+        range_data[:playgroup] = self.user_squads #兴趣班
       end
     elsif self.tp == 0
       range_data[:tp] = :student
       if self.student_info
         range_data[:squad] = self.student_info.squad
-        #TODO：考虑兴趣班
+        range_data[:playgroup] = self.user_squads #兴趣班
       end
     else
       range_data[:tp] = :only
@@ -181,6 +183,13 @@ class User < ActiveRecord::Base
       squads.each do |squad|
         users_ids += squad.users.collect{|user| user.id.to_s}
       end
+      if !data[:playgroup].blalk?
+        squads = data[:playgroup]
+        squads.each do |squad_play|
+          #添加虚拟班的学生和老师
+          users_ids += squad_play.get_all.collect{|user_play| user_play.id.to_s}
+        end
+      end
       users_ids += self.kindergarten.users.where(:status=>"start",:tp=>1).collect{|user| user.id.to_s}
       return (users_ids & ids).uniq
     elsif data[:tp] == :student
@@ -188,6 +197,13 @@ class User < ActiveRecord::Base
       squad = data[:squad]
       if squad.grade && squad.grade.staff && (user = squad.grade.staff.user)
         user_ids << user.id.to_s
+      end
+      if !data[:playgroup].blalk?
+        squads = data[:playgroup]
+        squads.each do |squad_play|
+          #添加虚拟班的老师
+          users_ids += squad_play.get_teachers.collect{|user_play| user_play.id.to_s}
+        end
       end
       user_ids += squad.staffs.collect{|staff| staff.user ? staff.user.id.to_s : "0"}
       return (user_ids & ids).uniq

@@ -232,6 +232,7 @@ zh-CN:
       page_img: "页面图片资源"
       activity_img: "活动图片"
       topic_category: "论坛分类"
+      user_squad: "虚拟班"
     attributes:
       admin_user:
         current_sign_in_at: "当前登陆时间"
@@ -586,6 +587,10 @@ zh-CN:
         name: "名称"
         kindergarten_label: "所属幼儿园"
         kindergarten: "幼儿园"
+      user_squad:
+        user_id: "虚拟班级的用户"
+        squad_id: "虚拟班级"
+
     errors:
       <<: *errors
   views:

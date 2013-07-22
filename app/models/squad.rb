@@ -1,7 +1,7 @@
 #encoding:utf-8
 #班级
 class Squad < ActiveRecord::Base
-  attr_accessible :grade_id, :kindergarten_id, :name, :note, :sequence,:historyreview,:graduate
+  attr_accessible :grade_id, :kindergarten_id, :name, :note, :sequence,:historyreview,:graduate,:tp
 
   validates :name,:presence => true, :length => { :maximum => 20, :minimum => 2 }
 
@@ -23,7 +23,10 @@ class Squad < ActiveRecord::Base
   has_many :teachers
   has_many :staffs, :through => :teachers
   has_many :albums
-  has_many :user_squads , :class_name=>"UserSquad" #,:conditions => "tp = 1"
+  has_many :user_squads , :class_name=>"UserSquad"
+  has_many :user_squads_all_users,:through=>:user_squads,:source=>:user #所有虚拟班的人
+  has_many :user_squads_teacher_users,:through=>:user_squads,:source=>:user,:conditions => "users.tp = 1 OR users.tp = 2" #所有虚拟班的老师
+  has_many :user_squads_student_users,:through=>:user_squads,:source=>:user,:conditions => "users.tp = 0"  #所有虚拟班的学生
 
   def full_name
     "#{self.grade ? self.grade.name + "-" : ""}#{self.name}"

@@ -5,11 +5,7 @@
   <div class="message_title">
     菜谱列表
   </div>
-  <div class="message_filter">
-    <%= form_tag '/weixin/cook_books' , :method=>"get",:id=>"cook_books_search" do %>
-      <%= select_tag "send_date",options_for_select(@send_date,(params[:send_date]).to_s) %>
-    <%end%>
-  </div>
+
   <div class="message_list">
     <ul class="data_list">
       <% if @cook_books.blank? %>
@@ -45,11 +41,3 @@
 </div>
 <%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
 <%= render :partial => "/modules/colorful/weixin_menu_one"%>
-<script type="text/javascript">
-  $(function(){
-    $("#message_search select").change(function(){
-      $("#message_search").submit();
-    })
-  })
-
-</script>

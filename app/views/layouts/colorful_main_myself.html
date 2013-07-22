@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>School</title>
+    <%= stylesheet_link_tag    "colorful_main", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="school_logo">
+          <img src="/t/colorful/logo.png" width="100" height="79"/>
+      </div>
+      <%= yield %>
+    </div>
+  </body>
+</html>

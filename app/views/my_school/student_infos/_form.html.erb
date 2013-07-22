@@ -54,7 +54,6 @@
       <%= f.input :birthday, :as => :string, :class => "input-mediun", :input_html => {:value=>(f.object.birthday ? f.object.birthday.to_short_datetime : "") }  %>
       <%= f.input :come_in_at, :as => :string, :class => "input-mediun", :input_html => {:value => (f.object.come_in_at ? f.object.come_in_at.to_short_datetime : "")} %>
     <% end %>
-    <%= f.input :education, :input_html => {:class => "span5"} %>
     <%= f.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
     <%= f.input :card_code %>
     <%= f.input :guardian %>
@@ -100,6 +99,7 @@
     <%= f.input :living_time %>
     <%= f.input :family_marital %>
     <%= f.input :education %>
+    <%= f.input :education, :input_html => {:class => "span5"} %>
     <%= f.input :safe_box %>
 </fieldset>
 

@@ -54,8 +54,7 @@
           <img src="/t/colorful/welcome.png" alt="欢迎来到我们幼儿园!"/>
         </div>
         <div class="login_form_span">
-          <%= form_tag url_for(:action=>:login),:id=>"longin_form" do  %>
-
+          <%= form_tag url_for(:action=>:login),:id=>"longin_form", :autocomplete=>"off" do  %>
             <%= text_field_tag :login,"",:placeholder=>"账号", :class => 'login_input'%>
             <br/>
             <br/>
@@ -98,5 +97,12 @@
     $(".button_xun").click(function(){
       $("#longin_form").submit();
     })
+    $("#longin_form").keydown(function(e){
+      var e = e || event,
+      keycode = e.which || e.keyCode;
+      if (keycode==13) {
+        $(".button_xun").trigger("click");
+      }
+    });
   })
 </script>

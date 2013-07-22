@@ -9,6 +9,7 @@ class Role < ActiveRecord::Base
   has_many :users
   has_many :smarties
   validates    :name ,:kindergarten, :presence => true    #必须输入/不为空
+  validates :name,:uniqueness => { :scope => :kindergarten_id}
   
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
