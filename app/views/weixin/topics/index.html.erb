@@ -1,0 +1,51 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    信息论坛
+  </div>
+  <div class="message_list">
+    <ul class="data_list">
+      <%= link_to "发贴子", new_weixin_topic_path, :class => "new_topic" %>
+      <% if @topics.blank? %>
+        <li><div class="message_content">您还没有贴子。</div></li>
+      <% else %>
+        <% @topics.each do |topic| %>
+          <li class="topic_show">
+            <p class="topic_title"><%= topic.title %></p>
+            <p class="topic_created_time"><%= topic.created_at.to_long_datetime %></p>
+            <div class="topic_info">
+              <span class="topic_author"><%= topic.creater ? topic.creater.name : "" %></span>
+              <span class="topic_reply"><%= topic.topic_entries.any? ? topic.topic_entries.count : "" %>
+            </div>
+          </li>
+         <% end %>
+      <% end %>
+    </ul>
+    <br/>
+  </div>
+  <% unless  @topics.blank? %>
+    <div class="message_more">
+      <div class="paginate_div">
+        <%= paginate @topics, :window => 1%>
+      </div>
+      <!--
+      <a href="###" id="message_more" title="查看更多">
+        <div class="show_div"></div>
+      </a>
+      -->
+    </div>
+  <% end %>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
+<script type="text/javascript">
+  $(function(){
+    $("#message_search select").change(function(){
+      $("#message_search").submit();
+    })
+  })
+
+</script>
+

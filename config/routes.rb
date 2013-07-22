@@ -192,6 +192,7 @@ School::Application.routes.draw do
       end
     end
     resources :cook_books
+    resources :topics
     resources :messages do
       member do
         post :return_message

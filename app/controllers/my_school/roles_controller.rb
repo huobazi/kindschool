@@ -34,7 +34,7 @@ class MySchool::RolesController < MySchool::ManageController
       else
         format.html { render action: "new" }
       end
-    end 
+    end
    end
 
    def destroy
@@ -54,7 +54,7 @@ class MySchool::RolesController < MySchool::ManageController
      @role = @kind.roles.where(:id=>params[:id]).first
      @option_operates = @kind.option_operates.group_by{|option_operate| option_operate.operate && option_operate.operate.parent ? option_operate.operate.parent.name : ""}
    end
-   
+
    def save_operate_to_role
    	 if  @role = @kind.roles.where(:id=>params[:id]).first
      ids = params[:operate] || []
@@ -80,7 +80,7 @@ class MySchool::RolesController < MySchool::ManageController
       @nitice = '角色不存在,没有设置权限.'
   end
     respond_to do |format|
-      format.html { redirect_to my_school_roles_path,notice:@nitice  }
+      format.html { redirect_to my_school_role_path(@role), notice:@nitice }
       format.json { head :no_content }
     end
    end

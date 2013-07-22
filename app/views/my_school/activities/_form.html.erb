@@ -13,8 +13,8 @@
 </script>
 <%= f.input :title, :validate => true, :required => true, :input_html => {:class => "span5 profile_input required"} %>
 <% if action_name == "new" %>
-  <%= f.input :start_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun span5"} %>
-  <%= f.input :end_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun span5"} %>
+  <%= f.input :start_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun span5 time_datepicker"} %>
+  <%= f.input :end_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun span5 time_datepicker"} %>
 <% else %>
   <%= f.input :start_at, :required => true, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.start_at.to_short_datetime}"} %>
   <%= f.input :end_at, :required => true, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.end_at.to_short_datetime}"} %>
