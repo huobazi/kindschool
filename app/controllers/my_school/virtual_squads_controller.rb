@@ -82,7 +82,7 @@ class MySchool::VirtualSquadsController < MySchool::ManageController
   end
 
   def destroy 
-
+    
   	unless params[:squad].blank? 
   	  @virtual_squads = @kind.squads.where(:id=>params[:squad],:tp=>1)
     else
