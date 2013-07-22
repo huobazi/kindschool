@@ -56,7 +56,14 @@
                 <td><%= message.sender ? message.sender.name : ""%></td>
                 <td><%= link_to "#{message.title}",:action=>:show,:id=>message.id %></td>
                 <td><%= message.send_date ? message.send_date.to_all_datetime : "" %></td>
-                <td class="option"><%= link_to "查看",:action=>:show,:id=>message.id %></td>
+                
+                <td class="option">
+                  <%if action_name=="index"%>
+                  <%= link_to "查看",:action=>:show,:id=>message.id %>
+                  <%else%>
+                  <%= link_to "查看",:action=>:draft_show,:id=>message.id %>
+                  <%end%>
+                  </td>
               </tr>
             <% end %>
           <% end %>

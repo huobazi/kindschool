@@ -712,6 +712,55 @@ physical_records_edit:
   protocol: ""
   <<: *DEFAULTS
 
+physical_records_destroy:
+  id: 7004
+  parent_id: 7
+  name: "体检记录删除"
+  level: 2
+  sequence: 0
+  note: "体检记录删除"
+  controller: "my_school/physical_records"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
+
+physical_records_create:
+  id: 7005
+  parent_id: 7
+  name: "体检记录创建"
+  level: 2
+  sequence: 0
+  note: "体检记录创建"
+  controller: "my_school/physical_records"
+  action: "create"
+  protocol: ""
+  <<: *DEFAULTS
+
+physical_records_update:
+  id: 7006
+  parent_id: 7
+  name: "体检记录更新"
+  level: 2
+  sequence: 0
+  note: "体检记录更新"
+  controller: "my_school/physical_records"
+  action: "update"
+  protocol: ""
+  <<: *DEFAULTS
+
+physical_records_show:
+  id: 7007
+  parent_id: 7
+  name: "体检记录展示"
+  level: 2
+  sequence: 0
+  note: "体检记录展示"
+  controller: "my_school/physical_records"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+
 cook_books_index:
   id: 8001
   parent_id: 7
@@ -747,6 +796,55 @@ cook_books_edit:
   action: "edit"
   protocol: ""
   <<: *DEFAULTS
+
+cook_books_destroy:
+  id: 8004
+  parent_id: 7
+  name: "菜谱删除"
+  level: 2
+  sequence: 0
+  note: "菜谱删除"
+  controller: "my_school/cook_books"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
+
+cook_books_create:
+  id: 8005
+  parent_id: 7
+  name: "菜谱创建"
+  level: 2
+  sequence: 0
+  note: "菜谱创建"
+  controller: "my_school/cook_books"
+  action: "create"
+  protocol: ""
+  <<: *DEFAULTS
+
+cook_books_update:
+  id: 8006
+  parent_id: 7
+  name: "菜谱更新"
+  level: 2
+  sequence: 0
+  note: "菜谱更新"
+  controller: "my_school/cook_books"
+  action: "update"
+  protocol: ""
+  <<: *DEFAULTS
+
+cook_books_show:
+  id: 8007
+  parent_id: 7
+  name: "菜谱展示"
+  level: 2
+  sequence: 0
+  note: "菜谱展示"
+  controller: "my_school/cook_books"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
 growth_records_home:
   id: 8004
   parent_id: 8
