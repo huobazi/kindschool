@@ -688,9 +688,26 @@ a{
 
 
 /****************用户界面***************/
-
+.user_head {
+    width: 700px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.user_head_logo{
+    float: left;
+    width: 150px;
+}
+.user_head_info{
+    width: 400px;
+    display: inline-block;
+    padding: 10px;
+}
+.user_head_info label{
+    font-weight: bold;
+}
 table.user_attributes {
     width: 700px;
+    
 }
 
 table.user_attributes th {
@@ -704,6 +721,7 @@ table.user_attributes tr {
 table.user_attributes td {
     text-align: center;
     background-color: #F5F5F5;
+    border-bottom: 1px dotted #DBDBDB;
 }
 
 .table a {
@@ -1108,4 +1126,6 @@ td .index_li{
 .no-close .ui-dialog-titlebar-close {
     display: none;
 }
-/*.ui-icon { width: 16px; height: 16px; background-image: url(images/ui-icons_222222_256x240.png); }*/
+legend label{
+    padding-left: 10px;
+}

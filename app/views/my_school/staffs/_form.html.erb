@@ -17,41 +17,50 @@
 </script>
 <fieldset>
   <legend><label><strong>账号信息</strong></label></legend>
-    <%= f.simple_fields_for :user do |p| %>
-      <%= p.input :name, :validate => true %>
-      <% if action_name == "new" %>
-        <%= p.input :login, :validate => true, :hint => "之后不能改变" %>
-      <% else %>
-        <%= p.input :login, :validate => true, :disabled => true, :hint => "您不能改变您的用户名" %>
-      <% end %>
-      <% if action_name == "new" %>
-        <%= p.input :password, :required => true, :validate => true %>
-        <%= p.input :password_confirmation, :validate => true %>
-      <% end %>
-      <%= p.input :phone %>
-      <%= p.input :gender, :as => :radio, :collection => {"男" => "M", "女" => "G"}, :required => true %>
-      <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
-      <%= p.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
-      <%= p.input :tp,:as=>:hidden %>
-      <%= p.input :kindergarten_id,:as=>:hidden %>
+  <%= f.simple_fields_for :user do |p| %>
+    <div class="control-group">
+      <label class="control-label">头像</label>&nbsp;&nbsp;
+      <%= f.file_field :asset_logo ,:name=>"asset_logo" %>
+      <% user = @staff.user %>
+      <div>
+        &nbsp;&nbsp; <img src="<%= user.asset_logo ? user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="103" alt="头像"/>
+      </div>
+    </div>
+    <%= p.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
+    <%= p.input :gender, :as => :radio, :collection => {"男" => "M", "女" => "G"}, :required => true %>
+    <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
+    <%= p.input :name, :validate => true %>
+    <%= p.input :phone %>
+    <% if action_name == "new" %>
+      <%= p.input :login, :validate => true, :hint => "之后不能改变" %>
+    <% else %>
+      <%= p.input :login, :validate => true, :disabled => true, :hint => "您不能改变您的用户名" %>
     <% end %>
+    <% if action_name == "new" %>
+      <%= p.input :password, :required => true, :validate => true %>
+      <%= p.input :password_confirmation, :validate => true %>
+    <% end %>
+
+    <%= p.input :tp,:as=>:hidden %>
+    <%= p.input :kindergarten_id,:as=>:hidden %>
+  <% end %>
 </fieldset>
 <fieldset>
   <legend><label><strong>教职工信息</strong></label></legend>
-    <%= f.input :birthday, :as => :string, :class => "input-mediun"  %>
-    <%= f.input :come_in_at, :as => :string, :class => "input-mediun" %>
-    <%= f.input :card_code %>
-    <%= f.input :attendance_code %>
-    <%= f.input :education, :input_html => {:class => "span5"} %>
+  <%= f.input :birthday, :as => :string, :class => "input-mediun time_datepicker"  %>
+  <%= f.input :come_in_at, :as => :string, :class => "input-mediun time_datepicker" %>
+  <%= f.input :card_code %>
+  <%= f.input :attendance_code %>
+  <%= f.input :education, :input_html => {:class => "span5"} %>
 </fieldset>
 <fieldset>
   <legend><label><strong>教职工角色</strong></label></legend>
   <div class="control-group">
-  <div class="controls">
-    <%=select_tag "role[id]", options_for_select(@kind.roles.where("number <> ?",'student').collect { |e|[e.name,e.id]  },@staff.user.role.try(:id))%>
+    <div class="controls">
+      <%=select_tag "role[id]", options_for_select(@kind.roles.where("number <> ?",'student').collect { |e|[e.name,e.id]  },@staff.user.role.try(:id))%>
+    </div>
   </div>
-</div>
-    
+
 </fieldset>
 
 <div class="control-group">

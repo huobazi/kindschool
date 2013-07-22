@@ -1,0 +1,174 @@
+/*
+ *= require jquery.ui.all
+*/
+div.ui-dialog{
+    position: fixed;
+}
+.wrapper input {
+    height: auto;
+}
+ul,li{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.clear{
+    clear:both
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+.wrapper{
+    width: 960px;
+    margin: 0 auto;
+}
+.wrapper_all{
+    width: 980px;
+    margin: 0 auto;
+}
+.head{
+    width: 100%;
+}
+.school_logo{
+    padding-left: 400px ;
+    padding-bottom: 10px;
+}
+/*------------菜单-------------*/
+.menu{
+    width: 100%;
+    position: relative;
+}
+.menu_left{
+    /*background-color: #008FDC;*/
+    background-image: url(/t/colorful/menu_left.jpg);
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 63px;
+    position: absolute;
+    left:-12px;
+    top:80px;
+}
+.menu_left_top{
+    background-color: #008FDC;
+    width: 14px;
+    height: 130px;
+    position: absolute;
+    left:-12px;
+   
+}
+.menu_right{
+    background-image: url(/t/colorful/menu_right.jpg);
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 63px;
+    position: absolute;
+    left:951px;
+    top:80px;
+}
+.menu_right_top{
+    background-color: #008FDC;
+    width: 14px;
+    height: 130px;
+    position: absolute;
+    left:951px;
+   
+}
+.menu_center{
+    width: 100%;
+    height: 130px;
+    background-color: #008fdc;
+}
+.menu_center ul{
+
+}
+.menu_center ul li{
+    border-right: 1px solid white;
+    float: left;
+    line-height: 8px;
+    margin-top: 22px;
+    position: relative;
+    text-align: center;
+    width: 190px;
+    height: 86px;
+    font-family: 'Times New Roman';
+    /*margin-bottom: 26px;*/
+    font-weight:bold;
+}
+.menu_center ul li a{
+    z-index: 2;
+    position: relative;
+}
+.menu_center ul li:last-child {
+    border: none;
+}
+
+.menu_center ul li a:hover{
+    text-decoration: underline;
+    color: white;
+}
+.submenu_center{
+    height: auto;
+    width: 100%;
+    text-align: center;
+    background-color: white;
+}
+
+.submenu_center ul li{
+    border-right: 1px dotted #008fdc;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: inline;
+}
+.submenu_center ul li:last-child {
+    border: none;
+}
+.menu_selected{
+    background-image: url("/t/colorful/menu_selected.png");
+    height: 60px;
+    left: 0;
+    position: absolute;
+    top: -18px;
+    width: 125px;
+    z-index: 1;
+}
+
+.show_content_page{
+    height: auto;
+    width: 100%;
+    text-align: center;
+    background-color: #F0EBE2;
+    position: relative;
+
+}
+.show_center{
+    width: 100%;
+    height: 50px;
+    background-color: #008fdc;
+
+}
+.show_center_left{
+    /*background-color: #008FDC;*/
+    background-image: url(/t/colorful/menu_left.jpg);
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 63px;
+    position: absolute;
+    left:-14px;
+}
+.show_center_right{
+    background-image: url(/t/colorful/menu_right.jpg);
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 63px;
+    position: absolute;
+    left:955px;
+}
+.show_center ul li{
+    line-height: 50px;
+    margin-top: 22px;
+    text-align: center;
+    font-family: 'Times New Roman';
+    font-weight:bold;
+    height: 36px;
+}

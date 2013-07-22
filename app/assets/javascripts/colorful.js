@@ -46,3 +46,16 @@ $(function(){
     }
     tabs(".tab-hd","active",".tab-bd");
 });
+
+$(document).ready(function() {
+  var dt = new Date();
+  var currentDate = new Date()
+  var day = currentDate.getDate()
+  var month = currentDate.getMonth() + 1
+  var year = currentDate.getFullYear()
+  var now = year + "-" + month + "-" + day
+
+  $(".time_datepicker").one("click", function() {
+      $(this).val(now);
+  })
+})

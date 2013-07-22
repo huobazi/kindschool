@@ -1,10 +1,17 @@
 School::Application.routes.draw do
 
   match 'my_school' => 'my_school/main#index'
-  match 'my_school/no_kindergarten' => 'my_school/main#no_kindergarten'
-  match 'my_school/about' => 'my_school/main#about'
-  match 'my_school/contact_us' => 'my_school/main#contact_us'
   namespace :my_school do
+    resources :main do
+      collection do
+       get :no_kindergarten 
+       get :about
+       get :contact_us
+       get :feature
+       get :show_official_about_us
+       get :admissions_information
+      end
+    end
     resources :virtual_squads  do 
        collection {get :get_edit_ids}
       end
@@ -181,7 +188,7 @@ School::Application.routes.draw do
     end
     resources :main do
       collection do
-        get :bind_user,:error_messages
+        get :bind_user,:error_messages,:get_user_all_teachers
         post :bind_user
       end
     end
@@ -192,6 +199,7 @@ School::Application.routes.draw do
       end
     end
     resources :cook_books
+    resources :topics
     resources :messages do
       member do
         post :return_message

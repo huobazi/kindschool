@@ -44,13 +44,13 @@
 <div class="control-group">
 	<%=f.label :shot_at, '注射时间: ' ,:class=>"control-label"%>
 <div class="controls">
-  <%= f.text_field(:shot_at, :validate => true) %>
+  <%= f.text_field(:shot_at, :validate => true, :class => "time_datepicker") %>
 </div>
 </div>
 <div class="control-group">
 	<%=f.label :expire_at, '过期时间: ' ,:class=>"control-label"%>
 <div class="controls">
-  <%= f.text_field(:expire_at, :validate => true) %>
+  <%= f.text_field(:expire_at, :validate => true, :class => "time_datepicker") %>
 </div>
 </div>
 <div class="control-group">

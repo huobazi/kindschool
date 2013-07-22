@@ -211,6 +211,8 @@ body {
 }
 .user_name{
     display: inline-block;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .user_name label{
@@ -442,4 +444,79 @@ body {
 }
 .pagination ul > li > a, .pagination ul > li > span{
     padding: 6px 4px;
+}
+
+
+/*========================= 贴子 =================*/
+.message_div .message_list .data_list li {
+    margin-top: 20px;
+}
+.message_list .data_list .topic_title {
+    color: #000000;
+    font-size: 34px;
+    padding: 20px 20px 0;
+}
+.message_list .data_list .topic_created_time {
+    color: #5d5d5d;
+    font-size: 30px;
+    padding: 20px 20px 10px;
+}
+.message_list .data_list .topic_info {
+    padding: 20px 20px 10px;
+    color: #008fdc;
+    font-size: 30px;
+    background-color: #EAF7FF;
+    position: relative;
+}
+.message_list .data_list .topic_info .topic_reply {
+    position: absolute;
+    right: 50px;
+}
+
+.message_div .message_list .data_list .new_topic {
+    background-color: #B0CC20;
+    display: block;
+    margin: 5px;
+    margin-top: 20px;
+    color: white;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 5px 5px 5px 5px;
+    text-align: center;
+}
+
+.message_div .message_list .data_list li.topic {
+    border: none;
+
+}
+/*===========老师信息==========*/
+.menu_one_info{
+    padding: 10px;
+}
+.menu_one_ul{
+    list-style: none;
+    background-color: white;
+    margin: 0px;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #BFBEB4;
+}
+.menu_one_ul li{
+    padding: 8px;
+    border-bottom: 1px solid #BFBEB4;
+    position: relative;
+}
+.user_logo img{
+
+}
+.li_title{
+    position: relative;
+}
+.li_child{
+    background-color: #E9E9E9;
+}
+.bottom_dotted{
+    border-bottom: 1px dotted #8C8C8C;
+}
+.bottom_dotted:last-child{
+    border-bottom: 0px;
 }

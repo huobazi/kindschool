@@ -20,87 +20,99 @@
 
 <fieldset>
   <legend><label><strong>账号信息</strong></label></legend>
-    <%= f.simple_fields_for :user do |p| %>
-      <%= p.input :name, :validate => true, :required => true %>
-
-      <% if action_name == "new" %>
-        <%= p.input :login, :validate => true, :required => true, :hint => "之后不能改变" %>
-      <% else %>
-        <%= p.input :login, :disabled => true, :hint => "你不能改变你的用户名" %>
-      <% end %>
-      <% if action_name == "new" %>
-        <%= p.input :password, :validate => true, :required => true %>
-        <%= p.input :password_confirmation, :validate => true, :required => true %>
-      <% end %>
-      <% if action_name == "new" %>
-        <%= f.input :squad_id, :validate => true, :required => true, :as=>:select, :collection=>Hash[f.object.kindergarten.squads.map{|squad| ["#{squad.name}",squad.id]}] ,:input_html => { :name=>"student_info[squad_id]" } %>
-      <% else %>
-        <%= f.input :squad_label, :as => :string, :disabled => true %>
-      <% end %>
-      <%= p.input :phone %>
-      <%= p.input :gender, :as => :radio, :collection => {"男" => "M", "女" => "G"}, :required => true %>
-      <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
-      <%= p.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
-      <%= p.input :tp,:as=>:hidden %>
-      <%= p.input :kindergarten_id,:as=>:hidden %>
+  <%= f.simple_fields_for :user do |p| %>
+    <div class="control-group">
+      <label class="control-label">头像</label>&nbsp;&nbsp;
+      <%= f.file_field :asset_logo ,:name=>"asset_logo" %>
+      <% user = @student_info.user %>
+      <div>
+        &nbsp;&nbsp; <img src="<%= user.asset_logo ? user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="103" alt="头像"/>
+      </div>
+    </div>
+    <%= p.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
+    <%= p.input :gender, :as => :radio, :collection => {"男" => "M", "女" => "G"}, :required => true %>
+    <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
+    <%= p.input :name, :validate => true, :required => true %>
+    <%= p.input :phone %>
+    <% if action_name == "new" %>
+      <%= p.input :login, :validate => true, :required => true, :hint => "之后不能改变" %>
+    <% else %>
+      <%= p.input :login, :disabled => true, :hint => "你不能改变你的用户名" %>
     <% end %>
+    <% if action_name == "new" %>
+      <%= p.input :password, :validate => true, :required => true %>
+      <%= p.input :password_confirmation, :validate => true, :required => true %>
+    <% end %>
+    <% if action_name == "new" %>
+      <%= f.input :squad_id, :validate => true, :required => true, :as=>:select, :collection=>Hash[f.object.kindergarten.squads.map{|squad| ["#{squad.name}",squad.id]}] ,:input_html => { :name=>"student_info[squad_id]" } %>
+    <% else %>
+      <%= f.input :squad_label, :as => :string, :disabled => true %>
+    <% end %>
+
+
+
+
+
+    <%= p.input :tp,:as=>:hidden %>
+    <%= p.input :kindergarten_id,:as=>:hidden %>
+  <% end %>
 </fieldset>
 <fieldset>
   <legend><label><strong>学员信息</strong></label></legend>
-    <% if action_name == "new" %>
-      <%= f.input :birthday, :as => :string, :class => "input-mediun"  %>
-      <%= f.input :come_in_at, :as => :string, :class => "input-mediun" %>
-    <% else %>
-      <%= f.input :birthday, :as => :string, :class => "input-mediun", :input_html => {:value=>(f.object.birthday ? f.object.birthday.to_short_datetime : "") }  %>
-      <%= f.input :come_in_at, :as => :string, :class => "input-mediun", :input_html => {:value => (f.object.come_in_at ? f.object.come_in_at.to_short_datetime : "")} %>
-    <% end %>
-    <%= f.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
-    <%= f.input :card_code %>
-    <%= f.input :guardian %>
-    <%= f.input :guardian_card_category, :as => :select,:collection=>StudentInfo::CARD_CATEGORY_DATA.invert %>
-    <%= f.input :guardian_card_code %>
-    <%= f.input :nationality %>
-    <%= f.input :nation %>
-    <%= f.input :overseas_chinese,:as=>:select,:collection=>StudentInfo::OVERSEAS_CHINESE_DATA.invert %>
-    <%= f.input :household,:as=>:select,:collection=>StudentInfo::HOUSEHOLD_DATA.invert %>
-    <%= f.input :birthplace %>
-    <%= f.input :native %>
-    <%= f.input :domicile_place %>
-    <%= f.input :family_address %>
-    <%= f.input :lodging %>
-    <%= f.input :only_child %>
-    <%= f.input :orphan %>
-    <%= f.input :leftover_children %>
-    <%= f.input :employofficialt %>
-    <%= f.input :insured %>
-    <%= f.input :subsidize %>
-    <%= f.input :deformity %>
-    <%= f.input :deformity_category %>
-    <%= f.input :housing,:as=>:select,:collection=>StudentInfo::HOUSING_DATA.invert %>
-    <%= f.input :live_family,:as=>:select,:collection=>StudentInfo::LIVE_FAMILY_DATA.invert %>
-    <%= f.input :brothers %>
-    <%= f.input :children_number %>
-    <%= f.input :head_url %>
-    <%= f.input :kindergarten_id,:as=>:hidden %>
+  <% if action_name == "new" %>
+    <%= f.input :birthday, :as => :string, :class => "input-mediun time_datepicker"  %>
+    <%= f.input :come_in_at, :as => :string, :class => "input-mediun time_datepicker" %>
+  <% else %>
+    <%= f.input :birthday, :as => :string, :class => "input-mediun", :input_html => {:value=>(f.object.birthday ? f.object.birthday.to_short_datetime : "") }  %>
+    <%= f.input :come_in_at, :as => :string, :class => "input-mediun", :input_html => {:value => (f.object.come_in_at ? f.object.come_in_at.to_short_datetime : "")} %>
+  <% end %>
+  <%= f.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
+  <%= f.input :card_code %>
+  <%= f.input :guardian %>
+  <%= f.input :guardian_card_category, :as => :select,:collection=>StudentInfo::CARD_CATEGORY_DATA.invert %>
+  <%= f.input :guardian_card_code %>
+  <%= f.input :nationality %>
+  <%= f.input :nation %>
+  <%= f.input :overseas_chinese,:as=>:select,:collection=>StudentInfo::OVERSEAS_CHINESE_DATA.invert %>
+  <%= f.input :household,:as=>:select,:collection=>StudentInfo::HOUSEHOLD_DATA.invert %>
+  <%= f.input :birthplace %>
+  <%= f.input :native %>
+  <%= f.input :domicile_place %>
+  <%= f.input :family_address %>
+  <%= f.input :lodging %>
+  <%= f.input :only_child %>
+  <%= f.input :orphan %>
+  <%= f.input :leftover_children %>
+  <%= f.input :employofficialt %>
+  <%= f.input :insured %>
+  <%= f.input :subsidize %>
+  <%= f.input :deformity %>
+  <%= f.input :deformity_category %>
+  <%= f.input :housing,:as=>:select,:collection=>StudentInfo::HOUSING_DATA.invert %>
+  <%= f.input :live_family,:as=>:select,:collection=>StudentInfo::LIVE_FAMILY_DATA.invert %>
+  <%= f.input :brothers %>
+  <%= f.input :children_number %>
+  <%= f.input :head_url %>
+  <%= f.input :kindergarten_id,:as=>:hidden %>
 </fieldset>
 
 <fieldset>
   <legend><label><strong>家庭信息</strong></label></legend>
-    <%= f.input :family_ties %>
-    <%= f.input :family_name %>
-    <%= f.input :politics_status %>
-    <%= f.input :family_birthday, :as => :string, :class => "input-mediun" %>
-    <%= f.input :profession %>
-    <%= f.input :duties %>
-    <%= f.input :working %>
-    <%= f.input :family_register %>
-    <%= f.input :family_phone %>
-    <%= f.input :family_email %>
-    <%= f.input :living_time %>
-    <%= f.input :family_marital %>
-    <%= f.input :education %>
-    <%= f.input :education, :input_html => {:class => "span5"} %>
-    <%= f.input :safe_box %>
+  <%= f.input :family_ties %>
+  <%= f.input :family_name %>
+  <%= f.input :politics_status %>
+  <%= f.input :family_birthday, :as => :string, :class => "input-mediun time_datepicker" %>
+  <%= f.input :profession %>
+  <%= f.input :duties %>
+  <%= f.input :working %>
+  <%= f.input :family_register %>
+  <%= f.input :family_phone %>
+  <%= f.input :family_email %>
+  <%= f.input :living_time %>
+  <%= f.input :family_marital %>
+  <%= f.input :education %>
+  <%= f.input :education, :input_html => {:class => "span5"} %>
+  <%= f.input :safe_box %>
 </fieldset>
 
 <div class="control-group">

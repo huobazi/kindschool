@@ -8,7 +8,7 @@
   });
 </script>
 <%= f.input :title, :validate => true, :required => true,:input_html=>{:class=>"span5"}%>
-<%= f.input :send_date, :validate => true, :required => true,:as=>:string ,:class=>"input-mediun"%>
+<%= f.input :send_date, :validate => true, :required => true,:as=>:string ,:class=>"input-mediun time_datepicker"%>
 <%= f.input :send_range,:as=>:select,:collection=>Notice::SEND_RANGE_DATA.invert %>
 <%= f.input :content, :validate => true, :required => true ,:input_html=>{:class=>"span5"}%>
 

@@ -141,10 +141,10 @@ notice_edit:
 notice_index:
   id: 2005
   parent_id: 2
-  name: "通知信息"
+  name: "查看通知信息"
   level: 2
   sequence: 0
-  note: "通知信息"
+  note: "查看通知信息"
   controller: "my_school/notices"
   action: "index"
   params: ""
@@ -165,10 +165,10 @@ message_send:
 message_index:
   id: 2007
   parent_id: 2
-  name: "收件箱"
+  name: "查看收件箱"
   level: 2
   sequence: 0
-  note: "收件箱"
+  note: "查看收件箱"
   controller: "my_school/messages"
   action: "index"
   params: ""
@@ -178,10 +178,10 @@ message_index:
 message_outbox:
   id: 2008
   parent_id: 2
-  name: "发件箱"
+  name: "查看发件箱"
   level: 2
   sequence: 0
-  note: "发件箱"
+  note: "查看发件箱"
   controller: "my_school/messages"
   action: "outbox"
   params: ""
@@ -191,10 +191,10 @@ message_outbox:
 message_draft_box:
   id: 2009
   parent_id: 2
-  name: "草稿箱"
+  name: "查看草稿箱"
   level: 2
   sequence: 0
-  note: "草稿箱"
+  note: "查看草稿箱"
   controller: "my_school/messages"
   action: "draft_box"
   params: ""
@@ -217,10 +217,10 @@ message_draft_show:
 message_draft_edit:
   id: 2011
   parent_id: 2
-  name: "修改草稿"
+  name: "编辑草稿"
   level: 2
   sequence: 0
-  note: "修改草稿"
+  note: "编辑草稿"
   controller: "my_school/messages"
   action: "draft_edit"
   params: ""
@@ -232,10 +232,10 @@ message_draft_edit:
 forum_manage:
   id: 3005
   parent_id: 3
-  name: "论坛贴子"
+  name: "查看论坛贴子"
   level: 2
   sequence: 0
-  note: "论坛贴子"
+  note: "查看论坛贴子"
   controller: "my_school/topics"
   action: "index"
   params: ""
@@ -244,10 +244,10 @@ forum_manage:
 forum_my:
   id: 3006
   parent_id: 3
-  name: "我的贴子"
+  name: "查看我的贴子"
   level: 2
   sequence: 0
-  note: "我的贴子"
+  note: "查看我的贴子"
   controller: "my_school/topics"
   action: "my"
   params: ""
@@ -268,10 +268,10 @@ forum_send:
 forum_approve:
   id: 3002
   parent_id: 3
-  name: "审核发帖子"
+  name: "审核帖子"
   level: 2
   sequence: 1
-  note: "审核发送信息"
+  note: "审核贴子"
   controller: ""
   action: ""
   params: ""
@@ -315,6 +315,53 @@ squad_manage:
   protocol: ""
   <<: *DEFAULTS
 
+squad_new:
+  id: 4111
+  parent_id: 5
+  name: "创建班级"
+  level: 2
+  sequence: 1
+  note: "创建班级"
+  controller: "my_school/squads"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+squad_show:
+  id: 4121
+  parent_id: 5
+  name: "班级展示"
+  level: 2
+  sequence: 1
+  note: "班级展示"
+  controller: "my_school/squads"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+squad_edit:
+  id: 4131
+  parent_id: 5
+  name: "编辑班级"
+  level: 2
+  sequence: 1
+  note: "编辑班级"
+  controller: "my_school/squads"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+squad_destroy:
+  id: 4141
+  parent_id: 5
+  name: "删除班级"
+  level: 2
+  sequence: 1
+  note: "删除班级"
+  controller: "my_school/squads"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
+
 grade_manage:
   id: 4002
   parent_id: 5
@@ -325,6 +372,55 @@ grade_manage:
   controller: "my_school/grades"
   action: "index"
   protocol: ""
+  <<: *DEFAULTS
+
+grade_new:
+  id: 4112
+  parent_id: 5
+  name: "创建年级"
+  level: 2
+  sequence: 2
+  note: "创建年级"
+  controller: "my_school/grades"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+grade_show:
+  id: 4122
+  parent_id: 5
+  name: "展示年级"
+  level: 2
+  sequence: 2
+  note: "展示年级"
+  controller: "my_school/grades"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+grade_edit:
+  id: 4132
+  parent_id: 5
+  name: "编辑年级"
+  level: 2
+  sequence: 2
+  note: "编辑年级"
+  controller: "my_school/grades"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+grade_destroy:
+  id: 4142
+  parent_id: 5
+  name: "删除年级"
+  level: 2
+  sequence: 2
+  note: "删除年级"
+  controller: "my_school/grades"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
 
 staff_manage:
   id: 4003
@@ -336,6 +432,55 @@ staff_manage:
   controller: "my_school/staffs"
   action: "index"
   protocol: ""
+  <<: *DEFAULTS
+
+staff_new:
+  id: 4113
+  parent_id: 5
+  name: "创建教职工"
+  level: 2
+  sequence: 3
+  note: "创建教职工"
+  controller: "my_school/staffs"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+staff_show:
+  id: 4123
+  parent_id: 5
+  name: "查看教职工"
+  level: 2
+  sequence: 3
+  note: "查看教职工"
+  controller: "my_school/staffs"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+staff_edit:
+  id: 4133
+  parent_id: 5
+  name: "编辑教职工"
+  level: 2
+  sequence: 3
+  note: "编辑教职工"
+  controller: "my_school/staffs"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+staff_destroy:
+  id: 4143
+  parent_id: 5
+  name: "删除教职工"
+  level: 2
+  sequence: 3
+  note: "删除教职工"
+  controller: "my_school/staffs"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
 
 student_manage:
   id: 4004
@@ -347,6 +492,55 @@ student_manage:
   controller: "my_school/student_infos"
   action: "index"
   protocol: ""
+  <<: *DEFAULTS
+
+student_new:
+  id: 4114
+  parent_id: 5
+  name: "创建学员"
+  level: 2
+  sequence: 4
+  note: "创建学员"
+  controller: "my_school/student_infos"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+student_show:
+  id: 4124
+  parent_id: 5
+  name: "查看学员"
+  level: 2
+  sequence: 4
+  note: "查看学员"
+  controller: "my_school/student_infos"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+student_edit:
+  id: 4134
+  parent_id: 5
+  name: "编辑学员"
+  level: 2
+  sequence: 4
+  note: "编辑学员"
+  controller: "my_school/student_infos"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+student_destroy:
+  id: 4144
+  parent_id: 5
+  name: "删除学员"
+  level: 2
+  sequence: 4
+  note: "删除学员"
+  controller: "my_school/student_infos"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
 
 virtual_squads_index:
   id: 4005
@@ -358,82 +552,90 @@ virtual_squads_index:
   controller: "my_school/virtual_squads"
   action: "index"
   protocol: ""
+  <<: *DEFAULTS
 
 virtual_squads_new:
   id: 4006
   parent_id: 5
-  name: "虚拟班管理_新建"
+  name: "虚拟班管理新建"
   level: 2
   sequence: 4
-  note: "虚拟班管理_新建"
+  note: "虚拟班管理新建"
   controller: "my_school/virtual_squads"
   action: "new"
   protocol: ""
+  <<: *DEFAULTS
 
 virtual_squads_create:
   id: 4007
   parent_id: 5
-  name: "虚拟班管理_create"
+  name: "虚拟班管理创建"
   level: 2
   sequence: 4
-  note: "虚拟班管理_create"
+  note: "虚拟班管理创建"
   controller: "my_school/virtual_squads"
   action: "create"
   protocol: ""
+  <<: *DEFAULTS
 
 virtual_squads_show:
   id: 4008
   parent_id: 5
-  name: "虚拟班管理_显示"
+  name: "虚拟班管理展示"
   level: 2
   sequence: 4
-  note: "虚拟班管理_显示"
+  note: "虚拟班管理展示"
   controller: "my_school/virtual_squads"
   action: "show"
   protocol: ""
+  <<: *DEFAULTS
 
 virtual_squads_edit:
   id: 4009
   parent_id: 5
-  name: "虚拟班管理_编辑"
+  name: "虚拟班管理编辑"
   level: 2
   sequence: 4
-  note: "虚拟班管理_编辑"
+  note: "虚拟班管理编辑"
   controller: "my_school/virtual_squads"
   action: "edit"
   protocol: ""
+  <<: *DEFAULTS
 
 virtual_squads_update:
   id: 4010
   parent_id: 5
-  name: "虚拟班管理_update"
+  name: "虚拟班管理更新"
   level: 2
   sequence: 4
-  note: "虚拟班管理_update"
+  note: "虚拟班管理更新"
   controller: "my_school/virtual_squads"
   action: "update"
   protocol: ""
+  <<: *DEFAULTS
 
 virtual_squads_destroy:
   id: 4011
   parent_id: 5
-  name: "虚拟班管理_删除"
+  name: "虚拟班管理删除"
   level: 2
   sequence: 4
-  note: "虚拟班管理_删除"
+  note: "虚拟班管理删除"
   controller: "my_school/virtual_squads"
   action: "destroy"
   protocol: ""
+  <<: *DEFAULTS
 users_show:
   id: 4012
   parent_id: 5
-  name: "个人信息"
+  name: "查看个人信息"
   level: 2
   sequence: 4
-  note: "个人信息"
+  note: "查看个人信息"
   controller: "my_school/users"
   action: "show"
   protocol: ""
+  <<: *DEFAULTS
 users_edit:
   id: 4013
   parent_id: 5
@@ -444,6 +646,7 @@ users_edit:
   controller: "my_school/users"
   action: "edit"
   protocol: ""
+  <<: *DEFAULTS
 users_update:
   id: 4014
   parent_id: 5
@@ -454,6 +657,7 @@ users_update:
   controller: "my_school/users"
   action: "update"
   protocol: ""
+  <<: *DEFAULTS
 #--------------------------system
 template_config:
   id: 5001
@@ -465,6 +669,7 @@ template_config:
   controller: "/myschool/templates"
   action: "set_default_template_view"
   protocol: ""
+  <<: *DEFAULTS
 
 page_content_config:
   id: 5002
@@ -476,6 +681,7 @@ page_content_config:
   controller: "my_school/page_contents"
   action: "index"
   protocol: ""
+  <<: *DEFAULTS
 
 content_pattern_index:
   id: 5003
@@ -488,6 +694,7 @@ content_pattern_index:
   action: "index"
   visible: true
   protocol: ""
+  <<: *DEFAULTS
 
 smarties_index:
   id: 5004
@@ -500,6 +707,7 @@ smarties_index:
   action: "index"
   visible: true
   protocol: ""
+  <<: *DEFAULTS
 
 smarties_create:
   id: 5005
@@ -511,6 +719,7 @@ smarties_create:
   controller: "my_school/smarties"
   action: "create"
   protocol: ""
+  <<: *DEFAULTS
 
 role_index:
   id: 5006
@@ -522,6 +731,7 @@ role_index:
   controller: "my_school/roles"
   action: "index"
   protocol: ""
+  <<: *DEFAULTS
 career_strategy_index:
   id: 5007
   parent_id: 6
@@ -532,6 +742,7 @@ career_strategy_index:
   controller: "my_school/career_strategies"
   action: "index"
   protocol: ""
+  <<: *DEFAULTS
 career_strategy_create:
   id: 5008
   parent_id: 6
@@ -542,6 +753,7 @@ career_strategy_create:
   controller: "my_school/career_strategies"
   action: "create"
   protocol: ""
+  <<: *DEFAULTS
 career_strategy_update:
   id: 5009
   parent_id: 6
@@ -552,6 +764,7 @@ career_strategy_update:
   controller: "my_school/career_strategies"
   action: "update"
   protocol: ""
+  <<: *DEFAULTS
 career_strategy_destroy:
   id: 5010
   parent_id: 6
@@ -562,6 +775,7 @@ career_strategy_destroy:
   controller: "my_school/career_strategies"
   action: "destroy"
   protocol: ""
+  <<: *DEFAULTS
 topic_categories_index:
   id: 5011
   parent_id: 6
@@ -572,6 +786,40 @@ topic_categories_index:
   controller: "my_school/categories"
   action: "index"
   protocol: ""
+  <<: *DEFAULTS
+topic_categories_new:
+  id: 5111
+  parent_id: 6
+  name: "论坛分类创建"
+  level: 2
+  sequence: 0
+  note: "论坛分类创建"
+  controller: "my_school/categories"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+topic_categories_edit:
+  id: 5211
+  parent_id: 6
+  name: "论坛分类编辑"
+  level: 2
+  sequence: 0
+  note: "论坛分类编辑"
+  controller: "my_school/categories"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+topic_categories_edit:
+  id: 5311
+  parent_id: 6
+  name: "论坛分类删除"
+  level: 2
+  sequence: 0
+  note: "论坛分类删除"
+  controller: "my_school/categories"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
 career_strategy_career_class_validate:
   id: 5012
   parent_id: 6
@@ -582,6 +830,7 @@ career_strategy_career_class_validate:
   controller: "my_school/career_strategies"
   action: "career_class_validate"
   protocol: ""
+  <<: *DEFAULTS
 career_strategy_career_class:
   id: 5013
   parent_id: 6
@@ -592,6 +841,7 @@ career_strategy_career_class:
   controller: "my_school/career_strategies"
   action: "career_class"
   protocol: ""
+  <<: *DEFAULTS
 #==============================健康饮食
 seedlings_index:
   id: 6001
@@ -631,10 +881,10 @@ seedlings_edit:
 seedlings_destroy:
   id: 6004
   parent_id: 7
-  name: "育苗记录_删除"
+  name: "育苗记录删除"
   level: 2
   sequence: 0
-  note: "育苗记录_删除"
+  note: "育苗记录删除"
   controller: "my_school/seedlings"
   action: "destroy"
   protocol: ""
@@ -643,10 +893,10 @@ seedlings_destroy:
 seedlings_create:
   id: 6005
   parent_id: 7
-  name: "育苗记录_create"
+  name: "育苗记录创建"
   level: 2
   sequence: 0
-  note: "育苗记录_create"
+  note: "育苗记录创建"
   controller: "my_school/seedlings"
   action: "create"
   protocol: ""
@@ -655,10 +905,10 @@ seedlings_create:
 seedlings_update:
   id: 6006
   parent_id: 7
-  name: "育苗记录_update"
+  name: "育苗记录更新"
   level: 2
   sequence: 0
-  note: "育苗记录_update"
+  note: "育苗记录更新"
   controller: "my_school/seedlings"
   action: "update"
   protocol: ""
@@ -667,10 +917,10 @@ seedlings_update:
 seedlings_show:
   id: 6007
   parent_id: 7
-  name: "育苗记录_显示"
+  name: "育苗记录展示"
   level: 2
   sequence: 0
-  note: "育苗记录_显示"
+  note: "育苗记录展示"
   controller: "my_school/seedlings"
   action: "show"
   protocol: ""
@@ -712,6 +962,55 @@ physical_records_edit:
   protocol: ""
   <<: *DEFAULTS
 
+physical_records_destroy:
+  id: 7004
+  parent_id: 7
+  name: "体检记录删除"
+  level: 2
+  sequence: 0
+  note: "体检记录删除"
+  controller: "my_school/physical_records"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
+
+physical_records_create:
+  id: 7005
+  parent_id: 7
+  name: "体检记录创建"
+  level: 2
+  sequence: 0
+  note: "体检记录创建"
+  controller: "my_school/physical_records"
+  action: "create"
+  protocol: ""
+  <<: *DEFAULTS
+
+physical_records_update:
+  id: 7006
+  parent_id: 7
+  name: "体检记录更新"
+  level: 2
+  sequence: 0
+  note: "体检记录更新"
+  controller: "my_school/physical_records"
+  action: "update"
+  protocol: ""
+  <<: *DEFAULTS
+
+physical_records_show:
+  id: 7007
+  parent_id: 7
+  name: "体检记录展示"
+  level: 2
+  sequence: 0
+  note: "体检记录展示"
+  controller: "my_school/physical_records"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+
 cook_books_index:
   id: 8001
   parent_id: 7
@@ -747,8 +1046,57 @@ cook_books_edit:
   action: "edit"
   protocol: ""
   <<: *DEFAULTS
-growth_records_home:
+
+cook_books_destroy:
   id: 8004
+  parent_id: 7
+  name: "菜谱删除"
+  level: 2
+  sequence: 0
+  note: "菜谱删除"
+  controller: "my_school/cook_books"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
+
+cook_books_create:
+  id: 8005
+  parent_id: 7
+  name: "菜谱创建"
+  level: 2
+  sequence: 0
+  note: "菜谱创建"
+  controller: "my_school/cook_books"
+  action: "create"
+  protocol: ""
+  <<: *DEFAULTS
+
+cook_books_update:
+  id: 8006
+  parent_id: 7
+  name: "菜谱更新"
+  level: 2
+  sequence: 0
+  note: "菜谱更新"
+  controller: "my_school/cook_books"
+  action: "update"
+  protocol: ""
+  <<: *DEFAULTS
+
+cook_books_show:
+  id: 8007
+  parent_id: 7
+  name: "菜谱展示"
+  level: 2
+  sequence: 0
+  note: "菜谱展示"
+  controller: "my_school/cook_books"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+growth_records_home:
+  id: 8009
   parent_id: 8
   name: "宝宝在家"
   level: 2
@@ -760,7 +1108,7 @@ growth_records_home:
   <<: *DEFAULTS
 
 growth_records_garden:
-  id: 8005
+  id: 8010
   parent_id: 8
   name: "宝宝在园"
   level: 2
@@ -772,7 +1120,7 @@ growth_records_garden:
   <<: *DEFAULTS
 
 growth_records_new:
-  id: 8006
+  id: 8011
   parent_id: 8
   name: "创建成长记录(宝宝在家)"
   level: 2
@@ -784,7 +1132,7 @@ growth_records_new:
   <<: *DEFAULTS
 
 growth_records_show:
-  id: 8008
+  id: 8012
   parent_id: 8
   name: "查看成长记录(宝宝在家)"
   level: 2
@@ -796,7 +1144,7 @@ growth_records_show:
   <<: *DEFAULTS
 
 growth_records_edit:
-  id: 8009
+  id: 8013
   parent_id: 8
   name: "编辑成长记录(宝宝在家)"
   level: 2
@@ -808,7 +1156,7 @@ growth_records_edit:
   <<: *DEFAULTS
 
 garden_growth_records_new:
-  id: 8010
+  id: 8014
   parent_id: 8
   name: "创建成长记录(宝宝在园)"
   level: 2
@@ -819,7 +1167,7 @@ garden_growth_records_new:
   protocol: ""
   <<: *DEFAULTS
 garden_growth_records_show:
-  id: 8011
+  id: 8015
   parent_id: 8
   name: "查看成长记录(宝宝在园)"
   level: 2
@@ -831,7 +1179,7 @@ garden_growth_records_show:
   <<: *DEFAULTS
 
 garden_growth_records_edit:
-  id: 8012
+  id: 8016
   parent_id: 8
   name: "编辑成长记录(宝宝在园)"
   level: 2
