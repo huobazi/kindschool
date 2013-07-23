@@ -57,6 +57,10 @@ a{
 }
 #main .menu_center ul li{
     border-right: 1px solid white;
+    margin-left: 50px;
+}
+#main .menu_center ul li:last-child{
+  border: none;
 }
 .main_work{
     background-color: #EAEAEA;
@@ -1255,7 +1259,7 @@ ul.feature_list li{
     width: 15px;
 }
 .show_admiss_info_center_right{
-  background-image: url("/t/colorful/official_home.png");
+    background-image: url("/t/colorful/official_home.png");
     background-position: -808px -32px;
     background-repeat: no-repeat;
     height: 63px;
@@ -1270,4 +1274,43 @@ ul.feature_list li{
     font-family: 'Times New Roman';
     font-weight:bold;
     height: 36px;
+}
+.offical_home{
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -45px -25px;
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 80px;
+}
+.offical_about_us{
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -164px -145px;
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 90px;
+}
+.offical_feature{
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -295px -143px;
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 80px;
+}
+.offical_admiss_infor{
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -435px -142px;
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 80px;
+}
+.offical_school_index{
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -555px -142px;
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 80px;
+}
+.official_menu_center ul li{
+    width:130px;
+    height: 80px;
 }
