@@ -1,0 +1,48 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    通知列表
+  </div>
+  <div class="message_filter">
+    <%= form_tag '/weixin/notices' , :method=>"get",:id=>"message_search" do %>
+      <%= select_tag "send_date",options_for_select(@send_date,(params[:send_date]).to_s) %>
+    <%end%>
+  </div>
+  <div class="message_list">
+    <ul class="data_list">
+      <% if @notices.blank? %>
+        <li><div class="message_content">没有通知信息。</div></li>
+      <% else %>
+        <% @notices.each do |notice| %>
+          <li class="<%= notice.id.blank? ? "" : "return_li"%>">
+            <a href="<%= url_for(:action=>:show,:id=>notice.id) %>" title="查看通知信息">
+              <div><label class="message_user">发布人:<%=notice.creater ? notice.creater.name : ""%></label><label class="message_time"><%=notice.send_date ? notice.send_date.to_long_datetime : ""%></label></div>
+              <div class="message_content">标题:<%= notice.title %></div>
+              <div class="message_content">通知范围:<%= notice.send_range_label  %></div>
+            </a>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+    <br/>
+  </div>
+  <% unless  @notices.blank? %>
+    <div class="message_more">
+      <div class="paginate_div">
+        <%= paginate @notices, :window => 1%>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
+<script type="text/javascript">
+  $(function(){
+    $("#message_search select").change(function(){
+      $("#message_search").submit();
+    })
+  })
+
+</script>

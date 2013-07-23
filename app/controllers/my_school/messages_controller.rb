@@ -6,7 +6,7 @@ class MySchool::MessagesController < MySchool::ManageController
       {:kind_id=>@kind.id,:user_id=>current_user.id}).joins("LEFT JOIN message_entries ON(messages.id = message_entries.message_id)").page(params[:page] || 1).per(10).order("messages.send_date DESC")
   end
   
-  #
+  #发件箱
   def outbox
     @messages = current_user.messages.where(:status => true).page(params[:page] || 1).per(10).order("messages.send_date DESC")
     #.where("messages.kindergarten_id=:kind_id")
