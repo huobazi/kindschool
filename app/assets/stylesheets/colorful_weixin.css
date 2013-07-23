@@ -697,7 +697,7 @@ ul, li {
     margin-top: 20px;
     height: 50px;
     line-height: 50px;
-    width: 350px;
+    width: 90%;
     font-size: 20px;
 }
 .message_div .message_list .data_list ul.topic_replies {
