@@ -2,10 +2,7 @@
 #相册锦集
 class MySchool::AlbumsController  < MySchool::ManageController
    def index
-     user = current_user
-     arr = ['new','edit','destroy']
-     controller_view='my_school/albums/new'
-     if session[:operates].include?(controller_view)
+     if session[:operates].include?('my_school/albums/new')
         @albums = @kind.albums.page(params[:page] || 1).per(6).order("created_at DESC")
       else  
         @albums = @kind.albums.where(:is_show=>1).page(params[:page] || 1).per(6).order("created_at DESC")
@@ -26,11 +23,12 @@ class MySchool::AlbumsController  < MySchool::ManageController
      if squad = Squad.find(params[:class_number].to_i)#where(:id=>params[:class_number].to_i).first
         @album.squad =  squad
         @album.squad_name = squad.name
-      end 
+      end
     end
+    @album.send_date = Time.now
      respond_to do |format|
       if @album.save
-        format.html { redirect_to my_school_albums_path, notice: '相册锦集创建成功.' }
+        format.html { redirect_to my_school_albums_path, :notice=> '相册锦集创建成功.' }
       else
         format.html { render :action=> "new" }
       end

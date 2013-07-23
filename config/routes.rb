@@ -199,6 +199,7 @@ School::Application.routes.draw do
       end
     end
     resources :cook_books
+    resources :albums
     resources :topics
     resources :topic_entries
     resources :messages do
