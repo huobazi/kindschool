@@ -1129,3 +1129,40 @@ td .index_li{
 legend label{
     padding-left: 10px;
 }
+.feature{
+    float:left;
+    width: 100%;
+}
+ul.feature_list li{
+    padding: 50px 0px;
+    width: 380px;
+    border-bottom: 3px solid #fdb968;
+    margin: 0 40px;
+    float: left ;
+}
+.box_feature{
+    float: left
+}
+.box_feat_img{
+    width: 160px;
+    height: 160px;
+    background: white;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    overflow: hidden;
+    float: left;
+
+}
+.box_feat_info{
+    float:left;
+    width:210px;
+}
+.box_feat_title{
+    float: left;
+    margin-left: 20px;
+}
+.box_feat_content{
+    float: left;
+    margin-left: 20px;
+}
