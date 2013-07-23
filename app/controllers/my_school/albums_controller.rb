@@ -2,10 +2,7 @@
 #相册锦集
 class MySchool::AlbumsController  < MySchool::ManageController
    def index
-     user = current_user
-     arr = ['new','edit','destroy']
-     controller_view='my_school/albums/new'
-     if session[:operates].include?(controller_view)
+     if session[:operates].include?('my_school/albums/new')
         @albums = @kind.albums.page(params[:page] || 1).per(6).order("created_at DESC")
       else  
         @albums = @kind.albums.where(:is_show=>1).page(params[:page] || 1).per(6).order("created_at DESC")
