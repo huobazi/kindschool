@@ -191,7 +191,7 @@ body {
 .hide_div{
     border-bottom: 1px dashed white;
 }
-#user_infos,#teacher_infos{
+#user_infos,#teacher_infos,#squads_infos{
     display: none;
 }
 .b_arr{
@@ -607,4 +607,7 @@ body {
 }
 .bottom_dotted:last-child{
     border-bottom: 0px;
+}
+.li_child{
+    display: none;
 }
