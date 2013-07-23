@@ -23,11 +23,12 @@ class MySchool::AlbumsController  < MySchool::ManageController
      if squad = Squad.find(params[:class_number].to_i)#where(:id=>params[:class_number].to_i).first
         @album.squad =  squad
         @album.squad_name = squad.name
-      end 
+      end
     end
+    @album.send_date = Time.now
      respond_to do |format|
       if @album.save
-        format.html { redirect_to my_school_albums_path, notice: '相册锦集创建成功.' }
+        format.html { redirect_to my_school_albums_path, :notice=> '相册锦集创建成功.' }
       else
         format.html { render :action=> "new" }
       end

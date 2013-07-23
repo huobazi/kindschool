@@ -11,19 +11,17 @@
         <li><div class="message_content">没有相册。</div></li>
       <% else %>
         <% @albums.each do |album| %>
-          <% unless album.album_entries.blank? %>
-            <li>
-              <a href="<%= url_for(:action=>:show,:id=>album.id) %>" title="查看相册">
-                <div>
-                   <img src="<%= album.show_main_img ? album.show_main_img.public_filename(:middle) : '/t/colorful/login_img10.png' %>"  alt="<%=album.title%>"/>
-                </div>
-                <div class="message_content">
-                  <label><%= album.title %></label>
-                  <label><%= album.send_date ? album.send_date.to_short_datetime : "" %></label>
-                </div>
-              </a>
-            </li>
-          <% end %>
+          <li>
+            <a href="<%= url_for(:action=>:show,:id=>album.id) %>" title="查看相册">
+              <div class="left_third">
+                <img src="<%= album.show_main_img ? album.show_main_img.public_filename(:middle) : '/t/colorful/login_img10.png' %>"  alt="<%=album.title%>" class="album_img"/>
+              </div>
+              <div class="left_two">
+                <label class="title_label"><%= album.title %></label>
+                <label class="time_label"><%= album.send_date ? album.send_date.to_short_datetime : "" %></label>
+              </div>
+            </a>
+          </li>
         <% end %>
       <% end %>
     </ul>
