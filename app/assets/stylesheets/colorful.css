@@ -614,26 +614,39 @@ a{
 }
 .work_action_career_validate{
     background-image: url("/t/colorful/interface.png");
-    background-position: -207px 0;
+    background-position: -762px 0;
     height: 46px;
     width: 52px;
 }
 .work_action_career_validate_move{
     background-image: url("/t/colorful/interface.png");
-    background-position: -207px -57px;
+    background-position: -762px -57px;
     height: 65px;
     width: 52px;
     display: none;
 }
 .work_action_career{
     background-image: url("/t/colorful/interface.png");
-    background-position: -70px 0;
+    background-position: -694px 0;
     height: 46px;
     width: 52px;
 }
 .work_action_career_move{
     background-image: url("/t/colorful/interface.png");
-    background-position: -70px -57px;
+    background-position: -694px -57px;
+    height: 65px;
+    width: 52px;
+    display: none;
+}
+.work_action_update_password{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -625px 0;
+    height: 46px;
+    width: 52px;
+}
+.work_action_update_password_move{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -625px -57px;
     height: 65px;
     width: 52px;
     display: none;
