@@ -600,21 +600,21 @@ body {
   height: 55px;
   padding-top: 10px;
   font-size: 25px;
-  width: 300px;
+  width: 70%;
 }
 #topic_search .select {
-  width: 240px;
+  width: 70%;
   margin-top: 20px;
 }
 .form .field .text-content {
   height: 40px;
   line-height: 40px;
-  width: 350px;
+  width: 80%;
   font-size: 20px;
 }
 
 .form .field .text-area {
-  width: 500px;
+  width: 90%;
   font-size: 20px;
   height: 150px;
 }

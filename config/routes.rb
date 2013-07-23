@@ -200,7 +200,17 @@ School::Application.routes.draw do
     end
     resources :cook_books
     resources :albums
-    resources :topics
+    resources :topics do
+      collection do
+        get :my
+      end
+    end
+    resources :growth_records do
+      collection do
+        get :grade_squad
+        get :squad_student
+      end
+    end
     resources :topic_entries
     resources :messages do
       member do
