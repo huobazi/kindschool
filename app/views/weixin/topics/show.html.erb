@@ -8,7 +8,7 @@
   <div class="message_list">
     <ul class="data_list">
       <li class="topic">
-        <p class="topic_title"><%= @topic.title %></p>
+        <label class="topic_title"><%= @topic.title %></label>
         <p class="topic_info"><label class="author"><%= @topic.creater ? @topic.creater.name : "" %></label>&nbsp;&nbsp;<label>发表于:<label><label class="topic_created_time"><%= @topic.created_at.to_long_datetime %></label></p>
         <div class="topic_content"><%= simple_format @topic.content %></div>
       </li>
@@ -17,7 +17,7 @@
         <%= simple_form_for(@topic_entry, :validate => true, :url => weixin_topic_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
           <div class="field">
             <label class="field_prompt">回复</label>
-            <%= f.text_field :content, :class => "text-content" %>
+            <%= f.text_field :content, :class => "text-content" %><br /><br />
             <%= f.button :submit, :class => "btn" %>
           </div>
           <%= f.input :topic_id, :as => :hidden %>
