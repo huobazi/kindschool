@@ -1166,3 +1166,44 @@ ul.feature_list li{
     float: left;
     margin-left: 20px;
 }
+.contact_us_content{
+    margin: 50px;
+}
+.show_center{
+    width: 100%;
+    height: 50px;
+    background-color: #008fdc;
+
+}
+.show_center_left{
+    background-color: #008FDC;
+    background-image: url(/t/colorful/menu_left.jpg);
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 63px;
+    position: absolute;
+}
+.show_center_right{
+    background-image: url(/t/colorful/menu_right.jpg);
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 63px;
+    position: absolute;
+    left:1070px;
+}
+.show_center ul li{
+    line-height: 50px;
+    margin-top: 22px;
+    text-align: center;
+    font-family: 'Times New Roman';
+    font-weight:bold;
+    height: 36px;
+}
+.contact_us_class_image{
+    margin:50px;
+    float: left;
+}
+.class_middle_image{
+    
+    float: left;
+}
