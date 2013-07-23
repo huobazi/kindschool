@@ -38,7 +38,10 @@
     <div id="teacher_infos"></div>
   </div>
 <% elsif  current_user.tp == 1 %>
-
+  <div class="menu_one">
+    <a href="###" class="menu_one_a" for="#squads_infos" id="get_user_all_squads"><div class="w_arrow"></div><label>班级的信息</label></a>
+    <div id="squads_infos"></div>
+  </div>
 <% end %>
 <script type="text/javascript">
   $(function() {
@@ -56,10 +59,26 @@
         div.show();
       }
     })
-    $("#get_user_all_teachers").click(function(){
-      if($("#teacher_infos").html() == ""){
-        $("#teacher_infos").load("<%= url_for(:controller=>"/weixin/main",:action=>"get_user_all_teachers") %>")
-      }
-    })
+$(".menu_one").on("click", ".menu_one_ul .li_title",function(){
+  var li_child = $(this).next();
+  if(li_child.css("display") == "block"){
+    li_child.hide();
+  }else{
+    li_child.show();
+  }
+})
+<% if  current_user.tp == 0 %>
+  $("#get_user_all_teachers").click(function(){
+    if($("#teacher_infos").html() == ""){
+      $("#teacher_infos").load("<%= url_for(:controller=>"/weixin/main",:action=>"get_user_all_teachers") %>")
+    }
   })
+<% elsif  current_user.tp == 1 %>
+  $("#get_user_all_squads").click(function(){
+    if($("#squads_infos").html() == ""){
+      $("#squads_infos").load("<%= url_for(:controller=>"/weixin/main",:action=>"get_user_all_squads") %>")
+    }
+  })
+<% end %>
+})
 </script>
