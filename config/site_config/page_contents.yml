@@ -11,18 +11,18 @@ contact_us:
   logo_url: "/t/colorful/contact_us.png"
   note: "填写联系幼儿园的信息。"
 official_website_home:
-  name: "校园官网首页"
+  name: "校园官网_首页"
   logo_url: "/t/colorful/official_website_home.png"
   note: "填写幼儿园的校园官网首页的信息。"
 official_website_about_us:
-  name: "校园官网关于幼儿园"
+  name: "校园官网_关于幼儿园"
   logo_url: "/t/colorful/official_website_about_us.png"
   note: "填写幼儿园的校园官网关于幼儿园的信息。"
 official_website_feature:
-  name: "官网园所特点"
+  name: "官网_园所特点"
   logo_url: "/t/colorful/official_website_feature.png"
   note: "填写幼儿园的官网园所特点的信息。"
 official_website_admissions_information:
-  name: "官网招生信息"
+  name: "官网_招生信息"
   logo_url: "/t/colorful/official_website_admissions_information.png"
   note: "填写幼儿园的官网招生信息的信息。"
