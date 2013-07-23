@@ -15,6 +15,5 @@ class Weixin::AlbumsController  < Weixin::ManageController
   def show
     @album = @kind.albums.find(params[:id])
     @album_entries=@album.album_entries.page(params[:page] || 1).per(6).order("created_at DESC")
-    @album_entry=AlbumEntry.new()
   end
 end
