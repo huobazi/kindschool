@@ -11,20 +11,18 @@
               <label><%= role.name  %> </label>
             </div>
           </div>
-          <div class="hide_li_child">
-            <div class="li_child">
-              <% role.users.where("tp=1").each do |user| %>
-                <div class="user_title bottom_dotted">
-                  <div class="user_logo">
-                    <img src="<%= user.asset_logo ? user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" class="img-polaroid" width="61" alt="头像"/>
-                  </div>
-                  <div class="user_name">
-                    <label><%= user.name %></label>
-                    <label><%= user.phone %></label>
-                  </div>
+          <div class="li_child">
+            <% role.users.where("tp=1").each do |user| %>
+              <div class="user_title bottom_dotted">
+                <div class="user_logo">
+                  <img src="<%= user.asset_logo ? user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" class="img-polaroid" width="61" alt="头像"/>
                 </div>
-              <% end %>
-            </div>
+                <div class="user_name">
+                  <label><%= user.name %></label>
+                  <label><%= user.phone %></label>
+                </div>
+              </div>
+            <% end %>
           </div>
         </li>
       <% end %>

@@ -188,7 +188,7 @@ School::Application.routes.draw do
     end
     resources :main do
       collection do
-        get :bind_user,:error_messages,:get_user_all_teachers
+        get :bind_user,:error_messages,:get_user_all_teachers,:get_user_all_squads
         post :bind_user
       end
     end
@@ -199,7 +199,9 @@ School::Application.routes.draw do
       end
     end
     resources :cook_books
+    resources :albums
     resources :topics
+    resources :topic_entries
     resources :messages do
       member do
         post :return_message

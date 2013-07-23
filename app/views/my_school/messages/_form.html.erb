@@ -5,7 +5,7 @@
       dialogClass: "no-close",
       autoOpen: false,
       height:500,
-      width:700,
+      width:"80%",
       buttons: {
                 "确定": function () {
                     $(this).dialog("close");
@@ -48,7 +48,7 @@
 
 <%if current_user.is_send%>
   <div class="control-group">
-    <label class="control-label" for="inputPassword">是否发送短信</label>
+    <label class="control-label" for="inputPassword">是否发短信</label>
     <div class="controls">
       <%= check_box_tag('message[tp]',"1",@message.tp==1)%>
     </div>
@@ -63,8 +63,9 @@
   </div>
 </div>
 <div id="dialog_change_users"  title="选择收件人">
-  <%= render :partial => "inbox" %>
+  <%= render :partial => "/my_school/messages/inbox" %>
 </div>
+<br/>
 <script type="text/javascript">
 
 $(function() {

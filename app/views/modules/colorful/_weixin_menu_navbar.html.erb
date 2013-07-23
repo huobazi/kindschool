@@ -5,10 +5,7 @@
         <li class="menu_li"><a href="###" class="activity"><img src="/t/colorful/activity_img.png" alt="班级活动" /><label>班级活动</label></a></li>
         <li class="menu_li"><a href="/weixin/cook_books" class="cook"><img src="/t/colorful/cook_img.png" alt="每周菜谱" /><label>每周菜谱</label></a></li>
         <li class="menu_li">
-          <a href="###" class="phone" for="#phone_div"><div class="show_div"></div><img src="/t/colorful/phone_img.png" alt="照片集锦" /><label>照片集锦</label></a>
-          <div id="phone_div" class="hide menu_second">
-            相册列表
-          </div>
+          <a href="/weixin/albums" class="phone" for="#phone_div"><img src="/t/colorful/phone_img.png" alt="照片集锦" /><label>照片集锦</label></a>
         </li>
         <li class="menu_li"><a href="###" class="growth" for="#growth_div"><div class="show_div"></div><img src="/t/colorful/growth_img.png" alt="宝宝成长" /><label>宝宝成长</label></a>
           <div id="growth_div" class="hide menu_second">
@@ -18,7 +15,17 @@
             </ul>
           </div>
         </li>
-        <li class="topic menu_li"><a href="/weixin/topics" class="topic"><img src="/t/colorful/topic_img.png" alt="信息论坛" /><label>信息论坛</label></a></li>
+        <li class="topic menu_li"><a href="###" class="topic" for="#topic_div"><img src="/t/colorful/topic_img.png" alt="信息论坛" /><label>信息论坛</label></a>
+        
+          <div id="topic_div" class="hide menu_second">
+            <ul>
+              <% @topic_categories.each do |category| %>
+                <li><a href="<%= url_for(:controller => "/weixin/topics", :action => :index, :category_id => category.id) %>"><div class="s_arrow"></div><img src="/t/colorful/login_img11.png" alt="头像"/><label><%= category.name %></label></a></li>
+              <% end %>
+            </ul>
+          </div>
+
+        </li>
       </ul>
     </div>
   </div>
@@ -34,6 +41,11 @@
         $(this).children("div").addClass("del_div");
         div.show();
       }
+    })
+    $(".topic").click(function() {
+      var div = $($(this).attr("for"));
+      div.slideToggle();
+      div.children("div").toggleClass("del_div")
     })
   })
 </script>

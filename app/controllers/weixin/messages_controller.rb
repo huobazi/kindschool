@@ -17,6 +17,11 @@ class Weixin::MessagesController < Weixin::ManageController
       {:kind_id=>@kind.id,:status=>1}).page(params[:page] || 1).per(10).order("messages.send_date DESC")
   end
 
+  def new
+    @message = Message.new
+    @data = current_user.get_users_ranges
+  end
+
   def show
     if @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
       if entry = @message.message_entries.find_by_receiver_id(current_user.id)

@@ -142,6 +142,29 @@ class User < ActiveRecord::Base
   end
 
 
+  #获取所有关联班级
+  def get_users_squads
+    data = self.get_users_ranges
+    if data[:tp] == :all
+      squads_data = self.kindergarten.squads.where(:graduate=>false)
+    elsif data[:tp] == :teachers
+      squads_data = []
+      squads_data += data[:squads]
+      unless data[:grades].blank?
+        data[:grades].each do |grade|
+          squads_data += grade.squads.where(:graduate=>false)
+        end
+      end
+      unless data[:playgroup].blank?
+        data[:playgroup].each do |play|
+          squads_data += play.squad unless play.squad.graduate
+        end
+      end
+    end
+    squads_data.uniq!
+    return squads_data.sort_by{|o| o.grade_id}
+  end
+
   #返回tp 是all表示全部都应该能看到，
   #返回tp是teachers表示负责老师，需要根据:squads、:grades判断负责的班级和年级
   #返回tp是student表示学生
@@ -153,7 +176,7 @@ class User < ActiveRecord::Base
     elsif self.tp == 1 #&& self.role && !self.role.admin
       range_data[:tp] = :teachers
       if self.staff
-        range_data[:squads] = self.staff.squads
+        range_data[:squads] = self.staff.squads.where(:graduate=>false)
         range_data[:grades] = self.staff.grades
         range_data[:playgroup] = self.user_squads #兴趣班
       end

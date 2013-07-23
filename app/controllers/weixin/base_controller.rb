@@ -32,6 +32,7 @@ class Weixin::BaseController < ApplicationController
   private
   def my_school
     @kind = Kindergarten.first
+    @topic_categories = @kind.topic_categories
     #    if is_www?
     #      @required_type = :www
     #    else

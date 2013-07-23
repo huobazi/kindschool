@@ -8,8 +8,8 @@
             </a>
          
            <span class="actions">
-           <%= link_to 'Edit',"###",:class=> "blue a_album_edit", :for=>"#album_entry_#{a_e.id}"%>
-           <%= link_to 'Destroy', my_school_album_album_entry_path(@album.id,a_e), method: :delete, data: { confirm: 'Are you sure?' },:class=> "blue" %>
+           <%= link_to '编辑',"###",:class=> "blue a_album_edit", :for=>"#album_entry_#{a_e.id}"%>
+           <%= link_to '删除', my_school_album_album_entry_path(@album.id,a_e), method: :delete, data: { confirm: 'Are you sure?' },:class=> "blue" %>
            <%= button_to '设置为相册封面',choose_main_img_my_school_album_album_entry_path(@album.id,a_e),:class=>'set_as_album_cover'%>
            </span>
            <div id="album_entry_<%=a_e.id%>" class="album_entry_title" style="display:none">
