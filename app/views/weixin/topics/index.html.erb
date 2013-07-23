@@ -7,9 +7,13 @@
   </div>
   <div class="message_list">
     <ul class="data_list">
+      <%= form_tag '/weixin/topics', :method => :get, :id => "topic_search" do %>
+        <%= select_tag "category_id",options_for_select(@kind.topic_categories.collect {|p| [ p.name, p.id ] }, params[:category_id]), :prompt => "选择类别", :class => "select" %>
+        <%= select_tag "time",options_for_select(@kind.topic_categories.collect {|p| [ p.name, p.id ] }, params[:category_id]), :prompt => "选择时间", :class => "select" %>
+      <% end %>
       <%= link_to "发贴子", new_weixin_topic_path, :class => "new_topic" %>
       <% if @topics.blank? %>
-        <li><div class="message_content">您还没有贴子。</div></li>
+        <li><div class="message_content">还没有贴子。</div></li>
       <% else %>
         <% @topics.each do |topic| %>
           <li class="topic_show" data-id="<%= topic.id %>">
@@ -47,6 +51,9 @@ $(document).ready(function() {
     $(this).click(function() {
       window.location.href = "topics/" + $(this).attr("data-id")
     })
+  })
+  $("#category_id").change(function() {
+    $("#topic_search").submit();
   })
 })
 </script>

@@ -144,6 +144,19 @@ body {
 #growth_div label{
     color: #494542;
 }
+#topic_div ul{
+    margin: 0px;
+    padding: 0px;
+    background-color: white;
+}
+#topic_div li{
+    border-bottom: 1px dashed #B2AEA6;
+    padding: 5px;
+    list-style-type: none;
+}
+#topic_div label{
+    color: #494542;
+}
 .menu_second a{
     display: inherit;
     width: 100%;
@@ -475,7 +488,6 @@ body {
 }
 
 .message_div .message_list .data_list .new_topic {
-    background-color: #B0CC20;
     display: block;
     margin: 5px;
     margin-top: 20px;
@@ -484,6 +496,7 @@ body {
     line-height: 50px;
     border-radius: 5px 5px 5px 5px;
     text-align: center;
+    background: #A4C400;
 }
 
 .message_div .message_list .data_list li.topic {
@@ -564,7 +577,10 @@ body {
   font-size: 25px;
   width: 300px;
 }
-
+#topic_search .select {
+  width: 240px;
+  margin-top: 20px;
+}
 .form .field .text-content {
   height: 40px;
   line-height: 40px;
