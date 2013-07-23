@@ -9,35 +9,44 @@
     <ul class="data_list">
       <li class="topic">
         <p class="topic_title"><%= @topic.title %></p>
-        <p><span class="author"><%= @topic.creater ? @topic.creater.name : "" %></span><span class="topic_created_time"><%= @topic.created_at.to_long_datetime %></span></p>
-        <div class="topic_content"><%= @topic.content %></div>
-        <div></div>
-        <div></div>
+        <p class="topic_info"><span class="author"><%= @topic.creater ? @topic.creater.name : "" %></span>&nbsp;&nbsp;<span>发表于:<span><span class="topic_created_time"><%= @topic.created_at.to_long_datetime %></span></p>
+        <div class="topic_content"><%= simple_format @topic.content %></div>
       </li>
+
+      <li class="reply">
+        <%= simple_form_for(@topic_entry, :validate => true, :url => weixin_topic_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
+          <div class="field">
+            <label class="field_prompt">回复</label>
+            <%= f.text_field :content, :class => "text-content" %>
+            <%= f.button :submit, :class => "btn btn-large" %>
+          </div>
+          <%= f.input :topic_id, :as => :hidden %>
+          <%= f.input :creater_id, :as => :hidden %>
+        <% end %>
+      </li>
+      <ul class="topic_replies">
+        <% @replies.each do |reply| %>
+          <li class="reply">
+            <p class="reply_info">
+            <span class="author"><%= reply.creater ? reply.creater.name : "" %></span>&nbsp;&nbsp;<span class="created_time"><%= reply.created_at.to_short_datetime %></span>
+            </p>
+            <div class="content"><%= simple_format reply.content %></div>
+          </li>
+        <% end %>
+      </ul>
     </ul>
+
+    
   </div>
-  <% unless  @topics.blank? %>
-    <div class="message_more">
-      <div class="paginate_div">
-        <%= paginate @topics, :window => 1%>
-      </div>
-      <!--
-      <a href="###" id="message_more" title="查看更多">
-        <div class="show_div"></div>
-      </a>
-      -->
-    </div>
-  <% end %>
 </div>
 <%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
 <%= render :partial => "/modules/colorful/weixin_menu_one"%>
+
 <script type="text/javascript">
-  $(function(){
-    $("#message_search select").change(function(){
-      $("#message_search").submit();
-    })
-  })
-
+$(":submit").click(function() {
+  if( $("#topic_entry_content").val().length < 3 ) {
+    $("<span class='help'>长度太短必须2个字符以上<span>").insertAfter($(".field_prompt"))
+    return false;
+  }
+})
 </script>
-
-

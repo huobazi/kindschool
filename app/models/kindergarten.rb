@@ -115,6 +115,17 @@ class Kindergarten < ActiveRecord::Base
         end
       end
     end
+    #创建论坛分类
+    topic_categories = YAML.load_file("#{Rails.root}/db/basic_data/topic_categories.yml")
+    if !topic_categories.blank?
+      topic_categories.each do |k, category|
+        unless topic_category = self.topic_categories.where(:name => category["name"]).first
+          topic_category = TopicCategory.new(category)
+          topic_category.kindergarten_id = self.id
+          topic_category.save
+        end
+      end
+    end
     self.save!
   end
 

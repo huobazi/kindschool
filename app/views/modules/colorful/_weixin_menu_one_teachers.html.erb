@@ -1,0 +1,101 @@
+<div class="b_arr">
+</div>
+<div class="menu_one_info">
+  <ul class="menu_one_ul">
+    <% @kind.roles.where("admin = 1").each do |role| %>
+      <% unless role.users.where("tp=1").blank? %>
+        <li>
+          <div class="li_title">
+            <div class="s_arrow"></div>
+            <div>
+              <label><%= role.name  %> </label>
+            </div>
+          </div>
+          <div class="li_child">
+            <% role.users.where("tp=1").each do |user| %>
+              <div class="user_title bottom_dotted">
+                <div class="user_logo">
+                  <img src="<%= user.asset_logo ? user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" class="img-polaroid" width="61" alt="头像"/>
+                </div>
+                <div class="user_name">
+                  <label><%= user.name %></label>
+                  <label><%= user.phone %></label>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+    <% if current_user.student_info  %>
+      <% teachers = current_user.student_info.get_all_teachers %>
+      <% if(group_leader = teachers[:group_leader]) && (user = group_leader.user) %>
+        <li>
+          <div class="li_title">
+            <div class="s_arrow"></div>
+            <div>
+              <label>孩子的年级组长</label>
+            </div>
+          </div>
+          <div class="li_child">
+            <div class="user_title bottom_dotted">
+              <div class="user_logo">
+                <img src="<%= user.asset_logo ? user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" class="img-polaroid" width="61" alt="头像"/>
+              </div>
+              <div class="user_name">
+                <label><%= user.name %></label>
+                <label><%= user.phone %></label>
+              </div>
+            </div>
+          </div>
+        </li>
+      <% end %>
+      <% if !teachers[:adviser].blank? && (user = teachers[:adviser].first.user) %>
+        <li>
+          <div class="li_title">
+            <div class="s_arrow"></div>
+            <div>
+              <label>孩子的班主任</label>
+            </div>
+          </div>
+          <div class="li_child">
+            <div class="user_title bottom_dotted">
+              <div class="user_logo">
+                <img src="<%= user.asset_logo ? user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" class="img-polaroid" width="61" alt="头像"/>
+              </div>
+              <div class="user_name">
+                <label><%= user.name %></label>
+                <label><%= user.phone %></label>
+              </div>
+            </div>
+          </div>
+        </li>
+      <% end %>
+      <% if !teachers[:teachers].blank? %>
+        <li>
+          <div class="li_title">
+            <div class="s_arrow"></div>
+            <div>
+              <label>孩子的班级老师</label>
+            </div>
+          </div>
+          <div class="li_child">
+            <% teachers[:teachers].each do |staff| %>
+              <% if user = staff.user %>
+                <div class="user_title bottom_dotted">
+                  <div class="user_logo">
+                    <img src="<%= user.asset_logo ? user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" class="img-polaroid" width="61" alt="头像"/>
+                  </div>
+                  <div class="user_name">
+                    <label><%= user.name %></label>
+                    <label><%= user.phone %></label>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

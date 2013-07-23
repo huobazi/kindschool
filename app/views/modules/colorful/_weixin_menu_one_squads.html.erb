@@ -1,0 +1,45 @@
+<div class="b_arr">
+</div>
+<div class="menu_one_info">
+  <ul class="menu_one_ul">
+    <% unless @squads.blank? %>
+      <% @squads.each do |squad| %>
+        <li>
+          <div class="li_title">
+            <div class="s_arrow"></div>
+            <div>
+              <label><%=squad.grade ? "年级：#{squad.grade.name} " : ""%><%= squad.name  %> </label>
+            </div>
+          </div>
+          <div class="li_child">
+            <% if squad.tp == 0 %>
+              <% squad.users.each do |user| %>
+                <div class="user_title bottom_dotted">
+                  <div class="user_logo">
+                    <img src="<%= user.asset_logo ? user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" class="img-polaroid" width="61" alt="头像"/>
+                  </div>
+                  <div class="user_name">
+                    <label><%= user.name %></label>
+                    <label><%= user.phone %></label>
+                  </div>
+                </div>
+              <% end %>
+            <% else %>
+              <% squad.user_squads_student_users.each do |user| %>
+                <div class="user_title bottom_dotted">
+                  <div class="user_logo">
+                    <img src="<%= user.asset_logo ? user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" class="img-polaroid" width="61" alt="头像"/>
+                  </div>
+                  <div class="user_name">
+                    <label><%= user.name %></label>
+                    <label><%= user.phone %></label>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

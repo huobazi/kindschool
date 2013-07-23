@@ -150,6 +150,20 @@ notice_index:
   params: ""
   protocol: ""
   <<: *DEFAULTS
+
+notice_destroy_multi:
+  id: 2105
+  parent_id: 2
+  name: "删除多个通知信息"
+  level: 2
+  sequence: 0
+  note: "删除多个通知信息"
+  controller: "my_school/notices"
+  action: "destroy_multiple"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
 message_send:
   id: 2006
   parent_id: 2
@@ -175,6 +189,7 @@ message_index:
   protocol: ""
   visible: true
   <<: *DEFAULTS
+
 message_outbox:
   id: 2008
   parent_id: 2
@@ -188,6 +203,21 @@ message_outbox:
   protocol: ""
   visible: true
   <<: *DEFAULTS
+
+message_destroy_multi:
+  id: 2108
+  parent_id: 2
+  name: "删除多个信息"
+  level: 2
+  sequence: 0
+  note: "删除多个信息"
+  controller: "my_school/messages"
+  action: "destroy_multiple"
+  params: ""
+  protocol: ""
+  visible: true
+  <<: *DEFAULTS
+
 message_draft_box:
   id: 2009
   parent_id: 2
@@ -291,7 +321,7 @@ forum_delete:
   <<: *DEFAULTS
 forum_edit:
   id: 3004
-  parent_id: 3choose_operate_show
+  parent_id: 3004
   name: "编辑贴子"
   level: 2
   sequence: 1
