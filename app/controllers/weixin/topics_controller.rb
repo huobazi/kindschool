@@ -1,12 +1,16 @@
 #encoding:utf-8
 class Weixin::TopicsController < Weixin::ManageController
   def index
-    @topics = @kind.topics.page(params[:page] || 1).per(10)
+    unless params[:category_id].blank?
+      @topics = @kind.topics.where(:topic_category_id => params[:category_id].to_i).page(params[:page] || 1).per(10)
+    else
+      @topics = @kind.topics.page(params[:page] || 1).per(10)
+    end
   end
 
   def show
     @topic = @kind.topics.find(params[:id])
-    @replies = @topic.topic_entries
+    @replies = @topic.topic_entries.page(params[:page] || 1).per(10)
 
     @topic_entry = TopicEntry.new
     @topic_entry.topic_id = @topic.id

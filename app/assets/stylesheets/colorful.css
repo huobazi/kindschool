@@ -56,10 +56,14 @@ a{
 }
 #main .menu_center ul li{
     border-right: 1px solid white;
+    margin-left: 50px;
+}
+#main .menu_center ul li:last-child{
+  border: none;
 }
 .main_work{
     background-color: #EAEAEA;
-    min-height: 500px;
+    min-height: 1000px;
 }
 #main .menu_left {
     background-color: #008FDC;
@@ -1193,6 +1197,7 @@ ul.feature_list li{
     background-repeat: no-repeat;
     width: 14px;
     height: 63px;
+    left:111px;
     position: absolute;
 }
 .show_center_right{
@@ -1224,4 +1229,93 @@ ul.feature_list li{
 }
 .class_middle_bottom_image{
     padding-top: 5px;
+}
+.admissions_information{
+    float: left;
+   
+}
+.admissions_info_title h2{
+    margin:50px;
+    color: #fdb968;
+}
+.admissions_info_content{
+    margin:50px;
+}
+.show_admiss_info_center{
+    width: 100%;
+    height: 47px;
+    background-color: #faa038;
+
+}
+.show_admiss_info_menu_center{
+    position: relative;
+}
+.show_admiss_info_center_left{
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -783px -32px;
+    background-repeat: no-repeat;
+    height: 63px;
+    left: -14px;
+    position: absolute;
+    width: 15px;
+}
+.show_admiss_info_center_right{
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -808px -32px;
+    background-repeat: no-repeat;
+    height: 63px;
+    position: absolute;
+    width: 15px;
+    left:950px;
+}
+.show_admiss_info_center ul li{
+    line-height: 50px;
+    margin-top: 22px;
+    text-align: center;
+    font-family: 'Times New Roman';
+    font-weight:bold;
+    height: 36px;
+}
+.offical_home{
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -45px -25px;
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 80px;
+}
+.offical_about_us{
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -164px -145px;
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 90px;
+}
+.offical_feature{
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -295px -143px;
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 80px;
+}
+.offical_admiss_infor{
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -435px -142px;
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 80px;
+}
+.offical_school_index{
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -555px -142px;
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 80px;
+}
+.official_menu_center ul li{
+    width:130px;
+    height: 80px;
+}
+.contact_us_kinder{
+    float: left;
+    /*margin: 50px;*/
 }

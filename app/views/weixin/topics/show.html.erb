@@ -3,7 +3,7 @@
 </div>
 <div class="message_div">
   <div class="message_title">
-    <a href="<%= url_for(:action=>:index) %>" title="返回" class="weixin_return">返回</a>信息论坛
+    <a href="<%= url_for(:action=>:index, :category_id => @topic.topic_category_id) %>" class="weixin_return" title="返回">返回</a>信息论坛
   </div>
   <div class="message_list">
     <ul class="data_list">
@@ -24,16 +24,21 @@
           <%= f.input :creater_id, :as => :hidden %>
         <% end %>
       </li>
-      <ul class="topic_replies">
-        <% @replies.each do |reply| %>
-          <li class="reply">
-            <p class="reply_info">
-            <span class="author"><%= reply.creater ? reply.creater.name : "" %></span>&nbsp;&nbsp;<span class="created_time"><%= reply.created_at.to_short_datetime %></span>
-            </p>
-            <div class="content"><%= simple_format reply.content %></div>
-          </li>
-        <% end %>
-      </ul>
+      <% unless @replies.blank? %>
+        <ul class="topic_replies">
+          <% @replies.each do |reply| %>
+            <li class="reply">
+              <p class="reply_info">
+              <span class="author"><%= reply.creater ? reply.creater.name : "" %></span>&nbsp;&nbsp;<span class="created_time"><%= reply.created_at.to_short_datetime %></span>
+              </p>
+              <div class="content"><%= simple_format reply.content %></div>
+            </li>
+          <% end %>
+          <%= paginate @replies %>
+        </ul>
+      <% else %>
+        暂无回复
+      <% end %>
     </ul>
 
     
