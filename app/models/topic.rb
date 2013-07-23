@@ -3,8 +3,8 @@ class Topic < ActiveRecord::Base
   attr_accessible :approve_status, :approver_id, :content, :creater_id, :is_show, :is_top, :kindergarten_id, :show_count, :status, :title, :tp, :topic_category_id
 
   validates :kindergarten_id, :creater_id, :topic_category_id, :title, :content, :presence => true
-  validates :title, :length => { :minimum => 5 }
-  validates :content, :length => { :minimum => 10 }
+  validates :title, :length => { :minimum => 3 }
+  validates :content, :length => { :minimum => 3 }
 
   belongs_to :kindergarten
   belongs_to :topic_category

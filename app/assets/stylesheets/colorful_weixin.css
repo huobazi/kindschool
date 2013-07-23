@@ -608,3 +608,8 @@ body {
 .bottom_dotted:last-child{
     border-bottom: 0px;
 }
+
+.help {
+  color: red;
+  font-size: 20px;
+}
