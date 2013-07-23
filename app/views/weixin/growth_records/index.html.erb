@@ -1,0 +1,36 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    <span>宝宝成长</span><span>></span><span>宝宝在家</span>
+  </div>
+  <div class="message_list">
+    <ul class="data_list">
+      <%= link_to "发表内容", new_weixin_growth_record_path, :class => "new_topic" %>
+      <% if @growth_records.blank? %>
+        <li><div class="message_content">还没有成长记录</div></li>
+      <% else %>
+        <% @growth_records.each do |growth_record| %>
+          <li>
+            <p><span>开始时间:</span>&nbsp;&nbsp;<span><%= growth_record.start_at ? growth_record.start_at.to_long_datetime : "" %></span></p>
+            <p><span>结束时间:</span>&nbsp;&nbsp;<span><%= growth_record.end_at ? growth_record.end_at.to_long_datetime : "" %></span></p>
+            <div class="content">
+              <%= simple_format growth_record.content %>
+            </div>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+    <br/>
+  </div>
+  <% unless  @growth_records.blank? %>
+    <div class="message_more">
+      <div class="paginate_div">
+        <%= paginate @growth_records, :window => 1%>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>

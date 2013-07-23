@@ -16,11 +16,11 @@
       <% else %>
         <% @topics.each do |topic| %>
           <li class="topic_show" data-id="<%= topic.id %>">
-            <p class="topic_title"><%= topic.title %></p>
-            <p class="topic_created_time"><%= topic.created_at.to_long_datetime %></p>
+            <label class="topic_title"><%= topic.title %></label>
+            <label class="topic_created_time"><%= topic.created_at.to_long_datetime %></label>
             <div class="topic_info">
-              <span class="topic_author"><%= topic.creater ? topic.creater.name : "" %></span>
-              <span class="topic_reply"><%= topic.topic_entries.any? ? topic.topic_entries.count : "" %>
+              <label class="topic_author"><%= topic.creater ? topic.creater.name : "" %></label>
+              <label class="topic_reply"><%= topic.topic_entries.any? ? topic.topic_entries.count : "" %></label>
             </div>
           </li>
          <% end %>

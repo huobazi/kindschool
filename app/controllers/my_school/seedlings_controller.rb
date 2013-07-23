@@ -109,7 +109,7 @@ class MySchool::SeedlingsController < MySchool::ManageController
    def class_student
     if grade=@kind.grades.where(:id=>params[:grade].to_i).first
       if squad = grade.squads.where(:id=>params[:class_number].to_i).first
-         @student_infos = squad.student_infos   
+         @student_infos = squad.student_infos
       end
     end
     render "class_student", :layout => false
