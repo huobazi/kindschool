@@ -1213,3 +1213,48 @@ ul.feature_list li{
 .class_middle_bottom_image{
     padding-top: 5px;
 }
+.admissions_information{
+   
+}
+.admissions_info_title h2{
+    margin:50px;
+    color: #fdb968;
+}
+.admissions_info_content{
+    margin:50px;
+}
+.show_admiss_info_center{
+    width: 100%;
+    height: 47px;
+    background-color: #faa038;
+
+}
+.show_admiss_info_menu_center{
+    position: relative;
+}
+.show_admiss_info_center_left{
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -783px -32px;
+    background-repeat: no-repeat;
+    height: 63px;
+    left: -14px;
+    position: absolute;
+    width: 15px;
+}
+.show_admiss_info_center_right{
+  background-image: url("/t/colorful/official_home.png");
+    background-position: -808px -32px;
+    background-repeat: no-repeat;
+    height: 63px;
+    position: absolute;
+    width: 15px;
+    left:950px;
+}
+.show_admiss_info_center ul li{
+    line-height: 50px;
+    margin-top: 22px;
+    text-align: center;
+    font-family: 'Times New Roman';
+    font-weight:bold;
+    height: 36px;
+}
