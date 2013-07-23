@@ -1,25 +1,44 @@
 <% f = form %>
+<script type="text/javascript">
+  jQuery(function() {
+    $('#growth_record_start_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+    $('#growth_record_end_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+
+  });
+</script>
 <div class="field" id="select_field">
-  <% if action_name == "new" %>
-    <%= f.select :topic_category_id,options_for_select(@kind.topic_categories.collect {|p| [ p.name, p.id ] }), {:prompt=>"选择类别"}, :class => "select" %>
-  <% else %>
-    <%= f.select :topic_category_id,options_for_select(@kind.topic_categories.collect {|p| [ p.name, p.id ] }), {:prompt=>"选择类别"}, :class => "select", :disabled => true %>
-  <% end %>
+  <label class="field_prompt" for="growth_record_start_at">开始时间:</label>
+  <%= f.text_field :start_at, :required => true, :class => "text-content" %>
+  <label class="field_prompt" for="growth_record_end_at">结束时间:</label>
+  <%= f.text_field :end_at, :required => true, :class => "text-content" %>
 </div>
 
-<div class="field" id="title_field">
-<label class="field_prompt" for="title">标题:</label>
-<%= f.text_field :title, :class => "text-content" %>
+<div class="field" id="select_field">
+  <label class="field_prompt" for="grade">年级:</label>
+  <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+  <label class="field_prompt" for="squad">班级:</label>
+  <%= select_tag "squad", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+  <label class="field_prompt" for="student">学员:</label>
+  <%= select_tag "student", options_for_select((@student_infos.collect{|s|[s.user.name,s.id]} || [])), :class => "select" %>
 </div>
 
 <div class="field" id="content_field">
-<label class="field_prompt" for="content">内容:</label>
-<%= f.text_area :content, :class => "text-area" %>
-</div>
+  <label class="field_prompt" for="content">内容:</label>
+  <%= f.text_area :content, :class => "text-area", :required => true %>
+</div
 
-<%= f.input :kindergarten_id, :as => :hidden %>
+
+
+<%= f.input :tp, :as => :hidden %>
 <%= f.input :creater_id, :as => :hidden %>
-<%= f.button :submit, :class => "btn" %>
+<%= f.input :kindergarten_id, :as => :hidden %>
+<%= f.button :submit, :class => "btn btn-large" %>
 
 <script type="text/javascript">
 var flag = []

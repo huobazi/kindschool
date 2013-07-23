@@ -8,7 +8,7 @@
   <div class="message_list">
     <ul class="data_list">
       <li class="topic">
-        <%= simple_form_for(@topic, :validate => true, :url => weixin_topics_path, :html => {:class => "form"}) do |f| %>
+        <%= simple_form_for(@topic, :url => weixin_topics_path, :html => {:class => "form"}) do |f| %>
           <%= render :partial => "form", :object => f %>
         <% end %>
       </li>
