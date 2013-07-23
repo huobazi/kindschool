@@ -64,7 +64,7 @@ a{
 }
 .main_work{
     background-color: #EAEAEA;
-    min-height: 500px;
+    min-height: 1000px;
 }
 #main .menu_left {
     background-color: #008FDC;
@@ -1198,6 +1198,7 @@ ul.feature_list li{
     background-repeat: no-repeat;
     width: 14px;
     height: 63px;
+    left:111px;
     position: absolute;
 }
 .show_center_right{
@@ -1231,6 +1232,7 @@ ul.feature_list li{
     padding-top: 5px;
 }
 .admissions_information{
+    float: left;
    
 }
 .admissions_info_title h2{
@@ -1313,4 +1315,8 @@ ul.feature_list li{
 .official_menu_center ul li{
     width:130px;
     height: 80px;
+}
+.contact_us_kinder{
+    float: left;
+    /*margin: 50px;*/
 }
