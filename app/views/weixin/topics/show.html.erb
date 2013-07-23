@@ -17,7 +17,7 @@
         <%= simple_form_for(@topic_entry, :validate => true, :url => weixin_topic_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
           <div class="field">
             <label class="field_prompt">回复</label>
-            <%= f.text_field :content, :validate => true, :class => "text-content" %>
+            <%= f.text_field :content, :class => "text-content" %>
             <%= f.button :submit, :class => "btn btn-large" %>
           </div>
           <%= f.input :topic_id, :as => :hidden %>
@@ -30,7 +30,7 @@
             <p class="reply_info">
             <span class="author"><%= reply.creater ? reply.creater.name : "" %></span>&nbsp;&nbsp;<span class="created_time"><%= reply.created_at.to_short_datetime %></span>
             </p>
-            <div class="content"><%= reply.content %></div>
+            <div class="content"><%= simple_format reply.content %></div>
           </li>
         <% end %>
       </ul>
@@ -41,3 +41,12 @@
 </div>
 <%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
 <%= render :partial => "/modules/colorful/weixin_menu_one"%>
+
+<script type="text/javascript">
+$(":submit").click(function() {
+  if( $("#topic_entry_content").val().length < 3 ) {
+    $("<span class='help'>长度太短必须2个字符以上<span>").insertAfter($(".field_prompt"))
+    return false;
+  }
+})
+</script>

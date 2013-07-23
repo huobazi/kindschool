@@ -1,0 +1,14 @@
+teacher:
+  name: "老师"
+photo:
+  name: "照片"
+education:
+  name: "教学"
+doctor:
+  name: "医生"
+manage:
+  name: "管理"
+picture_for_children:
+  name: "童画"
+other:
+  name: "其他"

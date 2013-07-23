@@ -1,5 +1,5 @@
 <% f = form %>
-<div class="field">
+<div class="field" id="select_field">
   <% if action_name == "new" %>
     <%= f.select :topic_category_id,options_for_select(@kind.topic_categories.collect {|p| [ p.name, p.id ] }), {:prompt=>"选择类别"}, :class => "select" %>
   <% else %>
@@ -7,16 +7,61 @@
   <% end %>
 </div>
 
-<div class="field">
-<label class="field_prompt">标题:</label>
+<div class="field" id="title_field">
+<label class="field_prompt" for="title">标题:</label>
 <%= f.text_field :title, :class => "text-content" %>
 </div>
 
-<div class="field">
-<label class="field_prompt">内容:</label>
+<div class="field" id="content_field">
+<label class="field_prompt" for="content">内容:</label>
 <%= f.text_area :content, :class => "text-area" %>
 </div>
 
 <%= f.input :kindergarten_id, :as => :hidden %>
 <%= f.input :creater_id, :as => :hidden %>
 <%= f.button :submit, :class => "btn btn-large" %>
+
+<script type="text/javascript">
+var flag = []
+$(":submit").click(function() {
+  if($("select").val() == "") {
+    if($("#select_field").children("span.help").length == 0) {
+      $("<span class='help'>必须选择论坛分类<span>").insertAfter($(".select"))
+    }
+    flag.push(true)
+  } else {
+    if($("#select_field").children("span.help").length > 0) {
+      $("#select_field span.help").remove()
+    }
+    flag.push(false)
+  }
+  if($("#topic_title").val().length < 3) {
+    if($("#title_field").children("span.help").length == 0) {
+      $("<span class='help'>长度太短必须3个字符以上</span>").insertBefore($("#topic_title"))
+    }
+    flag.push(true)
+  } else {
+    if($("#title_field").children("span.help").length > 0) {
+      $("#title_field span.help").remove()
+    }
+    flag.push(false)
+  }
+  if($("#topic_content").val().length < 3) {
+    if($("#content_field").children("span.help").length == 0) {
+      $("<span class='help'>长度太短必须3个字符以上</span>").insertBefore($("#topic_content"))
+    }
+    flag.push(true)
+  } else {
+    if($("#content_field").children("span.help").length > 0) {
+      $("#content_field span.help").remove()
+    }
+    flag.push(false)
+  }
+  for( i in flag ) {
+    if(flag[i] == true) {
+      flag.length = 0;
+      return false;
+    }
+  }
+})
+</script>

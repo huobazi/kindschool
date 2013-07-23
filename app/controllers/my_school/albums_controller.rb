@@ -67,7 +67,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
      @album.save
     respond_to do |format|
       if @album.update_attributes(params[:album])
-        format.html { redirect_to my_school_cook_books_path, notice: '相册锦集修改成功.' }
+        format.html { redirect_to my_school_albums_path, notice: '相册锦集修改成功.' }
       else
         format.html { render action: "edit" }
       end
