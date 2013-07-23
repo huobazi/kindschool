@@ -27,6 +27,31 @@ body {
 .logo{
     margin-bottom: 5px;
 }
+.left_third{
+    width: 35%;
+    display: inline-block;
+    vertical-align: top;
+}
+.left_third .album_img{
+    padding: 2px;
+}
+.album_entry_img{
+    text-align: center;
+    padding: 5px;
+}
+.left_two{
+    width: 60%;
+    display: inline-block;
+}
+.time_label{
+    line-height: 35px;
+    color: #919191;
+    word-wrap: break-word;
+}
+.title_label{
+    line-height: 30px;
+    word-wrap: break-word;
+}
 .head button{
     float: right;
     height: 39px;

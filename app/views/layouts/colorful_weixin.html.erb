@@ -7,8 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <%= stylesheet_link_tag    "app_bootstrap", :media => "all" %>
     <%= stylesheet_link_tag    "colorful_responsive","colorful_weixin", :media => "all" %>
-
+    <%= stylesheet_link_tag    "fancybox/jquery.fancybox",
+      "fancybox/jquery.fancybox-buttons",
+      "fancybox/jquery.fancybox-thumbs" %>
+    
     <%= javascript_include_tag "colorful_weixin" %>
+        <%= javascript_include_tag "fancybox/jquery.fancybox",
+      "fancybox/jquery.fancybox-buttons",
+      "fancybox/jquery.fancybox-thumbs",
+      "fancybox/jquery.fancybox-media" %>
     <%= csrf_meta_tags %>
     <!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
   </head>

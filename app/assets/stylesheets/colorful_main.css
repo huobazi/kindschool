@@ -1,7 +1,7 @@
 /*
  *= require jquery.ui.all
 */
-div.ui-dialog{
+/*div.ui-dialog{
     position: fixed;
 }
 .wrapper input {
@@ -18,8 +18,8 @@ ul,li{
 a{
     color: white;
     text-decoration: none;
-}
-.wrapper{
+}*/
+/*.wrapper{
     width: 960px;
     margin: 0 auto;
 }
@@ -35,21 +35,21 @@ a{
     padding-bottom: 10px;
 }
 /*------------菜单-------------*/
-.menu{
+/*.menu{
     width: 100%;
     position: relative;
 }
 .menu_left{
     /*background-color: #008FDC;*/
-    background-image: url(/t/colorful/menu_left.jpg);
+  /*  background-image: url(/t/colorful/menu_left.jpg);
     background-repeat: no-repeat;
     width: 14px;
     height: 63px;
     position: absolute;
     left:-12px;
     top:80px;
-}
-.menu_left_top{
+}*/
+/*.menu_left_top{
     background-color: #008FDC;
     width: 14px;
     height: 130px;
@@ -81,8 +81,8 @@ a{
 }
 .menu_center ul{
 
-}
-.menu_center ul li{
+}*/
+/*.menu_center ul li{
     border-right: 1px solid white;
     float: left;
     line-height: 8px;
@@ -91,11 +91,11 @@ a{
     text-align: center;
     width: 190px;
     height: 86px;
-    font-family: 'Times New Roman';
+    font-family: 'Times New Roman';*/
     /*margin-bottom: 26px;*/
-    font-weight:bold;
-}
-.menu_center ul li a{
+ /*   font-weight:bold;
+}*/
+/*.menu_center ul li a{
     z-index: 2;
     position: relative;
 }
@@ -113,8 +113,8 @@ a{
     text-align: center;
     background-color: white;
 }
-
-.submenu_center ul li{
+*/
+/*.submenu_center ul li{
     border-right: 1px dotted #008fdc;
     padding-left: 10px;
     padding-right: 10px;
@@ -147,9 +147,9 @@ a{
     background-color: #008fdc;
 
 }
-.show_center_left{
+.show_center_left{*/
     /*background-color: #008FDC;*/
-    background-image: url(/t/colorful/menu_left.jpg);
+    /*background-image: url(/t/colorful/menu_left.jpg);
     background-repeat: no-repeat;
     width: 14px;
     height: 63px;
@@ -172,3 +172,4 @@ a{
     font-weight:bold;
     height: 36px;
 }
+*/
