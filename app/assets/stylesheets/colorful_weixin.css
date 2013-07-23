@@ -35,6 +35,10 @@ body {
 .left_third .album_img{
     padding: 2px;
 }
+.album_entry_img{
+    text-align: center;
+    padding: 5px;
+}
 .left_two{
     width: 60%;
     display: inline-block;

@@ -1,0 +1,48 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    <a href="<%= url_for(:action=>:index) %>" title="返回">返回</a> 相册集锦
+  </div>
+  <div class="show_title">
+    <div class="title">
+      <label><%= @album.title %></label>
+    </div>
+    <div class="limit_title">
+      <label>时 间:<%= @album.send_date ? @album.send_date.to_long_datetime : "" %></label>
+    </div>
+    <div class="title">
+      <label><%= raw @album.content %></label>
+    </div>
+  </div>
+  <div class="message_list">
+    <% unless @album_entries.blank? %>
+      <ul class="data_list">
+        <% @album_entries.each do |entry| %>
+          <li>
+            <a href="<%=entry.asset_img.public_filename%>" class="fancybox"  title="<%=entry.title%>">
+              <div class="album_entry_img">
+                <img src="<%= entry.asset_img.public_filename(:middle) %>" width="226px" height="226px" alt="<%=entry.title%>"/>
+              </div>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+      <div class="paginate_div">
+        <%= paginate  @album_entries, :window => 1%>
+      </div>
+    <% end %>
+    <br/>
+  </div>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
+<script type="text/javascript">
+  $(function(){
+    $("#message_search select").change(function(){
+      $("#message_search").submit();
+    })
+    $(".fancybox").fancybox();
+  })
+</script>
