@@ -1216,7 +1216,13 @@ ul.feature_list li{
     margin:50px;
     float: left;
 }
-.class_middle_image{
-    
+.class_big_image{
     float: left;
+}
+.class_middle_image{
+    margin-left: 10px;
+    float: left;
+}
+.class_middle_bottom_image{
+    padding-top: 5px;
 }
