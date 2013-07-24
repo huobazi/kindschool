@@ -69,5 +69,49 @@ $(document).ready(function() {
       }
     )
   });
+
+var flag = []
+  var time_re = /\d{4}-\d{2}-\d{2}/;
+  $("input[name='commit']").click(function(){
+    if( !time_re.test($("#growth_record_start_at").val()) || $("#growth_record_start_at").val().length == 0 ) {
+      if( $("#start_at_container").children("span.help").length == 0 ) {
+        $("<span class='help'>时间格式不对或为空</span>").insertBefore($("#growth_record_start_at"))
+      }
+      flag.push(true);
+    } else {
+      if($("#start_at_container").children("span.help").length > 0) {
+        $("#start_at_container span.help").remove()
+      }
+      flag.push(false);
+    }
+    if( !time_re.test($("#growth_record_end_at").val()) || $("#growth_record_end_at").val().length == 0 ) {
+      if( $("#end_at_container").children("span.help").length == 0 ) {
+        $("<span class='help'>时间格式不对或为空</span>").insertBefore($("#growth_record_end_at"))
+      }
+      flag.push(true);
+    } else {
+      if($("#end_at_container").children("span.help").length > 0) {
+        $("#end_at_container span.help").remove()
+      }
+      flag.push(false);
+    }
+
+    if( $("#growth_record_content").val().length < 5 ) {
+      if( $("#content_field").children("span.help").length == 0 ) {
+        $("<span class='help'>长度太短必须5个字符以上</span>").insertBefore($("#growth_record_content"))
+      }
+      flag.push(true)
+    } else {
+      if( $("#content_field").children("span.help").length > 0 ) {
+        $("#content_field span.help").remove();
+      }
+    }
+    for( i in flag ) {
+      if(flag[i] == true) {
+        flag.length = 0;
+        return false;
+      }
+    }
+})
 })
 </script>
