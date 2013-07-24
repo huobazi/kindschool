@@ -120,9 +120,9 @@ class Weixin::ApiController < Weixin::BaseController
   def get_read_new_message
     count = current_user.get_read_new_count
     if count > 0
-      return "您有#{count}条未读消息\n\r <a href=\"http://#{request.host_with_port}/weixin/messages/index?#{get_validate_string}\"> 点击查看</a>"
+      return "您有#{count}条未读消息\n\r <a href=\"http://#{request.host_with_port}/weixin/messages?#{get_validate_string}\"> 点击查看</a>"
     else
-      return "您没有未读消息\n\r <a href=\"http://#{request.host_with_port}/weixin/messages/index?#{get_validate_string}\"> 查看历史消息</a>"
+      return "您没有未读消息\n\r <a href=\"http://#{request.host_with_port}/weixin/messages?#{get_validate_string}\"> 查看历史消息</a>"
     end
   end
 
