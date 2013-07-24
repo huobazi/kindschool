@@ -37,6 +37,16 @@ class Weixin::ApiController < Weixin::BaseController
               :Content=>"#{current_user.name}您好!\n\r #{get_read_new_message}",
               :FuncFlag=>0
             })
+        elsif xml_data[:Content] == "2"
+          x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+              :FromUserName=>xml_data[:ToUserName],
+              :CreateTime=>Time.now.to_i,
+              :MsgType=>"news",
+              :Content=>"#{@kind.name}",
+              :ArticleCount=>1,
+              :Articles=>[{:Title=>"幼儿园介绍",:Description=>"#{@kind.note}",:PicUrl=>@kind.asset_img ? @kind.asset_img.public_filename(:middle) : '/t/colorful/logo.png',:Url=>"http://#{request.host_with_port}/weixin/about?#{get_validate_string}"}],
+              :FuncFlag=>0
+            })
         else
           x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
@@ -79,6 +89,7 @@ class Weixin::ApiController < Weixin::BaseController
       #          :FuncFlag=>0
       #        })
     end
+    Rails.logger.info("========x_data===+#{x_data.inspect}")
     render :text=>x_data
   end
 
@@ -131,6 +142,15 @@ class Weixin::ApiController < Weixin::BaseController
     option.each do |k,v|
       if k == "FuncFlag".to_sym
         msg_arr << "<#{k}>#{v}</#{k}>"
+      elsif k == "Articles".to_sym
+        msg_arr << "<ArticleCount>#{v.count}</ArticleCount>"
+        msg_arr << "<Articles>"
+        v.each do |article|
+          msg_arr << "<item>"
+          msg_arr << "<Title><![CDATA[#{article[:Title]}]]></Title><Description><![CDATA[#{article[:Description]}]]></Description><PicUrl><![CDATA[#{article[:PicUrl]}]]></PicUrl><Url><![CDATA[#{article[:Url]}]]></Url>"
+          msg_arr << "</item>"
+        end
+        msg_arr << "</Articles>"
       else
         msg_arr << "<#{k}><![CDATA[#{v}]]></#{k}>"
       end
