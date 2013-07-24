@@ -54,16 +54,6 @@ class  MySchool::PageContentsController < MySchool::ManageController
             entry.update_attributes(:content=>(params[:content]||""))
           end
         elsif params[:tp] == "official_website_about_us"
-          if @page_content.content_entries.blank?
-             entry = ContentEntry.new(:title=>params[:title],:content=>(params[:content]||""))
-            if params[:img]
-              img = PageImg.new(:uploaded_data=> params[:img])
-              entry.page_img = img
-            end
-            @page_content.content_entries << entry
-          else
-          end
-        elsif params[:tp] == "official_website_feature"
           # if @page_content.content_entries.blank?
              entry = ContentEntry.new(:title=>params[:title],:content=>(params[:content]||""))
             if params[:img]
@@ -72,8 +62,18 @@ class  MySchool::PageContentsController < MySchool::ManageController
             end
             @page_content.content_entries << entry
           # else
-
           # end
+        elsif params[:tp] == "official_website_feature"
+          # if @page_content.content_entries.blank?
+          if params[:title].blank?
+              raise "标题不能为空."
+          end
+             entry = ContentEntry.new(:title=>params[:title],:content=>(params[:content]||""))
+            if params[:img]
+              img = PageImg.new(:uploaded_data=> params[:img])
+              entry.page_img = img
+            end
+            @page_content.content_entries << entry
         elsif params[:tp] == "official_website_admissions_information"
            entry = ContentEntry.new(:title=>params[:title],:content=>(params[:content]||""))
             if params[:img]
@@ -132,6 +132,16 @@ class  MySchool::PageContentsController < MySchool::ManageController
         elsif params[:tp] == "contact_us"
           @entry = ContentEntry.find(params[:entry_id])
           @entry.update_attributes(:content=>(params[:content]||""))
+        elsif params[:tp]=="official_website_feature"
+          if params[:title].blank? #&& params[:img].blank?
+            raise "标题不能为空."
+          end
+          @entry = ContentEntry.find(params[:entry_id])
+          @entry.update_attributes(:title=>params[:title],:content=>params[:content])
+          if params[:img]
+              img = PageImg.new(:uploaded_data=> params[:img])
+              @entry.page_img = img
+          end
         end
         if @entry.save
           flash[:notice] = "更新成功."
