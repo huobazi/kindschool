@@ -37,6 +37,14 @@ class Weixin::ApiController < Weixin::BaseController
               :Content=>"#{current_user.name}您好!\n\r #{get_read_new_message}",
               :FuncFlag=>0
             })
+        else
+          x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+              :FromUserName=>xml_data[:ToUserName],
+              :CreateTime=>Time.now.to_i,
+              :MsgType=>"text",
+              :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
+              :FuncFlag=>0
+            })
         end
       else
         if xml_data[:Content] == "1"
