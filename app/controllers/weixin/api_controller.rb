@@ -135,7 +135,7 @@ class Weixin::ApiController < Weixin::BaseController
   end
   def get_read_cook_books
     if cook_book = @kind.cook_books.order("start_at DESC").first
-      return "#{raw cook_book.content}\n\r <a href=\"http://#{request.host_with_port}/weixin/cook_books?#{get_validate_string}\"> 点击查看</a>"
+      return "#{cook_book.start_at ? (cook_book.start_at.to_short_datetime + "\n\r") : ""}#{cook_book.end_at ? (cook_book.end_at.to_short_datetime.to_s + "\n\r") : ""} <a href=\"http://#{request.host_with_port}/weixin/cook_books?#{get_validate_string}\"> 点击查看</a>"
     else
       return "没有菜谱消息\n\r <a href=\"http://#{request.host_with_port}/weixin/cook_books?#{get_validate_string}\"> 进入家园互动</a>"
     end
