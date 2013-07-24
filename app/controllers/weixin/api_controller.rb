@@ -47,6 +47,14 @@ class Weixin::ApiController < Weixin::BaseController
               :Articles=>[{:Title=>"幼儿园介绍",:Description=>"#{@kind.note}",:PicUrl=>"http://#{request.host_with_port}#{@kind.asset_img ? @kind.asset_img.public_filename(:tiny) : '/t/colorful/logo.png'}",:Url=>"http://#{request.host_with_port}/weixin/about?#{get_validate_string}"}],
               :FuncFlag=>0
             })
+        elsif xml_data[:Content] == "4"
+          x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
+              :FromUserName=>xml_data[:ToUserName],
+              :CreateTime=>Time.now.to_i,
+              :MsgType=>"text",
+              :Content=>"#{current_user.name}您好!近期菜谱:\n\r #{get_read_cook_books}",
+              :FuncFlag=>0
+            })
         else
           x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
@@ -77,17 +85,6 @@ class Weixin::ApiController < Weixin::BaseController
             })
         end
       end
-      #      xml_data[:Content]
-      #      #图片形式
-      #      x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
-      #          :FromUserName=>xml_data[:ToUserName],
-      #          :CreateTime=>Time.now.to_i,
-      #          :MsgType=>"news",
-      #          :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
-      #          :ArticleCount=>2,
-      #          :Articles=>[{:Title=>"标题",:Description=>"描述",:PicUrl=>"图片地址",:Url=>"跳转地址"}],
-      #          :FuncFlag=>0
-      #        })
     end
     Rails.logger.info("========x_data===+#{x_data.inspect}")
     render :text=>x_data
@@ -134,6 +131,13 @@ class Weixin::ApiController < Weixin::BaseController
       return "您有#{count}条未读消息\n\r <a href=\"http://#{request.host_with_port}/weixin/messages?#{get_validate_string}\"> 点击查看</a>"
     else
       return "您没有未读消息\n\r <a href=\"http://#{request.host_with_port}/weixin/messages?#{get_validate_string}\"> 查看历史消息</a>"
+    end
+  end
+  def get_read_cook_books
+    if cook_book = @kind.cook_books.order("start_at DESC").first
+      return "#{cook_book.content}\n\r <a href=\"http://#{request.host_with_port}/weixin/cook_books?#{get_validate_string}\"> 点击查看</a>"
+    else
+      return "没有菜谱消息\n\r <a href=\"http://#{request.host_with_port}/weixin/cook_books?#{get_validate_string}\"> 进入家园互动</a>"
     end
   end
 
