@@ -1,7 +1,7 @@
 #encoding:utf-8
-class Weixin::GrowthRecordsController < Weixin::ManageController
+class Weixin::GardenGrowthRecordsController < Weixin::ManageController
   def index
-    @growth_records = @kind.growth_records.where(:tp => 1).page(params[:page] || 1).per(10).order("created_at DESC")
+    @growth_records = @kind.growth_records.where(:tp => 0).page(params[:page] || 1).per(10).order("created_at DESC")
   end
 
   def new
@@ -21,10 +21,10 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
     @growth_record = @kind.growth_records.find_by_id(params[:id])
 
     if @growth_record.update_attributes(params[:growth_record])
-      flash[:success] = "修改宝宝在家成长记录成功"
+      flash[:success] = "修改宝宝在园成长记录成功"
       redirect_to weixin_growth_record_path(@growth_record)
     else
-      flash[:error] = "修改宝宝在家成长记录失败"
+      flash[:error] = "修改宝宝在园成长记录失败"
       render :edit
     end
   end
@@ -33,10 +33,10 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
     @growth_record = GrowthRecord.new(params[:growth_record])
 
     if @growth_record.save!
-      flash[:success] = "创建宝宝在家成长记录成功"
+      flash[:success] = "创建宝宝在园成长记录成功"
       redirect_to weixin_growth_record_path(@growth_record)
     else
-      flash[:error] = "创建宝宝在家成长记录失败"
+      flash[:error] = "创建宝宝在园成长记录失败"
       render :new
     end
   end

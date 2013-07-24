@@ -211,6 +211,12 @@ School::Application.routes.draw do
         get :squad_student
       end
     end
+    resources :garden_growth_records do
+      collection do
+        get :grade_squad
+        get :squad_student
+      end
+    end
     resources :topic_entries
     resources :messages do
       member do

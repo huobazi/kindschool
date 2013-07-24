@@ -26,7 +26,7 @@ var flag = []
 $(":submit").click(function() {
   if($("select").val() == "") {
     if($("#select_field").children("span.help").length == 0) {
-      $("<span class='help'>必须选择论坛分类<span>").insertAfter($(".select"))
+      $("<span class='help'>必须选择论坛分类<span>").insertBefore($(".select"))
     }
     flag.push(true)
   } else {

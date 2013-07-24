@@ -627,24 +627,25 @@ ul, li {
 }
 .message_list .data_list .topic_show .topic_title {
     color: #000000;
-    font-size: 34px;
+    font-size: 25px;
     padding: 20px 20px 0;
 }
 .message_list .data_list .topic_show .topic_created_time {
     color: #5d5d5d;
-    font-size: 30px;
-    padding: 20px 20px 10px;
+    font-size: 20px;
+    padding: 10px 20px 10px;
 }
 .message_list .data_list .topic_show .topic_info {
-    padding: 20px 20px 10px;
+    padding: 5px 20px 10px;
     color: #008fdc;
-    font-size: 30px;
+    font-size: 20px;
     background-color: #EAF7FF;
     position: relative;
 }
 .message_list .data_list .topic_show .topic_info .topic_reply {
     position: absolute;
-    right: 50px;
+    right: 35px;
+    bottom: 7px;
 }
 
 .message_div .message_list .data_list .new_topic {
@@ -657,19 +658,19 @@ ul, li {
     border-radius: 5px 5px 5px 5px;
     text-align: center;
     background: #A4C400;
+    position: relative;
 }
-
 .message_div .message_list .data_list li.topic {
     border: none;
 }
 .message_div .message_list .data_list li.topic .topic_title {
     padding: 10px 20px 25px 20px;
-    font-size: 34px;
+    font-size: 25px;
 }
 
 .message_div .message_list .data_list li.topic .topic_info {
     padding: 0 20px 20px 20px;
-    font-size: 27px;
+    font-size: 22px;
 }
 .message_div .message_list .data_list li.topic .topic_info span {
     color: #7d7d7d;
@@ -678,8 +679,8 @@ ul, li {
     color: #008fdc;
 }
 .message_div .message_list .data_list li.topic .topic_content {
-    padding: 0 20px 20px 20px;
-    text-indent: 20px;
+    padding: 0 20px 0 20px;
+    text-indent: 15px;
     line-height: 40px;
 }
 .message_div .message_list .data_list li.reply {
@@ -694,9 +695,9 @@ ul, li {
 }
 
 .message_div .message_list .data_list li.reply .text-content {
-    margin-top: 20px;
-    height: 50px;
-    line-height: 50px;
+    padding-top: 10px;
+    height: 45px;
+    line-height: 45px;
     width: 90%;
     font-size: 20px;
 }
@@ -716,7 +717,6 @@ ul, li {
 
 .message_div .message_list .data_list ul.topic_replies li .reply_info {
     margin-bottom: 20px;
-    background: url("/t/colorful/qietu_54.png") no-repeat 400px -240px;
 }
 .field_prompt {
     color: #008fdc;
@@ -732,9 +732,9 @@ ul, li {
 }
 
 .select {
-  height: 55px;
+  height: 50px;
   padding-top: 10px;
-  font-size: 25px;
+  font-size: 22px;
   width: 70%;
 }
 #topic_search .select {
@@ -754,10 +754,6 @@ ul, li {
   height: 150px;
 }
 
-.field .btn-large {
-  height: 60px;
-  margin-top: 17px;
-}
 /*===========老师信息==========*/
 .menu_one_info{
     padding: 10px;
@@ -795,4 +791,21 @@ ul, li {
 }
 .li_child{
     display: none;
+}
+
+
+/*============成长记录===============*/
+
+.growth_record {
+  padding: 10px;
+}
+
+.growth_record .time {
+  padding: 10px;
+}
+
+.growth_record .content {
+  padding-top: 15px;
+  text-indent: 20px;
+  line-height: 20px;
 }

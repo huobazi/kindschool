@@ -9,7 +9,7 @@
     <ul class="data_list">
       <li class="topic">
         <label class="topic_title"><%= @topic.title %></label>
-        <p class="topic_info"><label class="author"><%= @topic.creater ? @topic.creater.name : "" %></label>&nbsp;&nbsp;<label>发表于:<label><label class="topic_created_time"><%= @topic.created_at.to_long_datetime %></label></p>
+        <p class="topic_info"><span class="author"><%= @topic.creater ? @topic.creater.name : "" %></span>&nbsp;&nbsp;<span>发表于:<span><span class="topic_created_time"><%= @topic.created_at.to_long_datetime %></label></p>
         <div class="topic_content"><%= simple_format @topic.content %></div>
       </li>
 
@@ -29,7 +29,7 @@
           <% @replies.each do |reply| %>
             <li class="reply">
               <p class="reply_info">
-              <label class="author"><%= reply.creater ? reply.creater.name : "" %></label>&nbsp;&nbsp;<label class="created_time"><%= reply.created_at.to_short_datetime %></label>
+              <label class="author"><%= reply.creater ? reply.creater.name : "" %></label>&nbsp;&nbsp;<label class="created_time"><%= reply.created_at.to_long_datetime %></label>
               </p>
               <div class="content"><%= simple_format reply.content %></div>
             </li>

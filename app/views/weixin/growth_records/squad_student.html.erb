@@ -1,0 +1,2 @@
+<label class="field_prompt" for="student">学员:</label>
+<%= select_tag "student_info_id", options_for_select((@student_infos.collect{|s|[s.user.name,s.id]} || [])), :class => "select", :name => "growth_record[student_info_id]" %>
