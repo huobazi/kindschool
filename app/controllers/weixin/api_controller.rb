@@ -52,7 +52,7 @@ class Weixin::ApiController < Weixin::BaseController
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
               :MsgType=>"text",
-              :Content=>"#{current_user.name}您好!近期菜谱:\n\r #{get_read_cook_books}",
+              :Content=>"#{current_user.name}您好!近期菜谱:\r\n #{get_read_cook_books}",
               :FuncFlag=>0
             })
         else
