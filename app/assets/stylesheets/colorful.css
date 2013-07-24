@@ -1152,6 +1152,7 @@ legend label{
 ul.feature_list li{
     padding: 50px 0px;
     width: 380px;
+    height: 160px;
     border-bottom: 3px solid #fdb968;
     margin: 0 40px;
     float: left ;

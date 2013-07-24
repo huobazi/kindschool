@@ -57,7 +57,7 @@ MENUS ={"home"=>{
    },
    "system"=>{
     "31000"=>{"my_school/templates"=>['set_default_template_view']},
-    "32000"=>{"my_school/page_contents"=>['index','edit','new','show']},
+    "32000"=>{"my_school/page_contents"=>['index','edit','new','show','edit_content']},
     "34000"=>{
       "my_school/content_patterns"=>['index','edit']
     },

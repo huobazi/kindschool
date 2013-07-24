@@ -223,7 +223,7 @@ class User < ActiveRecord::Base
       if squad.grade && squad.grade.staff && (user = squad.grade.staff.user)
         user_ids << user.id.to_s
       end
-      if !data[:playgroup].blalk?
+      if !data[:playgroup].blank?
         squads = data[:playgroup]
         squads.each do |squad_play|
           #添加虚拟班的老师
