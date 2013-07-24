@@ -18,27 +18,17 @@
   </div>
   <div class="activity_content">
     <ul>
-      <li>
-        <div class="activity_content_logo">
-          <img src="/t/colorful/activity_logo1.jpg" alt="" />
-        </div>
-        <div class="activity_content_info">
-          <div class="activity_content_title">活动主题一</div>
-          <div class="activity_content_text">。。。。。。.asdfjadlfkja;sdlfkjads;lfkja;dslkfja;dslkfja;sdlkfja;sdlkfjasldfkasd;fasdflkadsjflaksdj</div>
-        </div>
-      </li>
-      <li>
-        <div class="activity_content_logo">
-          <img src="/t/colorful/activity_logo2.jpg" alt="" />
-        </div>
-        <div class="activity_content_info">
-          <div class="activity_content_title">活动主题二</div>
-          <div class="activity_content_text">Lorem ipsum dolor sit amet, consectetur magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-          velit esse cillum dolore eu fugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum。。。。。。.asdfjadlfkja;sdlfkjads;lfkja;dslkfja;dslkfja;sdlkfja;sdlkfjasldfkasd;fasdflkadsjflaksdj</div>
-        </div>
-      </li>
+      <% @recent_activities.each do |recent_activity| %>
+        <li>
+          <div class="activity_content_logo">
+            <img src="/t/colorful/activity_logo1.jpg" alt="" />
+          </div>
+          <div class="activity_content_info">
+            <div class="activity_content_title"><%= recent_activity.title %></div>
+            <div class="activity_content_text"><%= simple_format recent_activity.content %></div>
+          </div>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>
