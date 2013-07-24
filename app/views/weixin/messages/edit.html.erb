@@ -1,0 +1,27 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    <a href="<%= url_for(:action=>:outbox) %>" title="返回" class="weixin_return">返回</a>消息详情
+  </div>
+  <div class="message_list">
+    <br/>
+    <%= simple_form_for @message, :validate => true, :url => {:controller=>"/weixin/messages",:action=>:update}, :html =>{:class=>"form-horizontal"} do |f| %>
+      <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
+      <%= f.input :title, :required => true %>
+      <%= f.input :kindergarten_id, :as => :hidden %>
+      <%= f.input :content, :input_html => { :class => "span5" }%>
+      <%= f.input :send_date, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.send_date.to_short_datetime}", :disabled => true } %>
+      <%= f.input :sender, :input_html => { :value => "#{f.object.sender.name if f.object.sender}", :disabled => true } %>
+      <div class="control-group">
+        <div class="controls">
+          <%= f.button :submit %>
+        </div>
+      </div>
+      <br/>
+    <% end %>
+  </div>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>

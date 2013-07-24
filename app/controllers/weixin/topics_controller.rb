@@ -2,9 +2,9 @@
 class Weixin::TopicsController < Weixin::ManageController
   def index
     unless params[:category_id].blank?
-      @topics = @kind.topics.where(:topic_category_id => params[:category_id].to_i).page(params[:page] || 1).per(10)
+      @topics = @kind.topics.where(:topic_category_id => params[:category_id].to_i).page(params[:page] || 1).per(10).order("created_at DESC")
     else
-      @topics = @kind.topics.page(params[:page] || 1).per(10)
+      @topics = @kind.topics.page(params[:page] || 1).per(10).order("created_at DESC")
     end
   end
 
@@ -49,5 +49,10 @@ class Weixin::TopicsController < Weixin::ManageController
       flash[:error] = "更新贴子失败"
       render :edit
     end
+  end
+
+  def my
+    @topics = @kind.topics.where(:creater_id => current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
+    render :index
   end
 end

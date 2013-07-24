@@ -4,17 +4,17 @@ School::Application.routes.draw do
   namespace :my_school do
     resources :main do
       collection do
-       get :no_kindergarten 
-       get :about
-       get :contact_us
-       get :feature
-       get :show_official_about_us
-       get :admissions_information
+        get :no_kindergarten
+        get :about
+        get :contact_us
+        get :feature
+        get :show_official_about_us
+        get :admissions_information
       end
     end
     resources :virtual_squads  do 
-       collection {get :get_edit_ids}
-      end
+      collection {get :get_edit_ids}
+    end
     resources :roles do
       member do
         get :set_operate_to_role
@@ -200,13 +200,41 @@ School::Application.routes.draw do
     end
     resources :cook_books
     resources :albums
-    resources :topics
+    resources :topics do
+      collection do
+        get :my
+      end
+    end
+    resources :growth_records do
+      collection do
+        get :grade_squad
+        get :squad_student
+      end
+    end
+    resources :garden_growth_records do
+      collection do
+        get :grade_squad
+        get :squad_student
+      end
+    end
     resources :topic_entries
     resources :messages do
       member do
+        get :outbox_show
+        get :draft_show
+        get :draft_edit
+        get :get_edit_ids
+        post :draft_update
         post :return_message
       end
+      collection do
+        get :outbox,:get_kindergarten,:get_grade,:get_student
+        post :get_grades_all,:get_squads_all,:get_roles_all,:get_users_all
+        delete :destroy_multiple
+        get :draft_box
+      end
     end
+    resources :notices
   end
 
   namespace :weixin do

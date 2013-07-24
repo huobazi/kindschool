@@ -6,7 +6,7 @@
     <a href="<%= url_for(:action=>:index) %>" title="返回" class="weixin_return">返回</a>消息详情
   </div>
   <div class="message_list">
-    <%= simple_form_for @message, :validate => true, :url => {:controller=>"/weixin/messages",:action=>:create}, :html =>{:class=>"form-horizontal"} do |f| %>
+    <%= simple_form_for @message, :validate => true, :url => {:controller=>"/weixin/messages",:action=>:draft_update},:method=>'post', :html =>{:class=>"form-horizontal"} do |f| %>
       <%= render :partial => "/my_school/messages/form",:object=>f %>
     <% end %>
   </div>
