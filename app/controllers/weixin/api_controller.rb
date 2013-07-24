@@ -142,7 +142,7 @@ class Weixin::ApiController < Weixin::BaseController
     option.each do |k,v|
       if k == "FuncFlag".to_sym
         msg_arr << "<#{k}>#{v}</#{k}>"
-      elsif Articles == "FuncFlag".to_sym
+      elsif k == "Articles".to_sym
         msg_arr << "<ArticleCount>#{v.count}</ArticleCount>"
         msg_arr << "<Articles>"
         v.each do |article|
