@@ -89,7 +89,7 @@ class Weixin::ApiController < Weixin::BaseController
       #          :FuncFlag=>0
       #        })
     end
-    Rails.logger("========x_data===+#{x_data.inspect}")
+    Rails.logger.info("========x_data===+#{x_data.inspect}")
     render :text=>x_data
   end
 
