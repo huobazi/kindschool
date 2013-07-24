@@ -31,17 +31,18 @@ class Weixin::BaseController < ApplicationController
   
   private
   def my_school
-    @kind = Kindergarten.first
-    @topic_categories = @kind.topic_categories
-    #    if is_www?
-    #      @required_type = :www
-    #    else
-    #      if @kind = Kindergarten.find_by_number(@subdomain)
-    #        @required_type = :kindergarten
-    #      else
-    #        render :text=>"幼儿园不存在."
-    #      end
-    #    end
+#    @kind = Kindergarten.first
+    
+    if is_www?
+      @required_type = :www
+    else
+      if @kind = Kindergarten.find_by_number(@subdomain)
+        @required_type = :kindergarten
+        @topic_categories = @kind.topic_categories
+      else
+        render :text=>"幼儿园不存在."
+      end
+    end
   end
 
   def is_www?
@@ -52,8 +53,8 @@ class Weixin::BaseController < ApplicationController
     @validate_data = []
     @validate_data << (params[:nonce] || "")
     @validate_data << (params[:timestamp] || "")
-    #    token = (@required_type == :www ? @kind.weixin_token : WEBSITE_CONFIG["weixin_token"])
-    token = @kind.weixin_token
+    token = (@required_type == :www ? @kind.weixin_token : WEBSITE_CONFIG["weixin_token"])
+#    token = @kind.weixin_token
     @validate_data << (token || "")
     @validate_data.sort.join("")
   end
