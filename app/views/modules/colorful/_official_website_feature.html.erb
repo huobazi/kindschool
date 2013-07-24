@@ -10,13 +10,27 @@
       <td></td>
     </tr>
   <%else%>
-    <% entry = page_content.content_entries.first%>
+    <%(page_content.content_entries || []).each do |entry| %>
+    <%#entry =page_content.content_entries.first %>
     <tr>
+      <td><%= raw entry.title %></td>
       <td><%= raw entry.content %></td>
+      <td>
+        <% if entry.page_img %>
+                <div class="box_feat_img">
+                  <img src="<%= entry.page_img.public_filename %>" alt="" width="300"/>
+                </div>
+          <%else%>
+                <div class="box_feat_img">
+                  <img src="/t/colorful/HOME_entry_default.png" alt="" width="300"/>
+                </div>
+       <%end%>
+      </td>
       <td>
         <%= link_to "编辑",:controller=>"/my_school/page_contents",:action=>:edit_content,:id=>page_content.id,:entry_id=>entry.id %>
       </td>
     </tr>
+    <%end%>
   <% end %>
 </table>
 <div class="control-group">
@@ -32,7 +46,7 @@
   </div>
 </div>
 <div class="control-group">
-  <label class="control-label"><span class="required">*</span>内容介绍</label>
+  <label class="control-label"><span class="required"></span>内容介绍</label>
 </div>
 <div class="control-group">
   <% if action_name == "edit_content" %>
@@ -56,7 +70,7 @@
 
   <% else %>
     
-    <label class="control-label"><span class="required">*</span>上传图片</label>
+    <label class="control-label"><span class="required"></span>上传左边大图片</label>
     <div class="controls">
       <label class="show_label">
         <%= file_field_tag 'img', :class => 'profile_input required' %>
