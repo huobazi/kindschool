@@ -164,12 +164,12 @@ body {
     margin: 0px;
     padding: 0px;
 }
-#growth_div li{
+#growth_div li,#message_div li{
     border-bottom: 1px dashed #B2AEA6;
     padding: 5px;
     list-style-type: none;
 }
-#growth_div label{
+#growth_div label,#message_div label{
     color: #494542;
 }
 #topic_div ul{
@@ -333,7 +333,7 @@ body {
     float: left;
     overflow: auto;
 }
-#message_title,#message_content{
+#message_title,#message_content,#message_send_date,#message_kindergarten_label,#message_sender{
     mix-width: 180px;
     width: 80%;
 }
@@ -342,6 +342,27 @@ body {
 }
 #numtj{
     font-size: 14px;
+}
+/*======发件人选名单==============*/
+#message_inputs label{
+    width: 80%;
+    float: left;
+    padding-top: 5px;
+    padding-left: 10px;
+    color: #008FDC;
+}
+#message_inputs .message_user label{
+    width: 100%;
+    color: #2c2c2c;
+}
+#message_inputs .message_user:hover{
+    background-color: #F7A200;
+}
+#message_inputs .message_user{
+    float: left;
+    width: 40%;
+    padding-bottom: 2px;
+    padding-top: 2px;
 }
 #change_users,#change_users:hover{
     color:#008FDC;
@@ -393,7 +414,7 @@ body {
 .tab .checkall_div{
     float: left;
     padding: 6px;
-    width: 147px;
+    /*    width: 147px;*/
 }
 .tab{ width: 100%;float: left;}
 .tab-hd { background:#F0EBE2; overflow:hidden; zoom:1;
@@ -515,15 +536,16 @@ ul, li {
     color: #494542;
 }
 .new_message{
-    background-color: #B0CC20;
+ background-color: #B0CC20;
     border-radius: 5px 5px 5px 5px;
     color: white;
     float: right;
     font-size: 18px;
-    line-height: 30px;
-    text-decoration: none;
-    margin-top: -4px;
+    line-height: 26px;
+    margin-top: -2px;
     text-align: center;
+    text-decoration: none;
+    margin-left: 3px;
 }
 .new_message:hover,.new_message:focus{
     color: white;
@@ -543,6 +565,22 @@ ul, li {
     text-align: center;
     text-decoration: none;
     width: 52px;
+}
+.show_title .user_list{
+    padding: 5px 5px 5px 10px;
+    font-weight: bold;
+}
+.show_title .message_user_list{
+    border: 1px solid #D5D5D5;
+    display: inline-block;
+    max-height: 100px;
+    overflow: auto;
+    width: 80%;
+}
+.show_title  .message_user_list li{
+    float: left;
+    padding: 5px 0;
+    width: 50%;
 }
 .show_title .title{
     padding: 5px 5px 5px 10px;

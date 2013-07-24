@@ -1,0 +1,52 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    发件箱
+    <%= link_to "发消息", new_weixin_message_path, :class => "new_message" %>
+  </div>
+  <div class="message_list">
+    <ul class="data_list">
+      <% if @messages.blank? %>
+        <li><div class="message_content">您还没有发件信息。</div></li>
+      <% else %>
+        <% @messages.each do |message| %>
+          <li class="<%= message.entry_id.blank? ? "" : "return_li"%>">
+            <a href="<%= url_for(:action=>:outbox_show,:id=>message.id) %>" title="查看信息">
+              <div><label class="message_user">发件人:<%=message.sender ? message.sender.name : ""%></label><label class="message_time"><%=message.send_date ? message.send_date.to_long_datetime : ""%></label></div>
+              <% if message.entry_id %>
+                <div class="message_content">回复内容:<%= truncate(message.content) %></div>
+              <% else %>
+                <div class="message_content">信息内容:<%= message.title %></div>
+              <% end %>
+            </a>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+    <br/>
+  </div>
+  <% unless  @messages.blank? %>
+    <div class="message_more">
+      <div class="paginate_div">
+        <%= paginate @messages, :window => 1%>
+      </div>
+      <!--
+      <a href="###" id="message_more" title="查看更多">
+        <div class="show_div"></div>
+      </a>
+      -->
+    </div>
+  <% end %>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
+<script type="text/javascript">
+  $(function(){
+    $("#message_search select").change(function(){
+      $("#message_search").submit();
+    })
+  })
+
+</script>
