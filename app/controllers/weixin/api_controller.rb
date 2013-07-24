@@ -37,6 +37,14 @@ class Weixin::ApiController < Weixin::BaseController
               :Content=>"#{current_user.name}您好!\n\r #{get_read_new_message}",
               :FuncFlag=>0
             })
+        else
+          x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+              :FromUserName=>xml_data[:ToUserName],
+              :CreateTime=>Time.now.to_i,
+              :MsgType=>"text",
+              :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
+              :FuncFlag=>0
+            })
         end
       else
         if xml_data[:Content] == "1"
@@ -112,9 +120,9 @@ class Weixin::ApiController < Weixin::BaseController
   def get_read_new_message
     count = current_user.get_read_new_count
     if count > 0
-      return "您有#{count}条未读消息\n\r <a href=\"http://#{request.host_with_port}/weixin/messages/index?#{get_validate_string}\"> 点击查看</a>"
+      return "您有#{count}条未读消息\n\r <a href=\"http://#{request.host_with_port}/weixin/messages?#{get_validate_string}\"> 点击查看</a>"
     else
-      return "您没有未读消息\n\r <a href=\"http://#{request.host_with_port}/weixin/messages/index?#{get_validate_string}\"> 查看历史消息</a>"
+      return "您没有未读消息\n\r <a href=\"http://#{request.host_with_port}/weixin/messages?#{get_validate_string}\"> 查看历史消息</a>"
     end
   end
 
