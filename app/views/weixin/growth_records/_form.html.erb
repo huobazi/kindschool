@@ -39,7 +39,7 @@
 <% else %>
 <% end %>
 
-<div class="field">
+<div class="field" id="content_field">
   <label class="field_prompt" for="content">内容:</label>
   <%= f.text_area :content, :class => "text-area", :required => true %>
 </div
@@ -49,7 +49,6 @@
 <%= f.input :kindergarten_id, :as => :hidden %>
 <%= f.button :submit, :class => "btn" %>
 
-<script type="text/javascript">
 <script type="text/javascript">
 $(document).ready(function() {
   $("#grade").change(function() {
@@ -74,15 +73,49 @@ $(document).ready(function() {
       }
     )
   });
+var flag = []
+var time_re = /\d{4}-\d{2}-\d{2}/;
+$("input[name='commit']").click(function(){
+    if( !time_re.test($("#growth_record_start_at").val()) || $("#growth_record_start_at").val().length == 0 ) {
+      if( $("#start_at_container").children("span.help").length == 0 ) {
+        $("<span class='help'>时间格式不对或为空</span>").insertBefore($("#growth_record_start_at"))
+      }
+      flag.push(true);
+    } else {
+      if($("#start_at_container").children("span.help").length > 0) {
+        $("#start_at_container span.help").remove()
+      }
+      flag.push(false);
+    }
+    if( !time_re.test($("#growth_record_end_at").val()) || $("#growth_record_end_at").val().length == 0 ) {
+      if( $("#end_at_container").children("span.help").length == 0 ) {
+        $("<span class='help'>时间格式不对或为空</span>").insertBefore($("#growth_record_end_at"))
+      }
+      flag.push(true);
+    } else {
+      if($("#end_at_container").children("span.help").length > 0) {
+        $("#end_at_container span.help").remove()
+      }
+      flag.push(false);
+    }
 
-  var flag = []
-  var time_re = /\d(4)-\d(2)-\d(2)/
-
-  $(":submit").click(function() {
-    if(!time_re.test($("#growth_record_start_at").val() || $("#growth_record_start_at").val().length == 0) {
-      if( $("#xx").children("span.help").length == 0 ) {
+    if( $("#growth_record_content").val().length < 5 ) {
+      if( $("#content_field").children("span.help").length == 0 ) {
+        $("<span class='help'>长度太短必须5个字符以上</span>").insertBefore($("#growth_record_content"))
+      }
+      flag.push(true)
+    } else {
+      if( $("#content_field").children("span.help").length > 0 ) {
+        $("#content_field span.help").remove();
       }
     }
-  })
+    for( i in flag ) {
+      if(flag[i] == true) {
+        flag.length = 0;
+        return false;
+      }
+    }
+})
+
 })
 </script>
