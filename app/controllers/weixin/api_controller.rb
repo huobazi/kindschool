@@ -142,6 +142,15 @@ class Weixin::ApiController < Weixin::BaseController
     option.each do |k,v|
       if k == "FuncFlag".to_sym
         msg_arr << "<#{k}>#{v}</#{k}>"
+      elsif Articles == "FuncFlag".to_sym
+        msg_arr << "<ArticleCount>#{v.count}</ArticleCount>"
+        msg_arr << "<Articles>"
+        v.each do |article|
+          msg_arr << "<item>"
+          msg_arr << "<Title><![CDATA[#{article[:Title]}]]></Title><Description><![CDATA[#{article[:Description]}]]></Description><PicUrl><![CDATA[#{article[:PicUrl]}]]></PicUrl><Url><![CDATA[#{article[:Url]}]]></Url>"
+          msg_arr << "</item>"
+        end
+        msg_arr << "</Articles>"
       else
         msg_arr << "<#{k}><![CDATA[#{v}]]></#{k}>"
       end
