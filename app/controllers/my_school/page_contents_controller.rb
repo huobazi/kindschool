@@ -6,6 +6,8 @@ class  MySchool::PageContentsController < MySchool::ManageController
 
   def show
     @page_content = PageContent.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+    @content_entries = @page_content.content_entries
+    @flag = false
   end
 
   def delete_content
@@ -54,15 +56,43 @@ class  MySchool::PageContentsController < MySchool::ManageController
             entry.update_attributes(:content=>(params[:content]||""))
           end
         elsif params[:tp] == "official_website_about_us"
-          # if @page_content.content_entries.blank?
-             entry = ContentEntry.new(:title=>params[:title],:content=>(params[:content]||""))
-            if params[:img]
-              img = PageImg.new(:uploaded_data=> params[:img])
-              entry.page_img = img
+          content_entries = @page_content.content_entries
+          unless params[:content].blank?
+            if  content_entries.find_by_number('official_website_about_us_content').blank?
+             entry = ContentEntry.new(:number=>"official_website_about_us_content",:content=>(params[:content]))
+             content_entries<< entry
             end
-            @page_content.content_entries << entry
-          # else
-          # end
+          end
+          unless params[:title].blank?
+           if  content_entries.find_by_number('official_website_about_us_title').blank?
+             entry = ContentEntry.new(:number=>"official_website_about_us_title",:title=>(params[:title]))
+             @page_content.content_entries << entry
+           end
+          end
+          unless params[:img].blank?
+            if  content_entries.find_by_number('official_website_about_us_img').blank?
+             entry = ContentEntry.new(:number=>"official_website_about_us_img")
+             img = PageImg.new(:uploaded_data=> params[:img])
+             entry.page_img = img
+             @page_content.content_entries << entry
+            end
+          end
+          unless params[:img_top].blank?
+            if  content_entries.find_by_number('official_website_about_us_img_top').blank?
+             entry = ContentEntry.new(:number=>"official_website_about_us_img_top")
+             img = PageImg.new(:uploaded_data=> params[:img_top])
+             entry.page_img = img
+             @page_content.content_entries << entry
+            end
+          end
+          unless params[:img_bottom].blank?
+            if  content_entries.find_by_number('official_website_about_us_img_bottom').blank?
+             entry = ContentEntry.new(:number=>"official_website_about_us_img_bottom")
+             img = PageImg.new(:uploaded_data=> params[:img_bottom])
+             entry.page_img = img
+             @page_content.content_entries << entry
+            end
+          end
         elsif params[:tp] == "official_website_feature"
           # if @page_content.content_entries.blank?
           if params[:title].blank?
@@ -104,6 +134,7 @@ class  MySchool::PageContentsController < MySchool::ManageController
 
   def edit_content
     @page_content = PageContent.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+    @content_entries = @page_content.content_entries
     if @entry = @page_content.content_entries.find_by_id(params[:entry_id])
     else
       flash[:error]="操作失败,记录不存在."
@@ -142,6 +173,10 @@ class  MySchool::PageContentsController < MySchool::ManageController
               img = PageImg.new(:uploaded_data=> params[:img])
               @entry.page_img = img
           end
+        elsif params[:tp]=="official_website_about_us"
+           @entry = ContentEntry.find(params[:entry_id])
+
+
         end
         if @entry.save
           flash[:notice] = "更新成功."
