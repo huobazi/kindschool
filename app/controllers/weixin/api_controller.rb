@@ -55,6 +55,23 @@ class Weixin::ApiController < Weixin::BaseController
               :Content=>"#{current_user.name}您好!近期菜谱: \n\r #{get_read_cook_books}",
               :FuncFlag=>0
             })
+        elsif xml_data[:Content] == "5"
+          albums = @kind.albums.where(:is_show=>1).limit(8)
+          if albums.blank?
+          else
+            hash = {:ToUserName=>xml_data[:FromUserName],
+              :FromUserName=>xml_data[:ToUserName],
+              :CreateTime=>Time.now.to_i,
+              :MsgType=>"news",
+              :Content=>"照片集锦",
+              :ArticleCount=>1,
+              :Articles=>[{:Title=>"",:Description=>"#{@kind.note}",:PicUrl=>"http://#{request.host_with_port}#{@kind.asset_img ? @kind.asset_img.public_filename(:tiny) : '/t/colorful/logo.png'}",:Url=>"http://#{request.host_with_port}/weixin/about?#{get_validate_string}"}],
+              :FuncFlag=>0
+            }
+
+            x_data = mas_data(hash)
+          end
+
         else
           x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
@@ -79,8 +96,18 @@ class Weixin::ApiController < Weixin::BaseController
           x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
+              :MsgType=>"news",
+              :Content=>"#{@kind.name}",
+              :ArticleCount=>1,
+              :Articles=>[{:Title=>"幼儿园介绍",:Description=>"#{@kind.note}",:PicUrl=>"http://#{request.host_with_port}#{@kind.asset_img ? @kind.asset_img.public_filename(:tiny) : '/t/colorful/logo.png'}",:Url=>"http://#{request.host_with_port}/weixin/about?#{get_validate_string}"}],
+              :FuncFlag=>0
+            })
+        else
+          x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+              :FromUserName=>xml_data[:ToUserName],
+              :CreateTime=>Time.now.to_i,
               :MsgType=>"text",
-              :Content=>"#{@kind.name}\n\r #{@kind.note}",
+              :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
               :FuncFlag=>0
             })
         end
@@ -135,7 +162,7 @@ class Weixin::ApiController < Weixin::BaseController
   end
   def get_read_cook_books
     if cook_book = @kind.cook_books.order("start_at DESC").first
-      return "#{cook_book.start_at ? (cook_book.start_at.to_short_datetime + "\n\r ") : ""}#{cook_book.end_at ? (cook_book.end_at.to_short_datetime.to_s + "\n\r ") : ""} <a href=\"http://#{request.host_with_port}/weixin/cook_books?#{get_validate_string}\"> 点击查看</a>"
+      return "#{cook_book.start_at ? (cook_book.start_at.to_short_datetime + "\n\r ") : ""}#{cook_book.end_at ? ("至" + cook_book.end_at.to_short_datetime.to_s + "\n\r ") : ""} <a href=\"http://#{request.host_with_port}/weixin/cook_books?#{get_validate_string}\"> 点击查看</a>"
     else
       return "没有菜谱消息\r\n <a href=\"http://#{request.host_with_port}/weixin/cook_books?#{get_validate_string}\"> 进入家园互动</a>"
     end
