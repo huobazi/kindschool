@@ -4,12 +4,15 @@
 <div class="message_div">
   <div class="message_title">
     <a href="<%= url_for(:action=>:index) %>" title="返回" class="weixin_return">返回</a>宝宝在家
+    <%= link_to("删除",url_for(:controller=>"/weixin/growth_records",:action=>:destroy,:id=>@growth_record.id),:method=>:delete, :confirm => "您确定删除该成长记录吗?", :class => "new_message")%>
+    <%= link_to "修改", edit_weixin_growth_record_path(@growth_record), :class => "new_message" %>
   </div>
   <div class="message_list">
     <ul class="data_list">
       <li class="growth_record">
         <p class="time"><span>开始时间:</span>&nbsp;&nbsp;<span><%= @growth_record.start_at ? @growth_record.start_at.to_short_datetime : "" %></span></p>
         <p class="time"><span>结束时间:</span>&nbsp;&nbsp;<span><%= @growth_record.end_at ? @growth_record.end_at.to_short_datetime : "" %></span></p>
+        <p class="creater"><span>创建人:</span><span class="author"><%= @growth_record.creater ? @growth_record.creater.name : "" %></span></p>
         <div class="content">
           <%= simple_format @growth_record.content %>
         </div>

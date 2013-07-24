@@ -9,6 +9,8 @@ class GrowthRecord < ActiveRecord::Base
   validates :content, :length => { :minimum => 5 }
   validates :student_info_id, :presence => true
 
+  belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
+
   just_define_datetime_picker :start_at, :add_to_attr_accessible => true
   just_define_datetime_picker :end_at, :add_to_attr_accessible => true
 

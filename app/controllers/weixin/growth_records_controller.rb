@@ -34,7 +34,7 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
 
     if @growth_record.save!
       flash[:success] = "创建宝宝在家成长记录成功"
-      redirect_to weixin_growth_record_path(@growth_record)
+      redirect_to weixin_garden_growth_record_path(@growth_record)
     else
       flash[:error] = "创建宝宝在家成长记录失败"
       render :new
@@ -42,11 +42,11 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
   end
 
   def edit
-    @growth_record = GrowthRecord.find_by_id(params[:id])
+    @growth_record = @kind.growth_records.find_by_id(params[:id])
   end
 
   def show
-    @growth_record = GrowthRecord.find_by_id(params[:id])
+    @growth_record = @kind.growth_records.find_by_id(params[:id])
   end
 
   def grade_squad
@@ -65,5 +65,15 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
     render "squad_student", :layout => false
   end
 
+  def destroy
+    @growth_record = @kind.growth_records.find_by_id(params[:id])
+    @growth_record.destroy
+
+    respond_to do |format|
+      flash[:success] = "删除宝宝在家成长记录成功"
+      format.html { redirect_to(:action => :index) }
+      format.xml { head :ok }
+    end
+  end
 end
 

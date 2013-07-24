@@ -220,10 +220,11 @@ class User < ActiveRecord::Base
     elsif data[:tp] == :student
       user_ids = []
       squad = data[:squad]
-      if squad.grade && squad.grade.staff && (user = squad.grade.staff.user)
-        user_ids << user.id.to_s
-      end
-      if !data[:playgroup].blalk?
+      #学生不考虑发年级组长
+#      if squad.grade && squad.grade.staff && (user = squad.grade.staff.user)
+#        user_ids << user.id.to_s
+#      end
+      if !data[:playgroup].blank?
         squads = data[:playgroup]
         squads.each do |squad_play|
           #添加虚拟班的老师
