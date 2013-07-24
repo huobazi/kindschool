@@ -37,6 +37,16 @@ class Weixin::ApiController < Weixin::BaseController
               :Content=>"#{current_user.name}您好!\n\r #{get_read_new_message}",
               :FuncFlag=>0
             })
+        elsif xml_data[:Content] == "2"
+          x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+              :FromUserName=>xml_data[:ToUserName],
+              :CreateTime=>Time.now.to_i,
+              :MsgType=>"news",
+              :Content=>"#{@kind.name}\n\r",
+              :ArticleCount=>2,
+              :Articles=>[{:Title=>"幼儿园介绍",:Description=>"#{@kind.note}",:PicUrl=>@kind.asset_img ? @kind.asset_img.public_filename(:middle) : '/t/colorful/logo.png',:Url=>"http://#{request.host_with_port}/weixin/about?#{get_validate_string}"}],
+              :FuncFlag=>0
+            })
         else
           x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
