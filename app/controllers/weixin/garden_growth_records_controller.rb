@@ -8,7 +8,7 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
     @growth_record = GrowthRecord.new
     @growth_record.kindergarten_id = @kind.id
     @growth_record.creater_id = current_user.id
-    @growth_record.tp = 1
+    @growth_record.tp = 0
 
     if (@grades = @kind.grades) && !@grades.blank?
       if (@squads = @grades.first.squads) && !@squads.blank?
@@ -22,7 +22,7 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
 
     if @growth_record.update_attributes(params[:growth_record])
       flash[:success] = "修改宝宝在园成长记录成功"
-      redirect_to weixin_growth_record_path(@growth_record)
+      redirect_to weixin_garden_growth_record_path(@growth_record)
     else
       flash[:error] = "修改宝宝在园成长记录失败"
       render :edit
@@ -31,10 +31,9 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
 
   def create
     @growth_record = GrowthRecord.new(params[:growth_record])
-
     if @growth_record.save!
       flash[:success] = "创建宝宝在园成长记录成功"
-      redirect_to weixin_growth_record_path(@growth_record)
+      redirect_to weixin_garden_growth_record_path(@growth_record)
     else
       flash[:error] = "创建宝宝在园成长记录失败"
       render :new
@@ -42,11 +41,11 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
   end
 
   def edit
-    @growth_record = GrowthRecord.find_by_id(params[:id])
+    @growth_record = @kind.growth_records.find_by_id(params[:id])
   end
 
   def show
-    @growth_record = GrowthRecord.find_by_id(params[:id])
+    @growth_record = @kind.growth_records.find_by_id(params[:id])
   end
 
   def grade_squad
@@ -63,6 +62,17 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
       end
     end
     render "squad_student", :layout => false
+  end
+
+  def destroy
+    @growth_record = @kind.growth_records.find_by_id(params[:id])
+    @growth_record.destroy
+
+    respond_to do |format|
+      flash[:success] = "删除宝宝在园成长记录成功"
+      format.html { redirect_to(:action => :index) }
+      format.xml { head :ok }
+    end
   end
 
 end
