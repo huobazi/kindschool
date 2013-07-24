@@ -42,8 +42,8 @@ class Weixin::ApiController < Weixin::BaseController
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
               :MsgType=>"news",
-              :Content=>"#{@kind.name}\n\r",
-              :ArticleCount=>2,
+              :Content=>"#{@kind.name}",
+              :ArticleCount=>1,
               :Articles=>[{:Title=>"幼儿园介绍",:Description=>"#{@kind.note}",:PicUrl=>@kind.asset_img ? @kind.asset_img.public_filename(:middle) : '/t/colorful/logo.png',:Url=>"http://#{request.host_with_port}/weixin/about?#{get_validate_string}"}],
               :FuncFlag=>0
             })
