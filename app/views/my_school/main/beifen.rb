@@ -1,57 +1,13 @@
-<div class="control-group">
-  <label class="control-label"><span class="required"></span>关于幼儿园的介绍</label>
-</div>
-<div class="control-group">
-  <% if action_name == "edit_content" %>
-    <%= text_field_tag :content,"#{@entry.content}", :class => 'profile_input required'%>
-    <%= hidden_field_tag "entry_id",@entry.id %>
-  <% else %>
-    <%= text_field_tag :content,"", :class => 'profile_input '%>
-  <% end %>
-</div>
-<div class="control-group">
-  <label class="control-label"><span class="required"></span>中间标题</label>
-  <div class="controls">
-    <label class="show_label">
-      <% if action_name == "edit_content" %>
-        <%= text_field_tag :title,"#{@entry.title}", :class => 'profile_input required'%>
-      <% else %>
-        <%= text_field_tag :title,"", :class => 'profile_input required'%>
-      <% end %>
-    </label>
+<div class="admissions_info_title">
+    <h2>欢迎宝宝来参加我们幼儿园</h2>
   </div>
-</div>
-<div class="control-group">
-  <% if @entry && @entry.page_img %>
-    <label class="control-label">上传图片</label>
-    <div class="controls">
-      <label class="show_label">
-        <%= file_field_tag 'img', :class => 'profile_input' %>
-      </label>
-      <img src="<%= @entry.page_img.public_filename %>" alt="展示图片" />
-      <%= hidden_field_tag "entry_id",@entry.id %>
-    </div>
-
-  <% else %>
-    
-    <label class="control-label"><span class="required"></span>上传图片</label>
-    <div class="controls">
-      <label class="show_label">
-        <%= file_field_tag 'img', :class => 'profile_input required' %>
-      </label>
-    </div>
-    <label class="control-label"><span class="required"></span>上传右上角图片</label>
-    <div class="controls">
-      <label class="show_label">
-        <%= file_field_tag 'img_top', :class => 'profile_input required' %>
-      </label>
-    </div>
-    <label class="control-label"><span class="required"></span>上传右下角图片</label>
-    <div class="controls">
-      <label class="show_label">
-        <%= file_field_tag 'img_bottom', :class => 'profile_input required' %>
-      </label>
-    </div>
-  <% end %>
-
-</div>
+  <div class="admissions_info_content">
+     <h2>简介</h2>
+         <p>
+         是由关于幼儿园社区，目前着眼于基金理财，提供专业而强大的基金个人收益管理工具，丰富详实的基金理财信息和独到的基金分析平台。网站成立于2007年4月，短短时间内取得了迅速的发展，得到了业界的认可，积累了相当的人气。
+         </p>
+         <p>财帮子致力于为用户提供专业并且人性化的服务和健康和谐的社区。为成为最优秀的互联网投资理财平台而努力。</p>
+         <h2>公司地址</h2>
+         <p>公司名称：北京财众信联科技有限公司</p>
+         <p>公司地址：北京市海淀区上地信息产业基地十街辉煌国际广场4号楼910室</p>
+  </div>

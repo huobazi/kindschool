@@ -60,7 +60,7 @@ class  MySchool::PageContentsController < MySchool::ManageController
           unless params[:content].blank?
             if  content_entries.find_by_number('official_website_about_us_content').blank?
              entry = ContentEntry.new(:number=>"official_website_about_us_content",:content=>(params[:content]))
-             content_entries<< entry
+             @page_content.content_entries<< entry
             end
           end
           unless params[:title].blank?
@@ -105,14 +105,22 @@ class  MySchool::PageContentsController < MySchool::ManageController
             end
             @page_content.content_entries << entry
         elsif params[:tp] == "official_website_admissions_information"
-           entry = ContentEntry.new(:title=>params[:title],:content=>(params[:content]||""))
-            if params[:img]
-              img = PageImg.new(:uploaded_data=> params[:img])
-              entry.page_img = img
+          content_entries = @page_content.content_entries
+          unless params[:title].blank?
+            if  content_entries.find_by_number('official_website_admissions_title').blank?
+             entry = ContentEntry.new(:number=>"official_website_admissions_title",:title=>(params[:title]),:content=>(params[:content]||""))
+             @page_content.content_entries<< entry
             end
-            @page_content.content_entries << entry
+          end
+          unless params[:mid_title].blank?
+            if  content_entries.find_by_number('official_website_admissions_mid_title').blank?
+             entry = ContentEntry.new(:number=>"official_website_admissions_mid_title",:title=>(params[:mid_title]),:content=>(params[:mid_content])||"")
+             @page_content.content_entries<< entry
+            end
+          end
         elsif params[:tp] == "official_website_home"
           entry = ContentEntry.new(:title=>params[:title],:content=>(params[:content]||""))
+            
             if params[:img]
               img = PageImg.new(:uploaded_data=> params[:img])
               entry.page_img = img
@@ -175,8 +183,42 @@ class  MySchool::PageContentsController < MySchool::ManageController
           end
         elsif params[:tp]=="official_website_about_us"
            @entry = ContentEntry.find(params[:entry_id])
-
-
+           page_content = @entry.page_content
+           content_entries = page_content.content_entries
+           unless params[:content].blank?
+            if @entry = content_entries.find_by_number('official_website_about_us_content')
+             @entry.content=params[:content]
+            end
+           end
+          unless params[:title].blank?
+           if @entry = content_entries.find_by_number('official_website_about_us_title')
+             @entry.title=params[:title]
+           end
+          end
+          unless params[:img].blank?
+            if @entry = content_entries.find_by_number('official_website_about_us_img')
+             @entry.page_img.destroy
+             img = PageImg.new(:uploaded_data=> params[:img])
+             @entry.page_img = img
+              # @entry.save!
+            end
+          end
+          unless params[:img_top].blank?
+            if @entry = content_entries.find_by_number('official_website_about_us_img_top')
+             @entry.page_img.destroy
+             img = PageImg.new(:uploaded_data=> params[:img_top])
+             @entry.page_img = img
+              # @entry.save
+            end
+          end
+          unless params[:img_bottom].blank?
+            if @entry = content_entries.find_by_number('official_website_about_us_img_bottom')
+             @entry.page_img.destroy             
+             img = PageImg.new(:uploaded_data=> params[:img_bottom])
+             @entry.page_img = img
+              # @entry.save
+            end
+          end
         end
         if @entry.save
           flash[:notice] = "更新成功."
