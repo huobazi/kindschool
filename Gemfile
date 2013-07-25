@@ -58,3 +58,5 @@ group :development do
   gem "pry-rails"
 end
 gem "acts_as_paranoid", "~>0.4.0"
+gem "carrierwave"
+gem "rails_kindeditor"
