@@ -19,52 +19,51 @@
     </tr>
   <% end %>
 </table>
+<%if @content_entries%>
+<%entry=@content_entries.find_by_number("official_website_admissions_mid_title")  %>
+<%entry_mid=@content_entries.find_by_number("official_website_admissions_title") %>
+<%end%>
+<%if  action_name == "edit_content"%>
 <div class="control-group">
-  <label class="control-label"><span class="required">*</span>标题</label>
+  <label class="control-label"><span class="required"></span>中间标题</label>
   <div class="controls">
     <label class="show_label">
-      <% if action_name == "edit_content" %>
-        <%= text_field_tag :title,"#{@entry.title}", :class => 'profile_input required'%>
-      <% else %>
-        <%= text_field_tag :title,"", :class => 'profile_input required'%>
-      <% end %>
+        <%= text_field_tag :title,entry_title.try(:title), :class => 'profile_input required'%>
     </label>
   </div>
 </div>
-<div class="control-group">
-  <label class="control-label"><span class="required">*</span>内容介绍</label>
-</div>
-<div class="control-group">
-  <% if action_name == "edit_content" %>
-    <%= text_field_tag :content,"#{@entry.content}", :class => 'profile_input required'%>
-    <%= hidden_field_tag "entry_id",@entry.id %>
-  <% else %>
+<%else%>
+<%if entry.blank?%>
+ <%flag = true%>
+ <div class="control-group">
+   <label class="control-label">招生信息标题</label>
+ <div class="controls">
+    <%= text_field_tag :title,"", :class => 'profile_input '%>
+ </div>
+ </div>
+ <div class="control-group">
+   <label class="control-label">招生信息内容</label>
+ </div>
+ <div class="control-group">
     <%= text_field_tag :content,"", :class => 'profile_input '%>
-  <% end %>
-</div>
-
-<div class="control-group">
-  <% if @entry && @entry.page_img %>
-    <label class="control-label">上传图片</label>
-    <div class="controls">
-      <label class="show_label">
-        <%= file_field_tag 'img', :class => 'profile_input' %>
-      </label>
-      <img src="<%= @entry.page_img.public_filename(:middle) %>" alt="展示图片" />
-      <%= hidden_field_tag "entry_id",@entry.id %>
-    </div>
-
-  <% else %>
-    
-    <label class="control-label"><span class="required">*</span>上传图片</label>
-    <div class="controls">
-      <label class="show_label">
-        <%= file_field_tag 'img', :class => 'profile_input required' %>
-      </label>
-    </div>
-  <% end %>
-
-</div>
+ </div>
+<%end%>
+<%if entry_mid.blank?%>
+ <%flag = true%>
+ <div class="control-group">
+   <label class="control-label">中间标题</label>
+ <div class="controls">
+    <%= text_field_tag :mid_title,"", :class => 'profile_input '%>
+ </div>
+ </div>
+ <div class="control-group">
+   <label class="control-label">中间内容</label>
+ </div>
+ <div class="control-group">
+    <%= text_field_tag :mid_content,"", :class => 'profile_input '%>
+ </div>
+<%end%>
+<%end%>
 <div class="control-group">
   <div class="controls">
     <%= button_tag "提交" ,:class=>"btn"%>
@@ -76,6 +75,10 @@
   var editor;
   KindEditor.ready(function(K) {
     editor = K.create('#content', {
+      allowFileManager : true,
+      height:400
+    });
+    editor = K.create('#mid_content', {
       allowFileManager : true,
       height:400
     });
