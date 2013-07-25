@@ -1343,3 +1343,7 @@ ul.feature_list li{
 #new_growth_record .help-inline {
   color :red;
 }
+
+.controls .help-inline {
+  color: red;
+}

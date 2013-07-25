@@ -85,4 +85,41 @@ $("#class_number").change(function(){
                 $("#student_partial").html(result);
             });
 });
+
+var flag = []
+var time_re = /\d{4}-\d{2}-\d{2}/;
+$("input[name='commit']").click(function(){
+  if ( $("#seedling_record_shot_at").val().length > 0 && $("#seedling_record_expire_at").val().length > 0 && time_re.test($("#seedling_record_shot_at").val()) && time_re.test($("#seedling_record_expire_at").val()) ) {
+    if( Date.parse($("#seedling_record_expire_at").val()) < Date.parse($("#seedling_record_shot_at").val()) ) {
+      if( $("#seedling_record_expire_at").next("span.help-inline").length == 0 ) {
+        $("<span class='help-inline'>过期时间必须大于注射时间</span>").insertAfter($("#seedling_record_expire_at"))
+      }
+      flag.push(true);
+    } else {
+      if($("#seedling_record_expire_at").next("span.help-inline").length > 0) {
+        $("#seedling_record_expire_at").next("span.help-inline").remove()
+      }
+      flag.push(false);
+    }
+  }
+
+  if ( !($("input[name='seedling_record[student_info_id]']").is(':checked')) )  {
+    if( $("#grade").next("span.help-inline").length == 0 ) {
+      $("<span class='help-inline'>必须选择学员</span>").insertAfter($("#grade"))
+    }
+    flag.push(true); 
+  } else {
+    if($("#grade").next("span.help-inline").length > 0) {
+      $("#grade").next("span.help-inline").remove()
+    }
+    flag.push(false);
+  }
+
+  for( i in flag ) {
+    if(flag[i] == true) {
+      flag.length = 0;
+      return false;
+    }
+  }
+})
 </script>

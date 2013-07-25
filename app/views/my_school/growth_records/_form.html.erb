@@ -60,7 +60,7 @@ $(document).ready(function() {
         flag.push(true);
       } else {
         if($("#growth_record_end_at").next("span.help-inline").length > 0) {
-          $("#end_at_container span.help-inline").remove()
+          $("#growth_record_end_at").next("span.help-inline").remove()
         }
         flag.push(false);
       }
@@ -73,7 +73,7 @@ $(document).ready(function() {
       flag.push(true); 
     } else {
       if($("#grade").next("span.help-inline").length > 0) {
-        $("#grade span.help-inline").remove()
+        $("#grade").next("span help-inline").remove()
       }
       flag.push(false);
     }
