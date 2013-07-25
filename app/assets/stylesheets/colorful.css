@@ -1336,14 +1336,6 @@ ul.feature_list li{
   margin-left: 180px;
 }
 
-.select_field .help-inline {
-  color: red;
-}
-
-#new_growth_record .help-inline {
-  color :red;
-}
-
-.controls .help-inline {
+span.help-inline {
   color: red;
 }
