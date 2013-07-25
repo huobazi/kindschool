@@ -1,7 +1,7 @@
 <% f = topic_form %>
 
 <div class="control-group">
-    <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_reply_content',:allowFileManager => false,:allowUpload=>false%>
+    <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_entry_content',:allowFileManager => false,:allowUpload=>false%>
 </div>
 <%= f.input :creater_id, :as => :hidden %>
 <%= f.input :topic_id, :as => :hidden %>
@@ -15,9 +15,16 @@
 
 <script type="text/javascript">
   $("input[type='submit']").click(function(){
-    if (topic_reply_content.html().length < 9 || topic_content.isEmpty()) {
-      $("<span class='help-inline'>长度不够或为空<span>").insertAfter(".ke-edit")
+    if (topic_entry_content.html().length < 3 || topic_entry_content.isEmpty()) {
+      if ( $("#topic_entry_content").next("span.help-inline").length == 0 ) {
+        $("<span class='help-inline'>长度不够或为空<span>").insertAfter("#topic_entry_content")
+      }
       return false;
+    } else {
+      if ( $("#topic_entry_content").next("span.help-inline").length > 0 ) {
+        $("#topic_entry_content").next("span.help-inline").remove()
+      }
+      return true;
     }
   })
 </script>

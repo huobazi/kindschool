@@ -43,9 +43,13 @@
       <ul class="work_action">
         <li>
           <% if action_name == "home" %>
-            <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new, :tp=>1)%>" title="添加">
+            <% if choose_operate_show("my_school/growth_records/new") %>
+              <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new, :tp=>1)%>" title="添加">
+            <% end %>
           <% else %>
-            <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new, :tp=>0)%>" title="添加">
+            <% if choose_operate_show("my_school/garden_growth_records/new") %>
+              <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new, :tp=>0)%>" title="添加">
+            <% end %>
           <% end %>
             <div class="work_action_add">
             </div>

@@ -14,9 +14,13 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
   end
 
   def new
-    if current_user.get_users_ranges[:tp] == :student && params[:tp] == "0"
-      flash[:notice] = "权限不够"
-      redirect_to :controller => "/my_school/growth_records", :action => :home
+    # if params[:tp]
+    if current_user.get_users_ranges[:tp] == :student
+      @growth_record = GrowthRecord.new
+      @growth_record.kindergarten_id = @kind.id
+      @growth_record.creater_id = current_user.id
+      @growth_record.tp = params[:tp] unless params[:tp].nil?
+      @growth_record.student_info_id = current_user.student_info.id
     elsif current_user.get_users_ranges[:tp] == :teachers && params[:tp] == "1"
       flash[:notice] = "权限不够"
       redirect_to :controller => "/my_school/growth_records", :action => :home
@@ -32,7 +36,6 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
 
   def create
     @growth_record = GrowthRecord.new(params[:growth_record])
-    @growth_record.creater_id = current_user.id
 
     if @growth_record.save!
       flash[:success] = "添加宝宝在家成长记录成功"

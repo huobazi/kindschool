@@ -1021,6 +1021,9 @@ table.user_attributes td {
 }
 #topic_entries .topic_entry_content {
     padding-left: 100px;
+    word-wrap: break-word;
+    text-indent: 20px;
+    background: #eee;
 }
 
 #topic_entries .topic_entry {
@@ -1339,3 +1342,4 @@ ul.feature_list li{
 span.help-inline {
   color: red;
 }
+
