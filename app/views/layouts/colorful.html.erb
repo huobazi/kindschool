@@ -7,7 +7,6 @@
     <%= stylesheet_link_tag    "fancybox/jquery.fancybox",
       "fancybox/jquery.fancybox-buttons",
       "fancybox/jquery.fancybox-thumbs",
-      "kindeditor/default",
       "datepicker", :media => "all" %>
     <%= javascript_include_tag "colorful","jquery.jcarouselLite","jquery.validate"%>
     <%= javascript_include_tag "rails.validations" %>
@@ -20,12 +19,6 @@
       "bootstrap-datepicker",
       "bootstrap-datepicker.zh-CN"
   %>
-
-    <% if Rails.env == "production" %>
-      <%= javascript_include_tag "kindeditor/kindeditor-all-min","kindeditor/zh_CN"%>
-    <% else %>
-      <%= javascript_include_tag "kindeditor/kindeditor-all","kindeditor/zh_CN"%>
-    <% end %>
     
     <%= csrf_meta_tags %>
   </head>

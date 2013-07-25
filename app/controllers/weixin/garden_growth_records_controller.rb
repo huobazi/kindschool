@@ -18,7 +18,11 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
   end
 
   def update
-    @growth_record = @kind.growth_records.find_by_id(params[:id])
+    if @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 0)
+    else
+      flash[:error] = "只能修改宝宝在园成长记录"
+      redirect_to weixin_garden_growth_records_path
+    end
 
     if @growth_record.update_attributes(params[:growth_record])
       flash[:success] = "修改宝宝在园成长记录成功"
@@ -41,11 +45,19 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
   end
 
   def edit
-    @growth_record = @kind.growth_records.find_by_id(params[:id])
+    if @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 0)
+    else
+      flash[:error] = "只能编辑宝宝在园成长记录"
+      redirect_to weixin_garden_growth_records_path
+    end
   end
 
   def show
-    @growth_record = @kind.growth_records.find_by_id(params[:id])
+    if @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 0)
+    else
+      flash[:error] = "只能查看宝宝在园成长记录"
+      redirect_to weixin_garden_growth_records_path
+    end
   end
 
   def grade_squad
@@ -65,8 +77,11 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
   end
 
   def destroy
-    @growth_record = @kind.growth_records.find_by_id(params[:id])
-    @growth_record.destroy
+    if @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 0)
+    else
+      flash[:error] = "只能删除宝宝在园成长记录"
+      redirect_to weixin_garden_growth_records_path
+    end
 
     respond_to do |format|
       flash[:success] = "删除宝宝在园成长记录成功"

@@ -12,11 +12,8 @@
   <label class="control-label"><span class="required">*</span>内容</label>
 </div>
 <div class="control-group">
-    <%= f.text_field :content, :class => 'profile_input required'%>
+    <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false%>
 </div>
-
-  
-
 <%= f.input :kindergarten_id, :as => :hidden %>
 <%= f.input :creater_id, :as => :hidden %>
 
@@ -28,19 +25,17 @@
 </div>
 
 <script type="text/javascript">
-  var editor;
-  KindEditor.ready(function(K) {
-    editor = K.create('#topic_content', {
-      allowFileManager : true,
-      height: "400px",
-      width: "300px"
-    });
-  });
-
   $("input[type='submit']").click(function(){
-    if (editor.html().length < 9 || editor.isEmpty()) {
-      $("<span class='help-inline'>长度不够或为空<span>").insertAfter("#topic_content")
-      return false;
+    if (topic_content.html().length < 9 || topic_content.isEmpty()) {
+      if ( $("#topic_content").next("span.help-inline").length == 0 ) {
+        $("<span class='help-inline'>长度不够或为空<span>").insertAfter("#topic_content")
+        return false;
+      }
+    } else {
+        if ( $("#topic_content").next("span.help-inline").length > 0 ) {
+          $("#topic_content").next("span.help-inline").remove()
+        }
+        return true;
     }
   })
 </script>

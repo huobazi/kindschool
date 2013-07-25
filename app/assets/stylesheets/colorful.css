@@ -1019,6 +1019,9 @@ table.user_attributes td {
 }
 #topic_entries .topic_entry_content {
     padding-left: 100px;
+    word-wrap: break-word;
+    text-indent: 20px;
+    background: #eee;
 }
 
 #topic_entries .topic_entry {
@@ -1318,6 +1321,7 @@ ul.feature_list li{
     float: left;
     /*margin: 50px;*/
 }
+
 .official_home_index{
     float: left;
     width:100%;
@@ -1527,3 +1531,23 @@ ul.teacher_list{
 ul.teacher_list li{
     height: 150px;
 }
+
+/*========成长记录===========*/
+
+.select_field .field_prompt {
+  width: 160px;
+  text-align: right;
+}
+
+.select_field .title {
+  text-align: center;
+}
+
+.select_field .select {
+  margin-left: 180px;
+}
+
+span.help-inline {
+  color: red;
+}
+

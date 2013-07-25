@@ -1,0 +1,51 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>幼儿园信息</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+
+        </li>
+      </ul>
+    </div>
+    <div class="work_form" >
+      <div class="form_div">
+        <form class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label">名称</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=@kind.name  %>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">简介</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=@kind.note  %>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Logo</label>
+            <div class="controls">
+              <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename(:thumb) : '/t/colorful/logo.png' %>" alt="Logo"/>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

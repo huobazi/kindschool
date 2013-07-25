@@ -21,9 +21,13 @@
           <ul>
             <li>
             <% if @growth_record.tp == true %>
-              <%= link_to "宝宝在家", home_my_school_growth_records_path %></li>
+              <%if choose_operate_show('my_school/growth_records/home')%>
+                <%= link_to "宝宝在家", home_my_school_growth_records_path %></li>
+              <% end %>
             <% else %>
-              <%= link_to "宝宝在园", garden_my_school_garden_growth_records_path %></li>
+              <%if choose_operate_show('my_school/garden_growth_records/garden')%>
+                <%= link_to "宝宝在园", garden_my_school_garden_growth_records_path %></li>
+              <% end %>
             <% end %>
             <li>/</li>
             <li>查看成长记录</li>

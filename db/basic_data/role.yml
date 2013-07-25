@@ -248,8 +248,8 @@ role9:
   - 4004
 
 role10:
-  name: "行政人员"
-  number: "administrative_staff"
+  name: "保育员"
+  number: "daycare worker"
   admin: false
   operates:
   - 8004

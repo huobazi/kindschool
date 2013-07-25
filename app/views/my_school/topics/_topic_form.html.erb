@@ -1,6 +1,8 @@
 <% f = topic_form %>
 
-<%= f.input :content, :validate => true, :required => true, :input_html => { :class => "span5" } %>
+<div class="control-group">
+    <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_entry_content',:allowFileManager => false,:allowUpload=>false%>
+</div>
 <%= f.input :creater_id, :as => :hidden %>
 <%= f.input :topic_id, :as => :hidden %>
 
@@ -10,3 +12,19 @@
     <%= f.button :submit %>
   </div>
 </div>
+
+<script type="text/javascript">
+  $("input[type='submit']").click(function(){
+    if (topic_entry_content.html().length < 3 || topic_entry_content.isEmpty()) {
+      if ( $("#topic_entry_content").next("span.help-inline").length == 0 ) {
+        $("<span class='help-inline'>长度不够或为空<span>").insertAfter("#topic_entry_content")
+      }
+      return false;
+    } else {
+      if ( $("#topic_entry_content").next("span.help-inline").length > 0 ) {
+        $("#topic_entry_content").next("span.help-inline").remove()
+      }
+      return true;
+    }
+  })
+</script>

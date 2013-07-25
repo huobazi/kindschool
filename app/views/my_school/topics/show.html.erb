@@ -83,14 +83,6 @@
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label">状态</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @topic.status %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
             <label class="control-label" >所属幼儿园</label>
             <div class="controls">
               <label class="show_label">
@@ -115,26 +107,10 @@
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label">审核状态</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @topic.approve_status %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">审核人</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @topic.approver_id %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
             <label class="control-label">内容</label>
             <div class="controls">
               <label class="show_label">
-                <%= @topic.content %>
+                <%=raw @topic.content %>
               </label>
             </div>
           </div>
