@@ -35,3 +35,32 @@
     <%= f.button :submit %>
   </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  var flag = []
+  var time_re = /\d{4}-\d{2}-\d{2}/;
+  $("input[name='commit']").click(function(){
+    if ( $("#growth_record_start_at").val().length > 0 && $("#growth_record_end_at").val().length > 0 && time_re.test($("#growth_record_start_at").val()) && time_re.test($("#growth_record_end_at").val()) ) {
+      if( Date.parse($("#growth_record_end_at").val()) < Date.parse($("#growth_record_start_at").val()) ) {
+        if( $("#growth_record_end_at").next("span.help-inline").length == 0 ) {
+          $("<span class='help-inline'>结束时间必须大于开始时间</span>").insertAfter($("#growth_record_end_at"))
+        }
+        flag.push(true);
+      } else {
+        if($("#end_at_container").children("span.help").length > 0) {
+          $("#end_at_container span.help").remove()
+        }
+        flag.push(false);
+      }
+    }
+
+    for( i in flag ) {
+      if(flag[i] == true) {
+        flag.length = 0;
+        return false;
+      }
+    }
+  })
+})
+</script>

@@ -217,6 +217,7 @@ School::Application.routes.draw do
         get :squad_student
       end
     end
+    resources :activities
     resources :topic_entries
     resources :messages do
       member do

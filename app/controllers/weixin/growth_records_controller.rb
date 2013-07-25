@@ -34,7 +34,6 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
   end
 
   def create
-    binding.pry
     params[:growth_record][:tp] = 1
     @growth_record = GrowthRecord.new(params[:growth_record])
 

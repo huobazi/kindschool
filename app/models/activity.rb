@@ -6,8 +6,8 @@ class Activity < ActiveRecord::Base
   just_define_datetime_picker :end_at, :add_to_attr_accessible => true
 
   validates :title, :content, :start_at, :end_at, :tp, :presence => true
-  validates :title, :length => { :minimum => 5 }
-  validates :content, :length => { :minimum => 10 }
+  validates :title, :length => { :minimum => 3 }
+  validates :content, :length => { :minimum => 5 }
 
   belongs_to :kindergarten
   has_many :activity_entries
