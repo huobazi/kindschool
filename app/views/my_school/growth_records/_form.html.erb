@@ -23,17 +23,23 @@
 
 <%= f.input :content, :input_html => {:rows => "10", :class => "span5"}%>
 <%= f.input :kindergarten_id, :as => :hidden %>
+<%= f.input :creater_id, :as => :hidden %>
+<%= f.input :student_info_id, :as => :hidden %>
 <%= f.input :tp, :as => :hidden %>
 <% if action_name == "new" %>
-  <div class="select_field">
-    <div><p class="title">*选择学员</p></div>
-    <label class="field_prompt" for="grade">年级:</label>
-    <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
-    <div id="grade_squad_partial">
+  <% if current_user.get_users_ranges[:tp] == :student %>
+    <%= f.input :student_info, :required => true, :as => :string, :input_html => { :disabled => true, :value => current_user.name} %>
+  <% else %>
+    <div class="select_field">
+      <div><p class="title">*选择学员</p></div>
+      <label class="field_prompt" for="grade">年级:</label>
+      <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+      <div id="grade_squad_partial">
+      </div>
+      <div id="squad_student_partial">
+      </div>
     </div>
-    <div id="squad_student_partial">
-    </div>
-  </div>
+  <% end %>
 <% else %>
   <%= f.input :student_info_label, :required => true, :as => :string, :input_html => { :disabled => true }  %>
 <% end %>
@@ -66,16 +72,18 @@ $(document).ready(function() {
       }
     }
 
-    if ( !($("#student_info_id").length > 0) ) {
-      if( $("#grade").next("span.help-inline").length == 0 ) {
-        $("<span class='help-inline'>必须选择学员</span>").insertAfter($("#grade"))
-      }
-      flag.push(true); 
-    } else {
+    if ( $("#student_info_id").length > 0 ) {
       if($("#grade").next("span.help-inline").length > 0) {
         $("#grade").next("span help-inline").remove()
       }
       flag.push(false);
+    } else if ( $("#growth_record_student_info_label").length > 0 || $("#growth_record_student_info").length > 0 ) {
+      flag.push(false)
+    } else {
+      if( $("#grade").next("span.help-inline").length == 0 ) {
+        $("<span class='help-inline'>必须选择学员</span>").insertAfter($("#grade"))
+      }
+      flag.push(true);
     }
 
     for( i in flag ) {
