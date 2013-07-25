@@ -146,6 +146,8 @@ School::Application.routes.draw do
       collection do
         get :home
         delete :destroy_multiple
+        get :grade_squad_partial
+        get :squad_student_partial
       end
     end
 

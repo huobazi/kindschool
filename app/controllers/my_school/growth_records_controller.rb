@@ -25,6 +25,8 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
       @growth_record.kindergarten_id = @kind.id
       @growth_record.creater_id = current_user.id
       @growth_record.tp = params[:tp] unless params[:tp].nil?
+
+      @grades = @kind.grades.order("sequence ASC")
     end
   end
 
@@ -105,6 +107,22 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
       format.html { redirect_to home_my_school_growth_records_path }
       format.json { head :no_content }
     end
+  end
+
+  def grade_squad_partial
+    if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
+      @squads = grade.squads
+    end
+    render "grade_squad", :layout => false
+  end
+
+  def squad_student_partial
+    if grade=@kind.grades.where(:id=>params[:grade].to_i).first
+      if squad = grade.squads.where(:id=>params[:squad].to_i).first
+         @student_infos = squad.student_infos
+      end
+    end
+    render "squad_student", :layout => false
   end
 
 end

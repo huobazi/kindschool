@@ -1320,3 +1320,26 @@ ul.feature_list li{
     float: left;
     /*margin: 50px;*/
 }
+
+/*========成长记录===========*/
+
+.select_field .field_prompt {
+  width: 160px;
+  text-align: right;
+}
+
+.select_field .title {
+  text-align: center;
+}
+
+.select_field .select {
+  margin-left: 180px;
+}
+
+.select_field .help-inline {
+  color: red;
+}
+
+#new_growth_record .help-inline {
+  color :red;
+}

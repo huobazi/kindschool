@@ -31,7 +31,11 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:index)%>" title="返回">
+          <% if params[:tp] == "1" %>
+            <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:home)%>" title="返回">
+          <% else %>
+            <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:garden)%>" title="返回">
+          <% end %>
             <div class="work_action_return">
             </div>
             <div class="work_action_return_move">
