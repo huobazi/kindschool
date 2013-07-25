@@ -1,6 +1,7 @@
 class CreateKindeditorAssets < ActiveRecord::Migration
   def self.up
     create_table :kindeditor_assets do |t|
+      t.integer :user_id
       t.string :asset
       t.integer :file_size
       t.string :file_type
