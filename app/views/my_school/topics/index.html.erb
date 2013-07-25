@@ -18,24 +18,28 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:new)%>" title="添加">
-            <div class="work_action_add">
-            </div>
-            <div class="work_action_add_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/topics/new") %>
+            <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:new)%>" title="添加">
+              <div class="work_action_add">
+              </div>
+              <div class="work_action_add_move">
+              </div>
+            </a>
+          <% end %>
         </li>
         <li>
-          <a href="/" title="删除" id="destroy_multiple">
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/topic/destroy_multiple") %>
+            <a href="/" title="删除" id="destroy_multiple">
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+            </a>
+          <% end %>
         </li>
       </ul>
     </div>
-    
+
     <div class="search_form">
      <%= form_tag '/my_school/topics' , :method=>"get" do %>
       <b>标题：</b>
@@ -60,11 +64,25 @@
             <% @topics.each do |topic| %>
               <tr>
                 <td><input id="topic_<%= topic.id %>" class="topic_check" name="topic[]" type="checkbox" value="<%= topic.id %>" /></td>
-                <td><%= link_to topic.title, my_school_topic_path(topic) %></td>
+                <td>
+                  <% if choose_operate_show("my_school/topics/show") %>
+                    <%= link_to topic.title, my_school_topic_path(topic) %>
+                  <% else %>
+                    <%= topic.title %>
+                  <% end %>
+                </td>
                 <td><%= topic.creater ? topic.creater.name : "" %></td>
                 <td><%= topic.show_count %></td>
-                <td><%= link_to "查看", my_school_topic_path(topic), :class => "show" %></td>
-                <td><%= link_to "编辑", edit_my_school_topic_path(topic), :class => "show" %></td>
+                <td>
+                  <% if choose_operate_show("my_school/topics/show") %>
+                    <%= link_to "查看", my_school_topic_path(topic), :class => "show" %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if choose_operate_show("my_school/topics/edit") %>
+                    <%= link_to "编辑", edit_my_school_topic_path(topic), :class => "show" %>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           <% end %>

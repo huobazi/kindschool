@@ -18,20 +18,24 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/squads",:action=>:new)%>" title="添加">
-            <div class="work_action_add">
-            </div>
-            <div class="work_action_add_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/squads/index") %>
+            <a href="<%=url_for(:controller=>"/my_school/squads",:action=>:new)%>" title="添加">
+              <div class="work_action_add">
+              </div>
+              <div class="work_action_add_move">
+              </div>
+            </a>
+          <% end %>
         </li>
         <li>
-          <a href="/" title="删除" id="destroy_multiple">
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/squads/destroy") %>
+            <a href="/" title="删除" id="destroy_multiple">
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+            </a>
+          <% end %>
         </li>
       </ul>
     </div>
@@ -60,13 +64,27 @@
             <% @squads.each do |squad| %>
               <tr>
                 <td><input id="squad_<%= squad.id %>" class="squad_check" name="squad[]" type="checkbox" value="<%= squad.id %>" /></td>
-                <td><%= link_to squad.name, my_school_squad_path(squad) %></td>
+                <td>
+                  <% if choose_operate_show("my_school/squads/show") %>
+                    <%= link_to squad.name, my_school_squad_path(squad) %>
+                  <% else %>
+                    <%= squad.name %>
+                  <% end %>
+                </td>
                 <td><%= squad.grade_label %></td>
                 <td><%= squad.historyreview %></td>
                 <td><%= Squad::GRADUATE_DATA[squad.graduate.to_s] %></td>
                 <td><%= squad.note %></td>
-                <td><%= link_to "查看", my_school_squad_path(squad), :class => "show" %></td>
-                <td><%= link_to "编辑", edit_my_school_squad_path(squad), :class => "show" %></td>
+                <td>
+                  <% if choose_operate_show("my_school/squads/show") %>
+                    <%= link_to "查看", my_school_squad_path(squad), :class => "show" %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if choose_operate_show("my_school/squads/edit") %>
+                    <%= link_to "编辑", edit_my_school_squad_path(squad), :class => "show" %>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           <% end %>

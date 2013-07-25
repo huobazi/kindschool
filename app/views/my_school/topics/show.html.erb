@@ -21,36 +21,44 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:new)%>" title="添加">
-            <div class="work_action_add">
-            </div>
-            <div class="work_action_add_move">
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:edit,:id=>@topic.id)%>" title="编辑">
-            <div class="work_action_edit">
-            </div>
-            <div class="work_action_edit_move">
-            </div>
-          </a>
-        </li>
-        <li>
-          <%= link_to(url_for(:controller=>"/my_school/topics",:action=>:destroy,:id=>@topic.id),:method=>:delete, :confirm => "您确定删除该贴子吗?") do %>
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
+          <% if choose_operate_show("my_school/topics/new") %>
+            <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:new)%>" title="添加">
+              <div class="work_action_add">
+              </div>
+              <div class="work_action_add_move">
+              </div>
+            </a>
           <% end %>
         </li>
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:index)%>" title="返回">
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/topics/edit") %>
+            <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:edit,:id=>@topic.id)%>" title="编辑">
+              <div class="work_action_edit">
+              </div>
+              <div class="work_action_edit_move">
+              </div>
+            </a>
+          <% end %>
+        </li>
+        <li>
+          <% if choose_operate_show("my_school/topics/destroy") %>
+            <%= link_to(url_for(:controller=>"/my_school/topics",:action=>:destroy,:id=>@topic.id),:method=>:delete, :confirm => "您确定删除该贴子吗?") do %>
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+            <% end %>
+          <% end %>
+        </li>
+        <li>
+          <% if choose_operate_show("my_school/topics/index") %>
+            <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:index)%>" title="返回">
+              <div class="work_action_return">
+              </div>
+              <div class="work_action_return_move">
+              </div>
+            </a>
+          <% end %>
         </li>
       </ul>
     </div>

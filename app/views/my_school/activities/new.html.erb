@@ -31,15 +31,23 @@
       <ul class="work_action">
         <li>
           <% if controller_name == "activities" %>
-            <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:index)%>" title="返回">
+            <% if choose_operate_show("my_school/activities/index") %>
+              <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:index)%>" title="返回">
+                <div class="work_action_return">
+                </div>
+                <div class="work_action_return_move">
+                </div>
+              </a>
           <% else %>
-            <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:index)%>" title="返回">
+            <% if choose_operate_show("my_school/interest_activities/index") %>
+              <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:index)%>" title="返回">
+                <div class="work_action_return">
+                </div>
+                <div class="work_action_return_move">
+                </div>
+              </a>
+            <% end %>
           <% end %>
-          <div class="work_action_return">
-          </div>
-          <div class="work_action_return_move">
-          </div>
-          </a>
         </li>
       </ul>
     </div>
