@@ -72,6 +72,9 @@ MENUS ={"home"=>{
     },
     "38000"=>{
       "my_school/topic_categories"=>["index", "show", "edit", "new"]
+    },
+    "39000"=>{
+      "my_school/my_kindergarten"=>["index",  "edit", "update"]
     }
    },
    "100000"=>{
