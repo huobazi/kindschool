@@ -102,70 +102,22 @@
        	</div>
        	<div class="official_home_teacher_info">
     			<ul class="teacher_list">
+            <%(@teacher_infos||[]).each do |info|%>
     				 <li>
               	<div class="official_home_teacher_img">
-              		<img src="/t/colorful/activity_logo1.jpg" alt="" width="200"   >
+              		<img src="<%=info.page_img.blank? ? '/t/colorful/activity_logo1.jpg' : info.page_img.public_filename %>" alt="" width="200"   >
               	</div>
               	<div class="teacher_info">
               	<div class="teacher_title">
-              		<h3>小红红 园长</h3>
+              		<h3><%=info.title%></h3>
               	</div>
               	<div class="teacher_content">
-              	<span>本科学历</span></br>
-              	<span>本科学历</span></br>
-              	<span>本科学历</span>
+              	<%=raw info.content%>
               </div>
              </div>
 
            </li>
-            <li>
-              	<div class="official_home_teacher_img">
-              		<img src="/t/colorful/activity_logo1.jpg" alt="" width="200"   >
-              	</div>
-              	<div class="teacher_info">
-              	<div class="teacher_title">
-              		<h3>小红红 园长</h3>
-              	</div>
-              	<div class="teacher_content">
-              	<span>本科学历</span></br>
-              	<span>本科学历</span></br>
-              	<span>本科学历</span>
-              </div>
-             </div>
-             
-           </li>
-            <li>
-              	<div class="official_home_teacher_img">
-              		<img src="/t/colorful/activity_logo1.jpg" alt="" width="200"   >
-              	</div>
-              	<div class="teacher_info">
-              	<div class="teacher_title">
-              		<h3>小红红 园长</h3>
-              	</div>
-              	<div class="teacher_content">
-              	<span>本科学历</span></br>
-              	<span>本科学历</span></br>
-              	<span>本科学历</span>
-              </div>
-             </div>
-             
-           </li>
-            <li>
-              	<div class="official_home_teacher_img">
-              		<img src="/t/colorful/activity_logo1.jpg" alt="" width="200"   >
-              	</div>
-              	<div class="teacher_info">
-              	<div class="teacher_title">
-              		<h3>小红红 园长</h3>
-              	</div>
-              	<div class="teacher_content">
-              	<span>本科学历</span></br>
-              	<span>本科学历</span></br>
-              	<span>本科学历</span>
-              </div>
-             </div>
-             
-           </li>
+           <%end%>
     			</ul>
     	</div>
     </div>

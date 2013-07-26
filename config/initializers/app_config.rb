@@ -30,7 +30,10 @@ MENUS ={"home"=>{
  },
    "64000"=>{
   "my_school/messages"=>["draft_box", "draft_show", "draft_edit"]
- }
+ },
+   "65000"=>{
+    "my_school/news"=>DEFULT_ACTION
+   }
 },
   "personnel"=>{
   "11000"=>{

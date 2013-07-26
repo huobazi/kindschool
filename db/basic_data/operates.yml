@@ -1460,3 +1460,81 @@ interest_activity_destroy_multi:
   action: "destroy_multiple"
   protocol: ""
   <<: *DEFAULTS
+
+news_index:
+  id: 11000
+  parent_id: 2
+  name: "新闻列表"
+  level: 2
+  sequence: 1
+  note: "新闻列表"
+  controller: "my_school/news"
+  action: "index"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_new:
+  id: 11001
+  parent_id: 2
+  name: "新闻新建"
+  level: 2
+  sequence: 1
+  note: "新闻新建"
+  controller: "my_school/news"
+  action: "new"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_create:
+  id: 11002
+  parent_id: 2
+  name: "新闻创建"
+  level: 2
+  sequence: 1
+  note: "新闻创建"
+  controller: "my_school/news"
+  action: "create"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_edit:
+  id: 11003
+  parent_id: 2
+  name: "新闻编辑"
+  level: 2
+  sequence: 1
+  note: "新闻编辑"
+  controller: "my_school/news"
+  action: "edit"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_uodate:
+  id: 11004
+  parent_id: 2
+  name: "新闻更新"
+  level: 2
+  sequence: 1
+  note: "新闻更新"
+  controller: "my_school/news"
+  action: "update"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_destroy:
+  id: 11005
+  parent_id: 2
+  name: "新闻删除"
+  level: 2
+  sequence: 1
+  note: "新闻删除"
+  controller: "my_school/news"
+  action: "destroy"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
