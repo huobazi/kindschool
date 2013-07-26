@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
 
   has_many :user_squads , :class_name=>"UserSquad"
 
+  has_many :news , :class_name=>"New"
+
   before_save :encrypt_password
 
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?

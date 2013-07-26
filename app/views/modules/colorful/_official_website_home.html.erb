@@ -20,50 +20,27 @@
   <% end %>
 </table>
 <div class="control-group">
-  <label class="control-label"><span class="required">*</span>标题</label>
+  <label class="control-label"></span>老师姓名及职位</label>
   <div class="controls">
     <label class="show_label">
-      <% if action_name == "edit_content" %>
-        <%= text_field_tag :title,"#{@entry.title}", :class => 'profile_input required'%>
-      <% else %>
-        <%= text_field_tag :title,"", :class => 'profile_input required'%>
-      <% end %>
+        <%= text_field_tag :teacher_title,"", :class => 'profile_input required'%>
     </label>
   </div>
 </div>
 <div class="control-group">
-  <label class="control-label"><span class="required">*</span>内容介绍</label>
+  <label class="control-label">老师简介</label>
 </div>
 <div class="control-group">
-  <% if action_name == "edit_content" %>
-    <%= text_field_tag :content,"#{@entry.content}", :class => 'profile_input required'%>
-    <%= hidden_field_tag "entry_id",@entry.id %>
-  <% else %>
-    <%= text_field_tag :content,"", :class => 'profile_input '%>
-  <% end %>
+    <%= text_field_tag :teacher_content,"", :class => 'profile_input '%>
 </div>
 
 <div class="control-group">
-  <% if @entry && @entry.page_img %>
     <label class="control-label">上传图片</label>
     <div class="controls">
       <label class="show_label">
-        <%= file_field_tag 'img', :class => 'profile_input' %>
-      </label>
-      <img src="<%= @entry.page_img.public_filename(:middle) %>" alt="展示图片" />
-      <%= hidden_field_tag "entry_id",@entry.id %>
-    </div>
-
-  <% else %>
-    
-    <label class="control-label"><span class="required">*</span>上传图片</label>
-    <div class="controls">
-      <label class="show_label">
-        <%= file_field_tag 'img', :class => 'profile_input required' %>
+        <%= file_field_tag 'teacher_img', :class => 'profile_input required' %>
       </label>
     </div>
-  <% end %>
-
 </div>
 <div class="control-group">
   <div class="controls">
@@ -75,7 +52,7 @@
 <script type="text/javascript">
   var editor;
   KindEditor.ready(function(K) {
-    editor = K.create('#content', {
+    editor = K.create('#teacher_content', {
       allowFileManager : true,
       height:400
     });

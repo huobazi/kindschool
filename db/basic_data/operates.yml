@@ -875,10 +875,10 @@ career_strategy_career_class:
 my_kindergarten_index:
   id: 5400
   parent_id: 6
-  name: "网站设置"
+  name: "幼儿园设置"
   level: 2
   sequence: 0
-  note: "网站设置"
+  note: "幼儿园设置"
   controller: "my_school/my_kindergarten"
   action: "index"
   protocol: ""
@@ -886,10 +886,10 @@ my_kindergarten_index:
 my_kindergarten_edit:
   id: 5401
   parent_id: 6
-  name: "网站设置编辑"
+  name: "幼儿园设置编辑"
   level: 2
   sequence: 0
-  note: "网站设置编辑"
+  note: "幼儿园设置编辑"
   controller: "my_school/my_kindergarten"
   action: "edit"
   protocol: ""
@@ -897,10 +897,10 @@ my_kindergarten_edit:
 my_kindergarten_update:
   id: 5402
   parent_id: 6
-  name: "网站设置更新"
+  name: "幼儿园设置更新"
   level: 2
   sequence: 0
-  note: "网站设置更新"
+  note: "幼儿园设置更新"
   controller: "my_school/my_kindergarten"
   action: "update"
   protocol: ""
@@ -1491,5 +1491,83 @@ interest_activity_destroy_multi:
   note: "删除多个兴趣讨论"
   controller: "my_school/interest_activities"
   action: "destroy_multiple"
+  protocol: ""
+  <<: *DEFAULTS
+
+news_index:
+  id: 11000
+  parent_id: 2
+  name: "新闻列表"
+  level: 2
+  sequence: 1
+  note: "新闻列表"
+  controller: "my_school/news"
+  action: "index"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_new:
+  id: 11001
+  parent_id: 2
+  name: "新闻新建"
+  level: 2
+  sequence: 1
+  note: "新闻新建"
+  controller: "my_school/news"
+  action: "new"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_create:
+  id: 11002
+  parent_id: 2
+  name: "新闻创建"
+  level: 2
+  sequence: 1
+  note: "新闻创建"
+  controller: "my_school/news"
+  action: "create"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_edit:
+  id: 11003
+  parent_id: 2
+  name: "新闻编辑"
+  level: 2
+  sequence: 1
+  note: "新闻编辑"
+  controller: "my_school/news"
+  action: "edit"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_uodate:
+  id: 11004
+  parent_id: 2
+  name: "新闻更新"
+  level: 2
+  sequence: 1
+  note: "新闻更新"
+  controller: "my_school/news"
+  action: "update"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_destroy:
+  id: 11005
+  parent_id: 2
+  name: "新闻删除"
+  level: 2
+  sequence: 1
+  note: "新闻删除"
+  controller: "my_school/news"
+  action: "destroy"
+  params: ""
   protocol: ""
   <<: *DEFAULTS
