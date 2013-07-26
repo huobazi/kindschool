@@ -74,7 +74,7 @@
           <div class="topic_content"><%= raw @topic.content %></div>
         </div>
 
-        <div id="topic_entries" class="box">
+        <div id="topic_entries">
           <% unless @topic_entries.blank? %>
             <div class="total"><b>共收到<%= @topic_entries.count %>条回复</b></div>
             <% @topic_entries.each do |topic_entry| %>

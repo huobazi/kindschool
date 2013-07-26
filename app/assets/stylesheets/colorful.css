@@ -1020,9 +1020,9 @@ table.user_attributes td {
 }
 .topic .topic_content {
   text-indent: 20px;
+  word_wrap: break-word;
   padding-top: 10px;
 }
-
 #topic_show {
   margin-bottom: 20px;
 }
@@ -1039,6 +1039,7 @@ table.user_attributes td {
 }
 .topic_entry .topic_entry_right {
   float :left;
+  width: 80%;
 }
 .topic_entry .user_head_logo {
   width: 100px;
@@ -1050,37 +1051,6 @@ table.user_attributes td {
 #topic_category_tabs a {
   color: #333333;
   font-size: 16px;
-}
-
-#activity_entries {
-    margin-bottom: 20px;
-}
-#activity_entries .activity_entry_note {
-    padding-left: 100px;
-}
-
-#activity_entries .activity_entry {
-    border-top: 1px solid #999;
-    padding-top: 14px;
-    position: relative;
-}
-
-#activity_entries .activity_entry:last-child {
-    border-bottom: 1px solid #999;
-}
-
-#activity_entries .activity_entry span.destroy {
-    display: block;
-    position: absolute;
-    right: 10px;
-    top: 0px;
-}
-
-#activity_entries .activity_entry span.destroy a:hover {
-    underline: none;
-}
-#activity_entries .activity_entry span.destroy a {
-    color: #222;
 }
 
 a.album_a{
