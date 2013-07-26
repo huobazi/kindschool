@@ -34,7 +34,7 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
   end
 
   def create
-    params[:growth_record][:tp] = 1
+    params[:growth_record][:tp] = 1 if params[:growth_record]
     @growth_record = GrowthRecord.new(params[:growth_record])
 
     if @growth_record.save!

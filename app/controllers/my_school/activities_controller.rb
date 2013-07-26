@@ -29,6 +29,8 @@ class MySchool::ActivitiesController < MySchool::ManageController
 
   def create
     @activity = Activity.new(params[:activity])
+    @activity.kindergarten_id = @kind.id
+    @activity.creater_id = current_user.id
 
     if @activity.save!
       flash[:success] = "创建活动成功"

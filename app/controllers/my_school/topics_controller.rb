@@ -33,6 +33,8 @@ class  MySchool::TopicsController < MySchool::ManageController
 
   def create
     @topic = Topic.new(params[:topic])
+    @topic.kindergarten_id = @kind.id
+    @topic.creater_id = current_user.id
 
     if @topic.save!
       flash[:success] = "添加贴子成功"

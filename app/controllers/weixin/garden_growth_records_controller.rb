@@ -34,6 +34,7 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
   end
 
   def create
+    params[:growth_record][:tp] = 0 if params[:growth_record]
     @growth_record = GrowthRecord.new(params[:growth_record])
     if @growth_record.save!
       flash[:success] = "创建宝宝在园成长记录成功"
