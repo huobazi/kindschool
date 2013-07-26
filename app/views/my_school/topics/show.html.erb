@@ -75,7 +75,7 @@
         <hr />
 
         <div id="topic_entries">
-          <% if @topic_entries.any? %>
+          <% unless @topic_entries.blank? %>
             <% @topic_entries.each do |topic_entry| %>
               <div id="topic_entry_<%= topic_entry.id %>" class="topic_entry">
                 <span><%= topic_entry.creater ? topic_entry.creater.name : "丢失回复人信息" %></span>: &nbsp; &nbsp;<span><%= time_ago_in_words(topic_entry.created_at) %></span><%= simple_format topic_entry.content, :class => "topic_entry_content" %>
