@@ -132,10 +132,10 @@
     sequence: 370
     operate_id: 5011
   - id: 39000
-    name: "网站设置"
+    name: "幼儿园设置"
     number: 39000
     url: "/my_school/my_kindergarten"
-    title: "网站设置"
+    title: "幼儿园设置"
     height_level: "a"
     sequence: 370
     operate_id: 5400

@@ -875,10 +875,10 @@ career_strategy_career_class:
 my_kindergarten_index:
   id: 5400
   parent_id: 6
-  name: "网站设置"
+  name: "幼儿园设置"
   level: 2
   sequence: 0
-  note: "网站设置"
+  note: "幼儿园设置"
   controller: "my_school/my_kindergarten"
   action: "index"
   protocol: ""
@@ -886,10 +886,10 @@ my_kindergarten_index:
 my_kindergarten_edit:
   id: 5401
   parent_id: 6
-  name: "网站设置编辑"
+  name: "幼儿园设置编辑"
   level: 2
   sequence: 0
-  note: "网站设置编辑"
+  note: "幼儿园设置编辑"
   controller: "my_school/my_kindergarten"
   action: "edit"
   protocol: ""
@@ -897,10 +897,10 @@ my_kindergarten_edit:
 my_kindergarten_update:
   id: 5402
   parent_id: 6
-  name: "网站设置更新"
+  name: "幼儿园设置更新"
   level: 2
   sequence: 0
-  note: "网站设置更新"
+  note: "幼儿园设置更新"
   controller: "my_school/my_kindergarten"
   action: "update"
   protocol: ""
