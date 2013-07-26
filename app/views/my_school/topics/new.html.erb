@@ -18,12 +18,14 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:index)%>" title="返回">
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/topics/index") %>
+            <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:index)%>" title="返回">
+              <div class="work_action_return">
+              </div>
+              <div class="work_action_return_move">
+              </div>
+            </a>
+          <% end %>
         </li>
       </ul>
     </div>

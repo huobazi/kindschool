@@ -21,9 +21,13 @@
           <ul>
             <li>
               <% if params[:tp] == "1" %>
-                <%= link_to "宝宝在家管理", home_my_school_growth_records_path %>
+                <% if choose_operate_show("my_school/growth_records/home") %>
+                  <%= link_to "宝宝在家管理", home_my_school_growth_records_path %>
+                <% end %>
               <% else %>
-                <%= link_to "宝宝在园", garden_my_school_garden_growth_records_path %>
+                <% if choose_operate_show("my_school/garden_growth_records/garden") %>
+                  <%= link_to "宝宝在园", garden_my_school_garden_growth_records_path %>
+                <% end %>
               <% end %>
             </li>
             <li>/</li>
@@ -34,15 +38,24 @@
       <ul class="work_action">
         <li>
           <% if params[:tp] == "1" %>
-            <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:home)%>" title="返回">
-          <% else %>
+            <% if choose_operate_show("my_school/growth_records/home") %>
+              <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:home)%>" title="返回">
+                <div class="work_action_return">
+                </div>
+                <div class="work_action_return_move">
+                </div>
+              </a>
+            <% end %>
+        <% else %>
+          <% if choose_operate_show("my_school/garden_growth_records/garden") %>
             <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:garden)%>" title="返回">
-          <% end %>
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
-          </a>
+              <div class="work_action_return">
+                </div>
+                <div class="work_action_return_move">
+                </div>
+              </a>
+            <% end %>
+        <% end %>
         </li>
       </ul>
     </div>

@@ -8,8 +8,6 @@
       <div class="headline_title">
         <div class="messages_root"></div>
         <label>班级管理信息</label>
-        <%= link_to "为班级分配负责人", :controller => "/my_school/teachers", :action => :set_class_teacher_for_squad_view, :squad_id => @squad.id %>
-        <%= link_to "添加升学策略", :controller => "/my_school/squads", :action => :add_strategy_view %>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
@@ -17,15 +15,31 @@
           <ul>
             <li>人员管理</li>
             <li>/</li>
-            <li><%= link_to "班级管理", my_school_squads_path %></li>
+            <li>
+              <% if choose_operate_show("my_school/squads/index") %>
+                <%= link_to "班级管理", my_school_squads_path %>
+              <% else %>
+                班级管理
+              <% end %>
+            </li>
             <li>/</li>
             <li>查看班级</li>
           </ul>
         </div>
       </div>
       <ul class="work_action">
+        <% if choose_operate_show("my_school/squads/new") %>
+          <li>
+            <a href="<%=url_for(:controller=>"/my_school/squads",:action=>:new)%>" title="添加">
+              <div class="work_action_add">
+              </div>
+              <div class="work_action_add_move">
+              </div>
+            </a>
+          </li>
+        <% end %>
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/squads",:action=>:new)%>" title="添加">
+          <a href="<%=url_for(:controller=>"/my_school/teachers",:action=>:set_class_teacher_for_squad_view, :squad_id => @squad.id)%>" title="为班级添加负责人">
             <div class="work_action_add">
             </div>
             <div class="work_action_add_move">
@@ -33,28 +47,34 @@
           </a>
         </li>
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/squads",:action=>:edit,:id=>@squad.id)%>" title="编辑">
-            <div class="work_action_edit">
-            </div>
-            <div class="work_action_edit_move">
-            </div>
-          </a>
-        </li>
-        <li>
-          <%= link_to(url_for(:controller=>"/my_school/squads",:action=>:destroy,:id=>@squad.id),:method=>:delete, :confirm => "您确定删除该班级吗?") do %>
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
+          <% if choose_operate_show("my_school/squads/edit") %>
+            <a href="<%=url_for(:controller=>"/my_school/squads",:action=>:edit,:id=>@squad.id)%>" title="编辑">
+              <div class="work_action_edit">
+              </div>
+              <div class="work_action_edit_move">
+              </div>
+            </a>
           <% end %>
         </li>
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/squads",:action=>:index)%>" title="返回">
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/squads/destroy") %>
+            <%= link_to(url_for(:controller=>"/my_school/squads",:action=>:destroy,:id=>@squad.id),:method=>:delete, :confirm => "您确定删除该班级吗?") do %>
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+            <% end %>
+          <% end %>
+        </li>
+        <li>
+          <% if choose_operate_show("my_school/squads/index") %>
+            <a href="<%=url_for(:controller=>"/my_school/squads",:action=>:index)%>" title="返回">
+              <div class="work_action_return">
+              </div>
+              <div class="work_action_return_move">
+              </div>
+            </a>
+          <% end %>
         </li>
       </ul>
     </div>
@@ -118,7 +138,7 @@
     <fieldset>
       <legend><label>该班级的负责老师</label></legend>
         <div class="work_list">
-          <% if @squad.teachers.any? %>
+          <% unless @squad.teachers.blank? %>
             <table class="table table-striped table-hover">
               <tr>
                 <th>名称</th>
@@ -148,7 +168,7 @@
     <fieldset>
       <legend><label>该班级的学员</label></legend>
       <div class="work_list">
-        <% if @squad.student_infos.any? %>
+        <% unless @squad.student_infos.blank? %>
             <table class="table table-striped table-hover">
               <tr>
                 <th>姓名</th>

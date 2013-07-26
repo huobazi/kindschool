@@ -15,7 +15,13 @@
           <ul>
             <li>人员管理</li>
             <li>/</li>
-            <li><%= link_to "学籍管理", my_school_student_infos_path %></li>
+            <li>
+              <% if choose_operate_show("my_school/student_infos/index") %>
+                <%= link_to "学籍管理", my_school_student_infos_path %>
+              <% else %>
+                学籍管理
+              <% end %>
+            </li>
             <li>/</li>
             <li>修改学员</li>
           </ul>
@@ -23,12 +29,14 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:index)%>" title="返回">
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/student_infos/index") %>
+            <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:index)%>" title="返回">
+              <div class="work_action_return">
+              </div>
+              <div class="work_action_return_move">
+              </div>
+            </a>
+          <% end %>
         </li>
       </ul>
     </div>

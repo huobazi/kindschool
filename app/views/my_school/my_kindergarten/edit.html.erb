@@ -21,33 +21,88 @@
     </div>
     <div class="work_form" >
       <div class="form_div">
-        <form class="form-horizontal">
-          <div class="control-group">
-            <label class="control-label">名称</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=@kind.name  %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">简介</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=@kind.note  %>
-              </label>
-            </div>
-          </div>
+        <%= simple_form_for @kind, :validate => true, :url => {:controller=>"/my_school/my_kindergarten",:action=>:update}, :html =>{:class=>"form-horizontal"} do |f| %>
+          <%= f.input :name,:input_html =>{:class=>"span5",:name=>"name"}, :hint => "长度不能超过100个字。" %>
+          <%= f.input :note,:input_html =>{:class=>"span5",:rows=>"5",:name=>"note"} , :hint => "描述将在家园互动首页和微信中出现。长度不能超过800个字。" %>
           <div class="control-group">
             <label class="control-label">Logo</label>
-            <%= f.file_field :asset_img ,:name=>"asset_logo" %>
-            <span class="help-block">推荐比例为152*40.</span>
-            <div>
-              <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename(:thumb) : '/t/colorful/logo.png' %>" alt="Logo"/>
+            <div class="controls">
+              <%= f.file_field :asset_img ,:name=>"asset_logo" %>
+              <span class="help-block">推荐比例为152*40.</span>
+              <div>
+                <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename(:thumb) : '/t/colorful/logo.png' %>" alt="Logo"/>
+              </div>
             </div>
           </div>
-        </form>
+          <div class="control-group">
+            <label class="control-label">位置</label>
+            <div class="controls">
+              <label for="name">经纬度</label>
+              <%= text_field_tag(:latlng,@kind.latlng,:name=>"latlng")%>
+              <label for="name">地址</label>
+              <%= text_field_tag(:address,@kind.address)%>
+              <input id="map_seach_but" type="button" value="搜素" style="float: right;"/>
+              <input id="map_seach" style="width:150px;float: right;" type="text"/>
+              <div style="width:500px;height:350px;border:1px solid gray" id="map_div">
+              </div>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <%= f.submit('保存',:class=>"btn") %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=0E39b8c685958445866a62ebd4f2da1b"></script>
+<script type="text/javascript">
+  $(function(){
+    map = new BMap.Map("map_div");
+    var latlng = "<%=@kind.latlng%>";
+    var latlng_data = latlng.split(",");
+    var marker ;
+    if(latlng_data.length > 1){
+      map.centerAndZoom(new BMap.Point(latlng_data[1],latlng_data[0]), 14);
+      var point = new BMap.Point(latlng_data[1],latlng_data[0]);
+      marker = new BMap.Marker(point);  // 创建标注
+      map.addOverlay(marker);
+    }else{
+      map.centerAndZoom(new BMap.Point(114.07,22.63), 11);
+    }
+    map.addControl(new BMap.NavigationControl());
+    map.addControl(new BMap.MapTypeControl());          //添加地图类型控件
+    map.enableScrollWheelZoom();
+    var gc = new BMap.Geocoder();
+    
+    map.addEventListener("click", function(e){
+      var pt = e.point;
+      var latlng = pt.lat+","+pt.lng;
+      var point = new BMap.Point(pt.lng, pt.lat);
+      if(marker){
+        map.removeOverlay(marker);
+      }
+      marker = new BMap.Marker(point);  // 创建标注
+      map.addOverlay(marker);
+      $("#latlng").val(latlng + "");
+      gc.getLocation(pt, function(rs){
+        var addComp = rs.addressComponents;
+        var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
+        $("#address").val(address + "")
+      });
+    });
+
+    $("#map_seach_but").click(function(){
+      map.clearOverlays();
+      var value = $("#map_seach").val();
+      var myKeys = value.split(" ");
+      var local = new BMap.LocalSearch(map, {
+        renderOptions:{map: map, panel:"results"}
+      });
+      local.setPageCapacity(15);
+      local.searchInBounds(myKeys, map.getBounds());
+    })
+  })
+</script>

@@ -1,7 +1,7 @@
 #encoding:utf-8
 class  MySchool::TopicCategoriesController < MySchool::ManageController
-  include_kindeditor :only => [:new, :edit]
-  
+  # include_kindeditor :only => [:new, :edit]
+
   def index
     @topic_categories = @kind.topic_categories.search(params[:topic_category] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
   end

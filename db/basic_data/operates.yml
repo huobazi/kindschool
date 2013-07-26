@@ -872,6 +872,39 @@ career_strategy_career_class:
   action: "career_class"
   protocol: ""
   <<: *DEFAULTS
+my_kindergarten_index:
+  id: 5400
+  parent_id: 6
+  name: "幼儿园设置"
+  level: 2
+  sequence: 0
+  note: "幼儿园设置"
+  controller: "my_school/my_kindergarten"
+  action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+my_kindergarten_edit:
+  id: 5401
+  parent_id: 6
+  name: "幼儿园设置编辑"
+  level: 2
+  sequence: 0
+  note: "幼儿园设置编辑"
+  controller: "my_school/my_kindergarten"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+my_kindergarten_update:
+  id: 5402
+  parent_id: 6
+  name: "幼儿园设置更新"
+  level: 2
+  sequence: 0
+  note: "幼儿园设置更新"
+  controller: "my_school/my_kindergarten"
+  action: "update"
+  protocol: ""
+  <<: *DEFAULTS
 #==============================健康饮食
 seedlings_index:
   id: 6001

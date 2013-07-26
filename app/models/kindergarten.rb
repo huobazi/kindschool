@@ -1,10 +1,11 @@
 #encoding:utf-8
 #幼儿园
 class Kindergarten < ActiveRecord::Base
-  attr_accessible :logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token
+  attr_accessible :logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token,:latlng,:address
 
   validates :name,:presence => true, :uniqueness => true, :length => { :maximum => 100}
   validates :number,:presence => true, :uniqueness => true, :length => { :maximum => 100}
+  validates :note, :length => { :maximum => 800}
   STATUS_DATA = {"0"=>"正常","1"=>"锁定"}
   WEIXIN_STATUS_DATA = {"0"=>"未授权绑定","1"=>"已授权绑定"}
 

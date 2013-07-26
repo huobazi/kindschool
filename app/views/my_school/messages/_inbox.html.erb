@@ -16,7 +16,7 @@
             <input type="hidden" name="contain_teachers" id="contain_teachers"/>
             <div id="grade_resource" class="ranges_resource">
               <hr/>
-              <% if @kind.grades.any? %>
+              <% unless @kind.grades.blank? %>
                 <div class="checkall">
                   <div class="checkall_div"><input type="checkbox" id="grades_checkall" /><label for="grades_checkall">全选/取消</label></div>
                 </div>
@@ -38,7 +38,7 @@
             </div>
             <div id="role_resource" class="ranges_resource">
               <hr/>
-              <% if @kind.roles.any? %>
+              <% unless @kind.roles.blank? %>
                 <div class="checkall">
                   <div class="checkall_div"><input type="checkbox" id="roles_checkall" /><label for="roles_checkall">全选/取消</label></div>
                 </div>
@@ -108,7 +108,7 @@
             <% end %>
             <div id="role_resource" class="ranges_resource">
               <hr/>
-              <% if @kind.roles.any? %>
+              <% unless @kind.roles.blank? %>
                 <div class="checkall">
                   <div class="checkall_div"><input type="checkbox" id="roles_checkall" /><label for="roles_checkall">全选/取消</label></div>
                 </div>

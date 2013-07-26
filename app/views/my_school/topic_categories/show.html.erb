@@ -15,7 +15,13 @@
           <ul>
             <li>系统设置</li>
             <li>/</li>
-            <li><%= link_to "论坛分类管理", my_school_topic_categories_path %></li>
+            <li>
+            <% if choose_operate_show("my_school/topic_categories/index") %>
+              <%= link_to "论坛分类管理", my_school_topic_categories_path %>
+            <% else %>
+              论坛分类管理
+            <% end %>
+            </li>
             <li>/</li>
             <li>查看论坛分类</li>
           </ul>
@@ -23,27 +29,33 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/topic_categories",:action=>:new)%>" title="添加">
-            <div class="work_action_add">
-            </div>
-            <div class="work_action_add_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/topic_categories/new") %>
+            <a href="<%=url_for(:controller=>"/my_school/topic_categories",:action=>:new)%>" title="添加">
+              <div class="work_action_add">
+              </div>
+              <div class="work_action_add_move">
+              </div>
+            </a>
+          <% end %>
         </li>
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/topic_categories",:action=>:edit,:id=>@topic_category.id)%>" title="编辑">
-            <div class="work_action_edit">
-            </div>
-            <div class="work_action_edit_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/topic_categories/edit") %>
+            <a href="<%=url_for(:controller=>"/my_school/topic_categories",:action=>:edit,:id=>@topic_category.id)%>" title="编辑">
+              <div class="work_action_edit">
+              </div>
+              <div class="work_action_edit_move">
+              </div>
+            </a>
+          <% end %>
         </li>
         <li>
-          <%= link_to(url_for(:controller=>"/my_school/topic_categories",:action=>:destroy,:id=>@topic_category.id),:method=>:delete, :confirm => "您确定删除该论坛分类吗?") do %>
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
+          <% if choose_operate_show("my_school/topic_categories/destroy") %>
+            <%= link_to(url_for(:controller=>"/my_school/topic_categories",:action=>:destroy,:id=>@topic_category.id),:method=>:delete, :confirm => "您确定删除该论坛分类吗?") do %>
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+            <% end %>
           <% end %>
         </li>
         <li>

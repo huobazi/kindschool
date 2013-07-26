@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   belongs_to :role
 
   has_many :messages, :class_name => "Message",:foreign_key=>:sender_id
-   
+
   has_many :user_squads , :class_name=>"UserSquad"
 
   has_many :news , :class_name=>"New"

@@ -19,20 +19,24 @@
       <% if current_user.tp != 0 %>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:new)%>" title="添加">
-            <div class="work_action_add">
-            </div>
-            <div class="work_action_add_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/student_infos/new") %>
+            <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:new)%>" title="添加">
+              <div class="work_action_add">
+              </div>
+              <div class="work_action_add_move">
+              </div>
+            </a>
+          <% end %>
         </li>
         <li>
-          <a href="/" title="删除" id="destroy_multiple">
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/student_infos/destroy_multiple") %>
+            <a href="/" title="删除" id="destroy_multiple">
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+            </a>
+          <% end %>
         </li>
       </ul>
       <% end %>
@@ -74,8 +78,16 @@
                 <td><%= student.user.tp_label %></td>
                 <td><%= student.user.weixin_code ? student.user.weixin_code : "暂无" %></td>
 
-                <td><%= link_to "查看", my_school_student_info_path(student), :class => "show" %></td>
-                <td><%= link_to "编辑", edit_my_school_student_info_path(student), :class => "show" %></td>
+                <td>
+                  <% if choose_operate_show("my_school/student_infos/show") %>
+                    <%= link_to "查看", my_school_student_info_path(student), :class => "show" %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if choose_operate_show("my_school/student_infos/edit") %>
+                    <%= link_to "编辑", edit_my_school_student_info_path(student), :class => "show" %>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           <% end %>

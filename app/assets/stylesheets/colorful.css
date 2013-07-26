@@ -1007,12 +1007,18 @@ table.user_attributes td {
     float: left;
 }
 .blue{
-    color: blue;
+  color: blue;
 }
 .table a.red{
-    color: red;
+  color: red;
 }
 
+.topic .topic_title {
+  font-size: 24px;
+}
+.topic .topic_content {
+  text-indent: 10px;
+}
 
 #topic_entries {
     margin-bottom: 20px;
@@ -1046,6 +1052,14 @@ table.user_attributes td {
 }
 #topic_entries .topic_entry span.destroy a {
     color: #222;
+}
+
+#topic_category_tabs {
+  padding-left: 50px;
+}
+#topic_category_tabs a {
+  color: #333333;
+  font-size: 16px;
 }
 
 #activity_entries {

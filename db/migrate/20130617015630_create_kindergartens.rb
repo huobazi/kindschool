@@ -10,6 +10,8 @@ class CreateKindergartens < ActiveRecord::Migration
       t.string :weixin_code
       t.string :weixin_token
       t.string :logo
+      t.string :latlng,:default=>""
+      t.string :address
       t.timestamps
     end
   end
