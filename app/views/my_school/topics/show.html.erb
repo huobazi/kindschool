@@ -65,64 +65,12 @@
 
     <div class="work_form">
       <div class="form_div">
-        <form class="form-horizontal">
-          <div class="control-group">
-            <label class="control-label">标题</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=@topic.title%>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">发表人</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @topic_creater.name %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">查看次数</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @topic.show_count %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >所属幼儿园</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @topic.kindergarten_label %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >是否显示</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @topic.is_show == true ? "是" : "否" %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >是否置顶</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @topic.is_top == true ? "是" : "否" %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">内容</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=raw @topic.content %>
-              </label>
-            </div>
-          </div>
-        </form>
+
+        <div class="topic">
+          <p class="topic_title"><span><%= @topic.title %><span></p>
+              <p class="topic_info"><span class="creater"><%= @topic.creater ? @topic.creater.name : "" %><span><span class="created_name">&nbsp;&nbsp;<%= @topic.created_at.to_long_datetime %></span></p>
+          <div class="topic_content"><%= raw @topic.content %></div>
+        </div>
 
         <hr />
 
@@ -130,7 +78,7 @@
           <% if @topic_entries.any? %>
             <% @topic_entries.each do |topic_entry| %>
               <div id="topic_entry_<%= topic_entry.id %>" class="topic_entry">
-                <span><%= topic_entry.creater ? topic_entry.creater.name : "丢失回复人信息" %></span>: &nbsp; &nbsp;<span><%= time_ago_in_words(topic_entry.created_at) %></span><%= simple_format topic_entry.content, :class => "topic_entry_content" %> 
+                <span><%= topic_entry.creater ? topic_entry.creater.name : "丢失回复人信息" %></span>: &nbsp; &nbsp;<span><%= time_ago_in_words(topic_entry.created_at) %></span><%= simple_format topic_entry.content, :class => "topic_entry_content" %>
                 <% if destroy_topic_entry?(topic_entry) %>
                   <span class="destroy"><%= link_to "x", my_school_topic_entry_path(topic_entry), :method => :delete %></span>
                 <% end %>

@@ -1007,12 +1007,18 @@ table.user_attributes td {
     float: left;
 }
 .blue{
-    color: blue;
+  color: blue;
 }
 .table a.red{
-    color: red;
+  color: red;
 }
 
+.topic .topic_title {
+  font-size: 24px;
+}
+.topic .topic_content {
+  text-indent: 10px;
+}
 
 #topic_entries {
     margin-bottom: 20px;
