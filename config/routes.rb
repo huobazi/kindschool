@@ -126,6 +126,7 @@ School::Application.routes.draw do
     resources :student_infos do
       collection do
         delete :destroy_multiple
+        get :grade_squad_partial
       end
     end
     resources :templates do

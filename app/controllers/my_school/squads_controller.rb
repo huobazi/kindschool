@@ -32,7 +32,7 @@ class  MySchool::SquadsController < MySchool::ManageController
     @squad.destroy
 
     respond_to do |format|
-      flash[:notice] = '删除通知成功.'
+      flash[:notice] = '删除班级成功.'
       format.html { redirect_to(:action=>:index) }
       format.xml  { head :ok }
     end
@@ -43,6 +43,7 @@ class  MySchool::SquadsController < MySchool::ManageController
   end
 
   def update
+    params[:squad][:kindergarten_id] = @kind.id if params[:squad]
     @squad = Squad.find_by_id_and_kindergarten_id(params[:id],@kind.id)
     respond_to do |format|
       if @squad.update_attributes(params[:squad])
@@ -50,7 +51,7 @@ class  MySchool::SquadsController < MySchool::ManageController
         @squad.source_career_strategies.each do |career_strategy|
           career_strategy.update_attributes(:to_grade_id=>@squad.grade_id,:squad_name=>@squad.name)
         end unless @squad.graduate
-        flash[:notice] = '更新通知成功.'
+        flash[:notice] = '修改班级成功.'
         format.html { redirect_to(:action=>:show,:id=>@squad.id) }
         format.xml  { head :ok }
       else

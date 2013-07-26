@@ -34,8 +34,10 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
   end
 
   def create
-    params[:growth_record][:tp] = 1 if params[:growth_record]
     @growth_record = GrowthRecord.new(params[:growth_record])
+    @growth_record.kindergarten_id = @kind.id
+    @growth_record.creater_id = current_user.id
+    @growth_record.tp = 1
 
     if @growth_record.save!
       flash[:success] = "创建宝宝在家成长记录成功"

@@ -46,6 +46,7 @@ class MySchool::ActivitiesController < MySchool::ManageController
   end
 
   def update
+    params[:activity][:kindergarten_id] = @kind.id if params[:activity]
     @activity = Activity.find_by_id_and_kindergarten_id(params[:id], @kind.id)
 
     if @activity.update_attributes(params[:activity])
