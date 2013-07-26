@@ -201,7 +201,7 @@
     <fieldset>
       <legend><label>负责的班级</label></legend>
       <div class="work_list">
-        <% if @staff.teachers.any? %>
+        <% unless @staff.teachers.blank? %>
           <table class="table table-striped table-hover">
             <tr>
               <th>年级</th>
