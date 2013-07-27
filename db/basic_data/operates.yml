@@ -813,7 +813,7 @@ topic_categories_index:
   level: 2
   sequence: 0
   note: "论坛分类管理"
-  controller: "my_school/categories"
+  controller: "my_school/topic_categories"
   action: "index"
   protocol: ""
   <<: *DEFAULTS
@@ -824,7 +824,7 @@ topic_categories_new:
   level: 2
   sequence: 0
   note: "论坛分类创建"
-  controller: "my_school/categories"
+  controller: "my_school/topic_categories"
   action: "new"
   protocol: ""
   <<: *DEFAULTS
@@ -835,7 +835,7 @@ topic_categories_edit:
   level: 2
   sequence: 0
   note: "论坛分类编辑"
-  controller: "my_school/categories"
+  controller: "my_school/topic_categories"
   action: "edit"
   protocol: ""
   <<: *DEFAULTS
@@ -846,7 +846,7 @@ topic_categories_edit:
   level: 2
   sequence: 0
   note: "论坛分类删除"
-  controller: "my_school/categories"
+  controller: "my_school/topic_categories"
   action: "destroy"
   protocol: ""
   <<: *DEFAULTS

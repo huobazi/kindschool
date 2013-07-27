@@ -1,7 +1,7 @@
 <% f = form %>
 <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
 <% if params[:topic_category_id] %>
-  <%= f.input :topic_category, :validate => true, :as => :select, :collection => Hash[f.object.kindergarten.topic_categories.map{|topic_category| ["#{topic_category.name}", topic_category.id]}],:selected => params[:topic_category_id],:input_html=>{:disabled => true} %>
+  <%= f.input :topic_category, :validate => true, :as => :select, :collection => Hash[f.object.kindergarten.topic_categories.map{|topic_category| ["#{topic_category.name}", topic_category.id]}],:selected => params[:topic_category_id], :input_html=>{:disabled => true} %>
   <%= f.input :topic_category_id, :as => :hidden, :input_html => {:value => params[:topic_category_id]} %>
 <% elsif action_name == "new" %>
   <%= f.input :topic_category, :validate => true, :as => :select, :collection => Hash[f.object.kindergarten.topic_categories.map{|topic_category| ["#{topic_category.name}", topic_category.id]}],:input_html=>{:name=>"topic[topic_category_id]"} %>
@@ -29,16 +29,16 @@
 
 <script type="text/javascript">
   $("input[type='submit']").click(function(){
-    if (topic_content.html().length < 9 || topic_content.isEmpty()) {
+    if (topic_content.html().length < 3 || topic_content.isEmpty()) {
       if ( $("#topic_content").next("span.help-inline").length == 0 ) {
         $("<span class='help-inline'>长度不够或为空<span>").insertAfter("#topic_content")
-        return false;
       }
+      return false;
     } else {
-        if ( $("#topic_content").next("span.help-inline").length > 0 ) {
-          $("#topic_content").next("span.help-inline").remove()
-        }
-        return true;
+      if ( $("#topic_content").next("span.help-inline").length > 0 ) {
+        $("#topic_content").next("span.help-inline").remove()
+      }
+      return true;
     }
   })
 </script>

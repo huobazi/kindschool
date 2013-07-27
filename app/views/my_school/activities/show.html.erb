@@ -202,14 +202,18 @@
 
         <hr />
 
-        <div id="activity_entries">
-          <% if @activity_entries.any? %>
+        <div id="topic_entries">
+          <% unless @activity_entries.blank? %>
+            <div class="total"><b>共收到<%= @activity_entries.count %>条回复</b></div>
             <% @activity_entries.each do |activity_entry| %>
-              <div id="activity_entry_<%= activity_entry.id %>" class="activity_entry">
-                <span><%= activity_entry.creater ? activity_entry.creater.name : "丢失回复人信息" %></span>: &nbsp;&nbsp; <span><%= time_ago_in_words(activity_entry.created_at) %></span> <%= simple_format activity_entry.note, :class => "activity_entry_note" %> 
-                <% if destroy_activity_entry?(activity_entry) %>
-                  <span class="destroy"><%= link_to "x", my_school_activity_entry_path(activity_entry, :mark => controller_name), :method => :delete %></span>
-                <% end %>
+              <div id="activity_entry_<%= activity_entry.id %>" class="topic_entry">
+                <div class="topic_entry_left">
+                  <div class="user_head_logo"><img src="<%= activity_entry.creater.asset_logo ? activity_entry.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/></div>
+                </div>
+                <div class="topic_entry_right">
+                  <p topic_entry_info><span class="author"><%= activity_entry.creater.try(:name) %></span>&nbsp;&nbsp;<span class="time"><%= time_ago_in_words(activity_entry.created_at) %></span></p>
+                  <div class="topic_entry_content"><%= simple_format activity_entry.note %></div>
+                </div>
               </div>
             <% end %>
             <%= paginate @activity_entries %>

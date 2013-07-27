@@ -29,6 +29,8 @@ class MySchool::ActivitiesController < MySchool::ManageController
 
   def create
     @activity = Activity.new(params[:activity])
+    @activity.kindergarten_id = @kind.id
+    @activity.creater_id = current_user.id
 
     if @activity.save!
       flash[:success] = "创建活动成功"
@@ -44,6 +46,7 @@ class MySchool::ActivitiesController < MySchool::ManageController
   end
 
   def update
+    params[:activity][:kindergarten_id] = @kind.id if params[:activity]
     @activity = Activity.find_by_id_and_kindergarten_id(params[:id], @kind.id)
 
     if @activity.update_attributes(params[:activity])

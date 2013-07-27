@@ -20,6 +20,7 @@ class  MySchool::TopicCategoriesController < MySchool::ManageController
   end
 
   def update
+    params[:topic_category][:kindergarten_id] = @kind.id if params[:topic_category]
     @topic_categories = @kind.topic_categories.find_by_id(params[:id])
 
     if @topic_categories.update_attributes(params[:topic_category])
@@ -33,6 +34,7 @@ class  MySchool::TopicCategoriesController < MySchool::ManageController
 
   def create
     @topic_category = TopicCategory.new(params[:topic_category])
+    @topic_category.kindergarten_id = @kind.id
 
     if @topic_category.save!
       flash[:success] = "添加论坛分类成功"

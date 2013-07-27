@@ -39,10 +39,9 @@
         </li>
       </ul>
     </div>
-
     <div id="topic_category_tabs">
       <ul class="nav nav-tabs">
-        <li class="<%= params[:topic_category_id] ? "" : "active" %>"><a href="<%= url_for(:controller => "/my_school/topics", :action => :index) %>" data-toggle="tab">全部贴子</a></li>
+        <li class="<%= params[:topic_category_id] ? "" : "active" %>"><a href="<%= url_for(:controller => "/my_school/topics", :action => :index) %>">全部贴子</a></li>
         <% unless @topic_categories.blank? %>
           <% @topic_categories.each do |topic_category| %>
             <li class="<%= params[:topic_category_id].to_i == topic_category.id ? "active" : "" %>">

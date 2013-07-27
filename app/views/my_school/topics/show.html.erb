@@ -66,22 +66,26 @@
     <div class="work_form">
       <div class="form_div">
 
-        <div class="topic">
-          <p class="topic_title"><span><%= @topic.title %><span></p>
-              <p class="topic_info"><span class="creater"><%= @topic.creater ? @topic.creater.name : "" %><span><span class="created_name">&nbsp;&nbsp;<%= @topic.created_at.to_long_datetime %></span></p>
+        <div id="topic_show" class="topic">
+          <div class="topic_content_up">
+            <p class="topic_title"><span><%= @topic.title %><span></p>
+            <p class="topic_info"> <span class="creater"> <%= @topic.topic_category.name %>•<%= @topic.creater ? @topic.creater.name : "" %><span> <span class="created_name">&nbsp;&nbsp;<%= @topic.created_at.to_long_datetime %></span></p>
+          </div>
           <div class="topic_content"><%= raw @topic.content %></div>
         </div>
 
-        <hr />
-
         <div id="topic_entries">
           <% unless @topic_entries.blank? %>
+            <div class="total"><b>共收到<%= @topic_entries.count %>条回复</b></div>
             <% @topic_entries.each do |topic_entry| %>
               <div id="topic_entry_<%= topic_entry.id %>" class="topic_entry">
-                <span><%= topic_entry.creater ? topic_entry.creater.name : "丢失回复人信息" %></span>: &nbsp; &nbsp;<span><%= time_ago_in_words(topic_entry.created_at) %></span><%= simple_format topic_entry.content, :class => "topic_entry_content" %>
-                <% if destroy_topic_entry?(topic_entry) %>
-                  <span class="destroy"><%= link_to "x", my_school_topic_entry_path(topic_entry), :method => :delete %></span>
-                <% end %>
+                <div class="topic_entry_left">
+                  <div class="user_head_logo"><img src="<%= topic_entry.creater.asset_logo ? topic_entry.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/></div>
+                </div>
+                <div class="topic_entry_right">
+                  <p topic_entry_info><span class="author"><%= topic_entry.creater.try(:name) %></span>&nbsp;&nbsp;<span class="time"><%= time_ago_in_words(topic_entry.created_at) %></span></p>
+                  <div class="topic_entry_content"><%= simple_format topic_entry.content %></div>
+                </div>
               </div>
             <% end %>
             <%= paginate @topic_entries %>
