@@ -688,6 +688,28 @@ users_update:
   action: "update"
   protocol: ""
   <<: *DEFAULTS
+users_set_send_sms:
+  id: 4015
+  parent_id: 5
+  name: "管理是否可发短信"
+  level: 2
+  sequence: 4
+  note: "管理是否可发短信"
+  controller: "my_school/users"
+  action: "set_send_sms"
+  protocol: ""
+  <<: *DEFAULTS
+users_set_gather_sms:
+  id: 4016
+  parent_id: 5
+  name: "管理是否可收短信"
+  level: 2
+  sequence: 4
+  note: "管理是否可收短信"
+  controller: "my_school/users"
+  action: "set_gather_sms"
+  protocol: ""
+  <<: *DEFAULTS
 #--------------------------system
 template_config:
   id: 5001
