@@ -237,5 +237,12 @@ a{
     border: 0 none;
     height: auto;
     vertical-align: middle;
-     max-width: 200%;
+    max-width: 200%;
+}
+.form-horizontal .control-label_right {
+    float: right;
+    font-weight: bold;
+    padding-left: 20px;
+    padding-top: 5px;
+    width: 160px;
 }

@@ -7,8 +7,9 @@ class CreateNews < ActiveRecord::Migration
       t.integer :approver_id
       t.integer :approve_status
       t.string :note
+      t.integer :show_count , :default => 0 #浏览次数
       t.integer :kindergarten_id
-
+       
       t.timestamps
     end
   end
