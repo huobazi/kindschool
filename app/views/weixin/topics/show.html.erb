@@ -27,21 +27,21 @@
       <% unless @replies.blank? %>
         <ul class="topic_replies">
           <% @replies.each do |reply| %>
-            <li class="reply">
+            <li class="reply" id="topic_entry_<%= reply.id %>">
               <p class="reply_info">
               <label class="author"><%= reply.creater ? reply.creater.name : "" %></label>&nbsp;&nbsp;<label class="created_time"><%= reply.created_at.to_long_datetime %></label>
               </p>
               <div class="content"><%= simple_format reply.content %></div>
             </li>
           <% end %>
-          <%= paginate @replies %>
         </ul>
+        <%= paginate @replies %>
       <% else %>
         暂无回复
       <% end %>
     </ul>
 
-    
+
   </div>
 </div>
 <%= render :partial => "/modules/colorful/weixin_menu_navbar"%>

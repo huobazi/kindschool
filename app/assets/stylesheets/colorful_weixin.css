@@ -734,8 +734,8 @@ ul, li {
 
 .message_div .message_list .data_list li.reply .text-content {
     padding-top: 10px;
-    height: 45px;
-    line-height: 45px;
+    height: 40px;
+    line-height: 40px;
     width: 90%;
     font-size: 20px;
 }
@@ -756,6 +756,10 @@ ul, li {
 .message_div .message_list .data_list ul.topic_replies li .reply_info {
     margin-bottom: 20px;
 }
+
+.message_div .message_list .data_list ul.topic_replies li .reply_info .content {
+  word-wrap: break-word;
+}
 .field_prompt {
     color: #008fdc;
     font-size: 20px;
@@ -768,7 +772,6 @@ ul, li {
 .form {
     padding: 10px 20px 20px;
 }
-
 .select {
   height: 50px;
   padding-top: 10px;
