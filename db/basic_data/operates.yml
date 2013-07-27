@@ -699,7 +699,7 @@ users_set_send_sms:
   action: "set_send_sms"
   protocol: ""
   <<: *DEFAULTS
-users_set_send_sms:
+users_set_gather_sms:
   id: 4016
   parent_id: 5
   name: "管理是否可收短信"

@@ -1530,4 +1530,7 @@ ul.teacher_list li{
 span.help-inline {
   color: red;
 }
-
+.index_a a{
+    float: left;
+    padding-right: 3px;
+}
