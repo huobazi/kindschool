@@ -46,6 +46,14 @@
             </div>
           </div>
           <div class="control-group">
+            <label class="control-label">联系电话</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=@kind.telephone  %>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
             <label class="control-label">Logo</label>
             <div class="controls">
               <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename(:thumb) : '/t/colorful/logo.png' %>" alt="Logo"/>

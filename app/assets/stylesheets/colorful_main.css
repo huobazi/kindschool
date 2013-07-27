@@ -173,3 +173,69 @@ a{
     height: 36px;
 }
 */
+.new_form{
+    background-color: #FBFBFB;
+    border: 1px solid #E3E3E3;
+    margin-top: 42px;
+    padding: 40px;
+}
+.official_new_title{
+    padding-top: 15px;
+    position: relative;
+}
+.official_new_img{
+    background-image: url("/t/colorful/title.png");
+    background-position: -320px -10px;
+    background-repeat: no-repeat;
+    height: 100px;
+    left: 400px;
+    position: absolute;
+    top: 210px;
+    width: 420px;
+    z-index: 100;
+}
+.official_new_line{
+    border: 2px solid #E3E3E3;
+    margin-top: 15px;
+}
+.form-horizontal .control-label_left {
+    float: left;
+    padding-top: 5px;
+    padding-left: 20px;
+    width: 160px;
+    font-weight:bold;
+}
+.official_new_dotted_line{
+    border: 1px dotted #E3E3E3;
+    margin-top: 15px;
+    margin-bottom:15px; 
+}
+.new_more_button{
+    float:right;
+}
+.official_new_solid_line{
+    border: 1px solid #E3E3E3;
+    margin-top: 15px;
+}
+.form-horizontal .table_controls {
+    float: left;
+    margin-left: 180px;
+}
+.official_new_list_solid_line{
+   border: 1px solid #E3E3E3;
+   margin-top: 15px;
+   margin-bottom: 15px; 
+}
+.official_home_img img{
+    height: 370px;
+}
+.official_left_work{
+    float: left;
+    width: 65%;
+}
+.official_home_teacher_img img{
+    border: 0 none;
+    height: auto;
+    vertical-align: middle;
+     max-width: 200%;
+}

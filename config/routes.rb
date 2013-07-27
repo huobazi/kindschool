@@ -14,6 +14,8 @@ School::Application.routes.draw do
         get :feature
         get :show_official_about_us
         get :admissions_information
+        get :show_one_new
+        get :show_new_list
       end
     end
     resources :virtual_squads  do 

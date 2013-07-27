@@ -1,0 +1,38 @@
+<div class="new_form">
+      <div class="form_div">
+        <form class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label">所属幼儿园:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=@kind.name %>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >新闻标题:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=raw @new.title%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >内容:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=raw @new.content%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >创建时间:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= @new.created_at.try(:to_long_datetime)%>
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>

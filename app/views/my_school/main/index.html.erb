@@ -2,7 +2,7 @@
 <div class="official_home_index">
 	<div style="background-color: white; float: left; width: 100%;">
     <div class="official_home_img">
-		<img src="/t/colorful/483-5552.jpg" alt="" width="930" height="370"/>
+      <img src="<%=@img.first.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @img.first.page_img.public_filename %>" alt="">
 	</div>
 	<div class="official_foot">
 
@@ -13,68 +13,27 @@
 	</div>
  </div>
    <div class="official_home_info">
+    <div class="official_left_work">
      <div class = "official_home_news">
      	 <div class="official_home_news_image">
        	 </div>
        	 <div class="official_home_news_content">
        		 <ul class="official_home_news_list">
-       		    <li>
+       		    <%(@news||[]).each do |n_ew|%>
+              <li>
        			  <div class="official_square"></div>
        			  <div class="official_font">
-                  hello world
+                  <%= link_to n_ew.title, show_one_new_my_school_main_index_path(:new_id=>n_ew.id) %>
        			  </div>
        			  <div class="official_time">
-                  2012-12-12
+                  <%= n_ew.created_at.try(:to_long_datetime)%>
        			  </div>
        		    </li>
-       		    <li>
-       			  <div class="official_square"></div>
-       			  <div class="official_font">
-                  hello world
-       			  </div>
-       			  <div class="official_time">
-                  2012-12-12
-       			  </div>
-       		    </li>
-       		    <li>
-       			  <div class="official_square"></div>
-       			  <div class="official_font">
-                  hello world
-       			  </div>
-       			  <div class="official_time">
-                  2012-12-12
-       			  </div>
-       		    </li>
-       		    <li>
-       			  <div class="official_square"></div>
-       			  <div class="official_font">
-                  hello world
-       			  </div>
-       			  <div class="official_time">
-                  2012-12-12
-       			  </div>
-       		    </li>
-       		    <li>
-       			  <div class="official_square"></div>
-       			  <div class="official_font">
-                  hello world
-       			  </div>
-       			  <div class="official_time">
-                  2012-12-12
-       			  </div>
-       		    </li>
-       		    <li>
-       			  <div class="official_square"></div>
-       			  <div class="official_font">
-                  hello world
-       			  </div>
-       			  <div class="official_time">
-                  2012-12-12
-       			  </div>
-       		    </li>
+              <%end%>
        		 </ul>
        		 <div class="officail_news_more">
-       			<a href="###"><strong>查看更多</strong></a>
+       			<!-- <a href="###"><strong>查看更多</strong></a> -->
+            <%=link_to "<strong>查看更多</strong>".html_safe ,show_new_list_my_school_main_index_path %>
        		 </div>
        	 </div>
      </div>
@@ -86,17 +45,20 @@
                 <h3>地址</h3>
                 	<div class="official_home_address_line">
                 	</div>
-                	<span>地址地址地址地址地址地址地址</span>
-                <h3>地址</h3>
+                	<span><%=@kind.address.blank? ? "幼儿园暂时没有填写地址" : @kind.address %></span>
+                <h3>联系电话</h3>
                 	<div class="official_home_address_line">
                 	</div>
-                	<span>地址地址地址地址地址地址地址</span>
+                	<span><%=@kind.telephone.blank? ? "暂时没有填写" : @kind.telephone%></span>
              </div>
              <div class="official_home_address_img">
-                  <img src="/t/colorful/483-5552.jpg" alt="" width="320" />
+                 <!--  <img src="/t/colorful/483-5552.jpg" alt="" width="320" /> -->
+                  <div style="width:320px;height:350px;border:1px solid gray" id="map_div">
+                </div>
              </div>
        	   </div>
     </div>
+  </div>
     <div class="official_home_teacher">
     	<div class="official_home_teacher_image">
        	</div>
@@ -123,3 +85,25 @@
     </div>
   </div>
 </div>
+<% unless @kind.latlng.blank? %>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=0E39b8c685958445866a62ebd4f2da1b"></script>
+  <script type="text/javascript">
+    $(function(){
+      map = new BMap.Map("map_div");
+      var latlng = "<%=@kind.latlng%>";
+      var latlng_data = latlng.split(",")
+      map.centerAndZoom(new BMap.Point(latlng_data[1],latlng_data[0]), 14);
+      map.addControl(new BMap.NavigationControl());
+      map.addControl(new BMap.MapTypeControl());          //添加地图类型控件
+      map.enableScrollWheelZoom();
+      var gc = new BMap.Geocoder();
+      var marker ;
+      var point = new BMap.Point(latlng_data[1], latlng_data[0]);
+      if(marker){
+        map.removeOverlay(marker);
+      }
+      marker = new BMap.Marker(point);  // 创建标注
+      map.addOverlay(marker);
+    })
+  </script>
+<% end %>

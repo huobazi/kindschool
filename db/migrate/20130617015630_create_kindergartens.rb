@@ -12,6 +12,7 @@ class CreateKindergartens < ActiveRecord::Migration
       t.string :logo
       t.string :latlng,:default=>""
       t.string :address
+      t.integer :telephone
       t.timestamps
     end
   end
