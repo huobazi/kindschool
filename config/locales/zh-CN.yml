@@ -260,6 +260,12 @@ zh-CN:
         admin: "管理员"
         created_at: "创建时间"
         updated_at: "更新时间"
+        latlng: "经纬度"
+        address: "地址"
+        aliases_url: "独立域名"
+        sms_count: "可用短信数量"
+        sms_user_count: "短信用户数量"
+        telephone: "联系电话"
       user:
         name: "姓名"
         login: "账号"
