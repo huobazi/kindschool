@@ -1530,10 +1530,13 @@ ul.teacher_list li{
 span.help-inline {
   color: red;
 }
+.index_a a{
+    float: left;
+    padding-right: 3px;
+}
 .official_home_teacher_img img{
     border: 0 none;
     height: auto;
     vertical-align: middle;
     max-width: 200%;
 }
-

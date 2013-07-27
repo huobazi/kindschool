@@ -40,12 +40,12 @@
       </ul>
     </div>
     <div class="search_form">
-     <%= form_tag '/my_school/staffs' , :method=>"get" do %>
-      <b>名称：</b>
-      <%= text_field :staff,:user_name_like,:style=>"width:100px;" ,:value=>"#{params[:staff][:user_name_like] if params[:staff] }"  %>
-      <b>账号：</b>
-      <%= text_field :staff,:user_login_like,:style=>"width:100px;" ,:value=>"#{params[:staff][:user_login_like] if params[:staff] }"  %>
-      <%= submit_tag "搜索" %>
+      <%= form_tag '/my_school/staffs' , :method=>"get" do %>
+        <b>名称：</b>
+        <%= text_field :staff,:user_name_like,:style=>"width:100px;" ,:value=>"#{params[:staff][:user_name_like] if params[:staff] }"  %>
+        <b>账号：</b>
+        <%= text_field :staff,:user_login_like,:style=>"width:100px;" ,:value=>"#{params[:staff][:user_login_like] if params[:staff] }"  %>
+        <%= submit_tag "搜索" %>
       <%end%>
     </div>
     <div class="work_list">
@@ -57,8 +57,8 @@
               <th>名称</th>
               <th>账号</th>
               <th>性别</th>
-              <th>微信号</th>
-              <th colspan="2">操作</th>
+              <th>微信绑定</th>
+              <th>操作</th>
             </tr>
             <% @staffs.each do |staff| %>
               <tr>
@@ -72,17 +72,24 @@
                 </td>
                 <td><%= staff.user.login %></td>
                 <td><%= staff.user.gender == "M" ? "男" : "女" %></td>
-                <td><%= staff.user.weixin_code %></td>
-
+                <td><%= staff.user.weixin_code.blank? ? "未绑定" : "已绑定" %></td>
                 <td>
-                  <% if choose_operate_show("my_school/staffs/show") %>
-                    <%= link_to "查看", my_school_staff_path(staff), :class => "show" %>
-                  <% end %>
-                </td>
-                <td>
-                  <% if choose_operate_show("my_school/staffs/edit") %>
-                    <%= link_to "编辑", edit_my_school_staff_path(staff), :class => "show" %>
-                  <% end %>
+                  <div class="index_a">
+                    <% if choose_operate_show("my_school/staffs/show") %>
+                      <%= link_to "查看", my_school_staff_path(staff), :class => "show" %>
+                    <% end %>
+                    <% if choose_operate_show("my_school/staffs/edit") %>
+                      <%= link_to "编辑", edit_my_school_staff_path(staff), :class => "show" %>
+                    <% end %>
+                    <% if staff.user %>
+                      <% if choose_operate_show("my_school/users/set_send_sms") %>
+                        <%= link_to (staff.user.is_send ? "取消发短信" : "可发短信"), set_send_sms_my_school_user_path(staff.user), :class => "show" %>
+                      <% end %>
+                      <% if choose_operate_show("my_school/users/set_gather_sms") %>
+                        <%= link_to (staff.user.is_receive ? "取消收短信" : "可收短信"), set_gather_sms_my_school_user_path(staff.user), :class => "show" %>
+                      <% end %>
+                    <% end %>
+                  </div>
                 </td>
               </tr>
             <% end %>
@@ -98,13 +105,13 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready(function(){
-  $("#staff_all").click(function(){
-    $(".staff_check").attr("checked",this.checked);
-  })
-  $("#destroy_multiple").click(function(){
+  $(document).ready(function(){
+    $("#staff_all").click(function(){
+      $(".staff_check").attr("checked",this.checked);
+    })
+    $("#destroy_multiple").click(function(){
       $("#destroy_multi_form").submit();
       return false;
+    });
   });
-});
 </script>
