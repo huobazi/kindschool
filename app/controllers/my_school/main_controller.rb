@@ -3,6 +3,12 @@ class MySchool::MainController < MySchool::BaseController
   #幼儿园首页
   layout "colorful_main"
   def index
+    if @kind 
+      root_showcase = @kind.page_contents.find_by_number("official_website_home")
+      if root_showcase && !root_showcase.content_entries.blank?
+        @teacher_infos = root_showcase.content_entries.where(:number=>"official_home_teacher")
+      end
+    end
    
   end
 

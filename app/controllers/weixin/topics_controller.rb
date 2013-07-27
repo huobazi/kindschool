@@ -25,6 +25,8 @@ class Weixin::TopicsController < Weixin::ManageController
 
   def create
     @topic = Topic.new(params[:topic])
+    @topic.kindergarten_id = @kind.id
+    @topic.creater_id = current_user.id
 
     if @topic.save!
       flash[:success] = "贴子创建成功"
@@ -40,6 +42,10 @@ class Weixin::TopicsController < Weixin::ManageController
   end
 
   def update
+    if params[:topic]
+      params[:topic][:kindergarten_id] = @kind.id
+      params[:topic][:creater_id] = current_user.id
+    end
     @topic = @kind.topics.find_by_id(params[:id])
 
     if @topic.update_attributes(params[:topic])

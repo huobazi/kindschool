@@ -21,10 +21,12 @@ class User < ActiveRecord::Base
 
   has_many :user_squads , :class_name=>"UserSquad"
 
+  has_many :news , :class_name=>"New"
+
   before_save :encrypt_password
 
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
-  validates_length_of :phone, :in => 11..11, :if => Proc.new { |user| user.phone.present? && user.phone.to_i != 0 }
+  validates_length_of :phone, :is => 11
   validates :phone,:presence => true,:uniqueness => { :scope => :kindergarten_id}
   validates :email,:uniqueness => { :scope => :kindergarten_id}, :allow_blank => true
   validates :name, :login, :kindergarten_id,:presence => true

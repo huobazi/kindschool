@@ -2,6 +2,7 @@ School::Application.routes.draw do
 
   match 'my_school' => 'my_school/main#index'
   namespace :my_school do
+    resources :news 
     resources :my_kindergarten do
 
     end
@@ -125,6 +126,7 @@ School::Application.routes.draw do
     resources :student_infos do
       collection do
         delete :destroy_multiple
+        get :grade_squad_partial
       end
     end
     resources :templates do

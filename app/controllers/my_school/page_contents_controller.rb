@@ -119,10 +119,9 @@ class  MySchool::PageContentsController < MySchool::ManageController
             end
           end
         elsif params[:tp] == "official_website_home"
-          entry = ContentEntry.new(:title=>params[:title],:content=>(params[:content]||""))
-            
+          entry = ContentEntry.new(:number=>"official_home_teacher",:title=>params[:teacher_title],:content=>(params[:teacher_content]||""))  
             if params[:img]
-              img = PageImg.new(:uploaded_data=> params[:img])
+              img = PageImg.new(:uploaded_data=> params[:teacher_img])
               entry.page_img = img
             end
             @page_content.content_entries << entry

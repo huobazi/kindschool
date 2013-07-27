@@ -17,6 +17,8 @@ class Weixin::ActivitiesController < Weixin::ManageController
 
   def create
     @activity = @kind.activities.find_by_id(params[:id])
+    @activity.creater_id = current_user.id
+    @activity.kindergarten_id = @kind.id
 
     if @activity.save!
       flash[:success] = "创建"

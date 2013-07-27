@@ -813,7 +813,7 @@ topic_categories_index:
   level: 2
   sequence: 0
   note: "论坛分类管理"
-  controller: "my_school/categories"
+  controller: "my_school/topic_categories"
   action: "index"
   protocol: ""
   <<: *DEFAULTS
@@ -824,7 +824,7 @@ topic_categories_new:
   level: 2
   sequence: 0
   note: "论坛分类创建"
-  controller: "my_school/categories"
+  controller: "my_school/topic_categories"
   action: "new"
   protocol: ""
   <<: *DEFAULTS
@@ -835,7 +835,7 @@ topic_categories_edit:
   level: 2
   sequence: 0
   note: "论坛分类编辑"
-  controller: "my_school/categories"
+  controller: "my_school/topic_categories"
   action: "edit"
   protocol: ""
   <<: *DEFAULTS
@@ -846,7 +846,7 @@ topic_categories_edit:
   level: 2
   sequence: 0
   note: "论坛分类删除"
-  controller: "my_school/categories"
+  controller: "my_school/topic_categories"
   action: "destroy"
   protocol: ""
   <<: *DEFAULTS
@@ -1491,5 +1491,83 @@ interest_activity_destroy_multi:
   note: "删除多个兴趣讨论"
   controller: "my_school/interest_activities"
   action: "destroy_multiple"
+  protocol: ""
+  <<: *DEFAULTS
+
+news_index:
+  id: 11000
+  parent_id: 2
+  name: "新闻列表"
+  level: 2
+  sequence: 1
+  note: "新闻列表"
+  controller: "my_school/news"
+  action: "index"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_new:
+  id: 11001
+  parent_id: 2
+  name: "新闻新建"
+  level: 2
+  sequence: 1
+  note: "新闻新建"
+  controller: "my_school/news"
+  action: "new"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_create:
+  id: 11002
+  parent_id: 2
+  name: "新闻创建"
+  level: 2
+  sequence: 1
+  note: "新闻创建"
+  controller: "my_school/news"
+  action: "create"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_edit:
+  id: 11003
+  parent_id: 2
+  name: "新闻编辑"
+  level: 2
+  sequence: 1
+  note: "新闻编辑"
+  controller: "my_school/news"
+  action: "edit"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_uodate:
+  id: 11004
+  parent_id: 2
+  name: "新闻更新"
+  level: 2
+  sequence: 1
+  note: "新闻更新"
+  controller: "my_school/news"
+  action: "update"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_destroy:
+  id: 11005
+  parent_id: 2
+  name: "新闻删除"
+  level: 2
+  sequence: 1
+  note: "新闻删除"
+  controller: "my_school/news"
+  action: "destroy"
+  params: ""
   protocol: ""
   <<: *DEFAULTS
