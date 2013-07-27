@@ -80,28 +80,5 @@ class  MySchool::SquadsController < MySchool::ManageController
     end
   end
 
-  def add_strategy_view
-    @squad = @kind.squads.find_by_id(params[:id])
-    @career_strategy = CareerStrategy.new
-    @career_strategy.kindergarten_id = @kind.id
-    @career_strategy.from_id = @squad.id
-  end
-
-  def add_strategy
-
-    @career_strategy = CareerStrategy.new(params[:career_strategy])
-
-    if params[:career_strategy][:graduation]
-      flash[:success] = "该班已毕业"
-    end
-
-    if @career_strategy.save!
-      flash[:success] += "操作成功"
-    else
-      flash[:error] += "操作失败"
-    end
-
-    redirect_to my_school_squad_path(params[:squad_id])
-  end
 end
 

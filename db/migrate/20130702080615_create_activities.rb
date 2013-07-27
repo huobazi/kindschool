@@ -14,6 +14,7 @@ class CreateActivities < ActiveRecord::Migration
       t.integer :send_range
       t.integer :send_range_ids
       t.integer :tp, :default => 0 # 0为活动,1为兴趣讨论
+      t.integer :squad_id
 
       t.timestamps
     end
