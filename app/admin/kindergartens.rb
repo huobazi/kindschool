@@ -58,6 +58,7 @@ ActiveAdmin.register Kindergarten do
       f.input :weixin_status,:as=>:select,:collection=>Kindergarten::WEIXIN_STATUS_DATA.invert
       f.input :weixin_code
       f.input :weixin_token
+      f.input :telephone
       f.input :latlng
       f.input :address
       f.input :aliases_url
@@ -84,6 +85,7 @@ ActiveAdmin.register Kindergarten do
       row :weixin_status_label
       row :weixin_code
       row :weixin_token
+      row :telephone
       row :latlng
       row :address
       row :aliases_url

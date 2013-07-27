@@ -64,12 +64,11 @@ School::Application.routes.draw do
     end
     resources :users do
       collection do
-        get :login,:logout,:error_notice,:show
-        post :login
+        get :login,:logout,:error_notice,:show,:change_password_view
+        post :login,:change_password
       end
-      collection do
-        get :change_password_view
-        post :change_password
+      member do
+        get :set_send_sms,:set_gather_sms
       end
     end
     resources :activity_entries
