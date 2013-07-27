@@ -40,6 +40,10 @@ class MySchool::MainController < MySchool::BaseController
 
   def show_one_new
     @new = @kind.news.find(params[:new_id])
+    @new.show_count = @new.show_count.to_i+1
+    @new.save
+    @new_pre = @kind.news.find(:first,:conditions=>["created_at>:create_at",{:create_at=>@new.created_at}])
+    @new_next = @kind.news.find(:first,:conditions=>["created_at<:create_at",{:create_at=>@new.created_at}])
   end
 
   def show_new_list

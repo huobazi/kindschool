@@ -23,6 +23,14 @@
               </label>
             </div>
           </div>
+    <div class="control-group">
+            <label class="control-label_left" >浏览次数</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= @new.show_count%>
+              </label>
+            </div>
+          </div>
       <div class="official_new_dotted_line">
     </div>
       <div class="control-group">
@@ -34,6 +42,14 @@
     </div>
     </form>
 
+  </div>
+  <div class = "next_to_new">
+    <%unless @new_pre.blank?%>
+    <%= link_to "上一篇", show_one_new_my_school_main_index_path(:new_id=>@new_pre.id),:class=>"btn" %>
+    <%end%>
+    <%unless @new_next.blank?%>
+    <%= link_to "下一篇", show_one_new_my_school_main_index_path(:new_id=>@new_next.id),:class=>"btn" %>
+    <%end%>
   </div>
   <div class="new_more_button">
      <%=link_to "更多" ,show_new_list_my_school_main_index_path ,:class=>"btn"%>
