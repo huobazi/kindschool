@@ -19,12 +19,27 @@
     </tr>
   <% end %>
 </table>
+<%if @content_entries%>
+<%entry=@content_entries.find_by_number("official_home_pub_img")  %>
+<%if entry.blank?%>
+ <div class="control-group">
+    <label class="control-label">首页宣传图片上传</label>
+    <div class="controls">
+      <label class="show_label">
+        <%= file_field_tag 'home_publicity_img', :class => 'profile_input required' %>
+      </label>
+      <span> 建议高度970像素,宽度为370像素</span>
+    </div>
+ </div>
+<%end%>
+<%end%>
 <div class="control-group">
   <label class="control-label"></span>老师姓名及职位</label>
   <div class="controls">
     <label class="show_label">
         <%= text_field_tag :teacher_title,"", :class => 'profile_input required'%>
     </label>
+    <span>如: 张三  园长</span>
   </div>
 </div>
 <div class="control-group">
@@ -32,14 +47,18 @@
 </div>
 <div class="control-group">
     <%= text_field_tag :teacher_content,"", :class => 'profile_input '%>
+    <p>如: 本科学历</p>
+    <p>教育学学士学位</p>
+    <p>小学高级教师</p>
 </div>
 
 <div class="control-group">
-    <label class="control-label">上传图片</label>
+    <label class="control-label">老师头像上传</label>
     <div class="controls">
       <label class="show_label">
         <%= file_field_tag 'teacher_img', :class => 'profile_input required' %>
       </label>
+      <span>建议高度为200像素,宽200像素</span>
     </div>
 </div>
 <div class="control-group">
