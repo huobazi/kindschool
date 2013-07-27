@@ -1302,8 +1302,12 @@ ul.feature_list li{
 }
 .official_home_img{
     float: left;
-    margin-left: 10px;
-    margin-top: 10px;
+    height: 370px;
+    margin: 10px;
+    max-width: 931px;
+    overflow: hidden;
+    text-align: center;
+    width: 931px; 
 }
 .official_home_img_left{
     background-image: url("/t/colorful/liftedshadow_medium.png");
@@ -1347,14 +1351,13 @@ ul.feature_list li{
 }
 .official_home_news{
     float: left;
-    width: 65%; 
+    width: 100%; 
     position: relative;
 }
 .official_home_news_content{
     float: left;
     width: 100%;
-    position: absolute;
-    top: 78px;
+    margin-top: 78px;
     background-color: white ;
 }
 ul.official_home_news_list{
@@ -1383,6 +1386,9 @@ ul.official_home_news_list li .official_font{
     float: left;
     line-height: 30px;
     text-align: center;
+    }
+ul.official_home_news_list li .official_font a{
+    color: blue;
     }
 ul.official_home_news_list li .official_time{
     float: right;
@@ -1438,9 +1444,9 @@ ul.official_home_news_list li .official_time{
 }
 .official_home_address {
     float: left;
-    margin-top: 400px;
+    /*margin-top: 400px;*/
     position: relative;
-    width: 65%;
+    width: 100%;
 }
 .official_home_address_info h3{
     border-bottom: 2px solid red;

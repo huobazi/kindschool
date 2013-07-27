@@ -24,6 +24,7 @@
         <%= simple_form_for @kind, :validate => true, :url => {:controller=>"/my_school/my_kindergarten",:action=>:update}, :html =>{:class=>"form-horizontal"} do |f| %>
           <%= f.input :name,:input_html =>{:class=>"span5",:name=>"name"}, :hint => "长度不能超过100个字。" %>
           <%= f.input :note,:input_html =>{:class=>"span5",:rows=>"5",:name=>"note"} , :hint => "描述将在家园互动首页和微信中出现。长度不能超过800个字。" %>
+          <%= f.input :telephone,:input_html =>{:class=>"span5",:name=>"telephone"} %>
           <div class="control-group">
             <label class="control-label">Logo</label>
             <div class="controls">

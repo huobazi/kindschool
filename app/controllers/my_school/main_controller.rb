@@ -4,12 +4,13 @@ class MySchool::MainController < MySchool::BaseController
   layout "colorful_main"
   def index
     if @kind 
+      @news = @kind.news.limit(6)
       root_showcase = @kind.page_contents.find_by_number("official_website_home")
       if root_showcase && !root_showcase.content_entries.blank?
         @teacher_infos = root_showcase.content_entries.where(:number=>"official_home_teacher")
+        @img= root_showcase.content_entries.where(:number=>'official_home_pub_img')     
       end
-    end
-   
+    end 
   end
 
   #提示界面
@@ -36,5 +37,13 @@ class MySchool::MainController < MySchool::BaseController
   #显示官网招生信息
   def admissions_information
   end
-  
+
+  def show_one_new
+    @new = @kind.news.find(params[:new_id])
+  end
+
+  def show_new_list
+    @news = @kind.news.page(params[:page] || 1).per(10)
+  end
+
 end
