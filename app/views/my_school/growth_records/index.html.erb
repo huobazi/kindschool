@@ -43,27 +43,38 @@
       <ul class="work_action">
         <li>
           <% if action_name == "home" %>
-            <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new, :tp=>1)%>" title="添加">
+            <% if choose_operate_show("my_school/growth_records/new") %>
+                <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new, :tp=>1)%>" title="添加">
+                  <div class="work_action_add">
+                  </div>
+                  <div class="work_action_add_move">
+                  </div>
+                </a>
+            <% end %>
           <% else %>
-            <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new, :tp=>0)%>" title="添加">
+            <% if choose_operate_show("my_school/garden_growth_records/new") %>
+                <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new, :tp=>0)%>" title="添加">
+                <div class="work_action_add">
+                  </div>
+                  <div class="work_action_add_move">
+                  </div>
+                </a>
+            <% end %>
           <% end %>
-            <div class="work_action_add">
-            </div>
-            <div class="work_action_add_move">
-            </div>
-          </a>
         </li>
         <li>
-          <a href="/" title="删除" id="destroy_multiple">
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/growth_records/destroy_multi_form") %>
+            <a href="/" title="删除" id="destroy_multiple">
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+            </a>
+          <% end %>
         </li>
       </ul>
     </div>
-    
+
     <div class="search_form">
      <%= form_tag '/my_school/growth_records' , :method=>"get" do %>
       <b>学员：</b>
@@ -99,16 +110,24 @@
 
                 <td>
                   <% if growth.tp == true %>
-                    <%= link_to "查看", my_school_growth_record_path(growth), :class => "show" %>
+                    <% if choose_operate_show("my_school/growth_records/show") %>
+                      <%= link_to "查看", my_school_growth_record_path(growth), :class => "show" %>
+                    <% end %>
                   <% else %>
-                    <%= link_to "查看", my_school_garden_growth_record_path(growth), :class => "show" %>
+                    <% if choose_operate_show("my_school/garden_growth_records/show") %>
+                      <%= link_to "查看", my_school_garden_growth_record_path(growth), :class => "show" %>
+                    <% end %>
                   <% end %>
                 </td>
                 <td>
                   <% if growth.tp == true %>
-                    <%= link_to "编辑", edit_my_school_growth_record_path(growth), :class => "show" %>
+                    <% if choose_operate_show("my_school/growth_records/edit") %>
+                      <%= link_to "编辑", edit_my_school_growth_record_path(growth), :class => "show" %>
+                    <% end %>
                   <% else %>
-                    <%= link_to "编辑", edit_my_school_garden_growth_record_path(growth), :class => "show" %>
+                    <% if choose_operate_show("my_school/garden_growth_records/edit") %>
+                      <%= link_to "编辑", edit_my_school_garden_growth_record_path(growth), :class => "show" %>
+                    <% end %>
                   <% end %>
                 </td>
               </tr>

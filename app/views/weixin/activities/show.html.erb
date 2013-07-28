@@ -1,0 +1,39 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    <a href="<%= url_for(:action=>:index) %>" title="返回" class="weixin_return">返回</a>活动内容
+    <%= link_to("删除",url_for(:controller=>"/weixin/growth_records",:action=>:destroy,:id=>@activity.id),:method=>:delete, :confirm => "您确定删除该活动吗?", :class => "new_message")%>
+    <%= link_to "修改", edit_weixin_activity_path(@activity), :class => "new_message" %>
+  </div>
+  <div class="message_list">
+    <ul class="data_list">
+      <li class="growth_record">
+        <p class="title"><span class="title-help">标题:</span><span><%= @activity.title %></span></p>
+        <p class="time"><span>开始时间:</span>&nbsp;&nbsp;<span><%= @activity.start_at ? @activity.start_at.to_short_datetime : "" %></span></p>
+        <p class="time"><span>结束时间:</span>&nbsp;&nbsp;<span><%= @activity.end_at ? @activity.end_at.to_short_datetime : "" %></span></p>
+        <p class="creater"><span>创建人:</span><span class="author"><%= @activity.creater ? @activity.creater.name : "" %></span></p>
+        <div class="ctivity_content_logo">
+          <% if @activity.asset_img.blank? %>
+            <img src="/t/colorful/activity_logo1.jpg" alt="" />
+          <% else %>
+            <a href="<%= @activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
+              <img src="<%= @activity.asset_img.public_filename(:middle) %>" />
+            </a>
+          <% end %>
+        </div>
+        <div class="content">
+          <br />
+          <span>内容:</span><%= simple_format @activity.content %>
+          <br />
+          <span>描述:</span><%= simple_format @activity.note %>
+        </div>
+      </li>
+    </ul>
+    <br/>
+  </div>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
+

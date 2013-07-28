@@ -15,7 +15,6 @@ class CreateMessages < ActiveRecord::Migration
       t.string :chain_code #扩展号
       t.timestamp :send_date
       t.timestamp :deleted_at
-      
       t.timestamps
     end
   end

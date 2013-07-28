@@ -51,4 +51,29 @@
       allowFileManager : true,height:300
     });
   });
+
+var flag = []
+var time_re = /\d{4}-\d{2}-\d{2}/;
+$("input[name='commit']").click(function(){
+  if ( $("#cook_book_start_at").val().length > 0 && $("#cook_book_end_at").val().length > 0 && time_re.test($("#cook_book_start_at").val()) && time_re.test($("#cook_book_end_at").val()) ) {
+    if( Date.parse($("#cook_book_end_at").val()) < Date.parse($("#cook_book_start_at").val()) ) {
+      if( $("#cook_book_end_at").next("span.help-inline").length == 0 ) {
+        $("<span class='help-inline'>过期时间必须大于注射时间</span>").insertAfter($("#cook_book_end_at"))
+      }
+      flag.push(true);
+    } else {
+      if($("#cook_book_end_at").next("span.help-inline").length > 0) {
+        $("#cook_book_end_at").next("span.help-inline").remove()
+      }
+      flag.push(false);
+    }
+  }
+
+  for( i in flag ) {
+    if(flag[i] == true) {
+      flag.length = 0;
+      return false;
+    }
+  }
+})
 </script>

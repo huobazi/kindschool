@@ -1,0 +1,18 @@
+<% unless @squads.blank? %>
+  <label class="field_prompt" for="squad">班级:</label>
+  <%= select_tag "squad", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+<% end %>
+
+<script type="text/javascript">
+  $("#squad").change(function() {
+    $.get(
+      "/my_school/growth_records/squad_student_partial",
+      {
+        grade: $("#grade").val(), squad: $("#squad").val()
+      },
+      function(result) {
+        $("#squad_student_partial").html(result)
+      }
+    )
+  }).trigger("change");
+</script>

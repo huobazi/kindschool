@@ -121,4 +121,31 @@ class MySchool::UsersController < MySchool::ManageController
     #    redirect_back_or_default(root_path)
   end
 
+  #设置能发送短信
+  def set_send_sms
+    if user = User.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+      user.update_attribute(:is_send, !user.is_send)
+      flash[:success] = "设置成功。"
+    else
+      flash[:error] = "需要设置的用户不存在"
+    end
+    redirect_to :back
+  rescue Exception=>ex
+    flash[:error] = ex.message
+    redirect_to :back
+  end
+
+  #设置能收到短信
+  def set_gather_sms
+    if user = User.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+      user.update_attribute(:is_receive, !user.is_receive)
+      flash[:success] = "设置成功。"
+    else
+      flash[:error] = "需要设置的用户不存在"
+    end
+    redirect_to :back
+  rescue Exception=>ex
+    flash[:error] = ex.message
+    redirect_to :back
+  end
 end

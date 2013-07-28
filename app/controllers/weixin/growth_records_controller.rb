@@ -18,6 +18,11 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
   end
 
   def update
+    if params[:growth_record]
+      params[:growth_record][:kindergarten_id] = @kind.id
+      params[:growth_record][:creater_id] = current_user.id
+      params[:growth_record][:tp] = 1
+    end
     if @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 1)
     else
       flash[:error] = "只能修改宝宝在家成长记录"
@@ -34,9 +39,10 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
   end
 
   def create
-    binding.pry
-    params[:growth_record][:tp] = 1
     @growth_record = GrowthRecord.new(params[:growth_record])
+    @growth_record.kindergarten_id = @kind.id
+    @growth_record.creater_id = current_user.id
+    @growth_record.tp = 1
 
     if @growth_record.save!
       flash[:success] = "创建宝宝在家成长记录成功"

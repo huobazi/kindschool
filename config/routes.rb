@@ -2,6 +2,10 @@ School::Application.routes.draw do
 
   match 'my_school' => 'my_school/main#index'
   namespace :my_school do
+    resources :news 
+    resources :my_kindergarten do
+
+    end
     resources :main do
       collection do
         get :no_kindergarten
@@ -10,6 +14,8 @@ School::Application.routes.draw do
         get :feature
         get :show_official_about_us
         get :admissions_information
+        get :show_one_new
+        get :show_new_list
       end
     end
     resources :virtual_squads  do 
@@ -58,12 +64,11 @@ School::Application.routes.draw do
     end
     resources :users do
       collection do
-        get :login,:logout,:error_notice,:show
-        post :login
+        get :login,:logout,:error_notice,:show,:change_password_view
+        post :login,:change_password
       end
-      collection do
-        get :change_password_view
-        post :change_password
+      member do
+        get :set_send_sms,:set_gather_sms
       end
     end
     resources :activity_entries
@@ -122,6 +127,7 @@ School::Application.routes.draw do
     resources :student_infos do
       collection do
         delete :destroy_multiple
+        get :grade_squad_partial
       end
     end
     resources :templates do
@@ -146,6 +152,8 @@ School::Application.routes.draw do
       collection do
         get :home
         delete :destroy_multiple
+        get :grade_squad_partial
+        get :squad_student_partial
       end
     end
 
@@ -217,6 +225,7 @@ School::Application.routes.draw do
         get :squad_student
       end
     end
+    resources :activities
     resources :topic_entries
     resources :messages do
       member do

@@ -23,15 +23,87 @@
 
 <%= f.input :content, :input_html => {:rows => "10", :class => "span5"}%>
 <%= f.input :kindergarten_id, :as => :hidden %>
+<%= f.input :creater_id, :as => :hidden %>
+<%= f.input :student_info_id, :as => :hidden %>
 <%= f.input :tp, :as => :hidden %>
 <% if action_name == "new" %>
-  <%= f.input :student_info_id, :validate => true, :required => true, :as => :select, :collection => Hash[f.object.kindergarten.student_infos.map{|student| ["#{student.user.name}", student.id] }] %>
+  <% if current_user.get_users_ranges[:tp] == :student %>
+    <%= f.input :student_info, :required => true, :as => :string, :input_html => { :disabled => true, :value => current_user.name} %>
+  <% else %>
+    <div class="select_field">
+      <div><p class="title">*选择学员</p></div>
+      <label class="field_prompt" for="grade">年级:</label>
+      <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+      <div id="grade_squad_partial">
+      </div>
+      <div id="squad_student_partial">
+      </div>
+    </div>
+  <% end %>
 <% else %>
   <%= f.input :student_info_label, :required => true, :as => :string, :input_html => { :disabled => true }  %>
 <% end %>
+
+<br />
+<br />
 
 <div class="control-group">
   <div class="controls">
     <%= f.button :submit %>
   </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  var flag = []
+  var time_re = /\d{4}-\d{2}-\d{2}/;
+  $("input[name='commit']").click(function(){
+    if ( $("#growth_record_start_at").val().length > 0 && $("#growth_record_end_at").val().length > 0 && time_re.test($("#growth_record_start_at").val()) && time_re.test($("#growth_record_end_at").val()) ) {
+      if( Date.parse($("#growth_record_end_at").val()) < Date.parse($("#growth_record_start_at").val()) ) {
+        if( $("#growth_record_end_at").next("span.help-inline").length == 0 ) {
+          $("<span class='help-inline'>结束时间必须大于开始时间</span>").insertAfter($("#growth_record_end_at"))
+        }
+        flag.push(true);
+      } else {
+        if($("#growth_record_end_at").next("span.help-inline").length > 0) {
+          $("#growth_record_end_at").next("span.help-inline").remove()
+        }
+        flag.push(false);
+      }
+    }
+
+    if ( $("#student_info_id").length > 0 ) {
+      if($("#grade").next("span.help-inline").length > 0) {
+        $("#grade").next("span help-inline").remove()
+      }
+      flag.push(false);
+    } else if ( $("#growth_record_student_info_label").length > 0 || $("#growth_record_student_info").length > 0 ) {
+      flag.push(false)
+    } else {
+      if( $("#grade").next("span.help-inline").length == 0 ) {
+        $("<span class='help-inline'>必须选择学员</span>").insertAfter($("#grade"))
+      }
+      flag.push(true);
+    }
+
+    for( i in flag ) {
+      if(flag[i] == true) {
+        flag.length = 0;
+        return false;
+      }
+    }
+  })
+
+  $("#grade").change(function() {
+    $.get(
+      "/my_school/growth_records/grade_squad_partial",
+      {
+        grade: $("#grade").val()
+      },
+      function(result) {
+        $("#grade_squad_partial").html(result);
+      }
+    )
+  }).trigger('change');
+})
+</script>

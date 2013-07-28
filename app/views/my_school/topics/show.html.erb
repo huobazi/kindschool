@@ -21,135 +21,71 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:new)%>" title="添加">
-            <div class="work_action_add">
-            </div>
-            <div class="work_action_add_move">
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:edit,:id=>@topic.id)%>" title="编辑">
-            <div class="work_action_edit">
-            </div>
-            <div class="work_action_edit_move">
-            </div>
-          </a>
-        </li>
-        <li>
-          <%= link_to(url_for(:controller=>"/my_school/topics",:action=>:destroy,:id=>@topic.id),:method=>:delete, :confirm => "您确定删除该贴子吗?") do %>
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
+          <% if choose_operate_show("my_school/topics/new") %>
+            <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:new)%>" title="添加">
+              <div class="work_action_add">
+              </div>
+              <div class="work_action_add_move">
+              </div>
+            </a>
           <% end %>
         </li>
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:index)%>" title="返回">
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/topics/edit") %>
+            <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:edit,:id=>@topic.id)%>" title="编辑">
+              <div class="work_action_edit">
+              </div>
+              <div class="work_action_edit_move">
+              </div>
+            </a>
+          <% end %>
+        </li>
+        <li>
+          <% if choose_operate_show("my_school/topics/destroy") %>
+            <%= link_to(url_for(:controller=>"/my_school/topics",:action=>:destroy,:id=>@topic.id),:method=>:delete, :confirm => "您确定删除该贴子吗?") do %>
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+            <% end %>
+          <% end %>
+        </li>
+        <li>
+          <% if choose_operate_show("my_school/topics/index") %>
+            <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:index)%>" title="返回">
+              <div class="work_action_return">
+              </div>
+              <div class="work_action_return_move">
+              </div>
+            </a>
+          <% end %>
         </li>
       </ul>
     </div>
 
     <div class="work_form">
       <div class="form_div">
-        <form class="form-horizontal">
-          <div class="control-group">
-            <label class="control-label">标题</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=@topic.title%>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">发表人</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @topic_creater.name %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">查看次数</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @topic.show_count %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">状态</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @topic.status %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >所属幼儿园</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @topic.kindergarten_label %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >是否显示</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @topic.is_show == true ? "是" : "否" %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >是否置顶</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @topic.is_top == true ? "是" : "否" %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">审核状态</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @topic.approve_status %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">审核人</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @topic.approver_id %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">内容</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @topic.content %>
-              </label>
-            </div>
-          </div>
-        </form>
 
-        <hr />
+        <div id="topic_show" class="topic">
+          <div class="topic_content_up">
+            <p class="topic_title"><span><%= @topic.title %><span></p>
+            <p class="topic_info"> <span class="creater"> <%= @topic.topic_category.name %>•<%= @topic.creater ? @topic.creater.name : "" %><span> <span class="created_name">&nbsp;&nbsp;<%= @topic.created_at.to_long_datetime %></span></p>
+          </div>
+          <div class="topic_content"><%= raw @topic.content %></div>
+        </div>
 
         <div id="topic_entries">
-          <% if @topic_entries.any? %>
+          <% unless @topic_entries.blank? %>
+            <div class="total"><b>共收到<%= @topic_entries.count %>条回复</b></div>
             <% @topic_entries.each do |topic_entry| %>
               <div id="topic_entry_<%= topic_entry.id %>" class="topic_entry">
-                <span><%= topic_entry.creater ? topic_entry.creater.name : "丢失回复人信息" %></span>: &nbsp; &nbsp;<span><%= time_ago_in_words(topic_entry.created_at) %></span><%= simple_format topic_entry.content, :class => "topic_entry_content" %> 
-                <% if destroy_topic_entry?(topic_entry) %>
-                  <span class="destroy"><%= link_to "x", my_school_topic_entry_path(topic_entry), :method => :delete %></span>
-                <% end %>
+                <div class="topic_entry_left">
+                  <div class="user_head_logo"><img src="<%= topic_entry.creater.asset_logo ? topic_entry.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/></div>
+                </div>
+                <div class="topic_entry_right">
+                  <p topic_entry_info><span class="author"><%= topic_entry.creater.try(:name) %></span>&nbsp;&nbsp;<span class="time"><%= time_ago_in_words(topic_entry.created_at) %></span></p>
+                  <div class="topic_entry_content"><%= simple_format topic_entry.content %></div>
+                </div>
               </div>
             <% end %>
             <%= paginate @topic_entries %>

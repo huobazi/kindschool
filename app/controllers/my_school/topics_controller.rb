@@ -1,7 +1,19 @@
 #encoding:utf-8
 class  MySchool::TopicsController < MySchool::ManageController
   def index
-    @topics = @kind.topics.search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+    @topic_categories = @kind.topic_categories
+
+    if params[:topic_category_id]
+      if topic_category = @kind.topic_categories.find_by_id(params[:topic_category_id])
+        @topics = @kind.topics.where(:topic_category_id => topic_category.id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+      else
+        flash[:notice] = "没有权限"
+        redirect_to my_school_topic_categories_path
+      end
+    else
+      @topics = @kind.topics.search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+    end
+
   end
 
   def show
@@ -21,6 +33,8 @@ class  MySchool::TopicsController < MySchool::ManageController
 
   def create
     @topic = Topic.new(params[:topic])
+    @topic.kindergarten_id = @kind.id
+    @topic.creater_id = current_user.id
 
     if @topic.save!
       flash[:success] = "添加贴子成功"

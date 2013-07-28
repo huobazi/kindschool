@@ -18,20 +18,24 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/grades",:action=>:new)%>" title="添加">
-            <div class="work_action_add">
-            </div>
-            <div class="work_action_add_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/grades/new") %>
+            <a href="<%=url_for(:controller=>"/my_school/grades",:action=>:new)%>" title="添加">
+              <div class="work_action_add">
+              </div>
+              <div class="work_action_add_move">
+              </div>
+            </a>
+          <% end %>
         </li>
         <li>
-          <a href="/" title="删除" id="destroy_multiple">
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/grades/destroy_multiple") %>
+            <a href="/" title="删除" id="destroy_multiple">
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+            </a>
+          <% end %>
         </li>
       </ul>
     </div>
@@ -56,11 +60,25 @@
             <% @grades.each do |grade| %>
               <tr>
                 <td><input id="grade_<%= grade.id %>" class="grade_check" name="grade[]" type="checkbox" value="<%= grade.id %>" /></td>
-                <td><%= link_to grade.name, my_school_grade_path(grade) %></td>
+                <td>
+                  <% if choose_operate_show("my_school/grades/show") %>
+                    <%= link_to grade.name, my_school_grade_path(grade) %>
+                  <% else %>
+                    <%= grade.name %>
+                  <% end %>
+                </td>
                 <td><%= grade.kindergarten_label %></td>
                 <td><%= grade.note %></td>
-                <td><%= link_to "查看", my_school_grade_path(grade), :class => "show" %></td>
-                <td><%= link_to "编辑", edit_my_school_grade_path(grade), :class => "show" %></td>
+                <td>
+                  <% if choose_operate_show("my_school/grades/show") %>
+                    <%= link_to "查看", my_school_grade_path(grade), :class => "show" %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if choose_operate_show("my_school/grades/edit") %>
+                    <%= link_to "编辑", edit_my_school_grade_path(grade), :class => "show" %>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           <% end %>

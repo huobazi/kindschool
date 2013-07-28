@@ -38,7 +38,7 @@
 <div class="control-group">
   <%=f.label :send_date, '体检时间: ' ,:class=>"control-label"%>
   <div class="controls">
-    <%= f.text_field(:send_date, :validate => true) %>
+    <%= f.text_field(:send_date, :validate => true, :class => "time_datepicker") %>
   </div>
 </div>
 <div class="control-group">
@@ -72,4 +72,26 @@
       $("#student_partial").html(result);
     });
   });
+
+flag = []
+$("input[name='commit']").click(function(){
+  if ( !($("input[name='physical_record[student_info_id]']").is(':checked')) )  {
+    if( $("#grade").next("span.help-inline").length == 0 ) {
+      $("<span class='help-inline'>必须选择学员</span>").insertAfter($("#grade"))
+    }
+    flag.push(true); 
+  } else {
+    if($("#grade").next("span.help-inline").length > 0) {
+      $("#grade").next("span.help-inline").remove()
+    }
+    flag.push(false);
+  }
+
+  for( i in flag ) {
+    if(flag[i] == true) {
+      flag.length = 0;
+      return false;
+    }
+  }
+})
 </script>

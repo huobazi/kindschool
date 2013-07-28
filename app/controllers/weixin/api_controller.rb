@@ -30,6 +30,7 @@ class Weixin::ApiController < Weixin::BaseController
       if logged_in?
         #查看消息
         if xml_data[:Content] == "1"
+          #未读消息
           x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
@@ -38,6 +39,7 @@ class Weixin::ApiController < Weixin::BaseController
               :FuncFlag=>0
             })
         elsif xml_data[:Content] == "2"
+          #幼儿园介绍
           x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
@@ -47,6 +49,7 @@ class Weixin::ApiController < Weixin::BaseController
               :FuncFlag=>0
             })
         elsif xml_data[:Content] == "4"
+          #菜谱信息
           x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
@@ -55,6 +58,7 @@ class Weixin::ApiController < Weixin::BaseController
               :FuncFlag=>0
             })
         elsif xml_data[:Content] == "5"
+          #照片集锦
           albums = @kind.albums.where(:is_show=>1).order("send_date DESC").limit(8)
           if albums.blank?
             x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
@@ -79,6 +83,15 @@ class Weixin::ApiController < Weixin::BaseController
             hash[:Articles] = albums_data
             x_data = mas_data(hash)
           end
+        elsif xml_data[:Content] == "6"
+          #宝宝成长
+          x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
+              :FromUserName=>xml_data[:ToUserName],
+              :CreateTime=>Time.now.to_i,
+              :MsgType=>"text",
+              :Content=>"#{current_user.name}您好! \n\r 查看宝宝成长信息\r\n <a href=\"http://#{request.host_with_port}/weixin/garden_growth_records?#{get_validate_string}\"> 点击进入</a>",
+              :FuncFlag=>0
+            })
         else
           x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
@@ -153,7 +166,7 @@ class Weixin::ApiController < Weixin::BaseController
 
   def get_menu
     if logged_in?
-      "1、查看消息\n\r 2、幼儿园介绍\n\r 3、班级活动\n\r 4、每周菜谱\n\r 5、照片集锦\n\r 6、宝宝成长\n\r 7、信息论坛"
+      "1、查看消息\n\r 2、幼儿园介绍\n\r 3、班级活动\n\r 4、每周菜谱\n\r 5、照片集锦\n\r 6、宝宝成长\n\r"
     else
       "1、进行账号绑定\n\r 2、幼儿园介绍"
     end

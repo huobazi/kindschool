@@ -734,8 +734,8 @@ ul, li {
 
 .message_div .message_list .data_list li.reply .text-content {
     padding-top: 10px;
-    height: 45px;
-    line-height: 45px;
+    height: 40px;
+    line-height: 40px;
     width: 90%;
     font-size: 20px;
 }
@@ -756,6 +756,10 @@ ul, li {
 .message_div .message_list .data_list ul.topic_replies li .reply_info {
     margin-bottom: 20px;
 }
+
+.message_div .message_list .data_list ul.topic_replies li .reply_info .content {
+  word-wrap: break-word;
+}
 .field_prompt {
     color: #008fdc;
     font-size: 20px;
@@ -768,7 +772,6 @@ ul, li {
 .form {
     padding: 10px 20px 20px;
 }
-
 .select {
   height: 50px;
   padding-top: 10px;
@@ -838,6 +841,15 @@ ul, li {
   padding: 10px;
 }
 
+.growth_record .title {
+  padding: 5px 5px 5px 10px;
+  font-weight: bold;
+  word-wrap: break-word;
+}
+.growth_record .title-help {
+  font-weight: normal;
+}
+
 .growth_record .time {
   padding: 10px;
 }
@@ -852,4 +864,13 @@ ul, li {
   text-indent: 20px;
   line-height: 20px;
   word-break:break-all;
+}
+
+/*==================活动=====================*/
+.activity_content_logo {
+  padding-left: 10px;
+}
+.activity_content_logo img {
+  max-width: none;
+  width: 80%;
 }

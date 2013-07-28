@@ -1,10 +1,12 @@
 #encoding:utf-8
 #幼儿园
 class Kindergarten < ActiveRecord::Base
-  attr_accessible :logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token
+  attr_accessible :logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token,:latlng,:address,
+    :aliases_url,:sms_count,:sms_user_count,:telephone
 
   validates :name,:presence => true, :uniqueness => true, :length => { :maximum => 100}
   validates :number,:presence => true, :uniqueness => true, :length => { :maximum => 100}
+  validates :note, :length => { :maximum => 800}
   STATUS_DATA = {"0"=>"正常","1"=>"锁定"}
   WEIXIN_STATUS_DATA = {"0"=>"未授权绑定","1"=>"已授权绑定"}
 
@@ -61,6 +63,8 @@ class Kindergarten < ActiveRecord::Base
   has_many :roles
 
   has_many :topic_categories
+
+  has_many :news
 
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img

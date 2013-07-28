@@ -1,6 +1,7 @@
 <% page_content = official_website_home %>
 <table class="table table-bordered">
   <tr>
+    <th>添加模块</th>
     <th>内容</th>
     <th>操作</th>
   </tr>
@@ -8,63 +9,131 @@
     <tr>
       <td>没有内容</td>
       <td></td>
+      <td></td>
     </tr>
   <%else%>
-    <% entry = page_content.content_entries.first%>
-    <tr>
-      <td><%= raw entry.content %></td>
+    <%(@content_entries || []).each do |entry|%>
+    <%if entry.number == "official_home_pub_img" %>
+    <tr>  
+      <td><span>首页宣传图片</span></td>
+      <td><img src="<%=entry.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : entry.page_img.public_filename %>" alt="" width="400" ></td>
       <td>
         <%= link_to "编辑",:controller=>"/my_school/page_contents",:action=>:edit_content,:id=>page_content.id,:entry_id=>entry.id %>
-      </td>
+      </td>    
     </tr>
+    <%else%>
+    <tr>  
+      <td><span>老师信息</span></td>
+      <td><div class="official_home_teacher_img">
+                  <img src="<%=entry.page_img.blank? ? '/t/colorful/activity_logo1.jpg' : entry.page_img.public_filename %>" alt="" width="200"   >
+                </div>
+                <div class="teacher_info">
+                <div class="teacher_title">
+                  <h3><%=entry.title%></h3>
+                </div>
+                <div class="teacher_content">
+                <%=raw entry.content%>
+              </div>
+             </div></td>
+      <td>
+        <%= link_to "编辑",:controller=>"/my_school/page_contents",:action=>:edit_content,:id=>page_content.id,:entry_id=>entry.id %>
+      </td>    
+    </tr>
+    <%end%>
+    <% end %>
   <% end %>
 </table>
-<div class="control-group">
-  <label class="control-label"><span class="required">*</span>标题</label>
+<%if action_name == "edit_content"%>
+  <%if @entry.number == "official_home_pub_img"%>
+    <div class="control-group">
+         <label class="control-label">首页宣传图片上传</label>
+        <div class="controls">
+         <label class="show_label">
+           <%= file_field_tag 'home_publicity_img', :class => 'profile_input required' %>
+         </label>
+         <span> 建议高度970像素,宽度为370像素</span>
+         <img src="<%=@entry.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry.page_img.public_filename %>" alt="" width="400" >
+      <%= hidden_field_tag "entry_id",@entry.id %>
+        </div>
+      </div>
+  <%else%>
+    <div class="control-group">
+  <label class="control-label"></span>老师姓名及职位</label>
   <div class="controls">
     <label class="show_label">
-      <% if action_name == "edit_content" %>
-        <%= text_field_tag :title,"#{@entry.title}", :class => 'profile_input required'%>
-      <% else %>
-        <%= text_field_tag :title,"", :class => 'profile_input required'%>
-      <% end %>
+        <%= text_field_tag :teacher_title,@entry.title, :class => 'profile_input required'%>
     </label>
+    <span>如: 张三  园长</span>
   </div>
 </div>
 <div class="control-group">
-  <label class="control-label"><span class="required">*</span>内容介绍</label>
+  <label class="control-label">老师简介</label>
 </div>
 <div class="control-group">
-  <% if action_name == "edit_content" %>
-    <%= text_field_tag :content,"#{@entry.content}", :class => 'profile_input required'%>
-    <%= hidden_field_tag "entry_id",@entry.id %>
-  <% else %>
-    <%= text_field_tag :content,"", :class => 'profile_input '%>
-  <% end %>
+    <%= text_field_tag :teacher_content,@entry.content, :class => 'profile_input '%>
+    <p>如: 本科学历</p>
+    <p>教育学学士学位</p>
+    <p>小学高级教师</p>
 </div>
 
 <div class="control-group">
-  <% if @entry && @entry.page_img %>
-    <label class="control-label">上传图片</label>
+    <label class="control-label">老师头像上传</label>
     <div class="controls">
       <label class="show_label">
-        <%= file_field_tag 'img', :class => 'profile_input' %>
+        <%= file_field_tag 'teacher_img', :class => 'profile_input required' %>
       </label>
-      <img src="<%= @entry.page_img.public_filename(:middle) %>" alt="展示图片" />
+      <span>建议高度为200像素,宽200像素</span>
+      <div class="official_home_teacher_img">
+                  <img src="<%=@entry.page_img.blank? ? '/t/colorful/activity_logo1.jpg' : @entry.page_img.public_filename %>" alt="" width="200"   >
+                </div>
       <%= hidden_field_tag "entry_id",@entry.id %>
     </div>
+</div>  
+  <%end%>
+<%else%>
+  <%if @content_entries%>
+   <%entry=@content_entries.find_by_number("official_home_pub_img")  %>
+    <%if entry.blank?%>
+      <div class="control-group">
+         <label class="control-label">首页宣传图片上传</label>
+        <div class="controls">
+         <label class="show_label">
+           <%= file_field_tag 'home_publicity_img', :class => 'profile_input required' %>
+         </label>
+         <span> 建议高度970像素,宽度为370像素</span>
+        </div>
+      </div>
+    <%end%>
+  <%end%>
+<div class="control-group">
+  <label class="control-label"></span>老师姓名及职位</label>
+  <div class="controls">
+    <label class="show_label">
+        <%= text_field_tag :teacher_title,"", :class => 'profile_input required'%>
+    </label>
+    <span>如: 张三  园长</span>
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label">老师简介</label>
+</div>
+<div class="control-group">
+    <%= text_field_tag :teacher_content,"", :class => 'profile_input '%>
+    <p>如: 本科学历</p>
+    <p>教育学学士学位</p>
+    <p>小学高级教师</p>
+</div>
 
-  <% else %>
-    
-    <label class="control-label"><span class="required">*</span>上传图片</label>
+<div class="control-group">
+    <label class="control-label">老师头像上传</label>
     <div class="controls">
       <label class="show_label">
-        <%= file_field_tag 'img', :class => 'profile_input required' %>
+        <%= file_field_tag 'teacher_img', :class => 'profile_input required' %>
       </label>
+      <span>建议高度为200像素,宽200像素</span>
     </div>
-  <% end %>
-
 </div>
+<%end%>
 <div class="control-group">
   <div class="controls">
     <%= button_tag "提交" ,:class=>"btn"%>
@@ -75,7 +144,7 @@
 <script type="text/javascript">
   var editor;
   KindEditor.ready(function(K) {
-    editor = K.create('#content', {
+    editor = K.create('#teacher_content', {
       allowFileManager : true,
       height:400
     });

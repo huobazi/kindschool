@@ -21,9 +21,13 @@
           <ul>
             <li>
             <% if @growth_record.tp == true %>
-              <%= link_to "宝宝在家", home_my_school_growth_records_path %></li>
+              <%if choose_operate_show('my_school/growth_records/home')%>
+                <%= link_to "宝宝在家", home_my_school_growth_records_path %></li>
+              <% end %>
             <% else %>
-              <%= link_to "宝宝在园", garden_my_school_garden_growth_records_path %></li>
+              <%if choose_operate_show('my_school/garden_growth_records/garden')%>
+                <%= link_to "宝宝在园", garden_my_school_garden_growth_records_path %></li>
+              <% end %>
             <% end %>
             <li>/</li>
             <li>查看成长记录</li>
@@ -33,39 +37,66 @@
       <ul class="work_action">
         <li>
           <% if @growth_record.tp == true %>
-            <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new, :tp=>1)%>" title="添加">
+            <% if choose_operate_show("my_school/growth_records/new") %>
+              <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new, :tp=>1)%>" title="添加">
+                <div class="work_action_add">
+                </div>
+                <div class="work_action_add_move">
+                </div>
+              </a>
+            <% end %>
           <% else %>
-            <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new, :tp=>0)%>" title="添加">
+              <% if choose_operate_show("my_school/garden_growth_records/new") %>
+                <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new, :tp=>0)%>" title="添加">
+                  <div class="work_action_add">
+                  </div>
+                  <div class="work_action_add_move">
+                  </div>
+                </a>
+              <% end %>
           <% end %>
-            <div class="work_action_add">
-            </div>
-            <div class="work_action_add_move">
-            </div>
-          </a>
         </li>
         <li>
           <% if @growth_record.tp == true %>
-            <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:edit,:id=>@growth_record.id, :tp=>1)%>" title="编辑">
-          <% else %>
+            <% if choose_operate_show("my_school/growth_records/edit") %>
+              <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:edit,:id=>@growth_record.id, :tp=>1)%>" title="编辑">
+                <div class="work_action_edit">
+                </div>
+                <div class="work_action_edit_move">
+                </div>
+              </a>
+            <% end %>
+        <% else %>
+          <% if choose_operate_show("my_school/garden_growth_records/garden") %>
             <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:edit,:id=>@growth_record.id, :tp=>0)%>" title="编辑">
+              <div class="work_action_edit">
+              </div>
+              <div class="work_action_edit_move">
+              </div>
+            </a>
           <% end %>
-            <div class="work_action_edit">
-            </div>
-            <div class="work_action_edit_move">
-            </div>
-          </a>
+        <% end %>
         </li>
         <li>
           <% if @growth_record.tp == true %>
-            <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:home)%>" title="返回">
+            <% if choose_operate_show("my_school/growth_records/home") %>
+              <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:home)%>" title="返回">
+                <div class="work_action_return">
+                </div>
+                <div class="work_action_return_move">
+                </div>
+              </a>
+            <% end %>
           <% else %>
-            <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:garden)%>" title="返回">
+            <% if choose_operate_show("my_school/garden_growth_records/garden") %>
+              <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:garden)%>" title="返回">
+                <div class="work_action_return">
+                </div>
+                <div class="work_action_return_move">
+                </div>
+              </a>
+            <% end %>
           <% end %>
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
-          </a>
         </li>
       </ul>
     </div>

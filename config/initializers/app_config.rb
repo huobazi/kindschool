@@ -30,7 +30,10 @@ MENUS ={"home"=>{
  },
    "64000"=>{
   "my_school/messages"=>["draft_box", "draft_show", "draft_edit"]
- }
+ },
+   "65000"=>{
+    "my_school/news"=>DEFULT_ACTION
+   }
 },
   "personnel"=>{
   "11000"=>{
@@ -72,6 +75,9 @@ MENUS ={"home"=>{
     },
     "38000"=>{
       "my_school/topic_categories"=>["index", "show", "edit", "new"]
+    },
+    "39000"=>{
+      "my_school/my_kindergarten"=>["index",  "edit", "update"]
     }
    },
    "100000"=>{

@@ -18,21 +18,25 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/topic_categories",:action=>:new)%>" title="添加">
-            <div class="work_action_add">
-            </div>
-            <div class="work_action_add_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/topic_categories/new") %>
+            <a href="<%=url_for(:controller=>"/my_school/topic_categories",:action=>:new)%>" title="添加">
+              <div class="work_action_add">
+              </div>
+              <div class="work_action_add_move">
+              </div>
+            </a>
+          <% end %>
         </li>
-        <li>
-          <a href="/" title="删除" id="destroy_multiple">
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
-          </a>
-        </li>
+        <% if choose_operate_show("my_school/topic_categories/destroy_multiple") %>
+          <li>
+            <a href="/" title="删除" id="destroy_multiple">
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+            </a>
+          </li>
+        <% end %>
       </ul>
     </div>
     <div class="search_form">
@@ -43,7 +47,7 @@
       <%end%>
     </div>
     <div class="work_list">
-      <% if @topic_categories.any? %>
+      <% unless @topic_categories.blank? %>
         <table class="table table-striped table-hover">
           <%= form_tag destroy_multiple_my_school_topic_categories_path, method: :delete, :id => "destroy_multi_form" do %>
             <tr>
@@ -55,10 +59,24 @@
             <% @topic_categories.each do |topic_category| %>
               <tr>
                 <td><input id="topic_category_<%= topic_category.id %>" class="topic_category_check" name="topic_category[]" type="checkbox" value="<%= topic_category.id %>" /></td>
-                <td><%= link_to topic_category.name, my_school_topic_category_path(topic_category) %></td>
+                <td>
+                  <% if choose_operate_show("my_school/topic_categories/show") %>
+                    <%= link_to topic_category.name, my_school_topic_category_path(topic_category) %>
+                  <% else %>
+                    <%= topic_category.name %>
+                  <% end %>
+                </td>
                 <td><%= topic_category.kindergarten_label %></td>
-                <td><%= link_to "查看", my_school_topic_category_path(topic_category), :class => "show" %></td>
-                <td><%= link_to "编辑", edit_my_school_topic_category_path(topic_category), :class => "show" %></td>
+                <td>
+                  <% if choose_operate_show("my_school/topic_categories/show") %>
+                    <%= link_to "查看", my_school_topic_category_path(topic_category), :class => "show" %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if choose_operate_show("my_school/topic_categories/edit") %>
+                    <%= link_to "编辑", edit_my_school_topic_category_path(topic_category), :class => "show" %>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           <% end %>
