@@ -64,7 +64,8 @@
       <label class="show_label">
         <%= file_field_tag 'img', :class => 'profile_input' %>
       </label>
-      <img src="<%= @entry.page_img.public_filename(:middle) %>" alt="展示图片" />
+      <span> 建议高度285像素,宽度为180像素</span>
+      <img src="<%= @entry.page_img.public_filename %>" alt="展示图片" />
       <%= hidden_field_tag "entry_id",@entry.id %>
     </div>
 

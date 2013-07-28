@@ -194,6 +194,39 @@ a{
     width: 420px;
     z-index: 100;
 }
+.official_admiss_info_img{
+    background-image: url("/t/colorful/title.png");
+    background-position: -320px -220px;
+    background-repeat: no-repeat;
+    height: 100px;
+    left: 370px;
+    position: absolute;
+    top: 210px;
+    width: 475px;
+    z-index: 100; 
+}
+.official_feature_img{
+    background-image: url("/t/colorful/title.png");
+    background-position: -320px -110px;
+    background-repeat: no-repeat;
+    height: 100px;
+    left: 400px;
+    position: absolute;
+    top: 210px;
+    width: 420px;
+    z-index: 100; 
+}
+.official_contact_img{
+    background-image: url("/t/colorful/title.png");
+    background-position: -320px -330px;
+    background-repeat: no-repeat;
+    height: 100px;
+    left: 380px;
+    position: absolute;
+    top: 210px;
+    width: 450px;
+    z-index: 100;
+}
 .official_new_line{
     border: 2px solid #E3E3E3;
     margin-top: 15px;
@@ -250,4 +283,9 @@ a{
     border: 0 none;
     vertical-align: middle;
     max-width: 200%; 
+}
+.box_feat_img img{
+    border: 0 none;
+    max-width: 200%;
+    vertical-align: middle;
 }

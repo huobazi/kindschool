@@ -1123,9 +1123,12 @@ legend label{
 .feature{
     float:left;
     width: 100%;
+    background-color: #FBFBFB;
+    border: 1px solid #E3E3E3;
+    margin-top: 42px;
 }
 ul.feature_list li{
-    padding: 50px 0px;
+    padding: 30px 0px;
     width: 380px;
     height: 160px;
     border-bottom: 3px solid #fdb968;
@@ -1173,7 +1176,7 @@ ul.feature_list li{
     background-repeat: no-repeat;
     width: 14px;
     height: 63px;
-    left:111px;
+    left:113px;
     position: absolute;
 }
 .show_center_right{
@@ -1182,7 +1185,7 @@ ul.feature_list li{
     width: 14px;
     height: 63px;
     position: absolute;
-    left:1070px;
+    left:1076px;
 }
 .show_center ul li{
     line-height: 50px;
@@ -1208,7 +1211,10 @@ ul.feature_list li{
 }
 .admissions_information{
     float: left;
-   
+    background-color: #FBFBFB;
+    border: 1px solid #E3E3E3;
+    width:100%;
+    margin-top: 42px;
 }
 .admissions_info_title h2{
     margin:50px;
@@ -1292,8 +1298,11 @@ ul.feature_list li{
     height: 80px;
 }
 .contact_us_kinder{
-    float: left;
-    /*margin: 50px;*/
+    float:left;
+    width: 100%;
+    background-color: #FBFBFB;
+    border: 1px solid #E3E3E3;
+    margin-top: 42px;
 }
 
 .official_home_index{
@@ -1539,4 +1548,9 @@ span.help-inline {
     height: auto;
     vertical-align: middle;
     max-width: 200%;
+}
+.box_feat_img img{
+    border: 0 none;
+    max-width: 200%;
+    vertical-align: middle;
 }
