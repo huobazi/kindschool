@@ -1052,7 +1052,9 @@ table.user_attributes td {
   color: #333333;
   font-size: 16px;
 }
-
+.float_left {
+  float: left;
+}
 a.album_a{
     display: inherit;
     height: 219px;
