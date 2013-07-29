@@ -63,7 +63,7 @@ a{
 }
 .main_work{
    /* background-color: #EAEAEA;*/
-    min-height: 1000px;
+    /*min-height: 1000px;*/
 }
 #main .menu_left {
     background-image: url("/t/colorful/official_home.png");
@@ -1550,6 +1550,7 @@ span.help-inline {
     height: auto;
     vertical-align: middle;
     max-width: 200%;
+    width:100px;
 }
 .box_feat_img img{
     border: 0 none;
