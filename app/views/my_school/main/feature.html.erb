@@ -1,9 +1,8 @@
 <%#= render :partial => "/modules/colorful/show_official_feature" %>
 	<div class="feature">
-
-		<% if @kind && (root_showcase = @kind.page_contents.find_by_number("official_website_feature")) && !root_showcase.content_entries.blank? %>
+     <div class="official_feature_img"> </div>
 		<ul class="feature_list">
-			<% root_showcase.content_entries.each do |entry| %>
+			<% (@content_entries || []).each do |entry| %>
            <li>
            	<% if entry.page_img %>
               	<div class="box_feat_img">
@@ -39,5 +38,4 @@
            </li> -->
            
 		</ul>
-		<%end%>
 	</div>

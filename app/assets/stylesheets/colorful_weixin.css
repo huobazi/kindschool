@@ -874,3 +874,9 @@ ul, li {
   max-width: none;
   width: 80%;
 }
+
+/*=================kindeditor================*/
+
+.ke-dialog-body label {
+  font-size: 14px;
+}

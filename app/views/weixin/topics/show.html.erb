@@ -17,7 +17,8 @@
         <%= simple_form_for(@topic_entry, :validate => true, :url => weixin_topic_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
           <div class="field">
             <label class="field_prompt">回复</label>
-            <%= f.text_field :content, :class => "text-content" %><br /><br />
+            <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :allowFlashUpload => false, :simple_mode => true %>
+            <br />
             <%= f.button :submit, :class => "btn" %>
           </div>
           <%= f.input :topic_id, :as => :hidden %>
@@ -49,9 +50,23 @@
 
 <script type="text/javascript">
 $(":submit").click(function() {
-  if( $("#topic_entry_content").val().length < 3 ) {
-    $("<span class='help'>长度太短必须2个字符以上<span>").insertAfter($(".field_prompt"))
-    return false;
+  var flag = [];
+  if (topic_content.html().length < 3 || topic_content.isEmpty()) {
+    if ( $("#topic_entry_content").next("span.help-inline").length == 0 ) {
+      $("<span class='help-inline'>长度不够(必须超过3个字符)").insertAfter("#topic_entry_content")
+    }
+    flag.push(true)
+  } else {
+    if ( $("#topic_entry_content").next("span.help-inline").length > 0 ) {
+      $("#topic_entry_content").next("span.help-inline").remove()
+    }
+    flag.push(false)
+  }
+  for( i in flag ) {
+    if(flag[i] == true) {
+      flag.length = 0;
+      return false;
+    }
   }
 })
 </script>

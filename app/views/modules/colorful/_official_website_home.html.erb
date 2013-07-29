@@ -70,7 +70,8 @@
   <label class="control-label">老师简介</label>
 </div>
 <div class="control-group">
-    <%= text_field_tag :teacher_content,@entry.content, :class => 'profile_input '%>
+    <%#= text_field_tag :teacher_content,@entry.content, :class => 'profile_input '%>
+  <%= kindeditor_tag :teacher_content,@entry.content, :allowFileManager => false %> 
     <p>如: 本科学历</p>
     <p>教育学学士学位</p>
     <p>小学高级教师</p>
@@ -118,7 +119,8 @@
   <label class="control-label">老师简介</label>
 </div>
 <div class="control-group">
-    <%= text_field_tag :teacher_content,"", :class => 'profile_input '%>
+    <%#= text_field_tag :teacher_content,"", :class => 'profile_input '%>
+    <%= kindeditor_tag :teacher_content,"", :allowFileManager => false %> 
     <p>如: 本科学历</p>
     <p>教育学学士学位</p>
     <p>小学高级教师</p>
@@ -140,13 +142,3 @@
     <%= hidden_field_tag "tp","official_website_home" %>
   </div>
 </div>
-
-<script type="text/javascript">
-  var editor;
-  KindEditor.ready(function(K) {
-    editor = K.create('#teacher_content', {
-      allowFileManager : true,
-      height:400
-    });
-  });
-</script>

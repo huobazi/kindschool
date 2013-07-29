@@ -391,6 +391,17 @@ squad_destroy:
   action: "destroy"
   protocol: ""
   <<: *DEFAULTS
+squad_class_teacher:
+  id: 4242
+  parent_id: 5
+  name: "为班级分配老师"
+  level: 2
+  sequence: 1
+  note: "为班级分配老师"
+  controller: "my_school/teachers"
+  action: "set_class_teacher_for_squad_view"
+  protocol: ""
+  <<: *DEFAULTS
 
 grade_manage:
   id: 4002

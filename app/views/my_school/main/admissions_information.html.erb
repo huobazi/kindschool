@@ -1,27 +1,25 @@
 <%#= render :partial => "/modules/colorful/show_admissions_information" %>
 <div class="admissions_information">
-  <% if @kind &&(root_showcase = @kind.page_contents.find_by_number("official_website_admissions_information")) && !root_showcase.content_entries.blank? %>
- <%entry = root_showcase.content_entries.find_by_number("official_website_admissions_title")%>
+  <div class="official_admiss_info_img"> </div>
+  
   <div class="admissions_info_title">
-    <h2><%= entry.try(:title)%></h2>
+    <h2><%= @entry.try(:title)%></h2>
   </div>
   <div class="admissions_info_content">
-    <%=raw entry.try(:content) %>
+    <%=raw @entry.try(:content) %>
   </div>
-  <%entry_mid = root_showcase.content_entries.find_by_number("official_website_admissions_mid_title")%>
 	<div class="show_admiss_info_menu_center">
        <div class="show_admiss_info_center_left"> </div>
        <div class="show_admiss_info_center_right"> </div>
        <div class="show_admiss_info_center">
         <ul>
          <li>
-           <a><%=entry_mid.title%></a>
+           <a><%=@entry_mid.try(:title)%></a>
          </li>
         </ul>
        </div>
     </div>
     <div class="admissions_info_content">
-        <%=raw entry_mid.content%>
+        <%=raw @entry_mid.try(:content)%>
 	</div>
-  <%end%>
 </div>

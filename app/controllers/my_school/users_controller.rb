@@ -124,8 +124,13 @@ class MySchool::UsersController < MySchool::ManageController
   #设置能发送短信
   def set_send_sms
     if user = User.find_by_id_and_kindergarten_id(params[:id],@kind.id)
-      user.update_attribute(:is_send, !user.is_send)
-      flash[:success] = "设置成功。"
+      can_count = @kind.sms_user_count - @kind.get_send_sms_count
+      if can_count > 0
+        user.update_attribute(:is_send, !user.is_send)
+        flash[:success] = "设置成功，您还可以设置#{can_count - 1}个用户"
+      else
+        flash[:error] = "设置失败，超过可设置的用户数量。"
+      end
     else
       flash[:error] = "需要设置的用户不存在"
     end
@@ -138,8 +143,14 @@ class MySchool::UsersController < MySchool::ManageController
   #设置能收到短信
   def set_gather_sms
     if user = User.find_by_id_and_kindergarten_id(params[:id],@kind.id)
-      user.update_attribute(:is_receive, !user.is_receive)
-      flash[:success] = "设置成功。"
+      can_count = @kind.sms_user_count - @kind.get_gather_sms_count
+      if can_count > 0
+        user.update_attribute(:is_receive, !user.is_receive)
+        flash[:success] = "设置成功，您还可以设置#{can_count - 1}个用户"
+      else
+        flash[:error] = "设置失败，超过可设置的用户数量。"
+      end
+      
     else
       flash[:error] = "需要设置的用户不存在"
     end

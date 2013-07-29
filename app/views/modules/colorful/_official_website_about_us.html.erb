@@ -29,10 +29,11 @@
 <%if  action_name == "edit_content"%>
 <%flag = true%>
 <div class="control-group">
-  <label class="control-label"><span class="required"></span>关于幼儿园的介绍</label>
+  <label class="control-label"><span class="required"></span>关于幼儿园的介绍:</label>
 </div>
 <div class="control-group">
-    <%= text_field_tag :content,entry.content, :class => 'profile_input '%>
+    <%#= text_field_tag :content,entry.content, :class => 'profile_input '%>
+    <%= kindeditor_tag :content,entry.content, :allowFileManager => false %>
 </div>
 <div class="control-group">
   <label class="control-label"><span class="required"></span>中间标题</label>
@@ -48,6 +49,8 @@
       <label class="show_label">
         <%= file_field_tag 'img', :class => 'profile_input' %>
       </label>
+      <span>建议高度为560px,宽度为370px</span>
+
       <img src="<%= entry_img.try(:page_img).try(:public_filename) %>" alt="展示图片" width="500" hegiht="300"/>
       <%= hidden_field_tag "entry_id",entry.id %>
     </div>
@@ -58,6 +61,7 @@
       <label class="show_label">
         <%= file_field_tag 'img_top', :class => 'profile_input' %>
       </label>
+      <span> 建议高度285像素,宽度为180像素</span>
       <img src="<%= entry_img_top.try(:page_img).try(:public_filename) %>" alt="展示图片" width="250" hegiht="150"/>
       <%= hidden_field_tag "entry_id",entry.id %>
     </div>
@@ -68,6 +72,7 @@
       <label class="show_label">
         <%= file_field_tag 'img_bottom', :class => 'profile_input' %>
       </label>
+      <span> 建议高度285像素,宽度为180像素</span>
       <img src="<%= entry_img_bottom.try(:page_img).try(:public_filename) %>" alt="展示图片" width="250" hegiht="150"/>
       <%= hidden_field_tag "entry_id",entry.id %>
     </div>
@@ -79,7 +84,8 @@
    <label class="control-label"><span class="required"></span>关于幼儿园的介绍</label>
  </div>
  <div class="control-group">
-    <%= text_field_tag :content,"", :class => 'profile_input '%>
+    <%#= text_field_tag :content,"", :class => 'profile_input '%>
+    <%= kindeditor_tag :content,"", :allowFileManager => false %>
  </div>
 <%end%>
 <%if entry_title.blank?%>
@@ -101,6 +107,7 @@
       <label class="show_label">
         <%= file_field_tag 'img', :class => 'profile_input required' %>
       </label>
+      <span>建议高度为560px,宽度为370px</span>
     </div>
     <%flag = true%>
     <%end%>
@@ -110,6 +117,7 @@
       <label class="show_label">
         <%= file_field_tag 'img_top', :class => 'profile_input required' %>
       </label>
+      <span> 建议高度285像素,宽度为180像素</span>
     </div>
     <%flag = true%>
   <%end%>
@@ -119,6 +127,7 @@
       <label class="show_label">
         <%= file_field_tag 'img_bottom', :class => 'profile_input required' %>
       </label>
+      <span> 建议高度285像素,宽度为180像素</span>
     </div>
  </div>
  <%flag = true%>
@@ -133,13 +142,3 @@
     <%end%>
   </div>
 </div>
-
-<script type="text/javascript">
-  var editor;
-  KindEditor.ready(function(K) {
-    editor = K.create('#content', {
-      allowFileManager : true,
-      height:400
-    });
-  });
-</script>
