@@ -1,10 +1,8 @@
 <%#= render :partial => "/modules/colorful/show_official_about_us" %>
 <div class="contact_us_kinder">
-    <% if @kind &&(root_showcase = @kind.page_contents.find_by_number("official_website_about_us")) && !root_showcase.content_entries.blank? %>
-    <%# entry = root_showcase.content_entries.first%>
-    <%entry = root_showcase.content_entries.find_by_number("official_website_about_us_content")%>
+    <div class="official_contact_img"> </div>
 	<div class="contact_us_content">
-     <%=raw entry.try(:content)%>
+     <%=raw @entry.try(:content)%>
 	</div>
 	<div class="show_menu_center">
        <div class="show_center_left"> </div>
@@ -12,27 +10,23 @@
        <div class="show_center">
         <ul>
          <li>
-        <%entry = root_showcase.content_entries.find_by_number("official_website_about_us_title")%>
-           <a><%= entry.try(:title)%></a>
+           <a><%= @entry_title.try(:title)%></a>
          </li>
         </ul>
        </div>
     </div>
-    <%entry = root_showcase.content_entries.find_by_number("official_website_about_us_img")%>
+   
     <div class="contact_us_class_image">
     	<div class="class_big_image">
-                    <img src="<%=entry.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : entry.page_img.public_filename  %>" alt="" width="560"  height="370"/>
+                    <img src="<%=@entry_img.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_img.page_img.public_filename  %>" alt="" width="560"  height="370"/>
     	</div>
     	<div class="class_middle_image">
-    <%entry = root_showcase.content_entries.find_by_number("official_website_about_us_img_top")%>
     	<div class="class_middle_top_image">
-    		<img src="<%=entry.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : entry.page_img.public_filename%>" alt="" width="275" height="180"   >
+    		<img src="<%=@entry_top.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_top.page_img.public_filename%>" alt="" width="275" height="180"   >
     	</div>
-        <%entry = root_showcase.content_entries.find_by_number("official_website_about_us_img_bottom")%>
         <div class="class_middle_bottom_image">
-    		<img src="<%=entry.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : entry.page_img.public_filename%>" alt="" width="275" height="180"   >
+    		<img src="<%=@entry_bottom.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_bottom.page_img.public_filename%>" alt="" width="275" height="180"   >
     	</div>
     	</div>
     </div>
-    <%end%>
 </div>

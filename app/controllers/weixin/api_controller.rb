@@ -48,6 +48,15 @@ class Weixin::ApiController < Weixin::BaseController
               :Articles=>[{:Title=>"幼儿园介绍",:Description=>"#{@kind.note}",:PicUrl=>"http://#{request.host_with_port}#{@kind.asset_img ? @kind.asset_img.public_filename(:tiny) : '/t/colorful/logo.png'}",:Url=>"http://#{request.host_with_port}/weixin/about?#{get_validate_string}"}],
               :FuncFlag=>0
             })
+        elsif xml_data[:Content] == "3"
+          #菜谱信息
+          x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
+              :FromUserName=>xml_data[:ToUserName],
+              :CreateTime=>Time.now.to_i,
+              :MsgType=>"text",
+              :Content=>"#{current_user.name}您好!班级活动信息: \n\r <a href=\"http://#{request.host_with_port}/weixin/activities?#{get_validate_string}\"> 进入家园互动</a>",
+              :FuncFlag=>0
+            })
         elsif xml_data[:Content] == "4"
           #菜谱信息
           x_data =mas_data({:ToUserName=>xml_data[:FromUserName],

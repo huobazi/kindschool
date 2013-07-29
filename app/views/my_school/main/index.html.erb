@@ -2,7 +2,7 @@
 <div class="official_home_index">
 	<div style="background-color: white; float: left; width: 100%;">
     <div class="official_home_img">
-      <img src="<%=@img.first.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @img.first.page_img.public_filename %>" alt="">
+      <img src="<%=@img.try(:first).try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @img.first.try(:page_img).public_filename %>" alt="">
 	</div>
 	<div class="official_foot">
 

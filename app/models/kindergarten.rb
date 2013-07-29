@@ -16,6 +16,7 @@ class Kindergarten < ActiveRecord::Base
   end
 
   has_many :users   #所有用户
+  
   has_many :operates
   has_many :grades,:order=>:sequence  #年级
   has_many :grade_teachers,:through=>:grades, :source => :staff  #年级组长
@@ -233,5 +234,14 @@ class Kindergarten < ActiveRecord::Base
       end
     end
     return error_message
+  end
+
+  #获取可以接收短信的用户数量
+  def get_gather_sms_count
+    self.users.where(:is_receive=>true).count()
+  end
+  #获取可以发送短信的用户数量
+  def get_send_sms_count
+    self.users.where(:is_send=>true).count()
   end
 end
