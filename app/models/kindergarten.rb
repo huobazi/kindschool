@@ -81,6 +81,25 @@ class Kindergarten < ActiveRecord::Base
         self.page_contents << PageContent.new((v || {}).merge(:number=>k))
       end
     end
+    content_entries = YAML.load_file("#{Rails.root}/db/basic_data/content_entries.yml")
+    content_entries.each do |k,content_entry|
+      if k == "official_website_home_news"
+        @new = News.new(content_entry)
+        @new.kindergarten = self
+        @new.save!
+        puts @new.inspect
+      else
+        page_content=self.page_contents.find_by_number(k)
+        content_entry["content_entries"].each do |record|
+          page_content.content_entries << ContentEntry.new(record)
+        end
+
+        page_content.save
+        puts "4444444444444444"
+        puts page_content.content_entries.inspect
+      end
+    end
+
     self.option_operates.each do |operate|
       operate.destroy
     end

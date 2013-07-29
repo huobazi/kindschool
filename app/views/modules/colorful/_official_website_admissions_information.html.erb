@@ -8,14 +8,17 @@
     <tr>
       <td>没有内容</td>
       <td></td>
+      <td></td>
     </tr>
   <%else%>
-    <% entry = page_content.content_entries.first%>
+    <% (page_content.content_entries|| []).each do |entry|%>
     <tr>
+      <td><%= raw entry.title %></td>
       <td><%= raw entry.content %></td>
       <td>
         <%= link_to "编辑",:controller=>"/my_school/page_contents",:action=>:edit_content,:id=>page_content.id,:entry_id=>entry.id %>
       </td>
+      <%end%>
     </tr>
   <% end %>
 </table>
@@ -24,14 +27,8 @@
 <%entry=@content_entries.find_by_number("official_website_admissions_title") %>
 <%end%>
 <%if  action_name == "edit_content"%>
-<div class="control-group">
-  <!-- <label class="control-label"><span class="required"></span>中间标题</label>
-  <div class="controls">
-    <label class="show_label">
-        <%#= text_field_tag :title,entry.try(:title), :class => 'profile_input required'%>
-    </label>
-  </div>
-</div> -->
+<!-- <div class="control-group"> -->
+ <%if @entry.number=="official_website_admissions_title"%>
 <div class="control-group">
    <label class="control-label">招生信息标题</label>
  <div class="controls">
@@ -44,7 +41,9 @@
  <div class="control-group">
     <%#= text_field_tag :content,entry.try(:content), :class => 'profile_input '%>
   <%= kindeditor_tag :content,entry.try(:content), :allowFileManager => false %>
+  <%= hidden_field_tag "entry_id",@entry.id %>
  </div>
+ <%elsif @entry.number=="official_website_admissions_mid_title"%>
  <div class="control-group">
    <label class="control-label">中间标题</label>
  <div class="controls">
@@ -57,7 +56,9 @@
  <div class="control-group">
     <%#= text_field_tag :mid_content,entry_mid.content, :class => 'profile_input '%>
     <%= kindeditor_tag :mid_content,entry_mid.try(:content), :allowFileManager => false %>
+    <%= hidden_field_tag "entry_id",@entry.id %>
  </div>
+ <%end%>
 <%else%>
 <%if entry.blank?%>
  <%flag = true%>

@@ -69,7 +69,7 @@ a{
   border: none;
 }
 .main_work{
-   /* background-color: #EAEAEA;*/
+    /*background-color: #EAEAEA;*/
     /*min-height: 1000px;*/
 }
 #main .menu_left {
@@ -1159,6 +1159,7 @@ legend label{
     float:left;
     width: 100%;
     background-color: #FBFBFB;
+    position: relative;
     border: 1px solid #E3E3E3;
     margin-top: 42px;
 }
@@ -1167,7 +1168,7 @@ ul.feature_list li{
     width: 380px;
     height: 160px;
     border-bottom: 3px solid #fdb968;
-    margin: 0 40px;
+    margin:  0 40px 5px;
     float: left ;
 }
 .box_feature{
@@ -1211,7 +1212,7 @@ ul.feature_list li{
     background-repeat: no-repeat;
     width: 14px;
     height: 63px;
-    left:113px;
+    left:-14px;
     position: absolute;
 }
 .show_center_right{
@@ -1220,7 +1221,7 @@ ul.feature_list li{
     width: 14px;
     height: 63px;
     position: absolute;
-    left:1076px;
+    left:951px;
 }
 .show_center ul li{
     line-height: 50px;
@@ -1250,10 +1251,11 @@ ul.feature_list li{
     border: 1px solid #E3E3E3;
     width:100%;
     margin-top: 42px;
+    position: relative;
 }
 .admissions_info_title h2{
     margin:50px;
-    color: #fdb968;
+    color: #a5c500;
 }
 .admissions_info_content{
     margin:50px;
@@ -1338,6 +1340,7 @@ ul.feature_list li{
     background-color: #FBFBFB;
     border: 1px solid #E3E3E3;
     margin-top: 42px;
+    position: relative;
 }
 
 .official_home_index{
@@ -1432,7 +1435,7 @@ ul.official_home_news_list li .official_font{
     text-align: center;
     }
 ul.official_home_news_list li .official_font a{
-    color: blue;
+    color: black;
     }
 ul.official_home_news_list li .official_time{
     float: right;
