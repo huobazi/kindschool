@@ -220,8 +220,11 @@ class  MySchool::PageContentsController < MySchool::ManageController
           end
         elsif params[:tp]=="official_website_about_us"
            @entry = ContentEntry.find(params[:entry_id])
+           puts "22222222222222222222222222222"
+           puts @entry.inspect
            page_content = @entry.page_content
            content_entries = page_content.content_entries
+           puts "1111111111111111111"
            unless params[:content].blank?
             if @entry = content_entries.find_by_number('official_website_about_us_content')
              @entry.content=params[:content]
