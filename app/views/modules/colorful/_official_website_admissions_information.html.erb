@@ -20,18 +20,44 @@
   <% end %>
 </table>
 <%if @content_entries%>
-<%entry=@content_entries.find_by_number("official_website_admissions_mid_title")  %>
-<%entry_mid=@content_entries.find_by_number("official_website_admissions_title") %>
+<%entry_mid=@content_entries.find_by_number("official_website_admissions_mid_title")  %>
+<%entry=@content_entries.find_by_number("official_website_admissions_title") %>
 <%end%>
 <%if  action_name == "edit_content"%>
 <div class="control-group">
-  <label class="control-label"><span class="required"></span>中间标题</label>
+  <!-- <label class="control-label"><span class="required"></span>中间标题</label>
   <div class="controls">
     <label class="show_label">
-        <%= text_field_tag :title,entry_title.try(:title), :class => 'profile_input required'%>
+        <%#= text_field_tag :title,entry.try(:title), :class => 'profile_input required'%>
     </label>
   </div>
-</div>
+</div> -->
+<div class="control-group">
+   <label class="control-label">招生信息标题</label>
+ <div class="controls">
+    <%= text_field_tag :title,entry.try(:title), :class => 'profile_input '%>
+ </div>
+ </div>
+ <div class="control-group">
+   <label class="control-label">招生信息内容</label>
+ </div>
+ <div class="control-group">
+    <%#= text_field_tag :content,entry.try(:content), :class => 'profile_input '%>
+  <%= kindeditor_tag :content,entry.try(:content), :allowFileManager => false %>
+ </div>
+ <div class="control-group">
+   <label class="control-label">中间标题</label>
+ <div class="controls">
+    <%= text_field_tag :mid_title,entry_mid.try(:title), :class => 'profile_input '%>
+ </div>
+ </div>
+ <div class="control-group">
+   <label class="control-label">中间内容</label>
+ </div>
+ <div class="control-group">
+    <%#= text_field_tag :mid_content,entry_mid.content, :class => 'profile_input '%>
+    <%= kindeditor_tag :mid_content,entry_mid.try(:content), :allowFileManager => false %>
+ </div>
 <%else%>
 <%if entry.blank?%>
  <%flag = true%>
@@ -45,7 +71,9 @@
    <label class="control-label">招生信息内容</label>
  </div>
  <div class="control-group">
-    <%= text_field_tag :content,"", :class => 'profile_input '%>
+    <%#= text_field_tag :content,"", :class => 'profile_input '%>
+    <%= kindeditor_tag :content,"", :allowFileManager => false %>
+
  </div>
 <%end%>
 <%if entry_mid.blank?%>
@@ -60,7 +88,8 @@
    <label class="control-label">中间内容</label>
  </div>
  <div class="control-group">
-    <%= text_field_tag :mid_content,"", :class => 'profile_input '%>
+    <%#= text_field_tag :mid_content,"", :class => 'profile_input '%>
+    <%= kindeditor_tag :mid_content,"", :allowFileManager => false %>
  </div>
 <%end%>
 <%end%>
@@ -70,17 +99,3 @@
     <%= hidden_field_tag "tp","official_website_admissions_information" %>
   </div>
 </div>
-
-<script type="text/javascript">
-  var editor;
-  KindEditor.ready(function(K) {
-    editor = K.create('#content', {
-      allowFileManager : true,
-      height:400
-    });
-    editor = K.create('#mid_content', {
-      allowFileManager : true,
-      height:400
-    });
-  });
-</script>
