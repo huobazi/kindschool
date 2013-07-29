@@ -1185,7 +1185,7 @@ ul.feature_list li{
     background-repeat: no-repeat;
     width: 14px;
     height: 63px;
-    left:113px;
+    left:-14px;
     position: absolute;
 }
 .show_center_right{
@@ -1194,7 +1194,7 @@ ul.feature_list li{
     width: 14px;
     height: 63px;
     position: absolute;
-    left:1076px;
+    left:951px;
 }
 .show_center ul li{
     line-height: 50px;
@@ -1227,7 +1227,7 @@ ul.feature_list li{
 }
 .admissions_info_title h2{
     margin:50px;
-    color: #fdb968;
+    color: #a5c500;
 }
 .admissions_info_content{
     margin:50px;

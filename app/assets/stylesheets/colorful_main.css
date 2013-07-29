@@ -289,3 +289,6 @@ a{
     max-width: 200%;
     vertical-align: middle;
 }
+.show_menu_center{
+    position: relative;
+}
