@@ -17,28 +17,28 @@
         </div>
       </div>
       <% if current_user.tp != 0 %>
-      <ul class="work_action">
-        <li>
-          <% if choose_operate_show("my_school/student_infos/new") %>
-            <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:new)%>" title="添加">
-              <div class="work_action_add">
-              </div>
-              <div class="work_action_add_move">
-              </div>
-            </a>
-          <% end %>
-        </li>
-        <li>
-          <% if choose_operate_show("my_school/student_infos/destroy_multiple") %>
-            <a href="/" title="删除" id="destroy_multiple">
-              <div class="work_action_delete">
-              </div>
-              <div class="work_action_delete_move">
-              </div>
-            </a>
-          <% end %>
-        </li>
-      </ul>
+        <ul class="work_action">
+          <li>
+            <% if choose_operate_show("my_school/student_infos/new") %>
+              <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:new)%>" title="添加">
+                <div class="work_action_add">
+                </div>
+                <div class="work_action_add_move">
+                </div>
+              </a>
+            <% end %>
+          </li>
+          <li>
+            <% if choose_operate_show("my_school/student_infos/destroy_multiple") %>
+              <a href="/" title="删除" id="destroy_multiple">
+                <div class="work_action_delete">
+                </div>
+                <div class="work_action_delete_move">
+                </div>
+              </a>
+            <% end %>
+          </li>
+        </ul>
       <% end %>
     </div>
     <% if current_user.tp != 0 %>
@@ -62,10 +62,7 @@
               <th>账号</th>
               <th>电话号码</th>
               <th>性别</th>
-              <th>所属幼儿园</th>
-              <th>所属类别</th>
-              <th>微信号</th>
-              <th colspan="2">操作</th>
+              <th>操作</th>
             </tr>
             <% @student_infos.each do |student| %>
               <tr>
@@ -74,19 +71,18 @@
                 <td><%= student.user.login %></td>
                 <td><%= student.user.phone %></td>
                 <td><%= student.user.gender == "M" ? "男" : "女" %></td>
-                <td><%= student.user.kindergarten_label %></td>
-                <td><%= student.user.tp_label %></td>
-                <td><%= student.user.weixin_code ? student.user.weixin_code : "暂无" %></td>
-
                 <td>
-                  <% if choose_operate_show("my_school/student_infos/show") %>
-                    <%= link_to "查看", my_school_student_info_path(student), :class => "show" %>
-                  <% end %>
-                </td>
-                <td>
-                  <% if choose_operate_show("my_school/student_infos/edit") %>
-                    <%= link_to "编辑", edit_my_school_student_info_path(student), :class => "show" %>
-                  <% end %>
+                  <div class="index_a">
+                    <% if choose_operate_show("my_school/student_infos/show") %>
+                      <%= link_to "查看", my_school_student_info_path(student), :class => "show" %>
+                    <% end %>
+                    <% if choose_operate_show("my_school/student_infos/edit") %>
+                      <%= link_to "编辑", edit_my_school_student_info_path(student), :class => "show" %>
+                    <% end %>
+                    <% if choose_operate_show("my_school/users/set_gather_sms") %>
+                      <%= link_to (student.user.is_receive ? "取消收短信" : "可收短信"), set_gather_sms_my_school_user_path(student.user), :class => "show" %>
+                    <% end %>
+                  </div>
                 </td>
               </tr>
             <% end %>
