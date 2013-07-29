@@ -268,7 +268,7 @@ a{
 }
 .official_home_teacher_img img{
     border: 0 none;
-    height: auto;
+    height: 100px;
     vertical-align: middle;
     max-width: 200%;
 }
