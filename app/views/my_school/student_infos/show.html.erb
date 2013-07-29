@@ -76,73 +76,78 @@
         <form class="form-horizontal">
           <fieldset>
             <legend><label><strong>账号信息</strong></label></legend>
-              <div class="control-group">
-                <label class="control-label">头像</label>
-                <div class="controls">
-                  <label class="show_label">
-                    <img src="<%= @student_info.user.asset_logo ? @student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="103" alt="头像"/>
-                  </label>
+            <div class="control-group">
+              <label class="control-label">头像</label>
+              <div class="controls">
+                <div class="show_action">
+                  <% if choose_operate_show("my_school/users/set_gather_sms") %>
+                    <%= link_to (@student_info.user.is_receive ? "取消收短信" : "可收短信"), set_gather_sms_my_school_user_path(@student_info.user), :class => "show btn" %>
+                  <% end %>
                 </div>
+                <label class="show_label">
+                  <img src="<%= @student_info.user.asset_logo ? @student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="103" alt="头像"/>
+                </label>
               </div>
-              <div class="control-group">
-                <label class="control-label">所属幼儿园</label>
-                <div class="controls">
-                  <label class="show_label">
-                    <%= @student_info.user.kindergarten_label %>
-                  </label>
-                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">所属幼儿园</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.user.kindergarten_label %>
+                </label>
               </div>
-              <div class="control-group">
-                <label class="control-label">名称</label>
-                <div class="controls">
-                  <label class="show_label">
-                    <%=@student_info.user.name%>
-                  </label>
-                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">名称</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%=@student_info.user.name%>
+                </label>
               </div>
-              <div class="control-group">
-                <label class="control-label" >账号</label>
-                <div class="controls">
-                  <label class="show_label">
-                    <%= @student_info.user.login %>
-                  </label>
-                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >账号</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.user.login %>
+                </label>
               </div>
-              <div class="control-group">
-                <label class="control-label" >电话号码</label>
-                <div class="controls">
-                  <label class="show_label">
-                    <%= @student_info.user.phone %>
-                  </label>
-                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >电话号码</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.user.phone %>
+                </label>
               </div>
-              <div class="control-group">
-                <label class="control-label" >性别</label>
-                <div class="controls">
-                  <label class="show_label">
-                    <%= @student_info.user.gender == "M" ? "男" : "女" %>
-                  </label>
-                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >性别</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.user.gender == "M" ? "男" : "女" %>
+                </label>
               </div>
-              <div class="control-group">
-                <label class="control-label" >所属类别</label>
-                <div class="controls">
-                  <label class="show_label">
-                    <%= @student_info.user.tp_label %>
-                  </label>
-                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >所属类别</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.user.tp_label %>
+                </label>
               </div>
-              <div class="control-group">
-                <label class="control-label" >绑定微信</label>
-                <div class="controls">
-                  <label class="show_label">
-                    <%= @student_info.user.weixin_code.blank? ? "已绑定" : "未绑定" %>
-                  </label>
-                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >绑定微信</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.user.weixin_code.blank? ? "已绑定" : "未绑定" %>
+                </label>
               </div>
-        </fieldset>
-        <fieldset>
-          <legend><label><strong>学员信息</strong></label></legend>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend><label><strong>学员信息</strong></label></legend>
             <div class="control-group">
               <label class="control-label" >年级</label>
               <div class="controls">
@@ -359,9 +364,9 @@
                 </label>
               </div>
             </div>
-        </fieldset>
-        <fieldset>
-          <legend><label><strong>家庭关系</strong></label></legend>
+          </fieldset>
+          <fieldset>
+            <legend><label><strong>家庭关系</strong></label></legend>
             <div class="control-group">
               <label class="control-label" >关系</label>
               <div class="controls">

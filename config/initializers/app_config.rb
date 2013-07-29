@@ -39,7 +39,8 @@ MENUS ={"home"=>{
   "11000"=>{
   "my_school/grades"=>DEFULT_ACTION
 }, "12000"=>{
-  "my_school/squads" => ["index", "new","create","update", "show", "edit", "add_strategy_view"]
+  "my_school/squads" => ["index", "new","create","update", "show", "edit"],
+  "my_school/teachers" => ["set_class_teacher_for_squad_view"]
 }, "13000" => {
   "my_school/staffs" => ["index", "new", "show", "edit"]},
   "14000" => {

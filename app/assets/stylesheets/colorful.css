@@ -37,6 +37,13 @@ a{
     width: 100%;
 
 }
+.show_action{
+    float: right;
+}
+.show_action a{
+    color: #4c4c4c;
+    margin-top: 5px;
+}
 .logo{
     width: 40%;
     padding-left: 35px;
