@@ -49,7 +49,7 @@
 
 <div class="field" id="content_field">
   <label class="field_prompt" for="growth_record_content">内容:</label>
-  <%= f.text_area :content, :class => "text-area" %>
+  <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :allowFlashUpload => false, :simple_mode => true %>
 </div>
 
 <%= f.input :tp, :as => :hidden %>
@@ -119,16 +119,16 @@ $(document).ready(function() {
         flag.push(false);
       }
     }
-
-    if( $("#growth_record_content").val().length < 5 ) {
-      if( $("#content_field").children("span.help").length == 0 ) {
-        $("<span class='help'>长度太短必须5个字符以上</span>").insertBefore($("#growth_record_content"))
+    if (topic_content.html().length < 5 || topic_content.isEmpty()) {
+      if ( $("#growth_record_content").next("span.help-inline").length == 0 ) {
+        $("<span class='help-inline'>长度不够(必须超过5个字符)").insertAfter("#growth_record_content")
       }
       flag.push(true)
     } else {
-      if( $("#content_field").children("span.help").length > 0 ) {
-        $("#content_field span.help").remove();
+      if ( $("#growth_record_content").next("span.help-inline").length > 0 ) {
+        $("#growth_record_content").next("span.help-inline").remove()
       }
+      flag.push(false)
     }
     for( i in flag ) {
       if(flag[i] == true) {

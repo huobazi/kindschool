@@ -14,7 +14,7 @@
 
 <div class="field" id="content_field">
 <label class="field_prompt" for="content">内容:</label>
-<%= f.text_area :content, :class => "text-area" %>
+<%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :allowFlashUpload => false, :simple_mode => true %>
 </div>
 
 <%= f.input :kindergarten_id, :as => :hidden %>
@@ -46,14 +46,14 @@ $(":submit").click(function() {
     }
     flag.push(false)
   }
-  if($("#topic_content").val().length < 3) {
-    if($("#content_field").children("span.help").length == 0) {
-      $("<span class='help'>长度太短必须3个字符以上</span>").insertBefore($("#topic_content"))
+  if (topic_content.html().length < 3 || topic_content.isEmpty()) {
+    if ( $("#topic_content").next("span.help-inline").length == 0 ) {
+      $("<span class='help-inline'>长度不够(必须超过3个字符)<span>").insertAfter("#topic_content")
     }
     flag.push(true)
   } else {
-    if($("#content_field").children("span.help").length > 0) {
-      $("#content_field span.help").remove()
+    if ( $("#topic_content").next("span.help-inline").length > 0 ) {
+      $("#topic_content").next("span.help-inline").remove()
     }
     flag.push(false)
   }
@@ -64,4 +64,6 @@ $(":submit").click(function() {
     }
   }
 })
+
+alert($(".ke-dialog-default").style());
 </script>
