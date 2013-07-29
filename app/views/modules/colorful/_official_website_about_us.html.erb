@@ -32,7 +32,8 @@
   <label class="control-label"><span class="required"></span>关于幼儿园的介绍:</label>
 </div>
 <div class="control-group">
-    <%= text_field_tag :content,entry.content, :class => 'profile_input '%>
+    <%#= text_field_tag :content,entry.content, :class => 'profile_input '%>
+    <%= kindeditor_tag :content,entry.content, :allowFileManager => false %>
 </div>
 <div class="control-group">
   <label class="control-label"><span class="required"></span>中间标题</label>
@@ -83,7 +84,8 @@
    <label class="control-label"><span class="required"></span>关于幼儿园的介绍</label>
  </div>
  <div class="control-group">
-    <%= text_field_tag :content,"", :class => 'profile_input '%>
+    <%#= text_field_tag :content,"", :class => 'profile_input '%>
+    <%= kindeditor_tag :content,"", :allowFileManager => false %>
  </div>
 <%end%>
 <%if entry_title.blank?%>
@@ -140,13 +142,3 @@
     <%end%>
   </div>
 </div>
-
-<script type="text/javascript">
-  var editor;
-  KindEditor.ready(function(K) {
-    editor = K.create('#content', {
-      allowFileManager : true,
-      height:400
-    });
-  });
-</script>
