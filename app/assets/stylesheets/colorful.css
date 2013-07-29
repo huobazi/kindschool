@@ -1142,7 +1142,7 @@ ul.feature_list li{
     width: 380px;
     height: 160px;
     border-bottom: 3px solid #fdb968;
-    margin: 0 40px;
+    margin:  0 40px 5px;
     float: left ;
 }
 .box_feature{
