@@ -45,6 +45,10 @@
         <%= text_field :staff,:user_name_like,:style=>"width:100px;" ,:value=>"#{params[:staff][:user_name_like] if params[:staff] }"  %>
         <b>账号：</b>
         <%= text_field :staff,:user_login_like,:style=>"width:100px;" ,:value=>"#{params[:staff][:user_login_like] if params[:staff] }"  %>
+        <b>发短信：</b>
+        <%= select_tag("staff[user_is_send_equals]", options_for_select([["全部",""],["可发短信",1],["不可发短信",0]],(params[:staff].blank? ? "" : params[:staff][:user_is_send_equals])),:style=>"width:100px;") %>
+        <b>收短信：</b>
+        <%= select_tag("staff[user_is_receive_equals]", options_for_select([["全部",""],["可收短信",1],["不可收短信",0]],(params[:staff].blank? ? "" : params[:staff][:user_is_receive_equals])),:style=>"width:100px;") %>
         <%= submit_tag "搜索" %>
       <%end%>
     </div>
@@ -83,10 +87,10 @@
                     <% end %>
                     <% if staff.user %>
                       <% if choose_operate_show("my_school/users/set_send_sms") %>
-                        <%= link_to (staff.user.is_send ? "取消发短信" : "可发短信"), set_send_sms_my_school_user_path(staff.user), :class => "show" %>
+                        <%= link_to (staff.user.is_send ? "取消发短信" : "设为可发短信"), set_send_sms_my_school_user_path(staff.user), :class => "show" %>
                       <% end %>
                       <% if choose_operate_show("my_school/users/set_gather_sms") %>
-                        <%= link_to (staff.user.is_receive ? "取消收短信" : "可收短信"), set_gather_sms_my_school_user_path(staff.user), :class => "show" %>
+                        <%= link_to (staff.user.is_receive ? "取消收短信" : "设为可收短信"), set_gather_sms_my_school_user_path(staff.user), :class => "show" %>
                       <% end %>
                     <% end %>
                   </div>
