@@ -29,7 +29,7 @@
       </div>
       <ul class="work_action">
         <li>
-        <a href="<%=url_for(:controller=>"/my_school/teachers",:action=>:allocation, :id => @staff.id)%>" title="为该教职工分配班级">
+          <a href="<%=url_for(:controller=>"/my_school/teachers",:action=>:allocation, :id => @staff.id)%>" title="为该教职工分配班级">
             <div class="work_action_add">
             </div>
             <div class="work_action_add_move">
@@ -85,19 +85,27 @@
           <div class="control-group">
             <label class="control-label">头像</label>
             <div class="controls">
+              <div class="show_action">
+                <% if choose_operate_show("my_school/users/set_send_sms") %>
+                  <%= link_to (@staff.user.is_send ? "取消发短信" : "可发短信"), set_send_sms_my_school_user_path(@staff.user), :class => "show btn" %>
+                <% end %>
+                <% if choose_operate_show("my_school/users/set_gather_sms") %>
+                  <%= link_to (@staff.user.is_receive ? "取消收短信" : "可收短信"), set_gather_sms_my_school_user_path(@staff.user), :class => "show btn" %>
+                <% end %>
+              </div>
               <label class="show_label">
                 <img src="<%= @staff.user.asset_logo ? @staff.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="103" alt="头像"/>
               </label>
             </div>
           </div>
-              <div class="control-group">
-                <label class="control-label">所属幼儿园</label>
-                <div class="controls">
-                  <label class="show_label">
-                    <%= @staff.user.kindergarten_label %>
-                  </label>
-                </div>
-              </div>
+          <div class="control-group">
+            <label class="control-label">所属幼儿园</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= @staff.user.kindergarten_label %>
+              </label>
+            </div>
+          </div>
           <div class="control-group">
             <label class="control-label">名称</label>
             <div class="controls">
