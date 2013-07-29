@@ -522,7 +522,29 @@ staff_destroy:
   action: "destroy"
   protocol: ""
   <<: *DEFAULTS
+staff_allocation_squad:
+  id: 4153
+  parent_id: 5
+  name: "为教职工分配班级"
+  level: 2
+  sequence: 3
+  note: "为教职工分配班级"
+  controller: "my_school/teachers"
+  action: "allocation"
+  protocol: ""
+  <<: *DEFAULTS
+staff_class_teacher:
+  id: 4163
+  parent_id: 5
+  name: "为教职工分配班级"
+  level: 2
+  sequence: 3
+  note: "为教职工分配班级"
+  controller: "my_school/teachers"
+  action: "set_class_teacher"
+  protocol: ""
 
+  <<: *DEFAULTS 
 student_manage:
   id: 4004
   parent_id: 5

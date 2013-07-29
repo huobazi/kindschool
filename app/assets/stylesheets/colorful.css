@@ -659,6 +659,32 @@ a{
     width: 52px;
     display: none;
 }
+.work_action_class_teacher{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -887px 0;
+    height: 46px;
+    width: 52px;
+}
+.work_action_class_teacher_move{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -887px -57px;
+    height: 65px;
+    width: 52px;
+    display: none;
+}
+.work_action_allocation{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -827px 0;
+    height: 46px;
+    width: 52px;
+}
+.work_action_allocation_move{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -827px -57px;
+    height: 65px;
+    width: 52px;
+    display: none;
+}
 /*===========表单==============*/
 .work_form{
     padding: 20px 20px 20px 35px;
