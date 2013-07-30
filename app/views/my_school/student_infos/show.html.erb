@@ -83,6 +83,9 @@
                   <% if choose_operate_show("my_school/users/set_gather_sms") %>
                     <%= link_to (@student_info.user.is_receive ? "取消收短信" : "可收短信"), set_gather_sms_my_school_user_path(@student_info.user), :class => "show btn" %>
                   <% end %>
+                  <% if choose_operate_show("my_school/student_infos/student_execl") %>
+                  <%= link_to "学员信息下载",student_execl_my_school_student_infos_path(:student_info_id=>@student_info.id),:class=>"btn"%>
+                  <%end%>
                 </div>
                 <label class="show_label">
                   <img src="<%= @student_info.user.asset_logo ? @student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="103" alt="头像"/>
@@ -201,6 +204,22 @@
               <div class="controls">
                 <label class="show_label">
                   <%= @student_info.guardian %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >监护人证件类别</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.guardian_card_category_label %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >监护人证件号</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.guardian_card_code %>
                 </label>
               </div>
             </div>
@@ -349,6 +368,14 @@
               </div>
             </div>
             <div class="control-group">
+              <label class="control-label" >居住情况</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.live_family_label %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
               <label class="control-label" >是否接受资助</label>
               <div class="controls">
                 <label class="show_label">
@@ -361,6 +388,14 @@
               <div class="controls">
                 <label class="show_label">
                   <%= @student_info.brothers %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >本人第几胎</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.children_number %>
                 </label>
               </div>
             </div>
@@ -404,14 +439,6 @@
               <div class="controls">
                 <label class="show_label">
                   <%= @student_info.duties %>
-                </label>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" >关系</label>
-              <div class="controls">
-                <label class="show_label">
-                  <%= @student_info.family_ties %>
                 </label>
               </div>
             </div>

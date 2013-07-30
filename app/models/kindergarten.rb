@@ -87,7 +87,6 @@ class Kindergarten < ActiveRecord::Base
         @new = News.new(content_entry)
         @new.kindergarten = self
         @new.save!
-        puts @new.inspect
       else
         page_content=self.page_contents.find_by_number(k)
         content_entry["content_entries"].each do |record|
@@ -95,8 +94,6 @@ class Kindergarten < ActiveRecord::Base
         end
 
         page_content.save
-        puts "4444444444444444"
-        puts page_content.content_entries.inspect
       end
     end
 
