@@ -30,4 +30,5 @@ class Topic < ActiveRecord::Base
   def squad_label
     self.squad ? self.squad.name : "没有班级信息"
   end
+
 end

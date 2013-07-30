@@ -30,8 +30,12 @@
   <%= p.input :uploaded_data, :as => :file, :name => "asset_img"  %>
 <% end %>
 <% if action_name == "new" %>
-  <div class="select_field">
-    <div><p class="title">*选择班级</p></div>
+  <div class="field">
+    <%= radio_button_tag 'visible', 'all', :checked => true %><span class="field_prompt" for="visible_all">全园可见</span>
+    <%= radio_button_tag 'visible', 'squad' %><span class="field_prompt" for="visible_squad">选择班级</span>
+
+  </div>
+  <div class="select_field" id="select_squad" style="display:none;">
     <label class="field_prompt" for="grade">年级:</label>
     <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
     <div id="grade_squad_partial">
@@ -65,6 +69,21 @@
         }
         return true;
     }
+    if ( $("#grade").is(":visible") ) {
+      if ( $("#squad_id").length > 0 ) {
+        if($("#grade").next("span.help-inline").length > 0) {
+          $("#grade").next("span.help-inline").remove()
+        }
+        flag.push(false);
+      } else if ( $("#activity_squad_label").length > 0 || $("#activity_squad").length > 0 ) {
+        flag.push(false)
+      } else {
+        if( $("#grade").next("span.help-inline").length == 0 ) {
+          $("<span class='help-inline'>必须选择班级</span>").insertAfter($("#grade"))
+        }
+        flag.push(true);
+      }
+    }
   })
   $("#grade").change(function() {
       $.get(
@@ -76,5 +95,12 @@
           $("#grade_squad_partial").html(result);
         }
       )
+  })
+  $("input[type='radio']").change(function() {
+    if ( $(this).val() == "squad" ) {
+      $("#select_squad").show()
+    } else {
+      $("#select_squad").hide()
+    }
   })
 </script>
