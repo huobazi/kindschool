@@ -181,6 +181,17 @@ class  MySchool::PageContentsController < MySchool::ManageController
         elsif params[:tp] == "contact_us"
           @entry = ContentEntry.find(params[:entry_id])
           @entry.update_attributes(:content=>(params[:content]||""))
+        elsif params[:tp] == "official_website_admissions_information"
+        @entry = ContentEntry.find(params[:entry_id])
+        if @entry.number == "official_website_admissions_title"
+          @entry.content =params[:content]
+          @entry.title=params[:title]
+          @entry.save
+        elsif @entry.number == "official_website_admissions_mid_title"
+          @entry.content =params[:mid_content]
+          @entry.title=params[:mid_title]
+          @entry.save
+        end
         elsif params[:tp] == "official_website_home"
           @entry = ContentEntry.find(params[:entry_id])
             if @entry.number == "official_home_pub_img"
@@ -220,59 +231,50 @@ class  MySchool::PageContentsController < MySchool::ManageController
           end
         elsif params[:tp]=="official_website_about_us"
            @entry = ContentEntry.find(params[:entry_id])
-           puts "22222222222222222222222222222"
-           puts @entry.inspect
+
            page_content = @entry.page_content
            content_entries = page_content.content_entries
-           puts "1111111111111111111"
+          
            unless params[:content].blank?
             if @entry = content_entries.find_by_number('official_website_about_us_content')
              @entry.content=params[:content]
             end
+            @entry.save
            end
           unless params[:title].blank?
            if @entry = content_entries.find_by_number('official_website_about_us_title')
              @entry.title=params[:title]
            end
+           @entry.save
           end
           unless params[:img].blank?
             if @entry = content_entries.find_by_number('official_website_about_us_img')
-             # @entry.page_img.destroy
              unless @entry.page_img.blank?
                @entry.page_img.update_attributes(:uploaded_data=> params[:img])
              else
                img = PageImg.new(:uploaded_data=> params[:img])
                @entry.page_img = img
              end
-              # @entry.save!
             end
           end
           unless params[:img_top].blank?
             if @entry = content_entries.find_by_number('official_website_about_us_img_top')
-             # @entry.page_img.destroy
-             # img = PageImg.new(:uploaded_data=> params[:img_top])
-             # @entry.page_img = img
              unless @entry.page_img.blank?
                @entry.page_img.update_attributes(:uploaded_data=> params[:img_top])
              else
                img = PageImg.new(:uploaded_data=> params[:img_top])
                @entry.page_img = img
              end
-              # @entry.save
             end
           end
           unless params[:img_bottom].blank?
             if @entry = content_entries.find_by_number('official_website_about_us_img_bottom')
-             # @entry.page_img.destroy             
-             # img = PageImg.new(:uploaded_data=> params[:img_bottom])
-             # @entry.page_img = img
              unless @entry.page_img.blank?
                @entry.page_img.update_attributes(:uploaded_data=> params[:img_bottom])
              else
                img = PageImg.new(:uploaded_data=> params[:img_bottom])
                @entry.page_img = img
              end
-              # @entry.save
             end
           end
         end
