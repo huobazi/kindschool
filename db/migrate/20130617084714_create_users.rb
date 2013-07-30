@@ -22,6 +22,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :token_key
       t.string :token_secret
       t.datetime :token_at
+      t.integer :chain_code
+      t.boolean :chain_delete,:default=>false
       t.boolean :is_send,:default=>0 #是否能够发短信,0不能，1能
       t.boolean :is_receive,:default=>0 #是否能够接受短信,0不能，1能
       t.timestamp :deleted_at

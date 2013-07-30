@@ -24,15 +24,8 @@ class Message < ActiveRecord::Base
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end
 
-  def before_create
-    if self.sender
-      self.sender_name = self.sender.name
-    elsif self.sender_id
-      if user = User.find_by_id_and_kindergarten_id(self.sender_id,self.kindergarten_id)
-        self.sender_name = user.name
-      end
-    end
-  end
+  before_create :load_user_info
+
 
   before_save :load_sms_records
 
@@ -43,13 +36,39 @@ class Message < ActiveRecord::Base
   end
 
   private
+  #创建是加载
+  def load_user_info
+    if self.sender
+      self.sender_name = self.sender.name
+      self.chain_code  = self.sender.chain_code
+    elsif self.sender_id
+      if user = User.find_by_id_and_kindergarten_id(self.sender_id,self.kindergarten_id)
+        self.sender_name = user.name
+        self.chain_code  = user.chain_code
+      end
+    end
+  end
+  
+  #创建和更新时加载
   def load_sms_records
     if !self.status_was && self.status && self.tp == 1
-      self.message_entries.where("deleted_at IS NULL").each do |entry|
-        if entry.receiver.is_receive
-          entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
-            :sender_name=>self.sender_name,:content=>"#{self.content}",:receiver_id=>entry.receiver.id,
-            :receiver_name=>entry.receiver.name,:receiver_phone=>entry.receiver.phone,:kindergarten_id=>self.kindergarten_id)
+      if self.id_was
+        #更新的情况
+        self.message_entries.where("deleted_at IS NULL").each do |entry|
+          if entry.receiver.is_receive
+            entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
+              :sender_name=>self.sender_name,:content=>"#{self.content}",:receiver_id=>entry.receiver.id,
+              :receiver_name=>entry.receiver.name,:receiver_phone=>entry.receiver.phone,:kindergarten_id=>self.kindergarten_id)
+          end
+        end
+      else
+        #创建的情况
+        self.message_entries.each do |entry|
+          if entry.receiver.is_receive
+            entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
+              :sender_name=>self.sender_name,:content=>"#{self.content}",:receiver_id=>entry.receiver.id,
+              :receiver_name=>entry.receiver.name,:receiver_phone=>entry.receiver.phone,:kindergarten_id=>self.kindergarten_id)
+          end
         end
       end
     end
