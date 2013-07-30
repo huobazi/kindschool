@@ -15,9 +15,9 @@
           <ul>
             <li>
               <%if action_name=="draft_show" %>
-              <%= link_to "草稿箱", draft_box_my_school_messages_path %>
+                <%= link_to "草稿箱", draft_box_my_school_messages_path %>
               <%else%>
-              <%= link_to "发件箱", outbox_my_school_messages_path %>
+                <%= link_to "发件箱", outbox_my_school_messages_path %>
               <%end%>
             </li>
             <li>/</li>
@@ -29,14 +29,14 @@
         <li>
           <% if action_name == "draft_show" %>
             <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:draft_edit,:id=>@message.id)%>" title="编辑">
-          <% else %>
-            <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:edit,:id=>@message.id)%>" title="编辑">
-          <% end %>
-            <div class="work_action_edit">
-            </div>
-            <div class="work_action_edit_move">
-            </div>
-          </a>
+            <% else %>
+              <a href="<%=url_for(:controller=>"/my_school/messages",:action=>:edit,:id=>@message.id)%>" title="编辑">
+              <% end %>
+              <div class="work_action_edit">
+              </div>
+              <div class="work_action_edit_move">
+              </div>
+            </a>
         </li>
         <li>
           <%= link_to(url_for(:controller=>"/my_school/messages",:action=>:destroy,:id=>@message.id),:method=>:delete, :confirm => "您确定删除该消息吗?") do %>
@@ -48,11 +48,11 @@
         </li>
         <li>
 
-            <a href="<%=url_for(:controller=>"/my_school/messages",:action=>@message.status ? :outbox : :draft_show)%>" title="返回">
-          <div class="work_action_return">
-          </div>
-          <div class="work_action_return_move">
-          </div>
+          <a href="<%=url_for(:controller=>"/my_school/messages",:action=>@message.status ? :outbox : :draft_show)%>" title="返回">
+            <div class="work_action_return">
+            </div>
+            <div class="work_action_return_move">
+            </div>
           </a>
         </li>
       </ul>
@@ -61,20 +61,30 @@
     <div class="work_form">
       <div class="form_div">
         <form class="form-horizontal">
-           <div class="control-group">
-            <label class="control-label" >收件人:</label>
+          <div class="control-group">
+            <label class="control-label" >发件人:</label>
             <div class="controls">
               <label class="show_label">
-                <%if (@m_e = @message.message_entries) && !@m_e.blank?%>
-                <% @m_e.each do |m_e| %>
-                  <span class="message_entry">
-                    <%= m_e.receiver.try(:name) %>
-                  </span>
-                <% end %>
-                <%else%>
-                <span>无</span>
-                <%end%>
+                <%= @message.sender ? @message.sender.name : "" %>
               </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >收件人:</label>
+            <div class="controls">
+              <div class="show_receiver_entry">
+                <label class="show_label">
+                  <%if (@m_e = @message.message_entries) && !@m_e.blank?%>
+                    <% @m_e.each do |m_e| %>
+                      <span class="message_entry">
+                        <%= m_e.receiver.try(:name) %>
+                      </span>
+                    <% end %>
+                  <%else%>
+                    <span>无</span>
+                  <%end%>
+                </label>
+              </div>
             </div>
           </div>
           <div class="control-group">
