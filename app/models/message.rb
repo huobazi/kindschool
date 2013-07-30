@@ -44,15 +44,9 @@ class Message < ActiveRecord::Base
 
   private
   def load_sms_records
-    puts "============aaa=============="
-    puts "==self.status========#{self.status.inspect}==========="
-    puts "==status_was========#{self.status_was.inspect}==========="
     if !self.status_was && self.status && self.tp == 1
-      puts "============abc=============="
-      self.message_entries.where("deleted_at IS NOT NULL").each do |entry|
+      self.message_entries.where("deleted_at IS NULL").each do |entry|
         if entry.receiver.is_receive
-          entry.sms = 1
-          entry.phone = entry.receiver.phone
           entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
             :sender_name=>self.sender_name,:content=>"#{self.content}",:receiver_id=>entry.receiver.id,
             :receiver_name=>entry.receiver.name,:receiver_phone=>entry.receiver.phone,:kindergarten_id=>self.kindergarten_id)
