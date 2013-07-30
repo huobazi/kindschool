@@ -1054,6 +1054,7 @@ table.user_attributes td {
 
 #topic_category_tabs {
   padding-left: 50px;
+  padding-top: 10px;
 }
 #topic_category_tabs a {
   color: #333333;
