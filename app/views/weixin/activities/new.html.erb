@@ -3,12 +3,12 @@
 </div>
 <div class="message_div">
   <div class="message_title">
-    <a href="<%= url_for(:action=>:index) %>" title="返回" class="weixin_return">返回</a>活动内容
+    <a href="<%= url_for(:action=>:index) %>" title="返回" class="weixin_return">返回</a>主题活动
   </div>
   <div class="message_list">
     <ul class="data_list">
       <li class="topic">
-        <%= simple_form_for(@activity, :url => weixin_activities_path, :html => {:class => "form"}) do |f| %>
+      <%= simple_form_for(@activity, :url => weixin_activities_path, :html => {:class => "form"}) do |f| %>
           <%= render :partial => "form", :object => f %>
         <% end %>
       </li>

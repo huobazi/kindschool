@@ -4,6 +4,8 @@
 <div class="message_div">
   <div class="message_title">
     <a href="<%= url_for(:action=>:index, :category_id => @topic.topic_category_id) %>" class="weixin_return" title="返回">返回</a>信息论坛
+    <%= link_to("删除",url_for(:controller=>"/weixin/topics",:action=>:destroy,:id=>@topic.id),:method=>:delete, :confirm => "您确定删除该活动吗?", :class => "new_message")%>
+    <%= link_to "修改", edit_weixin_topic_path(@topic), :class => "new_message" %>
   </div>
   <div class="message_list">
     <ul class="data_list">
@@ -53,7 +55,7 @@ $(":submit").click(function() {
   var flag = [];
   if (topic_content.html().length < 3 || topic_content.isEmpty()) {
     if ( $("#topic_entry_content").next("span.help-inline").length == 0 ) {
-      $("<span class='help-inline'>长度不够(必须超过3个字符)").insertAfter("#topic_entry_content")
+      $("<span class='help-inline'>长度不够(必须超过3个字符)</span>").insertAfter("#topic_entry_content")
     }
     flag.push(true)
   } else {

@@ -21,6 +21,7 @@ class Weixin::TopicsController < Weixin::ManageController
     @topic = Topic.new
     @topic.kindergarten_id = @kind.id
     @topic.creater_id = current_user.id
+    @grades = @kind.grades
   end
 
   def create
@@ -60,5 +61,12 @@ class Weixin::TopicsController < Weixin::ManageController
   def my
     @topics = @kind.topics.where(:creater_id => current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
     render :index
+  end
+
+  def grade_squad_partial
+    if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
+      @squads = grade.squads
+    end
+    render "grade_squad", :layout => false
   end
 end

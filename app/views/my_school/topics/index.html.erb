@@ -71,6 +71,7 @@
               <th>标题</th>
               <th>发贴人</th>
               <th>查看次数</th>
+              <th>所属班级</th>
               <th colspan="2">操作</th>
             </tr>
             <% @topics.each do |topic| %>
@@ -85,6 +86,7 @@
                 </td>
                 <td><%= topic.creater ? topic.creater.name : "" %></td>
                 <td><%= topic.show_count %></td>
+                <td><%= topic.try(:squad).try(:name) %></td>
                 <td>
                   <% if choose_operate_show("my_school/topics/show") %>
                     <%= link_to "查看", my_school_topic_path(topic), :class => "show" %>

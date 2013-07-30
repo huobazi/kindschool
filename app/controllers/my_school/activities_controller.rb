@@ -3,7 +3,11 @@ class MySchool::ActivitiesController < MySchool::ManageController
   # 活动
 
   def index
-    @activities = @kind.activities.search(params[:activity] || {}).where(:tp => 0).page(params[:page] || 1).per(10).order("created_at DESC")
+    if current_user.get_users_ranges[:tp] == :student
+      @activities = @kind.activities.search(params[:activity] || {}).where(:tp => 0, :squad_id => current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
+    else
+      @activities = @kind.activities.search(params[:activity] || {}).where(:tp => 0).page(params[:page] || 1).per(10).order("created_at DESC")
+    end
   end
 
   def show
@@ -25,6 +29,8 @@ class MySchool::ActivitiesController < MySchool::ManageController
     @activity = Activity.new
     @activity.kindergarten_id = @kind.id
     @activity.creater_id = current_user.id
+
+    @grades = @kind.grades
   end
 
   def create
@@ -70,4 +76,10 @@ class MySchool::ActivitiesController < MySchool::ManageController
     end
   end
 
+  def grade_squad_partial
+    if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
+      @squads = grade.squads
+    end
+    render "grade_squad", :layout => false
+  end
 end

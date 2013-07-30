@@ -54,7 +54,7 @@ class Weixin::ApiController < Weixin::BaseController
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
               :MsgType=>"text",
-              :Content=>"#{current_user.name}您好!班级活动信息: \n\r <a href=\"http://#{request.host_with_port}/weixin/activities?#{get_validate_string}\"> 进入家园互动</a>",
+              :Content=>"#{current_user.name}您好!班级主题活动: \n\r <a href=\"http://#{request.host_with_port}/weixin/activities?#{get_validate_string}\"> 进入家园互动</a>",
               :FuncFlag=>0
             })
         elsif xml_data[:Content] == "4"

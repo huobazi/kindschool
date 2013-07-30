@@ -42,7 +42,9 @@ MENUS ={"home"=>{
   "my_school/squads" => ["index", "new","create","update", "show", "edit"],
   "my_school/teachers" => ["set_class_teacher_for_squad_view"]
 }, "13000" => {
-  "my_school/staffs" => ["index", "new", "show", "edit"]},
+  "my_school/staffs" => ["index", "new", "show", "edit"],
+  "my_school/teachers" => ["allocation"]
+  },
   "14000" => {
   "my_school/student_infos" => ["index", "new", "show", "edit"]},
   "15000" => {"my_school/virtual_squads"=>['index','new','edit','show']},

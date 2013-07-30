@@ -29,7 +29,18 @@
 <%= f.simple_fields_for :asset_img_attributes do |p| %>
   <%= p.input :uploaded_data, :as => :file, :name => "asset_img"  %>
 <% end %>
-
+<% if action_name == "new" %>
+  <div class="select_field">
+    <div><p class="title">*选择班级</p></div>
+    <label class="field_prompt" for="grade">年级:</label>
+    <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+    <div id="grade_squad_partial">
+    </div>
+  </div>
+<% else %>
+  <%= f.input :squad_label, :as => :string, :disabled => true %>
+<% end %>
+<br />
 <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
 <%= f.input :kindergarten_id, :as => :hidden %>
 <%= f.input :creater_id, :as => :hidden %>
@@ -43,9 +54,9 @@
 
 <script type="text/javascript">
   $("input[type='submit']").click(function(){
-    if (activity_content.html().length < 9 || activity_content.isEmpty()) {
+    if (activity_content.html().length < 5 || activity_content.isEmpty()) {
       if ( $("#activity_content").next("span.help-inline").length == 0 ) {
-        $("<span class='help-inline'>长度不够或为空<span>").insertAfter("#activity_content")
+        $("<span class='help-inline'>长度不够(不得少于3个字符)<span>").insertAfter("#activity_content")
         return false;
       }
     } else {
@@ -54,5 +65,16 @@
         }
         return true;
     }
+  })
+  $("#grade").change(function() {
+      $.get(
+        "/my_school/activities/grade_squad_partial",
+        {
+          grade: $("#grade").val()
+        },
+        function(result) {
+          $("#grade_squad_partial").html(result);
+        }
+      )
   })
 </script>

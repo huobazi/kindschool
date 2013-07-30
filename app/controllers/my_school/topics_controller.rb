@@ -23,12 +23,17 @@ class  MySchool::TopicsController < MySchool::ManageController
     @topic_entry.topic_id = @topic.id
     @topic_entry.creater_id = current_user.id
     @topic_entries = @topic.topic_entries.page(params[:page] || 1).per(10)
+
+    @topic.show_count += 1
+    @topic.save
   end
 
   def new
     @topic = Topic.new
     @topic.kindergarten_id = @kind.id
     @topic.creater_id = current_user.id
+
+    @grades = @kind.grades
   end
 
   def create
@@ -91,5 +96,12 @@ class  MySchool::TopicsController < MySchool::ManageController
     @topics = @kind.topics.where(:creater_id => current_user.id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
 
     render "my_school/topics/index"
+  end
+
+  def grade_squad_partial
+    if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
+      @squads = grade.squads
+    end
+    render "grade_squad", :layout => false
   end
 end

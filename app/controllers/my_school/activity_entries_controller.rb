@@ -2,6 +2,9 @@
 class MySchool::ActivityEntriesController < MySchool::ManageController
 
   def create
+    if params[:activity_entry]
+      params[:activity_entry][:creater_id] = current_user.id
+    end
     @activity_entry = ActivityEntry.new(params[:activity_entry])
 
     if @activity_entry.save!
