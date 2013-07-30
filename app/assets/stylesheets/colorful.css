@@ -66,7 +66,7 @@ a{
     margin-left: 50px;
 }
 #main .menu_center ul li:last-child{
-  border: none;
+    border: none;
 }
 .main_work{
     /*background-color: #EAEAEA;*/
@@ -237,7 +237,7 @@ a{
     height: auto;
     width: 100%;
     text-align: center;
-/*    background-color: white;*/
+    /*    background-color: white;*/
 }
 .submenu_center #flash-messages .alert {
     margin-bottom: none;
@@ -754,7 +754,7 @@ a{
 }
 table.user_attributes {
     width: 700px;
-    
+
 }
 
 table.user_attributes th {
@@ -1040,53 +1040,54 @@ table.user_attributes td {
     float: left;
 }
 .blue{
-  color: blue;
+    color: blue;
 }
 .table a.red{
-  color: red;
+    color: red;
 }
 .topic_content_up {
-  border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 .topic .topic_title {
-  font-size: 34px;
+    font-size: 34px;
 }
 .topic .topic_content {
-  text-indent: 20px;
-  word_wrap: break-word;
-  padding-top: 10px;
+    text-indent: 20px;
+    word_wrap: break-word;
+    padding-top: 10px;
 }
 #topic_show {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .topic_entry {
-  margin-bottom: 20px;
-  float: left;
-  width: 100%;
-  border-bottom: 1px solid #DDD;
-  padding: 10px 0 10px 0;
+    margin-bottom: 20px;
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #DDD;
+    padding: 10px 0 10px 0;
 }
 .topic_entry .topic_entry_left {
-  float: left;
+    float: left;
 }
 .topic_entry .topic_entry_right {
-  float :left;
-  width: 80%;
+    float :left;
+    width: 80%;
 }
 .topic_entry .user_head_logo {
-  width: 100px;
+    width: 100px;
 }
 
 #topic_category_tabs {
   padding-left: 50px;
+  padding-top: 10px;
 }
 #topic_category_tabs a {
-  color: #333333;
-  font-size: 16px;
+    color: #333333;
+    font-size: 16px;
 }
 .float_left {
-  float: left;
+    float: left;
 }
 a.album_a{
     display: inherit;
@@ -1132,10 +1133,18 @@ a.album_a .album_img{
 .search_form{
     padding: 20px 20px 20px 35px;
 }
-
+.control-group .controls .show_receiver_entry{
+    float: left;
+    height: 200px;
+    overflow-x: hidden;
+    width: 100%;
+    overflow-y: scroll;
+}
 .control-group .controls .show_label .message_entry {
-    background: #DBDBDB;
+    background: none repeat scroll 0 0 #DBDBDB;
+    float: left;
     margin-right: 10px;
+    width: 30%;
 }
 
 fieldset.to_squad,fieldset.from_squad {
@@ -1414,7 +1423,7 @@ ul.official_home_news_list{
     margin-top: 60px;
     width: 90%;
 }
-  
+
 ul.official_home_news_list li .official_square{
     background-image: url("/t/colorful/title.png");
     background-position: -25px -330px;
@@ -1422,21 +1431,21 @@ ul.official_home_news_list li .official_square{
     float: left;
     height: 30px;
     width: 15px;
-    }
+}
 ul.official_home_news_list li{
-   /* text-align: center;*/
-   float: left;
-   width: 100%;
+    /* text-align: center;*/
+    float: left;
+    width: 100%;
 
 }
 ul.official_home_news_list li .official_font{
     float: left;
     line-height: 30px;
     text-align: center;
-    }
+}
 ul.official_home_news_list li .official_font a{
     color: black;
-    }
+}
 ul.official_home_news_list li .official_time{
     float: right;
     line-height: 30px;
@@ -1499,7 +1508,7 @@ ul.official_home_news_list li .official_time{
     border-bottom: 2px solid red;
 }
 .official_home_address_info span{
-   font-size: 20px;
+    font-size: 20px;
 }
 /*.official_home_address_line{
     border-right: 1px solid red;
@@ -1533,7 +1542,7 @@ ul.official_home_news_list li .official_time{
     width: 90%;
 }
 .official_home_teacher_img{
-  background: none repeat scroll 0 0 white;
+    background: none repeat scroll 0 0 white;
     border-radius: 100px 100px 100px 100px;
     float: left;
     height: 100px;
@@ -1562,20 +1571,20 @@ ul.teacher_list li{
 /*========成长记录===========*/
 
 .select_field .field_prompt {
-  width: 160px;
-  text-align: right;
+    width: 160px;
+    text-align: right;
 }
 
 .select_field .title {
-  text-align: center;
+    text-align: center;
 }
 
 .select_field .select {
-  margin-left: 180px;
+    margin-left: 180px;
 }
 
 span.help-inline {
-  color: red;
+    color: red;
 }
 .index_a a{
     float: left;

@@ -4,12 +4,12 @@ class Weixin::TopicsController < Weixin::ManageController
     unless params[:category_id].blank?
       if topic_category = @kind.topic_categories.find_by_id(params[:category_id])
         if current_user.get_users_ranges[:tp] == :student
-          @topics = @kind.topics.where("topic_category_id = ? or creater_id = ? or squad_id = ? or squad_id is null", topic_category.id, current_user.id, current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
+          @topics = @kind.topics.where("topic_category_id = ? and (creater_id = ? or squad_id = ? or squad_id is null)", topic_category.id, current_user.id, current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
         else
           @topics = @kind.topics.where(:topic_category_id => topic_category.id).page(params[:page] || 1).per(10).order("created_at DESC")
         end
       else
-        flash[:error] = "没有权限"
+        flash[:error] = "没有权限或没有该论坛分类"
         redirect_to weixin_topics_path
       end
     else

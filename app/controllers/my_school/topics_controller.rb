@@ -6,12 +6,12 @@ class  MySchool::TopicsController < MySchool::ManageController
     if params[:topic_category_id]
       if topic_category = @kind.topic_categories.find_by_id(params[:topic_category_id])
         if current_user.get_users_ranges[:tp] == :student
-          @topics = @kind.topics.where(:topic_category_id => topic_category.id, :creater_id => current_user.id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+          @topics = @kind.topics.where("").search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
         else
           @topics = @kind.topics.where(:topic_category_id => topic_category.id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
         end
       else
-        flash[:notice] = "没有权限"
+        flash[:notice] = "没有权限或没有该论坛分类"
         redirect_to my_school_topic_categories_path
       end
     else

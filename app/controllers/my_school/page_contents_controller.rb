@@ -1,7 +1,7 @@
 #encoding:utf-8
 class  MySchool::PageContentsController < MySchool::ManageController
   def index
-    @page_contents = PageContent.all(:conditions=>{:kindergarten_id=>@kind.id})
+      @page_contents = PageContent.all(:conditions=>{:kindergarten_id=>@kind.id,:tp=>params[:tp_id].to_i})    
   end
 
   def show
