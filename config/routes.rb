@@ -174,12 +174,14 @@ School::Application.routes.draw do
       collection do
         delete :destroy_multiple
         get :my
+        get :grade_squad_partial
       end
     end
     resources :topic_entries
     resources :activities do
       collection do
         delete :destroy_multiple
+        get :grade_squad_partial
       end
     end
   end

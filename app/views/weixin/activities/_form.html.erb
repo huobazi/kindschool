@@ -71,6 +71,7 @@
 <% end %>
 
 <%= f.input :creater_id, :as => :hidden %>
+<%= f.input :tp, :as => :hidden %>
 <%= f.input :kindergarten_id, :as => :hidden %>
 <%= f.button :submit, :class => "btn" %>
 
@@ -156,7 +157,7 @@ $(document).ready(function() {
       }
       flag.push(false)
     }
-    if ( $("#grade").length > 0 ) {
+    if ( $("#grade").is(":visible") ) {
       if ( $("#squad_id").length > 0 ) {
         if($("#grade").next("span.help-inline").length > 0) {
           $("#grade").next("span.help-inline").remove()

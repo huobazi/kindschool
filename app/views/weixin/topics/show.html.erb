@@ -55,7 +55,7 @@ $(":submit").click(function() {
   var flag = [];
   if (topic_content.html().length < 3 || topic_content.isEmpty()) {
     if ( $("#topic_entry_content").next("span.help-inline").length == 0 ) {
-      $("<span class='help-inline'>长度不够(必须超过3个字符)").insertAfter("#topic_entry_content")
+      $("<span class='help-inline'>长度不够(必须超过3个字符)</span>").insertAfter("#topic_entry_content")
     }
     flag.push(true)
   } else {

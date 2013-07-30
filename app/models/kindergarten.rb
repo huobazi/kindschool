@@ -16,7 +16,7 @@ class Kindergarten < ActiveRecord::Base
   end
 
   has_many :users   #所有用户
-  
+
   has_many :operates
   has_many :grades,:order=>:sequence  #年级
   has_many :grade_teachers,:through=>:grades, :source => :staff  #年级组长

@@ -64,4 +64,25 @@
 </div>
 <%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
 <%= render :partial => "/modules/colorful/weixin_menu_one"%>
-
+<script type="text/javascript">
+$(":submit").click(function() {
+  var flag = [];
+  if (topic_content.html().length < 3 || topic_content.isEmpty()) {
+    if ( $("#activity_entry_note").next("span.help-inline").length == 0 ) {
+      $("<span class='help-inline'>长度不够(必须超过3个字符)</span>").insertAfter("#activity_entry_note")
+    }
+    flag.push(true)
+  } else {
+    if ( $("#activity_entry_note").next("span.help-inline").length > 0 ) {
+      $("#activity_entry_note").next("span.help-inline").remove()
+    }
+    flag.push(false)
+  }
+  for( i in flag ) {
+    if(flag[i] == true) {
+      flag.length = 0;
+      return false;
+    }
+  }
+})
+</script>

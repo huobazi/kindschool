@@ -1,8 +1,11 @@
 #encoding:utf-8
 class Weixin::ActivitiesController < Weixin::ManageController
   def index
-    @activities = @kind.activities.page(params[:page] || 1).per(10).order("created_at DESC")
-
+    if current_user.get_users_ranges[:tp] == :student
+      @activities = @kind.activities.where(:tp => 0, :squad_id => current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
+    else
+      @activities = @kind.activities.where(:tp => 0).page(params[:page] || 1).per(10).order("created_at DESC")
+    end
   end
 
   def show
@@ -22,6 +25,7 @@ class Weixin::ActivitiesController < Weixin::ManageController
     @activity = Activity.new
     @activity.creater_id = current_user.id
     @activity.kindergarten_id = @kind.id
+    @activity.tp = 0
     @grades = @kind.grades
   end
 
@@ -29,6 +33,7 @@ class Weixin::ActivitiesController < Weixin::ManageController
     @activity = Activity.new(params[:activity])
     @activity.creater_id = current_user.id
     @activity.kindergarten_id = @kind.id
+    @activity.tp = 0
 
     if @activity.save!
       flash[:success] = "创建活动成功"
