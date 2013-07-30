@@ -508,6 +508,13 @@ a{
     position: absolute;
     width: 30px;
 }
+.count_div{
+    display: inline-block;
+    vertical-align: middle;
+}
+#sms_count{
+ display: none;
+}
 .work_menu .a_selected{
     color: white;
 }

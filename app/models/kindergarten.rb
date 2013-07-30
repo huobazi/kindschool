@@ -260,4 +260,14 @@ class Kindergarten < ActiveRecord::Base
   def get_send_sms_count
     self.users.where(:is_send=>true).count()
   end
+
+  #获取可用的扩展码
+  def get_chain_code
+    chain_users = self.users.where(:chain_delete=>true)
+    unless chain_users.blank?
+      return chain_users.first.chain_code
+    else
+      return (self.users.maximum(:chain_code) || 0) + 1
+    end
+  end
 end
