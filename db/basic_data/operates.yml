@@ -1651,3 +1651,15 @@ news_destroy:
   params: ""
   protocol: ""
   <<: *DEFAULTS
+
+student_info_execl:
+  id: 12000
+  parent_id: 5
+  name: "学员信息下载"
+  level: 2
+  sequence: 4
+  note: "学员信息下载"
+  controller: "my_school/student_infos"
+  action: "student_execl"
+  protocol: ""
+  <<: *DEFAULTS

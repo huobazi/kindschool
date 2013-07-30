@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<HTML>
+<HEAD>
+	
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 4.0.2.2 (Linux)">
+	<META NAME="CREATED" CONTENT="19961217;9324200">
+	<META NAME="CHANGED" CONTENT="20121120;18300600">
+	
+	<STYLE>
+		<!-- 
+		BODY,DIV,TABLE,THEAD,TBODY,TFOOT,TR,TH,TD,P { font-family:"DejaVu Sans"; font-size:small }
+		 -->
+	</STYLE>
+	
+</HEAD>
+
+<BODY TEXT="#000000">
+<TABLE CELLSPACING="0" COLS="5" BORDER="0">
+	<COLGROUP WIDTH="128"></COLGROUP>
+	<COLGROUP WIDTH="189"></COLGROUP>
+	<COLGROUP WIDTH="128"></COLGROUP>
+	<COLGROUP WIDTH="186"></COLGROUP>
+	<COLGROUP WIDTH="185"></COLGROUP>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=5 HEIGHT="28" ALIGN="CENTER"><B><FONT SIZE=4>基本信息</FONT></B></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>姓    名</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%=@user.try(:name)%></FONT></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>性    别</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="LEFT" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%=@user.try(:gender) == "M" ? "男" : "女"%></FONT></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="LEFT" SDNUM="2052;0;@"><FONT SIZE=2><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>班级名称</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.try(:squad).try(:name) %></FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>出生日期</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="LEFT" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.try(:birthday).try(:to_short_datetime)%></FONT></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ROWSPAN=5 ALIGN="CENTER" SDNUM="2052;0;@"><FONT SIZE=2><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>入园日期</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT FACE="宋体" SIZE=2><%= @student_info.try(:come_in_at).try(:to_short_datetime) %></FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>证件类别</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="LEFT" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.card_category_label %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>证件号码</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.card_code %></FONT></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>监护人姓名</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="LEFT" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.guardian %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="37" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>监护人身份证件类型</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.guardian_card_category_label %></FONT></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>监护人身份证件号码</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="LEFT" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT FACE="宋体" SIZE=2><%= @student_info.guardian_card_code %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>国    籍</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT FACE="宋体" SIZE=2><%= @student_info.nationality %></FONT></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>民    族</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="LEFT" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.nation %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>港澳台侨</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.overseas_chinese_label %></FONT></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>户口性质</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="LEFT" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.household_label %></FONT></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE><FONT SIZE=2><BR></FONT></TD>
+	</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>出 生 地</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=4 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.birthplace %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>籍    贯</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=4 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.native %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>户口所在地</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=4 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.domicile_place %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>家庭地址</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=4 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.family_address %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="38" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>是否留守儿童</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.leftover_children ? "是" : "否" %></FONT></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>是否进城务工人员子女</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.employofficialt ? "是" : "否" %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="39" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>是否低保</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.insured ? "是" : "否" %></FONT></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>是否接受资助</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.subsidize ? "是" : "否" %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="44" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>是否残疾幼儿</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.subsidize ? "是" : "否" %></FONT></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>残疾幼儿类型</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.deformity_category %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>是否寄宿生</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.lodging ? "是" : "否" %></FONT></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>是否孤儿</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.orphan ? "是" : "否" %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>住房性质</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.housing_label %></FONT></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>居住情况</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%=@student_info.live_family_label%></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>独生子女</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.only_child ? "是" : "否" %></FONT></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>家中子女数</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.brothers %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>本人是第几胎</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%=@student_info.children_number%></FONT></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2><BR></FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><BR></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c" COLSPAN=5 ROWSPAN=2 HEIGHT="56" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2><BR></FONT></B></TD>
+		</TR>
+	<TR>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=5 HEIGHT="28" ALIGN="CENTER"><B><FONT SIZE=4>家庭情况</FONT></B></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>关    系</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.family_ties %></FONT></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>姓    名</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.family_name %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>政治面貌</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.politics_status %></FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>出生日期</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%=@student_info.family_birthday%></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>职    业</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.profession %></FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>职    务</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.duties %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>工作单位</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.working %></FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>户籍类型</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.family_register %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>移动电话</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.family_phone %></FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>电子邮箱</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.family_email %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="39" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>父母在深连续居住时间</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.living_time %></FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>婚姻状况</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.family_marital %></FONT></TD>
+		</TR>
+	<TR>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>学   历</FONT></B></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.education %></FONT></TD>
+		<TD STYLE="border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>社会保险箱</FONT></B></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" COLSPAN=2 ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.safe_box %></FONT></TD>
+		</TR>
+</TABLE>
+<!-- ************************************************************************** -->
+</BODY>
+
+</HTML>

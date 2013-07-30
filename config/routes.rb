@@ -128,6 +128,8 @@ School::Application.routes.draw do
       collection do
         delete :destroy_multiple
         get :grade_squad_partial
+        get :student_execl
+        post :download
       end
     end
     resources :templates do
