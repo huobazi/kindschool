@@ -1,9 +1,13 @@
 #encoding:utf-8
 class MySchool::InterestActivitiesController < MySchool::ManageController
-  # 活动
+  # 兴趣活动
 
   def index
-    @activities = @kind.activities.search(params[:activity] || {}).where(:tp => 1).page(params[:page] || 1).per(10).order("created_at DESC")
+    if current_user.get_users_ranges[:tp] == :student
+      @activities = @kind.activities.search(params[:activity] || {}).where(:tp => 1, :squad_id => current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
+    else
+      @activities = @kind.activities.search(params[:activity] || {}).where(:tp => 1).page(params[:page] || 1).per(10).order("created_at DESC")
+    end
 
     render "my_school/activities/index"
   end
@@ -27,6 +31,8 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
     @activity = Activity.new
     @activity.kindergarten_id = @kind.id
     @activity.creater_id = current_user.id
+
+    @grades = @kind.grades
 
     render "my_school/activities/new"
   end

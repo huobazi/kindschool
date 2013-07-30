@@ -17,6 +17,24 @@
 <div class="control-group">
     <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false%>
 </div>
+
+<% if action_name == "new" %>
+  <div class="field">
+    <%= radio_button_tag 'visible', 'all', :checked => true %><span class="field_prompt" for="visible_all">全园可见</span>
+    <%= radio_button_tag 'visible', 'squad' %><span class="field_prompt" for="visible_squad">选择班级</span>
+
+  </div>
+  <br />
+  <div class="select_field" id="select_squad" style="display:none;">
+    <label class="field_prompt" for="grade">年级:</label>
+    <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+    <div id="grade_squad_partial">
+    </div>
+  </div>
+<% else %>
+  <%= f.input :squad_label, :as => :string, :disabled => true %>
+<% end %>
+<br />
 <%= f.input :kindergarten_id, :as => :hidden %>
 <%= f.input :creater_id, :as => :hidden %>
 
@@ -28,17 +46,59 @@
 </div>
 
 <script type="text/javascript">
+var flag = []
   $("input[type='submit']").click(function(){
     if (topic_content.html().length < 3 || topic_content.isEmpty()) {
       if ( $("#topic_content").next("span.help-inline").length == 0 ) {
-        $("<span class='help-inline'>长度不够或为空<span>").insertAfter("#topic_content")
+        $("<span class='help-inline'>长度不够(不得少于3个字符)<span>").insertAfter("#topic_content")
       }
-      return false;
+      flag.push(true)
     } else {
       if ( $("#topic_content").next("span.help-inline").length > 0 ) {
         $("#topic_content").next("span.help-inline").remove()
       }
-      return true;
+      flag.push(false)
+    }
+
+    if ( $("#grade").is(":visible") ) {
+      if ( $("#squad_id").length > 0 ) {
+        if($("#grade").next("span.help-inline").length > 0) {
+          $("#grade").next("span.help-inline").remove()
+        }
+        flag.push(false);
+      } else if ( $("#topic_squad_label").length > 0 || $("#topic_squad").length > 0 ) {
+        flag.push(false)
+      } else {
+        if( $("#grade").next("span.help-inline").length == 0 ) {
+          $("<span class='help-inline'>必须选择班级</span>").insertAfter($("#grade"))
+        }
+        flag.push(true);
+      }
+    }
+
+    for( i in flag ) {
+      if(flag[i] == true) {
+        flag.length = 0;
+        return false;
+      }
+    }
+  })
+  $("#grade").change(function() {
+      $.get(
+        "/my_school/topics/grade_squad_partial",
+        {
+          grade: $("#grade").val()
+        },
+        function(result) {
+          $("#grade_squad_partial").html(result);
+        }
+      )
+  })
+  $("input[type='radio']").change(function() {
+    if ( $(this).val() == "squad" ) {
+      $("#select_squad").show()
+    } else {
+      $("#select_squad").hide()
     }
   })
 </script>

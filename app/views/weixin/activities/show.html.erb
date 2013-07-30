@@ -3,8 +3,8 @@
 </div>
 <div class="message_div">
   <div class="message_title">
-    <a href="<%= url_for(:action=>:index) %>" title="返回" class="weixin_return">返回</a>活动内容
-    <%= link_to("删除",url_for(:controller=>"/weixin/growth_records",:action=>:destroy,:id=>@activity.id),:method=>:delete, :confirm => "您确定删除该活动吗?", :class => "new_message")%>
+    <a href="<%= url_for(:action=>:index) %>" title="返回" class="weixin_return">返回</a>主题活动
+    <%= link_to("删除",url_for(:controller=>"/weixin/activities",:action=>:destroy,:id=>@activity.id),:method=>:delete, :confirm => "您确定删除该活动吗?", :class => "new_message")%>
     <%= link_to "修改", edit_weixin_activity_path(@activity), :class => "new_message" %>
   </div>
   <div class="message_list">
@@ -30,10 +30,59 @@
           <span>描述:</span><%= simple_format @activity.note %>
         </div>
       </li>
+      <li class="reply">
+        <%= simple_form_for(@activity_entry, :validate => true, :url => weixin_activity_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
+          <div class="field">
+            <label class="field_prompt">回复</label>
+            <%= f.kindeditor :note, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :allowFlashUpload => false, :simple_mode => true %>
+            <br />
+            <%= f.button :submit, :class => "btn" %>
+          </div>
+          <%= f.input :creater_id, :as => :hidden %>
+          <%= f.input :activity_id, :as => :hidden %>
+          <%= f.input :tp, :as => :hidden %>
+        <% end %>
+      </li>
+      <% unless @replies.blank? %>
+        <ul class="topic_replies">
+          <% @replies.each do |reply| %>
+            <li class="reply" id="activity_entry_<%= reply.id %>">
+              <p class="reply_info">
+              <label class="author"><%= reply.creater ? reply.creater.name : "" %></label>&nbsp;&nbsp;<label class="created_time"><%= reply.created_at.to_long_datetime %></label>
+              </p>
+              <div class="content"><%= simple_format reply.note %></div>
+            </li>
+          <% end %>
+        </ul>
+        <%= paginate @replies %>
+      <% else %>
+        暂无回复
+      <% end %>
     </ul>
     <br/>
   </div>
 </div>
 <%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
 <%= render :partial => "/modules/colorful/weixin_menu_one"%>
-
+<script type="text/javascript">
+$(":submit").click(function() {
+  var flag = [];
+  if (topic_content.html().length < 3 || topic_content.isEmpty()) {
+    if ( $("#activity_entry_note").next("span.help-inline").length == 0 ) {
+      $("<span class='help-inline'>长度不够(必须超过3个字符)</span>").insertAfter("#activity_entry_note")
+    }
+    flag.push(true)
+  } else {
+    if ( $("#activity_entry_note").next("span.help-inline").length > 0 ) {
+      $("#activity_entry_note").next("span.help-inline").remove()
+    }
+    flag.push(false)
+  }
+  for( i in flag ) {
+    if(flag[i] == true) {
+      flag.length = 0;
+      return false;
+    }
+  }
+})
+</script>

@@ -16,17 +16,61 @@
 <label class="field_prompt" for="content">内容:</label>
 <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :allowFlashUpload => false, :simple_mode => true %>
 </div>
+<% if action_name == "new" %>
+  <div class="field">
+    <%= radio_button_tag 'visible', 'all', :checked => true %><span class="field_prompt" for="visible_all">全园可见</span>
+    <%= radio_button_tag 'visible', 'squad' %><span class="field_prompt" for="visible_squad">选择班级</span>
 
+  </div>
+
+  <div class="select_field" id="select_squad" style="display: none">
+    <label class="field_prompt" for="grade">年级:</label>
+    <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+    <div id="grade_squad_partial">
+    </div>
+    <div id="squad_student_partial">
+    </div>
+  </div>
+<% else %>
+  <div class="field">
+    <% if @topic.squad_id.blank? %>
+      <label class="field_prompt" for="activity_content">所属幼儿园</label>
+      <%= f.text_field :kindergarten_label, :disabled => true %>
+    <% else %>
+      <label class="field_prompt" for="activity_content">所属班级</label>
+      <%= f.text_field :squad_label, :disabled => true %>
+    <% end %>
+  </div>
+<% end %>
 <%= f.input :kindergarten_id, :as => :hidden %>
 <%= f.input :creater_id, :as => :hidden %>
 <%= f.button :submit, :class => "btn" %>
 
 <script type="text/javascript">
+  $("#grade").change(function() {
+      $.get(
+        "/weixin/topics/grade_squad_partial",
+        {
+          grade: $("#grade").val()
+        },
+        function(result) {
+          $("#grade_squad_partial").html(result);
+        }
+      )
+
+  })
+  $("input[type='radio']").change(function() {
+    if ( $(this).val() == "squad" ) {
+      $("#select_squad").show()
+    } else {
+      $("#select_squad").hide()
+    }
+  })
 var flag = []
 $(":submit").click(function() {
   if($("select").val() == "") {
     if($("#select_field").children("span.help").length == 0) {
-      $("<span class='help'>必须选择论坛分类<span>").insertBefore($(".select"))
+      $("<span class='help'>必须选择论坛分类<span>").insertBefore($("#topic_topic_category_id"))
     }
     flag.push(true)
   } else {
@@ -57,6 +101,21 @@ $(":submit").click(function() {
     }
     flag.push(false)
   }
+  if ( $("#grade").is(":visible") ) {
+      if ( $("#squad_id").length > 0 ) {
+        if($("#grade").next("span.help-inline").length > 0) {
+          $("#grade").next("span.help-inline").remove()
+        }
+        flag.push(false);
+      } else if ( $("#topic_squad_label").length > 0 || $("#topic_squad").length > 0 ) {
+        flag.push(false)
+      } else {
+        if( $("#grade").next("span.help-inline").length == 0 ) {
+          $("<span class='help-inline'>必须选择班级</span>").insertAfter($("#grade"))
+        }
+        flag.push(true);
+      }
+  }
   for( i in flag ) {
     if(flag[i] == true) {
       flag.length = 0;
@@ -65,5 +124,4 @@ $(":submit").click(function() {
   }
 })
 
-alert($(".ke-dialog-default").style());
 </script>

@@ -176,12 +176,14 @@ School::Application.routes.draw do
       collection do
         delete :destroy_multiple
         get :my
+        get :grade_squad_partial
       end
     end
     resources :topic_entries
     resources :activities do
       collection do
         delete :destroy_multiple
+        get :grade_squad_partial
       end
     end
   end
@@ -213,6 +215,7 @@ School::Application.routes.draw do
     resources :topics do
       collection do
         get :my
+        get :grade_squad_partial
       end
     end
     resources :growth_records do
@@ -227,7 +230,12 @@ School::Application.routes.draw do
         get :squad_student
       end
     end
-    resources :activities
+    resources :activities do
+      collection do
+        get :grade_squad_partial
+      end
+    end
+    resources :activity_entries
     resources :topic_entries
     resources :messages do
       member do

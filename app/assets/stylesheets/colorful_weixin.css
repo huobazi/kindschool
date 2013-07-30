@@ -830,6 +830,10 @@ ul, li {
     color: red;
     font-size: 20px;
 }
+span.help-inline {
+  color: red;
+  font-size: 20px;
+}
 .li_child{
     display: none;
 }
