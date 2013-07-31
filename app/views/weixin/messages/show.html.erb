@@ -4,6 +4,11 @@
 <div class="message_div">
   <div class="message_title">
     <a href="<%= url_for(:action=>:index) %>" title="返回" class="weixin_return">返回</a>消息详情
+
+
+    <%if current_user.is_send && @message%>
+      <%= link_to "发短信" ,url_for(:action=>:new,:message_id=>@message.id),:class=>'new_message' %>
+    <% end %>
   </div>
   <div class="show_title">
     <div class="title">
