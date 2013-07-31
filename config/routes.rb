@@ -2,19 +2,25 @@ School::Application.routes.draw do
 
   match 'my_school' => 'my_school/main#index'
   namespace :my_school do
+    resources :news 
+    resources :my_kindergarten do
+
+    end
     resources :main do
       collection do
-       get :no_kindergarten 
-       get :about
-       get :contact_us
-       get :feature
-       get :show_official_about_us
-       get :admissions_information
+        get :no_kindergarten
+        get :about
+        get :contact_us
+        get :feature
+        get :show_official_about_us
+        get :admissions_information
+        get :show_one_new
+        get :show_new_list
       end
     end
     resources :virtual_squads  do 
-       collection {get :get_edit_ids}
-      end
+      collection {get :get_edit_ids}
+    end
     resources :roles do
       member do
         get :set_operate_to_role
@@ -58,12 +64,11 @@ School::Application.routes.draw do
     end
     resources :users do
       collection do
-        get :login,:logout,:error_notice,:show
-        post :login
+        get :login,:logout,:error_notice,:show,:change_password_view
+        post :login,:change_password
       end
-      collection do
-        get :change_password_view
-        post :change_password
+      member do
+        get :set_send_sms,:set_gather_sms
       end
     end
     resources :activity_entries
@@ -122,6 +127,9 @@ School::Application.routes.draw do
     resources :student_infos do
       collection do
         delete :destroy_multiple
+        get :grade_squad_partial
+        get :student_execl
+        post :download
       end
     end
     resources :templates do
@@ -146,6 +154,8 @@ School::Application.routes.draw do
       collection do
         get :home
         delete :destroy_multiple
+        get :grade_squad_partial
+        get :squad_student_partial
       end
     end
 
@@ -166,12 +176,14 @@ School::Application.routes.draw do
       collection do
         delete :destroy_multiple
         get :my
+        get :grade_squad_partial
       end
     end
     resources :topic_entries
     resources :activities do
       collection do
         delete :destroy_multiple
+        get :grade_squad_partial
       end
     end
   end
@@ -203,6 +215,7 @@ School::Application.routes.draw do
     resources :topics do
       collection do
         get :my
+        get :grade_squad_partial
       end
     end
     resources :growth_records do
@@ -211,12 +224,36 @@ School::Application.routes.draw do
         get :squad_student
       end
     end
+    resources :garden_growth_records do
+      collection do
+        get :grade_squad
+        get :squad_student
+      end
+    end
+    resources :activities do
+      collection do
+        get :grade_squad_partial
+      end
+    end
+    resources :activity_entries
     resources :topic_entries
     resources :messages do
       member do
+        get :outbox_show
+        get :draft_show
+        get :draft_edit
+        get :get_edit_ids
+        post :draft_update
         post :return_message
       end
+      collection do
+        get :outbox,:get_kindergarten,:get_grade,:get_student
+        post :get_grades_all,:get_squads_all,:get_roles_all,:get_users_all
+        delete :destroy_multiple
+        get :draft_box
+      end
     end
+    resources :notices
   end
 
   namespace :weixin do

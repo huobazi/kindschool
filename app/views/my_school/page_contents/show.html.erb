@@ -25,12 +25,21 @@
       </div>
       <ul class="work_action">
         <li>
+          <%if @page_content.tp==1%>
+          <a href="<%=my_school_page_contents_path(:tp_id=>@page_content.tp)%>" title="返回">
+            <div class="work_action_return">
+            </div>
+            <div class="work_action_return_move">
+            </div>
+          </a>
+          <%else%>
           <a href="<%=my_school_page_contents_path%>" title="返回">
             <div class="work_action_return">
             </div>
             <div class="work_action_return_move">
             </div>
           </a>
+          <%end%>
         </li>
       </ul>
     </div>

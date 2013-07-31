@@ -40,137 +40,128 @@
       <ul class="work_action">
         <li>
           <% if controller_name == "activities" %>
-            <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:new, :tp => 0)%>" title="添加">
-          <% else %>
+            <% if choose_operate_show("my_school/activities/new") %>
+              <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:new, :tp => 0)%>" title="添加">
+                <div class="work_action_add">
+                </div>
+                <div class="work_action_add_move">
+                </div>
+              </a>
+            <% end %>
+        <% else %>
+          <% if choose_operate_show("my_school/interest_activities/new") %>
             <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:new, :tp => 1)%>" title="添加">
+              <div class="work_action_add">
+              </div>
+              <div class="work_action_add_move">
+              </div>
+            </a>
           <% end %>
-          <div class="work_action_add">
-          </div>
-          <div class="work_action_add_move">
-          </div>
-          </a>
+        <% end %>
         </li>
         <li>
           <% if controller_name == "activities" %>
-            <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:edit,:id=>@activity.id)%>" title="编辑">
-          <% else %>
+            <% if choose_operate_show("my_school/activities/edit") %>
+              <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:edit,:id=>@activity.id)%>" title="编辑">
+                <div class="work_action_edit">
+                </div>
+                <div class="work_action_edit_move">
+                </div>
+              </a>
+            <% end %>
+        <% else %>
+          <% if choose_operate_show("my_school/interest_activities/edit") %>
             <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:edit,:id=>@activity.id)%>" title="编辑">
-          <% end %>
-            <div class="work_action_edit">
-            </div>
-            <div class="work_action_edit_move">
-            </div>
-          </a>
+              <div class="work_action_edit">
+              </div>
+              <div class="work_action_edit_move">
+              </div>
+            </a>
+            <% end %>
+        <% end %>
         </li>
         <li>
           <% if controller_name == "activities" %>
-            <%= link_to(url_for(:controller=>"/my_school/activities",:action=>:destroy,:id=>@activity.id),:method=>:delete, :confirm => "您确定删除该活动吗?") do %>
-              <div class="work_action_delete">
-              </div>
-              <div class="work_action_delete_move">
-              </div>
+            <% if choose_operate_show("my_school/activities/destroy") %>
+              <%= link_to(url_for(:controller=>"/my_school/activities",:action=>:destroy,:id=>@activity.id),:method=>:delete, :confirm => "您确定删除该活动吗?") do %>
+                <div class="work_action_delete">
+                </div>
+                <div class="work_action_delete_move">
+                </div>
+              <% end %>
             <% end %>
           <% else %>
-            <%= link_to(url_for(:controller=>"/my_school/interest_activities",:action=>:destroy,:id=>@activity.id),:method=>:delete, :confirm => "您确定删除该兴趣讨论吗?") do %>
-              <div class="work_action_delete">
-              </div>
-              <div class="work_action_delete_move">
-              </div>
+            <% if choose_operate_show("my_school/interest_activities/destroy") %>
+              <%= link_to(url_for(:controller=>"/my_school/interest_activities",:action=>:destroy,:id=>@activity.id),:method=>:delete, :confirm => "您确定删除该兴趣讨论吗?") do %>
+                <div class="work_action_delete">
+                </div>
+                <div class="work_action_delete_move">
+                </div>
+              <% end %>
             <% end %>
           <% end %>
         </li>
         <li>
           <% if controller_name == "activities" %>
-            <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:index)%>" title="返回">
+            <% if choose_operate_show("my_school/activities/index") %>
+              <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:index)%>" title="返回">
+                <div class="work_action_return">
+                </div>
+                <div class="work_action_return_move">
+                </div>
+              </a>
+            <% end %>
           <% else %>
-            <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:index)%>" title="返回">
+            <% if choose_operate_show("my_school/interest_activities/index") %>
+              <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:index)%>" title="返回">
+                <div class="work_action_return">
+                  </div>
+                  <div class="work_action_return_move">
+                  </div>
+               </a>
+            <% end %>
           <% end %>
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
-          </a>
         </li>
       </ul>
     </div>
 
     <div class="work_form">
       <div class="form_div">
-        <form class="form-horizontal">
-          <div class="control-group">
-            <label class="control-label">标题</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=@activity.title %>
-              </label>
-            </div>
+        <div id="activity_show" class="activity">
+          <div class="title">
+            <p class="activity_title"><%= @activity.title %></p>
+            <p class="activity_info"><span><%= @activity.creater.try(:name) %>*<%= @activity.try(:squad).try(:name) %></span>&nbsp;&nbsp;<span><%= @activity.start_at.try(:to_short_datetime) %>&nbsp;~&nbsp;<%= @activity.end_at.try(:to_short_datetime) %></span></p>
           </div>
-          <div class="control-group">
-            <label class="control-label" >活动开始时间</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @activity.start_at.to_short_datetime unless @activity.start_at.nil? %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >活动结束时间</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @activity.end_at.to_short_datetime unless @activity.end_at.nil? %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >类型</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @activity.tp == 0 ? "活动" : "兴趣讨论" %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >LOGO</label>
-            <div class="controls">
-              <label class="show_label">
+          <div id="activity_down">
+              <div class="activity_logo">
                 <% if @activity.asset_img.blank? %>
                   图片不存在
                 <% else %>
                   <a href="<%= @activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
-                    <img src="<%= @activity.asset_img.public_filename(:tiny) %>" />
+                    <img src="<%= @activity.asset_img.public_filename(:middle) %>" />
                   </a>
                 <% end %>
-              </label>
+              </div>
+              <div class="activity_content">
+                <%= raw @activity.content %> <br />
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >内容</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @activity.content %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >描述</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @activity.note %>
-              </label>
-            </div>
-          </div>
-        </form>
+        </div>
 
         <hr />
 
-        <div id="activity_entries">
-          <% if @activity_entries.any? %>
+        <div id="topic_entries">
+          <% unless @activity_entries.blank? %>
+            <div class="total"><b>共收到<%= @activity_entries.count %>条回复</b></div>
             <% @activity_entries.each do |activity_entry| %>
-              <div id="activity_entry_<%= activity_entry.id %>" class="activity_entry">
-                <span><%= activity_entry.creater ? activity_entry.creater.name : "丢失回复人信息" %></span>: &nbsp;&nbsp; <span><%= time_ago_in_words(activity_entry.created_at) %></span> <%= simple_format activity_entry.note, :class => "activity_entry_note" %> 
-                <% if destroy_activity_entry?(activity_entry) %>
-                  <span class="destroy"><%= link_to "x", my_school_activity_entry_path(activity_entry, :mark => controller_name), :method => :delete %></span>
-                <% end %>
+              <div id="activity_entry_<%= activity_entry.id %>" class="topic_entry">
+                <div class="topic_entry_left">
+                  <div class="user_head_logo"><img src="<%= activity_entry.creater.asset_logo ? activity_entry.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/></div>
+                </div>
+                <div class="topic_entry_right">
+                  <p topic_entry_info><span class="author"><%= activity_entry.creater.try(:name) %></span>&nbsp;&nbsp;<span class="time"><%= time_ago_in_words(activity_entry.created_at) %></span></p>
+                  <div class="topic_entry_content"><%= simple_format activity_entry.note %></div>
+                </div>
               </div>
             <% end %>
             <%= paginate @activity_entries %>

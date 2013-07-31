@@ -46,6 +46,7 @@ class StudentInfo < ActiveRecord::Base
   def card_category_label
     StudentInfo::CARD_CATEGORY_DATA[self.card_category.to_s]
   end
+  
 
   #监护人证件类别
   def guardian_card_category_label

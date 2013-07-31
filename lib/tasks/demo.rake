@@ -6,7 +6,7 @@ namespace :db do
     template = Template.find_by_is_default(true)
     puts "添加幼儿园"
     #添加幼儿园
-    kind = Kindergarten.create!(:name=>"火龙果幼儿园",:number=>"huolg",:template_id=>template.id,:note=>"这是幼儿园简介",:weixin_token=>"weiyi",:weixin_status=>1)
+    kind = Kindergarten.create!(:name=>"火龙果幼儿园",:number=>"huolg",:template_id=>template.id,:note=>"这是幼儿园简介",:weixin_token=>"weiyi",:weixin_status=>1,:sms_count=>50,:sms_user_count=>50,:telephone=>"0755-86081688",:latlng=>"22.509512,113.939267",:address=>"幼儿园地址")
     kind.loading!
     puts "添加管理员"
     #添加管理员

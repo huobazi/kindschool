@@ -260,6 +260,12 @@ zh-CN:
         admin: "管理员"
         created_at: "创建时间"
         updated_at: "更新时间"
+        latlng: "经纬度"
+        address: "地址"
+        aliases_url: "独立域名"
+        sms_count: "可用短信数量"
+        sms_user_count: "短信用户数量"
+        telephone: "联系电话"
       user:
         name: "姓名"
         login: "账号"
@@ -284,6 +290,7 @@ zh-CN:
         updated_at: "更新时间"
         is_send: '是否能够发短信'
         is_receive: '是否能够接受短信'
+        chain_code: "短信扩展码"
       grade:
         kindergarten_label: "所属幼儿园"
         kindergarten: "所属幼儿园"
@@ -495,7 +502,7 @@ zh-CN:
         kindergarten_label: "所属幼儿园"
         start_at: "开始时间"
         end_at: "结束时间"
-        content: "在园表现"
+        content: "表现"
         creater_id: "创建人"
         squad_name: "班级名"
         student_info: "学员"
@@ -546,6 +553,7 @@ zh-CN:
       activity:
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"
+        squad_label: "所属班级"
         start_at: "开始时间"
         end_at: "结束时间"
         logo: "LOGO"

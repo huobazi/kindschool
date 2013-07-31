@@ -21,10 +21,12 @@ class  MySchool::StudentInfosController < MySchool::ManageController
     @student_info = StudentInfo.new
     @student_info.kindergarten = @kind
     @student_info.user = User.new(:kindergarten_id => @kind.id, :tp => 0)
+    @grades = @kind.grades
   end
 
   def create
     @student_info = StudentInfo.new(params[:student_info])
+    @student_info.kindergarten_id = @kind.id
     if @student_info.save!
       if params[:asset_logo] && (user = @student_info.user)
         if user.asset_logo
@@ -119,5 +121,19 @@ class  MySchool::StudentInfosController < MySchool::ManageController
       format.html { redirect_to my_school_student_infos_path }
       format.json { head :no_content }
     end
+  end
+
+  def grade_squad_partial
+    if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
+      @squads = grade.squads
+    end
+    render "grade_squad", :layout => false
+  end
+
+  def student_execl
+    @student_info = @kind.student_infos.find(params[:student_info_id])  
+    @user = @student_info.user
+    exel = render_to_string(:layout=>'print')
+    send_data exel, :content_type => "application/excel", :filename => "#{@user.name}_信息下载.xls"
   end
 end

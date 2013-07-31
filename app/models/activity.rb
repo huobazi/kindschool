@@ -1,17 +1,18 @@
 #encoding:utf-8
 class Activity < ActiveRecord::Base
-  attr_accessible :approve_status, :approver_id, :content, :creater_id, :end_at, :kindergarten_id, :logo, :note, :send_range, :send_range_ids, :start_at, :title, :tp
+  attr_accessible :approve_status, :approver_id, :content, :creater_id, :end_at, :kindergarten_id, :logo, :note, :send_range, :send_range_ids, :start_at, :title, :tp, :squad_id
 
   just_define_datetime_picker :start_at, :add_to_attr_accessible => true
   just_define_datetime_picker :end_at, :add_to_attr_accessible => true
 
   validates :title, :content, :start_at, :end_at, :tp, :presence => true
-  validates :title, :length => { :minimum => 5 }
-  validates :content, :length => { :minimum => 10 }
+  validates :title, :length => { :minimum => 3 }
+  validates :content, :length => { :minimum => 5 }
 
   belongs_to :kindergarten
   has_many :activity_entries
   has_one :asset_img, :class_name => "AssetImg", :as => :resource, :dependent => :destroy #logo，只有一个
+  belongs_to :squad
 
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
 
@@ -25,5 +26,9 @@ class Activity < ActiveRecord::Base
   def last_page
     page = (self.activity_entries.count.to_f / 10).ceil
     page > 1 ? page : nil
+  end
+
+  def squad_label
+    self.squad ? self.squad.name : "没有班级信息"
   end
 end

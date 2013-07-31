@@ -31,23 +31,34 @@
       <ul class="work_action">
         <li>
           <% if controller_name == "activities" %>
-            <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:new, :tp => 0)%>" title="添加">
-          <% else %>
+            <% if choose_operate_show("my_school/activities/new") %>
+              <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:new, :tp => 0)%>" title="添加">
+                <div class="work_action_add">
+                </div>
+                <div class="work_action_add_move">
+                </div>
+              </a>
+            <% end %>
+        <% else %>
+          <% if choose_operate_show("my_school/interest_activities/new") %>
             <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:new, :tp => 1)%>" title="添加">
+              <div class="work_action_add">
+                </div>
+                <div class="work_action_add_move">
+                </div>
+            </a>
           <% end %>
-            <div class="work_action_add">
-            </div>
-            <div class="work_action_add_move">
-            </div>
-          </a>
+        <% end %>
         </li>
         <li>
-          <a href="/" title="删除" id="destroy_multiple">
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/activities/destroy_multi_form") %>
+            <a href="/" title="删除" id="destroy_multiple">
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+            </a>
+          <% end %>
         </li>
       </ul>
     </div>
@@ -61,7 +72,7 @@
       <%end%>
     </div>
     <div class="work_list">
-      <% if @activities.any? %>
+      <% unless @activities.blank? %>
         <table class="table table-striped table-hover">
           <%= form_tag destroy_multiple_my_school_activities_path, method: :delete, :id => "destroy_multi_form" do %>
             <tr>
@@ -77,9 +88,17 @@
                 <td><input id="activity_<%= activity.id %>" class="activity_check" name="activity[]" type="checkbox" value="<%= activity.id %>" /></td>
                 <td>
                   <% if controller_name == "activities" %>
-                    <%= link_to activity.title, my_school_activity_path(activity) %>
+                    <% if choose_operate_show("my_school/activities/show") %>
+                      <%= link_to activity.title, my_school_activity_path(activity) %>
+                    <% else %>
+                      <%= activity.title %>
+                    <% end %>
                   <% else %>
-                    <%= link_to activity.title, my_school_interest_activity_path(activity) %>
+                    <% if choose_operate_show("my_school/interest_activities/show") %>
+                      <%= link_to activity.title, my_school_interest_activity_path(activity) %>
+                    <% else %>
+                      <%= activity.title %>
+                    <% end %>
                   <% end %>
                 </td>
                 <td><%= activity.creater ? activity.creater.name : "" %></td>
@@ -97,16 +116,24 @@
                 </td>
                 <td>
                   <% if activity.tp == true %>
-                    <%= link_to "查看", my_school_interest_activity_path(activity), :class => "show" %>
+                    <% if choose_operate_show("my_school/interest_activities/show") %>
+                      <%= link_to "查看", my_school_interest_activity_path(activity), :class => "show" %>
+                    <% end %>
                   <% else %>
-                    <%= link_to "查看", my_school_activity_path(activity), :class => "show" %>
+                    <% if choose_operate_show("my_school/activities/show") %>
+                      <%= link_to "查看", my_school_activity_path(activity), :class => "show" %>
+                    <% end %>
                   <% end %>
                 </td>
                 <td>
                   <% if activity.tp == true %>
-                    <%= link_to "编辑", edit_my_school_interest_activity_path(activity), :class => "show" %>
+                    <% if choose_operate_show("my_school/interest_activities/edit") %>
+                      <%= link_to "编辑", edit_my_school_interest_activity_path(activity), :class => "show" %>
+                    <% end %>
                   <% else %>
-                    <%= link_to "编辑", edit_my_school_activity_path(activity), :class => "show" %>
+                    <% if choose_operate_show("my_school/activities/edit") %>
+                      <%= link_to "编辑", edit_my_school_activity_path(activity), :class => "show" %>
+                    <% end %>
                   <% end %>
                 </td>
               </tr>

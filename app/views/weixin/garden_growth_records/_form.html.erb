@@ -1,0 +1,142 @@
+<% f = form %>
+<script type="text/javascript">
+  jQuery(function() {
+    $('#growth_record_start_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+    $('#growth_record_end_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    });
+
+  });
+</script>
+<div class="field">
+  <div id="start_at_container">
+    <label class="field_prompt" for="growth_record_start_at">开始时间:</label>
+    <% if action_name == "new" %>
+      <%= f.text_field :start_at, :required => true, :class => "text-content" %>
+    <% else %>
+      <%= f.text_field :start_at, :required => true, :class => "text-content", :value => @growth_record.start_at.to_short_datetime  %>
+    <% end %>
+  </div>
+  <div id="end_at_container">
+    <label class="field_prompt" for="growth_record_end_at">结束时间:</label>
+    <% if action_name == "new" %>
+      <%= f.text_field :end_at, :required => true, :class => "text-content" %>
+    <% else %>
+      <%= f.text_field :end_at, :required => true, :class => "text-content", :value => @growth_record.end_at.to_short_datetime %>
+    <% end %>
+  </div>
+</div>
+
+<% if action_name == "new" %>
+  <div class="field">
+    <label class="field_prompt" for="grade">年级:</label>
+    <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+    <div id="grade_squad_partial">
+      <label class="field_prompt" for="squad">班级:</label>
+      <%= select_tag "squad", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+    </div>
+    <div id="squad_student_partial">
+      <label class="field_prompt" for="student">学员:</label>
+      <%= select_tag "student_info_id", options_for_select((@student_infos.collect{|s|[s.user.name,s.id]} || [])), :class => "select", :name => "growth_record[student_info_id]" %>
+    </div>
+  </div>
+<% else %>
+<% end %>
+
+<div class="field" id="content_field">
+  <label class="field_prompt" for="growth_record_content">内容:</label>
+  <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :allowFlashUpload => false, :simple_mode => true %>
+</div>
+
+<%= f.input :tp, :as => :hidden %>
+<%= f.input :creater_id, :as => :hidden %>
+<%= f.input :kindergarten_id, :as => :hidden %>
+<%= f.button :submit, :class => "btn" %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#grade").change(function() {
+    $.get(
+      "/weixin/growth_records/grade_squad",
+      {
+        grade: $("#grade").val()
+      },
+      function(result) {
+        $("#grade_squad_partial").html(result);
+      }
+    )
+  });
+  $("#squad").change(function() {
+    $.get(
+      "/weixin/growth_records/squad_student",
+      {
+        grade: $("#grade").val(), squad: $("#squad").val()
+      },
+      function(result) {
+        $("#squad_student_partial").html(result)
+      }
+    )
+  });
+  var flag = []
+  var time_re = /\d{4}-\d{2}-\d{2}/;
+  $("input[name='commit']").click(function(){
+    if( !time_re.test($("#growth_record_start_at").val()) || $("#growth_record_start_at").val().length == 0 ) {
+      if( $("#start_at_container").children("span.help").length == 0 ) {
+        $("<span class='help'>时间格式不对或为空</span>").insertBefore($("#growth_record_start_at"))
+      }
+      flag.push(true);
+    } else {
+      if($("#start_at_container").children("span.help").length > 0) {
+        $("#start_at_container span.help").remove()
+      }
+      flag.push(false);
+    }
+    if( !time_re.test($("#growth_record_end_at").val()) || $("#growth_record_end_at").val().length == 0 ) {
+      if( $("#end_at_container").children("span.help").length == 0 ) {
+        $("<span class='help'>时间格式不对或为空</span>").insertBefore($("#growth_record_end_at"))
+      }
+      flag.push(true);
+    } else {
+      if($("#end_at_container").children("span.help").length > 0) {
+        $("#end_at_container span.help").remove()
+      }
+      flag.push(false);
+    }
+    if ( $("#growth_record_start_at").val().length > 0 && $("#growth_record_end_at").val().length > 0 && time_re.test($("#growth_record_start_at").val()) && time_re.test($("#growth_record_end_at").val()) ) {
+      if( Date.parse($("#growth_record_end_at").val()) < Date.parse($("#growth_record_start_at").val()) ) {
+        if( $("#end_at_container").children("span.help").length == 0 ) {
+          $("<span class='help'>结束时间必须大于开始时间</span>").insertBefore($("#growth_record_end_at"))
+        }
+        flag.push(true);
+      } else {
+        if($("#end_at_container").children("span.help").length > 0) {
+          $("#end_at_container span.help").remove()
+        }
+        flag.push(false);
+      }
+    }
+    if (topic_content.html().length < 5 || topic_content.isEmpty()) {
+      if ( $("#growth_record_content").next("span.help-inline").length == 0 ) {
+        $("<span class='help-inline'>长度不够(必须超过5个字符)").insertAfter("#growth_record_content")
+      }
+      flag.push(true)
+    } else {
+      if ( $("#growth_record_content").next("span.help-inline").length > 0 ) {
+        $("#growth_record_content").next("span.help-inline").remove()
+      }
+      flag.push(false)
+    }
+    for( i in flag ) {
+      if(flag[i] == true) {
+        flag.length = 0;
+        return false;
+      }
+    }
+})
+
+})
+</script>

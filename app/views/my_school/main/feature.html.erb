@@ -1,13 +1,17 @@
 <%#= render :partial => "/modules/colorful/show_official_feature" %>
 	<div class="feature">
-		<% if(root_showcase = @kind.page_contents.find_by_number("official_website_feature")) && !root_showcase.content_entries.blank? %>
+     <div class="official_feature_img"> </div>
 		<ul class="feature_list">
-			<% root_showcase.content_entries.each do |entry| %>
+			<% (@content_entries || []).each do |entry| %>
            <li>
            	<% if entry.page_img %>
               	<div class="box_feat_img">
-              		<img src="<%= entry.page_img.public_filename(:middle) %>" alt="" width="300"/>
+              		<img src="<%= entry.page_img.public_filename %>" alt="" width="300"/>
               	</div>
+                <%else%>
+                <div class="box_feat_img">
+                  <img src="/t/colorful/HOME_entry_default.png" alt="" width="300"/>
+                </div>
               	<%end%>
               	<div class="box_feat_info">
               	<div class="box_feat_title">
@@ -34,5 +38,4 @@
            </li> -->
            
 		</ul>
-		<%end%>
 	</div>

@@ -283,18 +283,19 @@ forum_my:
   params: ""
   protocol: ""
   <<: *DEFAULTS
-forum_send:
+forum_new:
   id: 3001
   parent_id: 3
-  name: "发帖子"
+  name: "新增帖子"
   level: 2
   sequence: 0
-  note: "发帖子"
+  note: "新增帖子"
   controller: "my_school/topics"
   action: "new"
   params: ""
   protocol: ""
   <<: *DEFAULTS
+
 forum_approve:
   id: 3002
   parent_id: 3
@@ -321,13 +322,37 @@ forum_delete:
   <<: *DEFAULTS
 forum_edit:
   id: 3004
-  parent_id: 3004
+  parent_id: 3
   name: "编辑贴子"
   level: 2
   sequence: 1
   note: "编辑贴子"
   controller: "my_school/topics"
   action: "edit"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+forum_create:
+  id: 3008
+  parent_id: 3
+  name: "创建帖子"
+  level: 2
+  sequence: 0
+  note: "创建帖子"
+  controller: "my_school/topics"
+  action: "create"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+forum_update:
+  id: 3009
+  parent_id: 3
+  name: "更新帖子"
+  level: 2
+  sequence: 0
+  note: "更新帖子"
+  controller: "my_school/topics"
+  action: "update"
   params: ""
   protocol: ""
   <<: *DEFAULTS
@@ -389,6 +414,17 @@ squad_destroy:
   note: "删除班级"
   controller: "my_school/squads"
   action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
+squad_class_teacher:
+  id: 4242
+  parent_id: 5
+  name: "为班级分配老师"
+  level: 2
+  sequence: 1
+  note: "为班级分配老师"
+  controller: "my_school/teachers"
+  action: "set_class_teacher_for_squad_view"
   protocol: ""
   <<: *DEFAULTS
 
@@ -511,7 +547,29 @@ staff_destroy:
   action: "destroy"
   protocol: ""
   <<: *DEFAULTS
+staff_allocation_squad:
+  id: 4153
+  parent_id: 5
+  name: "为教职工分配班级"
+  level: 2
+  sequence: 3
+  note: "为教职工分配班级"
+  controller: "my_school/teachers"
+  action: "allocation"
+  protocol: ""
+  <<: *DEFAULTS
+staff_class_teacher:
+  id: 4163
+  parent_id: 5
+  name: "为教职工分配班级"
+  level: 2
+  sequence: 3
+  note: "为教职工分配班级"
+  controller: "my_school/teachers"
+  action: "set_class_teacher"
+  protocol: ""
 
+  <<: *DEFAULTS 
 student_manage:
   id: 4004
   parent_id: 5
@@ -688,6 +746,28 @@ users_update:
   action: "update"
   protocol: ""
   <<: *DEFAULTS
+users_set_send_sms:
+  id: 4015
+  parent_id: 5
+  name: "管理是否可发短信"
+  level: 2
+  sequence: 4
+  note: "管理是否可发短信"
+  controller: "my_school/users"
+  action: "set_send_sms"
+  protocol: ""
+  <<: *DEFAULTS
+users_set_gather_sms:
+  id: 4016
+  parent_id: 5
+  name: "管理是否可收短信"
+  level: 2
+  sequence: 4
+  note: "管理是否可收短信"
+  controller: "my_school/users"
+  action: "set_gather_sms"
+  protocol: ""
+  <<: *DEFAULTS
 #--------------------------system
 template_config:
   id: 5001
@@ -813,7 +893,7 @@ topic_categories_index:
   level: 2
   sequence: 0
   note: "论坛分类管理"
-  controller: "my_school/categories"
+  controller: "my_school/topic_categories"
   action: "index"
   protocol: ""
   <<: *DEFAULTS
@@ -824,7 +904,7 @@ topic_categories_new:
   level: 2
   sequence: 0
   note: "论坛分类创建"
-  controller: "my_school/categories"
+  controller: "my_school/topic_categories"
   action: "new"
   protocol: ""
   <<: *DEFAULTS
@@ -835,7 +915,7 @@ topic_categories_edit:
   level: 2
   sequence: 0
   note: "论坛分类编辑"
-  controller: "my_school/categories"
+  controller: "my_school/topic_categories"
   action: "edit"
   protocol: ""
   <<: *DEFAULTS
@@ -846,7 +926,7 @@ topic_categories_edit:
   level: 2
   sequence: 0
   note: "论坛分类删除"
-  controller: "my_school/categories"
+  controller: "my_school/topic_categories"
   action: "destroy"
   protocol: ""
   <<: *DEFAULTS
@@ -870,6 +950,39 @@ career_strategy_career_class:
   note: "进行升学"
   controller: "my_school/career_strategies"
   action: "career_class"
+  protocol: ""
+  <<: *DEFAULTS
+my_kindergarten_index:
+  id: 5400
+  parent_id: 6
+  name: "幼儿园设置"
+  level: 2
+  sequence: 0
+  note: "幼儿园设置"
+  controller: "my_school/my_kindergarten"
+  action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+my_kindergarten_edit:
+  id: 5401
+  parent_id: 6
+  name: "幼儿园设置编辑"
+  level: 2
+  sequence: 0
+  note: "幼儿园设置编辑"
+  controller: "my_school/my_kindergarten"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+my_kindergarten_update:
+  id: 5402
+  parent_id: 6
+  name: "幼儿园设置更新"
+  level: 2
+  sequence: 0
+  note: "幼儿园设置更新"
+  controller: "my_school/my_kindergarten"
+  action: "update"
   protocol: ""
   <<: *DEFAULTS
 #==============================健康饮食
@@ -1458,5 +1571,95 @@ interest_activity_destroy_multi:
   note: "删除多个兴趣讨论"
   controller: "my_school/interest_activities"
   action: "destroy_multiple"
+  protocol: ""
+  <<: *DEFAULTS
+
+news_index:
+  id: 11000
+  parent_id: 2
+  name: "新闻列表"
+  level: 2
+  sequence: 1
+  note: "新闻列表"
+  controller: "my_school/news"
+  action: "index"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_new:
+  id: 11001
+  parent_id: 2
+  name: "新闻新建"
+  level: 2
+  sequence: 1
+  note: "新闻新建"
+  controller: "my_school/news"
+  action: "new"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_create:
+  id: 11002
+  parent_id: 2
+  name: "新闻创建"
+  level: 2
+  sequence: 1
+  note: "新闻创建"
+  controller: "my_school/news"
+  action: "create"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_edit:
+  id: 11003
+  parent_id: 2
+  name: "新闻编辑"
+  level: 2
+  sequence: 1
+  note: "新闻编辑"
+  controller: "my_school/news"
+  action: "edit"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_uodate:
+  id: 11004
+  parent_id: 2
+  name: "新闻更新"
+  level: 2
+  sequence: 1
+  note: "新闻更新"
+  controller: "my_school/news"
+  action: "update"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+news_destroy:
+  id: 11005
+  parent_id: 2
+  name: "新闻删除"
+  level: 2
+  sequence: 1
+  note: "新闻删除"
+  controller: "my_school/news"
+  action: "destroy"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+student_info_execl:
+  id: 12000
+  parent_id: 5
+  name: "学员信息下载"
+  level: 2
+  sequence: 4
+  note: "学员信息下载"
+  controller: "my_school/student_infos"
+  action: "student_execl"
   protocol: ""
   <<: *DEFAULTS

@@ -1,6 +1,9 @@
 <% f = activity_form %>
 
-<%= f.input :note, :validate => true, :required => true, :input_html => { :class => "span5" } %>
+
+<div class="control-group">
+    <%= f.kindeditor :note, :class => 'profile_input required', :editor_id => 'activity_entry_note',:allowFileManager => false,:allowUpload=>false%>
+</div>
 
 <%= f.input :creater_id, :as => :hidden %>
 <%= f.input :activity_id, :as => :hidden %>
@@ -12,3 +15,19 @@
     <%= f.button :submit %>
   </div>
 </div>
+
+<script type="text/javascript">
+  $("input[type='submit']").click(function(){
+    if (activity_entry_note.html().length < 3 || activity_entry_note.isEmpty()) {
+      if ( $("#activity_entry_note").next("span.help-inline").length == 0 ) {
+        $("<span class='help-inline'>长度不够(不得少于3个字符)<span>").insertAfter("#activity_entry_note")
+      }
+      return false;
+    } else {
+        if ( $("#activity_entry_note").next("span.help-inline").length > 0 ) {
+          $("#activity_entry_note").next("span.help-inline").remove()
+        }
+        return true;
+    }
+  })
+</script>

@@ -6,7 +6,7 @@ class MySchool::MessagesController < MySchool::ManageController
       {:kind_id=>@kind.id,:user_id=>current_user.id}).joins("LEFT JOIN message_entries ON(messages.id = message_entries.message_id)").page(params[:page] || 1).per(10).order("messages.send_date DESC")
   end
   
-  #
+  #发件箱
   def outbox
     @messages = current_user.messages.where(:status => true).page(params[:page] || 1).per(10).order("messages.send_date DESC")
     #.where("messages.kindergarten_id=:kind_id")
@@ -55,7 +55,7 @@ class MySchool::MessagesController < MySchool::ManageController
     sender_ids = current_user.get_sender_users(params[:ids])
     sender_ids.each do |user_id|
       if user = User.find_by_id_and_kindergarten_id(user_id,@kind.id)
-        @message.message_entries << MessageEntry.new(:receiver_id=>user.id,:receiver_name=>user.name,:sms=>user.phone)
+        @message.message_entries << MessageEntry.new(:receiver_id=>user.id,:receiver_name=>user.name,:phone=>user.phone,:sms=>(user.is_receive ? 1 : 0))
       end
     end
     if params[:draft]
@@ -369,7 +369,11 @@ LEFT JOIN squads ON(squads.id = user_squads.squad_id)")
     
     if params[:commit] == "发送消息"
       @flag =true
-      @message.status = 1
+      if params[:message].blank?
+        params[:message][:status] = 1
+      else
+        params[:message][:status] = 1
+      end
       if params[:ids].blank?
         flash[:notice] = "收件人不能为空"
         redirect_to :controller=>'my_school/messages' ,:action=>:draft_edit,:id=>@message.id,:noctie=>@notice
@@ -382,7 +386,7 @@ LEFT JOIN squads ON(squads.id = user_squads.squad_id)")
     sender_ids = current_user.get_sender_users(params[:ids])
     sender_ids.each do |user_id|
       if user = User.find_by_id_and_kindergarten_id(user_id,@kind.id)
-        @message.message_entries << MessageEntry.new(:receiver_id=>user.id,:receiver_name=>user.name,:sms=>user.phone)
+        @message.message_entries << MessageEntry.new(:receiver_id=>user.id,:receiver_name=>user.name,:phone=>user.phone,:sms=>(user.is_receive ? 1 : 0))
       end
     end
     if params[:send]

@@ -1,0 +1,42 @@
+<div class="control-group">
+ 	<%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
+<div class="controls">
+     <%= text_field_tag(:kindergarten,@kind.name, disabled: true) %>
+</div>
+</div>
+ <div class="control-group">
+ 	<%=f.label :title, '新闻标题:' ,:class=>"control-label"%>
+<div class="controls">
+  <%= f.text_field(:title , :validate => true) %>
+
+  <p class="help-block">长度不能小于3。</p>
+</div>
+ </div>
+<div class="control-group">
+	<%=f.label :content, '新闻内容: ' ,:class=>"control-label"%>
+<div class="controls">
+  <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false%>
+  <span class="help-block">长度不能小于3</span>
+</div>
+</div>
+<div class="control-group">
+<div class="controls">
+<%= f.submit('创建',:class=>"btn") %>
+</div>
+</div>
+<script type="text/javascript">
+  $("input[type='submit']").click(function(){
+    if (topic_content.html().length < 3 || topic_content.isEmpty()) {
+      if ( $("#news_content").next("span.help-inline").length == 0 ) {
+        $("<span class='help-inline'>长度小于3<span>").insertAfter("#news_content")
+      }
+       return false;
+    } else {
+        if ( $("#news_content").next("span.help-inline").length > 0 ) {
+          $("#news_content").next("span.help-inline").remove()
+        }
+        return true;
+    }
+  })
+</script>
+

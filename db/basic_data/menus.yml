@@ -131,6 +131,14 @@
     height_level: "a"
     sequence: 370
     operate_id: 5011
+  - id: 39000
+    name: "幼儿园设置"
+    number: 39000
+    url: "/my_school/my_kindergarten"
+    title: "幼儿园设置"
+    height_level: "a"
+    sequence: 370
+    operate_id: 5400
 - id: 40000
   number: "statistics"
   name: "统计"
@@ -209,6 +217,15 @@
     height_level: "b"
     sequence: 626
     operate_id: 2009
+  - id: 65000
+    name: "幼儿园新闻"
+    number: 65000
+    url: "/my_school/news"
+    title: "幼儿园新闻"
+    height_level: "b"
+    sequence: 626
+    operate_id: 11000
+
 - id: 70000
   number: 70000
   name: "班级活动"

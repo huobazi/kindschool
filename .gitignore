@@ -13,7 +13,7 @@
 /public/asset_imgs/*
 /public/asset_logos/*
 /public/page_imgs/*
-
+/public/uploads/*
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp

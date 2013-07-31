@@ -35,14 +35,38 @@
     <div class="work_form">
       <div class="form_div">
         <%= simple_form_for @message, :validate => true, :url => {:controller=>"/my_school/messages",:action=>:update}, :html =>{:class=>"form-horizontal"} do |f| %>
-          <%= f.input :title, :required => true %>
-          <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
-
-          <%= f.input :kindergarten_id, :as => :hidden %>
-          <%= f.input :content, :input_html => { :class => "span5" }%>
-          <%= f.input :send_date, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.send_date.to_short_datetime}", :disabled => true } %>
           <%= f.input :sender, :input_html => { :value => "#{f.object.sender.name if f.object.sender}", :disabled => true } %>
-
+          <div class="control-group">
+            <label class="control-label" >收件人:</label>
+            <div class="controls">
+              <div class="show_receiver_entry">
+                <label class="show_label">
+                  <%if (@m_e = f.object.message_entries) && !@m_e.blank?%>
+                    <% @m_e.each do |m_e| %>
+                      <span class="message_entry">
+                        <%= m_e.receiver.try(:name) %>
+                      </span>
+                    <% end %>
+                  <%else%>
+                    <span>无</span>
+                  <%end%>
+                </label>
+              </div>
+            </div>
+          </div>
+          <%= f.input :title, :required => true %>
+          <%= f.input :send_date, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.send_date.to_short_datetime}", :disabled => true } %>
+          <%= f.input :content, :input_html => { :class => "span5" }%>
+          <div class="control-group">
+            <label class="control-label" >发送类型:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= f.object.tp == 1 ? "短信加站内信" : "站内信" %>
+              </label>
+            </div>
+          </div>
+          <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
+          <%= f.input :kindergarten_id, :as => :hidden %>
           <div class="control-group">
             <div class="controls">
               <%= f.button :submit %>

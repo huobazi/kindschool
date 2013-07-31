@@ -121,4 +121,54 @@ class MySchool::UsersController < MySchool::ManageController
     #    redirect_back_or_default(root_path)
   end
 
+  #设置能发送短信
+  def set_send_sms
+    if user = User.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+      can_count = @kind.sms_user_count - @kind.get_send_sms_count
+      if can_count > 0
+        if user.is_send
+          user.update_attributes(:is_send=> false,:chain_delete=>true)
+        else
+          chain_code = @kind.get_chain_code
+          user.update_attributes(:is_send=> true,:chain_delete=>false,:chain_code=>chain_code)
+          #如果已经存在的编号，将去掉
+          chain_users = @kind.users.where(:chain_delete=>true,:chain_code=>chain_code)
+          unless chain_users.blank?
+            chain_users.each do |chain_user|
+                chain_user.update_attributes(:chain_delete=>false,:chain_code=>nil)
+            end
+          end
+        end
+        flash[:success] = "设置成功，您还可以设置#{can_count - 1}个用户"
+      else
+        flash[:error] = "设置失败，超过可设置的用户数量。"
+      end
+    else
+      flash[:error] = "需要设置的用户不存在"
+    end
+    redirect_to :back
+  rescue Exception=>ex
+    flash[:error] = ex.message
+    redirect_to :back
+  end
+
+  #设置能收到短信
+  def set_gather_sms
+    if user = User.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+      can_count = @kind.sms_user_count - @kind.get_gather_sms_count
+      if can_count > 0
+        user.update_attribute(:is_receive, !user.is_receive)
+        flash[:success] = "设置成功，您还可以设置#{can_count - 1}个用户"
+      else
+        flash[:error] = "设置失败，超过可设置的用户数量。"
+      end
+      
+    else
+      flash[:error] = "需要设置的用户不存在"
+    end
+    redirect_to :back
+  rescue Exception=>ex
+    flash[:error] = ex.message
+    redirect_to :back
+  end
 end

@@ -15,7 +15,13 @@
           <ul>
             <li>人员管理</li>
             <li>/</li>
-            <li><%= link_to "学籍管理", my_school_student_infos_path %></li>
+            <li>
+              <% if choose_operate_show("my_school/student_infos/index") %>
+                <%= link_to "学籍管理", my_school_student_infos_path %>
+              <% else %>
+                学籍管理
+              <% end %>
+            </li>
             <li>/</li>
             <li>查看学员</li>
           </ul>
@@ -23,36 +29,44 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:new)%>" title="添加">
-            <div class="work_action_add">
-            </div>
-            <div class="work_action_add_move">
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:edit,:id=>@student_info.id)%>" title="编辑">
-            <div class="work_action_edit">
-            </div>
-            <div class="work_action_edit_move">
-            </div>
-          </a>
-        </li>
-        <li>
-          <%= link_to(url_for(:controller=>"/my_school/student_infos",:action=>:destroy,:id=>@student_info.id),:method=>:delete, :confirm => "您确定删除该学员吗?") do %>
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
+          <% if choose_operate_show("my_school/student_infos/new") %>
+            <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:new)%>" title="添加">
+              <div class="work_action_add">
+              </div>
+              <div class="work_action_add_move">
+              </div>
+            </a>
           <% end %>
         </li>
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:index)%>" title="返回">
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/student_infos/edit") %>
+            <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:edit,:id=>@student_info.id)%>" title="编辑">
+              <div class="work_action_edit">
+              </div>
+              <div class="work_action_edit_move">
+              </div>
+            </a>
+          <% end %>
+        </li>
+        <li>
+          <% if choose_operate_show("my_school/student_infos/destroy") %>
+            <%= link_to(url_for(:controller=>"/my_school/student_infos",:action=>:destroy,:id=>@student_info.id),:method=>:delete, :confirm => "您确定删除该学员吗?") do %>
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+            <% end %>
+          <% end %>
+        </li>
+        <li>
+          <% if choose_operate_show("my_school/student_infos/index") %>
+            <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:index)%>" title="返回">
+              <div class="work_action_return">
+              </div>
+              <div class="work_action_return_move">
+              </div>
+            </a>
+          <% end %>
         </li>
       </ul>
     </div>
@@ -62,73 +76,81 @@
         <form class="form-horizontal">
           <fieldset>
             <legend><label><strong>账号信息</strong></label></legend>
-              <div class="control-group">
-                <label class="control-label">头像</label>
-                <div class="controls">
-                  <label class="show_label">
-                    <img src="<%= @student_info.user.asset_logo ? @student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="103" alt="头像"/>
-                  </label>
+            <div class="control-group">
+              <label class="control-label">头像</label>
+              <div class="controls">
+                <div class="show_action">
+                  <% if choose_operate_show("my_school/users/set_gather_sms") %>
+                    <%= link_to (@student_info.user.is_receive ? "取消收短信" : "可收短信"), set_gather_sms_my_school_user_path(@student_info.user), :class => "show btn" %>
+                  <% end %>
+                  <% if choose_operate_show("my_school/student_infos/student_execl") %>
+                  <%= link_to "学员信息下载",student_execl_my_school_student_infos_path(:student_info_id=>@student_info.id),:class=>"btn"%>
+                  <%end%>
                 </div>
+                <label class="show_label">
+                  <img src="<%= @student_info.user.asset_logo ? @student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="103" alt="头像"/>
+                </label>
               </div>
-              <div class="control-group">
-                <label class="control-label">所属幼儿园</label>
-                <div class="controls">
-                  <label class="show_label">
-                    <%= @student_info.user.kindergarten_label %>
-                  </label>
-                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">所属幼儿园</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.user.kindergarten_label %>
+                </label>
               </div>
-              <div class="control-group">
-                <label class="control-label">名称</label>
-                <div class="controls">
-                  <label class="show_label">
-                    <%=@student_info.user.name%>
-                  </label>
-                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">名称</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%=@student_info.user.name%>
+                </label>
               </div>
-              <div class="control-group">
-                <label class="control-label" >账号</label>
-                <div class="controls">
-                  <label class="show_label">
-                    <%= @student_info.user.login %>
-                  </label>
-                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >账号</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.user.login %>
+                </label>
               </div>
-              <div class="control-group">
-                <label class="control-label" >电话号码</label>
-                <div class="controls">
-                  <label class="show_label">
-                    <%= @student_info.user.phone %>
-                  </label>
-                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >电话号码</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.user.phone %>
+                </label>
               </div>
-              <div class="control-group">
-                <label class="control-label" >性别</label>
-                <div class="controls">
-                  <label class="show_label">
-                    <%= @student_info.user.gender == "M" ? "男" : "女" %>
-                  </label>
-                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >性别</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.user.gender == "M" ? "男" : "女" %>
+                </label>
               </div>
-              <div class="control-group">
-                <label class="control-label" >所属类别</label>
-                <div class="controls">
-                  <label class="show_label">
-                    <%= @student_info.user.tp_label %>
-                  </label>
-                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >所属类别</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.user.tp_label %>
+                </label>
               </div>
-              <div class="control-group">
-                <label class="control-label" >绑定微信</label>
-                <div class="controls">
-                  <label class="show_label">
-                    <%= @student_info.user.weixin_code.blank? ? "已绑定" : "未绑定" %>
-                  </label>
-                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >绑定微信</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.user.weixin_code.blank? ? "已绑定" : "未绑定" %>
+                </label>
               </div>
-        </fieldset>
-        <fieldset>
-          <legend><label><strong>学员信息</strong></label></legend>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend><label><strong>学员信息</strong></label></legend>
             <div class="control-group">
               <label class="control-label" >年级</label>
               <div class="controls">
@@ -182,6 +204,22 @@
               <div class="controls">
                 <label class="show_label">
                   <%= @student_info.guardian %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >监护人证件类别</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.guardian_card_category_label %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >监护人证件号</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.guardian_card_code %>
                 </label>
               </div>
             </div>
@@ -330,6 +368,14 @@
               </div>
             </div>
             <div class="control-group">
+              <label class="control-label" >居住情况</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.live_family_label %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
               <label class="control-label" >是否接受资助</label>
               <div class="controls">
                 <label class="show_label">
@@ -345,9 +391,17 @@
                 </label>
               </div>
             </div>
-        </fieldset>
-        <fieldset>
-          <legend><label><strong>家庭关系</strong></label></legend>
+            <div class="control-group">
+              <label class="control-label" >本人第几胎</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.children_number %>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend><label><strong>家庭关系</strong></label></legend>
             <div class="control-group">
               <label class="control-label" >关系</label>
               <div class="controls">
@@ -385,14 +439,6 @@
               <div class="controls">
                 <label class="show_label">
                   <%= @student_info.duties %>
-                </label>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" >关系</label>
-              <div class="controls">
-                <label class="show_label">
-                  <%= @student_info.family_ties %>
                 </label>
               </div>
             </div>

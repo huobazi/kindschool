@@ -1,10 +1,12 @@
 #encoding:utf-8
 #幼儿园
 class Kindergarten < ActiveRecord::Base
-  attr_accessible :logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token
+  attr_accessible :logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token,:latlng,:address,
+    :aliases_url,:sms_count,:sms_user_count,:telephone
 
   validates :name,:presence => true, :uniqueness => true, :length => { :maximum => 100}
   validates :number,:presence => true, :uniqueness => true, :length => { :maximum => 100}
+  validates :note, :length => { :maximum => 800}
   STATUS_DATA = {"0"=>"正常","1"=>"锁定"}
   WEIXIN_STATUS_DATA = {"0"=>"未授权绑定","1"=>"已授权绑定"}
 
@@ -14,6 +16,7 @@ class Kindergarten < ActiveRecord::Base
   end
 
   has_many :users   #所有用户
+
   has_many :operates
   has_many :grades,:order=>:sequence  #年级
   has_many :grade_teachers,:through=>:grades, :source => :staff  #年级组长
@@ -62,6 +65,8 @@ class Kindergarten < ActiveRecord::Base
 
   has_many :topic_categories
 
+  has_many :news
+
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img
 
@@ -76,6 +81,22 @@ class Kindergarten < ActiveRecord::Base
         self.page_contents << PageContent.new((v || {}).merge(:number=>k))
       end
     end
+    content_entries = YAML.load_file("#{Rails.root}/db/basic_data/content_entries.yml")
+    content_entries.each do |k,content_entry|
+      if k == "official_website_home_news"
+        @new = News.new(content_entry)
+        @new.kindergarten = self
+        @new.save!
+      else
+        page_content=self.page_contents.find_by_number(k)
+        content_entry["content_entries"].each do |record|
+          page_content.content_entries << ContentEntry.new(record)
+        end
+
+        page_content.save
+      end
+    end
+
     self.option_operates.each do |operate|
       operate.destroy
     end
@@ -229,5 +250,24 @@ class Kindergarten < ActiveRecord::Base
       end
     end
     return error_message
+  end
+
+  #获取可以接收短信的用户数量
+  def get_gather_sms_count
+    self.users.where(:is_receive=>true).count()
+  end
+  #获取可以发送短信的用户数量
+  def get_send_sms_count
+    self.users.where(:is_send=>true).count()
+  end
+
+  #获取可用的扩展码
+  def get_chain_code
+    chain_users = self.users.where(:chain_delete=>true)
+    unless chain_users.blank?
+      return chain_users.first.chain_code
+    else
+      return (self.users.maximum(:chain_code) || 0) + 1
+    end
   end
 end

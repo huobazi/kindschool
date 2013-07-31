@@ -4,12 +4,14 @@
 <div class="message_div">
   <div class="message_title">
     <a href="<%= url_for(:action=>:index, :category_id => @topic.topic_category_id) %>" class="weixin_return" title="返回">返回</a>信息论坛
+    <%= link_to("删除",url_for(:controller=>"/weixin/topics",:action=>:destroy,:id=>@topic.id),:method=>:delete, :confirm => "您确定删除该活动吗?", :class => "new_message")%>
+    <%= link_to "修改", edit_weixin_topic_path(@topic), :class => "new_message" %>
   </div>
   <div class="message_list">
     <ul class="data_list">
       <li class="topic">
         <label class="topic_title"><%= @topic.title %></label>
-        <p class="topic_info"><label class="author"><%= @topic.creater ? @topic.creater.name : "" %></label>&nbsp;&nbsp;<label>发表于:<label><label class="topic_created_time"><%= @topic.created_at.to_long_datetime %></label></p>
+        <p class="topic_info"><span class="author"><%= @topic.creater ? @topic.creater.name : "" %></span>&nbsp;&nbsp;<span>发表于:<span><span class="topic_created_time"><%= @topic.created_at.to_long_datetime %></label></p>
         <div class="topic_content"><%= simple_format @topic.content %></div>
       </li>
 
@@ -17,7 +19,8 @@
         <%= simple_form_for(@topic_entry, :validate => true, :url => weixin_topic_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
           <div class="field">
             <label class="field_prompt">回复</label>
-            <%= f.text_field :content, :class => "text-content" %><br /><br />
+            <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :allowFlashUpload => false, :simple_mode => true %>
+            <br />
             <%= f.button :submit, :class => "btn" %>
           </div>
           <%= f.input :topic_id, :as => :hidden %>
@@ -27,21 +30,21 @@
       <% unless @replies.blank? %>
         <ul class="topic_replies">
           <% @replies.each do |reply| %>
-            <li class="reply">
+            <li class="reply" id="topic_entry_<%= reply.id %>">
               <p class="reply_info">
-              <label class="author"><%= reply.creater ? reply.creater.name : "" %></label>&nbsp;&nbsp;<label class="created_time"><%= reply.created_at.to_short_datetime %></label>
+              <label class="author"><%= reply.creater ? reply.creater.name : "" %></label>&nbsp;&nbsp;<label class="created_time"><%= reply.created_at.to_long_datetime %></label>
               </p>
               <div class="content"><%= simple_format reply.content %></div>
             </li>
           <% end %>
-          <%= paginate @replies %>
         </ul>
+        <%= paginate @replies %>
       <% else %>
         暂无回复
       <% end %>
     </ul>
 
-    
+
   </div>
 </div>
 <%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
@@ -49,9 +52,23 @@
 
 <script type="text/javascript">
 $(":submit").click(function() {
-  if( $("#topic_entry_content").val().length < 3 ) {
-    $("<span class='help'>长度太短必须2个字符以上<span>").insertAfter($(".field_prompt"))
-    return false;
+  var flag = [];
+  if (topic_content.html().length < 3 || topic_content.isEmpty()) {
+    if ( $("#topic_entry_content").next("span.help-inline").length == 0 ) {
+      $("<span class='help-inline'>长度不够(必须超过3个字符)</span>").insertAfter("#topic_entry_content")
+    }
+    flag.push(true)
+  } else {
+    if ( $("#topic_entry_content").next("span.help-inline").length > 0 ) {
+      $("#topic_entry_content").next("span.help-inline").remove()
+    }
+    flag.push(false)
+  }
+  for( i in flag ) {
+    if(flag[i] == true) {
+      flag.length = 0;
+      return false;
+    }
   }
 })
 </script>

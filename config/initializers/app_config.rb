@@ -30,15 +30,21 @@ MENUS ={"home"=>{
  },
    "64000"=>{
   "my_school/messages"=>["draft_box", "draft_show", "draft_edit"]
- }
+ },
+   "65000"=>{
+    "my_school/news"=>DEFULT_ACTION
+   }
 },
   "personnel"=>{
   "11000"=>{
   "my_school/grades"=>DEFULT_ACTION
 }, "12000"=>{
-  "my_school/squads" => ["index", "new","create","update", "show", "edit", "add_strategy_view"]
+  "my_school/squads" => ["index", "new","create","update", "show", "edit"],
+  "my_school/teachers" => ["set_class_teacher_for_squad_view"]
 }, "13000" => {
-  "my_school/staffs" => ["index", "new", "show", "edit"]},
+  "my_school/staffs" => ["index", "new", "show", "edit"],
+  "my_school/teachers" => ["allocation"]
+  },
   "14000" => {
   "my_school/student_infos" => ["index", "new", "show", "edit"]},
   "15000" => {"my_school/virtual_squads"=>['index','new','edit','show']},
@@ -57,7 +63,7 @@ MENUS ={"home"=>{
    },
    "system"=>{
     "31000"=>{"my_school/templates"=>['set_default_template_view']},
-    "32000"=>{"my_school/page_contents"=>['index','edit','new','show']},
+    "32000"=>{"my_school/page_contents"=>['index','edit','new','show','edit_content']},
     "34000"=>{
       "my_school/content_patterns"=>['index','edit']
     },
@@ -72,6 +78,9 @@ MENUS ={"home"=>{
     },
     "38000"=>{
       "my_school/topic_categories"=>["index", "show", "edit", "new"]
+    },
+    "39000"=>{
+      "my_school/my_kindergarten"=>["index",  "edit", "update"]
     }
    },
    "100000"=>{

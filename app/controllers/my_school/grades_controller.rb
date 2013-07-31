@@ -30,6 +30,7 @@ class  MySchool::GradesController < MySchool::ManageController
   end
 
   def update
+    params[:grade][:kindergarten_id] = @kind.id if params[:grade]
     @grade = Grade.find_by_id_and_kindergarten_id(params[:id],@kind.id)
     respond_to do |format|
       if @grade.update_attributes(params[:grade])

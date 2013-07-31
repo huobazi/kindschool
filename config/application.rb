@@ -59,4 +59,5 @@ module School
     config.assets.version = '1.0'
   end
 end
+I18n.default_locale = "zh-CN"
 require "#{Rails.root}/lib/authenticated_system"

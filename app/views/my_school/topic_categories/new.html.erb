@@ -12,7 +12,13 @@
           <ul>
             <li>系统设置</li>
             <li>/</li>
-            <li><%= link_to "论坛分类管理", my_school_topic_categories_path %></li>
+            <li>
+              <% if choose_operate_show("my_school/topic_categories/index") %>
+                <%= link_to "论坛分类管理", my_school_topic_categories_path %>
+              <% else %>
+                论坛分类管理
+              <% end %>
+            </li>
             <li>/</li>
             <li>新增论坛分类</li>
           </ul>
@@ -20,12 +26,14 @@
       </div>
       <ul class="work_action">
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/topic_categories",:action=>:index)%>" title="返回">
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
-          </a>
+          <% if choose_operate_show("my_school/topic_categories/index") %>
+            <a href="<%=url_for(:controller=>"/my_school/topic_categories",:action=>:index)%>" title="返回">
+              <div class="work_action_return">
+              </div>
+              <div class="work_action_return_move">
+              </div>
+            </a>
+          <% end %>
         </li>
       </ul>
     </div>

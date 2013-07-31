@@ -1,0 +1,45 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    <span>宝宝成长</span><span>></span><span>宝宝在园</span>
+  </div>
+  <div class="message_list">
+    <ul class="data_list">
+      <%= link_to "发表内容", new_weixin_garden_growth_record_path, :class => "new_topic" %>
+      <% if @growth_records.blank? %>
+        <li><div class="message_content">还没有成长记录</div></li>
+      <% else %>
+        <% @growth_records.each do |growth_record| %>
+          <li class="growth_record" data-id="<%= growth_record.id %>">
+            <p class="time"><span>开始时间:</span>&nbsp;&nbsp;<span><%= growth_record.start_at ? growth_record.start_at.to_short_datetime : "" %></span></p>
+            <p class="time"><span>结束时间:</span>&nbsp;&nbsp;<span><%= growth_record.end_at ? growth_record.end_at.to_short_datetime : "" %></span></p>
+            <p class="creater"><span>创建人:</span><span class="author"><%= growth_record.creater ? growth_record.creater.name : "" %></span></p>
+            <div class="content">
+              <%= simple_format growth_record.content %>
+            </div>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+    <br/>
+  </div>
+  <% unless  @growth_records.blank? %>
+    <div class="message_more">
+      <div class="paginate_div">
+        <%= paginate @growth_records, :window => 1%>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
+
+<script type="text/javascript">
+$(".growth_record").each(function() {
+  $(this).click(function() {
+    window.location.href = "garden_growth_records/" + $(this).attr("data-id")
+  })
+})
+</script>

@@ -1,15 +1,8 @@
 <%#= render :partial => "/modules/colorful/show_official_about_us" %>
 <div class="contact_us_kinder">
+    <div class="official_contact_img"> </div>
 	<div class="contact_us_content">
-     <h1>关于幼儿园</h1>
-     <h2>简介</h2>
-     <p>
-         是由关于幼儿园社区，目前着眼于基金理财，提供专业而强大的基金个人收益管理工具，丰富详实的基金理财信息和独到的基金分析平台。网站成立于2007年4月，短短时间内取得了迅速的发展，得到了业界的认可，积累了相当的人气。
-     </p>
-     <p>财帮子致力于为用户提供专业并且人性化的服务和健康和谐的社区。为成为最优秀的互联网投资理财平台而努力。</p>
-     <h2>公司地址</h2>
-     <p>公司名称：北京财众信联科技有限公司</p>
-     <p>公司地址：北京市海淀区上地信息产业基地十街辉煌国际广场4号楼910室</p>
+     <%=raw @entry.try(:content)%>
 	</div>
 	<div class="show_menu_center">
        <div class="show_center_left"> </div>
@@ -17,21 +10,22 @@
        <div class="show_center">
         <ul>
          <li>
-           <a>校园一角</a>
+           <a><%= @entry_title.try(:title)%></a>
          </li>
         </ul>
        </div>
     </div>
+   
     <div class="contact_us_class_image">
     	<div class="class_big_image">
-    		<img src="/t/colorful/483-5552.jpg" alt="" width="560" height="370"  >
+                    <img src="<%=@entry_img.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_img.page_img.public_filename  %>" alt="" width="560"  height="370"/>
     	</div>
     	<div class="class_middle_image">
     	<div class="class_middle_top_image">
-    		<img src="/t/colorful/483-5552.jpg" alt="" width="275" height="180"   >
+    		<img src="<%=@entry_top.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_top.page_img.public_filename%>" alt="" width="275" height="180"   >
     	</div>
         <div class="class_middle_bottom_image">
-    		<img src="/t/colorful/483-5552.jpg" alt="" width="275" height="180"  >
+    		<img src="<%=@entry_bottom.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_bottom.page_img.public_filename%>" alt="" width="275" height="180"   >
     	</div>
     	</div>
     </div>

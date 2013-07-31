@@ -37,6 +37,13 @@ a{
     width: 100%;
 
 }
+.show_action{
+    float: right;
+}
+.show_action a{
+    color: #4c4c4c;
+    margin-top: 5px;
+}
 .logo{
     width: 40%;
     padding-left: 35px;
@@ -59,31 +66,29 @@ a{
     margin-left: 50px;
 }
 #main .menu_center ul li:last-child{
-  border: none;
+    border: none;
 }
 .main_work{
-    background-color: #EAEAEA;
-    min-height: 1000px;
+    /*background-color: #EAEAEA;*/
+    /*min-height: 1000px;*/
 }
 #main .menu_left {
-    background-color: #008FDC;
-    background-image: url("/t/colorful/menu_left.jpg");
-    background-position: 0 50px;
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -728px -55px;
     background-repeat: no-repeat;
-    height: 113px;
+    height: 120px;
     left: -14px;
     position: absolute;
-    width: 14px;
+    width: 24px;
 }
 #main .menu_right {
-    background-color: #008FDC;
-    background-image: url("/t/colorful/menu_right.jpg");
-    background-position: 0 50px;
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -758px -55px;
     background-repeat: no-repeat;
-    height: 113px;
+    height: 120px;
     left: 951px;
     position: absolute;
-    width: 14px;
+    width: 24px;
 }
 #main .menu_center ul{
     padding: 0px;
@@ -232,7 +237,7 @@ a{
     height: auto;
     width: 100%;
     text-align: center;
-    background-color: white;
+    /*    background-color: white;*/
 }
 .submenu_center #flash-messages .alert {
     margin-bottom: none;
@@ -503,6 +508,13 @@ a{
     position: absolute;
     width: 30px;
 }
+.count_div{
+    display: inline-block;
+    vertical-align: middle;
+}
+#sms_count{
+ display: none;
+}
 .work_menu .a_selected{
     color: white;
 }
@@ -654,6 +666,32 @@ a{
     width: 52px;
     display: none;
 }
+.work_action_class_teacher{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -887px 0;
+    height: 46px;
+    width: 52px;
+}
+.work_action_class_teacher_move{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -887px -57px;
+    height: 65px;
+    width: 52px;
+    display: none;
+}
+.work_action_allocation{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -827px 0;
+    height: 46px;
+    width: 52px;
+}
+.work_action_allocation_move{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -827px -57px;
+    height: 65px;
+    width: 52px;
+    display: none;
+}
 /*===========表单==============*/
 .work_form{
     padding: 20px 20px 20px 35px;
@@ -723,7 +761,7 @@ a{
 }
 table.user_attributes {
     width: 700px;
-    
+
 }
 
 table.user_attributes th {
@@ -1014,70 +1052,50 @@ table.user_attributes td {
 .table a.red{
     color: red;
 }
-
-
-#topic_entries {
+.topic_content_up {
+    border-bottom: 1px solid #ddd;
+}
+.topic .topic_title {
+    font-size: 34px;
+}
+.topic .topic_content {
+    text-indent: 20px;
+    word_wrap: break-word;
+    padding-top: 10px;
+}
+#topic_show {
     margin-bottom: 20px;
 }
-#topic_entries .topic_entry_content {
-    padding-left: 100px;
-}
 
-#topic_entries .topic_entry {
-    border-top: 1px solid #999;
-    padding-top: 14px;
-    position: relative;
-}
-
-#topic_entries .topic_entry:last-child {
-    border-bottom: 1px solid #999;
-}
-
-#topic_entries .topic_entry span.destroy {
-    display: block;
-    position: absolute;
-    right: 10px;
-    top: 0px;
-}
-
-#topic_entries .topic_entry span.destroy a:hover {
-    underline: none;
-}
-#topic_entries .topic_entry span.destroy a {
-    color: #222;
-}
-
-#activity_entries {
+.topic_entry {
     margin-bottom: 20px;
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #DDD;
+    padding: 10px 0 10px 0;
 }
-#activity_entries .activity_entry_note {
-    padding-left: 100px;
+.topic_entry .topic_entry_left {
+    float: left;
 }
-
-#activity_entries .activity_entry {
-    border-top: 1px solid #999;
-    padding-top: 14px;
-    position: relative;
+.topic_entry .topic_entry_right {
+    float :left;
+    width: 80%;
 }
-
-#activity_entries .activity_entry:last-child {
-    border-bottom: 1px solid #999;
-}
-
-#activity_entries .activity_entry span.destroy {
-    display: block;
-    position: absolute;
-    right: 10px;
-    top: 0px;
+.topic_entry .user_head_logo {
+    width: 100px;
 }
 
-#activity_entries .activity_entry span.destroy a:hover {
-    underline: none;
+#topic_category_tabs {
+  padding-left: 50px;
+  padding-top: 10px;
 }
-#activity_entries .activity_entry span.destroy a {
-    color: #222;
+#topic_category_tabs a {
+    color: #333333;
+    font-size: 16px;
 }
-
+.float_left {
+    float: left;
+}
 a.album_a{
     display: inherit;
     height: 219px;
@@ -1122,10 +1140,18 @@ a.album_a .album_img{
 .search_form{
     padding: 20px 20px 20px 35px;
 }
-
+.control-group .controls .show_receiver_entry{
+    float: left;
+    height: 200px;
+    overflow-x: hidden;
+    width: 100%;
+    overflow-y: scroll;
+}
 .control-group .controls .show_label .message_entry {
-    background: #DBDBDB;
+    background: none repeat scroll 0 0 #DBDBDB;
+    float: left;
     margin-right: 10px;
+    width: 30%;
 }
 
 fieldset.to_squad,fieldset.from_squad {
@@ -1148,12 +1174,17 @@ legend label{
 .feature{
     float:left;
     width: 100%;
+    background-color: #FBFBFB;
+    position: relative;
+    border: 1px solid #E3E3E3;
+    margin-top: 42px;
 }
 ul.feature_list li{
-    padding: 50px 0px;
+    padding: 30px 0px;
     width: 380px;
+    height: 160px;
     border-bottom: 3px solid #fdb968;
-    margin: 0 40px;
+    margin:  0 40px 5px;
     float: left ;
 }
 .box_feature{
@@ -1197,7 +1228,7 @@ ul.feature_list li{
     background-repeat: no-repeat;
     width: 14px;
     height: 63px;
-    left:111px;
+    left:-14px;
     position: absolute;
 }
 .show_center_right{
@@ -1206,7 +1237,7 @@ ul.feature_list li{
     width: 14px;
     height: 63px;
     position: absolute;
-    left:1070px;
+    left:951px;
 }
 .show_center ul li{
     line-height: 50px;
@@ -1232,17 +1263,21 @@ ul.feature_list li{
 }
 .admissions_information{
     float: left;
-   
+    background-color: #FBFBFB;
+    border: 1px solid #E3E3E3;
+    width:100%;
+    margin-top: 42px;
+    position: relative;
 }
 .admissions_info_title h2{
     margin:50px;
-    color: #fdb968;
+    color: #a5c500;
 }
 .admissions_info_content{
     margin:50px;
 }
 .show_admiss_info_center{
-    width: 100%;
+    width: 960px;
     height: 47px;
     background-color: #faa038;
 
@@ -1316,6 +1351,288 @@ ul.feature_list li{
     height: 80px;
 }
 .contact_us_kinder{
+    float:left;
+    width: 100%;
+    background-color: #FBFBFB;
+    border: 1px solid #E3E3E3;
+    margin-top: 42px;
+    position: relative;
+}
+
+.official_home_index{
     float: left;
-    /*margin: 50px;*/
+    width:100%;
+}
+.official_home_img{
+    float: left;
+    height: 370px;
+    margin: 10px;
+    max-width: 931px;
+    overflow: hidden;
+    text-align: center;
+    width: 931px; 
+}
+.official_home_img_left{
+    background-image: url("/t/colorful/liftedshadow_medium.png");
+    background-repeat: no-repeat;
+    float: left;
+    height: 20px;
+    left: -10px;
+    position: absolute;
+    width: 180px;
+}
+.official_home_img_right{
+    background-image: url("/t/colorful/liftedshadow_medium.png");
+    background-position: -180px 0;
+    background-repeat: no-repeat;
+    float: left;
+    height: 20px;
+    margin-right: -50px;
+    position: absolute;
+    right: 0;
+    width: 180px;
+}
+.official_home_news_image{
+    background-image: url("/t/colorful/title.png");
+    background-position: -10px -5px;
+    background-repeat: no-repeat;
+    height: 100px;
+    left: -20px;
+    position: absolute;
+    top: 30px;
+    width: 270px;
+    z-index: 100;
+}
+.official_foot{
+    float: left;
+    position: relative;
+    width: 100%;
+}
+.official_home_info{
+    float: left;
+    width: 100%;
+}
+.official_home_news{
+    float: left;
+    width: 100%; 
+    position: relative;
+}
+.official_home_news_content{
+    float: left;
+    width: 100%;
+    margin-top: 78px;
+    background-color: white ;
+}
+ul.official_home_news_list{
+    float: left;
+    margin-bottom: 40px;
+    margin-left: 30px;
+    margin-top: 60px;
+    width: 90%;
+}
+
+ul.official_home_news_list li .official_square{
+    background-image: url("/t/colorful/title.png");
+    background-position: -25px -330px;
+    background-repeat: no-repeat;
+    float: left;
+    height: 30px;
+    width: 15px;
+}
+ul.official_home_news_list li{
+    /* text-align: center;*/
+    float: left;
+    width: 100%;
+
+}
+ul.official_home_news_list li .official_font{
+    float: left;
+    line-height: 30px;
+    text-align: center;
+}
+ul.official_home_news_list li .official_font a{
+    color: black;
+}
+ul.official_home_news_list li .official_time{
+    float: right;
+    line-height: 30px;
+    text-align: center;
+}
+.officail_news_more {
+    float: right;
+    height: 30px;
+    margin-bottom: 20px;
+    margin-top: -20px;
+    width: 100px;
+}
+.officail_news_more a{
+    background-image: url("/t/colorful/title.png");
+    background-position: -70px -330px;
+    background-repeat: no-repeat;
+    float: left;
+    height: 30px;
+    width: 70px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 12px;
+}
+.officail_news_more a:hover {
+    background-image: url("/t/colorful/title.png");
+    background-position: -70px -363px;
+    background-repeat: no-repeat;
+    float: left;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 70px;
+}
+
+.official_home_address_image{
+    background-image: url("/t/colorful/title.png");
+    background-position: -10px -210px;
+    background-repeat: no-repeat;
+    height: 100px;
+    left: -20px;
+    position: absolute;
+    top: 30px;
+    width: 270px;
+    z-index: 100;
+}
+.official_home_address_info{
+    float: left;
+    margin-left: 30px;
+    margin-top: 60px;
+    width: 30%;
+}
+.official_home_address {
+    float: left;
+    /*margin-top: 400px;*/
+    position: relative;
+    width: 100%;
+}
+.official_home_address_info h3{
+    border-bottom: 2px solid red;
+}
+.official_home_address_info span{
+    font-size: 20px;
+}
+/*.official_home_address_line{
+    border-right: 1px solid red;
+}*/
+.official_home_address_img{
+    width: 60%;
+    margin-top: 50px;
+    margin-left: 240px;
+}
+.official_home_teacher{
+    float: right;
+    position: relative;
+    width: 33%;  
+}
+.official_home_teacher_image{
+    background-image: url("/t/colorful/title.png");
+    background-position: -10px -110px;
+    background-repeat: no-repeat;
+    height: 100px;
+    position: absolute;
+    top: 30px;
+    width: 270px;
+    z-index: 100;
+}
+.official_home_teacher_info {
+    background-color: white;
+    float: right;
+    margin-left: 30px;
+    position: absolute;
+    top: 78px;
+    width: 90%;
+}
+.official_home_teacher_img{
+    background: none repeat scroll 0 0 white;
+    border-radius: 100px 100px 100px 100px;
+    float: left;
+    height: 100px;
+    left: -10px;
+    overflow: hidden;
+    width: 100px;
+}
+ul.teacher_list{
+    margin-left: 30px;
+    margin-top: 50px;
+}
+.teacher_info{
+    float: right;
+    margin-top: -20px;
+    width: 50%;
+}
+.teacher_title h3{ 
+    width:90%;
+    border-bottom: 2px solid #fdb968;    
+    color: #fdb968; 
+}
+ul.teacher_list li{
+    height: 150px;
+}
+
+/*========成长记录===========*/
+
+.select_field .field_prompt {
+    width: 160px;
+    text-align: right;
+}
+
+.select_field .title {
+    text-align: center;
+}
+
+.select_field .select {
+    margin-left: 180px;
+}
+
+span.help-inline {
+    color: red;
+}
+.index_a a{
+    float: left;
+    padding-right: 3px;
+}
+.official_home_teacher_img img{
+    border: 0 none;
+    height: auto;
+    vertical-align: middle;
+    max-width: 200%;
+    width:100px;
+}
+.box_feat_img img{
+    border: 0 none;
+    max-width: 200%;
+    vertical-align: middle;
+}
+
+/*==================== 活动 ============*/
+
+#activity_show {
+  float: left;
+}
+
+#activity_down {
+  float: left;
+}
+
+#activity_down .activity_logo {
+  float: left;
+}
+
+#activity_down .activity_content {
+  float: left;
+  width: 400px;
+  padding-left: 20px;
+  padding-top: 10px;
+  text-indent: 10px;
+}
+
+.activity .title .activity_title {
+  font-size: 30px;
+  color: #000000;
 }

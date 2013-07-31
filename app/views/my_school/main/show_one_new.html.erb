@@ -1,0 +1,98 @@
+<div class="new_form">
+  <div class="official_new_img">
+    </div>
+    <div class="official_new_line">
+    </div>
+  <div class="official_new_title">
+    <form class="form-horizontal">
+    <div class="control-group">
+            <label class="control-label_left" >新闻标题</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=raw @new.title%>
+              </label>
+            </div>
+          </div>
+    <div class="official_new_dotted_line">
+    </div>
+    <div class="control-group">
+            <div class="time_control">
+              <div class="time_control_title">
+              <lable>创建时间</lable>
+            </div>
+              <label class="">
+                <%= @new.created_at.try(:to_long_datetime)%>
+              </label>
+            </div>
+            <div class="show_count_time">
+              <div class="time_control_title">
+              <lable>浏览次数</lable>
+            </div>
+              <label class="">
+                <%= @new.show_count%>
+              </label>
+            </div>
+          </div>
+      <div class="official_new_dotted_line">
+    </div>
+      <div class="control-group">
+              <label class="show_label">
+                <%=raw @new.content%>
+              </label>
+          </div>
+    <div class="official_new_solid_line">
+    </div>
+    </form>
+
+  </div>
+  <div class = "next_to_new">
+    <%unless @new_pre.blank?%>
+    <%= link_to "上一篇", show_one_new_my_school_main_index_path(:new_id=>@new_pre.id),:class=>"btn" %>
+    <%end%>
+    <%unless @new_next.blank?%>
+    <%= link_to "下一篇", show_one_new_my_school_main_index_path(:new_id=>@new_next.id),:class=>"btn" %>
+    <%end%>
+  </div>
+  <div class="new_more_button">
+     <%=link_to "更多" ,show_new_list_my_school_main_index_path ,:class=>"btn"%>
+  </div>
+</div>
+
+<!-- <div class="work_form">
+      <div class="form_div">
+        <form class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label">所属幼儿园:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%#=@kind.name %>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >新闻标题:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%#=raw @new.title%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >内容:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%#=raw @new.content%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >创建时间:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%#= @new.created_at.try(:to_long_datetime)%>
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div> -->

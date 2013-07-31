@@ -1,0 +1,101 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>幼儿园信息</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+<%# if choose_operate_show("my_school/my_kindergarten/edit") %>
+          <a href="<%=url_for(:controller=>"/my_school/my_kindergarten",:action=>:edit,:id=>@kind.id)%>" title="编辑">
+            <div class="work_action_edit">
+            </div>
+            <div class="work_action_edit_move">
+            </div>
+          </a>
+<%# end %>
+        </li>
+      </ul>
+    </div>
+    <div class="work_form" >
+      <div class="form_div">
+        <form class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label">名称</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=@kind.name  %>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">简介</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=@kind.note  %>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">联系电话</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=@kind.telephone  %>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">Logo</label>
+            <div class="controls">
+              <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename(:thumb) : '/t/colorful/logo.png' %>" alt="Logo"/>
+            </div>
+          </div>
+          <% unless @kind.latlng.blank? %>
+            <div class="control-group">
+              <label class="control-label">位置</label>
+              <div class="controls">
+                <label for="name">经纬度</label>
+                <%= @kind.latlng %>
+                <label for="name">地址</label>
+                <%= @kind.address %>
+                <div style="width:500px;height:350px;border:1px solid gray" id="map_div">
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<% unless @kind.latlng.blank? %>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=0E39b8c685958445866a62ebd4f2da1b"></script>
+  <script type="text/javascript">
+    $(function(){
+      map = new BMap.Map("map_div");
+      var latlng = "<%=@kind.latlng%>";
+      var latlng_data = latlng.split(",")
+      map.centerAndZoom(new BMap.Point(latlng_data[1],latlng_data[0]), 14);
+      map.addControl(new BMap.NavigationControl());
+      map.addControl(new BMap.MapTypeControl());          //添加地图类型控件
+      map.enableScrollWheelZoom();
+      var gc = new BMap.Geocoder();
+      var marker ;
+      var point = new BMap.Point(latlng_data[1], latlng_data[0]);
+      if(marker){
+        map.removeOverlay(marker);
+      }
+      marker = new BMap.Marker(point);  // 创建标注
+      map.addOverlay(marker);
+    })
+  </script>
+<% end %>

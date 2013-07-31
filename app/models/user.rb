@@ -2,8 +2,8 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
   acts_as_paranoid
-  attr_accessible :kindergarten_id, :logo,:login, :name, :note, :number, :status,
-    :tp,:crypted_password,:salt,:role_id,:remember_token,:remember_token_expires_at,
+  attr_accessible :kindergarten_id, :logo,:login, :name, :note, :number, :status,:chain_code,
+    :tp,:crypted_password,:salt,:role_id,:remember_token,:remember_token_expires_at,:chain_delete,
     :gender,:phone,:area_id,:weixin_code,:token_key,:token_secret,:token_at, :email,:is_send,:is_receive
 
   attr_accessible :password, :password_confirmation
@@ -18,13 +18,15 @@ class User < ActiveRecord::Base
   belongs_to :role
 
   has_many :messages, :class_name => "Message",:foreign_key=>:sender_id
-   
+
   has_many :user_squads , :class_name=>"UserSquad"
+
+  has_many :news , :class_name=>"New"
 
   before_save :encrypt_password
 
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
-  validates_length_of :phone, :in => 11..11, :if => Proc.new { |user| user.phone.present? && user.phone.to_i != 0 }
+  validates_length_of :phone, :is => 11
   validates :phone,:presence => true,:uniqueness => { :scope => :kindergarten_id}
   validates :email,:uniqueness => { :scope => :kindergarten_id}, :allow_blank => true
   validates :name, :login, :kindergarten_id,:presence => true
@@ -220,10 +222,11 @@ class User < ActiveRecord::Base
     elsif data[:tp] == :student
       user_ids = []
       squad = data[:squad]
-      if squad.grade && squad.grade.staff && (user = squad.grade.staff.user)
-        user_ids << user.id.to_s
-      end
-      if !data[:playgroup].blalk?
+      #学生不考虑发年级组长
+#      if squad.grade && squad.grade.staff && (user = squad.grade.staff.user)
+#        user_ids << user.id.to_s
+#      end
+      if !data[:playgroup].blank?
         squads = data[:playgroup]
         squads.each do |squad_play|
           #添加虚拟班的老师

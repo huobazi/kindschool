@@ -1,0 +1,53 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    <span>主题活动</span><span>></span><span>活动内容</span>
+  </div>
+  <div class="message_list">
+    <ul class="data_list">
+      <%= link_to "提交活动", new_weixin_activity_path, :class => "new_topic" %>
+      <% if @activities.blank? %>
+        <li><div class="message_content">还没有活动</div></li>
+      <% else %>
+        <% @activities.each do |activity| %>
+          <li class="growth_record" data-id="<%= activity.id %>">
+            <p class="title"><span><%= activity.title %><span></p>
+            <p class="creater"><span>创建人:</span><span class="author"><%= activity.creater ? activity.creater.name : "" %></span></p>
+            <div class="ctivity_content_logo">
+              <% if activity.asset_img.blank? %>
+                <img src="/t/colorful/activity_logo1.jpg" alt="" />
+              <% else %>
+                <a href="<%= activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
+                  <img src="<%= activity.asset_img.public_filename(:middle) %>" />
+                </a>
+              <% end %>
+            </div>
+            <div class="content">
+              <%= simple_format activity.content %>
+            </div>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+    <br/>
+  </div>
+  <% unless  @growth_records.blank? %>
+    <div class="message_more">
+      <div class="paginate_div">
+        <%= paginate @growth_records, :window => 1%>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
+
+<script type="text/javascript">
+$(".growth_record").each(function() {
+  $(this).click(function() {
+    window.location.href = "activities/" + $(this).attr("data-id")
+  })
+})
+</script>

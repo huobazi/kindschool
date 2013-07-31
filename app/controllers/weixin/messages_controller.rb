@@ -16,12 +16,82 @@ class Weixin::MessagesController < Weixin::ManageController
     @messages = Message.search(params[:messages] || {}).where("messages.kindergarten_id=:kind_id AND messages.status = :status",
       {:kind_id=>@kind.id,:status=>1}).page(params[:page] || 1).per(10).order("messages.send_date DESC")
   end
+  #发件箱
+  def outbox
+    @messages = current_user.messages.where(:status => true).page(params[:page] || 1).per(10).order("messages.send_date DESC")
+  end
+
+  #发件箱查看
+  def outbox_show
+    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+  end
+  
+  #草稿箱
+  def draft_box
+    @messages = current_user.messages.where(:status => false).page(params[:page] || 1).per(10).order("messages.send_date DESC")
+  end
+
+  def draft_show
+    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+    render "weixin/messages/outbox_show"
+  end
+  def draft_edit
+    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+    @data = current_user.get_users_ranges
+  end
+
+  def draft_update
+    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+
+    if params[:commit] == "发送消息"
+      @flag =true
+      if params[:message].blank?
+        params[:message][:status] = 1
+      else
+        params[:message][:status] = 1
+      end
+      if params[:ids].blank?
+        flash[:notice] = "收件人不能为空"
+        redirect_to :controller=>'my_school/messages' ,:action=>:draft_edit,:id=>@message.id,:noctie=>@notice
+        return
+      end
+    end
+    (@message.message_entries || []).each do |m_e|
+      m_e.destroy
+    end
+    sender_ids = current_user.get_sender_users(params[:ids])
+    sender_ids.each do |user_id|
+      if user = User.find_by_id_and_kindergarten_id(user_id,@kind.id)
+        @message.message_entries << MessageEntry.new(:receiver_id=>user.id,:receiver_name=>user.name,:phone=>user.phone,:sms=>(user.is_receive ? 1 : 0))
+      end
+    end
+    if params[:send]
+      params[:message].merge(:send_date => Time.now.utc)
+    end
+    respond_to do |format|
+      if @message.save && @message.update_attributes(params[:message])
+        flash[:notice] = '更新消息成功.'
+        if @message.status == true
+          format.html { redirect_to(:action=>:outbox_show,:id=>@message.id) }
+          format.xml  { head :ok }
+        else
+          format.html { redirect_to(:action=>:draft_show,:id=>@message.id) }
+          format.xml  { head :ok }
+        end
+      else
+        format.html { render :action => :edit }
+        format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
 
   def new
     @message = Message.new
     @data = current_user.get_users_ranges
   end
-
+  def edit
+    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+  end
   def show
     if @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
       if entry = @message.message_entries.find_by_receiver_id(current_user.id)
@@ -60,5 +130,71 @@ class Weixin::MessagesController < Weixin::ManageController
   rescue Exception=>ex
     flash[:error] = ex.message
     redirect_to :action => :show,:id=>@message.id
+  end
+
+  def create
+    @message = Message.new(params[:message])
+    @message.kindergarten = @kind
+    @message.send_date = Time.now.utc
+    @message.sender = current_user
+    if params[:commit] == "发送消息"
+      @flag =true
+      if params[:ids].blank?
+        flash[:error]="收件人不能为空"
+        render :action => "new"
+        return
+      end
+    end
+    sender_ids = current_user.get_sender_users(params[:ids])
+    sender_ids.each do |user_id|
+      if user = User.find_by_id_and_kindergarten_id(user_id,@kind.id)
+        @message.message_entries << MessageEntry.new(:receiver_id=>user.id,:receiver_name=>user.name,:phone=>user.phone,:sms=>(user.is_receive ? 1 : 0))
+      end
+    end
+    if params[:draft]
+      @message.status = 0
+    else
+      @message.status = 1
+    end
+    respond_to do |format|
+      if @message.save
+        flash[:notice] = '提交信息成功.'
+        #提交的是发送消息按钮就去发件箱
+        if @flag == true
+          format.html { redirect_to(:action=>:outbox_show,:id=>@message.id) }
+          format.xml  { head :ok }
+        else
+          #提交的是存为草稿箱按钮就去草稿箱
+          format.html { redirect_to(:action=>:draft_show,:id=>@message.id) }
+        end
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  def update
+    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+    respond_to do |format|
+      if @message.update_attributes(params[:message])
+        flash[:notice] = '更新消息成功.'
+        format.html { redirect_to(:action=>:outbox_show,:id=>@message.id) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => :edit }
+        format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+    @message.destroy
+
+    respond_to do |format|
+      flash[:notice] = '删除通知成功.'
+      format.html { redirect_to(:action=>:index) }
+      format.xml  { head :ok }
+    end
   end
 end
