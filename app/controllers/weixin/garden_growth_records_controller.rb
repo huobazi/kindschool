@@ -1,7 +1,12 @@
 #encoding:utf-8
 class Weixin::GardenGrowthRecordsController < Weixin::ManageController
+  before_filter :student_at_garden?, :only => [:new, :update, :destroy, :create, :edit]
   def index
-    @growth_records = @kind.growth_records.where(:tp => 0).page(params[:page] || 1).per(10).order("created_at DESC")
+    if current_user.get_users_ranges[:tp] == :student
+      @growth_records = @kind.growth_records.where(:tp => 0, :student_info_id => current_user.student_info.id).page(params[:page] || 1).per(10).order("created_at DESC")
+    else
+      @growth_records = @kind.growth_records.where(:tp => 0).page(params[:page] || 1).per(10).order("created_at DESC")
+    end
   end
 
   def new
@@ -12,7 +17,7 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
 
     if (@grades = @kind.grades) && !@grades.blank?
       if (@squads = @grades.first.squads) && !@squads.blank?
-        @student_infos = @squads.first.student_infos 
+        @student_infos = @squads.first.student_infos
       end
     end
   end
@@ -22,11 +27,6 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
       params[:growth_record][:kindergarten_id] = @kind.id
       params[:growth_record][:creater_id] = current_user.id
       params[:growth_record][:tp] = 0
-    end
-    if @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 0)
-    else
-      flash[:error] = "只能修改宝宝在园成长记录"
-      redirect_to weixin_garden_growth_records_path
     end
 
     if @growth_record.update_attributes(params[:growth_record])
@@ -46,7 +46,7 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
 
     if @growth_record.save!
       flash[:success] = "创建宝宝在园成长记录成功"
-      redirect_to weixin_garden_growth_record_path(@growth_record)
+      redirect_to :action => :show, :id => @growth_record.id
     else
       flash[:error] = "创建宝宝在园成长记录失败"
       render :new
@@ -54,18 +54,17 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
   end
 
   def edit
-    if @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 0)
-    else
-      flash[:error] = "只能编辑宝宝在园成长记录"
-      redirect_to weixin_garden_growth_records_path
-    end
   end
 
   def show
-    if @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 0)
+    if current_user.get_users_ranges[:tp] == :student
+      @growth_record = @kind.growth_records.find_by_id_and_tp_and_student_info_id(params[:id], 0, current_user.student_info.id)
     else
-      flash[:error] = "只能查看宝宝在园成长记录"
-      redirect_to weixin_garden_growth_records_path
+      @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 0)
+    end
+    if @growth_record.nil?
+      flash[:error] = "没有权限或该宝宝在园成长记录不存在"
+      redirect_to :action => :index
     end
   end
 
@@ -86,11 +85,7 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
   end
 
   def destroy
-    if @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 0)
-    else
-      flash[:error] = "只能删除宝宝在园成长记录"
-      redirect_to weixin_garden_growth_records_path
-    end
+    @growth_record.destroy
 
     respond_to do |format|
       flash[:success] = "删除宝宝在园成长记录成功"
@@ -98,6 +93,14 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
       format.xml { head :ok }
     end
   end
+
+  protected
+    def student_at_garden?
+      if current_user.get_users_ranges[:tp] == :student
+        flash[:error] = "权限不够"
+        redirect_to :action => :index
+      end
+    end
 
 end
 

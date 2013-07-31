@@ -459,7 +459,9 @@ body {
 ul, li {
     list-style-type: none;
 }
-
+.message_form{
+    padding-left: 2px;
+}
 .message_div{
     background-color: #FFFFFF;
     margin-bottom: 10px;
@@ -467,7 +469,7 @@ ul, li {
 .message_div > .message_title{
     background-image: url("/t/colorful/title_bg.png");
     color: #FFFFFF;
-    padding: 10px;
+    padding: 10px 10px 10px 2px;
 }
 .message_div .message_filter{
     background-image: url("/t/colorful/weixin_bg0.png");
@@ -540,12 +542,12 @@ ul, li {
     border-radius: 5px 5px 5px 5px;
     color: white;
     float: right;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 26px;
     margin-top: -2px;
     text-align: center;
     text-decoration: none;
-    margin-left: 3px;
+    margin-left: 5px;
 }
 .new_message:hover,.new_message:focus{
     color: white;
