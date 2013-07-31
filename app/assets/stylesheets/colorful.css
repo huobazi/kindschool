@@ -508,6 +508,13 @@ a{
     position: absolute;
     width: 30px;
 }
+.count_div{
+    display: inline-block;
+    vertical-align: middle;
+}
+#sms_count{
+ display: none;
+}
 .work_menu .a_selected{
     color: white;
 }
@@ -1623,9 +1630,6 @@ span.help-inline {
   padding-left: 20px;
   padding-top: 10px;
   text-indent: 10px;
-}
-#activity_down .activity_content .activity_note {
-  padding-left: 10px;
 }
 
 .activity .title .activity_title {

@@ -2,8 +2,8 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
   acts_as_paranoid
-  attr_accessible :kindergarten_id, :logo,:login, :name, :note, :number, :status,
-    :tp,:crypted_password,:salt,:role_id,:remember_token,:remember_token_expires_at,
+  attr_accessible :kindergarten_id, :logo,:login, :name, :note, :number, :status,:chain_code,
+    :tp,:crypted_password,:salt,:role_id,:remember_token,:remember_token_expires_at,:chain_delete,
     :gender,:phone,:area_id,:weixin_code,:token_key,:token_secret,:token_at, :email,:is_send,:is_receive
 
   attr_accessible :password, :password_confirmation
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
   validates_length_of :phone, :is => 11
-  validates :phone,:presence => true,:uniqueness => { :scope => :kindergarten_id}
+  validates :phone,:presence => true,:uniqueness => true#{ :scope => :kindergarten_id}
   validates :email,:uniqueness => { :scope => :kindergarten_id}, :allow_blank => true
   validates :name, :login, :kindergarten_id,:presence => true
   validates :login, :uniqueness => true

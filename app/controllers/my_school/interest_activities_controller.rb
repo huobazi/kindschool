@@ -2,6 +2,8 @@
 class MySchool::InterestActivitiesController < MySchool::ManageController
   # 兴趣活动
 
+  before_filter :is_student?, :only => [:edit, :create, :new, :update, :destroy]
+
   def index
     if current_user.get_users_ranges[:tp] == :student
       @activities = @kind.activities.search(params[:activity] || {}).where(:tp => 1, :squad_id => current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
@@ -13,8 +15,16 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
   end
 
   def show
-    @activity = Activity.find_by_id_and_kindergarten_id(params[:id], @kind.id)
-
+    if current_user.get_users_ranges[:tp] == :student
+      @activity = @kind.activities.find_by_id_and_tp_and_squad_id(params[:id], 1, current_user.student_info.squad_id)
+    else
+      @activity = @kind.activities.find_by_id_and_tp(params[:id], 1)
+    end
+    if @activity.nil?
+      flash[:error] = "没有权限"
+      redirect_to :action => :index
+      return
+    end
     @activity_entries = @activity.activity_entries.page(params[:page] || 1).per(10)
     @activity_entry = ActivityEntry.new
     @activity_entry.activity_id = @activity.id
@@ -31,6 +41,7 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
     @activity = Activity.new
     @activity.kindergarten_id = @kind.id
     @activity.creater_id = current_user.id
+    @activity.tp = 1
 
     @grades = @kind.grades
 
@@ -39,6 +50,9 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
 
   def create
     @activity = Activity.new(params[:activity])
+    @activity.kindergarten_id = @kind.id
+    @activity.creater_id = current_user.id
+    @activity.tp = 1
 
     if @activity.save!
       flash[:success] = "创建兴趣讨论成功"
@@ -51,7 +65,6 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
 
   def edit
     @activity = Activity.find_by_id_and_kindergarten_id(params[:id], @kind.id)
-
     render "my_school/activities/edit"
   end
 
@@ -69,9 +82,7 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
 
   def destroy
     @activity = Activity.find_by_id_and_kindergarten_id(params[:id], @kind.id)
-
     @activity.destroy
-
     respond_to do |format|
       flash[:notice] = "删除兴趣讨论成功"
       format.html { redirect_to(:action => :index) }
@@ -79,4 +90,11 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
     end
   end
 
+  protected
+    def is_student?
+      if current_user.get_users_ranges[:tp] == :student
+        flash[:error] = "没有权限"
+        redirect_to :action => :index
+      end
+    end
 end

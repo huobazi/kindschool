@@ -1,5 +1,7 @@
 #encoding:utf-8
 class Weixin::ActivitiesController < Weixin::ManageController
+
+  before_filter :is_student?, :only => [:new, :create, :update, :edit, :destroy]
   def index
     if current_user.get_users_ranges[:tp] == :student
       @activities = @kind.activities.where(:tp => 0, :squad_id => current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
@@ -9,7 +11,16 @@ class Weixin::ActivitiesController < Weixin::ManageController
   end
 
   def show
-    @activity = @kind.activities.find_by_id(params[:id])
+    if current_user.get_users_ranges[:tp] == :student
+      @activity = @kind.activities.find_by_id_and_tp_and_squad_id(params[:id], 0, current_user.student_info.squad_id)
+    else
+      @activity = @kind.activities.find_by_id_and_tp(params[:id], 0)
+    end
+    if @activity.nil?
+      flash[:error] = "没有权限或活动找不到"
+      redirect_to :action => :index
+      return
+    end
     @replies = @activity.activity_entries.page(params[:page] || 1).per(10)
     @activity_entry = ActivityEntry.new
     @activity_entry.activity_id = @activity.id
@@ -70,7 +81,6 @@ class Weixin::ActivitiesController < Weixin::ManageController
 
   def destroy
     @activity = Activity.find_by_id_and_kindergarten_id(params[:id], @kind.id)
-
     @activity.destroy
 
     respond_to do |format|
@@ -80,6 +90,14 @@ class Weixin::ActivitiesController < Weixin::ManageController
     end
   end
 
+
+  protected
+    def is_student?
+      if current_user.get_users_ranges[:tp] == :student
+        flash[:error] = "没有权限"
+        redirect_to :action => :index
+      end
+    end
 
 end
 
