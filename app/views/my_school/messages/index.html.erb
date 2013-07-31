@@ -42,7 +42,7 @@
     <div class="work_list">
       <% unless @message.blank? %>
         <table class="list">
-          <%= form_tag my_school_message_path(@message), method: :delete, :id => "destroy_multi_form" do %>
+          <%= form_tag my_school_message_path(@message,:tp=>"receiver"), :method=> :delete, :id => "destroy_multi_form" do %>
             <tr>
               <th><input type="checkbox" name="" value="" alt="全选" id="message_all">全选</th>
               <th>发送人</th>

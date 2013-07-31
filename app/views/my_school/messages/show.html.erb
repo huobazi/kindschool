@@ -29,7 +29,7 @@
           </a>
         </li>
         <li>
-          <%= link_to(url_for(:controller=>"/my_school/messages",:action=>:destroy,:id=>@message.id),:method=>:delete, :confirm => "您确定删除该消息吗?") do %>
+          <%= link_to(url_for(:controller=>"/my_school/messages",:action=>:destroy,:id=>@message.id,:tp=>"receiver"),:method=>:delete, :confirm => "您确定删除该消息吗?") do %>
             <div class="work_action_delete">
             </div>
             <div class="work_action_delete_move">

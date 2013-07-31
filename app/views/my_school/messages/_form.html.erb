@@ -120,6 +120,11 @@
         $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_edit_ids,:id=>@message.id) %>");
       })
 <% end %>
+<% if action_name == "new" && @receiver_id%>
+      $(window).load(function(){
+        $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_users_all) %>",{receiver_id:<%= @receiver_id %>});
+      })
+<% end %>
     $("#message_inputs .message_user label").live('click',function(){
       if($(this).parent().siblings().size() == 1){
         $(this).parent().parent().remove();
