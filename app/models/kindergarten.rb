@@ -67,6 +67,8 @@ class Kindergarten < ActiveRecord::Base
 
   has_many :news
 
+  has_many :approve_modules
+
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img
 
@@ -81,72 +83,81 @@ class Kindergarten < ActiveRecord::Base
         self.page_contents << PageContent.new((v || {}).merge(:number=>k))
       end
     end
-    content_entries = YAML.load_file("#{Rails.root}/db/basic_data/content_entries.yml")
-    content_entries.each do |k,content_entry|
-      if k == "official_website_home_news"
-        @new = News.new(content_entry)
-        @new.kindergarten = self
-        @new.save!
-      else
-        page_content=self.page_contents.find_by_number(k)
-        content_entry["content_entries"].each do |record|
-          page_content.content_entries << ContentEntry.new(record)
-        end
+    #创建所需要的审核模块
+    approve_modules = YAML.load_file("#{Rails.root}/db/basic_data/approve_modules.yml")
+    approve_modules.each do |k,approve_module|
+     if self.approve_modules.blank? && self.approve_modules.find_by_number(approve_module[:number]).blank?
+       @approve_module = ApproveModule.new(approve_module)
+       @approve_module.kindergarten =self
+       @approve_module.save
+     end
+    end
+    # content_entries = YAML.load_file("#{Rails.root}/db/basic_data/content_entries.yml")
+    # content_entries.each do |k,content_entry|
+    #   if k == "official_website_home_news"
+    #     @new = News.new(content_entry)
+    #     @new.kindergarten = self
+    #     @new.save!
+    #   else
+    #     page_content=self.page_contents.find_by_number(k)
+    #     content_entry["content_entries"].each do |record|
+    #       page_content.content_entries << ContentEntry.new(record)
+    #     end
 
-        page_content.save
-      end
-    end
+    #     page_content.save
+    #   end
+    # end
 
-    self.option_operates.each do |operate|
-      operate.destroy
-    end
-    operates = Operate.all
-    operates.each do |op|
-      option_operate = OptionOperate.new(:operate_id=>op.id)
-      self.option_operates << option_operate
-    end
+    # self.option_operates.each do |operate|
+    #   operate.destroy
+    # end
+    # operates = Operate.all
+    # operates.each do |op|
+    #   option_operate = OptionOperate.new(:operate_id=>op.id)
+    #   self.option_operates << option_operate
+    # end
 
-    self.roles.each  do |role|
-      role.destroy
-    end
-    roles = YAML.load_file("#{Rails.root}/db/basic_data/role.yml")
-    if !roles.blank?
-      roles.each do |k,v|
-        operates = v.delete("operates")
-        role = Role.new(v)
-        role.kindergarten = self
-        unless operates.blank?
-          operates.each do |operate_id|
-            if option = OptionOperate.find_by_operate_id_and_kindergarten_id(operate_id,self.id)
-              role.option_operates << option
-            end
-          end
-        end
-        role.save!
-      end
-    end
-    #创建所需要的表格
-    content_patterns = YAML.load_file("#{Rails.root}/db/basic_data/content_patterns.yml")
-    if !content_patterns.blank?
-      content_patterns.each do |k,pattern|
-        unless content_pattern = self.content_patterns.where(:number=>pattern["number"]).first
-          content_pattern = ContentPattern.new(pattern)
-          content_pattern.kindergarten_id = self.id
-          content_pattern.save
-        end
-      end
-    end
-    #创建论坛分类
-    topic_categories = YAML.load_file("#{Rails.root}/db/basic_data/topic_categories.yml")
-    if !topic_categories.blank?
-      topic_categories.each do |k, category|
-        unless topic_category = self.topic_categories.where(:name => category["name"]).first
-          topic_category = TopicCategory.new(category)
-          topic_category.kindergarten_id = self.id
-          topic_category.save
-        end
-      end
-    end
+    # self.roles.each  do |role|
+    #   role.destroy
+    # end
+    # roles = YAML.load_file("#{Rails.root}/db/basic_data/role.yml")
+    # if !roles.blank?
+    #   roles.each do |k,v|
+    #     operates = v.delete("operates")
+    #     role = Role.new(v)
+    #     role.kindergarten = self
+    #     unless operates.blank?
+    #       operates.each do |operate_id|
+    #         if option = OptionOperate.find_by_operate_id_and_kindergarten_id(operate_id,self.id)
+    #           role.option_operates << option
+    #         end
+    #       end
+    #     end
+    #     role.save!
+    #   end
+    # end
+    # #创建所需要的表格
+    # content_patterns = YAML.load_file("#{Rails.root}/db/basic_data/content_patterns.yml")
+    # if !content_patterns.blank?
+    #   content_patterns.each do |k,pattern|
+    #     unless content_pattern = self.content_patterns.where(:number=>pattern["number"]).first
+    #       content_pattern = ContentPattern.new(pattern)
+    #       content_pattern.kindergarten_id = self.id
+    #       content_pattern.save
+    #     end
+    #   end
+    # end
+    # #创建论坛分类
+    # topic_categories = YAML.load_file("#{Rails.root}/db/basic_data/topic_categories.yml")
+    # if !topic_categories.blank?
+    #   topic_categories.each do |k, category|
+    #     unless topic_category = self.topic_categories.where(:name => category["name"]).first
+    #       topic_category = TopicCategory.new(category)
+    #       topic_category.kindergarten_id = self.id
+    #       topic_category.save
+    #     end
+    #   end
+    # end
     self.save!
   end
 

@@ -139,6 +139,14 @@
     height_level: "a"
     sequence: 370
     operate_id: 5400
+  - id: 39100
+    name: "审核设置"
+    number: 39100
+    url: "/my_school/approve_modules"
+    title: "审核设置"
+    height_level: "a"
+    sequence: 370
+    operate_id: 5500
 - id: 40000
   number: "statistics"
   name: "统计"
