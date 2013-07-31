@@ -14,7 +14,7 @@ class Weixin::TopicsController < Weixin::ManageController
       end
     else
       if current_user.get_users_ranges[:tp] == :student
-        @topics = @kind.topics.where(:creater_id => current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
+        @topics = @kind.topics.where("creater_id = ? or squad_id = ? or squad_id is null", current_user.id, current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
       else
         @topics = @kind.topics.page(params[:page] || 1).per(10).order("created_at DESC")
       end
@@ -83,6 +83,9 @@ class Weixin::TopicsController < Weixin::ManageController
     if params[:topic]
       params[:topic][:kindergarten_id] = @kind.id
       params[:topic][:creater_id] = current_user.id
+      if current_user.get_users_ranges[:tp] == :student
+        params[:topic][:squad_id] = current_user.student_info.squad_id
+      end
     end
     if current_user.get_users_ranges[:tp] == :student
       @topic = @kind.topics.find_by_id_and_creater_id(params[:id], current_user.id)
