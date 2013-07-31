@@ -15,7 +15,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
   def new
     if current_user.get_users_ranges[:tp] == :teachers
       flash[:notice] = "没有权限或非法操作"
-      redirect_to :controller => "/my_school/growth_records", :action => :home
+      redirect_to :action => :home
     end
     @growth_record = GrowthRecord.new
     if current_user.get_users_ranges[:tp] == :student
@@ -52,7 +52,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
 
   def show
     if current_user.get_users_ranges[:tp] == :student
-      @growth_record = @kind.growth_records.find_by_id_and_tp_and_creater_id(params[:id], 1, current_user.id)
+      @growth_record = @kind.growth_records.where("tp = ? and (creater_id = ? or student_info_id = ?)", 1, current_user.id, current_user.student_info.id).find_by_id(params[:id])
     elsif current_user.get_users_ranges[:tp] == :teachers
       @growth_records = GrowthRecord.where("student_infos.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) and tp=1",current_user.staff.id).joins("INNER JOIN student_infos on(student_infos.id = growth_records.student_info_id)")
       @growth_record = GrowthRecord.find_by_id_and_tp(params[:id], 1)
@@ -82,7 +82,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
       redirect_to :controller => "/my_school/growth_records", :action => :home
     end
     if current_user.get_users_ranges[:tp] == :student
-      @growth_record = @kind.growth_records.find_by_id_and_tp_and_creater_id(params[:id], 1, current_user.id)
+      @growth_record = @kind.growth_records.where("tp = ? and (creater_id = ? or student_info_id = ?)", 1, current_user.id, current_user.student_info.id).find_by_id(params[:id])
     else
       @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 1)
     end
@@ -105,7 +105,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
       end
     end
     if current_user.get_users_ranges[:tp] == :student
-      @growth_record = @kind.growth_records.find_by_id_and_tp_and_creater_id(params[:id], 1, current_user.id)
+      @growth_record = @kind.growth_records.where("tp = ? and (creater_id = ? or student_info_id = ?)", 1, current_user.id, current_user.student_info.id).find_by_id(params[:id])
     else
       @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 1)
     end
@@ -120,7 +120,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
 
   def destroy
     if current_user.get_users_ranges[:tp] == :student
-      @growth_record = @kind.growth_records.find_by_id_and_tp_and_creater_id(params[:id], 1, current_user.id)
+      @growth_record = @kind.growth_records.where("tp = ? and (creater_id = ? or student_info_id = ?)", 1, current_user.id, current_user.student_info.id).find_by_id(params[:id])
     elsif current_user.get_users_ranges[:tp] == :teachers
       flash[:notice] = "没有权限或非法操作"
       redirect_to :controller => "/my_school/growth_records", :action => :home
@@ -164,6 +164,8 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
       if squad = grade.squads.where(:id=>params[:squad].to_i).first
          @student_infos = squad.student_infos
       end
+    elsif squad = Squad.where(:id => params[:squad].to_i).first
+      @student_infos = squad.student_infos
     end
     render "squad_student", :layout => false
   end
