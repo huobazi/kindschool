@@ -15,14 +15,14 @@ class ShortMessage
     raise "send sms : phone is blank." if phone.blank?
     raise "send sms : msg is blank." if msg.blank?
     begin
-#      opt = {:uid => SMS_CONFIG["uid"],:encode=>SMS_CONFIG["encode"],  :auth => self.get_validate_key,:mobile => phone,:msg=>msg.encode("GBK"),:expid=>expid,:time=>""}#Time.now.to_all_datetime
-#      response = self.http_post(url, opt)
-#      if (200..210).include?(response.code.to_i)
-#        data = response.body.split(",")
-#        if data[0] == "0"
-#          return data[1]
-#        end
-#      end
+      opt = {:uid => SMS_CONFIG["uid"],:encode=>SMS_CONFIG["encode"],  :auth => self.get_validate_key,:mobile => phone,:msg=>msg.encode("GBK"),:expid=>expid,:time=>""}#Time.now.to_all_datetime
+      response = self.http_post(url, opt)
+      if (200..210).include?(response.code.to_i)
+        data = response.body.split(",")
+        if data[0] == "0"
+          return data[1]
+        end
+      end
       return "error"
     rescue Exception => e
       p e.message
