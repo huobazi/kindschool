@@ -8,7 +8,7 @@ class MySchool::ApproveModulesController < MySchool::ManageController
   end
 
   def edit
-  	@approve_module = @kind.squads.find(params[:id])
+  	@approve_module = @kind.approve_modules.find(params[:id])
   end
 
 end
