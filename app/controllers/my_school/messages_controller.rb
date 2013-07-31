@@ -36,9 +36,14 @@ class MySchool::MessagesController < MySchool::ManageController
   end
 
   def destroy
-    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
-    @message.destroy
-
+    unless params[:message].blank? 
+      @messages = @kind.messages.where(:id=>params[:message])
+    else
+      @messages = @kind.messages.where(:id=>params[:id]) 
+    end
+    @messages.each do |message|
+      message.destroy
+    end
     respond_to do |format|
       flash[:notice] = '删除通知成功.'
       format.html { redirect_to(:action=>:index) }

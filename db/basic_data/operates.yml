@@ -985,6 +985,18 @@ my_kindergarten_update:
   action: "update"
   protocol: ""
   <<: *DEFAULTS
+#==============================审核设置
+approve_modules_index:
+  id: 5500
+  parent_id: 6
+  name: "审核设置"
+  level: 2
+  sequence: 0
+  note: "审核设置"
+  controller: "my_school/approve_modules"
+  action: "index"
+  protocol: ""
+  <<: *DEFAULTS
 #==============================健康饮食
 seedlings_index:
   id: 6001

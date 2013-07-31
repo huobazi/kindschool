@@ -27,18 +27,12 @@
   </div>
 </div>
 <div class="control-group">
-  <%=f.label :name, '虚拟班名:' ,:class=>"control-label"%>
+  <%=f.label :name, '审核模块名字:' ,:class=>"control-label"%>
   <div class="controls">
     <%= f.text_field :name, :validate => true %>
   </div>
 </div>
-<div class="control-group">
-  <%=f.label :note, '描述: ' ,:class=>"control-label"%>
-  <div class="controls">
-    <%= f.text_area(:note, :validate => true, :size=> "30x5",:class=>"span4") %>
-  </div>
-</div>
-<%=render :partial => "personnel_selection"-%>
+<%=render :partial => "/my_school/virtual_squads/personnel_selection"-%>
 <div class="control-group">
   <label class="control-label"></label>
   <div class="controls">
@@ -50,11 +44,11 @@
 </div>
 <script type="text/javascript">
   $(function() {
-<% if action_name == "edit"%>
+<% if action_name == "edit11"%>
       $(window).load(function(){
-        $("#message_inputs").load("<%= url_for(:controller=>'/my_school/virtual_squads',:action=>:get_edit_ids,:id=>@virtual_squad.id) %>");
+        $("#message_inputs").load("<%#= url_for(:controller=>'/my_school/virtual_squads',:action=>:get_edit_ids,:id=>@.id) %>");
       })
 <% end %>
   });
 </script>
-<%=render :partial => "personnel_select_js.html.erb"-%>
+<%=render :partial => "/my_school/virtual_squads/personnel_select_js.html.erb"-%>
