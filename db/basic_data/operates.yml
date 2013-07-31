@@ -989,12 +989,34 @@ my_kindergarten_update:
 approve_modules_index:
   id: 5500
   parent_id: 6
+  name: "审核设置列表"
+  level: 2
+  sequence: 0
+  note: "审核设置列表"
+  controller: "my_school/approve_modules"
+  action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+approve_modules_edit:
+  id: 5501
+  parent_id: 6
   name: "审核设置"
   level: 2
   sequence: 0
   note: "审核设置"
   controller: "my_school/approve_modules"
-  action: "index"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+approve_modules_update:
+  id: 5502
+  parent_id: 6
+  name: "审核更新"
+  level: 2
+  sequence: 0
+  note: "审核更新"
+  controller: "my_school/approve_modules"
+  action: "update"
   protocol: ""
   <<: *DEFAULTS
 #==============================健康饮食

@@ -2,7 +2,11 @@ School::Application.routes.draw do
 
   match 'my_school' => 'my_school/main#index'
   namespace :my_school do
-    resources :approve_modules
+    resources :approve_modules do 
+      collection do
+        get :get_edit_ids
+      end
+    end
     resources :news 
     resources :my_kindergarten do
     end
