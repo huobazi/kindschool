@@ -15,7 +15,7 @@ class Message < ActiveRecord::Base
   validates :content,:sender_id,:send_date, :presence => true
   validates :title, :presence => {:if => :if_return?}
 
-  validates :content, :length => { :minimum => 2 }
+  validates :content, :length => { :minimum => 1 }
 
   STATUS_DATA = {"0"=>"草稿","1"=>"已发送"}
   TP_DATA = {"0"=>"站内信","1"=>"站内加短信"}
