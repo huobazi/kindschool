@@ -199,7 +199,7 @@
     url: "/my_school/notices/new"
     title: "发通知"
     height_level: "b"
-    sequence: 613
+    sequence: 614
     operate_id: 2001
   - id: 62003
     name: "通知信息"
@@ -207,7 +207,7 @@
     url: "/my_school/notices"
     title: "通知信息"
     height_level: "b"
-    sequence: 624
+    sequence: 615
     operate_id: 2005
   - id: 63000
     name: "发件箱"
@@ -215,7 +215,7 @@
     url: "/my_school/messages/outbox"
     title: "发件箱"
     height_level: "b"
-    sequence: 625
+    sequence: 612
     operate_id: 2008
   - id: 64000
     name: "草稿箱"
@@ -223,7 +223,7 @@
     url: "/my_school/messages/draft_box"
     title: "草稿箱"
     height_level: "b"
-    sequence: 626
+    sequence: 613
     operate_id: 2009
   - id: 65000
     name: "幼儿园新闻"

@@ -16,6 +16,10 @@ class MySchool::UsersController < MySchool::ManageController
       redirect_to :action => :index,:controller=>"/my_school/home"
       return
     end
+    if session[:login_error_count]  && session[:login_error_count] > 3
+      session[:noisy_image] = NoisyImage.new(6)
+      session[:code] = session[:noisy_image].code
+    end
     return render :layout=>"colorful_login" unless request.post?
     begin
       self.current_user = User.authenticate(params[:login], params[:password])
@@ -29,12 +33,18 @@ class MySchool::UsersController < MySchool::ManageController
         operates_data.uniq!
         session[:operates] = operates_data
         flash[:notice] = "登陆成功."
+        session[:login_error_count] = 0
         redirect_to :action => :index,:controller=>"/my_school/home"
         cookies.delete :login_times
       else
         render :layout=>"colorful_login"
       end
     rescue StandardError => error
+      if session[:login_error_count]
+        session[:login_error_count] +=1
+      else
+        session[:login_error_count] = 1
+      end
       @user_errors = error
       render :layout=>"colorful_login"
     end
@@ -135,7 +145,7 @@ class MySchool::UsersController < MySchool::ManageController
           chain_users = @kind.users.where(:chain_delete=>true,:chain_code=>chain_code)
           unless chain_users.blank?
             chain_users.each do |chain_user|
-                chain_user.update_attributes(:chain_delete=>false,:chain_code=>nil)
+              chain_user.update_attributes(:chain_delete=>false,:chain_code=>nil)
             end
           end
         end
