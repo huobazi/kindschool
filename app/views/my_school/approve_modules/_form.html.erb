@@ -27,10 +27,17 @@
   </div>
 </div>
 <div class="control-group">
-  <%=f.label :name, '审核模块名字:' ,:class=>"control-label"%>
+  <%=f.label :name, '审核模块:' ,:class=>"control-label"%>
   <div class="controls">
-    <%= f.text_field :name, :validate => true %>
+    <%= f.text_field :name , :disabled=> true %>
   </div>
+</div>
+<div class="control-group">
+  <%=f.label :admin, '是否能够审核:' ,:class=>"control-label"%>
+<div class="controls">
+  <%= hidden_field_tag 'approve_module[status]', '0' %>
+  <%= check_box(:approve_module,:status, {:checked=>@approve_module.status}, true, false)  %>
+</div>
 </div>
 <%=render :partial => "/my_school/virtual_squads/personnel_selection"-%>
 <div class="control-group">
@@ -43,10 +50,10 @@
   <%= render :partial => "/my_school/messages/inbox" %>
 </div>
 <script type="text/javascript">
-  $(function() {
-<% if action_name == "edit11"%>
+ $(function() {
+<% if action_name == "edit"%>
       $(window).load(function(){
-        $("#message_inputs").load("<%#= url_for(:controller=>'/my_school/virtual_squads',:action=>:get_edit_ids,:id=>@.id) %>");
+        $("#message_inputs").load("<%= url_for(:controller=>'/my_school/approve_modules',:action=>:get_edit_ids,:id=>@approve_module.id) %>");
       })
 <% end %>
   });

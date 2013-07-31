@@ -38,35 +38,35 @@
       <ul class="work_action">
          <li>
         </li>
-        <li>
-          <a href="/" title="删除" id="destroy_multiple">
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
-          </a>
-        </li>
+        
       </ul>
     </div>
 
     <div class="work_list">
         <% unless @approve_modules.blank? %>
           <table class="table table-striped table-hover">
+                  <tr>
+                    <th></th>
+                    <th>审核模块</th>
+                    <th>审核设置</th>
+                    <th>审核人</th>
+                    <th>操作</th>
+                  </tr>
                 <% (@approve_modules || []).each do |approve_module| %>
                   <tr>
-
-                    <td><input id="cook_book_<%= approve_module.id %>" class="cook_book_check" name="cook_book[]" type="checkbox" value="<%= approve_module.id %>" /></td>
+                    <td></td>
                     <td><%=link_to approve_module.name ,
                     edit_my_school_approve_module_path(approve_module)%></td>
+                    <td><%=approve_module.status ? "已开启" : "未开启" %></td>
                     <td>
-                   </td>
-                    <td></td>
-                    <td><%=approve_module.status%></td>
-                    <td>
+                      <%(approve_module.approve_module_users || []).each do |approve_module_user|%>
+                      <%= approve_module_user.user.name%>
+                      <%end%>
                     </td>
+                    <td><%=link_to "设置" ,
+                    edit_my_school_approve_module_path(approve_module)%></td>
                   </tr>
                 <% end %>
-            <%=button_to "提交" , "###"%>
           </table>
         <% else %>
           暂无审核设置
