@@ -67,6 +67,8 @@ class Kindergarten < ActiveRecord::Base
 
   has_many :news
 
+  has_many :approve_modules
+
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img
 
@@ -80,6 +82,15 @@ class Kindergarten < ActiveRecord::Base
       unless self.page_contents.collect(&:number).include?(k)
         self.page_contents << PageContent.new((v || {}).merge(:number=>k))
       end
+    end
+    #创建所需要的审核模块
+    approve_modules = YAML.load_file("#{Rails.root}/db/basic_data/approve_modules.yml")
+    approve_modules.each do |k,approve_module|
+     if self.approve_modules.blank? && self.approve_modules.find_by_number(approve_module[:number]).blank?
+       @approve_module = ApproveModule.new(approve_module)
+       @approve_module.kindergarten =self
+       @approve_module.save
+     end
     end
     content_entries = YAML.load_file("#{Rails.root}/db/basic_data/content_entries.yml")
     content_entries.each do |k,content_entry|

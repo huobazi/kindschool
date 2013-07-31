@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
   validates_length_of :phone, :is => 11
-  validates :phone,:presence => true,:uniqueness => { :scope => :kindergarten_id}
+  validates :phone,:presence => true,:uniqueness => true#{ :scope => :kindergarten_id}
   validates :email,:uniqueness => { :scope => :kindergarten_id}, :allow_blank => true
   validates :name, :login, :kindergarten_id,:presence => true
   validates :login, :uniqueness => true

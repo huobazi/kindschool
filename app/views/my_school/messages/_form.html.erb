@@ -44,7 +44,7 @@
 <div style="float:right;">
   <p  id="numtj"><var style="color:#C00">--</var>/<span id="numcalcu">800</span></p>
 </div>
-<%= f.input :content, :validate => true, :required => true ,:input_html=>{:class=>"span5"}%>
+<%= f.input :content, :validate => true, :required => true ,:input_html=>{:class=>"span5",:rows=>8}%>
 
 <%if current_user.is_send%>
   <div class="control-group">
@@ -118,6 +118,11 @@
 <% if action_name == "draft_edit"%>
       $(window).load(function(){
         $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_edit_ids,:id=>@message.id) %>");
+      })
+<% end %>
+<% if action_name == "new" && @receiver_id%>
+      $(window).load(function(){
+        $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_users_all) %>",{receiver_id:<%= @receiver_id %>});
       })
 <% end %>
     $("#message_inputs .message_user label").live('click',function(){

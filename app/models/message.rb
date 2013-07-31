@@ -15,7 +15,7 @@ class Message < ActiveRecord::Base
   validates :content,:sender_id,:send_date, :presence => true
   validates :title, :presence => {:if => :if_return?}
 
-  validates :content, :length => { :minimum => 5 }
+  validates :content, :length => { :minimum => 1 }
 
   STATUS_DATA = {"0"=>"草稿","1"=>"已发送"}
   TP_DATA = {"0"=>"站内信","1"=>"站内加短信"}
@@ -56,8 +56,9 @@ class Message < ActiveRecord::Base
         #更新的情况
         self.message_entries.where("deleted_at IS NULL").each do |entry|
           if entry.receiver.is_receive
+            role = self.sender.role if self.sender && self.sender.role
             entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
-              :sender_name=>self.sender_name,:content=>"#{self.content}",:receiver_id=>entry.receiver.id,
+              :sender_name=>self.sender_name,:content=>"#{self.title} #{self.content} #{role ? (role.name + '-') : ''}#{self.sender ? self.sender.name : ''}",:receiver_id=>entry.receiver.id,
               :receiver_name=>entry.receiver.name,:receiver_phone=>entry.receiver.phone,:kindergarten_id=>self.kindergarten_id)
           end
         end
@@ -65,8 +66,9 @@ class Message < ActiveRecord::Base
         #创建的情况
         self.message_entries.each do |entry|
           if entry.receiver.is_receive
+            role = self.sender.role if self.sender && self.sender.role
             entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
-              :sender_name=>self.sender_name,:content=>"#{self.content}",:receiver_id=>entry.receiver.id,
+              :sender_name=>self.sender_name,:content=>"#{self.title} #{self.content} #{role ? (role.name + '-') : ''}#{self.sender ? self.sender.name : ''}",:receiver_id=>entry.receiver.id,
               :receiver_name=>entry.receiver.name,:receiver_phone=>entry.receiver.phone,:kindergarten_id=>self.kindergarten_id)
           end
         end

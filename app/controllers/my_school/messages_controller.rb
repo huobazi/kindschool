@@ -2,7 +2,7 @@
 class MySchool::MessagesController < MySchool::ManageController
   #列表界面
   def index
-    @message = Message.where("messages.kindergarten_id=:kind_id and message_entries.receiver_id=:user_id",
+    @message = Message.where("messages.kindergarten_id=:kind_id and message_entries.receiver_id=:user_id AND `message_entries`.`deleted_at` IS NULL",
       {:kind_id=>@kind.id,:user_id=>current_user.id}).joins("LEFT JOIN message_entries ON(messages.id = message_entries.message_id)").page(params[:page] || 1).per(10).order("messages.send_date DESC")
   end
   
@@ -15,24 +15,74 @@ class MySchool::MessagesController < MySchool::ManageController
   def new
     @message = Message.new
     @data = current_user.get_users_ranges
+    if params[:message_id]
+      if message = Message.find_by_id_and_kindergarten_id(params[:message_id],@kind.id)
+        if entry = message.message_entries.where(:receiver_id=>current_user.id)
+          @receiver_id = message.sender_id
+          @message.tp = 1
+        end
+      end
+    end
   end
 
   def edit
-    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+    if @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+      entry = @message.message_entries.where(:receiver_id=>current_user.id)
+      if entry.blank?
+        flash[:error] = '您无法修改该消息.'
+        redirect_to(:action=>:index)
+        return
+      end
+    end
   end
 
   def destroy
-    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
-    @message.destroy
+    unless params[:message].blank?
+      @messages = @kind.messages.where(:id=>params[:message])
+    else
+      @messages = @kind.messages.where(:id=>params[:id])
+    end
+    
+    if params[:tp] && params[:tp] == "receiver"
+      @messages.each do |message|
+        if entry_data = message.message_entries.where(:receiver_id=>current_user.id)
+          entry_data.each do |entry|
+            entry.destroy
+          end
+        end
+      end
+    else
+      @messages.each do |message|
+        message.destroy
+      end
+    end
 
+    
     respond_to do |format|
       flash[:notice] = '删除通知成功.'
-      format.html { redirect_to(:action=>:index) }
+      format.html {
+        if params[:tp]
+          if params[:tp] == "receiver"
+            redirect_to(:action=>:index)
+          else
+            redirect_to(:action=>:outbox)
+          end
+        else
+          redirect_to(:action=>:draft_box)
+        end
+      }
       format.xml  { head :ok }
     end
   end
   def show
-    @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+    if @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+      entry = @message.message_entries.where(:receiver_id=>current_user.id)
+      if entry.blank?
+        flash[:error] = '您无法查看该消息.'
+        redirect_to(:action=>:index)
+        return
+      end
+    end
   end
 
   def outbox_show
@@ -287,10 +337,18 @@ LEFT JOIN squads ON(squads.id = user_squads.squad_id)")
         users_ids.uniq
         
         if !users_ids.blank? && !params[:ids].blank?
-          ids  = users_ids & (params[:ids])
+          if params[:receiver_id]
+            ids = [params[:receiver_id]]
+          else
+            ids  = users_ids & (params[:ids])
+          end
         end
       else
-        ids = params[:ids]
+        if params[:receiver_id]
+          ids = [params[:receiver_id]]
+        else
+          ids = params[:ids]
+        end
       end
       unless ids.blank?
         users = @kind.users.where(:status=>"start",:id=>ids)
@@ -313,8 +371,12 @@ LEFT JOIN squads ON(squads.id = user_squads.squad_id)")
           ids += user_squad.get_teachers.collect{|user| user.id.to_s}
         end
       end
-      ids = squad.staffs.collect{|staff| staff.user ? staff.user.id.to_s : "0"} | ids
-      ids = ids & (params[:ids]) if !params[:ids].blank?
+      if params[:receiver_id]
+        ids = [params[:receiver_id]]
+      else
+        ids = squad.staffs.collect{|staff| staff.user ? staff.user.id.to_s : "0"} | ids
+        ids = ids & (params[:ids]) if !params[:ids].blank?
+      end
       ids.uniq!
       unless ids.blank?
         users = @kind.users.where(:status=>"start",:id=>ids)
@@ -346,7 +408,7 @@ LEFT JOIN squads ON(squads.id = user_squads.squad_id)")
   end
 
   def draft_box
-        @messages = current_user.messages.where(:status => true).page(params[:page] || 1).per(10).order("messages.send_date DESC")
+    @messages = current_user.messages.where(:status => true).page(params[:page] || 1).per(10).order("messages.send_date DESC")
 
     @messages = current_user.messages.where(:status => false).page(params[:page] || 1).per(10).order("messages.send_date DESC")
 

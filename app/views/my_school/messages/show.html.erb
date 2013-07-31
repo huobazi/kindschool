@@ -29,7 +29,7 @@
           </a>
         </li>
         <li>
-          <%= link_to(url_for(:controller=>"/my_school/messages",:action=>:destroy,:id=>@message.id),:method=>:delete, :confirm => "您确定删除该消息吗?") do %>
+          <%= link_to(url_for(:controller=>"/my_school/messages",:action=>:destroy,:id=>@message.id,:tp=>"receiver"),:method=>:delete, :confirm => "您确定删除该消息吗?") do %>
             <div class="work_action_delete">
             </div>
             <div class="work_action_delete_move">
@@ -50,7 +50,7 @@
     <div class="work_form">
       <div class="form_div">
         <form class="form-horizontal">
-           <div class="control-group">
+          <div class="control-group">
             <label class="control-label">发件人:</label>
             <div class="controls">
               <label class="show_label">
@@ -86,6 +86,9 @@
             <div class="controls">
               <label class="show_label">
                 <%= link_to "回复" ,"###", :id=>"link_reply_to_message",:class=>'btn' %>
+                <%if current_user.is_send && @message%>
+                  <%= link_to "发短信" ,url_for(:action=>:new,:message_id=>@message.id),:class=>'btn' %>
+                <% end %>
               </label>
             </div>
           </div>

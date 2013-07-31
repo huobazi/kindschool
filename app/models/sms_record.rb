@@ -29,8 +29,8 @@ class SmsRecord < ActiveRecord::Base
       self.update_attribute(:status, 2)
       self.message_entry.update_attribute(:status, 2) if self.message_entry
     else
-      self.update_attributes(:status=> 2,:msgid=>msg_id)
-      self.message_entry.update_attribute(:status, 2) if self.message_entry
+      self.update_attributes(:status=> 1,:msgid=>msg_id)
+      self.message_entry.update_attribute(:status, 1) if self.message_entry
     end
   end
   handle_asynchronously :send_sms #添加到异步执行方法中
