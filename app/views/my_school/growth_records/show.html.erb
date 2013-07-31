@@ -8,8 +8,8 @@
       <div class="headline_title">
         <div class="messages_root"></div>
         <label>
-          <% if @growth_record.tp == true %>
-            宝宝在家管理信息
+          <% if controller_name == "growth_records" %>
+            宝宝在家信息
           <% else %>
             宝宝在园信息
           <% end %>
@@ -20,7 +20,7 @@
           </a>
           <ul>
             <li>
-            <% if @growth_record.tp == true %>
+            <% if controller_name == "growth_records" %>
               <%if choose_operate_show('my_school/growth_records/home')%>
                 <%= link_to "宝宝在家", home_my_school_growth_records_path %></li>
               <% end %>
@@ -36,9 +36,9 @@
       </div>
       <ul class="work_action">
         <li>
-          <% if @growth_record.tp == true %>
+          <% if controller_name == "growth_records" %>
             <% if choose_operate_show("my_school/growth_records/new") %>
-              <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new, :tp=>1)%>" title="添加">
+              <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new) %>" title="添加">
                 <div class="work_action_add">
                 </div>
                 <div class="work_action_add_move">
@@ -47,7 +47,7 @@
             <% end %>
           <% else %>
               <% if choose_operate_show("my_school/garden_growth_records/new") %>
-                <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new, :tp=>0)%>" title="添加">
+                <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new)%>" title="添加">
                   <div class="work_action_add">
                   </div>
                   <div class="work_action_add_move">
@@ -57,9 +57,9 @@
           <% end %>
         </li>
         <li>
-          <% if @growth_record.tp == true %>
+          <% if controller_name == "growth_records" %>
             <% if choose_operate_show("my_school/growth_records/edit") %>
-              <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:edit,:id=>@growth_record.id, :tp=>1)%>" title="编辑">
+              <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:edit,:id=>@growth_record.id)%>" title="编辑">
                 <div class="work_action_edit">
                 </div>
                 <div class="work_action_edit_move">
@@ -68,7 +68,7 @@
             <% end %>
         <% else %>
           <% if choose_operate_show("my_school/garden_growth_records/garden") %>
-            <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:edit,:id=>@growth_record.id, :tp=>0)%>" title="编辑">
+            <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:edit,:id=>@growth_record.id)%>" title="编辑">
               <div class="work_action_edit">
               </div>
               <div class="work_action_edit_move">
@@ -78,7 +78,7 @@
         <% end %>
         </li>
         <li>
-          <% if @growth_record.tp == true %>
+          <% if controller_name == "growth_records" %>
             <% if choose_operate_show("my_school/growth_records/home") %>
               <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:home)%>" title="返回">
                 <div class="work_action_return">
@@ -150,13 +150,13 @@
             <label class="control-label" >创建人</label>
             <div class="controls">
               <label class="show_label">
-                <%= @creater.name %>
+                <%= @growth_record.creater.try(:name) %>
               </label>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label" >
-              <% if @growth_record.tp == true %>
+              <% if controller_name == "growth_records" %>
                 在家表现
               <% else %>
                 在园表现
@@ -172,7 +172,7 @@
             <label class="control-label" >类型</label>
             <div class="controls">
               <label class="show_label">
-                <%= @growth_record.tp == true ? "宝宝在家" : "宝宝在园" %>
+                <%= controller_name == "growth_records" ? "宝宝在家" : "宝宝在园" %>
               </label>
             </div>
           </div>

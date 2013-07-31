@@ -6,7 +6,7 @@ class  MySchool::TopicsController < MySchool::ManageController
     if params[:topic_category_id]
       if topic_category = @kind.topic_categories.find_by_id(params[:topic_category_id])
         if current_user.get_users_ranges[:tp] == :student
-          @topics = @kind.topics.where("").search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+          @topics = @kind.topics.where("topic_category_id = ? and (creater_id = ? or squad_id = ? or squad_id is null)", topic_category.id, current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
         else
           @topics = @kind.topics.where(:topic_category_id => topic_category.id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
         end
@@ -16,7 +16,7 @@ class  MySchool::TopicsController < MySchool::ManageController
       end
     else
       if current_user.get_users_ranges[:tp] == :student
-        @topics = @kind.topics.where(:creater_id => current_user.id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+        @topics = @kind.topics.where("creater_id = ? or squad_id = ? or squad_id is null", current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
       else
         @topics = @kind.topics.search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
       end
@@ -25,8 +25,18 @@ class  MySchool::TopicsController < MySchool::ManageController
   end
 
   def show
-    @topic = Topic.find_by_id_and_kindergarten_id(params[:id], @kind.id)
-    @topic_creater = User.find_by_id(@topic.creater_id)
+    if current_user.get_users_ranges[:tp] == :student
+      @topic = @kind.topics.where("creater_id = ? or squad_id = ? or squad_id is null", current_user.id, current_user.student_info.squad_id).find_by_id(params[:id])
+    else
+      @topic = @kind.topics.find_by_id(params[:id])
+    end
+
+    if @topic.nil?
+      flash[:error] = "没有该贴子或权限不够"
+      redirect_to :action => :index
+      return
+    end
+
     @topic_entry = TopicEntry.new
     @topic_entry.topic_id = @topic.id
     @topic_entry.creater_id = current_user.id
@@ -38,6 +48,9 @@ class  MySchool::TopicsController < MySchool::ManageController
 
   def new
     @topic = Topic.new
+    if current_user.get_users_ranges[:tp] == :student
+      @topic.squad_id = current_user.student_info.squad_id
+    end
     @topic.kindergarten_id = @kind.id
     @topic.creater_id = current_user.id
 
@@ -48,6 +61,9 @@ class  MySchool::TopicsController < MySchool::ManageController
     @topic = Topic.new(params[:topic])
     @topic.kindergarten_id = @kind.id
     @topic.creater_id = current_user.id
+    if current_user.get_users_ranges[:tp] == :student
+      @topic.squad_id = current_user.student_info.squad_id
+    end
 
     if @topic.save!
       flash[:success] = "添加贴子成功"
@@ -59,29 +75,54 @@ class  MySchool::TopicsController < MySchool::ManageController
   end
 
   def edit
-    @topic = Topic.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    if current_user.get_users_ranges[:tp] == :student
+      @topic = @kind.topics.where(:creater_id => current_user.id).find_by_id(params[:id])
+    else
+      @topic = @kind.topics.find_by_id(params[:id])
+    end
+
+    if @topic.nil?
+      flash[:error] = "没有该贴子或没有权限"
+      redirect_to :action => :index
+    end
   end
 
   def update
-    @topic = Topic.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    if params[:topic]
+      params[:topic][:kindergarten_id] = @kind.id
+      params[:topic][:creater_id] = current_user.id
+      if current_user.get_users_ranges[:tp] == :student
+        params[:topic][:squad_id] = current_user.student_info.squad_id
+      end
+    end
+    if current_user.get_users_ranges[:tp] == :student
+      @topic = @kind.topics.find_by_id_and_creater_id(params[:id], current_user.id)
+    else
+      @topic = @kind.topics.find_by_id(params[:id])
+    end
 
     if @topic.update_attributes(params[:topic])
-      flash[:success] = "修改贴子成功"
+      flash[:success] = "更新贴子成功"
       redirect_to my_school_topic_path(@topic)
     else
-      flash[:error] = "修改贴子失败"
+      flash[:error] = "更新贴子失败"
       render :edit
     end
   end
 
   def destroy
-    @topic = Topic.find_by_id_and_kindergarten_id(params[:id], @kind.id)
-    @topic.destroy
+    if current_user.get_users_ranges[:tp] == :student
+      flash[:error] = "没有权限"
+      redirect_to :action => :index
+    else
+      @topic = Topic.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+      @topic.destroy
 
-    respond_to do |format|
-      flash[:notice] = '删除贴子成功.'
-      format.html { redirect_to(:action=>:index) }
-      format.xml  { head :ok }
+      respond_to do |format|
+        flash[:notice] = '删除贴子成功.'
+        format.html { redirect_to(:action=>:index) }
+        format.xml  { head :ok }
+      end
     end
   end
 

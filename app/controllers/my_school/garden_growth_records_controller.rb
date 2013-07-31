@@ -1,12 +1,13 @@
 #encoding:utf-8
 class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
 
+  before_filter :is_student?, :only => [:show, :edit]
+
   def garden
     if current_user.get_users_ranges[:tp] == :student
-      @growth_records = GrowthRecord.search(params[:growth_record] || {}).where(:student_info_id => current_user.student_info.id, :tp => 0).page(params[:page] || 1).per(10).order("created_at DESC")
+      @growth_records = GrowthRecord.search(params[:growth_record] || {}).where("tp = ? and (creater_id = ? or student_info_id = ?)", 0, current_user.id, current_user.student_info.id).page(params[:page] || 1).per(10).order("created_at DESC")
     elsif current_user.get_users_ranges[:tp] == :teachers
-      squads = current_user.get_users_ranges[:squads]
-      @growth_records = GrowthRecord.search(params[:growth_record] || {}).where("student_infos.squad_id=? and tp=0",squads.collect(&:id)).joins("LEFT JOIN student_infos on(student_infos.id = growth_records.student_info_id)").page(params[:page] || 1).per(10).order("created_at DESC")
+      @growth_records = GrowthRecord.search(params[:growth_record] || {}).where("student_infos.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) and tp=0",current_user.staff.id).joins("INNER JOIN student_infos on(student_infos.id = growth_records.student_info_id)").page(params[:page] || 1).per(10).order("created_at DESC")
     else
       @growth_records = @kind.growth_records.search(params[:growth_record] || {}).where(:tp => 0).page(params[:page] || 1).per(10).order("created_at DESC")
     end
@@ -46,29 +47,7 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
   end
 
   def show
-    if current_user.get_users_ranges[:tp] == :student
-      if (@growth_record = GrowthRecord.find_by_id(params[:id])) && current_user.student_info.growth_records.include?(@growth_record)
-        @creater = User.find_by_id(@growth_record.creater_id) unless @growth_record.creater_id.nil?
-        render "my_school/growth_records/show"
-      else
-        flash[:notice] = "不能查看他人的成长记录或该记录不存在"
-        redirect_to garden_my_school_garden_growth_records_path
-      end
-    elsif current_user.get_users_ranges[:tp] == :teachers
-      squads = current_user.get_users_ranges[:squads]
-      @growth_records = GrowthRecord.where("student_infos.squad_id=? and tp=0",squads.collect(&:id)).joins("LEFT JOIN student_infos on(student_infos.id = growth_records.student_info_id)")
-      if (@growth_record = GrowthRecord.find_by_id(params[:id])) && @growth_records.include?(@growth_record)
-        @creater = User.find_by_id(@growth_record.creater_id) unless @growth_record.creater_id.nil?
-        render "my_school/growth_records/show"
-      else
-        flash[:notice] = "不能查看他人的成长记录或该记录不存在"
-        redirect_to garden_my_school_garden_growth_records_path
-      end
-    else
-      @growth_record = GrowthRecord.find_by_id(params[:id])
-      @creater = User.find_by_id(@growth_record.creater_id) unless @growth_record.creater_id.nil?
-      render "my_school/growth_records/show"
-    end
+    render "my_school/growth_records/show"
   end
 
   def edit
@@ -121,4 +100,30 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
     end
   end
 
+  protected
+    def is_student?
+      if current_user.get_users_ranges[:tp] == :student
+        @growth_record = @kind.growth_records.find_by_id_and_tp_and_creater_id(params[:id], 0, current_user.id)
+      elsif current_user.get_users_ranges[:tp] == :teachers
+        @growth_records = GrowthRecord.where("student_infos.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) and tp=0",current_user.staff.id).joins("INNER JOIN student_infos on(student_infos.id = growth_records.student_info_id)")
+        @growth_record = GrowthRecord.find_by_id_and_tp(params[:id], 0)
+        unless @growth_record.nil?
+          unless @growth_records.include?(@growth_record)
+            flash[:error] = "没有权限或该宝宝在家成长记录不存在"
+            redirect_to :action => :garden
+            return
+          end
+        else
+          flash[:error] = "没有权限或该宝宝在家成长记录不存在"
+          redirect_to :action => :garden
+          return
+        end
+      else
+        @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 1)
+      end
+      if @growth_record.nil?
+        flash[:error] = "没有权限或该宝宝在家成长记录不存在"
+        redirect_to :action => :garden
+      end
+    end
 end

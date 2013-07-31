@@ -23,6 +23,9 @@ class User < ActiveRecord::Base
 
   has_many :news , :class_name=>"New"
 
+  has_many :approve_module_users , :class_name=>"ApproveModuleUser"
+
+
   before_save :encrypt_password
 
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
