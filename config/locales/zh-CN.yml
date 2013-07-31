@@ -290,6 +290,7 @@ zh-CN:
         updated_at: "更新时间"
         is_send: '是否能够发短信'
         is_receive: '是否能够接受短信'
+        chain_code: "短信扩展码"
       grade:
         kindergarten_label: "所属幼儿园"
         kindergarten: "所属幼儿园"
@@ -552,6 +553,7 @@ zh-CN:
       activity:
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"
+        squad_label: "所属班级"
         start_at: "开始时间"
         end_at: "结束时间"
         logo: "LOGO"

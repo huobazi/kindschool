@@ -10,13 +10,23 @@
       <td></td>
     </tr>
   <%else%>
-    <% entry = page_content.content_entries.first%>
+  <%(@content_entries || []).each do |entry|%>
+    <%if entry.number == "official_website_about_us_content" %>
     <tr>
       <td><%= raw entry.content %></td>
       <td>
         <%= link_to "编辑",:controller=>"/my_school/page_contents",:action=>:edit_content,:id=>page_content.id,:entry_id=>entry.id %>
       </td>
     </tr>
+    <%elsif  entry.number == "official_website_about_us_title"%>
+    <tr>
+      <td><%= raw entry.title %></td>
+      <td>
+        <%= link_to "编辑",:controller=>"/my_school/page_contents",:action=>:edit_content,:id=>page_content.id,:entry_id=>entry.id %>
+      </td>
+    </tr>
+      <%end%>
+    <%end%>
   <% end %>
 </table>
 <%if @content_entries%>

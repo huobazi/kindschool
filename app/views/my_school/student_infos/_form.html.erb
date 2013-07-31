@@ -45,12 +45,10 @@
     <% end %>
     <% if action_name == "new" %>
       <div class="select_field">
-        <div><p class="title">*选择学员</p></div>
+        <div><p class="title">*选择班级</p></div>
         <label class="field_prompt" for="grade">年级:</label>
         <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
         <div id="grade_squad_partial">
-        </div>
-        <div id="squad_student_partial">
         </div>
       </div>
     <% else %>
@@ -114,7 +112,7 @@
   <%= f.input :family_email %>
   <%= f.input :living_time %>
   <%= f.input :family_marital %>
-  <%= f.input :education %>
+  <%#= f.input :education %>
   <%= f.input :education, :input_html => {:class => "span5"} %>
   <%= f.input :safe_box %>
 </fieldset>
@@ -141,14 +139,14 @@ var flag = []
   $("input[name='commit']").click(function(){
     if ( $("#squad_id").length > 0 ) {
       if($("#grade").next("span.help-inline").length > 0) {
-        $("#grade").next("span help-inline").remove()
+        $("#grade").next("span.help-inline").remove()
       }
       flag.push(false);
     } else if ( $("#student_info_squad_label").length > 0 || $("#student_info_squad").length > 0 ) {
       flag.push(false)
     } else {
       if( $("#grade").next("span.help-inline").length == 0 ) {
-        $("<span class='help-inline'>必须选择学员</span>").insertAfter($("#grade"))
+        $("<span class='help-inline'>必须选择班级</span>").insertAfter($("#grade"))
       }
       flag.push(true);
     }

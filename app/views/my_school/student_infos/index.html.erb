@@ -48,6 +48,8 @@
           <%= text_field :student_info,:user_name_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:user_name_like] if params[:student_info] }"  %>
           <b>账号：</b>
           <%= text_field :student_info,:user_login_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:user_login_like] if params[:student_info] }"  %>
+          <b>收短信：</b>
+          <%= select_tag("student_info[user_is_receive_equals]", options_for_select([["全部",""],["可收短信",1],["不可收短信",0]],(params[:student_info].blank? ? "" : params[:student_info][:user_is_receive_equals])),:style=>"width:100px;") %>
           <%= submit_tag "搜索" %>
         <%end%>
       </div>
@@ -80,7 +82,7 @@
                       <%= link_to "编辑", edit_my_school_student_info_path(student), :class => "show" %>
                     <% end %>
                     <% if choose_operate_show("my_school/users/set_gather_sms") %>
-                      <%= link_to (student.user.is_receive ? "取消收短信" : "可收短信"), set_gather_sms_my_school_user_path(student.user), :class => "show" %>
+                      <%= link_to (student.user.is_receive ? "取消收短信" : "设为可收短信"), set_gather_sms_my_school_user_path(student.user), :class => "show" %>
                     <% end %>
                   </div>
                 </td>

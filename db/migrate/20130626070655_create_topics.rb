@@ -12,6 +12,7 @@ class CreateTopics < ActiveRecord::Migration
       t.string :approve_status # 审核状态
       t.integer :approver_id
       t.integer :show_count, :default => 0# 查看次数
+      t.integer :squad_id
 
       t.timestamps
     end

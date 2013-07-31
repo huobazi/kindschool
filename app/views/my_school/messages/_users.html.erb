@@ -10,7 +10,7 @@
     <% v.each do |user|%>
       <div class="message_user">
         <label><%=  user.name%></label>
-        <input name="ids[]" value="<%=user.id%>" type="hidden"/>
+        <input name="ids[]" value="<%=user.id%>" type="hidden" class="<%=user.is_receive ? 'sms' : ''%>"/>
       </div>
     <% end %>
   </div>

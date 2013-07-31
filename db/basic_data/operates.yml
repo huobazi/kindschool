@@ -283,18 +283,19 @@ forum_my:
   params: ""
   protocol: ""
   <<: *DEFAULTS
-forum_send:
+forum_new:
   id: 3001
   parent_id: 3
-  name: "发帖子"
+  name: "新增帖子"
   level: 2
   sequence: 0
-  note: "发帖子"
+  note: "新增帖子"
   controller: "my_school/topics"
   action: "new"
   params: ""
   protocol: ""
   <<: *DEFAULTS
+
 forum_approve:
   id: 3002
   parent_id: 3
@@ -321,13 +322,37 @@ forum_delete:
   <<: *DEFAULTS
 forum_edit:
   id: 3004
-  parent_id: 3004
+  parent_id: 3
   name: "编辑贴子"
   level: 2
   sequence: 1
   note: "编辑贴子"
   controller: "my_school/topics"
   action: "edit"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+forum_create:
+  id: 3008
+  parent_id: 3
+  name: "创建帖子"
+  level: 2
+  sequence: 0
+  note: "创建帖子"
+  controller: "my_school/topics"
+  action: "create"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+forum_update:
+  id: 3009
+  parent_id: 3
+  name: "更新帖子"
+  level: 2
+  sequence: 0
+  note: "更新帖子"
+  controller: "my_school/topics"
+  action: "update"
   params: ""
   protocol: ""
   <<: *DEFAULTS
@@ -522,7 +547,29 @@ staff_destroy:
   action: "destroy"
   protocol: ""
   <<: *DEFAULTS
+staff_allocation_squad:
+  id: 4153
+  parent_id: 5
+  name: "为教职工分配班级"
+  level: 2
+  sequence: 3
+  note: "为教职工分配班级"
+  controller: "my_school/teachers"
+  action: "allocation"
+  protocol: ""
+  <<: *DEFAULTS
+staff_class_teacher:
+  id: 4163
+  parent_id: 5
+  name: "为教职工分配班级"
+  level: 2
+  sequence: 3
+  note: "为教职工分配班级"
+  controller: "my_school/teachers"
+  action: "set_class_teacher"
+  protocol: ""
 
+  <<: *DEFAULTS 
 student_manage:
   id: 4004
   parent_id: 5
@@ -936,6 +983,18 @@ my_kindergarten_update:
   note: "幼儿园设置更新"
   controller: "my_school/my_kindergarten"
   action: "update"
+  protocol: ""
+  <<: *DEFAULTS
+#==============================审核设置
+approve_modules_index:
+  id: 5500
+  parent_id: 6
+  name: "审核设置"
+  level: 2
+  sequence: 0
+  note: "审核设置"
+  controller: "my_school/approve_modules"
+  action: "index"
   protocol: ""
   <<: *DEFAULTS
 #==============================健康饮食
@@ -1602,5 +1661,17 @@ news_destroy:
   controller: "my_school/news"
   action: "destroy"
   params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+student_info_execl:
+  id: 12000
+  parent_id: 5
+  name: "学员信息下载"
+  level: 2
+  sequence: 4
+  note: "学员信息下载"
+  controller: "my_school/student_infos"
+  action: "student_execl"
   protocol: ""
   <<: *DEFAULTS

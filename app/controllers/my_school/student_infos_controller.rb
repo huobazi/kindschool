@@ -130,4 +130,10 @@ class  MySchool::StudentInfosController < MySchool::ManageController
     render "grade_squad", :layout => false
   end
 
+  def student_execl
+    @student_info = @kind.student_infos.find(params[:student_info_id])  
+    @user = @student_info.user
+    exel = render_to_string(:layout=>'print')
+    send_data exel, :content_type => "application/excel", :filename => "#{@user.name}_信息下载.xls"
+  end
 end

@@ -20,7 +20,7 @@
   $("input[type='submit']").click(function(){
     if (activity_entry_note.html().length < 3 || activity_entry_note.isEmpty()) {
       if ( $("#activity_entry_note").next("span.help-inline").length == 0 ) {
-        $("<span class='help-inline'>长度不够或为空<span>").insertAfter("#activity_entry_note")
+        $("<span class='help-inline'>长度不够(不得少于3个字符)<span>").insertAfter("#activity_entry_note")
       }
       return false;
     } else {

@@ -42,7 +42,9 @@ MENUS ={"home"=>{
   "my_school/squads" => ["index", "new","create","update", "show", "edit"],
   "my_school/teachers" => ["set_class_teacher_for_squad_view"]
 }, "13000" => {
-  "my_school/staffs" => ["index", "new", "show", "edit"]},
+  "my_school/staffs" => ["index", "new", "show", "edit"],
+  "my_school/teachers" => ["allocation"]
+  },
   "14000" => {
   "my_school/student_infos" => ["index", "new", "show", "edit"]},
   "15000" => {"my_school/virtual_squads"=>['index','new','edit','show']},
@@ -79,7 +81,11 @@ MENUS ={"home"=>{
     },
     "39000"=>{
       "my_school/my_kindergarten"=>["index",  "edit", "update"]
+    },
+    "39100"=>{
+      "my_school/approve_modules"=>["index"]
     }
+
    },
    "100000"=>{
     "101000" => {

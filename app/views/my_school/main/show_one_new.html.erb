@@ -16,17 +16,19 @@
     <div class="official_new_dotted_line">
     </div>
     <div class="control-group">
-            <label class="control-label_left" >创建时间</label>
-            <div class="controls">
-              <label class="show_label">
+            <div class="time_control">
+              <div class="time_control_title">
+              <lable>创建时间</lable>
+            </div>
+              <label class="">
                 <%= @new.created_at.try(:to_long_datetime)%>
               </label>
             </div>
-          </div>
-    <div class="control-group">
-            <label class="control-label_left" >浏览次数</label>
-            <div class="controls">
-              <label class="show_label">
+            <div class="show_count_time">
+              <div class="time_control_title">
+              <lable>浏览次数</lable>
+            </div>
+              <label class="">
                 <%= @new.show_count%>
               </label>
             </div>

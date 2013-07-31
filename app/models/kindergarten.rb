@@ -16,7 +16,7 @@ class Kindergarten < ActiveRecord::Base
   end
 
   has_many :users   #所有用户
-  
+
   has_many :operates
   has_many :grades,:order=>:sequence  #年级
   has_many :grade_teachers,:through=>:grades, :source => :staff  #年级组长
@@ -67,6 +67,8 @@ class Kindergarten < ActiveRecord::Base
 
   has_many :news
 
+  has_many :approve_modules
+
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img
 
@@ -81,13 +83,21 @@ class Kindergarten < ActiveRecord::Base
         self.page_contents << PageContent.new((v || {}).merge(:number=>k))
       end
     end
+    #创建所需要的审核模块
+    approve_modules = YAML.load_file("#{Rails.root}/db/basic_data/approve_modules.yml")
+    approve_modules.each do |k,approve_module|
+     if self.approve_modules.blank? && self.approve_modules.find_by_number(approve_module[:number]).blank?
+       @approve_module = ApproveModule.new(approve_module)
+       @approve_module.kindergarten =self
+       @approve_module.save
+     end
+    end
     content_entries = YAML.load_file("#{Rails.root}/db/basic_data/content_entries.yml")
     content_entries.each do |k,content_entry|
       if k == "official_website_home_news"
         @new = News.new(content_entry)
         @new.kindergarten = self
         @new.save!
-        puts @new.inspect
       else
         page_content=self.page_contents.find_by_number(k)
         content_entry["content_entries"].each do |record|
@@ -95,8 +105,6 @@ class Kindergarten < ActiveRecord::Base
         end
 
         page_content.save
-        puts "4444444444444444"
-        puts page_content.content_entries.inspect
       end
     end
 
@@ -262,5 +270,15 @@ class Kindergarten < ActiveRecord::Base
   #获取可以发送短信的用户数量
   def get_send_sms_count
     self.users.where(:is_send=>true).count()
+  end
+
+  #获取可用的扩展码
+  def get_chain_code
+    chain_users = self.users.where(:chain_delete=>true)
+    unless chain_users.blank?
+      return chain_users.first.chain_code
+    else
+      return (self.users.maximum(:chain_code) || 0) + 1
+    end
   end
 end

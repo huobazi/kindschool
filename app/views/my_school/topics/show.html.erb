@@ -69,7 +69,7 @@
         <div id="topic_show" class="topic">
           <div class="topic_content_up">
             <p class="topic_title"><span><%= @topic.title %><span></p>
-            <p class="topic_info"> <span class="creater"> <%= @topic.topic_category.name %>•<%= @topic.creater ? @topic.creater.name : "" %><span> <span class="created_name">&nbsp;&nbsp;<%= @topic.created_at.to_long_datetime %></span></p>
+            <p class="topic_info"> <span class="creater"> <%= @topic.topic_category.name %>•<%= @topic.creater ? @topic.creater.name : "" %>•<%= @topic.try(:squad).try(:name) %></span><span class="created_name">&nbsp;&nbsp;<%= @topic.created_at.to_long_datetime %></span></p>
           </div>
           <div class="topic_content"><%= raw @topic.content %></div>
         </div>
