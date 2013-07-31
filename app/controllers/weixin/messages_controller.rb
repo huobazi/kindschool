@@ -88,6 +88,14 @@ class Weixin::MessagesController < Weixin::ManageController
   def new
     @message = Message.new
     @data = current_user.get_users_ranges
+    if params[:message_id]
+      if message = Message.find_by_id_and_kindergarten_id(params[:message_id],@kind.id)
+        if entry = message.message_entries.where(:receiver_id=>current_user.id)
+          @receiver_id = message.sender_id
+          @message.tp = 1
+        end
+      end
+    end
   end
   def edit
     @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
