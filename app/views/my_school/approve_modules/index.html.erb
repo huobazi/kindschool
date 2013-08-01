@@ -1,0 +1,78 @@
+<script type="text/javascript">
+  $(function() {
+    $("#dialog_change_users" ).dialog({
+      dialogClass: "no-close",
+      autoOpen: false,
+      height:500,
+      width:700,
+      buttons: {
+        "确定": function () {
+          $(this).dialog("close");
+        },
+        "取消": function () {
+          $("#message_inputs").html("");
+          $(this).dialog("close");
+        }
+      }
+    });
+    $( "#change_users" ).click(function() {
+      $( "#dialog_change_users" ).dialog("open");
+    });
+  });
+</script>
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>审核设置</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+         <li>
+        </li>
+        
+      </ul>
+    </div>
+
+    <div class="work_list">
+        <% unless @approve_modules.blank? %>
+          <table class="table table-striped table-hover">
+                  <tr>
+                    <th></th>
+                    <th>审核模块</th>
+                    <th>审核设置</th>
+                    <th>审核人</th>
+                    <th>操作</th>
+                  </tr>
+                <% (@approve_modules || []).each do |approve_module| %>
+                  <tr>
+                    <td></td>
+                    <td><%=link_to approve_module.name ,
+                    edit_my_school_approve_module_path(approve_module)%></td>
+                    <td><%=approve_module.status ? "已开启" : "未开启" %></td>
+                    <td>
+                      <%(approve_module.approve_module_users || []).each do |approve_module_user|%>
+                      <%= approve_module_user.user.name%>
+                      <%end%>
+                    </td>
+                    <td><%=link_to "设置" ,
+                    edit_my_school_approve_module_path(approve_module)%></td>
+                  </tr>
+                <% end %>
+          </table>
+        <% else %>
+          暂无审核设置
+        <% end %>
+    </div>
+  </div>
+
+</div>
+<%=render :partial => "/my_school/virtual_squads/personnel_select_js.html.erb"-%>

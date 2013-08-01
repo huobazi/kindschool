@@ -1,0 +1,61 @@
+<script type="text/javascript">
+  $(function() {
+    $("#dialog_change_users" ).dialog({
+      dialogClass: "no-close",
+      autoOpen: false,
+      height:500,
+      width:700,
+      buttons: {
+        "确定": function () {
+          $(this).dialog("close");
+        },
+        "取消": function () {
+          $("#message_inputs").html("");
+          $(this).dialog("close");
+        }
+      }
+    });
+    $( "#change_users" ).click(function() {
+      $( "#dialog_change_users" ).dialog("open");
+    });
+  });
+</script>
+<div class="control-group">
+  <%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
+  <div class="controls">
+    <%= text_field_tag(:kindergarten,@kind.name, :disabled=> true) %>
+  </div>
+</div>
+<div class="control-group">
+  <%=f.label :name, '审核模块:' ,:class=>"control-label"%>
+  <div class="controls">
+    <%= f.text_field :name , :disabled=> true %>
+  </div>
+</div>
+<div class="control-group">
+  <%=f.label :admin, '是否能够审核:' ,:class=>"control-label"%>
+<div class="controls">
+  <%= hidden_field_tag 'approve_module[status]', '0' %>
+  <%= check_box(:approve_module,:status, {:checked=>@approve_module.status}, true, false)  %>
+</div>
+</div>
+<%=render :partial => "/my_school/virtual_squads/personnel_selection"-%>
+<div class="control-group">
+  <label class="control-label"></label>
+  <div class="controls">
+    <%= submit_tag('保存',:class=>"btn") %>
+  </div>
+</div>
+<div id="dialog_change_users"   title="选择收件人">
+  <%= render :partial => "/my_school/messages/inbox" %>
+</div>
+<script type="text/javascript">
+ $(function() {
+<% if action_name == "edit"%>
+      $(window).load(function(){
+        $("#message_inputs").load("<%= url_for(:controller=>'/my_school/approve_modules',:action=>:get_edit_ids,:id=>@approve_module.id) %>");
+      })
+<% end %>
+  });
+</script>
+<%=render :partial => "/my_school/virtual_squads/personnel_select_js.html.erb"-%>

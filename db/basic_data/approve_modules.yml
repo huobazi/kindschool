@@ -1,0 +1,12 @@
+news:
+  name: "新闻"
+  number: "news"
+  status: false
+notices:
+  name: "通知"
+  number: "notices"
+  status: false
+messages:
+  name: "消息"
+  number: "messages"
+  status: false

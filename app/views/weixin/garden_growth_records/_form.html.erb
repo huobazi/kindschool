@@ -32,19 +32,35 @@
 </div>
 
 <% if action_name == "new" %>
-  <div class="field">
-    <label class="field_prompt" for="grade">年级:</label>
-    <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
-    <div id="grade_squad_partial">
-      <label class="field_prompt" for="squad">班级:</label>
-      <%= select_tag "squad", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+
+  <% if current_user.get_users_ranges[:tp] == :teachers %>
+    <div class="field">
+      <div id="grade_squad_partial">
+        <label class="field_prompt" for="squad">班级:</label>
+        <%= select_tag "squad", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+      </div>
+      <div id="squad_student_partial">
+      </div>
     </div>
-    <div id="squad_student_partial">
-      <label class="field_prompt" for="student">学员:</label>
-      <%= select_tag "student_info_id", options_for_select((@student_infos.collect{|s|[s.user.name,s.id]} || [])), :class => "select", :name => "growth_record[student_info_id]" %>
+  <% else %>
+    <div class="field">
+      <label class="field_prompt" for="grade">年级:</label>
+      <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+      <div id="grade_squad_partial">
+        <label class="field_prompt" for="squad">班级:</label>
+        <%= select_tag "squad", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+      </div>
+      <div id="squad_student_partial">
+        <label class="field_prompt" for="student">学员:</label>
+        <%= select_tag "student_info_id", options_for_select((@student_infos.collect{|s|[s.user.name,s.id]} || [])), :class => "select", :name => "growth_record[student_info_id]" %>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% else %>
+  <div class="field">
+    <label class="field_prompt">学员:</label>
+    <%= f.text_field :student_info_label, :disabled => true %>
+  </div>
 <% end %>
 
 <div class="field" id="content_field">

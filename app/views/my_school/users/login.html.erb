@@ -56,20 +56,29 @@
         <div class="login_form_span">
           <%= form_tag url_for(:action=>:login),:id=>"longin_form", :autocomplete=>"off" do  %>
             <%= text_field_tag :login,"",:placeholder=>"账号", :class => 'login_input'%>
-            <br/>
-            <br/>
+            <br/><br/>
             <%= password_field :password,"",:placeholder=>"登陆密码",:name=>"password", :class => 'password_input'%>
+            <br/><br/>
+            <% if @can_auth %>
+              <%= text_field_tag :auth_code,"",:placeholder=>"验证码", :class => 'auth_input'%>
+              <div class="auth_code_img">
+                <img id="code_image" src="/code/code_image?<%=Time.now.to_i%>" alt="验证码"/>
+                <div id="auth_loading">
+                  <img src="/t/colorful/ajax-loader.gif" alt="加载..."/>
+                </div>
+              </div>
+            <% end %>
+            <!--
             <div class="tip_login">
               <div class="next_login">
-                <!--
                 <input type="checkbox" id="next_input" />
                 <label for="next_input">下次自动登陆</label>
-                -->
               </div>
               <div class="forgot_password">
-                <%= link_to "忘记密码?","/" %>
+  <%#= link_to "忘记密码?","/" %>
               </div>
             </div>
+            -->
             <div class="login_submit_div">
               <div class="login_submit">
                 <a href="###" class="button_xun">&nbsp;</a>
@@ -104,5 +113,12 @@
         $(".button_xun").trigger("click");
       }
     });
+    $("#code_image").click(function(){
+      $("#auth_loading").show();
+      $.get("/code/recode",function(){
+        $("#code_image").attr("src","/code/code_image?" + (new Date()).valueOf());
+        $("#auth_loading").hide();
+      })
+    })
   })
 </script>

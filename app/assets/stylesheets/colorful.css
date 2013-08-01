@@ -513,7 +513,7 @@ a{
     vertical-align: middle;
 }
 #sms_count{
- display: none;
+    display: none;
 }
 .work_menu .a_selected{
     color: white;
@@ -881,9 +881,37 @@ table.user_attributes td {
     padding-left: 40px;
     width: 273px;
     border-radius:6px;
-    padding-right:5px;
+    padding-right:10px;
     background-position: 0 -58px;
     background-color: #A4C500;
+}
+.login .auth_input{
+    background-color: #A4C500;
+    border-radius:6px;
+    color: white;
+    height: 36px;
+    width: 120px;
+    font-size: 18px;
+    padding-right:5px;
+    padding-left: 5px;
+}
+.login .auth_code_img{
+    display: inline;
+}
+.login .auth_code_img img{
+    height: 40px;
+    padding-left: 15px;
+    vertical-align: top;
+    cursor: pointer;
+    width: 122px;
+}
+.login #auth_loading{
+    display: none;
+    float: right;
+}
+.login #auth_loading img{
+    width: 25px;
+    height: 40px;
 }
 .login .login_form_span{
     padding: 20px;
@@ -1086,8 +1114,8 @@ table.user_attributes td {
 }
 
 #topic_category_tabs {
-  padding-left: 50px;
-  padding-top: 10px;
+    padding-left: 50px;
+    padding-top: 10px;
 }
 #topic_category_tabs a {
     color: #333333;
@@ -1613,26 +1641,26 @@ span.help-inline {
 /*==================== 活动 ============*/
 
 #activity_show {
-  float: left;
+    float: left;
 }
 
 #activity_down {
-  float: left;
+    float: left;
 }
 
 #activity_down .activity_logo {
-  float: left;
+    float: left;
 }
 
 #activity_down .activity_content {
-  float: left;
-  width: 400px;
-  padding-left: 20px;
-  padding-top: 10px;
-  text-indent: 10px;
+    float: left;
+    width: 400px;
+    padding-left: 20px;
+    padding-top: 10px;
+    text-indent: 10px;
 }
 
 .activity .title .activity_title {
-  font-size: 30px;
-  color: #000000;
+    font-size: 30px;
+    color: #000000;
 }

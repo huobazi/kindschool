@@ -5,7 +5,7 @@
       <div class="headline_title">
         <div class="messages_root"></div>
         <label>
-          <% if params[:tp] == "1" %>
+          <% if controller_name == "growth_records" %>
             宝宝在家管理信息
           <% else %>
             宝宝在园信息
@@ -19,7 +19,7 @@
             <li>成长记录管理</li>
             <li>/</li>
             <li>
-            <% if params[:tp] == "1" %>
+            <% if controller_name == "growth_records" %>
               <%= link_to "宝宝在家", home_my_school_growth_records_path %></li>
             <% else %>
               <%= link_to "宝宝在园", garden_my_school_garden_growth_records_path %></li>
@@ -31,7 +31,7 @@
       </div>
       <ul class="work_action">
         <li>
-          <% if params[:tp] == "1" %>
+          <% if controller_name == "growth_records" %>
             <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:home)%>" title="返回">
           <% else %>
             <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:garden)%>" title="返回">
@@ -47,7 +47,7 @@
 
     <div class="work_form">
       <div class="form_div">
-        <% if params[:tp] == "1" %>
+        <% if controller_name == "growth_records" %>
           <%= simple_form_for(@growth_record, :validate => true, :url => my_school_growth_records_path, :html => {:class => "form-horizontal"}) do |f| %>
             <%= render :partial => "form", :object => f %>
           <% end %>

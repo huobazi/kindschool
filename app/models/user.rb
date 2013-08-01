@@ -23,11 +23,14 @@ class User < ActiveRecord::Base
 
   has_many :news , :class_name=>"New"
 
+  has_many :approve_module_users , :class_name=>"ApproveModuleUser"
+
+
   before_save :encrypt_password
 
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
   validates_length_of :phone, :is => 11
-  validates :phone,:presence => true,:uniqueness => { :scope => :kindergarten_id}
+  validates :phone,:presence => true,:uniqueness => true#{ :scope => :kindergarten_id}
   validates :email,:uniqueness => { :scope => :kindergarten_id}, :allow_blank => true
   validates :name, :login, :kindergarten_id,:presence => true
   validates :login, :uniqueness => true
@@ -50,7 +53,7 @@ class User < ActiveRecord::Base
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
-    raise StandardError,"请输入用户名." if login.empty?
+    raise StandardError,"请输入用户名." if login.blank?
     u = find_by_login(login)
     #    if(login.include?("@"))
     #      u = find_by_login(login) # need to get the salt

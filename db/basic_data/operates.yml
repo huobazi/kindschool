@@ -356,7 +356,18 @@ forum_update:
   params: ""
   protocol: ""
   <<: *DEFAULTS
-
+forum_show:
+  id: 3010
+  parent_id: 3
+  name: "查看贴子"
+  level: 2
+  sequence: 0
+  note: "查看贴子"
+  controller: "my_school/topics"
+  action: "show"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
 #||||||||||||||||||||||||||人员管理功能
 squad_manage:
   id: 4001
@@ -985,6 +996,40 @@ my_kindergarten_update:
   action: "update"
   protocol: ""
   <<: *DEFAULTS
+#==============================审核设置
+approve_modules_index:
+  id: 5500
+  parent_id: 6
+  name: "审核设置列表"
+  level: 2
+  sequence: 0
+  note: "审核设置列表"
+  controller: "my_school/approve_modules"
+  action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+approve_modules_edit:
+  id: 5501
+  parent_id: 6
+  name: "审核设置"
+  level: 2
+  sequence: 0
+  note: "审核设置"
+  controller: "my_school/approve_modules"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+approve_modules_update:
+  id: 5502
+  parent_id: 6
+  name: "审核更新"
+  level: 2
+  sequence: 0
+  note: "审核更新"
+  controller: "my_school/approve_modules"
+  action: "update"
+  protocol: ""
+  <<: *DEFAULTS
 #==============================健康饮食
 seedlings_index:
   id: 6001
@@ -1297,6 +1342,17 @@ growth_records_edit:
   action: "edit"
   protocol: ""
   <<: *DEFAULTS
+growth_records_destroy:
+  id: 8113
+  parent_id: 8
+  name: "删除成长记录(宝宝在家)"
+  level: 2
+  sequence: 0
+  note: "宝宝在家"
+  controller: "my_school/growth_records"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
 
 garden_growth_records_new:
   id: 8014
@@ -1332,7 +1388,17 @@ garden_growth_records_edit:
   action: "edit"
   protocol: ""
   <<: *DEFAULTS
-
+garden_growth_records_edit:
+  id: 8116
+  parent_id: 8
+  name: "删除成长记录(宝宝在园)"
+  level: 2
+  sequence: 0
+  note: "宝宝在园"
+  controller: "my_school/garden_growth_records"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
 
 album_record_index:
   id: 9000

@@ -63,8 +63,20 @@
               <span class="help-block"></span>
               <label>密码</label>
               <%= password_field :password,"",:placeholder=>"登陆密码",:name=>"password", :class => 'password_input'%>
+              <% if @can_auth %>
+                <span class="help-block"></span>
+                <label>验证码</label>
+                <%= text_field_tag :auth_code,"",:placeholder=>"验证码", :class => 'auth_input'%>
+                <div class="auth_code_img">
+                  <img id="code_image" src="/code/code_image?<%=Time.now.to_i%>" alt="验证码"/>
+                  <div id="auth_loading">
+                    <img src="/t/colorful/ajax-loader.gif" alt="加载..."/>
+                  </div>
+                </div>
+              <% end %>
               <div class="error_div">
                 <% if @user_errors %>
+                  <br/>
                   <label class="error_label">
                     <%= @user_errors %>
                   </label>
@@ -85,6 +97,13 @@
       $(function(){
         $(".button_xun").click(function(){
           $("#longin_form").submit();
+        })
+        $("#code_image").click(function(){
+          $("#auth_loading").show();
+          $.get("/code/recode",function(){
+            $("#code_image").attr("src","/code/code_image?" + (new Date()).valueOf());
+            $("#auth_loading").hide();
+          })
         })
       })
     </script>
