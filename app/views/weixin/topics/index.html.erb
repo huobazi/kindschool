@@ -15,13 +15,10 @@
         <li><div class="message_content">还没有贴子。</div></li>
       <% else %>
         <% @topics.each do |topic| %>
-          <li class="topic_show" data-id="<%= topic.id %>">
-            <label class="topic_title"><%= topic.title %></label>
-            <label class="topic_created_time"><%= topic.created_at.to_long_datetime %></label>
-            <div class="topic_info">
-              <label class="topic_author"><%= topic.creater ? topic.creater.name : "" %></label>
-              <label class="topic_reply"><%= topic.topic_entries.any? ? topic.topic_entries.count : "" %></label>
-            </div>
+          <li class="show relative" data-id="<%= topic.id %>">
+            <p class="title"><span class="name"><%= topic.title %><span></p>
+            <p class="info">由<span class="author"><%= topic.creater.try(:name) %></span>发表于&nbsp;<span><%= topic.created_at.try(:to_long_datetime) %></span></p>
+            <span class="reply_count absolute"><%= topic.topic_entries.any? ? topic.topic_entries.count : "" %><span>
           </li>
          <% end %>
       <% end %>
@@ -46,7 +43,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-  $(".topic_show").each(function() {
+  $(".show").each(function() {
     $(this).click(function() {
       window.location.href = "topics/" + $(this).attr("data-id")
     })
