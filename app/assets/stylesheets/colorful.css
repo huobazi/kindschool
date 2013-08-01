@@ -1081,23 +1081,7 @@ table.user_attributes td {
     color: red;
 }
 
-.topic_entry {
-    margin-bottom: 20px;
-    float: left;
-    width: 100%;
-    border-bottom: 1px solid #DDD;
-    padding: 10px 0 10px 0;
-}
-.topic_entry .topic_entry_left {
-    float: left;
-}
-.topic_entry .topic_entry_right {
-    float :left;
-    width: 80%;
-}
-.topic_entry .user_head_logo {
-    width: 100px;
-}
+
 
 #topic_category_tabs {
     padding-left: 50px;
@@ -1659,11 +1643,47 @@ span.help-inline {
   word_wrap: break-word;
 }
 #topic_entries{
-  width:100%;
   display:inline-block;
+  padding: 30px;
 }
 .show .logo {
   padding-top: 20px;
+}
+
+.show_entry {
+    margin-bottom: 20px;
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #DDD;
+    padding: 10px 0 10px 0;
+}
+.normal_link {
+  color: #B6B6B6;
+}
+.bold_link {
+  font-weight: bold;
+  color: #000;
+}
+.show_entry:last-child {
+  border-bottom: none;
+}
+.show_entry .content_left {
+    float: left;
+}
+.show_entry .content_right {
+    float :left;
+    width: 80%;
+}
+.show_entry .user_head_logo {
+    width: 100px;
+}
+
+.show_entry .info .author {
+  font-weight: bold;
+}
+
+.show_entry .content {
+  word_wrap: break-word;
 }
 /*==================== 活动 ============*/
 

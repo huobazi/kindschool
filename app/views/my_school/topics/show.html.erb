@@ -69,7 +69,18 @@
         <div id="topic_show" class="show">
           <div class="content_up">
             <p class="title"><span><%= @topic.title %><span><span class="squad_name"><%= @topic.squad ? "*#{@topic.squad.name}" : "" %></span></p>
-                <p class="info">属于<span class="link"><%= @topic.topic_category.name %></span>类&nbsp;由&nbsp;<span class="link"><%= @topic.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @topic.try(:created_at).try(:to_long_datetime) %></span></p>
+                <p class="info">属于
+                  <span class="link">
+                    <% if choose_operate_show("my_school/topics/index") %>
+                      <%= link_to @topic.topic_category.name, my_school_topics_path(:topic_category_id => @topic.topic_category_id), :class => "normal_link" %>
+                    <% else %>
+                      <%= @topic.topic_category.name %>
+                    <% end %>
+                  </span>
+                  类&nbsp;由&nbsp;
+                  <span class="link">
+                    <%= link_to @topic.try(:creater).try(:name), my_school_user_path(@topic.creater), :class => "normal_link" %>
+                  </span>&nbsp;创建于&nbsp;<span class="time"><%= @topic.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
           <div class="content"><%= raw @topic.content %></div>
         </div>
@@ -78,13 +89,13 @@
           <% unless @topic_entries.blank? %>
             <div class="total"><b>共收到<%= @topic_entries.count %>条回复</b></div>
             <% @topic_entries.each do |topic_entry| %>
-              <div id="topic_entry_<%= topic_entry.id %>" class="topic_entry">
-                <div class="topic_entry_left">
+              <div id="topic_entry_<%= topic_entry.id %>" class="show_entry">
+                <div class="content_left">
                   <div class="user_head_logo"><img src="<%= topic_entry.creater.asset_logo ? topic_entry.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/></div>
                 </div>
-                <div class="topic_entry_right">
-                  <p topic_entry_info><span class="author"><%= topic_entry.creater.try(:name) %></span>&nbsp;&nbsp;<span class="time"><%= time_ago_in_words(topic_entry.created_at) %></span></p>
-                  <div class="topic_entry_content"><%= simple_format topic_entry.content %></div>
+                <div class="content_right">
+                  <p class="info"><span class="author"><%= topic_entry.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(topic_entry.created_at) %></span></p>
+                  <div class="content"><%= simple_format topic_entry.content %></div>
                 </div>
               </div>
             <% end %>

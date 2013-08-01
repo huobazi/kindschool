@@ -130,7 +130,10 @@
         <div id="activity_show" class="show">
           <div class="content_up">
             <p class="title"><%= @activity.title %><span class="squad_name"><%= @activity.squad ? "*#{@activity.squad.name}" : "" %></span></p>
-            <p class="info"><span class="time"><%= @activity.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @activity.end_at.try(:to_short_datetime) %></span>&nbsp;由&nbsp;<span class="link"><%= @activity.creater.try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @activity.try(:created_at).try(:to_long_datetime) %></span></p>
+            <p class="info"><span class="time"><%= @activity.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @activity.end_at.try(:to_short_datetime) %></span>&nbsp;由&nbsp;
+            <span class="link">
+              <%= link_to @activity.creater.try(:name), my_school_user_path(@activity.creater), :class => "normal_link" %>
+            </span>&nbsp;创建于&nbsp;<span class="time"><%= @activity.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
           <div id="content_down">
             <div class="logo" style="float: left; width: 100px;">
@@ -154,13 +157,16 @@
           <% unless @activity_entries.blank? %>
             <div class="total"><b>共收到<%= @activity_entries.count %>条回复</b></div>
             <% @activity_entries.each do |activity_entry| %>
-              <div id="activity_entry_<%= activity_entry.id %>" class="topic_entry">
-                <div class="topic_entry_left">
+              <div id="activity_entry_<%= activity_entry.id %>" class="show_entry">
+                <div class="content_left">
                   <div class="user_head_logo"><img src="<%= activity_entry.creater.asset_logo ? activity_entry.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/></div>
                 </div>
-                <div class="topic_entry_right">
-                  <p topic_entry_info><span class="author"><%= activity_entry.creater.try(:name) %></span>&nbsp;&nbsp;<span class="time"><%= time_ago_in_words(activity_entry.created_at) %></span></p>
-                  <div class="topic_entry_content"><%= simple_format activity_entry.note %></div>
+                <div class="content_right">
+                  <p info>
+                    <span class="author">
+                      <%= link_to activity_entry.creater.try(:name), my_school_user_path(@activity_entry.creater), :class => "bold_link" %>
+                    </span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(activity_entry.created_at) %></span></p>
+                  <div class="content"><%= simple_format activity_entry.note %></div>
                 </div>
               </div>
             <% end %>
