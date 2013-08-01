@@ -16,12 +16,24 @@ class MySchool::UsersController < MySchool::ManageController
       redirect_to :action => :index,:controller=>"/my_school/home"
       return
     end
-    if session[:login_error_count]  && session[:login_error_count] > 3
-      session[:noisy_image] = NoisyImage.new(6)
-      session[:code] = session[:noisy_image].code
-    end
-    return render :layout=>"colorful_login" unless request.post?
     begin
+      if session[:login_error_count]  && session[:login_error_count] > 2
+        @can_auth = true
+        if request.post?
+          if params[:auth_code].blank?
+            load_noisy_image
+            raise "请填写验证码"
+          end
+          if params[:auth_code] != session[:noisy_image].code
+            raise "验证码不正确"
+          else
+            load_noisy_image
+          end
+        else
+          load_noisy_image
+          return render :layout=>"colorful_login"
+        end
+      end
       self.current_user = User.authenticate(params[:login], params[:password])
       if logged_in?
         if params[:remember_me] == "1"
@@ -180,5 +192,13 @@ class MySchool::UsersController < MySchool::ManageController
   rescue Exception=>ex
     flash[:error] = ex.message
     redirect_to :back
+  end
+
+  private
+
+  def load_noisy_image
+    code_size = rand(3) + 4
+    session[:noisy_image] = NoisyImage.new(code_size)
+    session[:code] = session[:noisy_image].code
   end
 end

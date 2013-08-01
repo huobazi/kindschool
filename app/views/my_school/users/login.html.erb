@@ -59,10 +59,15 @@
             <br/><br/>
             <%= password_field :password,"",:placeholder=>"登陆密码",:name=>"password", :class => 'password_input'%>
             <br/><br/>
-            <%= text_field_tag :auth_code,"",:placeholder=>"验证码", :class => 'auth_input'%>
-            <div class="auth_code_img">
-              <img id="code_image" src="/code/code_image" alt="验证码"/>
-            </div>
+            <% if @can_auth %>
+              <%= text_field_tag :auth_code,"",:placeholder=>"验证码", :class => 'auth_input'%>
+              <div class="auth_code_img">
+                <img id="code_image" src="/code/code_image?<%=Time.now.to_i%>" alt="验证码"/>
+                <div id="auth_loading">
+                  <img src="/t/colorful/ajax-loader.gif" alt="加载..."/>
+                </div>
+              </div>
+            <% end %>
             <!--
             <div class="tip_login">
               <div class="next_login">
@@ -70,7 +75,7 @@
                 <label for="next_input">下次自动登陆</label>
               </div>
               <div class="forgot_password">
-            <%#= link_to "忘记密码?","/" %>
+  <%#= link_to "忘记密码?","/" %>
               </div>
             </div>
             -->
@@ -108,5 +113,12 @@
         $(".button_xun").trigger("click");
       }
     });
+    $("#code_image").click(function(){
+      $("#auth_loading").show();
+      $.get("/code/recode",function(){
+        $("#code_image").attr("src","/code/code_image?" + (new Date()).valueOf());
+        $("#auth_loading").hide();
+      })
+    })
   })
 </script>

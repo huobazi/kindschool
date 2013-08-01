@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
-    raise StandardError,"请输入用户名." if login.empty?
+    raise StandardError,"请输入用户名." if login.blank?
     u = find_by_login(login)
     #    if(login.include?("@"))
     #      u = find_by_login(login) # need to get the salt
