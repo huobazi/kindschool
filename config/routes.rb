@@ -9,6 +9,13 @@ School::Application.routes.draw do
         get :get_edit_ids
       end
     end
+    resources :approves do
+      collection do
+        get :news_list
+        get :news_show
+        post :one_news_approve
+      end
+    end
     resources :news 
     resources :my_kindergarten do
     end
