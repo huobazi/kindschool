@@ -698,47 +698,6 @@ ul, li {
     background: #A4C400;
     position: relative;
 }
-.message_div .message_list .data_list li.topic {
-    border: none;
-}
-.message_div .message_list .data_list li.topic .topic_title {
-    padding: 10px 20px 25px 20px;
-    font-size: 25px;
-}
-
-.message_div .message_list .data_list li.topic .topic_info {
-    padding: 0 20px 20px 20px;
-    font-size: 22px;
-}
-.message_div .message_list .data_list li.topic .topic_info span {
-    color: #7d7d7d;
-}
-.message_div .message_list .data_list li.topic .topic_info .author {
-    color: #008fdc;
-}
-.message_div .message_list .data_list li.topic .topic_content {
-    padding: 0 20px 0 20px;
-    text-indent: 15px;
-    line-height: 40px;
-}
-.message_div .message_list .data_list li.reply {
-    border: none;
-    padding: 10px 10px 15px 10px;
-}
-
-.message_div .message_list .data_list li.reply .field .field_prompt {
-    color: #000000;
-    font-size: 25px;
-    padding-left: 5px;
-}
-
-.message_div .message_list .data_list li.reply .text-content {
-    padding-top: 10px;
-    height: 40px;
-    line-height: 40px;
-    width: 90%;
-    font-size: 20px;
-}
 .message_div .message_list .data_list ul.topic_replies {
     padding: 10px 12px 12px 12px;
     background-color: #DBEEFD;
@@ -750,17 +709,7 @@ ul, li {
     padding: 20px;
     width: 80%;
 }
-.message_div .message_list .data_list ul.topic_replies li .author {
-    color: #008fdc;
-}
 
-.message_div .message_list .data_list ul.topic_replies li .reply_info {
-    margin-bottom: 20px;
-}
-
-.message_div .message_list .data_list ul.topic_replies li .reply_info .content {
-    word-wrap: break-word;
-}
 .field_prompt {
     color: #008fdc;
     font-size: 20px;
@@ -853,6 +802,9 @@ span.help-inline {
 .absolute {
   position: absolute;
 }
+li.replies_count {
+  color: #000;
+}
 .reply_count {
   right: 35px;
   bottom: 25px;
@@ -884,10 +836,15 @@ span.help-inline {
 }
 
 .show .content {
-    padding-top: 15px;
-    text-indent: 20px;
-    line-height: 20px;
-    word-break:break-all;
+  padding-top: 15px;
+  text-indent: 20px;
+  line-height: 20px;
+  word-break:break-all;
+}
+
+.show .content p.note {
+  word-break:break-word;
+  color: #797979;
 }
 
 /*==================活动=====================*/
