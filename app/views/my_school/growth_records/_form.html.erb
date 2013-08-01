@@ -29,6 +29,15 @@
 <% if action_name == "new" %>
   <% if current_user.get_users_ranges[:tp] == :student %>
     <%= f.input :student_info, :required => true, :as => :string, :input_html => { :disabled => true, :value => current_user.name} %>
+  <% elsif current_user.get_users_ranges[:tp] == :teachers %>
+    <div class="select_field">
+      <% unless @squads.blank? %>
+        <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
+        <%= select_tag "squad", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+      <% end %>
+      <div id="squad_student_partial">
+      </div>
+    </div>
   <% else %>
     <div class="select_field">
       <div><p class="title">*选择学员</p></div>
@@ -74,7 +83,7 @@ $(document).ready(function() {
 
     if ( $("#student_info_id").length > 0 ) {
       if($("#grade").next("span.help-inline").length > 0) {
-        $("#grade").next("span help-inline").remove()
+        $("#grade").next("span.help-inline").remove()
       }
       flag.push(false);
     } else if ( $("#growth_record_student_info_label").length > 0 || $("#growth_record_student_info").length > 0 ) {
@@ -105,5 +114,19 @@ $(document).ready(function() {
       }
     )
   }).trigger('change');
+  if ( $("#squad_for_teacher").length > 0 ) {
+    $("#squad").change(function() {
+      $.get(
+        "/my_school/growth_records/squad_student_partial",
+        {
+          squad: $("#squad").val()
+        },
+        function(result) {
+          $("#squad_student_partial").html(result)
+        }
+      )
+    })
+  }
+
 })
 </script>

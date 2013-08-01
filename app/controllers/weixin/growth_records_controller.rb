@@ -133,6 +133,8 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
       if squad = grade.squads.where(:id=>params[:squad].to_i).first
          @student_infos = squad.student_infos
       end
+    elsif squad = Squad.where(:id => params[:squad].to_i).first
+      @student_infos = squad.student_infos
     end
     render "squad_student", :layout => false
   end
