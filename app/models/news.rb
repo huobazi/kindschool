@@ -15,10 +15,17 @@ class News < ActiveRecord::Base
   def news_approve_status_start
     if kind =  self.kindergarten
       if approve_module=kind.approve_modules.find_by_number("news")
-         if approve_module.stauts
+          puts "1111111111111111"
+         if approve_module.status
+          puts "222222222222"
          	self.approve_status = 1
-         	approve_record = ApproveRecords.new()
-         	self.approve_record << approve_record
+          if  self.approve_record.blank?
+            puts "33333333333"
+           	approve_record = ApproveRecords.new()
+           	self.approve_record = approve_record
+          else
+            self.approve_record.status = false
+          end
          end
       end
     end    
