@@ -7,14 +7,16 @@
   </div>
   <div class="message_list">
     <ul class="data_list">
-      <%= link_to "提交活动", new_weixin_activity_path, :class => "new_topic" %>
+      <% unless current_user.get_users_ranges[:tp] == :student %>
+        <%= link_to "提交活动", new_weixin_activity_path, :class => "new_topic" %>
+      <% end %>
       <% if @activities.blank? %>
         <li><div class="message_content">还没有活动</div></li>
       <% else %>
         <% @activities.each do |activity| %>
-          <li class="growth_record" data-id="<%= activity.id %>">
+          <li class="show" data-id="<%= activity.id %>">
             <p class="title"><span><%= activity.title %><span></p>
-            <p class="creater"><span>创建人:</span><span class="author"><%= activity.creater ? activity.creater.name : "" %></span></p>
+            <p class="info"><span>创建人:</span><span class="author"><%= activity.creater ? activity.creater.name : "" %></span></p>
             <div class="ctivity_content_logo">
               <% if activity.asset_img.blank? %>
                 <img src="/t/colorful/activity_logo1.jpg" alt="" />

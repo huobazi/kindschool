@@ -867,30 +867,30 @@ span.help-inline {
 
 /*============成长记录===============*/
 
-.growth_record {
+.show {
     padding: 10px;
 }
 
-.growth_record .title {
-    padding: 5px 5px 5px 10px;
-    font-weight: bold;
-    word-wrap: break-word;
-}
-.growth_record .title-help {
-    font-weight: normal;
-}
-
-.growth_record .time {
+.show .info {
   padding: 10px;
   word-wrap: break-word;
 }
 
-.growth_record .creater {
+.show .info .author {
+  color: #008fdc;
+}
+
+.show .title {
     padding: 10px;
     color: #008fdc;
 }
 
-.growth_record .content {
+.show .title .name {
+  font-weight: normal;
+  font-size: 27px;
+}
+
+.show .content {
     padding-top: 15px;
     text-indent: 20px;
     line-height: 20px;
