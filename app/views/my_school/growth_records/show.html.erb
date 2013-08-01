@@ -103,80 +103,15 @@
 
     <div class="work_form">
       <div class="form_div">
-        <form class="form-horizontal">
-          <div class="control-group">
-            <label class="control-label">学员</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @growth_record.student_info_label %>
-              </label>
-            </div>
+        <div class="show" id="growth_record">
+          <div class="content_up">
+            <p class="title"><span><%= @growth_record.student_info_label %></span></p>
+            <p class="info"><span class="time"><%= @growth_record.try(:start_at).try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @growth_record.try(:end_at).try(:to_short_datetime) %></span>&nbsp;由&nbsp;<span class="link"><%= @growth_record.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @growth_record.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
-          <div class="control-group">
-            <label class="control-label" >所属班级</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @growth_record.squad_name_label %>
-              </label>
-            </div>
+          <div class="content">
+            <%= simple_format @growth_record.content %>
           </div>
-          <div class="control-group">
-            <label class="control-label" >所属幼儿园</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @growth_record.kindergarten_label %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >开始时间</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @growth_record.start_at.to_short_datetime %>
-              </label>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <label class="control-label" >结束时间</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @growth_record.end_at.to_short_datetime %>
-              </label>
-            </div>
-          </div>
-
-          <div class="control-group">
-            <label class="control-label" >创建人</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @growth_record.creater.try(:name) %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >
-              <% if controller_name == "growth_records" %>
-                在家表现
-              <% else %>
-                在园表现
-              <% end %>
-            </label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @growth_record.content %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >类型</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= controller_name == "growth_records" ? "宝宝在家" : "宝宝在园" %>
-              </label>
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>

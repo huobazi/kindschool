@@ -1080,38 +1080,8 @@ table.user_attributes td {
 .table a.red{
     color: red;
 }
-.topic_content_up {
-    border-bottom: 1px solid #ddd;
-}
-.topic .topic_title {
-    font-size: 34px;
-}
-.topic .topic_content {
-    text-indent: 20px;
-    word_wrap: break-word;
-    padding-top: 10px;
-}
-#topic_show {
-    margin-bottom: 20px;
-}
 
-.topic_entry {
-    margin-bottom: 20px;
-    float: left;
-    width: 100%;
-    border-bottom: 1px solid #DDD;
-    padding: 10px 0 10px 0;
-}
-.topic_entry .topic_entry_left {
-    float: left;
-}
-.topic_entry .topic_entry_right {
-    float :left;
-    width: 80%;
-}
-.topic_entry .user_head_logo {
-    width: 100px;
-}
+
 
 #topic_category_tabs {
     padding-left: 50px;
@@ -1637,30 +1607,83 @@ span.help-inline {
     max-width: 200%;
     vertical-align: middle;
 }
+.show {
+  padding: 30px;
+}
+.show .title {
+  font-size: 28px;
+}
+.show .info {
+  font-size: 20px;
+  padding-top: 10px;
+  color: #B6B6B6;
+}
 
+.show .info .time {
+  color: #54B2E4;
+}
+
+.show .title .squad_name {
+  font-size: 20px;
+  color: #494949;
+}
+
+.show .info .link {
+  text-decoration: underline;
+}
+
+.show .content_up {
+  border-bottom: 1px solid #ddd;
+}
+
+.show .content {
+  padding-top: 20px;
+  text-indent: 20px;
+  font-size: 20px;
+  word_wrap: break-word;
+}
+#topic_entries{
+  display:inline-block;
+  padding: 30px;
+}
+.show .logo {
+  padding-top: 20px;
+}
+
+.show_entry {
+    margin-bottom: 20px;
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #DDD;
+    padding: 10px 0 10px 0;
+}
+.normal_link {
+  color: #B6B6B6;
+}
+.bold_link {
+  font-weight: bold;
+  color: #000;
+}
+.show_entry:last-child {
+  border-bottom: none;
+}
+.show_entry .content_left {
+    float: left;
+}
+.show_entry .content_right {
+    float :left;
+    width: 80%;
+}
+.show_entry .user_head_logo {
+    width: 100px;
+}
+
+.show_entry .info .author {
+  font-weight: bold;
+}
+
+.show_entry .content {
+  word_wrap: break-word;
+}
 /*==================== 活动 ============*/
 
-#activity_show {
-    float: left;
-}
-
-#activity_down {
-    float: left;
-}
-
-#activity_down .activity_logo {
-    float: left;
-}
-
-#activity_down .activity_content {
-    float: left;
-    width: 400px;
-    padding-left: 20px;
-    padding-top: 10px;
-    text-indent: 10px;
-}
-
-.activity .title .activity_title {
-    font-size: 30px;
-    color: #000000;
-}

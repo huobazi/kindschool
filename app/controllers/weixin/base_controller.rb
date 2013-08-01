@@ -53,7 +53,7 @@ class Weixin::BaseController < ApplicationController
     @validate_data = []
     @validate_data << (params[:nonce] || "")
     @validate_data << (params[:timestamp] || "")
-    token = (@required_type == :www ? @kind.weixin_token : WEBSITE_CONFIG["weixin_token"])
+    token = (@required_type == :www || @required_type.blank?) ? WEBSITE_CONFIG["weixin_token"] : @kind.weixin_token 
 #    token = @kind.weixin_token
     @validate_data << (token || "")
     @validate_data.sort.join("")
