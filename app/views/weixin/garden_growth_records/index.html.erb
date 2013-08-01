@@ -14,10 +14,9 @@
         <li><div class="message_content">还没有成长记录</div></li>
       <% else %>
         <% @growth_records.each do |growth_record| %>
-          <li class="growth_record" data-id="<%= growth_record.id %>">
-            <p class="time"><span>开始时间:</span>&nbsp;&nbsp;<span><%= growth_record.start_at ? growth_record.start_at.to_short_datetime : "" %></span></p>
-            <p class="time"><span>结束时间:</span>&nbsp;&nbsp;<span><%= growth_record.end_at ? growth_record.end_at.to_short_datetime : "" %></span></p>
-            <p class="creater"><span>创建人:</span><span class="author"><%= growth_record.creater ? growth_record.creater.name : "" %></span></p>
+          <li class="show" data-id="<%= growth_record.id %>">
+            <p class="title"><span class="name"><%= growth_record.student_info_label %></span></p>
+            <p class="info"><span class="time"><%= growth_record.try(:start_at).try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span><%= growth_record.try(:end_at).try(:to_short_datetime) %></span>&nbsp;由<span class="author"><%= growth_record.try(:creater).try(:name) %></span>创建于<span>&nbsp;<%= growth_record.created_at.try(:to_long_datetime) %></span></p>
             <div class="content">
               <%= simple_format growth_record.content %>
             </div>
@@ -39,7 +38,7 @@
 <%= render :partial => "/modules/colorful/weixin_menu_one"%>
 
 <script type="text/javascript">
-$(".growth_record").each(function() {
+$(".show").each(function() {
   $(this).click(function() {
     window.location.href = "garden_growth_records/" + $(this).attr("data-id")
   })

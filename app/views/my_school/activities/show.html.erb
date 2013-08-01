@@ -127,25 +127,25 @@
 
     <div class="work_form">
       <div class="form_div">
-        <div id="activity_show" class="activity">
-          <div class="title">
-            <p class="activity_title"><%= @activity.title %></p>
-            <p class="activity_info"><span><%= @activity.creater.try(:name) %>*<%= @activity.try(:squad).try(:name) %></span>&nbsp;&nbsp;<span><%= @activity.start_at.try(:to_short_datetime) %>&nbsp;~&nbsp;<%= @activity.end_at.try(:to_short_datetime) %></span></p>
+        <div id="activity_show" class="show">
+          <div class="content_up">
+            <p class="title"><%= @activity.title %><span class="squad_name"><%= @activity.squad ? "*#{@activity.squad.name}" : "" %></span></p>
+            <p class="info"><span class="time"><%= @activity.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @activity.end_at.try(:to_short_datetime) %></span>&nbsp;由&nbsp;<span class="link"><%= @activity.creater.try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @activity.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
-          <div id="activity_down">
-              <div class="activity_logo">
-                <% if @activity.asset_img.blank? %>
-                  图片不存在
-                <% else %>
-                  <a href="<%= @activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
-                    <img src="<%= @activity.asset_img.public_filename(:middle) %>" />
-                  </a>
-                <% end %>
-              </div>
-              <div class="activity_content">
-                <%= raw @activity.content %> <br />
-              </div>
+          <div id="content_down">
+            <div class="logo" style="float: left; width: 100px;">
+              <% if @activity.asset_img.blank? %>
+                图片不存在
+              <% else %>
+                <a href="<%= @activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
+                  <img src="<%= @activity.asset_img.public_filename(:middle) %>" />
+                </a>
+              <% end %>
             </div>
+            <div class="content" style="float: left; width: 70%;">
+              <%= raw @activity.content %> <br />
+            </div>
+          </div>
         </div>
 
         <hr />

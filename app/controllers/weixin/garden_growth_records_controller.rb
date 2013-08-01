@@ -2,7 +2,7 @@
 class Weixin::GardenGrowthRecordsController < Weixin::ManageController
   def index
     if current_user.get_users_ranges[:tp] == :student
-      @growth_records = GrowthRecord.where("tp = ? and student_info_id = ?)", 0, current_user.student_info.id).page(params[:page] || 1).per(10).order("created_at DESC")
+      @growth_records = GrowthRecord.where("tp = ? and student_info_id = ?", 0, current_user.student_info.id).page(params[:page] || 1).per(10).order("created_at DESC")
     elsif current_user.get_users_ranges[:tp] == :teachers
       @growth_records = GrowthRecord.where("student_infos.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) and tp=0",current_user.staff.id).joins("INNER JOIN student_infos on(student_infos.id = growth_records.student_info_id)").page(params[:page] || 1).per(10).order("created_at DESC")
     else
@@ -96,7 +96,7 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
 
   def show
     if current_user.get_users_ranges[:tp] == :student
-      @growth_record = @kind.growth_records.where("tp = ? and student_info_id = ?)", 0, current_user.student_info.id).find_by_id(params[:id])
+      @growth_record = @kind.growth_records.where("tp = ? and student_info_id = ?", 0, current_user.student_info.id).find_by_id(params[:id])
     elsif current_user.get_users_ranges[:tp] == :teachers
       @growth_records = GrowthRecord.where("student_infos.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) and tp=0",current_user.staff.id).joins("INNER JOIN student_infos on(student_infos.id = growth_records.student_info_id)")
       @growth_record = GrowthRecord.find_by_id_and_tp(params[:id], 0)
