@@ -285,6 +285,30 @@ body {
     padding-bottom: 0;
     width: 80%;
 }
+.bind .auth_input{
+    width: 30%;
+}
+.bind .auth_code_img{
+    display: inline-block;
+    vertical-align: top;
+    width: 45%;
+}
+.bind .auth_code_img img{
+    height: 38px;
+    padding-left: 5px;
+    vertical-align: top;
+    cursor: pointer;
+    width: 60%;
+}
+.bind #auth_loading{
+    display: none;
+    float: right;
+}
+.bind #auth_loading img{
+    width: 16px;
+    padding-left: 2px;
+}
+
 .bind .bind_user table b{
     vertical-align: middle;
 }
@@ -538,7 +562,7 @@ ul, li {
     color: #494542;
 }
 .new_message{
- background-color: #B0CC20;
+    background-color: #B0CC20;
     border-radius: 5px 5px 5px 5px;
     color: white;
     float: right;
@@ -760,7 +784,7 @@ ul, li {
 }
 
 .message_div .message_list .data_list ul.topic_replies li .reply_info .content {
-  word-wrap: break-word;
+    word-wrap: break-word;
 }
 .field_prompt {
     color: #008fdc;
@@ -775,26 +799,26 @@ ul, li {
     padding: 10px 20px 20px;
 }
 .select {
-  height: 50px;
-  padding-top: 10px;
-  font-size: 22px;
-  width: 70%;
+    height: 50px;
+    padding-top: 10px;
+    font-size: 22px;
+    width: 70%;
 }
 #topic_search .select {
-  width: 70%;
-  margin-top: 20px;
+    width: 70%;
+    margin-top: 20px;
 }
 .form .field .text-content {
-  height: 40px;
-  line-height: 40px;
-  width: 80%;
-  font-size: 20px;
+    height: 40px;
+    line-height: 40px;
+    width: 80%;
+    font-size: 20px;
 }
 
 .form .field .text-area {
-  width: 90%;
-  font-size: 20px;
-  height: 150px;
+    width: 90%;
+    font-size: 20px;
+    height: 150px;
 }
 
 /*===========老师信息==========*/
@@ -833,8 +857,8 @@ ul, li {
     font-size: 20px;
 }
 span.help-inline {
-  color: red;
-  font-size: 20px;
+    color: red;
+    font-size: 20px;
 }
 .li_child{
     display: none;
@@ -844,16 +868,16 @@ span.help-inline {
 /*============成长记录===============*/
 
 .growth_record {
-  padding: 10px;
+    padding: 10px;
 }
 
 .growth_record .title {
-  padding: 5px 5px 5px 10px;
-  font-weight: bold;
-  word-wrap: break-word;
+    padding: 5px 5px 5px 10px;
+    font-weight: bold;
+    word-wrap: break-word;
 }
 .growth_record .title-help {
-  font-weight: normal;
+    font-weight: normal;
 }
 
 .growth_record .time {
@@ -862,28 +886,28 @@ span.help-inline {
 }
 
 .growth_record .creater {
-  padding: 10px;
-  color: #008fdc;
+    padding: 10px;
+    color: #008fdc;
 }
 
 .growth_record .content {
-  padding-top: 15px;
-  text-indent: 20px;
-  line-height: 20px;
-  word-break:break-all;
+    padding-top: 15px;
+    text-indent: 20px;
+    line-height: 20px;
+    word-break:break-all;
 }
 
 /*==================活动=====================*/
 .activity_content_logo {
-  padding-left: 10px;
+    padding-left: 10px;
 }
 .activity_content_logo img {
-  max-width: none;
-  width: 80%;
+    max-width: none;
+    width: 80%;
 }
 
 /*=================kindeditor================*/
 
 .ke-dialog-body label {
-  font-size: 14px;
+    font-size: 14px;
 }
