@@ -1,0 +1,2 @@
+module MySchool::ApprovesHelper
+end

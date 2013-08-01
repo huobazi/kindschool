@@ -42,7 +42,6 @@
                 <th><input type="checkbox" name="" value="" alt="全选" id="destroy_all">全选</th>
                 <th>标题</th>
                 <th>发表人</th>
-                <th>发表人</th>
                 <th>发表时间</th>
                 <th></th>
               </tr>
@@ -59,13 +58,14 @@
                     </td>
                     <td>
                       <%if choose_operate_show('my_school/news/destroy')%>
-                      <%= link_to '删除', my_school_news_path(n_ew), :method=> :delete, :data=> { :confirm=> 'Are you sure?' },:class=> "blue" %>
+                     <span> <%= link_to '删除', my_school_news_path(n_ew), :method=> :delete, :data=> { :confirm=> 'Are you sure?' },:class=> "blue" %>
+                       </span>
                      <%end%>
-            </span>
             <%if choose_operate_show('my_school/news/edit')%>
-              <span><%=link_to '编辑',edit_my_school_news_path(n_ew)%></span></td>
-                  </tr>
-                  <% end %>
+              <span><%=link_to '编辑',edit_my_school_news_path(n_ew)%></span>
+              <% end %>
+               </td>
+                  </tr>   
                 <% end %>
               <% end %>
           </table>

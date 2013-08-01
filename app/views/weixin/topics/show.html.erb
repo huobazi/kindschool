@@ -9,11 +9,28 @@
   </div>
   <div class="message_list">
     <ul class="data_list">
-      <li class="topic">
-        <label class="topic_title"><%= @topic.title %></label>
-        <p class="topic_info"><span class="author"><%= @topic.creater ? @topic.creater.name : "" %></span>&nbsp;&nbsp;<span>发表于:<span><span class="topic_created_time"><%= @topic.created_at.to_long_datetime %></label></p>
-        <div class="topic_content"><%= simple_format @topic.content %></div>
+      <li class="show">
+        <p class="title"><span class="name"><%= @topic.title %></span></p>
+        <p class="info"><span class="author"><%= @topic.creater.try(:name) %></span>&nbsp;发表于&nbsp;<span><%= @topic.created_at.to_long_datetime %></span></p>
+        <div class="content"><%= simple_format @topic.content %></div>
       </li>
+
+      <% unless @replies.blank? %>
+        <li id="replies_count" class="replies_count">
+          <p>共收到<%= @topic.topic_entries.any? ? @topic.topic_entries.count : 0 %>条回复</p>
+        </li>
+        <ul class="topic_replies">
+          <% @replies.each do |reply| %>
+            <li class="show" id="topic_entry_<%= reply.id %>">
+              <p class="info"><span class="author"><%= reply.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span><%= reply.created_at.try(:to_long_datetime) %></span> </p>
+              <div class="content"><%= simple_format reply.content %></div>
+            </li>
+          <% end %>
+        </ul>
+        <%= paginate @replies %>
+      <% else %>
+        暂无回复
+      <% end %>
 
       <li class="reply">
         <%= simple_form_for(@topic_entry, :validate => true, :url => weixin_topic_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
@@ -27,21 +44,6 @@
           <%= f.input :creater_id, :as => :hidden %>
         <% end %>
       </li>
-      <% unless @replies.blank? %>
-        <ul class="topic_replies">
-          <% @replies.each do |reply| %>
-            <li class="reply" id="topic_entry_<%= reply.id %>">
-              <p class="reply_info">
-              <label class="author"><%= reply.creater ? reply.creater.name : "" %></label>&nbsp;&nbsp;<label class="created_time"><%= reply.created_at.to_long_datetime %></label>
-              </p>
-              <div class="content"><%= simple_format reply.content %></div>
-            </li>
-          <% end %>
-        </ul>
-        <%= paginate @replies %>
-      <% else %>
-        暂无回复
-      <% end %>
     </ul>
 
 

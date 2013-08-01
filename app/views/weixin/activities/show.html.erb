@@ -9,11 +9,10 @@
   </div>
   <div class="message_list">
     <ul class="data_list">
-      <li class="growth_record">
-        <p class="title"><span class="title-help">标题:</span><span><%= @activity.title %></span></p>
-        <p class="time"><span>开始时间:</span>&nbsp;&nbsp;<span><%= @activity.start_at ? @activity.start_at.to_short_datetime : "" %></span></p>
-        <p class="time"><span>结束时间:</span>&nbsp;&nbsp;<span><%= @activity.end_at ? @activity.end_at.to_short_datetime : "" %></span></p>
-        <p class="creater"><span>创建人:</span><span class="author"><%= @activity.creater ? @activity.creater.name : "" %></span></p>
+      <li class="show">
+        <p class="title"><span class="name"><%= @activity.title %></span></p>
+        <p class="info"><span class="time"><%= @activity.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span><%= @activity.end_at.try(:to_short_datetime) %></span></p>
+        <p class="info">由&nbsp;<span class="author"><%= @activity.creater.try(:name) %></span>&nbsp;创建于&nbsp;<span><%= @activity.created_at.try(:to_long_datetime) %></span></p>
         <div class="ctivity_content_logo">
           <% if @activity.asset_img.blank? %>
             <img src="/t/colorful/activity_logo1.jpg" alt="" />
@@ -24,12 +23,28 @@
           <% end %>
         </div>
         <div class="content">
-          <br />
-          <span>内容:</span><%= simple_format @activity.content %>
-          <br />
-          <span>描述:</span><%= simple_format @activity.note %>
+          <%= simple_format @activity.note, :class => "note" %>
+          <%= simple_format @activity.content %>
         </div>
       </li>
+      <% unless @replies.blank? %>
+        <li id="replies_count" class="replies_count">
+          <p>共收到<%= @activity.activity_entries.any? ? @activity.activity_entries.count : 0 %>条回复</p>
+        </li>
+        <ul class="topic_replies">
+          <% @replies.each do |reply| %>
+            <li class="show" id="activity_entry_<%= reply.id %>">
+              <p class="info">
+              <span class="author"><%= reply.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span><%= reply.created_at.to_long_datetime %></span>
+              </p>
+              <div class="content"><%= simple_format reply.note %></div>
+            </li>
+          <% end %>
+        </ul>
+        <%= paginate @replies %>
+      <% else %>
+        暂无回复
+      <% end %>
       <li class="reply">
         <%= simple_form_for(@activity_entry, :validate => true, :url => weixin_activity_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
           <div class="field">
@@ -43,21 +58,6 @@
           <%= f.input :tp, :as => :hidden %>
         <% end %>
       </li>
-      <% unless @replies.blank? %>
-        <ul class="topic_replies">
-          <% @replies.each do |reply| %>
-            <li class="reply" id="activity_entry_<%= reply.id %>">
-              <p class="reply_info">
-              <label class="author"><%= reply.creater ? reply.creater.name : "" %></label>&nbsp;&nbsp;<label class="created_time"><%= reply.created_at.to_long_datetime %></label>
-              </p>
-              <div class="content"><%= simple_format reply.note %></div>
-            </li>
-          <% end %>
-        </ul>
-        <%= paginate @replies %>
-      <% else %>
-        暂无回复
-      <% end %>
     </ul>
     <br/>
   </div>
