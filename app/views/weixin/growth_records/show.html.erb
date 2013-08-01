@@ -10,9 +10,9 @@
   <div class="message_list">
     <ul class="data_list">
       <li class="growth_record">
-        <p class="time"><span>开始时间:</span>&nbsp;&nbsp;<span><%= @growth_record.start_at ? @growth_record.start_at.to_short_datetime : "" %></span></p>
-        <p class="time"><span>结束时间:</span>&nbsp;&nbsp;<span><%= @growth_record.end_at ? @growth_record.end_at.to_short_datetime : "" %></span></p>
-        <p class="creater"><span>创建人:</span><span class="author"><%= @growth_record.creater ? @growth_record.creater.name : "" %></span></p>
+        <p class="creater"><span><%= @growth_record.student_info_label %></span></p>
+        <p class="time"><span><%= @growth_record.try(:start_at).try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span><%= @growth_record.try(:end_at).try(:to_short_datetime) %></span></p>
+        <p class="creater"><span>创建人:</span><span class="author"><%= @growth_record.try(:creater).try(:name) %></span></p>
         <div class="content">
           <%= simple_format @growth_record.content %>
         </div>

@@ -858,6 +858,7 @@ span.help-inline {
 
 .growth_record .time {
   padding: 10px;
+  word-wrap: break-word;
 }
 
 .growth_record .creater {

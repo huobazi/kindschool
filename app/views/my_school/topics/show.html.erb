@@ -66,12 +66,12 @@
     <div class="work_form">
       <div class="form_div">
 
-        <div id="topic_show" class="topic">
-          <div class="topic_content_up">
-            <p class="topic_title"><span><%= @topic.title %><span></p>
-            <p class="topic_info"> <span class="creater"> <%= @topic.topic_category.name %>•<%= @topic.creater ? @topic.creater.name : "" %>•<%= @topic.try(:squad).try(:name) %></span><span class="created_name">&nbsp;&nbsp;<%= @topic.created_at.to_long_datetime %></span></p>
+        <div id="topic_show" class="show">
+          <div class="content_up">
+            <p class="title"><span><%= @topic.title %><span><span class="squad_name"><%= @topic.squad ? "*#{@topic.squad.name}" : "" %></span></p>
+                <p class="info">属于<span class="link"><%= @topic.topic_category.name %></span>类&nbsp;由&nbsp;<span class="link"><%= @topic.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @topic.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
-          <div class="topic_content"><%= raw @topic.content %></div>
+          <div class="content"><%= raw @topic.content %></div>
         </div>
 
         <div id="topic_entries">
