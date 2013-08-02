@@ -4,7 +4,7 @@ class MySchool::MainController < MySchool::BaseController
   layout "colorful_main"
   def index
     if @kind 
-      @news = @kind.news.limit(6)
+      @news = @kind.news.where(:approve_status=>0).limit(6)
       root_showcase = @kind.page_contents.find_by_number("official_website_home")
       if root_showcase && !root_showcase.content_entries.blank?
         @teacher_infos = root_showcase.content_entries.where(:number=>"official_home_teacher")
