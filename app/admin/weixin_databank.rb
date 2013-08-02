@@ -8,7 +8,7 @@ ActiveAdmin.register WeixinDatabank do
     @weixin_databank = WeixinDatabank.find(params[:id])
   end
   action_item :only => :show do
-    link_to('推送', share_users_weixin_databank_path(weixin_databank))
+    link_to('添加推送', url_for(:action=>:share_users,:id=>weixin_databank.id))
   end
   index do
     column :title
