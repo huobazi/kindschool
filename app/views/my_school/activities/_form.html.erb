@@ -39,6 +39,11 @@
       <% unless @squads.blank? %>
         <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
         <%= select_tag "activity[squad_id]", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+      <% else %>
+        <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
+        <div class="controls">
+          <label>还未有负责的班级</label>
+        </div>
       <% end %>
     </div>
   <% else %>

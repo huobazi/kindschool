@@ -73,11 +73,6 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
   def new
     if current_user.get_users_ranges[:tp] == :teachers
       @squads = current_user.get_users_squads
-      if @squads.empty?
-        flash[:error] = "该教职工还没有负责班级"
-        redirect_to :action => :index
-        return
-      end
     end
     @activity = Activity.new
     @activity.kindergarten_id = @kind.id

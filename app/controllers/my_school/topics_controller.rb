@@ -7,6 +7,8 @@ class  MySchool::TopicsController < MySchool::ManageController
       if topic_category = @kind.topic_categories.find_by_id(params[:topic_category_id])
         if current_user.get_users_ranges[:tp] == :student
           @topics = @kind.topics.where("topic_category_id = ? and (creater_id = ? or squad_id = ? or squad_id is null)", topic_category.id, current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+        elsif current_user.get_users_ranges[:tp] == :teachers
+          @topics = @kind.topics.search(params[:topic] || {}).where("topic_category_id = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", topic_category.id, current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
         else
           @topics = @kind.topics.where(:topic_category_id => topic_category.id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
         end
@@ -17,6 +19,8 @@ class  MySchool::TopicsController < MySchool::ManageController
     else
       if current_user.get_users_ranges[:tp] == :student
         @topics = @kind.topics.where("creater_id = ? or squad_id = ? or squad_id is null", current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+      elsif current_user.get_users_ranges[:tp] == :teachers
+        @topics = @kind.topics.search(params[:topic] || {}).where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
       else
         @topics = @kind.topics.search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
       end
@@ -27,6 +31,8 @@ class  MySchool::TopicsController < MySchool::ManageController
   def show
     if current_user.get_users_ranges[:tp] == :student
       @topic = @kind.topics.where("creater_id = ? or squad_id = ? or squad_id is null", current_user.id, current_user.student_info.squad_id).find_by_id(params[:id])
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @topic = @kind.topics.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
     else
       @topic = @kind.topics.find_by_id(params[:id])
     end
@@ -50,6 +56,8 @@ class  MySchool::TopicsController < MySchool::ManageController
     @topic = Topic.new
     if current_user.get_users_ranges[:tp] == :student
       @topic.squad_id = current_user.student_info.squad_id
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @squads = current_user.get_users_squads
     end
     @topic.kindergarten_id = @kind.id
     @topic.creater_id = current_user.id
@@ -77,6 +85,8 @@ class  MySchool::TopicsController < MySchool::ManageController
   def edit
     if current_user.get_users_ranges[:tp] == :student
       @topic = @kind.topics.where(:creater_id => current_user.id).find_by_id(params[:id])
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @topic = @kind.topics.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
     else
       @topic = @kind.topics.find_by_id(params[:id])
     end
