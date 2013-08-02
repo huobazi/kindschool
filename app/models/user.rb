@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
 
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
-  def self.authenticate(login, password)
+  def self.authenticate(login, password,kind_id)
     raise StandardError,"请输入用户名." if login.blank?
     u = find_by_login(login)
     #    if(login.include?("@"))
@@ -62,6 +62,7 @@ class User < ActiveRecord::Base
     #    end
 
     raise StandardError,"不存在该用户." unless u
+    raise StandardError,"您不属于该幼儿园." if u.kindergarten_id != kind_id
     #    raise StandardError,"普通用户无法登录该系统." if (user = User.find_by_login(login) ) && user.role.number== 'user'
     #    raise "用户已被锁定,请联系系统管理员." if u.locked?
     raise StandardError,"密码错误." unless u.authenticated?(password)

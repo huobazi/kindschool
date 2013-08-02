@@ -37,7 +37,7 @@ class MySchool::UsersController < MySchool::ManageController
         end
         return render :layout=>"colorful_login"
       end
-      self.current_user = User.authenticate(params[:login], params[:password])
+      self.current_user = User.authenticate(params[:login], params[:password],@kind.id)
       if logged_in?
         if params[:remember_me] == "1"
           self.current_user.remember_me

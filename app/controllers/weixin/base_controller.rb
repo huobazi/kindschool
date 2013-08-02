@@ -31,7 +31,7 @@ class Weixin::BaseController < ApplicationController
   
   private
   def my_school
-#    @kind = Kindergarten.first
+    #    @kind = Kindergarten.first
     
     if is_www?
       @required_type = :www
@@ -54,7 +54,7 @@ class Weixin::BaseController < ApplicationController
     @validate_data << (params[:nonce] || "")
     @validate_data << (params[:timestamp] || "")
     token = (@required_type == :www || @required_type.blank?) ? WEBSITE_CONFIG["weixin_token"] : @kind.weixin_token 
-#    token = @kind.weixin_token
+    #    token = @kind.weixin_token
     @validate_data << (token || "")
     @validate_data.sort.join("")
   end
@@ -65,7 +65,7 @@ class Weixin::BaseController < ApplicationController
     else
       if Digest::SHA1.hexdigest(get_validate_data) == params[:signature]
         if xml_data = params[:xml]
-          if self.current_user = User.find_by_weixin_code(xml_data[:FromUserName])
+          if self.current_user = User.find_by_weixin_code_and_kindergarten_id(xml_data[:FromUserName],@kind.id)
           else
             session[:user] = nil
             @current_user = :false
