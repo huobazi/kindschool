@@ -61,7 +61,7 @@ ActiveAdmin.register User do
       else
         f.input :login,:as=>:string, :input_html => { :disabled => true }, :required => true
       end
-      f.input :email, :required => true
+      f.input :email
       f.input :name, :required => true
       f.input :phone, :required => true
       f.input :role, :as=>:select,:collection=>Hash[f.object.kindergarten.roles.collect{|role| [role.name,role.id]}]
@@ -299,10 +299,6 @@ ActiveAdmin.register User do
                 end
               end
             end
-          end
-        elsif user.tp == 2
-          panel "管理员信息" do
-
           end
         end
 

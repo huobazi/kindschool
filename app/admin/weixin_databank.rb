@@ -1,14 +1,21 @@
 #encoding:utf-8
 ActiveAdmin.register WeixinDatabank do
   menu :parent => "资料库", :priority => 3
-
+  member_action :share_users, :method => :get, :title => "推送" do
+    @weixin_databank = WeixinDatabank.find(params[:id])
+  end
+  member_action :share_users_load, :method => :get, :title => "提交推送" do
+    @weixin_databank = WeixinDatabank.find(params[:id])
+  end
+  action_item :only => :show do
+    link_to('推送', share_users_weixin_databank_path(weixin_databank))
+  end
   index do
     column :title
     column :category
     column :visible do |obj|
       obj.visible ? "显示" : "隐藏"
     end
-    column :creater
     default_actions
   end
 
@@ -36,6 +43,7 @@ ActiveAdmin.register WeixinDatabank do
       row :creater
       row :created_at
       row :updated_at
+      
     end
   end
 end

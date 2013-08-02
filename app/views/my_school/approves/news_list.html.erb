@@ -40,7 +40,7 @@
                     <td><%=raw n_ew.created_at.try(:to_long_datetime)%>
                     </td>
                     <td>
-                      <%= News::STATUS[@new.approve_status]%>
+                      <%= News::STATUS[n_ew.approve_status]%>
                     </td>
                     <td>
                       <%= link_to "审核", news_show_my_school_approves_path(:new_id=>n_ew.id) %>
