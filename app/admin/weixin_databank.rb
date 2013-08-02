@@ -7,7 +7,9 @@ ActiveAdmin.register WeixinDatabank do
   member_action :share_users_load, :method => :get, :title => "提交推送" do
     @weixin_databank = WeixinDatabank.find(params[:id])
   end
-  
+  action_item :only => :show do
+    link_to('推送', share_users_weixin_databank_path(weixin_databank))
+  end
   index do
     column :title
     column :category
