@@ -300,10 +300,6 @@ ActiveAdmin.register User do
               end
             end
           end
-        elsif user.tp == 2
-          panel "管理员信息" do
-
-          end
         end
 
       end

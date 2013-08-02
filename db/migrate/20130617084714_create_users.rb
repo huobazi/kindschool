@@ -29,6 +29,6 @@ class CreateUsers < ActiveRecord::Migration
       t.timestamp :deleted_at
       t.timestamps
     end
-    add_index :users, :email, :unique => true
+#    add_index :users, :email, :unique => true
   end
 end
