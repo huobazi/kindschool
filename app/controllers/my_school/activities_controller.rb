@@ -6,7 +6,9 @@ class MySchool::ActivitiesController < MySchool::ManageController
 
   def index
     if current_user.get_users_ranges[:tp] == :student
-      @activities = @kind.activities.search(params[:activity] || {}).where(:tp => 0, :squad_id => current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
+      @activities = @kind.activities.search(params[:activity] || {}).where("tp = ? and  (squad_id = ? or squad_id is null)", 0, current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @activities = @kind.activities.search(params[:activity] || {}).where("tp = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", 0, current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
     else
       @activities = @kind.activities.search(params[:activity] || {}).where(:tp => 0).page(params[:page] || 1).per(10).order("created_at DESC")
     end
@@ -14,25 +16,51 @@ class MySchool::ActivitiesController < MySchool::ManageController
 
   def show
     if current_user.get_users_ranges[:tp] == :student
-      @activity = @kind.activities.find_by_id_and_tp_and_squad_id(params[:id], 0, current_user.student_info.squad_id)
+      @activity = @kind.activities.where("tp = ? and (squad_id = ? or squad_id is null)", 0, current_user.student_info.squad_id).find_by_id(params[:id])
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @activity = @kind.activities.where("tp = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", 0, current_user.staff.id, current_user.id).find_by_id(params[:id])
     else
       @activity = @kind.activities.find_by_id_and_tp(params[:id], 0)
     end
+
     if @activity.nil?
       flash[:error] = "没有权限或找不到该活动"
       redirect_to :action => :index
       return
     end
-    @activity_entries = @activity.activity_entries.page(params[:page] || 1).per(10)
+
+    if 0 == params[:activity_entry_tp].to_i
+      if @activity.activity_entries.any?
+        @activity_entries = @activity.activity_entries.where(:tp => 0).page(params[:page] || 1).per(10)
+      end
+    else
+      if @activity.activity_entries.any?
+        @activity_entries = @activity.activity_entries.where(:tp => 1).page(params[:page] || 1).per(10)
+      end
+    end
+
 
     @activity_entry = ActivityEntry.new
     @activity_entry.activity_id = @activity.id
-    if current_user.id == @activity.creater_id
-      @activity_entry.tp = 0
+    @activity_entry.creater_id = current_user.id
+
+
+    if current_user.get_users_ranges[:tp] == :teachers
+
+      if @activity.squad_id.nil?
+        if current_user.id == @activity.creater_id
+          @activity_entry.tp = 0
+        else
+          @activity_entry.tp = 1
+        end
+      else
+        @activity_entry.tp = 0
+      end
+
     else
       @activity_entry.tp = 1
     end
-    @activity_entry.creater_id = current_user.id
+
   end
 
   def new
