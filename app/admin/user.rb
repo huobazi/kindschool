@@ -61,7 +61,7 @@ ActiveAdmin.register User do
       else
         f.input :login,:as=>:string, :input_html => { :disabled => true }, :required => true
       end
-      f.input :email, :required => true
+      f.input :email
       f.input :name, :required => true
       f.input :phone, :required => true
       f.input :role, :as=>:select,:collection=>Hash[f.object.kindergarten.roles.collect{|role| [role.name,role.id]}]
