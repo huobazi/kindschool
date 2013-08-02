@@ -25,7 +25,8 @@ class User < ActiveRecord::Base
   has_many :news , :class_name=>"New"
 
   has_many :approve_module_users , :class_name=>"ApproveModuleUser"
-
+  
+  has_one  :approve_entry
 
   before_save :encrypt_password
 

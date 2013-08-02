@@ -2,7 +2,14 @@
 #新闻的发布
 class MySchool::NewsController <  MySchool::ManageController   
    def index
-   	  @news = @kind.news.page(params[:page] || 1).per(10)
+    @flag = false
+    userrole = current_user.get_users_ranges
+    if userrole[:tp] == :all
+      @flag=true
+      @news = @kind.news.page(params[:page] || 1).per(10)
+    else
+      @news = News.where("kindergarten_id = ? and approve_status = 0 or create_id=?",@kind.id,current_user.id).page(params[:page] || 1).per(10)
+    end
    end
 
    def new
@@ -25,6 +32,9 @@ class MySchool::NewsController <  MySchool::ManageController
    end
 
    def edit
+    #shifoushi admin
+    #else
+    #creater = flash[]
    	@new = @kind.news.find(params[:id])
    end
 
