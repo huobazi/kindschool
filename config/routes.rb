@@ -1,8 +1,21 @@
 School::Application.routes.draw do
 
+  match 'code/code_image' => 'code#code_image'
+  match 'code/recode' => 'code#recode'
   match 'my_school' => 'my_school/main#index'
   namespace :my_school do
-    resources :approve_modules
+    resources :approve_modules do 
+      collection do
+        get :get_edit_ids
+      end
+    end
+    resources :approves do
+      collection do
+        get :news_list
+        get :news_show
+        post :one_news_approve
+      end
+    end
     resources :news 
     resources :my_kindergarten do
     end

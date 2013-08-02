@@ -19,6 +19,7 @@
 <div class="control-group">
 	<%=f.label :admin, '是否为管理员:' ,:class=>"control-label"%>
 <div class="controls">
+  <%= hidden_field_tag 'role[admin]', '0' %>
   <%= check_box(:role, :admin, {:checked=>@role.admin}, true, false)  %>
 </div>
 </div>

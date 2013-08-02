@@ -2,8 +2,10 @@
 class MySchool::MessagesController < MySchool::ManageController
   #列表界面
   def index
-    @message = Message.where("messages.kindergarten_id=:kind_id and message_entries.receiver_id=:user_id AND `message_entries`.`deleted_at` IS NULL",
-      {:kind_id=>@kind.id,:user_id=>current_user.id}).joins("LEFT JOIN message_entries ON(messages.id = message_entries.message_id)").page(params[:page] || 1).per(10).order("messages.send_date DESC")
+    params[:messages] = {} if params[:messages].blank?
+    params[:messages][:message_entries_receiver_id_equals] = current_user.id
+    @message = Message.search(params[:messages] || {}).where("messages.kindergarten_id=:kind_id and `message_entries`.receiver_id=:user_id AND `message_entries`.`deleted_at` IS NULL",
+      {:kind_id=>@kind.id,:user_id=>current_user.id}).select("message_entries.read_status,messages.*").page(params[:page] || 1).per(10).order("messages.send_date DESC")
   end
   
   #发件箱
@@ -76,8 +78,12 @@ class MySchool::MessagesController < MySchool::ManageController
   end
   def show
     if @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
-      entry = @message.message_entries.where(:receiver_id=>current_user.id)
-      if entry.blank?
+      
+      if entry = @message.message_entries.find_by_receiver_id(current_user.id)
+        if !entry.read_status
+          entry.update_attribute(:read_status, true)
+        end
+      else
         flash[:error] = '您无法查看该消息.'
         redirect_to(:action=>:index)
         return

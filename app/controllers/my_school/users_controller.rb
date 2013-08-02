@@ -16,9 +16,28 @@ class MySchool::UsersController < MySchool::ManageController
       redirect_to :action => :index,:controller=>"/my_school/home"
       return
     end
-    return render :layout=>"colorful_login" unless request.post?
     begin
-      self.current_user = User.authenticate(params[:login], params[:password])
+      if request.post?
+        if session[:login_error_count]  && session[:login_error_count] > 2
+          @can_auth = true
+          if params[:auth_code].blank?
+            load_noisy_image
+            raise "请填写验证码"
+          end
+          if params[:auth_code] != session[:noisy_image].code
+            raise "验证码不正确"
+          else
+            load_noisy_image
+          end
+        end
+      else
+        if session[:login_error_count]  && session[:login_error_count] > 2
+          load_noisy_image
+          @can_auth = true
+        end
+        return render :layout=>"colorful_login"
+      end
+      self.current_user = User.authenticate(params[:login], params[:password],@kind.id)
       if logged_in?
         if params[:remember_me] == "1"
           self.current_user.remember_me
@@ -29,12 +48,18 @@ class MySchool::UsersController < MySchool::ManageController
         operates_data.uniq!
         session[:operates] = operates_data
         flash[:notice] = "登陆成功."
+        session[:login_error_count] = 0
         redirect_to :action => :index,:controller=>"/my_school/home"
         cookies.delete :login_times
       else
         render :layout=>"colorful_login"
       end
     rescue StandardError => error
+      if session[:login_error_count]
+        session[:login_error_count] +=1
+      else
+        session[:login_error_count] = 1
+      end
       @user_errors = error
       render :layout=>"colorful_login"
     end
@@ -135,7 +160,7 @@ class MySchool::UsersController < MySchool::ManageController
           chain_users = @kind.users.where(:chain_delete=>true,:chain_code=>chain_code)
           unless chain_users.blank?
             chain_users.each do |chain_user|
-                chain_user.update_attributes(:chain_delete=>false,:chain_code=>nil)
+              chain_user.update_attributes(:chain_delete=>false,:chain_code=>nil)
             end
           end
         end
@@ -170,5 +195,13 @@ class MySchool::UsersController < MySchool::ManageController
   rescue Exception=>ex
     flash[:error] = ex.message
     redirect_to :back
+  end
+
+  private
+
+  def load_noisy_image
+    code_size = rand(3) + 4
+    session[:noisy_image] = NoisyImage.new(code_size)
+    session[:code] = session[:noisy_image].code
   end
 end

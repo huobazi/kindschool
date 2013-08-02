@@ -83,7 +83,7 @@ MENUS ={"home"=>{
       "my_school/my_kindergarten"=>["index",  "edit", "update"]
     },
     "39100"=>{
-      "my_school/approve_modules"=>["index"]
+      "my_school/approve_modules"=>["index","edit"]
     }
 
    },

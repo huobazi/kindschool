@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  approve_record_id: 1
+  user_id: 1
+  note: MyText
+  status: 1
+
+two:
+  approve_record_id: 1
+  user_id: 1
+  note: MyText
+  status: 1

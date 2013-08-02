@@ -10,7 +10,8 @@ ActiveAdmin.setup do |config|
   config.namespace :admin do |admin|
     admin.build_menu do |menu|
       menu.add :label => "幼儿园管理", :priority => 2
-      menu.add :label => "系统配置", :priority => 3
+      menu.add :label => "资料库", :priority => 2
+      menu.add :label => "系统配置", :priority => 4
     end
   end
   # Set the link url for the title. For example, to take
