@@ -5,18 +5,29 @@ class MySchool::ApprovesController < MySchool::ManageController
    def index
    end
    def news_list
-     @news = @kind.news.where(:approve_status=>1).page(params[:page] || 1).per(10) 
-     
+     @news = @kind.news.where(:approve_status=>1).page(params[:page] || 1).per(10)  
    end
    def news_show
    	 @new = @kind.news.find(params[:new_id])
+     if approve_record=@new.approve_record
+       @approve_entries = approve_record.approve_entries
+     end
    end
+
    def one_news_approve
     if  @new = @kind.news.find(params[:new_id]) 
      if approve_record = @new.approve_record
-        approve_record.status = params[:approve_record][:status] if params[:approve_record]
+        if  params[:approve_record] && params[:approve_record][:status]=="0"
+         unless approve_record.status == 2
+           approve_record.status =2  
+         end
+        elsif params[:approve_record] && params[:approve_record][:status]=="1"
+         unless approve_record.status == 0
+           approve_record.status = 0 
+         end
+        end
         approve_entry = ApproveEntry.new(:note=>params[:approve_entry][:note]) if params[:approve_entry]
-        if approve_record.status==0
+        if approve_record.status==2
           approve_entry.status = 2
         else
           approve_entry.status = 1 
