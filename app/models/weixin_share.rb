@@ -5,5 +5,5 @@ class WeixinShare < ActiveRecord::Base
   validates :weixin_databank_id,:send_at, :presence => true   #必须输入/不为空
 
   belongs_to :weixin_databank
-  
+  just_define_datetime_picker :send_at, :add_to_attr_accessible => true
 end

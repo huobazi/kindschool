@@ -124,7 +124,7 @@ class MySchool::ActivitiesController < MySchool::ManageController
     end
     @activity = @kind.activities.find_by_id_and_tp(params[:id], 0)
 
-    if @activity.update_attributes(params[:activity])
+    if @activity.update_attributes(params[:activity].except(:squad_id))
       flash[:success] = "修改活动成功"
       redirect_to my_school_activity_path(@activity)
     else
