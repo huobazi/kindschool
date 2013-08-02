@@ -233,6 +233,11 @@ zh-CN:
       activity_img: "活动图片"
       topic_category: "论坛分类"
       user_squad: "虚拟班"
+      category: "资料分类"
+      weixin_databank: "微信资料库"
+      comment_databank: "点评资料库"
+      weixin_share: "微信资料库推送"
+      weixin_share_user: "推送记录详细"
     attributes:
       admin_user:
         current_sign_in_at: "当前登陆时间"
@@ -598,7 +603,40 @@ zh-CN:
       user_squad:
         user_id: "虚拟班级的用户"
         squad_id: "虚拟班级"
-
+      category:
+        name: "名称"
+        tp: "所属模块"
+        tp_label: "所属模块"
+        visible: "是否显示"
+      weixin_databank:
+        title: "标题"
+        content: "内容"
+        creater_id: "创建人"
+        creater: "创建人"
+        category_id: "分类"
+        category: "分类"
+        visible: "是否显示"
+      comment_databank:
+        content: "内容"
+        user_id: "创建人"
+        user: "创建人"
+        category_id: "分类"
+        category: "分类"
+        visible: "是否显示"
+      weixin_share:
+        weixin_databank_id: "微信资料库记录"
+        weixin_databank: "微信资料库记录"
+        send_at: "推送时间"
+        visible: "是否显示"
+      weixin_share_user:
+        weixin_share_id: "微信推送记录"
+        weixin_share: "微信推送记录"
+        user_id: "接收用户"
+        user: "接收用户"
+        kindergarten_id: "所属幼儿园"
+        kindergarten: "所属幼儿园"
+        read_status: "阅读状态"
+        read_at: "阅读时间"
     errors:
       <<: *errors
   views:

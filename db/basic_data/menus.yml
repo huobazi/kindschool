@@ -348,11 +348,11 @@
   operate_id: 10
   children:
   - id: 121000
-    name: "活动内容"
+    name: "主题活动"
     operate_id: 10000
     number: 121000
     url: "/my_school/activities"
-    title: "活动内容"
+    title: "主题活动"
     height_level: "b"
     sequence: 1210
   - id: 122000
