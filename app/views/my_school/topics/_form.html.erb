@@ -30,7 +30,13 @@
     <br />
     <div class="select_field" id="select_squad" style="display:none;">
       <label class="field_prompt" for="grade">年级:</label>
-      <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+      <% unless @grades.blank? %>
+        <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+      <% else %>
+        <div class="controls">
+          <label>还未有年级</label>
+        </div>
+      <% end %>
       <div id="grade_squad_partial">
       </div>
     </div>
@@ -101,7 +107,7 @@ var flag = []
           $("#grade_squad_partial").html(result);
         }
       )
-  })
+  }).trigger("change")
   $("input[type='radio']").change(function() {
     if ( $(this).val() == "squad" ) {
       $("#select_squad").show()
