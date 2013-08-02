@@ -29,13 +29,17 @@ class MySchool::ActivitiesController < MySchool::ManageController
       return
     end
 
-    if 0 == params[:activity_entry_tp].to_i
+    if params[:activity_entry_tp].presence == "0"
       if @activity.activity_entries.any?
         @activity_entries = @activity.activity_entries.where(:tp => 0).page(params[:page] || 1).per(10)
       end
-    else
+    elsif params[:activity_entry_tp].presence == "1"
       if @activity.activity_entries.any?
         @activity_entries = @activity.activity_entries.where(:tp => 1).page(params[:page] || 1).per(10)
+      end
+    else
+      if @activity.activity_entries.any?
+        @activity_entries = @activity.activity_entries.page(params[:page] || 1).per(10)
       end
     end
 
@@ -64,6 +68,9 @@ class MySchool::ActivitiesController < MySchool::ManageController
   end
 
   def new
+    if current_user.get_users_ranges[:tp] == :teachers
+      @squads = current_user.get_users_squads
+    end
     @activity = Activity.new
     @activity.kindergarten_id = @kind.id
     @activity.creater_id = current_user.id
@@ -73,6 +80,15 @@ class MySchool::ActivitiesController < MySchool::ManageController
   end
 
   def create
+    if params[:activity].present?
+      if current_user.get_users_ranges[:tp] == :teachers
+        unless current_user.get_users_squads.collect(&:id).include?(params[:activity][:squad_id].to_i)
+          flash[:error] = "非法操作"
+          redirect_to :action => :index
+          return
+        end
+      end
+    end
     @activity = Activity.new(params[:activity])
     @activity.kindergarten_id = @kind.id
     @activity.creater_id = current_user.id
@@ -88,12 +104,25 @@ class MySchool::ActivitiesController < MySchool::ManageController
   end
 
   def edit
-    @activity = Activity.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    if current_user.get_users_ranges[:tp] == :teachers
+      @activity = @kind.activities.where("tp = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", 0, current_user.staff.id, current_user.id).find_by_id(params[:id].to_i)
+    else
+      @activity = @kind.activities.find_by_id_and_tp(params[:id], 0)
+    end
+
+    if @activity.nil?
+      flash[:error] = "活动不存在或没有权限"
+      redirect_to :action => :index
+    end
+
   end
 
   def update
-    params[:activity][:kindergarten_id] = @kind.id if params[:activity]
-    @activity = Activity.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    if params[:activity].present?
+      params[:activity][:kindergarten_id] = @kind.id
+      params[:activity][:tp] = 0
+    end
+    @activity = @kind.activities.find_by_id_and_tp(params[:id], 0)
 
     if @activity.update_attributes(params[:activity])
       flash[:success] = "修改活动成功"
@@ -128,6 +157,7 @@ class MySchool::ActivitiesController < MySchool::ManageController
       if current_user.get_users_ranges[:tp] == :student
         flash[:error] = "没有权限"
         redirect_to :action => :index
+        return
       end
     end
 end

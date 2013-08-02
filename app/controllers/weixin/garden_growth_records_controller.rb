@@ -34,7 +34,6 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
   def update
     if params[:growth_record]
       params[:growth_record][:kindergarten_id] = @kind.id
-      params[:growth_record][:creater_id] = current_user.id
       params[:growth_record][:tp] = 0
     end
     @growth_record = GrowthRecord.find_by_id_and_kindergarten_id(params[:id], @kind.id)
@@ -72,19 +71,7 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
       flash[:notice] = "没有权限或非法操作"
       redirect_to :action => :index
     elsif current_user.get_users_ranges[:tp] == :teachers
-      @growth_records = GrowthRecord.where("student_infos.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) and tp=0",current_user.staff.id).joins("INNER JOIN student_infos on(student_infos.id = growth_records.student_info_id)")
-      @growth_record = GrowthRecord.find_by_id_and_tp(params[:id], 0)
-      unless @growth_record.nil?
-        unless @growth_records.include?(@growth_record)
-          flash[:error] = "没有权限或该宝宝在园成长记录不存在"
-          redirect_to :action => :index
-          return
-        end
-      else
-        flash[:error] = "没有权限或该宝宝在园成长记录不存在"
-        redirect_to :action => :index
-        return
-      end
+      @growth_record = GrowthRecord.where("tp = 0 and ( student_infos.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) or creater_id = ? )",current_user.staff.id, current_user.id).joins("INNER JOIN student_infos on(student_infos.id = growth_records.student_info_id)").find_by_id(params[:id])
     else
       @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 0)
     end
@@ -98,19 +85,7 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
     if current_user.get_users_ranges[:tp] == :student
       @growth_record = @kind.growth_records.where("tp = ? and student_info_id = ?", 0, current_user.student_info.id).find_by_id(params[:id])
     elsif current_user.get_users_ranges[:tp] == :teachers
-      @growth_records = GrowthRecord.where("student_infos.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) and tp=0",current_user.staff.id).joins("INNER JOIN student_infos on(student_infos.id = growth_records.student_info_id)")
-      @growth_record = GrowthRecord.find_by_id_and_tp(params[:id], 0)
-      unless @growth_record.nil?
-        unless @growth_records.include?(@growth_record)
-          flash[:error] = "没有权限或该宝宝在园成长记录不存在"
-          redirect_to :action => :index
-          return
-        end
-      else
-        flash[:error] = "没有权限或该宝宝在园成长记录不存在"
-        redirect_to :action => :index
-        return
-      end
+      @growth_record = GrowthRecord.where("student_infos.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) and tp=0",current_user.staff.id).joins("INNER JOIN student_infos on(student_infos.id = growth_records.student_info_id)").find_by_id(params[:id])
     else
       @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 0)
     end

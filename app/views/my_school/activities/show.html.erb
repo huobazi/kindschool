@@ -154,18 +154,28 @@
         <hr />
 
         <div id="topic_entries">
-          <% unless @activity_entries.blank? %>
-            <div id="topic_category_tabs">
-              <ul class="nav nav-tabs">
+          <div id="topic_category_tabs">
+            <ul class="nav nav-tabs">
+              <% if controller_name == "activities" %>
                 <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/my_school/activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
                 <li class="<%= params[:activity_entry_tp].present? && 0 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-                <%= link_to "主信息", my_school_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
+                  <%= link_to "主信息", my_school_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
                 </li>
                 <li class="<%= params[:activity_entry_tp].present? && 1 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-                <%= link_to "交互信息", my_school_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
+                  <%= link_to "交互信息", my_school_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
                 </li>
-              </ul>
-            </div>
+              <% else %>
+                <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/my_school/interest_activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
+                <li class="<%= params[:activity_entry_tp].present? && 0 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
+                  <%= link_to "主信息", my_school_interest_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
+                </li>
+                <li class="<%= params[:activity_entry_tp].present? && 1 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
+                  <%= link_to "交互信息", my_school_interest_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <% unless @activity_entries.blank? %>
             <div class="total">
               <b>共收到<%= @activity_entries.count %>条回复</b>
             </div>
@@ -190,16 +200,13 @@
         </div>
 
 
-        <% if controller_name == "activities" %>
           <%= simple_form_for(@activity_entry, :validate => true, :url => my_school_activity_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
-            <%= render :partial => "activity_form", :object => f %>
+            <% if controller_name == "activities" %>
+              <%= render :partial => "activity_form", :object => f %>
+            <% else %>
+              <%= render :partial => "my_school/activities/activity_form", :object => f %>
+            <% end %>
           <% end %>
-        <% else %>
-          <%= simple_form_for(@activity_entry, :validate => true, :url => my_school_activity_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
-            <%= render :partial => "my_school/activities/activity_form", :object => f %>
-          <% end %>
-        <% end %>
-
       </div>
     </div>
   </div>

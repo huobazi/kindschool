@@ -115,24 +115,24 @@
                   <% end %>
                 </td>
                 <td>
-                  <% if activity.tp == true %>
-                    <% if choose_operate_show("my_school/interest_activities/show") %>
-                      <%= link_to "查看", my_school_interest_activity_path(activity), :class => "show" %>
-                    <% end %>
-                  <% else %>
+                  <% if "activities" == controller_name %>
                     <% if choose_operate_show("my_school/activities/show") %>
                       <%= link_to "查看", my_school_activity_path(activity), :class => "show" %>
+                    <% end %>
+                  <% else %>
+                    <% if choose_operate_show("my_school/interest_activities/show") %>
+                      <%= link_to "查看", my_school_interest_activity_path(activity), :class => "show" %>
                     <% end %>
                   <% end %>
                 </td>
                 <td>
-                  <% if activity.tp == true %>
-                    <% if choose_operate_show("my_school/interest_activities/edit") %>
-                      <%= link_to "编辑", edit_my_school_interest_activity_path(activity), :class => "show" %>
-                    <% end %>
-                  <% else %>
+                  <% if "activities" == controller_name %>
                     <% if choose_operate_show("my_school/activities/edit") %>
                       <%= link_to "编辑", edit_my_school_activity_path(activity), :class => "show" %>
+                    <% end %>
+                  <% else %>
+                    <% if choose_operate_show("my_school/interest_activities/edit") %>
+                      <%= link_to "编辑", edit_my_school_interest_activity_path(activity), :class => "show" %>
                     <% end %>
                   <% end %>
                 </td>
