@@ -130,7 +130,10 @@
         <div id="activity_show" class="show">
           <div class="content_up">
             <p class="title"><%= @activity.title %><span class="squad_name"><%= @activity.squad ? "*#{@activity.squad.name}" : "" %></span></p>
-            <p class="info"><span class="time"><%= @activity.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @activity.end_at.try(:to_short_datetime) %></span>&nbsp;由&nbsp;<span class="link"><%= @activity.creater.try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @activity.try(:created_at).try(:to_long_datetime) %></span></p>
+            <p class="info"><span class="time"><%= @activity.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @activity.end_at.try(:to_short_datetime) %></span>&nbsp;由&nbsp;
+            <span class="link">
+              <%= link_to @activity.creater.try(:name), my_school_user_path(@activity.creater), :class => "normal_link" %>
+            </span>&nbsp;创建于&nbsp;<span class="time"><%= @activity.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
           <div id="content_down">
             <div class="logo" style="float: left; width: 100px;">
@@ -151,16 +154,42 @@
         <hr />
 
         <div id="topic_entries">
+          <div id="topic_category_tabs">
+            <ul class="nav nav-tabs">
+              <% if controller_name == "activities" %>
+                <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/my_school/activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
+                <li class="<%= params[:activity_entry_tp].present? && 0 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
+                  <%= link_to "主信息", my_school_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
+                </li>
+                <li class="<%= params[:activity_entry_tp].present? && 1 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
+                  <%= link_to "交互信息", my_school_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
+                </li>
+              <% else %>
+                <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/my_school/interest_activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
+                <li class="<%= params[:activity_entry_tp].present? && 0 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
+                  <%= link_to "主信息", my_school_interest_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
+                </li>
+                <li class="<%= params[:activity_entry_tp].present? && 1 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
+                  <%= link_to "交互信息", my_school_interest_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
           <% unless @activity_entries.blank? %>
-            <div class="total"><b>共收到<%= @activity_entries.count %>条回复</b></div>
+            <div class="total">
+              <b>共收到<%= @activity_entries.count %>条回复</b>
+            </div>
             <% @activity_entries.each do |activity_entry| %>
-              <div id="activity_entry_<%= activity_entry.id %>" class="topic_entry">
-                <div class="topic_entry_left">
+              <div id="activity_entry_<%= activity_entry.id %>" class="show_entry">
+                <div class="content_left">
                   <div class="user_head_logo"><img src="<%= activity_entry.creater.asset_logo ? activity_entry.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/></div>
                 </div>
-                <div class="topic_entry_right">
-                  <p topic_entry_info><span class="author"><%= activity_entry.creater.try(:name) %></span>&nbsp;&nbsp;<span class="time"><%= time_ago_in_words(activity_entry.created_at) %></span></p>
-                  <div class="topic_entry_content"><%= simple_format activity_entry.note %></div>
+                <div class="content_right">
+                  <p info>
+                    <span class="author">
+                      <%= link_to activity_entry.creater.try(:name), my_school_user_path(@activity_entry.creater), :class => "bold_link" %>
+                    </span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(activity_entry.created_at) %></span></p>
+                  <div class="content"><%= simple_format activity_entry.note %></div>
                 </div>
               </div>
             <% end %>
@@ -171,16 +200,13 @@
         </div>
 
 
-        <% if controller_name == "activities" %>
           <%= simple_form_for(@activity_entry, :validate => true, :url => my_school_activity_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
-            <%= render :partial => "activity_form", :object => f %>
+            <% if controller_name == "activities" %>
+              <%= render :partial => "activity_form", :object => f %>
+            <% else %>
+              <%= render :partial => "my_school/activities/activity_form", :object => f %>
+            <% end %>
           <% end %>
-        <% else %>
-          <%= simple_form_for(@activity_entry, :validate => true, :url => my_school_activity_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
-            <%= render :partial => "my_school/activities/activity_form", :object => f %>
-          <% end %>
-        <% end %>
-
       </div>
     </div>
   </div>

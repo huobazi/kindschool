@@ -2,6 +2,7 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
   acts_as_paranoid
+  validates_as_paranoid
   attr_accessible :kindergarten_id, :logo,:login, :name, :note, :number, :status,:chain_code,
     :tp,:crypted_password,:salt,:role_id,:remember_token,:remember_token_expires_at,:chain_delete,
     :gender,:phone,:area_id,:weixin_code,:token_key,:token_secret,:token_at, :email,:is_send,:is_receive
@@ -32,9 +33,9 @@ class User < ActiveRecord::Base
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
   validates_length_of :phone, :is => 11
   validates :phone,:presence => true,:uniqueness => true#{ :scope => :kindergarten_id}
-  validates :email,:uniqueness => { :scope => :kindergarten_id}, :allow_blank => true
   validates :name, :login, :kindergarten_id,:presence => true
-  validates :login, :uniqueness => true
+  validates_uniqueness_of_without_deleted :login
+  validates_uniqueness_of_without_deleted :email,:scope => :kindergarten_id, :allow_blank => true
 
   GENDER_DATA = {"M"=>"女","G"=>"男"}
   TP_DATA = {"0"=>"学员","1"=>"教职工","2"=>"管理员"}
@@ -53,7 +54,7 @@ class User < ActiveRecord::Base
 
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
-  def self.authenticate(login, password)
+  def self.authenticate(login, password,kind_id)
     raise StandardError,"请输入用户名." if login.blank?
     u = find_by_login(login)
     #    if(login.include?("@"))
@@ -63,6 +64,7 @@ class User < ActiveRecord::Base
     #    end
 
     raise StandardError,"不存在该用户." unless u
+    raise StandardError,"您不属于该幼儿园." if u.kindergarten_id != kind_id
     #    raise StandardError,"普通用户无法登录该系统." if (user = User.find_by_login(login) ) && user.role.number== 'user'
     #    raise "用户已被锁定,请联系系统管理员." if u.locked?
     raise StandardError,"密码错误." unless u.authenticated?(password)

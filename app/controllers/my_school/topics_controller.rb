@@ -90,7 +90,6 @@ class  MySchool::TopicsController < MySchool::ManageController
   def update
     if params[:topic]
       params[:topic][:kindergarten_id] = @kind.id
-      params[:topic][:creater_id] = current_user.id
       if current_user.get_users_ranges[:tp] == :student
         params[:topic][:squad_id] = current_user.student_info.squad_id
       end

@@ -17,9 +17,9 @@ class MySchool::UsersController < MySchool::ManageController
       return
     end
     begin
-      if session[:login_error_count]  && session[:login_error_count] > 2
-        @can_auth = true
-        if request.post?
+      if request.post?
+        if session[:login_error_count]  && session[:login_error_count] > 2
+          @can_auth = true
           if params[:auth_code].blank?
             load_noisy_image
             raise "请填写验证码"
@@ -29,12 +29,15 @@ class MySchool::UsersController < MySchool::ManageController
           else
             load_noisy_image
           end
-        else
-          load_noisy_image
-          return render :layout=>"colorful_login"
         end
+      else
+        if session[:login_error_count]  && session[:login_error_count] > 2
+          load_noisy_image
+          @can_auth = true
+        end
+        return render :layout=>"colorful_login"
       end
-      self.current_user = User.authenticate(params[:login], params[:password])
+      self.current_user = User.authenticate(params[:login], params[:password],@kind.id)
       if logged_in?
         if params[:remember_me] == "1"
           self.current_user.remember_me
