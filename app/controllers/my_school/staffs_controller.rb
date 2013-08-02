@@ -54,8 +54,14 @@ class  MySchool::StaffsController < MySchool::ManageController
 
   def update
     @staff = Staff.find_by_id(params[:id])
+    if params[:role] && params[:role][:id]
+      role = @kind.roles.find(params[:role][:id])
+      unless role.blank?
+        @staff.user.role = role
+      end
+    end
     respond_to do |format|
-      if @staff.update_attributes(params[:staff])
+      if @staff.save && @staff.update_attributes(params[:staff])
         if params[:asset_logo] && (user = @staff.user)
           if user.asset_logo
             user.asset_logo.update_attribute(:uploaded_data, params[:asset_logo])

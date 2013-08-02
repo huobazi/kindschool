@@ -71,11 +71,12 @@
     </div>
     <div class="work_form">
       <div class="form_div">
-       <%= form_for(@new, :validate => true,:url=>one_news_approve_my_school_approves_path(:new_id=>@new.id), :html =>{:class=>"form-horizontal"}) do |f| %>
+       <%= form_for(@new,:method=>:post ,:validate => true,:url=>one_news_approve_my_school_approves_path(:new_id=>@new.id), :html =>{:class=>"form-horizontal"}) do |f| %>
           <%= render 'form', :f=>f %>
        <% end %>
       </div>
     </div>
+    
   </div>
 
 </div>
