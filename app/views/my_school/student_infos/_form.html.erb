@@ -45,7 +45,7 @@
     <% end %>
     <% if action_name == "new" %>
       <div class="select_field">
-        <div><p class="title">*选择班级</p></div>
+        <label class="password required control-label"><abbr title="required">*</abbr>选择班级</label>
         <label class="field_prompt" for="grade">年级:</label>
         <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
         <div id="grade_squad_partial">
@@ -134,7 +134,7 @@ $("#grade").change(function() {
       }
     )
 
-})
+}).trigger("change")
 var flag = []
   $("input[name='commit']").click(function(){
     if ( $("#squad_id").length > 0 ) {

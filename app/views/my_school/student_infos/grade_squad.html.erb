@@ -1,4 +1,9 @@
 <% unless @squads.blank? %>
   <label class="field_prompt" for="squad">班级:</label>
   <%= select_tag "squad_id", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select", :name => "student_info[squad_id]" %>
+<% else %>
+<br />
+<div class="controls">
+  <label>该年级还未有班级</label>
+</div>
 <% end %>
