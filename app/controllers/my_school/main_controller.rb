@@ -71,7 +71,7 @@ class MySchool::MainController < MySchool::BaseController
   end
 
   def show_new_list
-    @news = @kind.news.page(params[:page] || 1).per(10)
+    @news = @kind.news.where(:approve_status=>0).page(params[:page] || 1).per(10)
   end
 
 end

@@ -8,12 +8,16 @@ class ApproveRecord < ActiveRecord::Base
   before_save :change_new_status
   private
   def change_new_status
-    if self.status == 2
-    	self.resource.approve_status=2
-      self.resource.save
+    if  self.status == 2
+      unless self.resource.approve_status==2
+      	self.resource.approve_status=2
+        self.resource.save
+      end
     elsif self.status==0
-    	self.resource.approve_status=0
-      self.resource.save
+      unless self.resource.approve_status==0
+    	 self.resource.approve_status=0
+       self.resource.save
+      end
     end 
   end
 end
