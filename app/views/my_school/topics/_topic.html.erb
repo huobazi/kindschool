@@ -1,0 +1,24 @@
+<tr>
+  <td><input id="topic_<%= topic.id %>" class="topic_check" name="topic[]" type="checkbox" value="<%= topic.id %>" /></td>
+  <td>
+    <% if choose_operate_show("my_school/topics/show") %>
+      <%= link_to topic.title, my_school_topic_path(topic) %>
+    <% else %>
+      <%= topic.title %>
+    <% end %>
+  </td>
+  <td><%= topic.creater ? topic.creater.name : "" %></td>
+  <td><%= topic.show_count %></td>
+  <td><%= topic.is_show == true ? "是" : "否" %>
+  <td><%= topic.try(:squad).try(:name) %></td>
+  <td>
+    <% if choose_operate_show("my_school/topics/show") %>
+      <%= link_to "查看", my_school_topic_path(topic), :class => "show" %>
+    <% end %>
+  </td>
+  <td>
+    <% if choose_operate_show("my_school/topics/edit") %>
+      <%= link_to "编辑", edit_my_school_topic_path(topic), :class => "show" %>
+    <% end %>
+  </td>
+</tr>

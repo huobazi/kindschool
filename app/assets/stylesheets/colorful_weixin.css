@@ -711,8 +711,8 @@ ul, li {
 }
 
 .field_prompt {
-    color: #008fdc;
-    font-size: 20px;
+  color: #008fdc;
+  font-size: 20px;
 }
 
 .field {
@@ -806,8 +806,8 @@ li.replies_count {
   color: #000;
 }
 .reply_count {
-  right: 35px;
-  bottom: 25px;
+  right: 10px;
+  bottom: 3px;
   background-color: #008fdc;
   color: white;
   border-radius: 5px 5px 5px 5px;
@@ -860,4 +860,15 @@ li.replies_count {
 
 .ke-dialog-body label {
     font-size: 14px;
+}
+
+/*=================活动show页面==================*/
+
+#topic_category_tabs {
+    padding-left: 50px;
+    padding-top: 10px;
+}
+#topic_category_tabs a {
+    color: #333333;
+    font-size: 16px;
 }
