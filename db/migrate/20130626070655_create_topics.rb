@@ -7,7 +7,7 @@ class CreateTopics < ActiveRecord::Migration
       t.text :content
       t.integer :topic_category_id
       t.boolean :is_show, :default => true
-      t.boolean :is_top
+      t.boolean :is_top, :default => false
       t.string :status
       t.string :approve_status # 审核状态
       t.integer :approver_id

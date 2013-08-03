@@ -44,26 +44,45 @@
   <%= f.text_area :note, :class => "text-content" %>
 </div>
 <% if action_name == "new" %>
-<div class="field">
-  <%= radio_button_tag 'visible', 'all', :checked => true %><span class="field_prompt" for="visible_all">全园可见</span>
-  <%= radio_button_tag 'visible', 'squad' %><span class="field_prompt" for="visible_squad">选择班级</span>
+  <% if current_user.get_users_ranges[:tp] == :teachers %>
+    <div class="field">
+      <%= radio_button_tag 'visible', 'all', :checked => true %><span class="field_prompt" for="visible_all">全园可见</span>
+      <%= radio_button_tag 'visible', 'squad' %><span class="field_prompt" for="visible_squad">选择班级</span>
 
-</div>
-
-<div class="select_field" id="select_squad" style="display: none;">
-  <label class="field_prompt" for="grade">年级:</label>
-  <% unless @grades.blank? %>
-    <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+    </div>
+    <div class="select_field" id="select_squad" style="display:none;">
+      <% unless @squads.blank? %>
+        <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
+        <%= select_tag "activity[squad_id]", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+      <% else %>
+        <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
+        <div class="controls">
+          <label>还未有负责的班级</label>
+        </div>
+      <% end %>
+    </div>
   <% else %>
-    <div class="controls">
-      <label>还未有年级</label>
+    <div class="field">
+      <%= radio_button_tag 'visible', 'all', :checked => true %><span class="field_prompt" for="visible_all">全园可见</span>
+      <%= radio_button_tag 'visible', 'squad' %><span class="field_prompt" for="visible_squad">选择班级</span>
+
+    </div>
+
+    <div class="select_field" id="select_squad" style="display: none;">
+      <label class="field_prompt" for="grade">年级:</label>
+      <% unless @grades.blank? %>
+        <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+      <% else %>
+        <div class="controls">
+          <label>还未有年级</label>
+        </div>
+      <% end %>
+      <div id="grade_squad_partial">
+      </div>
+      <div id="squad_student_partial">
+      </div>
     </div>
   <% end %>
-  <div id="grade_squad_partial">
-  </div>
-  <div id="squad_student_partial">
-  </div>
-</div>
 <% else %>
   <div class="field">
     <% if @activity.squad_id.blank? %>

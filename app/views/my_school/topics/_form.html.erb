@@ -30,7 +30,7 @@
     <div class="select_field" id="select_squad" style="display:none;">
       <% unless @squads.blank? %>
         <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
-        <%= select_tag "activity[squad_id]", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+        <%= select_tag "topic[squad_id]", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
       <% else %>
         <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
         <div class="controls">
@@ -61,6 +61,11 @@
 
 <% else %>
   <%= f.input :squad_label, :as => :string, :disabled => true %>
+<% end %>
+
+<% if current_user.get_users_ranges[:tp] == :all %>
+  <%= f.input :is_show, :as => :boolean %>
+  <%= f.input :is_top, :as => :boolean %>
 <% end %>
 <br />
 <%= f.input :kindergarten_id, :as => :hidden %>

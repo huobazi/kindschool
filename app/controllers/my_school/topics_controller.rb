@@ -66,7 +66,20 @@ class  MySchool::TopicsController < MySchool::ManageController
   end
 
   def create
-    @topic = Topic.new(params[:topic])
+    if params[:topic].present? && params[:topic][:squad_id].present?
+      if current_user.get_users_ranges[:tp] == :teachers
+        unless current_user.get_users_squads.collect(&:id).include?(params[:topic][:squad_id].to_i)
+          flash[:error] = "非法操作"
+          redirect_to :action => :index
+          return
+        end
+      end
+    end
+    unless current_user.get_users_ranges[:tp] == :all
+      @topic = Topic.new(params[:topic].except(:is_show, :is_top))
+    else
+      @topic = Topic.new(params[:topic])
+    end
     @topic.kindergarten_id = @kind.id
     @topic.creater_id = current_user.id
     if current_user.get_users_ranges[:tp] == :student
@@ -106,17 +119,30 @@ class  MySchool::TopicsController < MySchool::ManageController
     end
     if current_user.get_users_ranges[:tp] == :student
       @topic = @kind.topics.find_by_id_and_creater_id(params[:id], current_user.id)
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @topic = @kind.topics.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
     else
       @topic = @kind.topics.find_by_id(params[:id])
     end
 
-    if @topic.update_attributes(params[:topic])
-      flash[:success] = "更新贴子成功"
-      redirect_to my_school_topic_path(@topic)
+    unless current_user.get_users_ranges[:tp] == :all
+      if @topic.update_attributes( params[:topic].except(:is_show, :is_top) )
+        flash[:success] = "更新贴子成功"
+        redirect_to my_school_topic_path(@topic)
+      else
+        flash[:error] = "更新贴子失败"
+        render :edit
+      end
     else
-      flash[:error] = "更新贴子失败"
-      render :edit
+      if @topic.update_attributes( params[:topic] )
+        flash[:success] = "更新贴子成功"
+        redirect_to my_school_topic_path(@topic)
+      else
+        flash[:error] = "更新贴子失败"
+        render :edit
+      end
     end
+
   end
 
   def destroy
