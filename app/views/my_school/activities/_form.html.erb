@@ -11,7 +11,7 @@
     });
   });
 </script>
-<%= f.input :title, :validate => true, :required => true, :input_html => {:class => "span5 profile_input required"} %>
+<%= f.input :title, :validate => true, :required => true, :input_html => {:class => "span5 normal_link profile_input required"} %>
 <% if action_name == "new" %>
   <%= f.input :start_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun span5 time_datepicker"} %>
   <%= f.input :end_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun span5 time_datepicker"} %>
@@ -19,18 +19,18 @@
   <%= f.input :start_at, :required => true, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.start_at.to_short_datetime}"} %>
   <%= f.input :end_at, :required => true, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.end_at.to_short_datetime}"} %>
 <% end %>
+<%= f.input :note, :input_html => {:rows => "3", :class => "span5"}%>
+<label class="control-label">*活动内容</label>
 <div class="control-group">
     <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'activity_content',:allowFileManager => false,:allowUpload=>false%>
 </div>
 
-<div class="clear"></div>
-<%= f.input :note, :input_html => {:rows => "10", :class => "span5"}%>
 
 <%= f.simple_fields_for :asset_img_attributes do |p| %>
-  <%= p.input :uploaded_data, :as => :file, :name => "asset_img"  %>
+  <%= p.input :uploaded_data, :as => :file, :name => "asset_img", :label => "上传展示图片", :required => false  %>
 <% end %>
 <% if action_name == "new" %>
-  <div class="field">
+  <div class="field controls">
     <%= radio_button_tag 'visible', 'all', :checked => true %><span class="field_prompt" for="visible_all">全园可见</span>
     <%= radio_button_tag 'visible', 'squad' %><span class="field_prompt" for="visible_squad">选择班级</span>
   </div>
@@ -113,7 +113,7 @@
           $("#grade_squad_partial").html(result);
         }
       )
-  })
+  }).trigger("change")
   $("input[type='radio']").change(function() {
     if ( $(this).val() == "squad" ) {
       $("#select_squad").show()

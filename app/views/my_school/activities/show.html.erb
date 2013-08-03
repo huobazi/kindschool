@@ -131,15 +131,13 @@
           <div class="content_up">
             <p class="title"><%= @activity.title %><span class="squad_name"><%= @activity.squad ? "*#{@activity.squad.name}" : "" %></span></p>
             <p class="info"><span class="time"><%= @activity.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @activity.end_at.try(:to_short_datetime) %></span>&nbsp;由&nbsp;
-            <span class="link">
-              <%= link_to @activity.creater.try(:name), my_school_user_path(@activity.creater), :class => "normal_link" %>
+            <span class="normal_link">
+              <%= @activity.creater.try(:name) %>
             </span>&nbsp;创建于&nbsp;<span class="time"><%= @activity.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
           <div id="content_down">
             <div class="logo" style="float: left; width: 100px;">
-              <% if @activity.asset_img.blank? %>
-                图片不存在
-              <% else %>
+              <% unless @activity.asset_img.blank? %>
                 <a href="<%= @activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
                   <img src="<%= @activity.asset_img.public_filename(:middle) %>" />
                 </a>
