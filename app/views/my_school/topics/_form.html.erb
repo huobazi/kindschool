@@ -21,6 +21,23 @@
 <% if action_name == "new" %>
   <% if current_user.get_users_ranges[:tp] == :student %>
     <%= f.input :squad_label, :required => true, :as => :string, :input_html => { :disabled => true, :value => current_user.student_info.squad.name } %>
+  <% elsif current_user.get_users_ranges[:tp] == :teachers %>
+    <div class="field">
+      <%= radio_button_tag 'visible', 'all', :checked => true %><span class="field_prompt" for="visible_all">全园可见</span>
+      <%= radio_button_tag 'visible', 'squad' %><span class="field_prompt" for="visible_squad">选择班级</span>
+
+    </div>
+    <div class="select_field" id="select_squad" style="display:none;">
+      <% unless @squads.blank? %>
+        <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
+        <%= select_tag "topic[squad_id]", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+      <% else %>
+        <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
+        <div class="controls">
+          <label>还未有负责的班级</label>
+        </div>
+      <% end %>
+    </div>
   <% else %>
     <div class="field">
       <%= radio_button_tag 'visible', 'all', :checked => true %><span class="field_prompt" for="visible_all">全园可见</span>
@@ -30,7 +47,13 @@
     <br />
     <div class="select_field" id="select_squad" style="display:none;">
       <label class="field_prompt" for="grade">年级:</label>
-      <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+      <% unless @grades.blank? %>
+        <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+      <% else %>
+        <div class="controls">
+          <label>还未有年级</label>
+        </div>
+      <% end %>
       <div id="grade_squad_partial">
       </div>
     </div>
@@ -38,6 +61,11 @@
 
 <% else %>
   <%= f.input :squad_label, :as => :string, :disabled => true %>
+<% end %>
+
+<% if current_user.get_users_ranges[:tp] == :all %>
+  <%= f.input :is_show, :as => :boolean %>
+  <%= f.input :is_top, :as => :boolean %>
 <% end %>
 <br />
 <%= f.input :kindergarten_id, :as => :hidden %>
@@ -101,7 +129,7 @@ var flag = []
           $("#grade_squad_partial").html(result);
         }
       )
-  })
+  }).trigger("change")
   $("input[type='radio']").change(function() {
     if ( $(this).val() == "squad" ) {
       $("#select_squad").show()
