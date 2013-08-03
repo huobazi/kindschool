@@ -16,7 +16,7 @@ class CreateStudentInfos < ActiveRecord::Migration
       t.string :nationality #国籍
       t.string :nation #民族
       t.integer :overseas_chinese, :default =>0 #港澳台侨，非港澳台侨、归侨、华侨、侨眷、香港同胞、台湾同胞、外籍华裔人、非华裔中国人、外国人、澳门同胞、其他
-      t.integer :household , :default =>0#户口性质，农业户口、非农业户口
+      t.integer :household , :default =>1#户口性质，农业户口、非农业户口
       t.string :birthplace  #出生地
       t.string :native    #籍贯
       t.string :domicile_place  #户口所在地
