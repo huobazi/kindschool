@@ -9,9 +9,8 @@ class CreateNotices < ActiveRecord::Migration
       t.integer :approve_status
       t.integer :approver_id
       t.integer :status
-      t.integer :send_range
+      t.integer :send_range, :default => 0 # "0"=>"全园通知","1"=>"全教职工通知","2"=>"全学生通知"
       t.integer :send_range_ids
-
       t.timestamps
     end
   end
