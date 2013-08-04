@@ -68,7 +68,7 @@
 
         <div id="topic_show" class="show">
           <div class="content_up">
-            <p class="title"><span><%= @topic.title %><span><span class="squad_name"><%= @topic.squad ? "*#{@topic.squad.name}" : "" %></span></p>
+            <p class="title"><span><%= @topic.is_top ? "[顶]" : "" %><%= @topic.title %><span><span class="squad_name"><%= @topic.squad ? "*#{@topic.squad.name}" : "" %></span></p>
                 <p class="info">属于
                   <span class="link">
                     <% if choose_operate_show("my_school/topics/index") %>
@@ -88,13 +88,13 @@
         <div id="topic_entries">
           <% unless @topic_entries.blank? %>
             <div class="total"><b>共收到<%= @topic_entries.count %>条回复</b></div>
-            <% @topic_entries.each do |topic_entry| %>
+            <% @topic_entries.each do |topic_entry, e| %>
               <div id="topic_entry_<%= topic_entry.id %>" class="show_entry">
                 <div class="content_left">
                   <div class="user_head_logo"><img src="<%= topic_entry.creater.asset_logo ? topic_entry.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/></div>
                 </div>
                 <div class="content_right">
-                  <p class="info"><span class="author"><%= topic_entry.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(topic_entry.created_at) %></span></p>
+                  <p class="info"><span class="author"><%= topic_entry.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(topic_entry.try(:created_at)) %></span></p>
                   <div class="content"><%= simple_format topic_entry.content %></div>
                 </div>
               </div>
@@ -104,8 +104,6 @@
             暂无回复
           <% end %>
         </div>
-
-
         <%= simple_form_for(@topic_entry, :validate => true, :url => my_school_topic_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
           <%= render :partial => "topic_form", :object => f %>
         <% end %>

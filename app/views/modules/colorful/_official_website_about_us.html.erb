@@ -42,14 +42,15 @@
   <label class="control-label"><span class="required"></span>关于幼儿园的介绍:</label>
 </div>
 <div class="control-group">
-    <%#= text_field_tag :content,entry.content, :class => 'profile_input '%>
     <%= kindeditor_tag :content,entry.content, :allowFileManager => false %>
+    <%= hidden_field_tag "entry_id",@entry.id %>
 </div>
 <div class="control-group">
   <label class="control-label"><span class="required"></span>中间标题</label>
   <div class="controls">
     <label class="show_label">
         <%= text_field_tag :title,entry_title.try(:title), :class => 'profile_input required'%>
+        <%= hidden_field_tag "entry_id",@entry.id %>
     </label>
   </div>
 </div>

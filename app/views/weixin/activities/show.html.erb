@@ -27,24 +27,35 @@
           <%= simple_format @activity.content %>
         </div>
       </li>
-      <% unless @replies.blank? %>
-        <li id="replies_count" class="replies_count">
-          <p>共收到<%= @activity.activity_entries.any? ? @activity.activity_entries.count : 0 %>条回复</p>
+      <ul class="nav nav-tabs">
+        <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/weixin/activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
+        <li class="<%= params[:activity_entry_tp].present? && 0 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
+          <%= link_to "主信息", weixin_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
         </li>
-        <ul class="topic_replies">
-          <% @replies.each do |reply| %>
-            <li class="show" id="activity_entry_<%= reply.id %>">
-              <p class="info">
-              <span class="author"><%= reply.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span><%= reply.created_at.to_long_datetime %></span>
-              </p>
-              <div class="content"><%= simple_format reply.note %></div>
-            </li>
-          <% end %>
-        </ul>
-        <%= paginate @replies %>
-      <% else %>
-        暂无回复
-      <% end %>
+        <li class="<%= params[:activity_entry_tp].present? && 1 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
+          <%= link_to "交互信息", weixin_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
+        </li>
+      </ul>
+      <div id="topic_entries">
+        <% unless @activity_entries.blank? %>
+          <li id="replies_count" class="replies_count">
+            <p>共收到<%= @activity_entries.any? ? @activity_entries.count : 0 %>条回复</p>
+          </li>
+          <ul class="topic_replies">
+            <% @activity_entries.each do |reply| %>
+              <li class="show" id="activity_entry_<%= reply.id %>">
+                <p class="info">
+                <span class="author"><%= reply.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span><%= reply.created_at.to_long_datetime %></span>
+                </p>
+                <div class="content"><%= simple_format reply.note %></div>
+              </li>
+            <% end %>
+          </ul>
+          <%= paginate @activity_entries %>
+        <% else %>
+          暂无回复
+        <% end %>
+      </div>
       <li class="reply">
         <%= simple_form_for(@activity_entry, :validate => true, :url => weixin_activity_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
           <div class="field">

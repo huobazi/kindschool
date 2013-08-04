@@ -19,6 +19,11 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
       return
     elsif current_user.get_users_ranges[:tp] == :teachers
       @squads = current_user.get_users_squads
+      if @squads.empty?
+        flash[:error] = "该教职工没有负责的班级"
+        redirect_to :action => :garden
+        return
+      end
     else
       @grades = @kind.grades
     end

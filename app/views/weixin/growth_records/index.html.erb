@@ -7,7 +7,9 @@
   </div>
   <div class="message_list">
     <ul class="data_list">
-      <%= link_to "发表内容", new_weixin_growth_record_path, :class => "new_topic" %>
+      <% unless current_user.get_users_ranges[:tp] == :teachers %>
+        <%= link_to "发表内容", new_weixin_growth_record_path, :class => "new_topic" %>
+      <% end %>
       <% if @growth_records.blank? %>
         <li><div class="message_content">还没有成长记录</div></li>
       <% else %>

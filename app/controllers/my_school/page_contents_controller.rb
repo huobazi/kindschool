@@ -161,8 +161,8 @@ class  MySchool::PageContentsController < MySchool::ManageController
   end
 
   def update_content
-    PageContent.transaction do
-      begin
+     # PageContent.transaction do
+     #   begin
         @page_content = PageContent.find_by_id_and_kindergarten_id(params[:id],@kind.id)
         if params[:tp] == "showcase"
           if params[:title].blank? && params[:img].blank?
@@ -196,8 +196,6 @@ class  MySchool::PageContentsController < MySchool::ManageController
           @entry = ContentEntry.find(params[:entry_id])
             if @entry.number == "official_home_pub_img"
                unless params[:home_publicity_img].blank?
-                # img = PageImg.new(:uploaded_data=> params[:home_publicity_img])
-                # @entry.page_img = img
                 unless @entry.page_img.blank?
                   @entry.page_img.update_attributes(:uploaded_data=> params[:home_publicity_img])
                 else
@@ -205,7 +203,7 @@ class  MySchool::PageContentsController < MySchool::ManageController
                   @entry.page_img = img
                 end
                end
-            elsif @entry.number == "official_home_teacher"
+        elsif @entry.number == "official_home_teacher"
               if params[:teacher_img]
                # img = PageImg.new(:uploaded_data=> params[:teacher_img])
                # @entry.page_img = img
@@ -229,23 +227,22 @@ class  MySchool::PageContentsController < MySchool::ManageController
               img = PageImg.new(:uploaded_data=> params[:img])
               @entry.page_img = img
           end
-        elsif params[:tp]=="official_website_about_us"
+      elsif params[:tp]=="official_website_about_us"
            @entry = ContentEntry.find(params[:entry_id])
-
            page_content = @entry.page_content
            content_entries = page_content.content_entries
-          
            unless params[:content].blank?
             if @entry = content_entries.find_by_number('official_website_about_us_content')
              @entry.content=params[:content]
+             @entry.save
             end
-            @entry.save
            end
+        
           unless params[:title].blank?
            if @entry = content_entries.find_by_number('official_website_about_us_title')
              @entry.title=params[:title]
+              @entry.save
            end
-           @entry.save
           end
           unless params[:img].blank?
             if @entry = content_entries.find_by_number('official_website_about_us_img')
@@ -278,16 +275,16 @@ class  MySchool::PageContentsController < MySchool::ManageController
             end
           end
         end
-        if @entry.save
+        if @entry.save!
           flash[:notice] = "更新成功."
         else
           flash[:error] = "更新失败."
         end
         redirect_to(:action => :show,:controller=>"/my_school/page_contents",:id=>@page_content.id)
-      rescue Exception => ex
-        flash[:error] = ex.message
-        redirect_to(:action => :show,:controller=>"/my_school/page_contents",:id=>@page_content.id)
-      end
-    end
+  #     rescue Exception => ex
+  #       flash[:error] = ex.message
+  #       redirect_to(:action => :show,:controller=>"/my_school/page_contents",:id=>@page_content.id)
+  #     end
+  #   end
   end
 end

@@ -1,21 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title></title>
-  <%= stylesheet_link_tag 'list' %>
-
-</head>
-<body>
-<OBJECT id='WebBrowser' classid='CLSID:8856F961-340A-11D0-A96B-00C04FD705A2' height=0 width=0></OBJECT> 
-
-<%= yield  %>
-
-<script language='javascript'>
-document.all.WebBrowser.ExecWB(7,1)
-</script>
-
-</body>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title></title>
+  </head>
+  <body>
+    <%= yield  %>
+  </body>
 </html>

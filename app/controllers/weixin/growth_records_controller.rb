@@ -84,7 +84,7 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
       redirect_to :action => :index
     end
     if current_user.get_users_ranges[:tp] == :student
-      @growth_record = @kind.growth_records.find_by_id_and_tp_and_creater_id(params[:id], 1, current_user.id)
+      @growth_record = @kind.growth_records.where("tp = ? and (creater_id = ? or student_info_id = ?)", 1, current_user.id, current_user.student_info.id).find_by_id(params[:id])
     else
       @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 1)
     end
