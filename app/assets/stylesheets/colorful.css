@@ -1687,6 +1687,9 @@ span.help-inline {
 }
 /*==================== 贴子 ============*/
 
+.form_div #is_show {
+  display: inline;
+}
 .topics .topic_line {
   border-bottom: 1px solid #ddd;
   padding: 10px 0;

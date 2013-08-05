@@ -106,9 +106,7 @@
                   <%= activity.tp == 0 ? "活动" : "兴趣讨论" %>
                 </td>
                 <td>
-                  <% if activity.asset_img.blank? %>
-                    图片不存在
-                  <% else %>
+                  <% unless activity.asset_img.blank? %>
                     <a href="<%= activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
                       <img src="<%= activity.asset_img.public_filename(:tiny) %>" />
                     </a>
