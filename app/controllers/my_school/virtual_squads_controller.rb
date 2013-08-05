@@ -17,7 +17,7 @@ class MySchool::VirtualSquadsController < MySchool::ManageController
     @virtual_squad.tp=1
     @virtual_squad.kindergarten_id = @kind.id
     users = User.find_by_id(params[:ids])
-    (users || []) .each do |user|
+    (users || []).each do |user|
       user_squad = UserSquad.new(:user_id=>user.id)
       user_squad.squad = @virtual_squad
      	@virtual_squad.user_squads << user_squad
