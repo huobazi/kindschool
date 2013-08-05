@@ -136,14 +136,14 @@
             </span>&nbsp;创建于&nbsp;<span class="time"><%= @activity.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
           <div id="content_down">
-            <div class="logo" style="float: left; width: 100px;">
-              <% unless @activity.asset_img.blank? %>
-                <a href="<%= @activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
-                  <img src="<%= @activity.asset_img.public_filename(:middle) %>" />
+            <% unless @activity.asset_img.blank? %>
+              <div class="logo" style="float: left;">
+                <a href="<%= @activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="<%= @activity.note %>" >
+                  <img src="<%= @activity.asset_img.public_filename(:thumb) %>" />
                 </a>
-              <% end %>
-            </div>
-            <div class="content" style="float: left; width: 70%;">
+              </div>
+            <% end %>
+            <div class="content" style="float: left; width: 60%; clear: right">
               <%= raw @activity.content %> <br />
             </div>
           </div>
@@ -152,7 +152,7 @@
         <hr />
 
         <div id="topic_entries">
-          <div id="topic_category_tabs">
+          <div id="topic_category_tabs" style="clear: left;">
             <ul class="nav nav-tabs">
               <% if controller_name == "activities" %>
                 <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/my_school/activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
@@ -187,7 +187,7 @@
                     <span class="author">
                       <%= link_to activity_entry.creater.try(:name), my_school_user_path(@activity_entry.creater), :class => "bold_link" %>
                     </span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(activity_entry.created_at) %></span></p>
-                  <div class="content"><%= simple_format activity_entry.note %></div>
+                  <div class="content"><%= activity_entry.note %></div>
                 </div>
               </div>
             <% end %>

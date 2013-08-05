@@ -16,20 +16,20 @@ class MySchool::VirtualSquadsController < MySchool::ManageController
     @virtual_squad = Squad.new(params[:squad])
     @virtual_squad.tp=1
     @virtual_squad.kindergarten_id = @kind.id
-    users = User.find(params[:ids])
-    users.each do |user|
+    users = User.find_by_id(params[:ids])
+    (users || []).each do |user|
       user_squad = UserSquad.new(:user_id=>user.id)
       user_squad.squad = @virtual_squad
      	@virtual_squad.user_squads << user_squad
     end
     if @virtual_squad.save!
-      redirect_to my_school_virtual_squads_path, :notice => "操作成功"
+      redirect_to my_school_virtual_squad_path(@virtual_squad.id), :success => "操作成功"
     else
       flash[:error] = "操作失败"
       redirect_to my_school_virtual_squads_path
     end
   end
-   
+
   def show
     @virtual_squad = @kind.squads.find(params[:id])
     unless  @virtual_squad.tp==1

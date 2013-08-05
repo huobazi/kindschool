@@ -10,3 +10,7 @@ messages:
   name: "消息"
   number: "messages"
   status: false
+activities:
+  name: "活动信息"
+  number: "activities"
+  status: false

@@ -116,7 +116,12 @@ MENUS ={"home"=>{
       "122000"=>{
         "my_school/interest_activities" => ["index", "new", "edit", "show"]
       }
+    },
+    "130000"=>{
+      "131000" => {
+        "my_school/approves" => ["news_list","news_show"]}
     }
+
 
 
 }

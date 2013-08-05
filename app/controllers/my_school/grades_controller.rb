@@ -48,7 +48,7 @@ class  MySchool::GradesController < MySchool::ManageController
     @grade = Grade.new(params[:grade])
     @grade.kindergarten_id = @kind.id
     if @grade.save!
-      redirect_to my_school_grade_path(@grade), :notice => "操作成功"
+      redirect_to my_school_grade_path(@grade), :success => "操作成功"
     else
       flash[:error] = "操作失败"
       redirect_to my_school_grades_path

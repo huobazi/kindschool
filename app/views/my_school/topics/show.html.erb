@@ -68,7 +68,7 @@
 
         <div id="topic_show" class="show">
           <div class="content_up">
-            <p class="title"><span><%= @topic.is_top ? "[顶]" : "" %><%= @topic.title %><span><span class="squad_name"><%= @topic.squad ? "*#{@topic.squad.name}" : "" %></span></p>
+            <p class="title"><span><%= @topic.is_top ? "[置顶]" : "" %><%= @topic.title %><span><span class="squad_name"><%= @topic.squad ? "*#{@topic.squad.name}" : "" %></span></p>
                 <p class="info">
                   <span class="link">
                     <%= @topic.topic_category.name %>
