@@ -1,24 +1,24 @@
-<tr>
-  <td><input id="topic_<%= topic.id %>" class="topic_check" name="topic[]" type="checkbox" value="<%= topic.id %>" /></td>
-  <td>
-    <% if choose_operate_show("my_school/topics/show") %>
-      <%= link_to topic.title, my_school_topic_path(topic) %>
-    <% else %>
-      <%= topic.title %>
-    <% end %>
-  </td>
-  <td><%= topic.creater ? topic.creater.name : "" %></td>
-  <td><%= topic.show_count %></td>
-  <td><%= topic.is_show == true ? "是" : "否" %>
-  <td><%= topic.try(:squad).try(:name) %></td>
-  <td>
-    <% if choose_operate_show("my_school/topics/show") %>
-      <%= link_to "查看", my_school_topic_path(topic), :class => "show" %>
-    <% end %>
-  </td>
-  <td>
-    <% if choose_operate_show("my_school/topics/edit") %>
-      <%= link_to "编辑", edit_my_school_topic_path(topic), :class => "show" %>
-    <% end %>
-  </td>
-</tr>
+<div class="topic topic_line pull-left">
+  <div class="avatar pull-left"><img src="<%= topic.creater.asset_logo ? topic.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
+  </div>
+  <div class="right_info">
+    <div class="replies pull-right">
+      <% if topic.topic_entries.any? %>
+        <%= link_to topic.topic_entries.count, my_school_topic_path(topic, anchor: "topic_entry_1"), class: "count" %>
+      <% end %>
+    </div>
+    <div class="infos">
+      <div class="title">
+        <% if topic.is_top == true %>
+          <%= link_to "[置顶]#{topic.title}", my_school_topic_path(topic) %>
+        <% else %>
+          <%= link_to topic.title, my_school_topic_path(topic) %>
+        <% end %>
+      </div>
+      <div class="info">
+        <em><%= topic.topic_category.try(:name) %></em><em>&nbsp;*&nbsp;</em><em><%= topic.creater.try(:name) %></em>
+        <em>发表于</em><abbr><%= topic.created_at.try(:to_long_datetime) %></abbr>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="topic topic_line pull-left">
+  <div class="avatar pull-left"><img src="<%= growth_record.student_info.user.asset_logo ? growth_record.student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
+  </div>
+  <div class="right_info">
+    <div class="infos">
+      <div class="title">
+        <a href="<%= url_for(my_school_growth_record_path(growth_record)) %>"><em>从</em><abbr><%= growth_record.start_at.try(:to_short_datetime) %></abbr><em>&nbsp;到&nbsp;</em><abbr><%= growth_record.end_at.try(:to_short_datetime) %></abbr></a>
+      </div>
+      <div class="info">
+        <em><%= growth_record.creater.try(:name) %></em>
+        <em>创建于</em><abbr><%= growth_record.created_at.try(:to_long_datetime) %></abbr>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -65,23 +65,8 @@
     <div class="work_list">
       <div class="topics">
         <% unless @topics.empty? %>
-          <% @topics.each do |topic| %>
-            <div class="topic topic_line pull-left">
-              <div class="avatar pull-left"><img src="<%= topic.creater.asset_logo ? topic.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
-              </div>
-              <div class="right_info">
-                <div class="replies">
-                </div>
-                <div class="infos">
-                  <div class="title">
-                    <%= link_to topic.title, my_school_topic_path(topic), :class => "normal_link" %>
-                  </div>
-                  <div class="info">
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
+          <%= render partial: "topic", collection: @topics %>
+          <%= paginate @topics %>
         <% else %>
           暂时没有贴子
         <% end %>

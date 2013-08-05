@@ -1084,12 +1084,10 @@ table.user_attributes td {
 
 
 #topic_category_tabs {
-    padding-left: 50px;
     padding-top: 10px;
 }
 #topic_category_tabs a {
     color: #333333;
-    font-size: 16px;
 }
 .float_left {
     float: left;
@@ -1591,9 +1589,19 @@ ul.teacher_list li{
 span.help-inline {
     color: red;
 }
+.work_list .table label {
+  font-weight: bold;
+  font-size: 16px;
+}
+.work_list .table tr:first-child th:last-child {
+  width: 20%;
+}
+.work_list .table tr:first-child th:first-child {
+  width: 50px;
+}
 .index_a a{
     float: left;
-    padding-right: 3px;
+    padding-right: 10px;
 }
 .official_home_teacher_img img{
     border: 0 none;
@@ -1641,13 +1649,11 @@ span.help-inline {
   text-indent: 20px;
   font-size: 20px;
   word_wrap: break-word;
-}
-#topic_entries{
-  display:inline-block;
-  padding: 30px;
+  overflow: auto;
 }
 .show .logo {
   padding-top: 20px;
+  padding-left: 0
 }
 
 .show_entry {
@@ -1696,42 +1702,81 @@ span.help-inline {
 }
 
 .topics .topic .avatar {
-width: 70px;
-margin-left: 10px;
+  width: 70px;
+  margin-left: 10px;
 }
 
 .topics .topic .right_info {
-padding-left: 66px;
+  padding-left: 85px;
 }
 .topics .topic .infos {
-padding-right: 74px;
+  padding-right: 74px;
 }
 
 .topics .topic .title {
-font-size: 14px;
-margin-top: 2px;
-margin-bottom: 6px;
+  font-size: 14px;
+  margin-top: 2px;
+  margin-bottom: 6px;
+  padding-left: 10px;
 }
 
-.topics .topic .title a:link, .topics .topic .title a:visited, .node_topics .title a:link, .node_topics .title a:visited {
-color: #2c64d7;
-text-decoration: none;
+.topics .topic .title abbr {
+  color: #201919;
+  font-size: 20px;
+}
+
+.topics .topic .title em {
+  font-style: normal;
+  color: #333;
+}
+
+.topics .topic .title a:link, .topics .topic .title a:visited {
+  color: #2c64d7;
+  text-decoration: none;
+  font-size: 20px;
 }
 
 .topics .topic .info {
-color: #bbb;
-margin-bottom: 2px;
-font-size: 12px;
+  margin-bottom: 2px;
+  font-size: 12px;
+  padding-left: 10px;
 }
 
-.topics .topic .info .node {
-padding: 1px 5px;
-color: #778087;
-text-decoration: none;
-background-color: #f5f5f5;
+.topics .topic .info em {
+  font-size: 16px;
+  font-style: normal;
+}
+
+.topics .topic .info abbr {
+  color: #999;
+  font-size: 16px;
+  font-style: normal
 }
 
 .form_div .activity_title {
   color: #333333;
   font-size: 14px;
 }
+
+.topics .topic .replies {
+  width: 70px;
+  margin-right: 10px;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.topics .topic .replies a.count, .topics .topic .replies a.count:visited {
+  line-height: 12px;
+  font-weight: bold;
+  color: white;
+  background-color: #1c7fdb;
+  display: inline-block;
+  padding: 2px 10px 2px 10px;
+  -moz-border-radius: 80px;
+  -webkit-border-radius: 80px;
+  border-radius: 80px;
+  margin: 18px 12px 0px 0px;
+  text-decoration: none; 
+}
+
+

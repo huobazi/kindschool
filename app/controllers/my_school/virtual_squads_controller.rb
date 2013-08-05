@@ -23,13 +23,13 @@ class MySchool::VirtualSquadsController < MySchool::ManageController
      	@virtual_squad.user_squads << user_squad
     end
     if @virtual_squad.save!
-      redirect_to my_school_virtual_squads_path, :notice => "操作成功"
+      redirect_to my_school_virtual_squad_path(@virtual_squad.id), :success => "操作成功"
     else
       flash[:error] = "操作失败"
       redirect_to my_school_virtual_squads_path
     end
   end
-   
+
   def show
     @virtual_squad = @kind.squads.find(params[:id])
     unless  @virtual_squad.tp==1
