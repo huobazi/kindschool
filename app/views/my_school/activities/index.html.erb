@@ -82,6 +82,7 @@
               <th>类型</th>
               <th>展示图片</th>
               <th colspan="2">操作</th>
+              <th></th>
             </tr>
             <% @activities.each do |activity| %>
               <tr>
@@ -134,6 +135,13 @@
                     <% end %>
                   <% end %>
                 </td>
+                <td>
+                  <%=activity.approve_status.inspect%>
+                  <%if activity.approve_status==2%>
+                审核不通过
+                <%elsif activity.approve_status==1%>
+                待审核
+                <%end%></td>
               </tr>
             <% end %>
           <% end %>
