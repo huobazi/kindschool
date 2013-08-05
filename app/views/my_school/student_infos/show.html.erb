@@ -81,7 +81,7 @@
               <div class="controls">
                 <div class="show_action">
                   <% if choose_operate_show("my_school/users/set_gather_sms") %>
-                    <%= link_to (@student_info.user.is_receive ? "取消收短信" : "可收短信"), set_gather_sms_my_school_user_path(@student_info.user), :class => "show btn" %>
+                    <%= link_to (@student_info.user.is_receive ? "取消收短信" : "可收短信"), set_gather_sms_my_school_user_path(@student_info.user), :class => "btn" %>
                   <% end %>
                   <% if choose_operate_show("my_school/student_infos/student_execl") %>
                   <%= link_to "学员信息下载",student_execl_my_school_student_infos_path(:student_info_id=>@student_info.id),:class=>"btn"%>
