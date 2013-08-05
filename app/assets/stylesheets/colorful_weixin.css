@@ -538,6 +538,13 @@ ul, li {
     width: 50%;
     color: #787b80;
 }
+.message_div .message_list .data_list li .right_message_time{
+    display: inline-block;
+    padding-top: 5px;
+    padding-right: 3px;
+    float: right;
+    color: #787b80;
+}
 .message_div .message_list .data_list li .message_content{
     padding: 5px;
     word-wrap: break-word;

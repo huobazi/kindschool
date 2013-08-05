@@ -219,7 +219,7 @@ class User < ActiveRecord::Base
       if !data[:playgroup].blalk?
         squads = data[:playgroup]
         squads.each do |squad_play|
-          #添加虚拟班的学生和老师
+          #添加延时班的学生和老师
           users_ids += squad_play.get_all.collect{|user_play| user_play.id.to_s}
         end
       end
@@ -235,7 +235,7 @@ class User < ActiveRecord::Base
       if !data[:playgroup].blank?
         squads = data[:playgroup]
         squads.each do |squad_play|
-          #添加虚拟班的老师
+          #添加延时班的老师
           users_ids += squad_play.get_teachers.collect{|user_play| user_play.id.to_s}
         end
       end

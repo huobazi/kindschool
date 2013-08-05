@@ -1,0 +1,22 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    <a href="<%= url_for(:action=>:index) %>" title="返回" class="weixin_return">返回</a>每日一帖
+  </div>
+  <div class="show_title">
+    <div class="title">
+      <label>标 题:<%= @weixin_databank.title %></label>
+    </div>
+    <div class="limit_title">
+      <label>时 间:<%= @weixin_share.send_date ? @weixin_share.send_date.to_short_datetime : "" %></label>
+    </div>
+  </div>
+  <div class="message_list">
+    <label class="message_content"><%= @weixin_databank.content %></label>
+    <br/>
+  </div>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>

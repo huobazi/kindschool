@@ -8,21 +8,11 @@
 <% else %>
   <%= f.input :topic_category_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
 <% end %>
-<%= f.input :title, :validate => true, :required => true, :input_html => {:class => "span5 profile_input required"} %>
-<%#= f.input :content, :validate => true, :required => true, :input_html => { :class => "span5" } %>
-
-<div class="control-group">
-  <label class="control-label"><span class="required">*</span>内容</label>
-</div>
-<div class="control-group">
-    <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false%>
-</div>
-
 <% if action_name == "new" %>
   <% if current_user.get_users_ranges[:tp] == :student %>
     <%= f.input :squad_label, :required => true, :as => :string, :input_html => { :disabled => true, :value => current_user.student_info.squad.name } %>
   <% elsif current_user.get_users_ranges[:tp] == :teachers %>
-    <div class="field">
+    <div class="field controls">
       <%= radio_button_tag 'visible', 'all', :checked => true %><span class="field_prompt" for="visible_all">全园可见</span>
       <%= radio_button_tag 'visible', 'squad' %><span class="field_prompt" for="visible_squad">选择班级</span>
 
@@ -39,7 +29,7 @@
       <% end %>
     </div>
   <% else %>
-    <div class="field">
+    <div class="field controls">
       <%= radio_button_tag 'visible', 'all', :checked => true %><span class="field_prompt" for="visible_all">全园可见</span>
       <%= radio_button_tag 'visible', 'squad' %><span class="field_prompt" for="visible_squad">选择班级</span>
 
@@ -67,7 +57,17 @@
   <%= f.input :is_show, :as => :boolean %>
   <%= f.input :is_top, :as => :boolean %>
 <% end %>
-<br />
+<%= f.input :title, :validate => true, :required => true, :input_html => {:class => "span5 profile_input required"} %>
+<%#= f.input :content, :validate => true, :required => true, :input_html => { :class => "span5" } %>
+
+<div class="control-group">
+  <label class="control-label"><span class="required">*</span>内容</label>
+</div>
+<div class="control-group">
+    <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false%>
+</div>
+
+
 <%= f.input :kindergarten_id, :as => :hidden %>
 <%= f.input :creater_id, :as => :hidden %>
 <% if current_user.get_users_ranges[:tp] == :student %>

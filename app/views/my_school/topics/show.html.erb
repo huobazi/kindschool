@@ -69,17 +69,13 @@
         <div id="topic_show" class="show">
           <div class="content_up">
             <p class="title"><span><%= @topic.is_top ? "[顶]" : "" %><%= @topic.title %><span><span class="squad_name"><%= @topic.squad ? "*#{@topic.squad.name}" : "" %></span></p>
-                <p class="info">属于
+                <p class="info">
                   <span class="link">
-                    <% if choose_operate_show("my_school/topics/index") %>
-                      <%= link_to @topic.topic_category.name, my_school_topics_path(:topic_category_id => @topic.topic_category_id), :class => "normal_link" %>
-                    <% else %>
-                      <%= @topic.topic_category.name %>
-                    <% end %>
+                    <%= @topic.topic_category.name %>
                   </span>
-                  类&nbsp;由&nbsp;
+                  &nbsp;由&nbsp;
                   <span class="link">
-                    <%= link_to @topic.try(:creater).try(:name), my_school_user_path(@topic.creater), :class => "normal_link" %>
+                    <%= @topic.creater.try(:name) %>
                   </span>&nbsp;创建于&nbsp;<span class="time"><%= @topic.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
           <div class="content"><%= raw @topic.content %></div>

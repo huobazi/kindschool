@@ -644,10 +644,10 @@ student_destroy:
 virtual_squads_index:
   id: 4005
   parent_id: 5
-  name: "虚拟班管理"
+  name: "延时班管理"
   level: 2
   sequence: 4
-  note: "虚拟班管理"
+  note: "延时班管理"
   controller: "my_school/virtual_squads"
   action: "index"
   protocol: ""
@@ -656,10 +656,10 @@ virtual_squads_index:
 virtual_squads_new:
   id: 4006
   parent_id: 5
-  name: "虚拟班管理新建"
+  name: "延时班管理新建"
   level: 2
   sequence: 4
-  note: "虚拟班管理新建"
+  note: "延时班管理新建"
   controller: "my_school/virtual_squads"
   action: "new"
   protocol: ""
@@ -668,10 +668,10 @@ virtual_squads_new:
 virtual_squads_create:
   id: 4007
   parent_id: 5
-  name: "虚拟班管理创建"
+  name: "延时班管理创建"
   level: 2
   sequence: 4
-  note: "虚拟班管理创建"
+  note: "延时班管理创建"
   controller: "my_school/virtual_squads"
   action: "create"
   protocol: ""
@@ -680,10 +680,10 @@ virtual_squads_create:
 virtual_squads_show:
   id: 4008
   parent_id: 5
-  name: "虚拟班管理展示"
+  name: "延时班管理展示"
   level: 2
   sequence: 4
-  note: "虚拟班管理展示"
+  note: "延时班管理展示"
   controller: "my_school/virtual_squads"
   action: "show"
   protocol: ""
@@ -692,10 +692,10 @@ virtual_squads_show:
 virtual_squads_edit:
   id: 4009
   parent_id: 5
-  name: "虚拟班管理编辑"
+  name: "延时班管理编辑"
   level: 2
   sequence: 4
-  note: "虚拟班管理编辑"
+  note: "延时班管理编辑"
   controller: "my_school/virtual_squads"
   action: "edit"
   protocol: ""
@@ -704,10 +704,10 @@ virtual_squads_edit:
 virtual_squads_update:
   id: 4010
   parent_id: 5
-  name: "虚拟班管理更新"
+  name: "延时班管理更新"
   level: 2
   sequence: 4
-  note: "虚拟班管理更新"
+  note: "延时班管理更新"
   controller: "my_school/virtual_squads"
   action: "update"
   protocol: ""
@@ -716,10 +716,10 @@ virtual_squads_update:
 virtual_squads_destroy:
   id: 4011
   parent_id: 5
-  name: "虚拟班管理删除"
+  name: "延时班管理删除"
   level: 2
   sequence: 4
-  note: "虚拟班管理删除"
+  note: "延时班管理删除"
   controller: "my_school/virtual_squads"
   action: "destroy"
   protocol: ""
@@ -1034,10 +1034,10 @@ approve_modules_update:
 seedlings_index:
   id: 6001
   parent_id: 7
-  name: "育苗记录"
+  name: "疫苗记录"
   level: 2
   sequence: 0
-  note: "育苗记录"
+  note: "疫苗记录"
   controller: "my_school/seedlings"
   action: "index"
   protocol: ""
@@ -1046,10 +1046,10 @@ seedlings_index:
 seedlings_new:
   id: 6002
   parent_id: 7
-  name: "育苗记录新建"
+  name: "疫苗记录新建"
   level: 2
   sequence: 0
-  note: "育苗记录新建"
+  note: "疫苗记录新建"
   controller: "my_school/seedlings"
   action: "new"
   protocol: ""
@@ -1057,10 +1057,10 @@ seedlings_new:
 seedlings_edit:
   id: 6003
   parent_id: 7
-  name: "育苗记录编辑"
+  name: "疫苗记录编辑"
   level: 2
   sequence: 0
-  note: "育苗记录编辑"
+  note: "疫苗记录编辑"
   controller: "my_school/seedlings"
   action: "edit"
   protocol: ""
@@ -1069,10 +1069,10 @@ seedlings_edit:
 seedlings_destroy:
   id: 6004
   parent_id: 7
-  name: "育苗记录删除"
+  name: "疫苗记录删除"
   level: 2
   sequence: 0
-  note: "育苗记录删除"
+  note: "疫苗记录删除"
   controller: "my_school/seedlings"
   action: "destroy"
   protocol: ""
@@ -1081,10 +1081,10 @@ seedlings_destroy:
 seedlings_create:
   id: 6005
   parent_id: 7
-  name: "育苗记录创建"
+  name: "疫苗记录创建"
   level: 2
   sequence: 0
-  note: "育苗记录创建"
+  note: "疫苗记录创建"
   controller: "my_school/seedlings"
   action: "create"
   protocol: ""
@@ -1093,10 +1093,10 @@ seedlings_create:
 seedlings_update:
   id: 6006
   parent_id: 7
-  name: "育苗记录更新"
+  name: "疫苗记录更新"
   level: 2
   sequence: 0
-  note: "育苗记录更新"
+  note: "疫苗记录更新"
   controller: "my_school/seedlings"
   action: "update"
   protocol: ""
@@ -1105,10 +1105,10 @@ seedlings_update:
 seedlings_show:
   id: 6007
   parent_id: 7
-  name: "育苗记录展示"
+  name: "疫苗记录展示"
   level: 2
   sequence: 0
-  note: "育苗记录展示"
+  note: "疫苗记录展示"
   controller: "my_school/seedlings"
   action: "show"
   protocol: ""

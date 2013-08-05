@@ -1,5 +1,5 @@
 #encoding:utf-8
-#虚拟班的关联
+#延时班的关联
 class UserSquad < ActiveRecord::Base
   attr_accessible :squad_id, :user_id
   belongs_to :user
