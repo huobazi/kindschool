@@ -6,11 +6,11 @@ class MySchool::ActivitiesController < MySchool::ManageController
 
   def index
     if current_user.get_users_ranges[:tp] == :student
-      @activities = @kind.activities.search(params[:activity] || {}).where("tp = ? and  (squad_id = ? or squad_id is null)", 0, current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
+      @activities = @kind.activities.search(params[:activity] || {}).where("approve_status=0 and tp = ? and  (squad_id = ? or squad_id is null)", 0, current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
     elsif current_user.get_users_ranges[:tp] == :teachers
       @activities = @kind.activities.search(params[:activity] || {}).where("tp = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", 0, current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
     else
-      @activities = @kind.activities.search(params[:activity] || {}).where(:tp => 0,:approve_status=>0).page(params[:page] || 1).per(10).order("created_at DESC")
+      @activities = @kind.activities.search(params[:activity] || {}).where(:tp => 0).page(params[:page] || 1).per(10).order("created_at DESC")
     end
   end
 

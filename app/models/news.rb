@@ -13,18 +13,18 @@ class News < ActiveRecord::Base
   protected
   def news_approve_status_start
     if kind =  self.kindergarten
-      if approve_module=kind.approve_modules.find_by_number("activities")
+      if approve_module=kind.approve_modules.find_by_number("news")
          if approve_module.status
            if self.approve_status_was == self.approve_status
             self.approve_status = 1
             if  self.approve_record.blank?
-            	 approve_record = ApproveRecord.new()
+            	approve_record = ApproveRecord.new()
             	 self.approve_record = approve_record
-               approve_entry=ApproveEntry.new(:note=>"创建了一条活动信息")
+               approve_entry=ApproveEntry.new(:note=>"创建了一条新闻")
                self.approve_record.approve_entries << approve_entry
             else
                self.approve_record.status = 1
-               approve_entry=ApproveEntry.new(:note=>"更新了该条活动信息")
+               approve_entry=ApproveEntry.new(:note=>"更新了该条新闻")
                self.approve_record.approve_entries << approve_entry
             end
            end
