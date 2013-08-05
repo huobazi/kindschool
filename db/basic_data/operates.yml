@@ -641,6 +641,18 @@ student_destroy:
   protocol: ""
   <<: *DEFAULTS
 
+student_virtual_squad_choose:
+  id: 4145
+  parent_id: 5
+  name: "添加延时班"
+  level: 2
+  sequence: 4
+  note: "添加延时班"
+  controller: "my_school/student_infos"
+  action: "virtual_squad_choose"
+  protocol: ""
+  <<: *DEFAULTS
+
 virtual_squads_index:
   id: 4005
   parent_id: 5

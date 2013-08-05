@@ -136,13 +136,13 @@
             </span>&nbsp;创建于&nbsp;<span class="time"><%= @activity.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
           <div id="content_down">
-            <div class="logo" style="float: left;">
-              <% unless @activity.asset_img.blank? %>
+            <% unless @activity.asset_img.blank? %>
+              <div class="logo" style="float: left;">
                 <a href="<%= @activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="<%= @activity.note %>" >
                   <img src="<%= @activity.asset_img.public_filename(:thumb) %>" />
                 </a>
-              <% end %>
-            </div>
+              </div>
+            <% end %>
             <div class="content" style="float: left; width: 60%; clear: right">
               <%= raw @activity.content %> <br />
             </div>

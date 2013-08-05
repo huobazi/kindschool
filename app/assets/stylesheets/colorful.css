@@ -1649,6 +1649,8 @@ span.help-inline {
   text-indent: 20px;
   font-size: 20px;
   word_wrap: break-word;
+  inherit: auto;
+  min-height: 200px;
   overflow: auto;
 }
 .show .logo {
