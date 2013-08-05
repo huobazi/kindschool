@@ -124,11 +124,11 @@ class MySchool::MessagesController < MySchool::ManageController
         flash[:notice] = '提交信息成功.'
         #提交的是发送消息按钮就去发件箱
         if @flag == true
-          format.html { redirect_to(:action=>:outbox_show,:id=>@message.id) }
+          format.html { redirect_to({:action=>:outbox_show,:id=>@message.id,:clear_cookie=>1}) }
           format.xml  { head :ok }
         else
           #提交的是存为草稿箱按钮就去草稿箱
-          format.html { redirect_to(:action=>:draft_show,:id=>@message.id) }
+          format.html { redirect_to(:action=>:draft_show,:id=>@message.id,:clear_cookie=>1) }
         end
       else
         format.html { render :action => "new" }
@@ -414,12 +414,7 @@ LEFT JOIN squads ON(squads.id = user_squads.squad_id)")
   end
 
   def draft_box
-    @messages = current_user.messages.where(:status => true).page(params[:page] || 1).per(10).order("messages.send_date DESC")
-
     @messages = current_user.messages.where(:status => false).page(params[:page] || 1).per(10).order("messages.send_date DESC")
-
-     
-    #render "my_school/messages/outbox"
   end
 
   def draft_show
