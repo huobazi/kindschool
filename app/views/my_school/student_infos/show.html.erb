@@ -86,8 +86,9 @@
                   <% if choose_operate_show("my_school/student_infos/student_execl") %>
                   <%= link_to "学员信息下载",student_execl_my_school_student_infos_path(:student_info_id=>@student_info.id),:class=>"btn"%>
                   <%end%>
+                  <% if choose_operate_show("my_school/student_infos/virtual_squad_choose") %>
                   <%=link_to "添加延时班",virtual_squad_my_school_student_infos_path,:id=>"btn_open_virtual_squads_list",:class=>"btn"%>
-                  
+                  <%end%>
                 </div>
                 <label class="show_label">
                   <img src="<%= @student_info.user.asset_logo ? @student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="103" alt="头像"/>
