@@ -6,7 +6,7 @@ class  MySchool::TopicsController < MySchool::ManageController
     if params[:topic_category_id]
       if topic_category = @kind.topic_categories.find_by_id(params[:topic_category_id])
         if current_user.get_users_ranges[:tp] == :student
-          @topics = @kind.topics.where("topic_category_id = ? and (creater_id = ? or squad_id = ? or squad_id is null)", topic_category.id, current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+          @topics = @kind.topics.where("topic_category_id = ? and (creater_id = ? or squad_id = ? or squad_id is null)", topic_category.id, current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top ASC").("created_at DESC")
         elsif current_user.get_users_ranges[:tp] == :teachers
           @topics = @kind.topics.search(params[:topic] || {}).where("topic_category_id = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", topic_category.id, current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
         else
@@ -22,7 +22,7 @@ class  MySchool::TopicsController < MySchool::ManageController
       elsif current_user.get_users_ranges[:tp] == :teachers
         @topics = @kind.topics.search(params[:topic] || {}).where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
       else
-        @topics = @kind.topics.search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+        @topics = @kind.topics.search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top DESC").order("created_at DESC")
       end
     end
 
