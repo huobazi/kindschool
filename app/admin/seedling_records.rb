@@ -11,7 +11,7 @@ ActiveAdmin.register SeedlingRecord do
   end
 
   form do |f|
-    f.inputs "学员育苗记录" do
+    f.inputs "学员疫苗记录" do
       f.input :kindergarten_label, :required => true, :input_html => { :disabled => true }
       f.input :name
       f.input :note

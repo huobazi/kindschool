@@ -41,7 +41,7 @@
     <% @data[:playgroup].each do |user_squad| %>
       <% if user_squad.squad && !user_squad.get_teachers.blank? %>
         <div class="checkall gray">
-          <div class="checkall_div"><input type="checkbox" id="role_users_checkall_<%=user_squad.id + 2%>" for="#role_div_<%=user_squad.id + 2%>"/><label for="role_users_checkall_<%=user_squad.id + 2%>">虚拟班：<%= user_squad.squad.name %></label></div>
+          <div class="checkall_div"><input type="checkbox" id="role_users_checkall_<%=user_squad.id + 2%>" for="#role_div_<%=user_squad.id + 2%>"/><label for="role_users_checkall_<%=user_squad.id + 2%>">延时班：<%= user_squad.squad.name %></label></div>
         </div>
         <div id="role_div_<%=user_squad.id + 2%>">
           <% user_squad.get_teachers.each do |user| %>

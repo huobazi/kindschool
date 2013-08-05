@@ -13,7 +13,7 @@
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label>虚拟班管理</label>
+        <label>延时班管理</label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
@@ -40,7 +40,7 @@
     </div>
     <div class="search_form">
      <%= form_tag '/my_school/virtual_squads' , :method=>"get" do %>
-      <b>虚拟班名：</b><%= text_field :virtual_squad,:name_like,:style=>"width:100px;" ,:class=>"control-label",:value=>"#{params[:virtual_squad][:name_like] if params[:virtual_squad] }" %>
+      <b>延时班名：</b><%= text_field :virtual_squad,:name_like,:style=>"width:100px;" ,:class=>"control-label",:value=>"#{params[:virtual_squad][:name_like] if params[:virtual_squad] }" %>
       <%= submit_tag "搜索" %>
       <%end%>
     </div>
@@ -50,7 +50,7 @@
           <%= form_tag my_school_virtual_squad_path(@virtual_squads), method: :delete, :id => "destroy_multi_form" do %>
             <tr>
               <th><input type="checkbox" name="" value="" alt="全选" id="physical_record_all">全选</th>
-              <th>虚拟班名</th>
+              <th>延时班名</th>
               <th>创建时间</th>
               <!-- <th>描述</th> -->
               <th></th>
@@ -71,7 +71,7 @@
         </table>
         <%= paginate @virtual_squads%>
       <% else %>
-        暂无虚拟班
+        暂无延时班
       <% end %>
     </div>
   </div>

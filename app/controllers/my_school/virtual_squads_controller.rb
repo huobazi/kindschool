@@ -1,5 +1,5 @@
 #encoding:utf-8
-#虚拟班管理
+#延时班管理
 class MySchool::VirtualSquadsController < MySchool::ManageController
   def index
    	@virtual_squads = @kind.squads.search(params[:virtual_squad] || {}).where(:tp=>1).page(params[:page] || 1).per(10).order("created_at DESC")
@@ -33,7 +33,7 @@ class MySchool::VirtualSquadsController < MySchool::ManageController
   def show
     @virtual_squad = @kind.squads.find(params[:id])
     unless  @virtual_squad.tp==1
-      redirect_to :controller=>'my_school/main' ,:action=>:no_kindergarten#,:notice=>"操作失误，没有该虚拟班"
+      redirect_to :controller=>'my_school/main' ,:action=>:no_kindergarten#,:notice=>"操作失误，没有该延时班"
     end
 
   end
@@ -41,7 +41,7 @@ class MySchool::VirtualSquadsController < MySchool::ManageController
   def edit
     @virtual_squad = @kind.squads.find(params[:id])
     unless @virtual_squad.tp==1
-     	redirect_to :controller=>'my_school/main' ,:action=>:no_kindergarten#,:notice=>"操作失误，没有该虚拟班"	
+     	redirect_to :controller=>'my_school/main' ,:action=>:no_kindergarten#,:notice=>"操作失误，没有该延时班"	
    	end
   end
 

@@ -13,7 +13,7 @@
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label>育苗记录</label>
+        <label>疫苗记录</label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
@@ -41,7 +41,7 @@
      <%= form_tag '/my_school/seedlings' , :method=>"get" do %>
      <b>学员：</b>
       <%= text_field :seedling,:student_info_user_name_like,:style=>"width:100px;" ,:value=>"#{params[:seedling][:student_info_user_name_like] if params[:seedling] }"%>
-      <b>育苗名称：</b><%= text_field :seedling,:name_like,:style=>"width:100px;" ,:class=>"control-label",:value=>"#{params[:seedling][:name_like] if params[:seedling] }" %>
+      <b>疫苗名称：</b><%= text_field :seedling,:name_like,:style=>"width:100px;" ,:class=>"control-label",:value=>"#{params[:seedling][:name_like] if params[:seedling] }" %>
       <b>体检时间：</b>
       <%= text_field :seedling,:shot_at_equals,:style=>"width:100px;" ,:value=>"#{params[:seedling][:shot_at_equals] if params[:seedling] }"  %>
       <%= submit_tag "搜索" %>
@@ -55,7 +55,7 @@
             <tr>
               <th><input type="checkbox" name="" value="" alt="全选" id="seedling_all">全选</th>
               <th>学员</th>
-              <th>育苗名称</th>
+              <th>疫苗名称</th>
               <th>描述</th>
               <th>注射时间</th>
               <th>过期时间</th>
@@ -79,7 +79,7 @@
         </table>
         <%#= paginate @seedlings %>
       <% else %>
-        暂无育苗记录
+        暂无疫苗记录
       <% end %>
     </div>
   </div>
