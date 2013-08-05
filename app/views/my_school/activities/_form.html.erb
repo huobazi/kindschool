@@ -76,6 +76,7 @@
 </div>
 
 <script type="text/javascript">
+var flag = []
   $("input[type='submit']").click(function(){
     if (activity_content.html().length < 5 || activity_content.isEmpty()) {
       if ( $("#activity_content").next("span.help-inline").length == 0 ) {
@@ -97,13 +98,21 @@
       } else if ( $("#activity_squad_label").length > 0 || $("#activity_squad").length > 0 ) {
         flag.push(false)
       } else {
-        if( $("#grade").next("span.help-inline").length == 0 ) {
-          $("<span class='help-inline'>必须选择班级</span>").insertAfter($("#grade"))
+        if( $("#squad").next("span.help-inline").length == 0 ) {
+          $("<span class='help-inline'>必须选择班级</span>").insertAfter($("#squad"))
         }
         flag.push(true);
       }
     }
+    alert(flag)
+    for( i in flag ) {
+      if(flag[i] == true) {
+        flag.length = 0;
+        return false;
+      }
+    }
   })
+
   $("#grade").change(function() {
       $.get(
         "/my_school/activities/grade_squad_partial",

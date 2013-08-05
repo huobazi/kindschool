@@ -68,7 +68,7 @@
                   <% end %>
                 </td>
                 <td><%= grade.squads.count %></td>
-                <td><%= grade.note %></td>
+                <td><div style="overflow:auto;width: 200px;"><%= grade.note %></div></td>
                 <td>
                   <div class="index_a">
                     <% if choose_operate_show("my_school/grades/show") %>
