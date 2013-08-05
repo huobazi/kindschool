@@ -130,6 +130,10 @@
         <div id="activity_show" class="show">
           <div class="content_up">
             <p class="title"><%= @activity.title %><span class="squad_name"><%= @activity.squad ? "*#{@activity.squad.name}" : "" %></span></p>
+            <%unless @activity.approve_status == 0%>
+            <p>审核状态:
+                <%= Activity::STATUS[@activity.approve_status]%></p>
+            <%end%>
             <p class="info"><span class="time"><%= @activity.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @activity.end_at.try(:to_short_datetime) %></span>&nbsp;由&nbsp;
             <span class="normal_link">
               <%= @activity.creater.try(:name) %>

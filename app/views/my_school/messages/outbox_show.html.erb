@@ -125,3 +125,12 @@
   </div>
 
 </div>
+<script type="text/javascript">
+<% if params[:clear_cookie] %>
+    $(window).load(function(){
+      $.cookie("m_c", null, {  path: '/'});
+      $.cookie("m_t", null, {  path: '/'});
+      $.cookie("m_u", null, {  path: '/'});
+    })
+<% end %>
+</script>
