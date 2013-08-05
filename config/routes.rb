@@ -143,6 +143,8 @@ School::Application.routes.draw do
         get :grade_squad_partial
         get :student_execl
         post :download
+        get :virtual_squad 
+        post :virtual_squad_choose
       end
     end
     resources :templates do

@@ -363,3 +363,20 @@
     title: "兴趣讨论"
     height_level: "b"
     sequence: 1220
+
+- id: 130000
+  number: 130000
+  name: "审核管理"
+  height_level: "a"
+  url: "/my_school/approves/news_list"
+  sequence: 1200
+  operate_id: 
+  children:
+  - id: 131000
+    name: "新闻审核管理"
+    operate_id: 10000
+    number: 131000
+    url: "/my_school/approves/news_list"
+    title: "新闻审核管理"
+    height_level: "b"
+    sequence: 1210
