@@ -1,0 +1,26 @@
+<Row>
+        <Cell><Data ss:Type="String">幼儿园名称</Data></Cell>
+        <Cell><Data ss:Type="String">儿童姓名</Data></Cell>
+        <Cell><Data ss:Type="String">儿童户籍</Data></Cell>
+        <Cell><Data ss:Type="String">性别</Data></Cell>
+        <Cell><Data ss:Type="String">证件类型</Data></Cell>
+        <Cell><Data ss:Type="String">证件号码</Data></Cell>
+        <Cell><Data ss:Type="String">出生日期</Data></Cell>
+        <Cell><Data ss:Type="String">所在班级</Data></Cell>
+        <Cell><Data ss:Type="String">入园日期</Data></Cell>
+        <Cell><Data ss:Type="String">填报状态</Data></Cell>
+      </Row>
+       <% @student_infos.each do |student_info| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= @kind.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= student_info.user.try(:name) %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= student_info.native %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= student_info.user.gender == "M" ? "男" : "女" %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= student_info.card_category_label %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= student_info.card_code %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= student_info.birthday.try(:to_short_datetime)%></Data></Cell>
+        <Cell><Data ss:Type="String"><%= student_info.squad.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%=student_info.come_in_at.try(:to_short_datetime)%></Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+      </Row>
+    <% end %>

@@ -9,9 +9,17 @@ class  MySchool::StudentInfosController < MySchool::ManageController
     end
     respond_to do |format|
       format.html
+      # format.xls # { send_data @products.to_csv(col_sep: "\t") }
+    end
+  end
+
+  def download_student_infos
+     @student_infos = @kind.student_infos.search(params[:student_info] || {})#.page(params[:page] || 1).per(10)
+     respond_to do |format|
       format.xls # { send_data @products.to_csv(col_sep: "\t") }
     end
   end
+
 
   def show
     if current_user.tp == 0

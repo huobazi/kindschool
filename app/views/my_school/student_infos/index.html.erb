@@ -54,7 +54,8 @@
         <%end%>
         <p>
   Download:
-  <%= link_to "Excel", my_school_student_infos_path(format: "xls") ,:class=>"btn" %>
+  <%= link_to "深圳市教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "shenzhen",student_info: params[:student_info]) ,:class=>"btn" %>
+  <%= link_to "广东省教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "guangzhou",student_info: params[:student_info]) ,:class=>"btn" %>
 </p>
       </div>
     <% end %>
