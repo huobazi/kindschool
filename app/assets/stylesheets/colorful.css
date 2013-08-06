@@ -176,7 +176,12 @@ a{
     margin-top: 5px;
     padding-top: 3px;
 }
-
+.small_approve_ul{
+    background-color: #a5c600;
+    width: 100%;
+    margin-top: 5px;
+    padding-top: 3px;
+}
 .field_with_errors .message {
     color: #D00;
     padding-left: 5px;
