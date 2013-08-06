@@ -2,7 +2,7 @@
   <div class='navbar navbar-inverse'>
     <div class='nav-collapse' style="height: auto;">
       <ul class="nav weixin_menu">
-        <li class="menu_li"><a href="###" class="growth" for="#message_div"><div class="show_div"></div><img src="/t/colorful/notice_img.png" alt="宝宝成长" /><label>通知公告</label></a>
+        <li class="menu_li"><a href="###" class="notice" for="#message_div"><div class="show_div"></div><img src="/t/colorful/notice_img.png" alt="宝宝成长" /><label>通知公告</label></a>
           <div id="message_div" class="hide menu_second">
             <ul>
               <li><a href="/weixin/messages"><div class="s_arrow"></div><label>收件箱</label></a></li>
@@ -14,6 +14,16 @@
         </li>
         <li class="menu_li"><a href="/weixin/activities" class="activity"><img src="/t/colorful/activity_img.png" alt="班级活动" /><label>主题活动</label></a></li>
         <li class="menu_li"><a href="/weixin/cook_books" class="cook"><img src="/t/colorful/cook_img.png" alt="每周菜谱" /><label>每周菜谱</label></a></li>
+
+        <li class="menu_li"><a href="###" class="topic" for="#topic_div"><div class="show_div"></div><img src="/t/colorful/topic_img.png" alt="信息论坛" /><label>信息论坛</label></a>
+          <div id="topic_div" class="hide menu_second">
+            <ul>
+              <% @topic_categories.each do |category| %>
+                <li><a href="<%= url_for(:controller => "/weixin/topics", :action => :index, :category_id => category.id) %>"><div class="s_arrow"></div><img src="/t/colorful/login_img11.png" alt="头像"/><label><%= category.name %></label></a></li>
+              <% end %>
+            </ul>
+          </div>
+        </li>
         <li class="menu_li">
           <a href="/weixin/albums" class="phone" for="#phone_div"><img src="/t/colorful/phone_img.png" alt="照片集锦" /><label>照片集锦</label></a>
         </li>
@@ -25,17 +35,8 @@
             </ul>
           </div>
         </li>
-        <li class="menu_li"><a href="###" class="topic" for="#topic_div"><div class="show_div"></div><img src="/t/colorful/topic_img.png" alt="信息论坛" /><label>信息论坛</label></a>
-          <div id="topic_div" class="hide menu_second">
-            <ul>
-              <% @topic_categories.each do |category| %>
-                <li><a href="<%= url_for(:controller => "/weixin/topics", :action => :index, :category_id => category.id) %>"><div class="s_arrow"></div><img src="/t/colorful/login_img11.png" alt="头像"/><label><%= category.name %></label></a></li>
-              <% end %>
-            </ul>
-          </div>
-        </li>
         <li class="menu_li">
-          <a href="/weixin/weixin_share_users" class="phone"><img src="/t/colorful/share_img.png" alt="每日一贴" /><label>每日一贴</label></a>
+          <a href="/weixin/weixin_share_users" class="share"><img src="/t/colorful/share_img.png" alt="每日一贴" /><label>每日一贴</label></a>
         </li>
       </ul>
     </div>

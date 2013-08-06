@@ -136,6 +136,18 @@ body {
 .navbar .nav-collapse  .weixin_menu .phone:hover,.navbar .nav-collapse  .weixin_menu .phone:focus{
     background-color: #A4D40C;
 }
+.navbar .nav-collapse .weixin_menu .share{
+    background-color: #a651c6;
+}
+.navbar .nav-collapse  .weixin_menu .share:hover,.navbar .nav-collapse  .weixin_menu .share:focus{
+    background-color: #a651E6;
+}
+.navbar .nav-collapse .weixin_menu .notice{
+    background-color: #16828b;
+}
+.navbar .nav-collapse  .weixin_menu .notice:hover,.navbar .nav-collapse  .weixin_menu .notice:focus{
+    background-color: #16827b;
+}
 .navbar .nav-collapse .weixin_menu .growth{
     background-color: #f6ab1d;
 }
