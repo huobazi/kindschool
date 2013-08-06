@@ -30,6 +30,11 @@ class Message < ActiveRecord::Base
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end
 
+  #已读状态
+  def read_status_count
+    self.message_entries.where(:read_status=>1).count()
+  end
+
   before_create :load_user_info
 
 
