@@ -25,6 +25,16 @@ class MySchool::ApprovesController < MySchool::ManageController
      end
    end
 
+   def messages_list
+     @messages = @kind.messages.where(:approve_status=>1,:status=>true).page(params[:page] || 1).per(10)
+   end
+   def message_show
+    @message = @kind.messages.find(params[:message_id])
+    if approve_record = @message.approve_record
+       @approve_entries = approve_record.approve_entries      
+    end
+   end
+
    def notices_list
      @notices = @kind.notices.where(:approve_status=>1).page(params[:page] || 1).per(10)  
    end
@@ -80,6 +90,9 @@ class MySchool::ApprovesController < MySchool::ManageController
          format.html { redirect_to(:action=>:activity_show,:activity_id=>approve_record.resource.id) }
        elsif approve_record.resource_type == "Notice"
          format.html { redirect_to(:action=>:notice_show,:notice_id=>approve_record.resource.id) } 
+       elsif approve_record.resource_type == "Message"
+         format.html { redirect_to(:action=>:message_show,:message_id=>approve_record.resource.id) } 
+
        end
        format.xml  { head :ok }
       end

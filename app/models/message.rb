@@ -19,6 +19,12 @@ class Message < ActiveRecord::Base
 
   STATUS_DATA = {"0"=>"草稿","1"=>"已发送"}
   TP_DATA = {"0"=>"站内信","1"=>"站内加短信"}
+  
+  has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
+
+
+  include ResourceApproveStatusStart
+  before_save :news_approve_status_start
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
