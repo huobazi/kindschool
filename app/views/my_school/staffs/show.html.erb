@@ -80,7 +80,7 @@
     </div>
 
     <div class="work_form">
-      <div class="form_div">
+      <div class="form_div staff_style">
         <form class="form-horizontal">
           <div class="control-group">
             <label class="control-label">头像</label>
@@ -98,115 +98,136 @@
               </label>
             </div>
           </div>
-          <div class="control-group">
-            <label class="control-label">所属幼儿园</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @staff.user.kindergarten_label %>
-              </label>
+          <div class="left_table">
+
+            <div class="control-group">
+              <label class="control-label">所属幼儿园</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @staff.user.kindergarten_label %>
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">名称</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=@staff.name%>
-              </label>
+
+            <div class="control-group">
+              <label class="control-label">名称</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%=@staff.name%>
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >账号</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @staff.user.login %>
-              </label>
+
+            <div class="control-group">
+              <label class="control-label" >账号</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @staff.user.login %>
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >电话号码</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @staff.user.phone %>
-              </label>
+
+            <div class="control-group">
+              <label class="control-label" >电话号码</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @staff.user.phone %>
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >性别</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @staff.user.gender == "M" ? "男" : "女" %>
-              </label>
+
+            <div class="control-group">
+              <label class="control-label" >性别</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @staff.user.gender == "M" ? "男" : "女" %>
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >所属类别</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @staff.user.tp_label %>
-              </label>
+
+            <div class="control-group">
+              <label class="control-label" >所属类别</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @staff.user.tp_label %>
+                </label>
+              </div>
             </div>
+
           </div>
-          <div class="control-group">
-            <label class="control-label" >绑定微信</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @staff.user.weixin_code.blank? ? "已绑定" : "未绑定" %>
-              </label>
+
+          <div class="right_table">
+
+            <div class="control-group">
+              <label class="control-label" >绑定微信</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @staff.user.weixin_code.blank? ? "已绑定" : "未绑定" %>
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >身份证号</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @staff.card_code %>
-              </label>
+
+            <div class="control-group">
+              <label class="control-label" >身份证号</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @staff.card_code %>
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >教育背景</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @staff.education %>
-              </label>
+
+            <div class="control-group">
+              <label class="control-label" >教育背景</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @staff.education %>
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >考勤卡号</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @staff.attendance_code %>
-              </label>
+
+            <div class="control-group">
+              <label class="control-label" >考勤卡号</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @staff.attendance_code %>
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >入职时间</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @staff.come_in_at ? @staff.come_in_at.to_short_datetime : nil %>
-              </label>
+
+            <div class="control-group">
+              <label class="control-label" >入职时间</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @staff.come_in_at ? @staff.come_in_at.to_short_datetime : nil %>
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >出生日期</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @staff.birthday ? @staff.birthday.to_short_datetime : nil %>
-              </label>
+
+            <div class="control-group">
+              <label class="control-label" >出生日期</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @staff.birthday ? @staff.birthday.to_short_datetime : nil %>
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >角色</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @staff.user.role.try(:name)%>
-              </label>
+
+            <div class="control-group">
+              <label class="control-label" >角色</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @staff.user.role.try(:name)%>
+                </label>
+              </div>
             </div>
+
           </div>
+
         </form>
       </div>
     </div>
 
-    <fieldset>
+    <fieldset class="people_manage">
       <legend><label>负责的班级</label></legend>
       <div class="work_list">
         <% unless @staff.teachers.blank? %>
