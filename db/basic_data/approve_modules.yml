@@ -8,7 +8,7 @@ notices:
   status: false
 messages:
   name: "消息"
-  number: "messages"
+  number: "Message"
   status: false
 activities:
   name: "活动信息"

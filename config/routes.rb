@@ -18,6 +18,8 @@ School::Application.routes.draw do
         get :activity_show
         get :notices_list
         get :notice_show
+        get :messages_list
+        get :message_show
       end
     end
     resources :news 
