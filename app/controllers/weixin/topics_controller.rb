@@ -54,7 +54,7 @@ class Weixin::TopicsController < Weixin::ManageController
     if current_user.get_users_ranges[:tp] == :student
       @topic.squad_id = current_user.student_info.squad_id
     elsif current_user.get_users_ranges[:tp] == :teachers
-      @squads = current_user.get_users_squads
+      @squads = current_user.get_users_ranges[:squads]
     end
     @topic.kindergarten_id = @kind.id
     @topic.creater_id = current_user.id
@@ -64,7 +64,7 @@ class Weixin::TopicsController < Weixin::ManageController
   def create
     if params[:topic].present? && params[:topic][:squad_id].present?
       if current_user.get_users_ranges[:tp] == :teachers
-        unless current_user.get_users_squads.collect(&:id).include?(params[:topic][:squad_id].to_i)
+        unless current_user.get_users_ranges[:squads].collect(&:id).include?(params[:topic][:squad_id].to_i)
           flash[:error] = "非法操作"
           redirect_to :action => :index
           return
