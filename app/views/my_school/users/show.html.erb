@@ -73,9 +73,9 @@
 
       <table class="user_attributes">
         <tr>
-          <td>
-          账号信息
-        </td>
+          <td colspan="4">
+            账号信息
+          </td>
         </tr>
           <tr>
             <th>所属幼儿园</th>
@@ -98,7 +98,7 @@
 
         <% if current_user.tp == 0 %>
           <tr>
-            <td>学员信息</td>
+            <td colspan="4">学员信息</td>
           </tr>
             <tr>
               <th>年级</th>
@@ -118,6 +118,43 @@
               <th>监护人证件类别</th>
               <td><%= current_user.student_info.guardian_card_category_label %></td>
             </tr>
+            <tr>
+              <th>是否寄宿生</th>
+              <td><%= current_user.student_info.lodging ? "是" : "否"%></td>
+              <th>是否独生子女</th>
+              <td><%= current_user.student_info.only_child ? "是" : "否"%></td>
+            </tr>
+            <tr>
+              <th>是否留守儿童</th>
+              <td><%= current_user.student_info.leftover_children ? "是" : "否"%></td>
+              <th>是否进城务工人员子女</th>
+              <td><%= current_user.student_info.employofficialt ? "是" : "否"%></td>
+            </tr>
+            <tr>
+              <th>是否低保</th>
+              <td><%= current_user.student_info.insured ? "是" : "否"%></td>
+              <th>是否接受资助</th>
+              <td><%= current_user.student_info.subsidize ? "是" : "否"%></td>
+            </tr>
+            <tr>
+              <th>是否残疾儿童</th>
+              <td><%= current_user.student_info.deformity ? "是" : "否"%></td>
+              <th>残疾儿童类型</th>
+              <td><%= current_user.student_info.deformity_category %></td>
+            </tr>
+            <tr>
+              <th>家中兄妹数</th>
+              <td><%= current_user.student_info.brothers %></td>
+              <th>本人第几胎</th>
+              <td><%= current_user.student_info.children_number %></td>
+            </tr>
+            <tr>
+              <th>住房性质</th>
+              <td><%= current_user.student_info.housing_label %></td>
+              <th>居住情况</th>
+              <td><%= current_user.student_info.live_family_label %></td>
+            </tr>
+
             <tr>
               <th>国籍</th>
               <td><%= current_user.student_info.nationality %></td>
@@ -139,14 +176,55 @@
             <tr>
               <th>户口所在地</th>
               <td><%= current_user.student_info.domicile_place %></td>
-              <th>籍贯</th>
-              <td><%= current_user.student_info.family_address %></td>
             </tr>
             <tr>
               <th>是否寄宿生</th>
               <td><%= current_user.student_info.lodging ? "是" : "否" %></td>
               <th>是否独生子女</th>
               <td><%= current_user.student_info.only_child ? "是" : "否" %></td>
+            </tr>
+            <tr>
+              <td colspan="4">家庭信息</td>
+            </tr>
+            <tr>
+              <th>关系</th>
+              <td><%= current_user.student_info.family_ties %></td>
+              <th>姓名</th>
+              <td><%= current_user.student_info.family_name %></td>
+            </tr>
+            <tr>
+              <th>政治面貌</th>
+              <td><%= current_user.student_info.politics_status %></td>
+              <th>职业</th>
+              <td><%= current_user.student_info.profession %></td>
+            </tr>
+            <tr>
+              <th>职务</th>
+              <td><%= current_user.student_info.duties %></td>
+              <th>工作单位</th>
+              <td><%= current_user.student_info.working %></td>
+            </tr>
+            <tr>
+              <th>户籍类型</th>
+              <td><%= current_user.student_info.family_register %></td>
+              <th>移动电话</th>
+              <td><%= current_user.student_info.family_phone %></td>
+            </tr>
+            <tr>
+              <th>电子邮箱</th>
+              <td><%= current_user.student_info.family_email %></td>
+              <th>父母在深连续居住时间</th>
+              <td><%= current_user.student_info.living_time %></td>
+            </tr>
+            <tr>
+              <th>婚姻状况</th>
+              <td><%= current_user.student_info.family_marital %></td>
+              <th>学历</th>
+              <td><%= current_user.student_info.education %></td>
+            </tr>
+            <tr>
+              <th>社会保险箱</th>
+              <td><%= current_user.student_info.safe_box %></td>
             </tr>
         <% elsif current_user.tp == 1 %>
           <tr>
