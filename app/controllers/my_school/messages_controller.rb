@@ -151,8 +151,7 @@ class MySchool::MessagesController < MySchool::ManageController
           format.html { redirect_to(:action=>:draft_show,:id=>@message.id,:clear_cookie=>1) }
         end
       else
-        @data = current_user.get_users_ranges
-        format.html { render :action => "new" }
+        format.html { render :action => "new"}
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
       end
     end

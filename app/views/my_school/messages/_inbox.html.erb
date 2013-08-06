@@ -1,4 +1,5 @@
 <div class="tab">
+  <% @data = current_user.get_users_ranges if @data.blank? %>
   <% unless @data.blank? %>
     <% if  @data[:tp]== :all %>
       <ul class="tab-hd"><li>选择群组</li><li>选择个人</li></ul>
