@@ -57,57 +57,15 @@
 
     <div class="work_form">
       <div class="form_div">
-        <form class="form-horizontal">
-          <div class="control-group">
-            <label class="control-label">所属幼儿园</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=@kind.name %>
-              </label>
-            </div>
+        <div class="show" id="growth_record">
+          <div class="content_up">
+            <p class="title"><span><%= @seedling.student_info_label %>的疫苗记录-<%= @seedling.name %></span></p>
+            <p class="info"><span class="time"><%= @seedling.try(:shot_at).try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @seedling.try(:expire_at).try(:to_short_datetime) %></span>&nbsp;由&nbsp;<span class="link"><%= @seedling.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @seedling.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
-          <div class="control-group">
-            <label class="control-label">学员</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=@seedling.student_info.user.try(:name) unless @seedling.student_info.blank?  %>
-              </label>
-            </div>
+          <div class="content">
+            <%= simple_format h(@seedling.note) %>
           </div>
-          <div class="control-group">
-            <label class="control-label" >疫苗名称:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=@seedling.name%>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >描述:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @seedling.note %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >注射时间</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @seedling.shot_at.try(:to_short_datetime) %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >过期时间</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @seedling.expire_at.try(:to_short_datetime) %>
-              </label>
-            </div>
-          </div>
-
-        </form>
+        </div>
       </div>
     </div>
   </div>
