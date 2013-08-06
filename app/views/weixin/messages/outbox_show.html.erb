@@ -47,6 +47,32 @@
     <div class="limit_title">
       <label>发送类型:<%= @message.tp == 1 ? "短信加站内信" : "站内信" %></label>
     </div>
+    <% if action_name=="outbox_show" %>
+      <div class="limit_title">
+        <label class="control-label" >接收情况:
+          <a href="###" id="show_message_entry">
+            <%= @message.read_status_count %>/<%= @message.message_entries.count %>(已读/总数)
+          </a>
+        </label>
+      </div>
+      <div class="limit_title" id="show_entry_div"></div>
+      <script type="text/javascript">
+        $(function(){
+          $("#show_message_entry").click(function(){
+            if($("#show_entry_div").text() == ""){
+                $("#show_entry_div").load("<%=url_for(:controller=>"/my_school/messages",:action=>:get_entry_status,:id=>@message.id)%>")
+                $("#show_entry_div").show();
+            }else{
+              if($("#show_entry_div").css("display") == "none"){
+                $("#show_entry_div").show();
+              }else{
+                $("#show_entry_div").hide();
+              }
+            }
+          })
+        })
+      </script>
+    <% end %>
   </div>
   <div class="message_list">
     <label class="message_content"><%= @message.content %></label>
