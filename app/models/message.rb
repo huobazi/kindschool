@@ -18,7 +18,9 @@ class Message < ActiveRecord::Base
   validates :content, :length => { :minimum => 1 }
 
   STATUS_DATA = {"0"=>"草稿","1"=>"已发送"}
-  TP_DATA = {"0"=>"站内信","1"=>"站内加短信","2"=>"系统消息"}
+  #系统提示消息，开通短信，将受到短信；
+  #系统短信消息，所有人都将收到短信；
+  TP_DATA = {"0"=>"站内信","1"=>"站内加短信","2"=>"系统提示消息","3"=>"系统短信消息"}
   
   has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
 
