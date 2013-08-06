@@ -48,14 +48,20 @@
           <%= text_field :student_info,:user_name_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:user_name_like] if params[:student_info] }"  %>
           <b>账号：</b>
           <%= text_field :student_info,:user_login_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:user_login_like] if params[:student_info] }"  %>
+
+          <b>班级：</b>
+          <%= text_field :student_info,:squad_name_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:squad_name_like] if params[:student_info] }"  %>
           <b>收短信：</b>
           <%= select_tag("student_info[user_is_receive_equals]", options_for_select([["全部",""],["可收短信",1],["不可收短信",0]],(params[:student_info].blank? ? "" : params[:student_info][:user_is_receive_equals])),:style=>"width:100px;") %>
           <%= submit_tag "搜索" %>
         <%end%>
+        <%if choose_operate_show("my_school/student_infos/download_student_infos")%>
         <p>
-  Download:
-  <%= link_to "Excel", my_school_student_infos_path(format: "xls") ,:class=>"btn" %>
-</p>
+         表格下载:
+          <%= link_to "深圳市教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "shenzhen",student_info: params[:student_info]) ,:class=>"btn" %>
+          <%= link_to "广东省教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "guangzhou",student_info: params[:student_info]) ,:class=>"btn" %>
+      </p>
+      <% end %>
       </div>
     <% end %>
     <div class="work_list">
@@ -66,6 +72,7 @@
               <th><input type="checkbox" name="" value="" alt="全选" id="student_all">&nbsp;<label style="display: inline;" for="student_all">全选</label></th>
               <th>名称</th>
               <th>账号</th>
+              <th>班级</th>
               <th>电话号码</th>
               <th>性别</th>
               <th>操作</th>
@@ -75,6 +82,7 @@
                 <td><input id="student_<%= student.id %>" class="student_check" name="student[]" type="checkbox" value="<%= student.id %>" /></td>
                 <td><%= link_to student.user.name, my_school_student_info_path(student) %></td>
                 <td><%= student.user.login %></td>
+                <td><%= student.squad.name %></td>
                 <td><%= student.user.phone %></td>
                 <td><%= student.user.gender == "M" ? "男" : "女" %></td>
                 <td>

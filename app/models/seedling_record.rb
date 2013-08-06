@@ -7,7 +7,7 @@ class SeedlingRecord < ActiveRecord::Base
 
   validates :name, :presence => true, :uniqueness => { :scope => :kindergarten_id}
   validates :note, :length => { :minimum => 5 }, :presence => true
-  validates :shot_at, :expire_at, :presence => true
+  validates :shot_at, :expire_at, :creater_id, :presence => true
 
   belongs_to :student_info
   belongs_to :kindergarten

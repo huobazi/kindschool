@@ -10,7 +10,7 @@ class PhysicalRecord < ActiveRecord::Base
   def student_info_label
     self.student_info ? self.student_info.user.name : "丢失学员信息"
   end
-  validates :content, :send_date, :student_info_id, :presence => true
+  validates :content, :send_date, :student_info_id, :creater_id, :presence => true
 
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
   belongs_to :kindergarten

@@ -15,13 +15,16 @@ class MySchool::CookBooksController < MySchool::ManageController
   def new
    if content_pattern = @kind.content_patterns.where(:number=>'cook_book').first
       @cook_book = @kind.cook_books.new(:content=>content_pattern.content)
+      @cook_book.creater_id = current_user.id
    else
       @cook_book = @kind.cook_books.new
+      @cook_book.creater_id = current_user.id
    end
   end
 
   def create
      @cook_book = @kind.cook_books.new(params[:cook_book])
+     @cook_book.creater_id = current_user.id
 
       respond_to do |format|
         if @cook_book.save

@@ -1814,6 +1814,9 @@ span.help-inline {
     text-decoration: none;
 }
 
+#cook_books.topics .topic .right_info {
+  padding-left: 10px;
+}
 fieldset.people_manage legend label {
     font-size: 18px;
     color: #646060;
