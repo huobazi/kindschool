@@ -75,6 +75,8 @@ School::Application.routes.draw do
       collection do
         delete :destroy_multiple
       end
+      collection {get :grade_class}
+      collection {get :class_student}
     end
     resources :cook_books do
       collection do

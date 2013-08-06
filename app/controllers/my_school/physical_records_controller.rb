@@ -39,8 +39,10 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
   def new
     if content_pattern = @kind.content_patterns.where(:number=>'physical_record').first
       @physical_record = @kind.physical_records.new(:content=>content_pattern.content)
+      @physical_record.creater_id = current_user.id
     else
       @physical_record = @kind.physical_records.new
+      @physical_record.creater_id = current_user.id
     end
     if (@grades = @kind.grades) && !@grades.blank?
       if (@squads = @grades.first.squads) && !@squads.blank?
@@ -52,9 +54,10 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
   def create
     @physical_record = @kind.physical_records.new(params[:physical_record])
     @physical_record.student_info_id = params[:seedling_record][:student_info_id] unless params[:seedling_record].blank?
+    @physical_record.creater_id = current_user.id
     respond_to do |format|
       if @physical_record.save
-        format.html { redirect_to my_school_physical_records_path, :notice=> '学员体检创建成功.' }
+        format.html { redirect_to my_school_physical_record_path(@physical_record), :success=> '学员体检创建成功.' }
       else
         format.html { render :action=> "new" }
       end
@@ -75,7 +78,7 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
     @physical_record.student_info_id = params[:seedling_record][:student_info_id] unless params[:seedling_record].blank?
     respond_to do |format|
       if @physical_record.update_attributes(params[:physical_record])
-        format.html { redirect_to my_school_physical_records_path, notice: '学员体检更新成功.' }
+        format.html { redirect_to my_school_physical_record_path(@physical_record), success: '学员体检更新成功.' }
       else
         format.html { render action: "edit" }
       end
@@ -112,4 +115,19 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
     end
   end
 
+  def grade_class
+    if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
+      @squads = grade.squads
+    end
+     render "grade_class", :layout => false
+   end
+
+   def class_student
+    if grade=@kind.grades.where(:id=>params[:grade].to_i).first
+      if squad = grade.squads.where(:id=>params[:class_number].to_i).first
+         @student_infos = squad.student_infos
+      end
+    end
+    render "class_student", :layout => false
+   end
 end

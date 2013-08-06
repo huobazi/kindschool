@@ -7,12 +7,16 @@ class SeedlingRecord < ActiveRecord::Base
 
   validates :name, :presence => true, :uniqueness => { :scope => :kindergarten_id}
   validates :note, :length => { :minimum => 5 }, :presence => true
-  validates :shot_at, :expire_at, :presence => true
+  validates :shot_at, :expire_at, :creater_id, :presence => true
 
   belongs_to :student_info
   belongs_to :kindergarten
+  belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
+  end
+  def student_info_label
+    self.student_info ? self.student_info.user.name : "丢失学员信息"
   end
 
   validate :end_at_large_than_start_at

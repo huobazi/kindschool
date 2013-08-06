@@ -1,0 +1,20 @@
+<div class="topic topic_line pull-left">
+  <div class="avatar pull-left"><img src="<%= seedling.student_info.user.asset_logo ? seedling.student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
+  </div>
+  <div class="right_info">
+    <div class="infos">
+      <div class="title">
+        <%= link_to seedling.name, my_school_seedling_path(seedling) %>
+      </div>
+      <div class="title">
+        <em>注射时间</em><abbr><%= seedling.shot_at.try(:to_short_datetime) %></abbr><em>&nbsp;过期时间&nbsp;</em><abbr><%= seedling.expire_at.try(:to_short_datetime) %></abbr>
+      </div>
+      <div class="info">
+        <em><%= seedling.creater.try(:name) %></em>
+        <em>创建于</em><abbr><%= seedling.created_at.try(:to_long_datetime) %></abbr>
+      </div>
+    </div>
+  </div>
+</div>
+
+
