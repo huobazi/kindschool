@@ -6,7 +6,7 @@
   <% if params[:no_student].blank? %>
     <div id="student_partial">
       <%(@student_infos||[]).each do |st_in|%>
-        <%=radio_button_tag("seedling_record[student_info_id]",st_in.id)%><%=st_in.name%>
+        <%=radio_button_tag("physical_record[student_info_id]",st_in.id)%><%=st_in.name%>
       <%end%>
     </div>
   <%end%>
@@ -14,7 +14,7 @@
 <% if params[:no_student].blank? %>
   <script>
     $("#class_number").change(function(){
-      $.get( "/my_school/seedlings/class_student",
+      $.get( "/my_school/physical_records/class_student",
       { grade: $('#grade').val(), class_number: $('#class_number').val()},
       function(result){
         $("#student_partial").html(result);

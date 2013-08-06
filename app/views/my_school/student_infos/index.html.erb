@@ -52,6 +52,10 @@
           <%= select_tag("student_info[user_is_receive_equals]", options_for_select([["全部",""],["可收短信",1],["不可收短信",0]],(params[:student_info].blank? ? "" : params[:student_info][:user_is_receive_equals])),:style=>"width:100px;") %>
           <%= submit_tag "搜索" %>
         <%end%>
+        <p>
+  Download:
+  <%= link_to "Excel", my_school_student_infos_path(format: "xls") ,:class=>"btn" %>
+</p>
       </div>
     <% end %>
     <div class="work_list">
@@ -96,7 +100,6 @@
       <% end %>
     </div>
   </div>
-
 </div>
 
 <script type="text/javascript">
