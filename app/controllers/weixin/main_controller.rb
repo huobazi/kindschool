@@ -18,6 +18,16 @@ class Weixin::MainController < Weixin::BaseController
     end
   end
 
+  #微壹平台绑定
+  def bind_weiyi
+    params[:code]
+    #1、判断这个code，在你新加的字段里存不存在
+    #2、如果不存在，着显示绑定界面
+    #3、如果存在，就提示您已绑定成功，通过幼儿园的公共账号访问
+    #4、不存在时，绑定的动作post的请求，绑定到code的字段里去，需要验证用户名密码
+    #5、User 的authenticate取另外一个名字，验证密码时不加幼儿园id
+  end
+
   #绑定用户
   def bind_user
     if logged_in?
