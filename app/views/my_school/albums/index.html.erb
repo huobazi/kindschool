@@ -15,37 +15,38 @@
       </div>
       <ul class="work_action">
         <li>
-          
+
             <%=(link_to "<div class='work_action_add'>
   </div><div class='work_action_add_move'>
   </div>".html_safe ,new_my_school_album_path) if choose_operate_show('my_school/albums/new')%>
-        
+
         </li>
       </ul>
     </div>
     <div class="work_list" >
       <ul id="album_wall" >
         <% (@albums || []).each do |album| %>
-          <li>
+          <li class="photo_style" for="actions_<%= album.id %>">
             <a href="<%= my_school_album_path(album)%>" class="album_a ">
               <div class="album_window"></div>
               <div class="album_img">
                 <img src="<%= album.show_main_img ? album.show_main_img.public_filename(:middle) : '/t/colorful/login_img10.png' %>"  alt="<%=album.title%>"/>
               </div>
             </a>
-            <span><%=raw album.title%></span>
-            <span class="actions">
-              <%=raw album.content%>
-            </span>
-            <span>
-              <%= album.try(:squad_name)%>
+            <div class="title">
+              <span class="name"><%=raw album.title %>(班级:<%= album.try(:squad_name)%>)</span>
+            </div>
+            <div class="actions" id="actions_<%= album.id %>" style="display: none;">
               <%if choose_operate_show('my_school/albums/destroy')%>
-                <%= link_to '删除', my_school_album_path(album), :method=> :delete, :data=> { :confirm=> 'Are you sure?' },:class=> "blue" %>
+                  <%= link_to '删除', my_school_album_path(album), :method=> :delete, :data=> { :confirm=> 'Are you sure?' },:class=> "destroy" %>
+                <%end%>
+              <%if choose_operate_show('my_school/albums/edit')%>
+                <span><%=link_to '编辑',edit_my_school_album_path(album), class: "edit" %></span>
               <%end%>
-            </span>
-            <%if choose_operate_show('my_school/albums/edit')%>
-              <span><%=link_to '编辑',edit_my_school_album_path(album)%></span>
-            <%end%>
+            </div>
+            <div id="actions_<%= album.id %>_info">
+              <span><%= album.album_entries.count %>张</span>
+            </div>
           </li>
         <% end %>
       </ul>
@@ -55,3 +56,18 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  var flag, info;
+  $("li.photo_style").mouseover(function() {
+    flag = "#" + $(this).attr("for")
+    info = flag + "_info"
+    $(flag).show()
+    $(info).hide()
+  }).mouseout(function() {
+    $(flag).hide()
+    $(info).show()
+  })
+})
+</script>
