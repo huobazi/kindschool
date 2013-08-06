@@ -56,6 +56,7 @@
               <th>发布时间</th>
               <th>阅读状态</th>
               <th>操作</th>
+              <th></th>
             </tr>
             <% @message.each do |message| %>
               <tr>
@@ -71,6 +72,8 @@
                   <%= link_to "查看",:action=>:draft_show,:id=>message.id %>
                   <%end%>
                   </td>
+                  <td>
+                    </td>
               </tr>
             <% end %>
           <% end %>

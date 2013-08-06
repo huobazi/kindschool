@@ -14,6 +14,12 @@ School::Application.routes.draw do
         get :news_list
         get :news_show
         post :one_news_approve
+        get :activities_list
+        get :activity_show
+        get :notices_list
+        get :notice_show
+        get :messages_list
+        get :message_show
       end
     end
     resources :news 
@@ -106,6 +112,7 @@ School::Application.routes.draw do
         get :draft_show
         get :draft_edit
         get :get_edit_ids
+        get :get_entry_status
         post :draft_update
         post :return_message
       end

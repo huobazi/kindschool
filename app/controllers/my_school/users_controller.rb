@@ -49,8 +49,14 @@ class MySchool::UsersController < MySchool::ManageController
          approve_module = approve.approve_module    
          if approve_module.status == true
           operates_data << "my_school/approves"
-           if approve_module.number == "news"
+           if approve_module.number == "News"
              operates_data << "my_school/approves/news_list"
+           elsif approve_module.number == "Activity"
+             operates_data << "my_school/approves/activities_list"
+           elsif approve_module.number == "Notice"
+             operates_data << "my_school/approves/notices_list"              
+           elsif approve_module.number == "Message"
+             operates_data << "my_school/approves/messages_list"              
            end
          end
         end

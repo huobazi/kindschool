@@ -69,6 +69,7 @@
               <th>标题</th>
               <th>发布时间</th>
               <th>通知范围</th>
+              <th></th>
             </tr>
             <% @notices.each do |notice| %>
             <tr>
@@ -77,6 +78,11 @@
               <td><%= link_to notice.title,:action=>:show,:id=>notice.id %></td>
               <td><%= notice.send_date ? notice.send_date.to_short_datetime : "" %></td>
               <td class="option"><%= notice.send_range_label  %></td>
+              <td><%if notice.approve_status==2%>
+                审核不通过
+                <%elsif notice.approve_status==1%>
+                待审核
+                <%end%></td>
             </tr>
             <% end %>
           <% end %>

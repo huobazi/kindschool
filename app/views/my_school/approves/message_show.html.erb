@@ -7,7 +7,7 @@
     <div class="headline">
       <div class="headline_title">
         <div class="messages_root"></div>
-        <label>审核幼儿园新闻</label>
+        <label>审核幼儿园消息</label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
@@ -15,7 +15,7 @@
           <ul>
              <li><%= link_to "审核幼儿园新闻", "###" %></li>
             <li>/</li>
-            <li>查看新闻</li>
+            <li>查看消息</li>
           </ul>
         </div>
       </div>
@@ -35,10 +35,10 @@
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label" >新闻标题:</label>
+            <label class="control-label" >消息标题:</label>
             <div class="controls">
               <label class="show_label">
-                <%=raw @new.title%>
+                <%=raw @message.title%>
               </label>
             </div>
           </div>
@@ -46,7 +46,7 @@
             <label class="control-label" >内容:</label>
             <div class="controls">
               <label class="show_label">
-                <%=raw @new.content%>
+                <%=raw @message.content%>
               </label>
             </div>
           </div>
@@ -54,7 +54,7 @@
             <label class="control-label" >创建时间:</label>
             <div class="controls">
               <label class="show_label">
-                <%= @new.created_at.try(:to_long_datetime)%>
+                <%= @message.created_at.try(:to_long_datetime)%>
               </label>
             </div>
           </div>
@@ -62,7 +62,7 @@
             <label class="control-label" >审核状态:</label>
             <div class="controls">
               <label class="show_label">
-                <%= News::STATUS[@new.approve_status]%>
+                <%= News::STATUS[@message.approve_status]%>
               </label>
             </div>
           </div>
@@ -71,7 +71,7 @@
     </div>
     <div class="work_form">
       <div class="form_div">
-       <%= form_for(@new,:method=>:post ,:validate => true,:url=>one_news_approve_my_school_approves_path(:approve_record_id=>@new.approve_record.id), :html =>{:class=>"form-horizontal"}) do |f| %>
+       <%= form_for(@message,:method=>:post ,:validate => true,:url=>one_news_approve_my_school_approves_path(:approve_record_id=>@message.approve_record.id), :html =>{:class=>"form-horizontal"}) do |f| %>
           <%= render 'form', :f=>f %>
        <% end %>
       </div>

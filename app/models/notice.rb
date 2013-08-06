@@ -8,6 +8,11 @@ class Notice < ActiveRecord::Base
   validates :title,:content,:presence => true
 
   validates :content, :length => { :minimum => 5 }
+  
+  has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
+
+
+  STATUS = { 0=>"审核通过",1=> "待审核", 2=>"审核不通过"}
 
   
   def kindergarten_label
@@ -18,6 +23,7 @@ class Notice < ActiveRecord::Base
   def send_range_label
     Notice::SEND_RANGE_DATA["#{self.send_range || 0}"]
   end
-
+  include ResourceApproveStatusStart
+  before_save :news_approve_status_start
 
 end
