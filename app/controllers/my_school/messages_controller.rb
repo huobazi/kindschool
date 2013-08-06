@@ -4,7 +4,7 @@ class MySchool::MessagesController < MySchool::ManageController
   def index
     params[:messages] = {} if params[:messages].blank?
     params[:messages][:message_entries_receiver_id_equals] = current_user.id
-    @message = Message.search(params[:messages] || {}).where("messages.kindergarten_id=:kind_id and `message_entries`.receiver_id=:user_id AND `message_entries`.`deleted_at` IS NULL",
+    @message = Message.search(params[:messages] || {}).where("messages.approve_status=0 AND messages.kindergarten_id=:kind_id and `message_entries`.receiver_id=:user_id AND `message_entries`.`deleted_at` IS NULL",
       {:kind_id=>@kind.id,:user_id=>current_user.id}).select("message_entries.read_status,messages.*").page(params[:page] || 1).per(10).order("messages.send_date DESC")
   end
   
@@ -78,6 +78,11 @@ class MySchool::MessagesController < MySchool::ManageController
   end
   def show
     if @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+      if @message.approve_status != 0
+        flash[:error] = '您无法查看该消息。'
+        redirect_to(:action=>:index)
+        return
+      end
       if entry = @message.message_entries.find_by_receiver_id(current_user.id)
         if !entry.read_status
           entry.update_attribute(:read_status, true)

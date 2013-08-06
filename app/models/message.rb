@@ -22,6 +22,7 @@ class Message < ActiveRecord::Base
   
   has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
 
+  STATUS = { 0=>"审核通过",1=> "待审核", 2=>"审核不通过"}
 
   include ResourceApproveStatusStart
   before_save :news_approve_status_start
@@ -62,15 +63,17 @@ class Message < ActiveRecord::Base
   
   #创建和更新时加载
   def load_sms_records
-    if !self.status_was && self.status && self.tp == 1
+    if self.status && self.tp == 1
       if self.id_was
         #更新的情况
         self.message_entries.where("deleted_at IS NULL").each do |entry|
           if entry.receiver.is_receive
             role = self.sender.role if self.sender && self.sender.role
-            entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
-              :sender_name=>self.sender_name,:content=>"#{self.title} #{self.content} #{role ? (role.name + '-') : ''}#{self.sender ? self.sender.name : ''}",:receiver_id=>entry.receiver.id,
-              :receiver_name=>entry.receiver.name,:receiver_phone=>entry.receiver.phone,:kindergarten_id=>self.kindergarten_id)
+            if self.approve_status == 0 && entry.sms_record.blank?
+              entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
+                :sender_name=>self.sender_name,:content=>"#{self.title} #{self.content} #{role ? (role.name + '-') : ''}#{self.sender ? self.sender.name : ''}",:receiver_id=>entry.receiver.id,
+                :receiver_name=>entry.receiver.name,:receiver_phone=>entry.receiver.phone,:kindergarten_id=>self.kindergarten_id)
+            end
           end
         end
       else
@@ -78,9 +81,11 @@ class Message < ActiveRecord::Base
         self.message_entries.each do |entry|
           if entry.receiver.is_receive
             role = self.sender.role if self.sender && self.sender.role
-            entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
-              :sender_name=>self.sender_name,:content=>"#{self.title} #{self.content} #{role ? (role.name + '-') : ''}#{self.sender ? self.sender.name : ''}",:receiver_id=>entry.receiver.id,
-              :receiver_name=>entry.receiver.name,:receiver_phone=>entry.receiver.phone,:kindergarten_id=>self.kindergarten_id)
+            if self.approve_status == 0 && entry.sms_record.blank?
+              entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
+                :sender_name=>self.sender_name,:content=>"#{self.title} #{self.content} #{role ? (role.name + '-') : ''}#{self.sender ? self.sender.name : ''}",:receiver_id=>entry.receiver.id,
+                :receiver_name=>entry.receiver.name,:receiver_phone=>entry.receiver.phone,:kindergarten_id=>self.kindergarten_id)
+            end
           end
         end
       end
