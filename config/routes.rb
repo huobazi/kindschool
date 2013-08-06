@@ -110,6 +110,7 @@ School::Application.routes.draw do
         get :draft_show
         get :draft_edit
         get :get_edit_ids
+        get :get_entry_status
         post :draft_update
         post :return_message
       end
