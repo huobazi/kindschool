@@ -1081,6 +1081,7 @@ table.user_attributes td {
 
 #image_wall li{
     float: left;
+    margin-right: 20px;
 }
 .blue{
     color: blue;
@@ -1136,6 +1137,25 @@ a.album_a .album_img{
     width: 248px;
 }
 
+.photo_style .title {
+  margin-top: 15px;
+  font-size: 18px;
+}
+.photo_style .title .name {
+  color: #222;
+}
+.photo_style .actions {
+  padding-left: 185px;
+}
+.photo_style .image_actions {
+  padding-left: 15px;
+}
+.photo_style .image_actions a {
+  color: #333;
+}
+.photo_style .image_actions a:hover {
+  color: #222;
+}
 .paginate_div{
     width: 100%;
     display: inherit;
@@ -1143,6 +1163,10 @@ a.album_a .album_img{
 }
 .search_form{
     padding: 20px 20px 20px 35px;
+}
+
+.search_form input[type="submit"] {
+  margin-top: -10px;
 }
 .control-group .controls .show_receiver_entry{
     float: left;
