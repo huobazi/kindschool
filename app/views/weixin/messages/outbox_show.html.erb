@@ -47,6 +47,9 @@
     <div class="limit_title">
       <label>发送类型:<%= @message.tp == 1 ? "短信加站内信" : "站内信" %></label>
     </div>
+    <div class="limit_title">
+      <label>审核状态:<%= Message::STATUS[@message.approve_status]%></label>
+    </div>
     <% if action_name=="outbox_show" %>
       <div class="limit_title">
         <label class="control-label" >接收情况:
