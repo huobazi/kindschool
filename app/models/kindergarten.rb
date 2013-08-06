@@ -5,7 +5,7 @@ class Kindergarten < ActiveRecord::Base
     :aliases_url,:sms_count,:sms_user_count,:telephone
 
   validates :name,:presence => true, :uniqueness => true, :length => { :maximum => 100}
-  validates :number,:presence => true, :uniqueness => true, :length => { :maximum => 100}
+  validates :number,:presence => true, :uniqueness => true, :length => { :maximum => 100},:exclusion => { :in => %w(www) }
   validates :note, :length => { :maximum => 800}
   STATUS_DATA = {"0"=>"正常","1"=>"锁定"}
   WEIXIN_STATUS_DATA = {"0"=>"未授权绑定","1"=>"已授权绑定"}

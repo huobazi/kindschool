@@ -11,7 +11,6 @@ class MySchool::MessagesController < MySchool::ManageController
   #发件箱
   def outbox
     @messages = current_user.messages.where(:status => true).page(params[:page] || 1).per(10).order("messages.send_date DESC")
-    #.where("messages.kindergarten_id=:kind_id")
   end
 
   def new
@@ -59,7 +58,6 @@ class MySchool::MessagesController < MySchool::ManageController
       end
     end
 
-    
     respond_to do |format|
       flash[:notice] = '删除通知成功.'
       format.html {
@@ -76,6 +74,7 @@ class MySchool::MessagesController < MySchool::ManageController
       format.xml  { head :ok }
     end
   end
+  
   def show
     if @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
       if @message.approve_status != 0
@@ -113,6 +112,10 @@ class MySchool::MessagesController < MySchool::ManageController
   end
 
   def create
+    if params[:message]
+      tp_data = params[:message].delete(:tp)
+      params[:message][:tp] = tp_data.blank? ? 0 : 1
+    end
     @message = Message.new(params[:message])
     @message.kindergarten = @kind
     @message.send_date = Time.now.utc
@@ -148,6 +151,7 @@ class MySchool::MessagesController < MySchool::ManageController
           format.html { redirect_to(:action=>:draft_show,:id=>@message.id,:clear_cookie=>1) }
         end
       else
+        @data = current_user.get_users_ranges
         format.html { render :action => "new" }
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
       end
@@ -157,11 +161,16 @@ class MySchool::MessagesController < MySchool::ManageController
   def update
     @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
     respond_to do |format|
+      if params[:message]
+        tp_data = params[:message].delete(:tp)
+        params[:message][:tp] = tp_data.blank? ? 0 : 1
+      end
       if @message.update_attributes(params[:message])
         flash[:notice] = '更新消息成功.'
         format.html { redirect_to(:action=>:outbox_show,:id=>@message.id) }
         format.xml  { head :ok }
       else
+        @data = current_user.get_users_ranges
         format.html { render :action => :edit }
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
       end
@@ -473,6 +482,10 @@ LEFT JOIN squads ON(squads.id = user_squads.squad_id)")
       params[:message].merge(:send_date => Time.now.utc)
     end
     respond_to do |format|
+      if params[:message]
+        tp_data = params[:message].delete(:tp)
+        params[:message][:tp] = tp_data.blank? ? 0 : 1
+      end
       if @message.save && @message.update_attributes(params[:message])
         flash[:notice] = '更新消息成功.'
         if @message.status == true
@@ -483,6 +496,7 @@ LEFT JOIN squads ON(squads.id = user_squads.squad_id)")
           format.xml  { head :ok }
         end
       else
+        @data = current_user.get_users_ranges
         format.html { render :action => :edit }
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
       end
@@ -510,5 +524,4 @@ LEFT JOIN squads ON(squads.id = user_squads.squad_id)")
     flash[:error] = ex.message
     redirect_to :action => :show,:id=>@message.id
   end
-
 end
