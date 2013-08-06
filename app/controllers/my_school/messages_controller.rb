@@ -140,7 +140,7 @@ class MySchool::MessagesController < MySchool::ManageController
       @message.status = 1
     end
     respond_to do |format|
-      if @message.save!
+      if @message.save
         flash[:notice] = '提交信息成功.'
         #提交的是发送消息按钮就去发件箱
         if @flag == true
@@ -151,6 +151,7 @@ class MySchool::MessagesController < MySchool::ManageController
           format.html { redirect_to(:action=>:draft_show,:id=>@message.id,:clear_cookie=>1) }
         end
       else
+        @data = current_user.get_users_ranges
         format.html { render :action => "new" }
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
       end
@@ -169,6 +170,7 @@ class MySchool::MessagesController < MySchool::ManageController
         format.html { redirect_to(:action=>:outbox_show,:id=>@message.id) }
         format.xml  { head :ok }
       else
+        @data = current_user.get_users_ranges
         format.html { render :action => :edit }
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
       end
@@ -494,6 +496,7 @@ LEFT JOIN squads ON(squads.id = user_squads.squad_id)")
           format.xml  { head :ok }
         end
       else
+        @data = current_user.get_users_ranges
         format.html { render :action => :edit }
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
       end
