@@ -52,7 +52,7 @@ School::Application.routes.draw do
     resources :albums do
       collection {get :grade_class}
       resources :album_entries do
-        member {post :choose_main_img}
+        member {get :choose_main_img}
       end
     end
     resources :career_strategies do
