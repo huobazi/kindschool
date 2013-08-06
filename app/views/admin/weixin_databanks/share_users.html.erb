@@ -1,15 +1,46 @@
 <%= semantic_form_for @weixin_databank, :url =>url_for(:controller=>"/admin/weixin_databanks",:action=>"share_users_load",:id=>@weixin_databank.id), :method => :post do |f| %>
   <%= f.inputs '分享推送' do %>
     <ol>
+      <li class="just_datetime_picker input optional">
+        <label class="control-label">推送时间</label>
+        <input type="text" value="" size="10" name="send_date" maxlength="10" id="student_info_birthday" class="just-datetime-picker-field just-datetime-picker-date datepicker"/>
+      </li>
+      <li>
+        <label class="control-label">是否显示</label>
+        <label for="visible_0">
+          <input type="radio" name="visible" value="0" id="visible_0"/>
+          不显示
+        </label>
+        <label for="visible_1">
+          <input type="radio" name="visible" value="1" id="visible_1" checked="checked"/>
+          显示
+        </label>
+      </li>
       <li>
         <label class="control-label">接受群体范围</label>
-        <input type="radio" name="send_range" value="0" id="send_range_0"/>
-        <label for="send_range_0">所有学生</label>
-        <input type="radio" name="send_range" value="1" id="send_range_1"/>
-        <label for="send_range_1">所有学生和老师</label>
+        <label for="send_range_0">
+          <input type="radio" name="send_range" value="0" id="send_range_0" checked="checked"/>
+          所有学生
+        </label>
+        <label for="send_range_1">
+          <input type="radio" name="send_range" value="1" id="send_range_1"/>
+          所有学生和老师
+        </label>
+      </li>
+      <li>
+        <label class="control-label">学生人数</label>
+        <input type="text" value="<%= @student_count %>" disabled="disabled"/>
+      </li>
+      <li>
+        <label class="control-label">老师人数</label>
+        <input type="text" value="<%= @user_count - @student_count %>" disabled="disabled"/>
+      </li>
+      <li>
+        <label class="control-label">总人数</label>
+        <input type="text" value="<%= @user_count %>" disabled="disabled"/>
       </li>
     </ol>
-
   <% end %>
+  <%= f.submit '提交' %>
 <% end %>
 

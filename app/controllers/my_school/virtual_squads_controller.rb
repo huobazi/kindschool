@@ -1,5 +1,5 @@
 #encoding:utf-8
-#虚拟班管理
+#延时班管理
 class MySchool::VirtualSquadsController < MySchool::ManageController
   def index
    	@virtual_squads = @kind.squads.search(params[:virtual_squad] || {}).where(:tp=>1).page(params[:page] || 1).per(10).order("created_at DESC")
@@ -16,24 +16,24 @@ class MySchool::VirtualSquadsController < MySchool::ManageController
     @virtual_squad = Squad.new(params[:squad])
     @virtual_squad.tp=1
     @virtual_squad.kindergarten_id = @kind.id
-    users = User.find(params[:ids])
-    users.each do |user|
+    users = User.find_by_id(params[:ids])
+    (users || []).each do |user|
       user_squad = UserSquad.new(:user_id=>user.id)
       user_squad.squad = @virtual_squad
      	@virtual_squad.user_squads << user_squad
     end
     if @virtual_squad.save!
-      redirect_to my_school_virtual_squads_path, :notice => "操作成功"
+      redirect_to my_school_virtual_squad_path(@virtual_squad.id), :success => "操作成功"
     else
       flash[:error] = "操作失败"
       redirect_to my_school_virtual_squads_path
     end
   end
-   
+
   def show
     @virtual_squad = @kind.squads.find(params[:id])
     unless  @virtual_squad.tp==1
-      redirect_to :controller=>'my_school/main' ,:action=>:no_kindergarten#,:notice=>"操作失误，没有该虚拟班"
+      redirect_to :controller=>'my_school/main' ,:action=>:no_kindergarten#,:notice=>"操作失误，没有该延时班"
     end
 
   end
@@ -41,7 +41,7 @@ class MySchool::VirtualSquadsController < MySchool::ManageController
   def edit
     @virtual_squad = @kind.squads.find(params[:id])
     unless @virtual_squad.tp==1
-     	redirect_to :controller=>'my_school/main' ,:action=>:no_kindergarten#,:notice=>"操作失误，没有该虚拟班"	
+     	redirect_to :controller=>'my_school/main' ,:action=>:no_kindergarten#,:notice=>"操作失误，没有该延时班"	
    	end
   end
 

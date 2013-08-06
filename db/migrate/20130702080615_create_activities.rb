@@ -6,7 +6,7 @@ class CreateActivities < ActiveRecord::Migration
       t.text :content
       t.string :logo
       t.integer :creater_id
-      t.integer :approve_status
+      t.integer :approve_status, :default => 0
       t.integer :approver_id
       t.timestamp :start_at
       t.timestamp :end_at

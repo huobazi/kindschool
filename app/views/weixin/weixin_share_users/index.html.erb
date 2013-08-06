@@ -1,0 +1,52 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    每日一帖
+  </div>
+  <div class="message_filter">
+    <%= form_tag '/weixin/weixin_share_users' , :method=>"get",:id=>"weixin_share_user_search" do %>
+      <%= select_tag "weixin_share_users[read_status_equals]",options_for_select([["阅读状态",""],["未读","0"],["已读","1"]],(params[:messages] ? params[:weixin_share_users][:read_status_equals] : "").to_s) %>
+    <%end%>
+  </div>
+  <div class="message_list">
+    <ul class="data_list">
+      <% if @weixin_share_users.blank? %>
+        <li><div class="message_content">没有帖子信息。</div></li>
+      <% else %>
+        <% @weixin_share_users.each do |weixin_share_user| %>
+          <% if(weixin_share = weixin_share_user.weixin_share) && (weixin_databank = weixin_share.weixin_databank)%>
+            <li>
+              <a href="<%= url_for(:action=>:show,:id=>weixin_share_user.id) %>" title="查看信息">
+                <div>
+                  <label class="message_time"><%=weixin_share.send_date ? weixin_share.send_date.to_short_datetime : ""%></label>
+                  <label class="right_message_time"><%=weixin_share_user.read_status ? "已读" : "未读"%></label>
+                </div>
+                <div class="message_content">标题:<%= weixin_databank.title %></div>
+              </a>
+            </li>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ul>
+    <br/>
+  </div>
+  <% unless  @weixin_share_users.blank? %>
+    <div class="message_more">
+      <div class="paginate_div">
+        <%= paginate @weixin_share_users, :window => 1%>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
+<script type="text/javascript">
+  $(function(){
+    $("#weixin_share_users_read_status_equals").change(function(){
+      $("#weixin_share_user_search").submit();
+    })
+  })
+
+</script>

@@ -1084,12 +1084,10 @@ table.user_attributes td {
 
 
 #topic_category_tabs {
-    padding-left: 50px;
     padding-top: 10px;
 }
 #topic_category_tabs a {
     color: #333333;
-    font-size: 16px;
 }
 .float_left {
     float: left;
@@ -1140,7 +1138,8 @@ a.album_a .album_img{
 }
 .control-group .controls .show_receiver_entry{
     float: left;
-    height: 200px;
+    max-height: 200px;
+    min-height: 50px;
     overflow-x: hidden;
     width: 100%;
     overflow-y: scroll;
@@ -1589,11 +1588,21 @@ ul.teacher_list li{
 }
 
 span.help-inline {
-    color: red;
+    color: #B94A48;
+}
+.work_list .table label {
+    font-weight: bold;
+    font-size: 16px;
+}
+.work_list .table tr:first-child th:last-child {
+    width: 20%;
+}
+.work_list .table tr:first-child th:first-child {
+    width: 50px;
 }
 .index_a a{
     float: left;
-    padding-right: 3px;
+    padding-right: 10px;
 }
 .official_home_teacher_img img{
     border: 0 none;
@@ -1608,46 +1617,46 @@ span.help-inline {
     vertical-align: middle;
 }
 .show {
-  padding: 30px;
+    padding: 30px;
 }
 .show .title {
-  font-size: 28px;
+    font-size: 28px;
 }
 .show .info {
-  font-size: 20px;
-  padding-top: 10px;
-  color: #B6B6B6;
+    font-size: 20px;
+    padding-top: 10px;
+    color: #B6B6B6;
 }
 
 .show .info .time {
-  color: #54B2E4;
+    color: #54B2E4;
 }
 
 .show .title .squad_name {
-  font-size: 20px;
-  color: #494949;
+    font-size: 20px;
+    color: #494949;
 }
 
 .show .info .link {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .show .content_up {
-  border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 
 .show .content {
-  padding-top: 20px;
-  text-indent: 20px;
-  font-size: 20px;
-  word_wrap: break-word;
-}
-#topic_entries{
-  display:inline-block;
-  padding: 30px;
+    padding-top: 20px;
+    text-indent: 20px;
+    font-size: 20px;
+    word_wrap: break-word;
+    inherit: auto;
+    min-height: 200px;
+    overflow: auto;
 }
 .show .logo {
-  padding-top: 20px;
+    padding-top: 20px;
+    padding-left: 0
 }
 
 .show_entry {
@@ -1658,14 +1667,14 @@ span.help-inline {
     padding: 10px 0 10px 0;
 }
 .normal_link {
-  color: #B6B6B6;
+    color: #B6B6B6;
 }
 .bold_link {
-  font-weight: bold;
-  color: #000;
+    font-weight: bold;
+    color: #000;
 }
 .show_entry:last-child {
-  border-bottom: none;
+    border-bottom: none;
 }
 .show_entry .content_left {
     float: left;
@@ -1679,11 +1688,129 @@ span.help-inline {
 }
 
 .show_entry .info .author {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .show_entry .content {
-  word_wrap: break-word;
+    word_wrap: break-word;
 }
-/*==================== 活动 ============*/
+#show_message_entry{
+    color: blue;
+}
+#show_entry_div .message_user{
+    float: left;
+    width: 25%;
+}
+#show_entry_div .bold_head{
+    color: #000000;
+    font-weight: bold;
+    font-size: 20px;
+    width: 100%;
+    float: left;
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px solid #B6B6B6;
+}
+#show_entry_div .bold_link{
+    color: #B6B6B6;
+    font-weight: bold;
+    font-size: 16px;
+    width: 100%;
+    float: left;
+}
+/*==================== 贴子 ============*/
 
+.topics .topic_line {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    margin: 0 -10px;
+    vertical-align: top;
+    width: 100%;
+}
+
+.topics .topic .avatar {
+    width: 70px;
+    margin-left: 10px;
+}
+
+.topics .topic .right_info {
+    padding-left: 85px;
+}
+.topics .topic .infos {
+    padding-right: 74px;
+}
+
+.topics .topic .title {
+    font-size: 14px;
+    margin-top: 2px;
+    margin-bottom: 6px;
+    padding-left: 10px;
+}
+
+.topics .topic .title abbr {
+    color: #201919;
+    font-size: 20px;
+}
+
+.topics .topic .title em {
+    font-style: normal;
+    color: #333;
+}
+
+.topics .topic .title a:link, .topics .topic .title a:visited {
+    color: #2c64d7;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.topics .topic .info {
+    margin-bottom: 2px;
+    font-size: 12px;
+    padding-left: 10px;
+}
+
+.topics .topic .info em {
+    font-size: 16px;
+    font-style: normal;
+}
+
+.topics .topic .info abbr {
+    color: #999;
+    font-size: 16px;
+    font-style: normal
+}
+
+.form_div .activity_title {
+    color: #333333;
+    font-size: 14px;
+}
+
+.topics .topic .replies {
+    width: 70px;
+    margin-right: 10px;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.topics .topic .replies a.count, .topics .topic .replies a.count:visited {
+    line-height: 12px;
+    font-weight: bold;
+    color: white;
+    background-color: #1c7fdb;
+    display: inline-block;
+    padding: 2px 10px 2px 10px;
+    -moz-border-radius: 80px;
+    -webkit-border-radius: 80px;
+    border-radius: 80px;
+    margin: 18px 12px 0px 0px;
+    text-decoration: none;
+}
+
+fieldset.people_manage legend label {
+    font-size: 18px;
+    color: #646060;
+}
+
+fieldset.people_manage {
+    padding-left: 35px;
+}

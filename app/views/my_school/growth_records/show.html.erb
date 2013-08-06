@@ -109,7 +109,7 @@
             <p class="info"><span class="time"><%= @growth_record.try(:start_at).try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @growth_record.try(:end_at).try(:to_short_datetime) %></span>&nbsp;由&nbsp;<span class="link"><%= @growth_record.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @growth_record.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
           <div class="content">
-            <%= simple_format @growth_record.content %>
+            <%= simple_format h(@growth_record.content) %>
           </div>
         </div>
       </div>

@@ -71,23 +71,31 @@
     </div>
     <div class="work_form">
       <div class="form_div">
-       <%= form_for(@new,:method=>:post ,:validate => true,:url=>one_news_approve_my_school_approves_path(:new_id=>@new.id), :html =>{:class=>"form-horizontal"}) do |f| %>
+       <%= form_for(@new,:method=>:post ,:validate => true,:url=>one_news_approve_my_school_approves_path(:approve_record_id=>@new.approve_record.id), :html =>{:class=>"form-horizontal"}) do |f| %>
           <%= render 'form', :f=>f %>
        <% end %>
       </div>
     </div>
-    <table>
+  <div class="work_list">
+    <table class="table table-striped table-hover">
       <tr>
         <th></th>
-        <th></th>
+        <th>审核人</th>
+        <th>审核时间</th>
+        <th>审核结果</th>
+        <th>描述</th>
       </tr>
       <%@approve_entries.each do |approve_entry|%>
       <tr>
-        <td><%=approve_entry.note%></td>
         <td></td>
+        <td><%=approve_entry.user.try(:name)%></td>
+        <td><%=approve_entry.created_at.try(:to_all_datetime)%></td>
+        <td><%=ApproveEntry::STATUS[approve_entry.status.to_i]%></td>
+        <td><%=approve_entry.note%></td>
       </tr>
       <%end%>
     </table>
   </div>
+</div>
 
 </div>

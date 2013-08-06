@@ -14,7 +14,34 @@ class  MySchool::StudentInfosController < MySchool::ManageController
       @student_info = StudentInfo.find_by_user_id_and_kindergarten_id(current_user.id, @kind.id)
     else
       @student_info = StudentInfo.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+      @user_squads = @student_info.user.user_squads
+      @virtual_squads = @kind.squads.where(:tp=>1)
     end
+
+  end
+
+  def virtual_squad
+    @virtual_squads = @kind.squads.where(:tp=>1)
+    render :layout => false
+  end
+
+  def virtual_squad_choose
+     @virtual_squads= {}
+   unless current_user.tp == 0 
+     @student_info = StudentInfo.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    unless params["virtual_squad_ids"].blank?
+      virtual_squad_ids = params["virtual_squad_ids"].split(',')
+      @virtual_squads=@kind.squads.where(:id=>virtual_squad_ids,:tp=>1)
+      (@student_info.user.user_squads || []).each do |squad|
+       squad.destroy
+      end
+      @virtual_squads.each do |v_squad|
+        user_squad = UserSquad.new(:user_id=>@student_info.user.id,:squad_id=>v_squad.id)
+        user_squad.save
+      end
+    end
+   end
+      render :json => @virtual_squads,:layout=>false 
   end
 
   def new

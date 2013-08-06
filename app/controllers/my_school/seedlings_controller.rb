@@ -1,5 +1,5 @@
 #encoding:utf-8
-#学员育苗
+#学员疫苗
 class MySchool::SeedlingsController < MySchool::ManageController
    def index
    	 all_roles = ['admin','principal','vice_principal','assistant_principal','park_hospital']
@@ -43,7 +43,7 @@ class MySchool::SeedlingsController < MySchool::ManageController
     @seedling = @kind.seedling_records.new(params[:seedling_record])
      respond_to do |format|
       if @seedling.save
-        format.html { redirect_to my_school_seedlings_path, notice: '学员的育苗创建成功.' }
+        format.html { redirect_to my_school_seedlings_path, notice: '学员的疫苗创建成功.' }
       else
         format.html { render :action=> "new" }
       end
@@ -67,7 +67,7 @@ class MySchool::SeedlingsController < MySchool::ManageController
     @seedling = @kind.seedling_records.find(params[:id])
     respond_to do |format|
       if @seedling.update_attributes(params[:seedling_record])
-        format.html { redirect_to my_school_seedlings_path, notice: '学员育苗更新成功.' }
+        format.html { redirect_to my_school_seedlings_path, notice: '学员疫苗更新成功.' }
       else
         format.html { render action: "edit" }
       end
@@ -118,7 +118,7 @@ class MySchool::SeedlingsController < MySchool::ManageController
 
   def destroy_multiple
     if params[:seedling].nil?
-      flash[:notice] = "必须先选择育苗记录"
+      flash[:notice] = "必须先选择疫苗记录"
     else
       params[:seedling].each do |seeding|
         @kind.seedling_records.destroy(seeding)

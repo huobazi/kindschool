@@ -1,0 +1,18 @@
+<h1>延时班的管理</h1>
+  <h2>选择班级</h2>
+<table class="list_tbl">
+  <tr>
+    <th>选择</th>
+    <th>序号</th>
+    <th>班级名</th>
+    <th></th>
+  </tr>
+<% (@virtual_squads || []).each_with_index do |virtual_squad,index| %>
+  <tr>
+    <td><%= check_box_tag "virtual_squad[ids][]", virtual_squad.id%></td>
+    <td><%=index+1%></td>
+    <td><%= virtual_squad.name%></td>
+    <td></td>
+  </tr>
+  <% end %>
+</table>

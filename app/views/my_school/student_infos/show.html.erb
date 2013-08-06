@@ -81,10 +81,13 @@
               <div class="controls">
                 <div class="show_action">
                   <% if choose_operate_show("my_school/users/set_gather_sms") %>
-                    <%= link_to (@student_info.user.is_receive ? "取消收短信" : "可收短信"), set_gather_sms_my_school_user_path(@student_info.user), :class => "show btn" %>
+                    <%= link_to (@student_info.user.is_receive ? "取消收短信" : "可收短信"), set_gather_sms_my_school_user_path(@student_info.user), :class => "btn" %>
                   <% end %>
                   <% if choose_operate_show("my_school/student_infos/student_execl") %>
                   <%= link_to "学员信息下载",student_execl_my_school_student_infos_path(:student_info_id=>@student_info.id),:class=>"btn"%>
+                  <%end%>
+                  <% if choose_operate_show("my_school/student_infos/virtual_squad_choose") %>
+                  <%=link_to "添加延时班",virtual_squad_my_school_student_infos_path,:id=>"btn_open_virtual_squads_list",:class=>"btn"%>
                   <%end%>
                 </div>
                 <label class="show_label">
@@ -164,6 +167,17 @@
               <div class="controls">
                 <label class="show_label">
                   <%= @student_info.squad.name %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >延时班</label>
+              <div class="controls">
+                <label class="show_label">
+                  <p id="virtual_squad_name"><% (@user_squads||[]).each do |v_squad|%>
+                  <%=v_squad.squad.try(:name)%>
+                  <%end%>
+                 </p>
                 </label>
               </div>
             </div>
@@ -513,3 +527,53 @@
   </div>
 
 </div>
+<div id="virtual_squads_manage" title="班级选择">
+      <div id="virtual_squads_list_choose"></div>
+      <div id="virtual_squads_list_show">
+         <%=render "virtual_squads_list"%>
+      </div>
+</div>
+<script type="text/javascript">
+$(function(){
+  $('#virtual_squads_manage').dialog({autoOpen:false,modal:true,width:620,height:445});
+        $('#btn_open_virtual_squads_list').click(function(){
+          $('#virtual_squads_list_choose').load(this.href, function(){
+              $('#virtual_squads_list_choose').hide();
+              $('#virtual_squads_list_show').show();
+              $('#virtual_squads_manage').dialog('open');
+            });
+             return false ;
+        });
+})
+</script>
+<script type="text/javascript">
+    $(function(){
+       $('.id_commit').click(function(){
+        var str = "" ;
+        $("input[type=checkbox]:checked").each(function(){
+            str += $(this).val()+","
+        });
+         $.ajax(
+             {
+                type:"POST" ,
+                url:"/my_school/student_infos/virtual_squad_choose",
+                data:"virtual_squad_ids="+ str + "&id=" + <%=@student_info.id%> ,
+                cache: false,
+                success: function(result){
+                  $("#virtual_squad_name").empty();
+                      for(i=0;i<result.length;i++)
+                        {
+                            if (i == result.length-1)
+                             $("#virtual_squad_name").append(result[i].name);
+                           else
+                             $("#virtual_squad_name").append(result[i].name + ",");
+                        }
+                     $('#virtual_squads_manage').dialog('close');
+
+                }
+       });
+    });
+   });
+  </script>
+
+

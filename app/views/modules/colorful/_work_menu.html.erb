@@ -28,5 +28,34 @@
          <%end%>
          <%end%>
         <% end %>
-  </ul>
+        <%if controller_name == "approves"%>
+        <%if choose_operate_show("my_school/approves") %>
+         <li class="root">
+            <div class="messages_root"></div>
+              <a href="###">内容审核</a>
+         </li>
+         <%if choose_operate_show("my_school/approves/news_list")%>
+          <li>
+          <a class="" href="/my_school/approves/news_list">新闻内容审核</a>
+         </li>
+         <%end%>
+         <%if choose_operate_show("my_school/approves/activities_list")%>
+         <li>
+         <a href="/my_school/approves/activities_list">活动信息审核</a>
+         </li>
+         <%end%>
+         <%if choose_operate_show("my_school/approves/notices_list")%>
+        <li>
+         <a href="/my_school/approves/notices_list">通知信息审核</a>
+        </li>
+        <%end%>
+        <%if choose_operate_show("my_school/approves/messages_list")%>
+        <li>
+         <a href="/my_school/approves/messages_list">消息的审核</a>
+        </li>
+        <%end%>
+         <%end%>
+         <%end%>
+
+   </ul>
 </div>

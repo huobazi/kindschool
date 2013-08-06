@@ -1,0 +1,59 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>审核幼儿园活动信息</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+      </ul>
+    </div>
+    <div class="work_list">
+        <% unless @activities.blank? %>
+          <table class="table table-striped table-hover">
+           
+              <tr>
+                <th></th>
+                <th>标题</th>
+                <th>发表人</th>
+                <th>发表时间</th>
+                <th>类型</th>
+                <th>审核状态</th>
+                <th></th>
+              </tr>
+            <% (@activities || []).each do |activity| %>
+
+                  <tr>
+
+                    <td></td>
+                    <td><%= link_to activity.title, activity_show_my_school_approves_path(:activity_id=>activity.id) %>
+                    </td>
+                    <td><%=raw activity.creater.try(:name)%>
+                    </td>
+                    <td><%=raw activity.created_at.try(:to_long_datetime)%>
+                    </td>
+                    <td><%=activity.tp==1 ? "兴趣讨论" : "
+主题活动 "%></td>
+                    <td>
+                      <%= Activity::STATUS[activity.approve_status]%>
+                    </td>
+                    <td>
+                      <%= link_to "审核", activity_show_my_school_approves_path(:activity_id=>activity.id) %>
+                    </td>
+                  </tr>
+                <% end %>
+          </table>
+          <%= paginate @activities  %>
+        <% else %>
+          暂无审核活动信息
+        <% end %>
+  </div>
+</div>

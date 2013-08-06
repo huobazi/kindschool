@@ -15,9 +15,13 @@ class Activity < ActiveRecord::Base
   belongs_to :squad
 
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
+ 
+  has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
 
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img
+
+  STATUS = { 0=>"审核通过",1=> "待审核", 2=>"审核不通过"}
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
@@ -31,4 +35,6 @@ class Activity < ActiveRecord::Base
   def squad_label
     self.squad ? self.squad.name : "没有班级信息"
   end
+  include ResourceApproveStatusStart
+  before_save :news_approve_status_start
 end

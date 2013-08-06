@@ -51,7 +51,7 @@
           <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
         <% else %>
           <div class="controls">
-            <label>还未有年级</label>
+            <label>没有年级,请先创建年级,才能继续操作</label>
           </div>
         <% end %>
         <div id="grade_squad_partial">
