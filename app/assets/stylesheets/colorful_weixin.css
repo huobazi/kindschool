@@ -102,13 +102,21 @@ body {
 .menu_li a{
     position: relative;
 }
-.weixin_menu{
+.navbar .weixin_menu{
+    float:none;
+}
+.weixin_menu > li.menu_li{
+    float:none;
 }
 .menu_li label{
     display: inline;
     vertical-align: middle;
     padding-left: 5px;
     color:white;
+}
+.weixin_menu div.menu_second{
+    position: relative;
+    width: inherit;
 }
 .navbar .nav-collapse .weixin_menu .activity{
     background-color: #008FDC;

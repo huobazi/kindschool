@@ -95,6 +95,9 @@
                 </label>
               </div>
             </div>
+
+          <div class="left_table">
+
             <div class="control-group">
               <label class="control-label">所属幼儿园</label>
               <div class="controls">
@@ -127,6 +130,10 @@
                 </label>
               </div>
             </div>
+
+          </div>
+          <div class="right_table">
+
             <div class="control-group">
               <label class="control-label" >性别</label>
               <div class="controls">
@@ -151,9 +158,13 @@
                 </label>
               </div>
             </div>
+
+          </div>
+
           </fieldset>
           <fieldset>
             <legend><label><strong>学员信息</strong></label></legend>
+          <div class="left_table">
             <div class="control-group">
               <label class="control-label" >年级</label>
               <div class="controls">
@@ -285,6 +296,11 @@
                 </label>
               </div>
             </div>
+
+          </div>
+
+          <div class="right_table">
+
             <div class="control-group">
               <label class="control-label" >户口所在地</label>
               <div class="controls">
@@ -361,7 +377,7 @@
               <label class="control-label" >是否残疾儿童</label>
               <div class="controls">
                 <label class="show_label">
-                  <%= @student_info.subsidize ? "是" : "否" %>
+                  <%= @student_info.deformity ? "是" : "否" %>
                 </label>
               </div>
             </div>
@@ -413,9 +429,15 @@
                 </label>
               </div>
             </div>
+
+          </div>
+
           </fieldset>
           <fieldset>
             <legend><label><strong>家庭关系</strong></label></legend>
+
+          <div class="left_table">
+
             <div class="control-group">
               <label class="control-label" >关系</label>
               <div class="controls">
@@ -472,6 +494,11 @@
                 </label>
               </div>
             </div>
+
+          </div>
+
+          <div class="right_table">
+
             <div class="control-group">
               <label class="control-label" >移动电话</label>
               <div class="controls">
@@ -520,6 +547,9 @@
                 </label>
               </div>
             </div>
+
+          </div>
+
           </fieldset>
         </form>
       </div>

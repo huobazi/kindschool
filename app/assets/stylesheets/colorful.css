@@ -773,8 +773,11 @@ table.user_attributes th {
     background-color: #DBDBDB;
     width: 85px;
     font-weight: normal;
+    border-bottom: 1px dotted #948A8A;
 }
 table.user_attributes tr {
+  height: 35px;
+  line-height: 35px;
 }
 
 table.user_attributes td {
@@ -1818,4 +1821,39 @@ fieldset.people_manage legend label {
 
 fieldset.people_manage {
     padding-left: 35px;
+}
+
+.left_table {
+  float: left;
+  width: 50%;
+}
+
+.right_table {
+  float: right;
+  width: 50%;
+}
+
+.staff_style {
+  float: left;
+  margin-bottom: 20px;
+  width: 95%;
+}
+
+fieldset.two_cols .control-label {
+  padding-left: 10px;
+  width: 80px;
+  margin-left: 0;
+}
+
+fieldset.two_cols .controls {
+  margin-left: 120px;
+}
+fieldset.two_cols .control-group .controls input, fieldset.two_cols .control-group .controls select, fieldset.two_cols .control-group .controls label {
+  width: 130px;
+}
+fieldset.two_cols .control-group .controls input[type="checkbox"] {
+  width: 40px;
+}
+fieldset.two_cols .control-group .controls input[type="radio"] {
+  width: 40px;
 }
