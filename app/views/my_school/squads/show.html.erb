@@ -126,7 +126,7 @@
             <label class="control-label" >描述</label>
             <div class="controls">
               <label class="show_label">
-                <%= @squad.note %>
+                <%= simple_format h(@squad.note) %>
               </label>
             </div>
           </div>
@@ -135,7 +135,7 @@
       </div>
     </div>
 
-    <fieldset>
+    <fieldset class="people_manage">
       <legend><label>该班级的负责老师</label></legend>
         <div class="work_list">
           <% unless @squad.teachers.blank? %>
@@ -167,7 +167,7 @@
         </div>
     </fieldset>
 
-    <fieldset>
+    <fieldset class="people_manage">
       <legend><label>该班级的学员</label></legend>
       <div class="work_list">
         <% unless @squad.student_infos.blank? %>

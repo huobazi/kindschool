@@ -1587,7 +1587,7 @@ ul.teacher_list li{
 }
 
 span.help-inline {
-    color: red;
+    color: #B94A48;
 }
 .work_list .table label {
   font-weight: bold;
@@ -1781,4 +1781,11 @@ span.help-inline {
   text-decoration: none; 
 }
 
+fieldset.people_manage legend label {
+  font-size: 18px;
+  color: #646060;
+}
 
+fieldset.people_manage {
+  padding-left: 35px;
+}
