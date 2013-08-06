@@ -22,6 +22,7 @@ class Message < ActiveRecord::Base
   
   has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
 
+  STATUS = { 0=>"审核通过",1=> "待审核", 2=>"审核不通过"}
 
   include ResourceApproveStatusStart
   before_save :news_approve_status_start
