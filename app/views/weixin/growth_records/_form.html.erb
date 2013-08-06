@@ -22,14 +22,34 @@
   <% else %>
     <div class="field">
       <label class="field_prompt" for="grade">年级:</label>
-      <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+      <% unless @grades.blank? %>
+        <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+      <% else %>
+        <div class="controls">
+          <label>没有年级,先创建年级,才能继续操作</label>
+        </div>
+      <% end %>
       <div id="grade_squad_partial">
-        <label class="field_prompt" for="squad">班级:</label>
-        <%= select_tag "squad", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+        <% unless @squads.blank? %>
+          <label class="field_prompt" for="squad">班级:</label>
+          <%= select_tag "squad", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+        <% else %>
+          <label class="field_prompt" for="squad">班级:</label>
+          <div class="controls">
+            <label>没有班级,先创建班级,才能继续操作</label>
+          </div>
+        <% end %>
       </div>
       <div id="squad_student_partial">
-        <label class="field_prompt" for="student">学员:</label>
-        <%= select_tag "student_info_id", options_for_select((@student_infos.collect{|s|[s.user.name,s.id]} || [])), :class => "select", :name => "growth_record[student_info_id]" %>
+        <% unless @student_infos.blank? %>
+          <label class="field_prompt" for="student">学员:</label>
+          <%= select_tag "student_info_id", options_for_select((@student_infos.collect{|s|[s.user.name,s.id]} || [])), :class => "select", :name => "growth_record[student_info_id]" %>
+        <% else %>
+          <label class="field_prompt" for="student">学员:</label>
+          <div class="controls">
+            <label>没有学员,先创建学员,才能继续操作</label>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>

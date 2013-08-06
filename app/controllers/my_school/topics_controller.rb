@@ -6,7 +6,9 @@ class  MySchool::TopicsController < MySchool::ManageController
     if params[:topic_category_id]
       if topic_category = @kind.topic_categories.find_by_id(params[:topic_category_id])
         if current_user.get_users_ranges[:tp] == :student
-          @topics = @kind.topics.where("topic_category_id = ? and (creater_id = ? or squad_id = ? or squad_id is null)", topic_category.id, current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+          @topics = @kind.topics.where("topic_category_id = ? and (creater_id = ? or squad_id = ? or squad_id is null)", topic_category.id, current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top ASC").("created_at DESC")
+        elsif current_user.get_users_ranges[:tp] == :teachers
+          @topics = @kind.topics.search(params[:topic] || {}).where("topic_category_id = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", topic_category.id, current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
         else
           @topics = @kind.topics.where(:topic_category_id => topic_category.id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
         end
@@ -17,8 +19,10 @@ class  MySchool::TopicsController < MySchool::ManageController
     else
       if current_user.get_users_ranges[:tp] == :student
         @topics = @kind.topics.where("creater_id = ? or squad_id = ? or squad_id is null", current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+      elsif current_user.get_users_ranges[:tp] == :teachers
+        @topics = @kind.topics.search(params[:topic] || {}).where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
       else
-        @topics = @kind.topics.search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+        @topics = @kind.topics.search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top DESC").order("created_at DESC")
       end
     end
 
@@ -27,6 +31,8 @@ class  MySchool::TopicsController < MySchool::ManageController
   def show
     if current_user.get_users_ranges[:tp] == :student
       @topic = @kind.topics.where("creater_id = ? or squad_id = ? or squad_id is null", current_user.id, current_user.student_info.squad_id).find_by_id(params[:id])
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @topic = @kind.topics.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
     else
       @topic = @kind.topics.find_by_id(params[:id])
     end
@@ -50,6 +56,8 @@ class  MySchool::TopicsController < MySchool::ManageController
     @topic = Topic.new
     if current_user.get_users_ranges[:tp] == :student
       @topic.squad_id = current_user.student_info.squad_id
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @squads = current_user.get_users_squads
     end
     @topic.kindergarten_id = @kind.id
     @topic.creater_id = current_user.id
@@ -58,7 +66,20 @@ class  MySchool::TopicsController < MySchool::ManageController
   end
 
   def create
-    @topic = Topic.new(params[:topic])
+    if params[:topic].present? && params[:topic][:squad_id].present?
+      if current_user.get_users_ranges[:tp] == :teachers
+        unless current_user.get_users_squads.collect(&:id).include?(params[:topic][:squad_id].to_i)
+          flash[:error] = "非法操作"
+          redirect_to :action => :index
+          return
+        end
+      end
+    end
+    unless current_user.get_users_ranges[:tp] == :all
+      @topic = Topic.new(params[:topic].except(:is_show, :is_top))
+    else
+      @topic = Topic.new(params[:topic])
+    end
     @topic.kindergarten_id = @kind.id
     @topic.creater_id = current_user.id
     if current_user.get_users_ranges[:tp] == :student
@@ -77,6 +98,8 @@ class  MySchool::TopicsController < MySchool::ManageController
   def edit
     if current_user.get_users_ranges[:tp] == :student
       @topic = @kind.topics.where(:creater_id => current_user.id).find_by_id(params[:id])
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @topic = @kind.topics.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
     else
       @topic = @kind.topics.find_by_id(params[:id])
     end
@@ -96,17 +119,30 @@ class  MySchool::TopicsController < MySchool::ManageController
     end
     if current_user.get_users_ranges[:tp] == :student
       @topic = @kind.topics.find_by_id_and_creater_id(params[:id], current_user.id)
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @topic = @kind.topics.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
     else
       @topic = @kind.topics.find_by_id(params[:id])
     end
 
-    if @topic.update_attributes(params[:topic])
-      flash[:success] = "更新贴子成功"
-      redirect_to my_school_topic_path(@topic)
+    unless current_user.get_users_ranges[:tp] == :all
+      if @topic.update_attributes( params[:topic].except(:is_show, :is_top) )
+        flash[:success] = "更新贴子成功"
+        redirect_to my_school_topic_path(@topic)
+      else
+        flash[:error] = "更新贴子失败"
+        render :edit
+      end
     else
-      flash[:error] = "更新贴子失败"
-      render :edit
+      if @topic.update_attributes( params[:topic] )
+        flash[:success] = "更新贴子成功"
+        redirect_to my_school_topic_path(@topic)
+      else
+        flash[:error] = "更新贴子失败"
+        render :edit
+      end
     end
+
   end
 
   def destroy

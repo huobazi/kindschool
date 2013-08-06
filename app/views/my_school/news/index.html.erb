@@ -44,6 +44,7 @@
                 <th>发表人</th>
                 <th>发表时间</th>
                 <th></th>
+                <th></th>
               </tr>
             <% (@news || []).each do |n_ew| %>
 
@@ -65,6 +66,14 @@
               <span><%=link_to '编辑',edit_my_school_news_path(n_ew)%></span>
               <% end %>
                </td>
+               <td>
+                      <%#=if n_ew.approve_status!=0 ? " 审核不通过 " : "" %>
+                <%if n_ew.approve_status==2%>
+                审核不通过
+                <%elsif n_ew.approve_status==1%>
+                待审核
+                <%end%>
+                </td>
                   </tr>   
                 <% end %>
               <% end %>

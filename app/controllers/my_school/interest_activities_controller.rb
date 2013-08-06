@@ -128,7 +128,11 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
       params[:activity][:kindergarten_id] = @kind.id
       params[:activity][:tp] = 0
     end
-    @activity = @kind.activities.find_by_id_and_tp(params[:id], 1)
+    if current_user.get_users_ranges[:tp] == :teachers
+      @activity = @kind.activities.where("tp = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", 1, current_user.staff.id, current_user.id).find_by_id(params[:id].to_i)
+    else
+      @activity = @kind.activities.find_by_id_and_tp(params[:id], 1)
+    end
     if @activity.update_attributes(params[:activity].except(:squad_id))
       flash[:success] = "修改兴趣讨论成功"
       redirect_to my_school_interest_activity_path(@activity)

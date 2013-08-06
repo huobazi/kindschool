@@ -1,0 +1,43 @@
+<% if @entries.blank?  %>
+  消息接收人不存在
+<% else %>
+  <% @entries.group_by(&:read_status).each do |k,v| %>
+    <% if k %>
+      <label  class="bold_head">已读记录</label>
+      <div class="users_tp">
+        <% v.group_by(&:tp).each do |key,users| %>
+          <% if key == 1 %>
+            <label class="bold_link">教职工</label>
+          <% elsif key == 0 %>
+            <label class="bold_link">学员</label>
+          <% else %>
+            <label class="bold_link">管理员</label>
+          <% end %>
+          <% users.each do |user|%>
+            <div class="message_user">
+              <label><%=  user.name%></label>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <label class="bold_head">未读记录</label>
+      <div class="users_tp">
+        <% v.group_by(&:tp).each do |key,users| %>
+          <% if key == 1 %>
+            <label class="bold_link">教职工</label>
+          <% elsif key == 0 %>
+            <label class="bold_link">学员</label>
+          <% else %>
+            <label class="bold_link">管理员</label>
+          <% end %>
+          <% users.each do |user|%>
+            <div class="message_user">
+              <label><%=  user.name%></label>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

@@ -45,6 +45,21 @@ class MySchool::UsersController < MySchool::ManageController
             :expires => self.current_user.remember_token_expires_at }
         end
         operates_data = self.current_user.operates.collect{ |operate| "#{operate.controller}/#{operate.action}"}
+        current_user.approve_module_users.each do |approve|
+         approve_module = approve.approve_module    
+         if approve_module.status == true
+          operates_data << "my_school/approves"
+           if approve_module.number == "News"
+             operates_data << "my_school/approves/news_list"
+           elsif approve_module.number == "Activity"
+             operates_data << "my_school/approves/activities_list"
+           elsif approve_module.number == "Notice"
+             operates_data << "my_school/approves/notices_list"              
+           elsif approve_module.number == "Message"
+             operates_data << "my_school/approves/messages_list"              
+           end
+         end
+        end
         operates_data.uniq!
         session[:operates] = operates_data
         flash[:notice] = "登陆成功."

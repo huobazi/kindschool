@@ -6,13 +6,42 @@
        <div class="show_menu">
         <%= "<ul class='small_#{menu[:number]}_ul'>".html_safe%>
           <% menu[:children].each do |ch|%>
-          <%unless ch[:name] == menu[:name] %>
-            <li><%= link_to ch[:name],ch[:url]%></li>
+           <%unless ch[:name] == menu[:name] %>
+             <li><%= link_to ch[:name],ch[:url]%> </li>
             <%end%>
           <%end%>
         </ul>
       </div>
     </div>
+    <%end%>
+    <%if choose_operate_show("my_school/approves")%>
+    <div class="center_menu small_personnel_menu">
+       <img alt="统计/" src="/t/colorful/personnel.jpg">
+       <div class="show_menu" style="display: none;">
+       <ul class="small_personnel_ul">
+        <%if choose_operate_show("my_school/approves/news_list")%>
+        <li>
+         <a href="/my_school/approves/news_list">新闻内容审核</a>
+        </li>
+        <%end%>
+        <%if choose_operate_show("my_school/approves/activities_list")%>
+        <li>
+         <a href="/my_school/approves/activities_list">活动信息审核</a>
+        </li>
+        <%end%>
+        <%if choose_operate_show("my_school/approves/notices_list")%>
+        <li>
+         <a href="/my_school/approves/notices_list">通知信息审核</a>
+        </li>
+        <%end%>
+        <%if choose_operate_show("my_school/approves/messages_list")%>
+        <li>
+         <a href="/my_school/approves/messages_list">消息的审核</a>
+        </li>
+        <%end%>
+       </ul>
+       </div>
+       </div>
     <%end%>
     <div class="small_login_menu">
       <%= link_to current_user.name, :controller => "/my_school/users", :action => :show, :id => current_user.id %>|&nbsp;

@@ -6,7 +6,7 @@ class MySchool::ActivitiesController < MySchool::ManageController
 
   def index
     if current_user.get_users_ranges[:tp] == :student
-      @activities = @kind.activities.search(params[:activity] || {}).where("tp = ? and  (squad_id = ? or squad_id is null)", 0, current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
+      @activities = @kind.activities.search(params[:activity] || {}).where("approve_status=0 and tp = ? and  (squad_id = ? or squad_id is null)", 0, current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
     elsif current_user.get_users_ranges[:tp] == :teachers
       @activities = @kind.activities.search(params[:activity] || {}).where("tp = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", 0, current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
     else
@@ -80,7 +80,7 @@ class MySchool::ActivitiesController < MySchool::ManageController
   end
 
   def create
-    if params[:activity].present?
+    if params[:activity].present? && params[:activity][:squad_id].present?
       if current_user.get_users_ranges[:tp] == :teachers
         unless current_user.get_users_squads.collect(&:id).include?(params[:activity][:squad_id].to_i)
           flash[:error] = "非法操作"
@@ -122,13 +122,17 @@ class MySchool::ActivitiesController < MySchool::ManageController
       params[:activity][:kindergarten_id] = @kind.id
       params[:activity][:tp] = 0
     end
-    @activity = @kind.activities.find_by_id_and_tp(params[:id], 0)
+    if current_user.get_users_ranges[:tp] == :teachers
+      @activity = @kind.activities.where("tp = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", 0, current_user.staff.id, current_user.id).find_by_id(params[:id].to_i)
+    else
+      @activity = @kind.activities.find_by_id_and_tp(params[:id], 0)
+    end
 
     if @activity.update_attributes(params[:activity].except(:squad_id))
       flash[:success] = "修改活动成功"
       redirect_to my_school_activity_path(@activity)
     else
-      flash[:error] = "修改活动未能成功"
+      flash[:error] = "修改活动失败"
       render :edit
     end
   end

@@ -17,6 +17,10 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
       return
     elsif current_user.get_users_ranges[:tp] == :teachers
       @squads = current_user.get_users_squads
+      if @squads.empty?
+        flash[:error] = "该教职工还没有负责的班级"
+        redirect_to :action => :index
+      end
     else
       if (@grades = @kind.grades) && !@grades.blank?
         if (@squads = @grades.first.squads) && !@squads.blank?

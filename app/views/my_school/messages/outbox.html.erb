@@ -48,6 +48,7 @@
             <th>发布时间</th>
             <th>是否发短信</th>
             <th></th>
+            <th></th>
           </tr>
           <% (@messages || []).each do |message| %>
             <tr>
@@ -69,6 +70,11 @@
                 <%= link_to "查看",outbox_show_my_school_message_path(message)%>
                 <%end%>
               </td>
+              <td><%if message.approve_status==2%>
+                审核不通过
+                <%elsif message.approve_status==1%>
+                待审核
+                <%end%></td>
             </tr>
           <% end %>
         <% end %>

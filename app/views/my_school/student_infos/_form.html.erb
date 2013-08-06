@@ -45,9 +45,15 @@
     <% end %>
     <% if action_name == "new" %>
       <div class="select_field">
-        <label class="password required control-label"><abbr title="required">*</abbr>选择班级</label>
+        <label class="control-label"><abbr title="required">*</abbr>选择班级</label>
         <label class="field_prompt" for="grade">年级:</label>
-        <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+        <% unless @grades.blank? %>
+          <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+        <% else %>
+          <div class="controls">
+            <label>没有年级,请先创建年级,才能继续操作</label>
+          </div>
+        <% end %>
         <div id="grade_squad_partial">
         </div>
       </div>

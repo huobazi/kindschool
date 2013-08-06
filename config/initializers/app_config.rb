@@ -101,11 +101,11 @@ MENUS ={"home"=>{
         "my_school/album_entries" => ["index","new","show","edit"]
       }
     },
-    "110000" => {
-      "111000" => {
+    "70000" => {
+      "71000" => {
         "my_school/topics" => ["index", "new", "edit", "show"]
       },
-      "112000" => {
+      "72000" => {
         "my_school/topics" => ["my"]
       }
     },
@@ -116,7 +116,12 @@ MENUS ={"home"=>{
       "122000"=>{
         "my_school/interest_activities" => ["index", "new", "edit", "show"]
       }
+    },
+    "130000"=>{
+      "131000" => {
+        "my_school/approves" => ["news_list","news_show"]}
     }
+
 
 
 }

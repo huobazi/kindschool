@@ -78,16 +78,28 @@ class MySchool::MessagesController < MySchool::ManageController
   end
   def show
     if @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
-      
       if entry = @message.message_entries.find_by_receiver_id(current_user.id)
         if !entry.read_status
           entry.update_attribute(:read_status, true)
         end
       else
-        flash[:error] = '您无法查看该消息.'
+        flash[:error] = '您无法查看该消息。'
         redirect_to(:action=>:index)
         return
       end
+    else
+      flash[:error] = '消息不存在。'
+      redirect_to(:action=>:index)
+      return
+    end
+  end
+  #查看消息的阅读情况
+  def get_entry_status
+    if @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+      @entries = @message.message_entries.joins(:receiver).select("message_entries.id,read_status,users.name,users.tp")
+      render :partial => "entry_status",:layout=>false
+    else
+      render :text=>"消息不存在。"
     end
   end
 
@@ -124,11 +136,11 @@ class MySchool::MessagesController < MySchool::ManageController
         flash[:notice] = '提交信息成功.'
         #提交的是发送消息按钮就去发件箱
         if @flag == true
-          format.html { redirect_to(:action=>:outbox_show,:id=>@message.id) }
+          format.html { redirect_to({:action=>:outbox_show,:id=>@message.id,:clear_cookie=>1}) }
           format.xml  { head :ok }
         else
           #提交的是存为草稿箱按钮就去草稿箱
-          format.html { redirect_to(:action=>:draft_show,:id=>@message.id) }
+          format.html { redirect_to(:action=>:draft_show,:id=>@message.id,:clear_cookie=>1) }
         end
       else
         format.html { render :action => "new" }
@@ -414,12 +426,7 @@ LEFT JOIN squads ON(squads.id = user_squads.squad_id)")
   end
 
   def draft_box
-    @messages = current_user.messages.where(:status => true).page(params[:page] || 1).per(10).order("messages.send_date DESC")
-
     @messages = current_user.messages.where(:status => false).page(params[:page] || 1).per(10).order("messages.send_date DESC")
-
-     
-    #render "my_school/messages/outbox"
   end
 
   def draft_show

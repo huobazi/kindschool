@@ -17,18 +17,22 @@
     <%= f.input :student_info, :required => true, :as => :string, :input_html => { :disabled => true, :value => current_user.name} %>
   <% elsif current_user.get_users_ranges[:tp] == :teachers %>
     <div class="select_field">
-      <% unless @squads.blank? %>
         <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
         <%= select_tag "squad", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
-      <% end %>
       <div id="squad_student_partial">
       </div>
     </div>
   <% else %>
     <div class="select_field">
-      <div><p class="title">*选择学员</p></div>
+      <label class="control-label"><abbr title="required">*</abbr>选择学员</label>
       <label class="field_prompt" for="grade">年级:</label>
-      <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+      <% unless @grades.blank? %>
+        <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+      <% else %>
+        <div class="controls">
+          <label>没有年级,请先创建年级,才能继续操作</label>
+        </div>
+      <% end %>
       <div id="grade_squad_partial">
       </div>
       <div id="squad_student_partial">
@@ -126,7 +130,7 @@ $(document).ready(function() {
           $("#squad_student_partial").html(result)
         }
       )
-    })
+    }).trigger("change")
   }
 
 })

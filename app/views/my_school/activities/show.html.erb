@@ -41,7 +41,7 @@
         <li>
           <% if controller_name == "activities" %>
             <% if choose_operate_show("my_school/activities/new") %>
-              <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:new, :tp => 0)%>" title="添加">
+              <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:new)%>" title="添加">
                 <div class="work_action_add">
                 </div>
                 <div class="work_action_add_move">
@@ -50,7 +50,7 @@
             <% end %>
         <% else %>
           <% if choose_operate_show("my_school/interest_activities/new") %>
-            <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:new, :tp => 1)%>" title="添加">
+            <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:new)%>" title="添加">
               <div class="work_action_add">
               </div>
               <div class="work_action_add_move">
@@ -130,22 +130,24 @@
         <div id="activity_show" class="show">
           <div class="content_up">
             <p class="title"><%= @activity.title %><span class="squad_name"><%= @activity.squad ? "*#{@activity.squad.name}" : "" %></span></p>
+            <%unless @activity.approve_status == 0%>
+            <p>审核状态:
+                <%= Activity::STATUS[@activity.approve_status]%></p>
+            <%end%>
             <p class="info"><span class="time"><%= @activity.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @activity.end_at.try(:to_short_datetime) %></span>&nbsp;由&nbsp;
-            <span class="link">
-              <%= link_to @activity.creater.try(:name), my_school_user_path(@activity.creater), :class => "normal_link" %>
+            <span class="normal_link">
+              <%= @activity.creater.try(:name) %>
             </span>&nbsp;创建于&nbsp;<span class="time"><%= @activity.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
           <div id="content_down">
-            <div class="logo" style="float: left; width: 100px;">
-              <% if @activity.asset_img.blank? %>
-                图片不存在
-              <% else %>
-                <a href="<%= @activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
-                  <img src="<%= @activity.asset_img.public_filename(:middle) %>" />
+            <% unless @activity.asset_img.blank? %>
+              <div class="logo" style="float: left;">
+                <a href="<%= @activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="<%= @activity.note %>" >
+                  <img src="<%= @activity.asset_img.public_filename(:thumb) %>" />
                 </a>
-              <% end %>
-            </div>
-            <div class="content" style="float: left; width: 70%;">
+              </div>
+            <% end %>
+            <div class="content" style="float: left; width: 60%; clear: right">
               <%= raw @activity.content %> <br />
             </div>
           </div>
@@ -154,12 +156,12 @@
         <hr />
 
         <div id="topic_entries">
-          <div id="topic_category_tabs">
+          <div id="topic_category_tabs" style="clear: left;">
             <ul class="nav nav-tabs">
               <% if controller_name == "activities" %>
                 <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/my_school/activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
                 <li class="<%= params[:activity_entry_tp].present? && 0 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-                  <%= link_to "主信息", my_school_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
+                  <%= link_to "活动主信息", my_school_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
                 </li>
                 <li class="<%= params[:activity_entry_tp].present? && 1 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
                   <%= link_to "交互信息", my_school_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
@@ -167,7 +169,7 @@
               <% else %>
                 <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/my_school/interest_activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
                 <li class="<%= params[:activity_entry_tp].present? && 0 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-                  <%= link_to "主信息", my_school_interest_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
+                  <%= link_to "活动主信息", my_school_interest_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
                 </li>
                 <li class="<%= params[:activity_entry_tp].present? && 1 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
                   <%= link_to "交互信息", my_school_interest_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
@@ -189,7 +191,7 @@
                     <span class="author">
                       <%= link_to activity_entry.creater.try(:name), my_school_user_path(@activity_entry.creater), :class => "bold_link" %>
                     </span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(activity_entry.created_at) %></span></p>
-                  <div class="content"><%= simple_format activity_entry.note %></div>
+                  <div class="content"><%= activity_entry.note %></div>
                 </div>
               </div>
             <% end %>
