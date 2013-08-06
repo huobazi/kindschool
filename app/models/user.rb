@@ -248,8 +248,8 @@ class User < ActiveRecord::Base
 
   #获取未读信息
   def get_read_new_count
-    Message.where("message_entries.read_status = 0 AND messages.kindergarten_id=:kind_id AND message_entries.receiver_id=:user_id",
-      {:kind_id=>self.kindergarten_id,:user_id=>self.id}).joins("LEFT JOIN message_entries ON(messages.id = message_entries.message_id)").count("1")
+    Message.where("message_entries.read_status = 0 AND messages.kindergarten_id=:kind_id AND message_entries.receiver_id=:user_id AND messages.status=:status",
+      {:kind_id=>self.kindergarten_id,:user_id=>self.id,:status=>1}).joins("LEFT JOIN message_entries ON(messages.id = message_entries.message_id)").count("1")
   end
 
   protected

@@ -69,7 +69,7 @@ class MySchool::ActivitiesController < MySchool::ManageController
 
   def new
     if current_user.get_users_ranges[:tp] == :teachers
-      @squads = current_user.get_users_squads
+      @squads = current_user.get_users_ranges[:squads]
     end
     @activity = Activity.new
     @activity.kindergarten_id = @kind.id
@@ -82,7 +82,7 @@ class MySchool::ActivitiesController < MySchool::ManageController
   def create
     if params[:activity].present? && params[:activity][:squad_id].present?
       if current_user.get_users_ranges[:tp] == :teachers
-        unless current_user.get_users_squads.collect(&:id).include?(params[:activity][:squad_id].to_i)
+        unless current_user.get_users_ranges[:squads].collect(&:id).include?(params[:activity][:squad_id].to_i)
           flash[:error] = "非法操作"
           redirect_to :action => :index
           return
