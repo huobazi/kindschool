@@ -69,6 +69,10 @@ class Weixin::MessagesController < Weixin::ManageController
       params[:message].merge(:send_date => Time.now.utc)
     end
     respond_to do |format|
+      if params[:message]
+        tp_data = params[:message].delete(:tp)
+        params[:message][:tp] = tp_data.blank? ? 0 : 1
+      end
       if @message.save && @message.update_attributes(params[:message])
         flash[:notice] = '更新消息成功.'
         if @message.status == true
@@ -146,6 +150,10 @@ class Weixin::MessagesController < Weixin::ManageController
   end
 
   def create
+    if params[:message]
+      tp_data = params[:message].delete(:tp)
+      params[:message][:tp] = tp_data.blank? ? 0 : 1
+    end
     @message = Message.new(params[:message])
     @message.kindergarten = @kind
     @message.send_date = Time.now.utc
@@ -189,6 +197,10 @@ class Weixin::MessagesController < Weixin::ManageController
   def update
     @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
     respond_to do |format|
+      if params[:message]
+        tp_data = params[:message].delete(:tp)
+        params[:message][:tp] = tp_data.blank? ? 0 : 1
+      end
       if @message.update_attributes(params[:message])
         flash[:notice] = '更新消息成功.'
         format.html { redirect_to(:action=>:outbox_show,:id=>@message.id) }

@@ -3,7 +3,6 @@ class Message < ActiveRecord::Base
   acts_as_paranoid
   attr_accessible :approve_status, :approver_id, :chain_code, :content, :entry_id,
     :kindergarten_id, :parent_id, :send_date, :sender_id, :sender_name, :status, :title, :tp
-
   belongs_to :kindergarten
   belongs_to :sender, :class_name => "User",:foreign_key=>:sender_id
   has_many :message_entries
@@ -12,7 +11,8 @@ class Message < ActiveRecord::Base
   has_many :return_messages, :class_name => "Message",:foreign_key=>:entry_id,:order=>"send_date DESC", :dependent => :destroy
   belongs_to :parent_message, :class_name => "Message",:foreign_key=>:entry_id
 
-  validates :content,:sender_id,:send_date, :presence => true
+  validates :content,:send_date, :presence => true
+  validates :sender_id,:presence => {:if=>:if_sernder?}
   validates :title, :presence => {:if => :if_return?}
 
   validates :content, :length => { :minimum => 1 }
@@ -49,43 +49,44 @@ class Message < ActiveRecord::Base
     self.entry_id.blank?
   end
 
+  #是否需要发送人
+  def if_sernder?
+    [0,1].include?(self.tp)
+  end
+
   private
   #创建是加载
   def load_user_info
-    if self.sender
-      self.sender_name = self.sender.name
-      self.chain_code  = self.sender.chain_code
-    elsif self.sender_id
-      if user = User.find_by_id_and_kindergarten_id(self.sender_id,self.kindergarten_id)
-        self.sender_name = user.name
-        self.chain_code  = user.chain_code
+    if self.tp == 2 || self.tp == 3
+      self.sender_name = "系统消息"
+    else
+      if self.sender
+        self.sender_name = self.sender.name
+        self.chain_code  = self.sender.chain_code
+      elsif self.sender_id
+        if user = User.find_by_id_and_kindergarten_id(self.sender_id,self.kindergarten_id)
+          self.sender_name = user.name
+          self.chain_code  = user.chain_code
+        end
       end
     end
   end
   
   #创建和更新时加载
   def load_sms_records
-    if self.status && self.tp == 1
-      if self.id_was
-        #更新的情况
-        self.message_entries.where("deleted_at IS NULL").each do |entry|
-          if entry.receiver.is_receive
-            role = self.sender.role if self.sender && self.sender.role
-            if self.approve_status == 0 && entry.sms_record.blank?
-              entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
-                :sender_name=>self.sender_name,:content=>"#{self.title} #{self.content} #{role ? (role.name + '-') : ''}#{self.sender ? self.sender.name : ''}",:receiver_id=>entry.receiver.id,
-                :receiver_name=>entry.receiver.name,:receiver_phone=>entry.receiver.phone,:kindergarten_id=>self.kindergarten_id)
-            end
-          end
+    if self.status
+      if [1,2,3].include?(self.tp)
+        if self.id_was
+          message_entries_data =  self.message_entries.where("deleted_at IS NULL")
+        else
+          message_entries_data =  self.message_entries
         end
-      else
-        #创建的情况
-        self.message_entries.each do |entry|
-          if entry.receiver.is_receive
+        message_entries_data.each do |entry|
+          if([1,2].include?(self.tp) && entry.receiver.is_receive) || self.tp == 3
             role = self.sender.role if self.sender && self.sender.role
             if self.approve_status == 0 && entry.sms_record.blank?
               entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
-                :sender_name=>self.sender_name,:content=>"#{self.title} #{self.content} #{role ? (role.name + '-') : ''}#{self.sender ? self.sender.name : ''}",:receiver_id=>entry.receiver.id,
+                :sender_name=>self.sender_name,:content=>"#{self.title} #{self.content} #{role ? (role.name + '-') : ''}#{self.sender_name}",:receiver_id=>entry.receiver.id,
                 :receiver_name=>entry.receiver.name,:receiver_phone=>entry.receiver.phone,:kindergarten_id=>self.kindergarten_id)
             end
           end
