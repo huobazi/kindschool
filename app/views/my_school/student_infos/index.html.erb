@@ -52,11 +52,13 @@
           <%= select_tag("student_info[user_is_receive_equals]", options_for_select([["全部",""],["可收短信",1],["不可收短信",0]],(params[:student_info].blank? ? "" : params[:student_info][:user_is_receive_equals])),:style=>"width:100px;") %>
           <%= submit_tag "搜索" %>
         <%end%>
+        <%if choose_operate_show("my_school/student_infos/download_student_infos")%>
         <p>
-  Download:
-  <%= link_to "深圳市教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "shenzhen",student_info: params[:student_info]) ,:class=>"btn" %>
-  <%= link_to "广东省教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "guangzhou",student_info: params[:student_info]) ,:class=>"btn" %>
-</p>
+         表格下载:
+          <%= link_to "深圳市教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "shenzhen",student_info: params[:student_info]) ,:class=>"btn" %>
+          <%= link_to "广东省教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "guangzhou",student_info: params[:student_info]) ,:class=>"btn" %>
+      </p>
+      <% end %>
       </div>
     <% end %>
     <div class="work_list">
