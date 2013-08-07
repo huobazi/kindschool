@@ -122,11 +122,13 @@
                 </tr>
                 <tr>
                   <th>班级</th>
-                  <td></td>
+                  <td><%= @growth_record.squad_name %></td>
                   <th>进餐</th>
                   <td><%= raw @growth_record.dine %></td>
                 </tr>
               </table>
+            <% else %>
+              <p class="info">所在班级: <%= @growth_record.squad_name %></p>
             <% end %>
             <p class="info"><span class="time"><%= @growth_record.try(:start_at).try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @growth_record.try(:end_at).try(:to_short_datetime) %></span>&nbsp;由&nbsp;<span class="link"><%= @growth_record.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @growth_record.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
