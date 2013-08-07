@@ -2,28 +2,53 @@
 #相册锦集
 class MySchool::AlbumsController  < MySchool::ManageController
    def index
-     if session[:operates].include?('my_school/albums/new')
-        @albums = @kind.albums.page(params[:page] || 1).per(6).order("created_at DESC")
-      else  
-        @albums = @kind.albums.where(:is_show=>1).page(params[:page] || 1).per(6).order("created_at DESC")
-     end  
+
+     if current_user.get_users_ranges[:tp] == :student
+       if session[:operates].include?('my_school/albums/new')
+          @albums = @kind.albums.where("creater_id = ? or squad_id = ? or squad_id is null", current_user.id, current_user.student_info.squad_id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+        else
+          @albums = @kind.albums.where("is_show = 1 and (creater_id = ? or squad_id = ? or squad_id is null)",current_user.id, current_user.student_info.squad_id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+       end
+     elsif current_user.get_users_ranges[:tp] == :teachers
+       if session[:operates].include?('my_school/albums/new')
+          @albums = @kind.albums.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+        else
+          @albums = @kind.albums.where("is_show = 1 and ( squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL )", current_user.staff.id, current_user.id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+       end
+     else
+       if session[:operates].include?('my_school/albums/new')
+          @albums = @kind.albums.page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+       else
+          @albums = @kind.albums.where(is_show: 1).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+       end
+     end
    end
 
    def new
-     @album = @kind.albums.new
+    @album = @kind.albums.new
+    if current_user.get_users_ranges[:tp] == :student
+      @album.squad_id = current_user.student_info.squad_id
+    end
      if @grades = @kind.grades
      #    if @squads = @grades.first.squads
      #    end
      end
    end
-   
+
    def create
     @album = @kind.albums.new(params[:album])
     unless params[:class_number].blank?
-     if squad = Squad.find(params[:class_number].to_i)#where(:id=>params[:class_number].to_i).first
-        @album.squad =  squad
-        @album.squad_name = squad.name
-      end
+     if current_user.get_users.ranges == :student
+        if squad = Squad.find(params[:class_number].to_i)#where(:id=>params[:class_number].to_i).first
+          @album.squad_id =  current_user.student_info.squad_id
+          @album.squad_name = current_user.student_info.squad.name
+        end
+     else
+       if squad = Squad.find(params[:class_number].to_i)#where(:id=>params[:class_number].to_i).first
+          @album.squad =  squad
+          @album.squad_name = squad.name
+        end
+     end
     end
     @album.send_date = Time.now
      respond_to do |format|
@@ -49,11 +74,11 @@ class MySchool::AlbumsController  < MySchool::ManageController
         end
      end
       if @squad = @album.squad
-          @grade = @squad.grade       
+          @grade = @squad.grade
       else
           @squads  = []
       end
-      
+
    end
 
    def update

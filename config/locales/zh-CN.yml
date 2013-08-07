@@ -544,6 +544,7 @@ zh-CN:
         tp: "类型"
         title: "相册标题"
         content: "内容"
+        is_top: "是否置顶"
       album_entry:
         album: "相册"
         asset_img: "图片"
