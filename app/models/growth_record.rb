@@ -1,6 +1,6 @@
 #encoding:utf-8
 class GrowthRecord < ActiveRecord::Base
-  attr_accessible :content, :creater_id, :end_at, :kindergarten_id, :squad_name, :start_at, :student_info_id, :tp, :student_info
+  attr_accessible :content, :creater_id, :end_at, :kindergarten_id, :squad_name, :start_at, :student_info_id, :tp, :student_info, :siesta, :dine, :reward
 
   belongs_to :kindergarten
   belongs_to :student_info

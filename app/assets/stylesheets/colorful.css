@@ -1652,10 +1652,10 @@ span.help-inline {
     padding: 30px;
 }
 .show .title {
-    font-size: 28px;
+    font-size: 18px;
 }
 .show .info {
-    font-size: 20px;
+    font-size: 17px;
     padding-top: 10px;
     color: #B6B6B6;
 }
@@ -1670,7 +1670,6 @@ span.help-inline {
 }
 
 .show .info .link {
-    text-decoration: underline;
 }
 
 .show .content_up {
@@ -1680,7 +1679,7 @@ span.help-inline {
 .show .content {
     padding-top: 20px;
     text-indent: 20px;
-    font-size: 20px;
+    font-size: 17px;
     word_wrap: break-word;
     inherit: auto;
     min-height: 200px;
