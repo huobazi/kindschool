@@ -27,7 +27,7 @@ class Message < ActiveRecord::Base
   STATUS = { 0=>"审核通过",1=> "待审核", 2=>"审核不通过"}
 
   include ResourceApproveStatusStart
-  before_save :news_approve_status_start
+  before_save :messages_approve_status_start
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
