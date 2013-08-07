@@ -28,7 +28,7 @@
 
     <div class="work_form">
       <div class="form_div">
-        <%= form_for( @album , :url=>my_school_albums_path(@album) , :html =>{:class=>"form-horizontal"}) do |f| %>
+        <%= form_for( @album , :validate => true, :url=>my_school_albums_path(@album) , :html =>{:class=>"form-horizontal"}) do |f| %>
           <%= render 'form', :f=>f %>
        <% end %>
       </div>

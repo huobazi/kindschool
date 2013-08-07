@@ -74,7 +74,7 @@
     <div class="work_list">
       <div class="topics">
         <% unless @activities.blank? %>
-          <%= render partial: "activity", collection: @activities %>
+          <%= render partial: "/my_school/activities/activity", collection: @activities %>
           <%= paginate @activities %>
         <% else %>
           暂时没有活动
