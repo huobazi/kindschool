@@ -53,6 +53,10 @@
 <% end %>
 <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
 
+<%= f.input :siesta %>
+<%= f.input :dine %>
+<%= f.input :reward %>
+
 <%= f.input :content, :required => true, :input_html => {:rows => "10", :class => "span5"}%>
 <%= f.input :kindergarten_id, :as => :hidden %>
 <% if current_user.get_users_ranges[:tp] == :student %>
