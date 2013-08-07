@@ -62,12 +62,16 @@ class Weixin::TopicsController < Weixin::ManageController
   end
 
   def create
-    if params[:topic].present? && params[:topic][:squad_id].present?
-      if current_user.get_users_ranges[:tp] == :teachers
-        unless current_user.get_users_ranges[:squads].collect(&:id).include?(params[:topic][:squad_id].to_i)
-          flash[:error] = "非法操作"
-          redirect_to :action => :index
-          return
+    if params[:visible].presence == "all"
+      params[:topic].delete :squad_id
+    else
+      if params[:topic].present? && params[:topic][:squad_id].present?
+        if current_user.get_users_ranges[:tp] == :teachers
+          unless current_user.get_users_ranges[:squads].collect(&:id).include?(params[:topic][:squad_id].to_i)
+            flash[:error] = "非法操作"
+            redirect_to :action => :index
+            return
+          end
         end
       end
     end

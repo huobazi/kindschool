@@ -514,6 +514,9 @@ zh-CN:
         student_info_id: "学员"
         student_info_label: "学员"
         tp: "类型"
+        siesta: "午休"
+        dine: "进餐"
+        reward: "奖励"
       seedling_record:
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"

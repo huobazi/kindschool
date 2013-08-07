@@ -71,7 +71,7 @@
               <p class="info">审核状态:<span><%= News::STATUS[@new.approve_status] %></span></p>
             </div>
             <div class="content">
-              <%= simple_format h(@new.content) %>
+              <%= raw @new.content %>
             </div>
           </div>
         </div>
