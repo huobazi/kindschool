@@ -1112,10 +1112,9 @@ table.attributes td {
     color: red;
 }
 
-
-
 #topic_category_tabs {
-    padding-top: 10px;
+    padding-top: 20px;
+    padding-left: 50px;
 }
 #topic_category_tabs a {
     color: #333333;
