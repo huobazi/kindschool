@@ -50,7 +50,11 @@
   <div class="control-group">
     <label class="control-label" for="inputPassword">是否发短信</label>
     <div class="controls">
-      <%= check_box_tag('message[tp]',"1",@message.tp==1)%>
+      <%  if action_name == "new" %>
+        <%= check_box_tag('message[tp]',"1",true)%>
+      <% else %>
+        <%= check_box_tag('message[tp]',"1",@message.tp==1)%>
+      <% end %>
       <div class="count_div">
         <div id="sms_count">
           开通收短信的用户将收到短信
