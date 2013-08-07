@@ -1653,6 +1653,7 @@ span.help-inline {
 }
 .show .title {
     font-size: 18px;
+    font-weight: bold;
 }
 .show .info {
     font-size: 17px;
