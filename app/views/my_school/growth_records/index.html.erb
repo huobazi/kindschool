@@ -44,21 +44,21 @@
         <li>
           <% if controller_name == "growth_records" %>
             <% if choose_operate_show("my_school/growth_records/new") %>
-                <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new)%>" title="添加">
-                  <div class="work_action_add">
-                  </div>
-                  <div class="work_action_add_move">
-                  </div>
-                </a>
+              <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new)%>" title="添加">
+                <div class="work_action_add">
+                </div>
+                <div class="work_action_add_move">
+                </div>
+              </a>
             <% end %>
           <% else %>
             <% if choose_operate_show("my_school/garden_growth_records/new") %>
-                <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new)%>" title="添加">
+              <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new)%>" title="添加">
                 <div class="work_action_add">
-                  </div>
-                  <div class="work_action_add_move">
-                  </div>
-                </a>
+                </div>
+                <div class="work_action_add_move">
+                </div>
+              </a>
             <% end %>
           <% end %>
         </li>
@@ -76,14 +76,14 @@
     </div>
 
     <div class="search_form">
-     <%= form_tag '/my_school/growth_records' , :method=>"get" do %>
-      <b>学员：</b>
-      <%= text_field :growth_record,:student_info_user_name_like,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:student_info_user_name_like] if params[:growth_record] }"%>
-      <b>开始时间：</b>
-      <%= text_field :growth_record,:start_at_equals,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:start_at_equals] if params[:growth_record] }"  %>
-      <b>结束时间：</b>
-      <%= text_field :growth_record,:end_at_equals,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:end_at_equals] if params[:growth_record] }"  %>
-      <%= submit_tag "搜索" %>
+      <%= form_tag '/my_school/growth_records' , :method=>"get" do %>
+        <b>学员：</b>
+        <%= text_field :growth_record,:student_info_user_name_like,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:student_info_user_name_like] if params[:growth_record] }"%>
+        <b>开始时间：</b>
+        <%= text_field :growth_record,:start_at_equals,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:start_at_equals] if params[:growth_record] }"  %>
+        <b>结束时间：</b>
+        <%= text_field :growth_record,:end_at_equals,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:end_at_equals] if params[:growth_record] }"  %>
+        <%= submit_tag "搜索" %>
       <%end%>
     </div>
 
@@ -91,9 +91,10 @@
     <div class="work_list">
       <div class="topics">
         <% unless @growth_records.blank? %>
-          <%= render partial: "growth_record", collection: @growth_records %>
+            <%= render partial: "/my_school/growth_records/growth_record", collection: @growth_records %>
           <%= paginate @growth_records %>
-        <% else %>
+        <%else%>
+
           暂时没有成长记录
         <% end %>
       </div>
@@ -103,13 +104,13 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready(function(){
-  $("#growth_record_all").click(function(){
-    $(".growth_check").attr("checked",this.checked);
-  })
+  $(document).ready(function(){
+    $("#growth_record_all").click(function(){
+      $(".growth_check").attr("checked",this.checked);
+    })
   });
   $("#destroy_multiple").click(function(){
-      $("#destroy_multi_form").submit();
-      return false;
+    $("#destroy_multi_form").submit();
+    return false;
   });
 </script>

@@ -1,12 +1,14 @@
 #encoding:utf-8
 class Album < ActiveRecord::Base
-  attr_accessible :album_entry_id,:approve_status, :approver_id, :content, :creater_id, :grade_id, :is_show, :kindergarten_id, :send_date, :squad_id, :squad_name, :title, :tp
+  attr_accessible :album_entry_id,:approve_status, :approver_id, :content, :creater_id, :grade_id, :is_show, :kindergarten_id, :send_date, :squad_id, :squad_name, :title, :tp, :is_top
 
   belongs_to :kindergarten
   belongs_to :squad
   belongs_to :grade
-  has_many :album_entries , :dependent => :destroy 
-  
+  has_many :album_entries , :dependent => :destroy
+
+  validates :title, :presence => true, :length => {minimum: 3, maximum: 12}
+
    def show_main_img
     if self.album_entry_id
       album_entry = self.album_entries.find(self.album_entry_id)

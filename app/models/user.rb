@@ -238,9 +238,9 @@ class User < ActiveRecord::Base
       user_ids = []
       squad = data[:squad]
       #学生不考虑发年级组长
-#      if squad.grade && squad.grade.staff && (user = squad.grade.staff.user)
-#        user_ids << user.id.to_s
-#      end
+      #      if squad.grade && squad.grade.staff && (user = squad.grade.staff.user)
+      #        user_ids << user.id.to_s
+      #      end
       if !data[:playgroup].blank?
         squads = data[:playgroup]
         squads.each do |squad_play|
@@ -259,6 +259,23 @@ class User < ActiveRecord::Base
   def get_read_new_count
     Message.where("message_entries.read_status = 0 AND messages.kindergarten_id=:kind_id AND message_entries.receiver_id=:user_id AND messages.status=:status",
       {:kind_id=>self.kindergarten_id,:user_id=>self.id,:status=>1}).joins("LEFT JOIN message_entries ON(messages.id = message_entries.message_id)").count("1")
+  end
+
+  #完整的带角色名字
+  def full_name
+    "#{self.role ? self.role.name : ''} #{self.name}"
+  end
+  
+  #发送系统消息
+  #消息类型为2或者3
+  def send_system_message!(title,content,tp=2)
+    if title && content
+      message = Message.new(:title=>title,:content=>content,:tp=>tp,:send_date=>Time.now.utc,:kindergarten_id=>self.kindergarten_id,:status=>1)
+      sms = 0
+      sms = 1 if(tp == 2 && self.is_receive) || tp == 3
+      message.message_entries << MessageEntry.new(:phone=>self.phone,:receiver_id=>self.id,:sms=>sms)
+      message.save
+    end
   end
 
   protected

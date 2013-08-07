@@ -34,7 +34,7 @@
               </div>
             </a>
             <div class="title">
-              <span class="name"><%=raw album.title %>(班级:<%= album.try(:squad_name)%>)</span>
+              <span class="name"><%= album.is_top ? "[置顶]#{album.title}" : album.title %>(班级:<%= album.try(:squad_name)%>)</span>
             </div>
             <div class="actions" id="actions_<%= album.id %>" style="display: none;">
               <%if choose_operate_show('my_school/albums/destroy')%>

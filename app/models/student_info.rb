@@ -42,6 +42,10 @@ class StudentInfo < ActiveRecord::Base
     self.user.name
   end
 
+  def full_name
+    "#{self.squad ? self.squad.name : ''} #{self.name}"
+  end
+
   #证件类别
   def card_category_label
     StudentInfo::CARD_CATEGORY_DATA[self.card_category.to_s]
