@@ -4,10 +4,12 @@
   
 
 development:
+  weixin_blind: false
   <<: *defaults
-
 test:
+  weixin_blind: false
   <<: *defaults
 
 production:
+  weixin_blind: true
   <<: *defaults

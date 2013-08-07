@@ -33,14 +33,16 @@ class Weixin::UsersController < Weixin::ManageController
         return render :layout=>"colorful_login"
       end
       user = User.authenticate(params[:login], params[:password],@kind.id)
-      if user.weiyi_code.blank?
-        flash[:notice] = "您需要绑定\"微壹平台\"微信公共帐号"
-        return
-      end
-      if user.weixin_code.blank?
-        flash[:notice] = "您需要绑定幼儿园的公共账号访问"
-        return
-      end
+      if WEBSITE_CONFIG["weixin_blind"]
+       if user.weiyi_code.blank?
+          flash[:notice] = "您需要绑定\"微壹平台\"微信公共帐号"
+          return
+        end
+        if user.weixin_code.blank?
+          flash[:notice] = "您需要绑定幼儿园的公共账号访问"
+          return
+        end
+     end
       self.current_user = user
       
       if logged_in?
