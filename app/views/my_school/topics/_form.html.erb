@@ -1,13 +1,6 @@
 <% f = form %>
 <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
-<% if params[:topic_category_id] %>
-  <%= f.input :topic_category, :validate => true, :as => :select, :collection => Hash[f.object.kindergarten.topic_categories.map{|topic_category| ["#{topic_category.name}", topic_category.id]}],:selected => params[:topic_category_id], :input_html=>{:disabled => true} %>
-  <%= f.input :topic_category_id, :as => :hidden, :input_html => {:value => params[:topic_category_id]} %>
-<% elsif action_name == "new" %>
-  <%= f.input :topic_category, :validate => true, :as => :select, :collection => Hash[f.object.kindergarten.topic_categories.map{|topic_category| ["#{topic_category.name}", topic_category.id]}],:input_html=>{:name=>"topic[topic_category_id]"} %>
-<% else %>
-  <%= f.input :topic_category_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
-<% end %>
+
 <% if action_name == "new" %>
   <% if current_user.get_users_ranges[:tp] == :student %>
     <%= f.input :squad_label, :required => true, :as => :string, :input_html => { :disabled => true, :value => current_user.student_info.squad.name } %>
@@ -28,6 +21,7 @@
         </div>
       <% end %>
     </div>
+    <br />
   <% else %>
     <div class="field controls">
       <%= radio_button_tag 'visible', 'all', :checked => true %><span class="field_prompt" for="visible_all">全园可见</span>
@@ -47,11 +41,22 @@
       <div id="grade_squad_partial">
       </div>
     </div>
+    <br />
   <% end %>
 
 <% else %>
   <%= f.input :squad_label, :as => :string, :disabled => true %>
 <% end %>
+
+<% if params[:topic_category_id] %>
+  <%= f.input :topic_category, :validate => true, :as => :select, :collection => Hash[f.object.kindergarten.topic_categories.map{|topic_category| ["#{topic_category.name}", topic_category.id]}],:selected => params[:topic_category_id], :input_html=>{:disabled => true} %>
+  <%= f.input :topic_category_id, :as => :hidden, :input_html => {:value => params[:topic_category_id]} %>
+<% elsif action_name == "new" %>
+  <%= f.input :topic_category, :validate => true, :as => :select, :collection => Hash[f.object.kindergarten.topic_categories.map{|topic_category| ["#{topic_category.name}", topic_category.id]}],:input_html=>{:name=>"topic[topic_category_id]"} %>
+<% else %>
+  <%= f.input :topic_category_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
+<% end %>
+
 
 <% if current_user.get_users_ranges[:tp] == :all %>
   <%= f.input :is_show, :as => :boolean %>
