@@ -37,7 +37,16 @@ class MySchool::UsersController < MySchool::ManageController
         end
         return render :layout=>"colorful_login"
       end
-      self.current_user = User.authenticate(params[:login], params[:password],@kind.id)
+      user = User.authenticate(params[:login], params[:password],@kind.id)
+      if user.weiyi_code.blank?
+        flash[:notice] = "您需要绑定\"微壹平台\"微信公共帐号"
+        return
+      end
+      if user.weixin_code.blank?
+        flash[:notice] = "您需要绑定幼儿园的公共账号访问"
+        return
+      end
+      self.current_user = user
       if logged_in?
         if params[:remember_me] == "1"
           self.current_user.remember_me

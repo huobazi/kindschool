@@ -26,6 +26,11 @@ class Weixin::ApiController < Weixin::BaseController
           :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
           :FuncFlag=>0
         })
+    elsif xml_data[:Event] == "unsubscribe"
+      user = User.find_by_weixin_code(xml_data[:FromUserName])
+      if user
+        user.update_attribute(:weixin_code,nil)
+      end
     else
       if logged_in?
         #查看消息
@@ -170,6 +175,11 @@ class Weixin::ApiController < Weixin::BaseController
           :Content=>"欢迎关注微壹平台\n\r #{get_weiyi_menu} ",
           :FuncFlag=>0
         })
+    elsif xml_data[:Event] == "unsubscribe"
+      user = User.find_by_weiyi_code(xml_data[:FromUserName])
+      if user
+        user.update_attribute(:weiyi_code,nil)
+      end
     else
       if xml_data[:Content] == "1"
         #绑定

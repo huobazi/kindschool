@@ -70,6 +70,15 @@ class User < ActiveRecord::Base
     raise StandardError,"密码错误." unless u.authenticated?(password)
     u && u.authenticated?(password) ? u : nil
   end
+  
+  def self.authenticate_weiyi(login, password)
+    raise StandardError,"请输入用户名." if login.blank?
+    u = find_by_login(login)
+    raise StandardError,"不存在该用户." unless u
+    raise StandardError,"密码错误." unless u.authenticated?(password)
+    u && u.authenticated?(password) ? u : nil
+  end
+
   def authenticated?(password)
     crypted_password == encrypt(password)
   end
