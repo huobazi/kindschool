@@ -119,7 +119,7 @@
               </label>
             </div>
           </div>
-          <%if @message.approve_status == 0%>
+          <%if @message.approve_status != 0%>
           <div class="control-group">
             <label class="control-label" >审核状态:</label>
             <div class="controls">

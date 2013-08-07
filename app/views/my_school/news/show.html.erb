@@ -68,10 +68,13 @@
             <div class="content_up">
               <p class="title"><span><%= @new.title %></span></p>
               <p class="info"><span class="link"><%= @new.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @new.try(:created_at).try(:to_long_datetime) %></span></p>
-              <p class="info">审核状态:<span><%= News::STATUS[@new.approve_status] %></span></p>
+              <%if @new.approve_status != 0 %>
+                <p class="info">审核状态:<span><%= News::STATUS[@new.approve_status] %></span>
+                </p>
+              <%end%>
             </div>
             <div class="content">
-              <%= raw @new.content %>
+              <%=raw @new.content %>
             </div>
           </div>
         </div>
