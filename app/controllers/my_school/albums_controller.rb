@@ -37,18 +37,18 @@ class MySchool::AlbumsController  < MySchool::ManageController
 
    def create
     @album = @kind.albums.new(params[:album])
+    if current_user.get_users.ranges == :student
+      binding.pry
+      if squad = Squad.find(params[:class_number].to_i)#where(:id=>params[:class_number].to_i).first
+        @album.squad_id =  current_user.student_info.squad_id
+        @album.squad_name = current_user.student_info.squad.name
+      end
+    end
     unless params[:class_number].blank?
-     if current_user.get_users.ranges == :student
-        if squad = Squad.find(params[:class_number].to_i)#where(:id=>params[:class_number].to_i).first
-          @album.squad_id =  current_user.student_info.squad_id
-          @album.squad_name = current_user.student_info.squad.name
-        end
-     else
-       if squad = Squad.find(params[:class_number].to_i)#where(:id=>params[:class_number].to_i).first
-          @album.squad =  squad
-          @album.squad_name = squad.name
-        end
-     end
+      if squad = Squad.find(params[:class_number].to_i)#where(:id=>params[:class_number].to_i).first
+         @album.squad =  squad
+         @album.squad_name = squad.name
+      end
     end
     @album.send_date = Time.now
      respond_to do |format|
