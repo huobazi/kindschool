@@ -5,7 +5,7 @@ class News < ActiveRecord::Base
   belongs_to :kindergarten
   belongs_to :creater, :class_name => "User",:foreign_key=>:create_id
   has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
-  default_scope order("created_at desc") 
+  default_scope order("created_at desc")
   validates :title, :length => { :minimum => 3 }
   validates :content, :length => { :minimum => 3 }
   STATUS = { 0=>"审核通过",1=> "待审核", 2=>"审核不通过"}

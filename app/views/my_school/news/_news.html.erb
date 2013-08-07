@@ -1,0 +1,17 @@
+<div class="topic topic_line pull-left">
+  <div class="right_info" style="padding-left: 10px;">
+    <div class="infos">
+      <div class="title">
+        <%= link_to news.title, my_school_news_path(news) %>
+      </div>
+      <div class="title">
+      </div>
+      <div class="info">
+        <em><%= news.creater.try(:name) %></em>
+        <em>创建于</em><abbr><%= news.created_at.try(:to_long_datetime) %></abbr>
+      </div>
+    </div>
+  </div>
+</div>
+
+
