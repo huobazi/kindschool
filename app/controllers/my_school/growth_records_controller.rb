@@ -36,6 +36,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     @growth_record = GrowthRecord.new(params[:growth_record])
     if current_user.get_users_ranges[:tp] == :student
       @growth_record.student_info_id = current_user.student_info.id
+      @growth_record.squad_name = current_user.student_info.squad.name
     end
     @growth_record.kindergarten_id = @kind.id
     @growth_record.creater_id = current_user.id
