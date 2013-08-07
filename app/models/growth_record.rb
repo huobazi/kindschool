@@ -34,14 +34,21 @@ class GrowthRecord < ActiveRecord::Base
   private
   #发送消息
   def load_messages
-
     #宝宝在家，给老师发
     if self.tp
+      if self.student_info && self.student_info.squad
+        squad_staffs = self.student_info.squad.staffs
+        unless squad_staffs.blank?
+          squad_staffs.each do |teacher|
+            if teacher.user
+              teacher.user.send_system_message!("#{Time.now.to_short_datetime} #{self.student_info.full_name}发布了一条宝宝在家记录","您的学生在家又有了新的表现哦，快去关注吧。")
+            end
+          end
+        end
+      end
     else
       #宝宝在园，给家长发
-      puts "=========abc"
       if self.student_info && self.student_info.user
-        puts "=========1"
         self.student_info.user.send_system_message!("#{Time.now.to_short_datetime} 您有一条宝宝在园记录","您的孩子在幼儿园又有了新的表现哦，快去关注吧。")
       end
     end
