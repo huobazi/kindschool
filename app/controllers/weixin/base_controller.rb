@@ -60,22 +60,22 @@ class Weixin::BaseController < ApplicationController
   end
 
   def validate_nonce
-    if params[:signature].blank?
-      @current_user ||= session[:user] && User.find_by_id(session[:user]) || :false
-    else
-      if Digest::SHA1.hexdigest(get_validate_data) == params[:signature]
-        if xml_data = params[:xml]
-          if self.current_user = User.find_by_weixin_code_and_kindergarten_id(xml_data[:FromUserName],@kind.id)
-          else
-            session[:user] = nil
-            @current_user = :false
-          end
-        end
-      else
-        render :text=>"请通过微信访问"
-        return
-      end
-    end
+    # if params[:signature].blank?
+    #   @current_user ||= session[:user] && User.find_by_id(session[:user]) || :false
+    # else
+    #   if Digest::SHA1.hexdigest(get_validate_data) == params[:signature]
+    #     if xml_data = params[:xml]
+    #       if self.current_user = User.find_by_weixin_code_and_kindergarten_id(xml_data[:FromUserName],@kind.id)
+    #       else
+    #         session[:user] = nil
+    #         @current_user = :false
+    #       end
+    #     end
+    #   else
+    #     render :text=>"请通过微信访问"
+    #     return
+    #   end
+    # end
   end
   def load_layout
     if @kind && @kind.template
