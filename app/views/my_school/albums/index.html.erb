@@ -36,14 +36,16 @@
             <div class="title">
               <span class="name"><%= album.is_top ? "[置顶]#{album.title}" : album.title %>(班级:<%= album.try(:squad_name)%>)</span>
             </div>
-            <div class="actions" id="actions_<%= album.id %>" style="display: none;">
-              <%if choose_operate_show('my_school/albums/destroy')%>
-                  <%= link_to '删除', my_school_album_path(album), :method=> :delete, :data=> { :confirm=> 'Are you sure?' },:class=> "destroy" %>
+            <% unless current_user.get_users_ranges[:tp] == :student %>
+              <div class="actions" id="actions_<%= album.id %>" style="display: none;">
+                <%if choose_operate_show('my_school/albums/destroy')%>
+                    <%= link_to '删除', my_school_album_path(album), :method=> :delete, :data=> { :confirm=> 'Are you sure?' },:class=> "destroy" %>
+                  <%end%>
+                <%if choose_operate_show('my_school/albums/edit')%>
+                  <span><%=link_to '编辑',edit_my_school_album_path(album), class: "edit" %></span>
                 <%end%>
-              <%if choose_operate_show('my_school/albums/edit')%>
-                <span><%=link_to '编辑',edit_my_school_album_path(album), class: "edit" %></span>
-              <%end%>
-            </div>
+              </div>
+            <% end %>
             <div id="actions_<%= album.id %>_info">
               <span><%= album.album_entries.count %>张</span>
             </div>
