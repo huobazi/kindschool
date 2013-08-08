@@ -9,14 +9,18 @@ class GrowthRecord < ActiveRecord::Base
   validates :content, :length => { :minimum => 5 }
   validates :student_info_id, :presence => true
 
+  validates :siesta, :length => { maximum: 50 }, :allow_blank => true
+  validates :dine, length: {maximum: 50}, :allow_blank => true
+  validates :reward, numericality: true
+
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
 
   just_define_datetime_picker :start_at, :add_to_attr_accessible => true
   just_define_datetime_picker :end_at, :add_to_attr_accessible => true
   after_create :load_messages
-  
+
   TP_DATA = {"0"=>"宝宝在园", "1"=>"宝宝在家"}
-  
+
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end

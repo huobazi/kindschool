@@ -91,7 +91,7 @@
                 </div>
                 <div class="content_right">
                   <p class="info"><span class="author"><%= topic_entry.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(topic_entry.try(:created_at)) %></span></p>
-                  <div class="content"><%= simple_format topic_entry.content %></div>
+                  <div class="content"><%= raw topic_entry.content %></div>
                 </div>
               </div>
             <% end %>

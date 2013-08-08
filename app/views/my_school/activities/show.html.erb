@@ -191,7 +191,7 @@
                     <span class="author">
                       <%= link_to activity_entry.creater.try(:name), my_school_user_path(@activity_entry.creater), :class => "bold_link" %>
                     </span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(activity_entry.created_at) %></span></p>
-                  <div class="content"><%= activity_entry.note %></div>
+                  <div class="content"><%= raw activity_entry.note %></div>
                 </div>
               </div>
             <% end %>

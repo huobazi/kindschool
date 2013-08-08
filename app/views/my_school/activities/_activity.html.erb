@@ -9,7 +9,11 @@
     </div>
     <div class="infos">
       <div class="title">
-        <%= link_to activity.title, my_school_activity_path(activity) %>
+        <% if controller_name == "activities" %>
+          <%= link_to activity.title, my_school_activity_path(activity) %>
+        <% else %>
+          <%= link_to activity.title, my_school_interest_activity_path(activity) %>
+        <% end %>
       </div>
       <div class="info">
         <em><%= activity.creater.try(:name) %></em>
