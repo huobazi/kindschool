@@ -65,6 +65,7 @@
       <%= form_tag import_my_school_student_infos_path, multipart: true do %>
       <%= file_field_tag :file %>
       <%= submit_tag "批量导入",:class=>"btn" %>
+      <a class="blue" title="批量表格下载" href="/doc/Children.xls">批量表格下载</a>
       <% end %>
       <% end %>
       </div>
