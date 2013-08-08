@@ -1,0 +1,22 @@
+<hr />
+<% if @comments.blank? %>
+  没有评论。
+<% else %>
+  <% @comments.each do |comment| %>
+    <%= comment.user ? comment.user.full_name : "" %>
+    <%= comment.comment %>
+  <% end %>
+<% end %>
+<form class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="comment">评论</label>
+    <div class="controls">
+      <textarea id="comment" placeholder="发布评论" rows="4" class="input-xlarge"/>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= button_tag "评论" , :disable_with => "正在发送..."%>
+    </div>
+  </div>
+</form>

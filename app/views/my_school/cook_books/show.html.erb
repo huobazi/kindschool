@@ -13,7 +13,7 @@
             <div class="icon_home"></div>
           </a>
           <ul>
-             <li><%= link_to "菜谱", my_school_cook_books_path %></li>
+            <li><%= link_to "菜谱", my_school_cook_books_path %></li>
             <li>/</li>
             <li>查看菜谱</li>
           </ul>
@@ -66,8 +66,17 @@
           </div>
         </div>
       </div>
+      <div id="load_comments">
+
+      </div>
+      <script type="text/javascript">
+        jQuery(function() {
+          $(window).load(function(){
+            $("#load_comments").load("<%= url_for(:controller=>"/my_school/comments",:action=>:index,:resource_type=>@cook_book.class.to_s,:resource_id=>@cook_book.id) %>")
+          })
+        });
+      </script>
     </div>
   </div>
-
 </div>
 

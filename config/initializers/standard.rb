@@ -110,4 +110,8 @@ class Array
 
     result
   end
+
+  def dups
+    inject({}) {|h,v| h[v]=h[v].to_i+1; h}.select{|k,v| v > 1}.keys
+  end
 end

@@ -20,7 +20,7 @@ class Message < ActiveRecord::Base
   STATUS_DATA = {"0"=>"草稿","1"=>"已发送"}
   #系统提示消息，开通短信，将受到短信；
   #系统短信消息，所有人都将收到短信；
-  TP_DATA = {"0"=>"站内信","1"=>"站内加短信","2"=>"系统提示消息","3"=>"系统短信消息"}
+  TP_DATA = {"0"=>"站内信","1"=>"站内加短信","2"=>"系统提示消息","3"=>"系统短信消息","4"=>"系统站内消息"}
   
   has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
 
@@ -57,7 +57,7 @@ class Message < ActiveRecord::Base
   private
   #创建是加载
   def load_user_info
-    if self.tp == 2 || self.tp == 3
+    if [2,3,4].include?(self.tp)
       self.sender_name = "系统消息"
     else
       if self.sender

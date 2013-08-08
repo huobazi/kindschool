@@ -6,13 +6,21 @@ class MySchool::CommentsController < MySchool::ManageController
     @comments = Comment.where(:kindergarten_id=>@kind.id,
       :resource_id=>params[:resource_id],
       :resource_type=>params[:resource_type]).page(params[:page] || 1).per(10).order("created_at DESC")
-    render :partial=>:index,:layout=>false
+    render :layout=>false
   end
 
- 
+  def send_comment
+    filter_resource
+    comment = Comment.new(:user_id=>current_user.id,
+      :kindergarten_id=>@kind.id,
+      :comment=>params[:comment],
+      :resource_id=>params[:resource_id],
+      :resource_type=>params[:resource_type])
+    comment.save
+  end
 
   protected
-  def filer_resource
+  def filter_resource
     if params[:resource_type] == "News"
       if news =  News.find_by_id(params[:resource_id])
         #TODO: 判断是否可获取
