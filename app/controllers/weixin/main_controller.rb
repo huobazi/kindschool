@@ -79,7 +79,7 @@ end
     end
     session[:weixin_code] ||= params[:code]
     if wexin_user = User.find_by_weixin_code(session[:weixin_code])
-      flash[:notice] = "该微信账号已绑定，请进行登陆."
+      flash[:notice] = "该微信账号已绑定，请进行登录."
       redirect_to :action => :login,:controller=>"/weixin/users"
       return
     end

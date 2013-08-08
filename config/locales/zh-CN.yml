@@ -240,9 +240,9 @@ zh-CN:
       weixin_share_user: "推送记录详细"
     attributes:
       admin_user:
-        current_sign_in_at: "当前登陆时间"
-        last_sign_in_at: "最后登陆时间"
-        sign_in_count: "登陆次数"
+        current_sign_in_at: "当前登录时间"
+        last_sign_in_at: "最后登录时间"
+        sign_in_count: "登录次数"
         password: "密码"
         password_confirmation: "确认密码"
       asset_img:
