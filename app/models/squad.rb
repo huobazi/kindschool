@@ -33,7 +33,7 @@ class Squad < ActiveRecord::Base
   def full_name
     "#{self.grade ? self.grade.name + "-" : ""}#{self.name}"
   end
-  
+
   def grade_label
     self.grade ? self.grade.name : "未设置年级"
   end
@@ -44,7 +44,15 @@ class Squad < ActiveRecord::Base
   def is_graduate?
     false
   end
-  
+
+  def class_teacher
+    if teacher = self.teachers.find_by_tp(1)
+      teacher.staff.user.name
+    else
+      "暂时没有班主任"
+    end
+  end
+
   GRADUATE_DATA = {"true"=>"已毕业","false"=>"在读"}
 
   private
