@@ -368,6 +368,19 @@ forum_show:
   params: ""
   protocol: ""
   <<: *DEFAULTS
+
+topic_entry_edit:
+  id: 3011
+  parent_id: 3
+  name: "修改贴子回复"
+  level: 2
+  sequence: 0
+  note: "修改贴子回复"
+  controller: "my_school/topic_entries"
+  action: "edit"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
 #||||||||||||||||||||||||||人员管理功能
 squad_manage:
   id: 4001
@@ -1649,6 +1662,18 @@ interest_activity_destroy_multi:
   note: "删除多个兴趣讨论"
   controller: "my_school/interest_activities"
   action: "destroy_multiple"
+  protocol: ""
+  <<: *DEFAULTS
+
+activity_entry_edit:
+  id: 10016
+  parent_id: 10
+  name: "修改活动回复"
+  level: 2
+  sequence: 0
+  note: "修改活动回复"
+  controller: "my_school/activity_entries"
+  action: "edit"
   protocol: ""
   <<: *DEFAULTS
 

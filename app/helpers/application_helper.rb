@@ -40,6 +40,14 @@ module ApplicationHelper
     end
   end
 
+  def edit_topic_entry(topic_entry)
+    if topic_entry.creater_id == current_user.id
+      true
+    else
+      false
+    end
+  end
+
   def destroy_activity_entry?(activity_entry)
     if current_user.tp == 2
       true

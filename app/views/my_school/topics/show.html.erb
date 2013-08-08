@@ -68,18 +68,23 @@
 
         <div id="topic_show" class="show">
           <div class="content_up">
-            <p class="title"><span><%= @topic.is_top ? "[置顶]" : "" %><%= @topic.title %><span></p>
-                <p class="info">
-                  <span class="squad_name">班级:<%= @topic.squad.try(:name) %></span>
-                </p>
-                <p class="info">
-                  <span class="link">
-                    <%= @topic.topic_category.name %>
-                  </span>
-                  <span class="link">
-                    <%= @topic.creater.try(:name) %>
-                  </span>&nbsp;创建于&nbsp;<span class="time"><%= @topic.try(:created_at).try(:to_long_datetime) %></span>
-                </p>
+            <p class="title">
+              <% if @topic.is_top == true %>
+                <i class="icon-arrow-up"></i>
+              <% end %>
+              <span><%= @topic.title %><span>
+            </p>
+            <p class="info">
+              <span class="squad_name">班级:<%= @topic.squad.try(:name) %></span>
+            </p>
+            <p class="info">
+              <span class="link">
+                <%= @topic.topic_category.name %>
+              </span>
+              <span class="link">
+                <%= @topic.creater.try(:name) %>
+              </span>&nbsp;创建于&nbsp;<span class="time"><%= @topic.try(:created_at).try(:to_long_datetime) %></span>
+            </p>
           </div>
           <div class="content"><%= raw @topic.content %></div>
         </div>
@@ -99,6 +104,13 @@
                 <div class="content_right">
                   <p class="info"><span>#<%= level %>楼&nbsp;</span><span class="author"><%= topic_entry.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(topic_entry.try(:created_at)) %></span></p>
                   <div class="content"><%= raw topic_entry.content %></div>
+                </div>
+                <div class="actions">
+                  <% if edit_topic_entry(topic_entry) %>
+                    <% if choose_operate_show("my_school/topic_entries/edit") %>
+                      <a href="<%= url_for(edit_my_school_topic_entry_path(topic_entry, page: params[:page])) %>" ><i class="icon-edit"></i></a>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
             <% end %>

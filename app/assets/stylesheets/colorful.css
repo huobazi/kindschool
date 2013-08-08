@@ -1934,3 +1934,8 @@ fieldset.role ol li label {
 .role .attributes th {
   width: 140px;
 }
+
+fieldset.staff_squad ol li {
+  float: left;
+  width: 200px;
+}
