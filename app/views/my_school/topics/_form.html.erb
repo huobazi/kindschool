@@ -59,14 +59,8 @@
 
 
 <% if current_user.get_users_ranges[:tp] == :all %>
-  <div class="control-group">
-    <%= f.label :is_top, class: "control-label" %>
-    <div class="controls">
-      <%= f.check_box :is_top %>
-    </div>
-  </div>
-  <%= f.input :is_show, :as => :boolean %>
-  <%= f.input :is_top, :as => :boolean %>
+  <%= f.input :is_top %>
+  <%= f.input :is_show %>
 <% end %>
 <%= f.input :title, :validate => true, :required => true, :input_html => {:class => "span5 profile_input required"} %>
 <%#= f.input :content, :validate => true, :required => true, :input_html => { :class => "span5" } %>

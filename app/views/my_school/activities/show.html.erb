@@ -193,6 +193,11 @@
                     </span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(activity_entry.created_at) %></span></p>
                   <div class="content"><%= raw activity_entry.note %></div>
                 </div>
+                <div>
+                  <% if choose_operate_show("my_school/activity_entries/edit") %>
+                    <a href="<%= url_for(edit_my_school_activity_entry_path(activity_entry, page: params[:page])) %>"><i class="icon-edit"></i></a>
+                  <% end %>
+                </div>
               </div>
             <% end %>
             <%= paginate @activity_entries %>
