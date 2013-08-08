@@ -1,13 +1,13 @@
-<% if record = load_comments %>
+<% if resource_type && resource_id %>
   <hr />
   <div id="load_comments">
   </div>
   <script type="text/javascript">
     function load_comments(){
-      $("#load_comments").load("<%= url_for(:controller=>"/my_school/comments",:action=>:index,:resource_type=>record.class.to_s,:resource_id=>record.id) %>")
+      $("#load_comments").load("<%= url_for(:controller=>"/my_school/comments",:action=>:index,:resource_type=>resource_type,:resource_id=>resource_id) %>")
     }
     function load_last_comments(){
-      $("#load_comments").load("<%= url_for(:controller=>"/my_school/comments",:action=>:index,:resource_type=>record.class.to_s,:resource_id=>record.id,:last=>true) %>")
+      $("#load_comments").load("<%= url_for(:controller=>"/my_school/comments",:action=>:index,:resource_type=>resource_type,:resource_id=>resource_id,:last=>true) %>")
     }
     function post_comments(){
       var comment_data = $("#comment").val();
@@ -17,7 +17,7 @@
         $("#comment").next().hide();
         $(this).text("正在提交...");
         $(this).addClass("disabled");
-        $.post("<%= url_for(:controller=>"/my_school/comments",:action=>:send_comment,:resource_type=>record.class.to_s,:resource_id=>record.id) %>",
+        $.post("<%= url_for(:controller=>"/my_school/comments",:action=>:send_comment,:resource_type=>resource_type,:resource_id=>resource_id) %>",
         {comment:comment_data},
         load_last_comments())
       }

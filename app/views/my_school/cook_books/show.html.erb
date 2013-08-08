@@ -66,7 +66,7 @@
           </div>
         </div>
       </div>
-      <%= render :partial=>"/my_school/comments/load_comments" ,:object=>@cook_book %>
+      <%= render :partial=>"/my_school/comments/load_comments" ,:locals=>{:resource_type=>@cook_book.class.to_s,:resource_id=>@cook_book.id} %>
     </div>
   </div>
 </div>

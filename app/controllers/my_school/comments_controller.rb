@@ -7,11 +7,17 @@ class MySchool::CommentsController < MySchool::ManageController
       render :text=>"没有可查看的评论信息",:layout=>false
       return
     end
+    if params[:last]
+      comments = Comment.where(:kindergarten_id=>@kind.id,
+        :resource_id=>params[:resource_id],
+        :resource_type=>params[:resource_type]).page(params[:page] || 1).per(10)
+      params[:page] = comments.total_pages
+      params[:last] = nil
+    end
     @comments = Comment.where(:kindergarten_id=>@kind.id,
       :resource_id=>params[:resource_id],
-      :resource_type=>params[:resource_type]).page(params[:page] || 1).per(3)
+      :resource_type=>params[:resource_type]).page(params[:page] || 1).per(10)
     render :layout=>false
-    return
   end
 
   def send_comment
