@@ -33,7 +33,7 @@ class MySchool::CommentsController < MySchool::ManageController
       :resource_id=>params[:resource_id],
       :resource_type=>params[:resource_type])
     comment.save
-    render :text=>"test"
+    render :text=>""
   end
 
   protected
