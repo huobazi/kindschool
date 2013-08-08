@@ -18,25 +18,78 @@ class StudentInfo < ActiveRecord::Base
   just_define_datetime_picker :come_in_at, :add_to_attr_accessible => true
   just_define_datetime_picker :family_birthday, :add_to_attr_accessible => true
 
-  def self.import(file,kind_id)
+  def self.verification_import(file,kind_id)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
     exist_phone = []
     phone = []
     unexist_squads = []
+    number = []
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      StudentInfo.transaction do
-        phone << row["手机号码"]
-        if user = User.find_by_phone(row["手机号码"])
+      if row["手机号码"].blank? || row["班级名称"].blank?
+        number = i 
+      end
+        phone << row["手机号码"].to_i
+        if user = User.find_by_phone(row["手机号码"].to_i)
           exist_phone << user.phone
         end
         unless squads = Squad.find_by_name_and_kindergarten_id(row["班级名称"],kind_id)
           unexist_squads << row["班级名称"]
         end
-      end
     end
-    return exist_phone,unexist_squads,phone
+    repeat_phone=phone.dups
+    if !number.blank? || !exist_phone.blank? || !unexist_squads.blank? || !repeat_phone.blank?
+      return number,exist_phone,unexist_squads,repeat_phone
+    end
+  end
+
+  def self.import(file,kind_id)
+    spreadsheet = open_spreadsheet(file)
+    user_password = []
+    header = spreadsheet.row(1)
+      StudentInfo.transaction do
+       (2..spreadsheet.last_row).each do |i|
+         row = Hash[[header, spreadsheet.row(i)].transpose]  
+            user=User.new()
+            student_info = StudentInfo.new()
+            user.phone = row["手机号码"].to_i.to_s
+            user.name = row["姓名"]
+            user.kindergarten_id = kind_id
+            student_info.kindergarten_id = kind_id
+            user.gender = row["性别"]=="男" ? "M" : "G"
+            #给user生成帐号跟密码
+            #user.login =
+            password = Standard.rand_password
+            user.password = password
+            student_info.birthday = row["出生日期"]
+            if row["证件类型"] == "居民身份证"
+             student_info.card_category = 0
+            elsif row["证件类型"] == "护照"
+             student_info.card_category = 1 
+            else
+             student_info.card_category = 2
+            end
+            student_info.card_code = row["证件号码"]   
+            student_info.family_address = row["现住址"]
+            student_info.come_in_at = row["入园日期"]
+            student_info.guardian = row["监护人姓名"]
+            student_info.guardian_card_code = row["监护人身份证号码"]
+            student_info.user = user
+            squad = Squad.find_by_name_and_kindergarten_id(row["班级名称"],kind_id)
+            student_info.squad = squad
+            student_info.save!
+            user_password << {:user=>user,:password=>password}
+          end
+      end
+      user_password.each do |u_password|
+        user = u_password[:user]
+        password = u_password[:password]
+        title = "您已经成功注册了微壹幼儿园校讯通平台"
+        content = "您的登录名:#{user.login},密码:#{password}"
+        user.send_system_message!(title,content,3)
+      end
+      # raise ""
   end
 
   def kindergarten_label

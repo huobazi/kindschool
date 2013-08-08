@@ -75,7 +75,7 @@ class MySchool::UsersController < MySchool::ManageController
         end
         operates_data.uniq!
         session[:operates] = operates_data
-        flash[:notice] = "登陆成功."
+        flash[:notice] = "登录成功."
         session[:login_error_count] = 0
         redirect_to :action => :index,:controller=>"/my_school/home"
         cookies.delete :login_times

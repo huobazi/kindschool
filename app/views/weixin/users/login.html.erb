@@ -57,12 +57,12 @@
         <div class="bind_user">
           <%= form_tag url_for(:action=>:login),:id=>"longin_form" do  %>
             <fieldset>
-              <legend><label>登陆</label></legend>
+              <legend><label>登录</label></legend>
               <label>账户</label>
               <%= text_field_tag :login,"",:placeholder=>"账号", :class => 'login_input'%>
               <span class="help-block"></span>
               <label>密码</label>
-              <%= password_field :password,"",:placeholder=>"登陆密码",:name=>"password", :class => 'password_input'%>
+              <%= password_field :password,"",:placeholder=>"登录密码",:name=>"password", :class => 'password_input'%>
               <% if @can_auth %>
                 <span class="help-block"></span>
                 <label>验证码</label>
