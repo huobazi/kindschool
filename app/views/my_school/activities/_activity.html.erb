@@ -4,7 +4,11 @@
   <div class="right_info">
     <div class="replies pull-right">
       <% if activity.activity_entries.any? %>
-        <%= link_to activity.activity_entries.count, my_school_activity_path(activity, anchor: "activity_entry_1"), class: "count" %>
+        <% if controller_name == "activities" %>
+          <%= link_to activity.activity_entries.count, my_school_activity_path(activity, anchor: "activity_entry_1"), class: "count" %>
+        <% else %>
+          <%= link_to activity.activity_entries.count, my_school_interest_activity_path(activity, anchor: "activity_entry_1"), class: "count" %>
+        <% end %>
       <% end %>
     </div>
     <div class="infos">
