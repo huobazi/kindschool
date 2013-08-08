@@ -57,77 +57,57 @@
 
     <div class="work_form">
       <div class="form_div">
-        <form class="form-horizontal">
-          <div class="control-group">
-            <label class="control-label">所属幼儿园</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=@kind.name %>
-              </label>
-            </div>
+        <div class="show role" style="position: relative;">
+          <div style="position: absolute;width:200px;right:-95px;">
+            <% if choose_operate_show("my_school/roles/index") %>
+              <%= link_to "分配权限", set_operate_to_role_my_school_role_path(@role), class: "btn" %>
+            <% end %>
           </div>
-          <div class="control-group">
-            <label class="control-label">名称</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=@role.name  %>
-              </label>
-            </div>
+          <div class="content_up">
+            <p class="title" style="font-weight: normal;"><span><%= @role.name %></span></p>
+            <%= simple_format raw( @role.note ), :class => "muted", style: "text-indent: 20px;" %>
+            <table class="attributes">
+              <tr>
+                <th>是否是管理员</th>
+                <td><%= @role.admin == true ? "是" : "否" %></td>
+                <th>编号</th>
+                <td><%= @role.number %></td>
+              </tr>
+              <tr>
+                <th>创建时间</th>
+                <td><%= @role.created_at.try(:to_long_datetime) %></td>
+                <th>更新时间</th>
+                <td><%= @role.updated_at.try(:to_long_datetime) %></td>
+              </tr>
+              <tr>
+                <th>所属幼儿园</th>
+                <td colspan="3" style="text-align: center;">
+                  <%= @role.kindergarten_label %>
+                </td>
+              </tr>
+            </table>
           </div>
-          <div class="control-group">
-            <label class="control-label" >编号:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=@role.number%>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >描述:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @role.note%>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >创建时间:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @role.created_at.try(:to_short_datetime)%>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >更新时间:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @role.updated_at.try(:to_short_datetime)%>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >给角色分配权限:</label>
-            <div class="controls">
-              <label class="show_label">
-               <table>
-          <%(@options || []).each do |k,v|%>
-          <tr>
-            <td style= "font-weight: bold;"><%=k%></td>
-            <td>
-              <ul>
-              <%v.each do |option|%>
-                <li><%=option.operate.name%></li>
-              </ul>
-             <%end%>
-            </td>
-          </tr>
-          <%end%>
-        </table>
-              </label>
-            </div>
-          </div>
-        </form>
+        </div>
+        <div><p class="muted text-center" style="font-size: 17px;">该角色的所有权限</p></div>
+        <% @options.each do |k, v| %>
+          <li class='check_boxes'>
+            <%if k != 'root' && !k.blank? %>
+              <fieldset class="role">
+                <legend class="label" style="font-size: 15px;line-height: 20px;"><%= k %></legend>
+                <ol>
+                  <% v.each do |operate| %>
+                    <li>
+                      <label style="font-size: 14px;">
+                        <%= operate.operate.name %>
+                      </label>
+                    </li>
+                  <% end %>
+                </ol>
+              </fieldset>
+            <%end%>
+          </li>
+        <% end %>
+
       </div>
     </div>
   </div>

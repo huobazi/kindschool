@@ -156,7 +156,7 @@
         <hr />
 
         <div id="topic_entries">
-          <div id="topic_category_tabs" style="clear: left;">
+          <div class="tabs_style" style="clear: left;">
             <ul class="nav nav-tabs">
               <% if controller_name == "activities" %>
                 <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/my_school/activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
