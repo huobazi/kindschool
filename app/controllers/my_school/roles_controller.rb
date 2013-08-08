@@ -20,7 +20,7 @@ class MySchool::RolesController < MySchool::ManageController
    	 @role = @kind.roles.new(params[:role])
    	 respond_to do |format|
       if @role.save
-        format.html { redirect_to my_school_roles_path, notice: '角色创建成功.' }
+        format.html { redirect_to my_school_role_path(@role), success: '角色创建成功.' }
       else
         format.html { render action: "new" }
       end
@@ -30,7 +30,7 @@ class MySchool::RolesController < MySchool::ManageController
      @role = @kind.roles.find(params[:id]) 
      respond_to do |format|
       if @role.update_attributes(params[:role])
-        format.html { redirect_to my_school_roles_path, notice: '角色更新成功.' }
+        format.html { redirect_to my_school_role_path(@role), success: '角色更新成功.' }
       else
         format.html { render action: "new" }
       end
@@ -75,12 +75,12 @@ class MySchool::RolesController < MySchool::ManageController
         end
       end
       @role.save!
-      @nitice = '角色设置权限成功.' 
+      @success = '角色设置权限成功.' 
   else
-      @nitice = '角色不存在,没有设置权限.'
+      @success = '角色不存在,没有设置权限.'
   end
     respond_to do |format|
-      format.html { redirect_to my_school_role_path(@role), notice:@nitice }
+      format.html { redirect_to my_school_role_path(@role), success:@success }
       format.json { head :no_content }
     end
    end

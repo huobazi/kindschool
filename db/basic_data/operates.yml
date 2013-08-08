@@ -1741,3 +1741,15 @@ student_info_execl:
   action: "student_execl"
   protocol: ""
   <<: *DEFAULTS
+
+student_infos_download:
+  id: 13000
+  parent_id: 5
+  name: "学籍表格下载"
+  level: 2
+  sequence: 4
+  note: "学籍表格下载"
+  controller: "my_school/student_infos"
+  action: "download_student_infos"
+  protocol: ""
+  <<: *DEFAULTS

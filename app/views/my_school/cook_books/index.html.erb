@@ -52,32 +52,10 @@
 
     <div class="work_list">
         <% unless @cook_books.blank? %>
-          <table class="table table-striped table-hover">
-            <%= form_tag destroy_multiple_my_school_cook_books_path, method: :delete, :id => "destroy_multi_form" do %>
-              <tr>
-                <th><input type="checkbox" name="" value="" alt="全选" id="cook_book_all">全选</th>
-                <th>开始时间</th>
-                <th>结束时间</th>
-                <th>内容</th>
-                <th>菜谱类型</th>
-                <th></th>
-              </tr>
-                <% (@cook_books || []).each do |cook_book| %>
-                  <tr>
-
-                    <td><input id="cook_book_<%= cook_book.id %>" class="cook_book_check" name="cook_book[]" type="checkbox" value="<%= cook_book.id %>" /></td>
-                    <td><%= cook_book.start_at.try(:to_short_datetime)%></td>
-                    <td><%= cook_book.end_at.try(:to_short_datetime)%></td>
-                    <td><%=raw cook_book.content %></td>
-                    <td><%= CookBook::RANGE_TP_DATA[cook_book.range_tp.to_s] %></td>
-                    <td>
-                      <%=link_to '查看',my_school_cook_book_path(cook_book)%>
-                     <%=(link_to '编辑', edit_my_school_cook_book_path(cook_book)) if  choose_operate_show("my_school/cook_books/edit") %>|<%= (link_to '删除',my_school_cook_book_path(cook_book) , method: :delete, data: { confirm: '确定要删除么?' }) if  choose_operate_show("my_school/cook_books/destroy") %></td>
-                  </tr>
-                <% end %>
-              <% end %>
-          </table>
-          <%= paginate @cook_books  %>
+          <div class="topics" id="cook_books">
+            <%= render partial: "cook_book", collection: @cook_books %>
+          </div>
+        <%= paginate @cook_books  %>
         <% else %>
           暂无菜谱
         <% end %>

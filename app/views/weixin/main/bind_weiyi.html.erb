@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="bind">
+    <div class="logo">
+      <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" width="100" height="79" alt="Logo"/>
+    </div>
+    <div class="bind_user">
+      <%= form_tag url_for(:action=>:bind_weiyi),:id=>"longin_form" do  %>
+        <fieldset>
+          <legend><label>绑定用户</label></legend>
+          <label>账户</label>
+          <%= text_field_tag :login,"",:placeholder=>"账号", :class => 'login_input'%>
+          <span class="help-block"></span>
+          <label>密码</label>
+          <%= password_field :password,"",:placeholder=>"登录密码",:name=>"password", :class => 'password_input'%>
+          <div class="error_div">
+            <% if @user_errors %>
+              <label class="error_label">
+                <%= @user_errors %>
+              </label>
+            <% end %>
+          </div>
+          <div class="login_submit_div">
+            <div class="login_submit">
+              <a href="###" class="button_xun">&nbsp;</a>
+            </div>
+          </div>
+        </fieldset>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(function(){
+    $(".button_xun").click(function(){
+      $("#longin_form").submit();
+    })
+  })
+</script>

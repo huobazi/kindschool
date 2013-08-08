@@ -22,6 +22,11 @@ School::Application.routes.draw do
         get :message_show
       end
     end
+    resources :comments do
+      collection do
+        post :send_comment
+      end
+    end
     resources :news 
     resources :my_kindergarten do
     end
@@ -52,7 +57,7 @@ School::Application.routes.draw do
     resources :albums do
       collection {get :grade_class}
       resources :album_entries do
-        member {post :choose_main_img}
+        member {get :choose_main_img}
       end
     end
     resources :career_strategies do
@@ -152,8 +157,10 @@ School::Application.routes.draw do
         get :grade_squad_partial
         get :student_execl
         post :download
+        get :download_student_infos
         get :virtual_squad 
         post :virtual_squad_choose
+        post :import
       end
     end
     resources :templates do
@@ -226,6 +233,8 @@ School::Application.routes.draw do
       collection do
         get :bind_user,:error_messages,:get_user_all_teachers,:get_user_all_squads
         post :bind_user
+        get :bind_weiyi
+        post :bind_weiyi
       end
     end
     resources :users do

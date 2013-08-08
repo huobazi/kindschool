@@ -4,11 +4,11 @@ class Weixin::TopicsController < Weixin::ManageController
     unless params[:category_id].blank?
       if topic_category = @kind.topic_categories.find_by_id(params[:category_id])
         if current_user.get_users_ranges[:tp] == :student
-          @topics = @kind.topics.where("topic_category_id = ? and (creater_id = ? or squad_id = ? or squad_id is null)", topic_category.id, current_user.id, current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
+          @topics = @kind.topics.where("topic_category_id = ? and (creater_id = ? or squad_id = ? or squad_id is null)", topic_category.id, current_user.id, current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
         elsif current_user.get_users_ranges[:tp] == :teachers
-          @topics = @kind.topics.where("topic_category_id = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", topic_category.id, current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
+          @topics = @kind.topics.where("topic_category_id = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", topic_category.id, current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
         else
-          @topics = @kind.topics.where(:topic_category_id => topic_category.id).page(params[:page] || 1).per(10).order("created_at DESC")
+          @topics = @kind.topics.where(:topic_category_id => topic_category.id).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
         end
       else
         flash[:error] = "没有权限或没有该论坛分类"
@@ -16,11 +16,11 @@ class Weixin::TopicsController < Weixin::ManageController
       end
     else
       if current_user.get_users_ranges[:tp] == :student
-        @topics = @kind.topics.where("creater_id = ? or squad_id = ? or squad_id is null", current_user.id, current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
+        @topics = @kind.topics.where("creater_id = ? or squad_id = ? or squad_id is null", current_user.id, current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
       elsif current_user.get_users_ranges[:tp] == :teachers
-        @topics = @kind.topics.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
+        @topics = @kind.topics.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
       else
-        @topics = @kind.topics.page(params[:page] || 1).per(10).order("created_at DESC")
+        @topics = @kind.topics.page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
       end
     end
 
@@ -62,12 +62,16 @@ class Weixin::TopicsController < Weixin::ManageController
   end
 
   def create
-    if params[:topic].present? && params[:topic][:squad_id].present?
-      if current_user.get_users_ranges[:tp] == :teachers
-        unless current_user.get_users_ranges[:squads].collect(&:id).include?(params[:topic][:squad_id].to_i)
-          flash[:error] = "非法操作"
-          redirect_to :action => :index
-          return
+    if params[:visible].presence == "all"
+      params[:topic].delete :squad_id
+    else
+      if params[:topic].present? && params[:topic][:squad_id].present?
+        if current_user.get_users_ranges[:tp] == :teachers
+          unless current_user.get_users_ranges[:squads].collect(&:id).include?(params[:topic][:squad_id].to_i)
+            flash[:error] = "非法操作"
+            redirect_to :action => :index
+            return
+          end
         end
       end
     end

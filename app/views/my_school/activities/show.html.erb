@@ -129,11 +129,11 @@
       <div class="form_div">
         <div id="activity_show" class="show">
           <div class="content_up">
-            <p class="title"><%= @activity.title %><span class="squad_name"><%= @activity.squad ? "*#{@activity.squad.name}" : "" %></span></p>
+            <p class="title"><%= @activity.title %></p>
             <%unless @activity.approve_status == 0%>
-            <p>审核状态:
-                <%= Activity::STATUS[@activity.approve_status]%></p>
+              <p>审核状态: <%= Activity::STATUS[@activity.approve_status]%></p>
             <%end%>
+            <p><span class="squad_name">班级:<%= @activity.squad.try(:name) %></span></p>
             <p class="info"><span class="time"><%= @activity.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @activity.end_at.try(:to_short_datetime) %></span>&nbsp;由&nbsp;
             <span class="normal_link">
               <%= @activity.creater.try(:name) %>
@@ -156,7 +156,7 @@
         <hr />
 
         <div id="topic_entries">
-          <div id="topic_category_tabs" style="clear: left;">
+          <div class="tabs_style" style="clear: left;">
             <ul class="nav nav-tabs">
               <% if controller_name == "activities" %>
                 <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/my_school/activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
@@ -179,7 +179,7 @@
           </div>
           <% unless @activity_entries.blank? %>
             <div class="total">
-              <b>共收到<%= @activity_entries.count %>条回复</b>
+              <b>共收到<%= @activity_entries.total_count %>条回复</b>
             </div>
             <% @activity_entries.each do |activity_entry| %>
               <div id="activity_entry_<%= activity_entry.id %>" class="show_entry">
@@ -191,7 +191,7 @@
                     <span class="author">
                       <%= link_to activity_entry.creater.try(:name), my_school_user_path(@activity_entry.creater), :class => "bold_link" %>
                     </span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(activity_entry.created_at) %></span></p>
-                  <div class="content"><%= activity_entry.note %></div>
+                  <div class="content"><%= raw activity_entry.note %></div>
                 </div>
               </div>
             <% end %>

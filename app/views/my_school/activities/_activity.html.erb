@@ -4,12 +4,20 @@
   <div class="right_info">
     <div class="replies pull-right">
       <% if activity.activity_entries.any? %>
-        <%= link_to activity.activity_entries.count, my_school_activity_path(activity, anchor: "activity_entry_1"), class: "count" %>
+        <% if controller_name == "activities" %>
+          <%= link_to activity.activity_entries.count, my_school_activity_path(activity, anchor: "activity_entry_1"), class: "count" %>
+        <% else %>
+          <%= link_to activity.activity_entries.count, my_school_interest_activity_path(activity, anchor: "activity_entry_1"), class: "count" %>
+        <% end %>
       <% end %>
     </div>
     <div class="infos">
       <div class="title">
-        <%= link_to activity.title, my_school_activity_path(activity) %>
+        <% if controller_name == "activities" %>
+          <%= link_to activity.title, my_school_activity_path(activity) %>
+        <% else %>
+          <%= link_to activity.title, my_school_interest_activity_path(activity) %>
+        <% end %>
       </div>
       <div class="info">
         <em><%= activity.creater.try(:name) %></em>
@@ -18,9 +26,3 @@
     </div>
   </div>
 </div>
-<%=activity.approve_status.inspect%>
-  <%if activity.approve_status==2%>
-审核不通过
-<%elsif activity.approve_status==1%>
-待审核
-<%end%>

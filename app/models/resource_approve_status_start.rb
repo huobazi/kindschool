@@ -23,5 +23,27 @@ module ResourceApproveStatusStart
       end
     end    
 	end
+  def messages_approve_status_start
+    if kind =  self.kindergarten
+      if approve_module=kind.approve_modules.find_by_number(self.class.to_s)
+         if approve_module.status
+           if self.approve_status_was == self.approve_status && self.status == true && (self.tp == 0 || self.tp ==1)
+            self.approve_status = 1
+            if  self.approve_record.blank?
+              approve_record = ApproveRecord.new()
+               self.approve_record = approve_record
+               approve_entry=ApproveEntry.new(:note=>"创建了一条记录")
+               self.approve_record.approve_entries << approve_entry
+            else
+               self.approve_record.status = 1
+               approve_entry=ApproveEntry.new(:note=>"更新了该条记录")
+               self.approve_record.approve_entries << approve_entry
+            end
+           end
+         end
+      end
+    end
+
+  end
 	
 end

@@ -3,11 +3,12 @@ class CookBook < ActiveRecord::Base
   attr_accessible :content, :creater_id, :end_at, :kindergarten_id, :range_tp, :start_at
 
   belongs_to :kindergarten
+  belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
 
   validates :kindergarten_id, :presence => true
   validates :content, :presence => true
 
-  validates :start_at, :end_at, :presence => true
+  validates :start_at, :end_at, :creater_id, :presence => true
 
   just_define_datetime_picker :start_at, :add_to_attr_accessible => true
   just_define_datetime_picker :end_at, :add_to_attr_accessible => true

@@ -1,0 +1,14 @@
+<div class="topic topic_line pull-left">
+  <div class="right_info">
+    <div class="infos">
+      <div class="title">
+        <a href="<%= url_for(my_school_cook_book_path(cook_book)) %>"><em>从</em><abbr><%= cook_book.start_at.try(:to_short_datetime) %></abbr><em>&nbsp;到&nbsp;</em><abbr><%= cook_book.end_at.try(:to_short_datetime) %></abbr></a>
+      </div>
+      <div class="info">
+        <em><%= CookBook::RANGE_TP_DATA[cook_book.range_tp.to_s] %></em><em>&nbsp;*&nbsp;</em><em><%= cook_book.creater.try(:name) %></em><em>&nbsp;创建于&nbsp;</em><abbr><%= cook_book.created_at.try(:to_long_datetime) %></abbr>
+      </div>
+    </div>
+  </div>
+</div>
+
+

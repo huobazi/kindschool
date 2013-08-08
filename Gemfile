@@ -1,6 +1,7 @@
 source 'http://ruby.taobao.org'
 #source 'https://rubygems.org'
 
+
 gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
@@ -62,3 +63,5 @@ gem "acts_as_paranoid", "~>0.4.0"
 gem "carrierwave"
 #https://github.com/Macrow/rails_kindeditor
 gem "rails_kindeditor"
+
+gem 'roo'

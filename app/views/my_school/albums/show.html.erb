@@ -22,52 +22,29 @@
         </div>
       </div>
       <ul class="work_action">
-        <%#if choose_operate_show('my_school/album_entries/new')%>
-        <li>
-          <%=link_to "<div class='work_action_add'>
-            </div><div class='work_action_add_move'>
-            </div>".html_safe ,new_my_school_album_album_entry_path(@album.id)%>
+        <% unless current_user.get_users_ranges[:tp] == :student %>
+          <%#if choose_operate_show('my_school/album_entries/new')%>
+          <li>
+            <%=link_to "<div class='work_action_add'>
+              </div><div class='work_action_add_move'>
+              </div>".html_safe ,new_my_school_album_album_entry_path(@album.id)%>
+            </li>
+              <%#end%>
+        <% end %>
+              <li>
+               <a href="<%=url_for(:controller=>"/my_school/albums",:action=>:index)%>" title="返回">
+              <div class="work_action_return">
+              </div>
+              <div class="work_action_return_move">
+              </div>
+            </a>
           </li>
-            <%#end%>
-            <li>
-             <a href="<%=url_for(:controller=>"/my_school/albums",:action=>:index)%>" title="返回">
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
-          </a>
-        </li>
       </ul>
     </div>
 
     <div class="work_form">
       <div class="form_div" style="float:left;width:700px">
-        <form class="form-horizontal">
-          <div class="control-group">
-            <label class="control-label" >创建时间</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @album.created_at.try(:to_short_datetime) %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >内容</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=raw @album.content %>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >班级</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=raw @album.squad_name %>
-              </label>
-            </div>
-          </div>
-        </form>
+
         <%=render 'album_image'%>
         <%#if choose_operate_show('my_school/album_entries/create')%>
        <!--  <div class="work_form">

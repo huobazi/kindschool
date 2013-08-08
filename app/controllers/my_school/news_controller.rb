@@ -1,6 +1,6 @@
 #encoding:utf-8
 #新闻的发布
-class MySchool::NewsController <  MySchool::ManageController   
+class MySchool::NewsController <  MySchool::ManageController
    def index
     @flag = false
     userrole = current_user.get_users_ranges
@@ -28,7 +28,7 @@ class MySchool::NewsController <  MySchool::ManageController
       flash[:error] = "创建新闻不成功"
       render :new
     end
- 
+
    end
 
    def edit
