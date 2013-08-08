@@ -106,10 +106,32 @@
         <div class="show" id="growth_record">
           <div class="content_up">
             <p class="title"><span><%= @growth_record.student_info_label %></span></p>
+            <% if controller_name == "garden_growth_records" %>
+              <span id="growth_record_reward" style="display: none;" value="<%= @growth_record.reward %>"></span>
+              <table class="attributes">
+                <tr>
+                  <th>评价星数</th>
+                  <td style="width: 20%;">
+                    <% @growth_record.reward.times do %>
+                      <div id="reward">
+                      </div>
+                    <% end %>
+                  </td>
+                  <th>午休</th>
+                  <td><%= raw @growth_record.siesta %></td>
+                </tr>
+                <tr>
+                  <th>班级</th>
+                  <td></td>
+                  <th>进餐</th>
+                  <td><%= raw @growth_record.dine %></td>
+                </tr>
+              </table>
+            <% end %>
             <p class="info"><span class="time"><%= @growth_record.try(:start_at).try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @growth_record.try(:end_at).try(:to_short_datetime) %></span>&nbsp;由&nbsp;<span class="link"><%= @growth_record.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @growth_record.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
           <div class="content">
-            <%= simple_format h(@growth_record.content) %>
+            <%= simple_format raw(@growth_record.content) %>
           </div>
         </div>
       </div>
@@ -117,3 +139,13 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+var reward = $("#growth_record_reward").attr("value")
+var options = {
+        value: reward,
+        max: 5,
+        enabled: false
+    }
+    $('#reward').rater(options);
+</script>

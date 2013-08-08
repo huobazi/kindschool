@@ -22,6 +22,11 @@ School::Application.routes.draw do
         get :message_show
       end
     end
+    resources :comments do
+      collection do
+        post :send_comment
+      end
+    end
     resources :news 
     resources :my_kindergarten do
     end
