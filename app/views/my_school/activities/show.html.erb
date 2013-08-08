@@ -179,7 +179,7 @@
           </div>
           <% unless @activity_entries.blank? %>
             <div class="total">
-              <b>共收到<%= @activity_entries.count %>条回复</b>
+              <b>共收到<%= @activity_entries.total_count %>条回复</b>
             </div>
             <% @activity_entries.each do |activity_entry| %>
               <div id="activity_entry_<%= activity_entry.id %>" class="show_entry">

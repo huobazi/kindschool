@@ -86,7 +86,7 @@
 
         <div id="topic_entries">
           <% unless @topic_entries.blank? %>
-            <div class="total"><b>共收到<%= @topic_entry_count %>条回复</b></div>
+            <div class="total"><b>共收到<%= @topic_entries.total_count %>条回复</b></div>
             <% n = 0 %>
             <% @topic_entries.each do |topic_entry| %>
               <% n = n + 1 %>
