@@ -66,16 +66,7 @@
           </div>
         </div>
       </div>
-      <div id="load_comments">
-
-      </div>
-      <script type="text/javascript">
-        jQuery(function() {
-          $(window).load(function(){
-            $("#load_comments").load("<%= url_for(:controller=>"/my_school/comments",:action=>:index,:resource_type=>@cook_book.class.to_s,:resource_id=>@cook_book.id) %>")
-          })
-        });
-      </script>
+      <%= render :partial=>"/my_school/comments/load_comments" ,:locals=>{:resource_type=>@cook_book.class.to_s,:resource_id=>@cook_book.id} %>
     </div>
   </div>
 </div>

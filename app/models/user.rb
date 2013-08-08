@@ -28,18 +28,32 @@ class User < ActiveRecord::Base
   
   has_one  :approve_entry
 
-  before_save :encrypt_password
+  before_save :encrypt_password #,:automatically_generate_account
+  
+  before_create :automatically_generate_account, :unless => :role_student?
 
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
   validates_length_of :phone, :is => 11
   validates :phone,:presence => true,:uniqueness => true#{ :scope => :kindergarten_id}
-  validates :name, :login, :kindergarten_id,:presence => true
+  validates :name, :kindergarten_id,:presence => true
+  validates :login,:presence => true , :if => :role_student?
   validates_uniqueness_of_without_deleted :login
   validates_uniqueness_of_without_deleted :email,:scope => :kindergarten_id, :allow_blank => true
+  validates_uniqueness_of_without_deleted :phone,:scope => :kindergarten_id, :allow_blank => true
 
   GENDER_DATA = {"M"=>"女","G"=>"男"}
   TP_DATA = {"0"=>"学员","1"=>"教职工","2"=>"管理员"}
   STATUS_DATA = {"start"=>"在园","graduate"=>"毕业","leave"=>"离开","freeze"=>"冻结"}
+
+  def automatically_generate_account
+   kind = self.kindergarten
+   user = kind.users.order("id desc").where(:tp=>0).first
+   if !user.blank?
+    self.login = user.login.next_number
+   else
+    self.login = PRE_STUDENT+"0001"
+   end
+  end
 
   def gender_label
     User::GENDER_DATA[self.gender.to_s]
@@ -289,6 +303,7 @@ class User < ActiveRecord::Base
   def password_required?
     crypted_password.blank? || !password.blank?
   end
-
-  
+  def role_student?
+    self.tp != 0
+  end
 end

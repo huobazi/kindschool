@@ -19,6 +19,28 @@ class  MySchool::StudentInfosController < MySchool::ManageController
       format.xls # { send_data @products.to_csv(col_sep: "\t") }
     end
   end
+ 
+  
+
+  def import
+    unless params[:file].blank?
+     x,a,b,c=StudentInfo.verification_import(params[:file],@kind.id)
+     if x.blank? && a.blank? && b.blank? && c.blank?
+       StudentInfo.import(params[:file],@kind.id)
+       redirect_to my_school_student_infos_path, notice: "学生信息导入成功."
+     else
+       redirect_to my_school_student_infos_path, notice: "#{x.join(',')}手机号或班级名字不能为空,#{a.join(',')}系统已经存在电话号码不能添加,#{b.join(',')}班级不存在,#{c.join(',')}手机号码重复"
+     end
+    else
+      redirect_to my_school_student_infos_path, notice: "没有选择导入表格."
+    end
+    raise "导入模板出问题，请与管理员联系."
+    rescue Exception =>ex
+      flash[:error] = ex.message
+      redirect_to my_school_student_infos_path, notice: "导入模板出问题，请与管理员联系."
+
+  end
+
 
 
   def show
