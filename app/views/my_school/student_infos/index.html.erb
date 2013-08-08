@@ -61,6 +61,10 @@
           <%= link_to "深圳市教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "shenzhen",student_info: params[:student_info]) ,:class=>"btn" %>
           <%= link_to "广东省教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "guangzhou",student_info: params[:student_info]) ,:class=>"btn" %>
       </p>
+      <%= form_tag import_my_school_student_infos_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "Import",:class=>"btn" %>
+      <% end %>
       <% end %>
       </div>
     <% end %>

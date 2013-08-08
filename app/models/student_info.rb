@@ -18,6 +18,27 @@ class StudentInfo < ActiveRecord::Base
   just_define_datetime_picker :come_in_at, :add_to_attr_accessible => true
   just_define_datetime_picker :family_birthday, :add_to_attr_accessible => true
 
+  def self.import(file,kind_id)
+    spreadsheet = open_spreadsheet(file)
+    header = spreadsheet.row(1)
+    exist_phone = []
+    phone = []
+    unexist_squads = []
+    (2..spreadsheet.last_row).each do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      StudentInfo.transaction do
+        phone << row["手机号码"]
+        if user = User.find_by_phone(row["手机号码"])
+          exist_phone << user.phone
+        end
+        unless squads = Squad.find_by_name_and_kindergarten_id(row["班级名称"],kind_id)
+          unexist_squads << row["班级名称"]
+        end
+      end
+    end
+    return exist_phone,unexist_squads,phone
+  end
+
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end
@@ -113,5 +134,14 @@ class StudentInfo < ActiveRecord::Base
         self.user.update_attribute(:role_id, role.id)
       end
     end
+  end
+  
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+      when ".csv" then Roo::Csv.new(file.path, nil, :ignore)
+      when ".xls" then Roo::Excel.new(file.path, nil, :ignore)
+      when ".xlsx" then Roo::Excelx.new(file.path, nil, :ignore)
+      else raise "Unknown file type: #{file.original_filename}"
+     end
   end
 end

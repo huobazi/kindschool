@@ -126,8 +126,11 @@ GEM
     mime-types (1.23)
     mini_magick (3.6.0)
       subexec (~> 0.2.1)
+    mini_portile (0.5.1)
     multi_json (1.7.7)
     mysql2 (0.3.11)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
@@ -171,6 +174,12 @@ GEM
       json (~> 1.4)
     responders (0.9.3)
       railties (~> 3.1)
+    roo (1.11.2)
+      nokogiri
+      rubyzip
+      spreadsheet (> 0.6.4)
+    ruby-ole (1.2.11.7)
+    rubyzip (0.9.9)
     sass (3.2.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -180,6 +189,8 @@ GEM
       actionpack (~> 3.0)
       activemodel (~> 3.0)
     slop (3.4.5)
+    spreadsheet (0.8.8)
+      ruby-ole (>= 1.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -226,6 +237,7 @@ DEPENDENCIES
   rails (= 3.2.13)
   rails_kindeditor
   rd_searchlogic (~> 3.0.1)
+  roo
   sass-rails (~> 3.2.3)
   simple_form
   uglifier (>= 1.0.3)

@@ -138,23 +138,23 @@ class User < ActiveRecord::Base
 
   def authed_menus(t)
     mymenus = []
-    root = []
-    all_openrates = self.operates
-    if t.blank?
-      menus = Menu.find(:all,:conditions=>["(operate_id in(?) or operate_id=0)",all_openrates],:order=>"sequence asc")
-    else
-      menus = Menu.find(:all,:conditions=>["height_level = ? and (operate_id in(?) or operate_id=0)",t,all_openrates],:order=>"sequence asc")
-    end
-    menus.each do |mm|
-      if root.include?(mm.root)
-        mymenus.each{|item| item[:children]<< {:id=>mm.id,:number=>mm.number , :name=>mm.name , :url=>mm.url} if item[:id]==mm.root.id }
-      else
-        root << mm.root
-        me = {:id=>mm.root.id ,:number=>mm.root.number, :name=>mm.root.name , :url=> mm.root.url , :children=>[]}
-        me[:children] << {:id=>mm.id,:number=>mm.number,:name=>mm.name , :url=>mm.url}
-        mymenus << me
-      end
-    end
+    # root = []
+    # all_openrates = self.operates
+    # if t.blank?
+    #   menus = Menu.find(:all,:conditions=>["(operate_id in(?) or operate_id=0)",all_openrates],:order=>"sequence asc")
+    # else
+    #   menus = Menu.find(:all,:conditions=>["height_level = ? and (operate_id in(?) or operate_id=0)",t,all_openrates],:order=>"sequence asc")
+    # end
+    # menus.each do |mm|
+    #   if root.include?(mm.root)
+    #     mymenus.each{|item| item[:children]<< {:id=>mm.id,:number=>mm.number , :name=>mm.name , :url=>mm.url} if item[:id]==mm.root.id }
+    #   else
+    #     root << mm.root
+    #     me = {:id=>mm.root.id ,:number=>mm.root.number, :name=>mm.root.name , :url=> mm.root.url , :children=>[]}
+    #     me[:children] << {:id=>mm.id,:number=>mm.number,:name=>mm.name , :url=>mm.url}
+    #     mymenus << me
+    #   end
+    # end
     mymenus
   end
 

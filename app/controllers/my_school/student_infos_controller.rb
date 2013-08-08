@@ -19,6 +19,18 @@ class  MySchool::StudentInfosController < MySchool::ManageController
       format.xls # { send_data @products.to_csv(col_sep: "\t") }
     end
   end
+ 
+  
+
+  def import
+    a,b,c=StudentInfo.import(params[:file],@kind.id)
+    puts "111111111111111111111\n\n\n\n"
+    puts a.inspect
+    puts b.inspect
+    puts c.inspect
+    # redirect_to my_school_student_infos_path, notice: "学生信息导入成功."
+  end
+
 
 
   def show

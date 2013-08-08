@@ -155,6 +155,7 @@ School::Application.routes.draw do
         get :download_student_infos
         get :virtual_squad 
         post :virtual_squad_choose
+        post :import
       end
     end
     resources :templates do
