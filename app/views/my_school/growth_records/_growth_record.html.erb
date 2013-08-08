@@ -2,9 +2,13 @@
   <div class="avatar pull-left"><img src="<%= growth_record.student_info.user.asset_logo ? growth_record.student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
   </div>
   <div class="right_info">
+    <% if controller_name == "garden_growth_records" %>
+      <div class="reward pull-right">
+      </div>
+    <% end %>
     <div class="infos">
       <div class="title">
-        <% if controller_name == "growth_record" %>
+        <% if controller_name == "growth_records" %>
           <%= link_to "#{growth_record.student_info_label}的成长记录", my_school_growth_record_path(growth_record) %>
         <% else %>
           <%= link_to "#{growth_record.student_info_label}的成长记录", my_school_garden_growth_record_path(growth_record) %>
@@ -20,4 +24,13 @@
     </div>
   </div>
 </div>
-
+<span style="display:none;" id="reward" for="<%= growth_record.reward %>"></span>
+<script type="text/javascript">
+var count = $("#reward").attr("for") || 0;
+var options = {
+    value: count,
+    max: 5,
+    enabled: false
+}
+$('.reward').rater(options);
+</script>

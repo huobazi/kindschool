@@ -44,6 +44,7 @@ class  MySchool::TopicsController < MySchool::ManageController
     end
 
     @topic_entry = TopicEntry.new
+    @topic_entry_count = @topic.topic_entries.count
     @topic_entry.topic_id = @topic.id
     @topic_entry.creater_id = current_user.id
     @topic_entries = @topic.topic_entries.page(params[:page] || 1).per(10)

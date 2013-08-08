@@ -40,6 +40,13 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
       redirect_to :controller => "/my_school/growth_records", :action => :garden
     else
       @growth_record = GrowthRecord.new(params[:growth_record])
+      if (@squad = @kind.squads.find_by_id(params[:squad])) && @squad.name.present?
+        @growth_record.squad_name = @squad.name
+      else
+        flash[:error] = "非法操作"
+        redirect_to :action => :index
+        return
+      end
       @growth_record.creater_id = current_user.id
       @growth_record.kindergarten_id = @kind.id
       @growth_record.tp = 0
@@ -95,7 +102,7 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
     @growth_record = GrowthRecord.find_by_id_and_kindergarten_id(params[:id], @kind.id)
     respond_to do |format|
       if @growth_record.update_attributes(params[:growth_record])
-        flash[:notice] = '更新宝宝在园成长记录成功.'
+        flash[:success] = '更新宝宝在园成长记录成功.'
         format.html { redirect_to(:action=>:show,:id=>@growth_record.id) }
         format.xml  { head :ok }
       else

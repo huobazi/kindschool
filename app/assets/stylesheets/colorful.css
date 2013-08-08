@@ -1112,13 +1112,18 @@ table.attributes td {
     color: red;
 }
 
-
-
 #topic_category_tabs {
-    padding-top: 10px;
+  padding-top: 20px;
+  padding-left: 50px;
+}
+.tabs_style {
+  padding-top: 20px;
+}
+.tabs_style a {
+  color: #333333;
 }
 #topic_category_tabs a {
-    color: #333333;
+  color: #333333;
 }
 .float_left {
     float: left;
@@ -1905,4 +1910,27 @@ fieldset.two_cols .control-group .controls input[type="checkbox"] {
 }
 fieldset.two_cols .control-group .controls input[type="radio"] {
   width: 40px;
+}
+
+/*===============角色管理===================*/
+
+fieldset.role ol li {
+  float: left;
+}
+
+fieldset.role ol li label {
+  width: 200px;
+}
+
+.role_submit_style {
+  padding-top: 15px;
+}
+
+.role_submit_style .controls {
+  margin: 0 auto;
+  width: 160px;
+}
+
+.role .attributes th {
+  width: 140px;
 }

@@ -1,0 +1,2 @@
+$('#load_comments').html('<%= escape_javascript render :partial =>'/my_school/comments/load_index',:locals=>{:resource_type=>params[:resource_type],:resource_id=>params[:resource_id]} %>');
+$('#paginator').html('<%= escape_javascript(paginate(@comments, :remote => true).to_s) %>');

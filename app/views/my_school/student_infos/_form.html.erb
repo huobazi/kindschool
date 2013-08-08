@@ -33,14 +33,20 @@
       <%= p.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
       <%= p.input :gender, :as => :radio, :collection => {"男" => "M", "女" => "G"}, :required => true %>
       <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
-    </div>
-    <div class="right_table">
       <%= p.input :name, :validate => true, :required => true %>
       <%= p.input :phone, :validate => true %>
+    </div>
+    <div class="right_table">
       <% if action_name == "new" %>
         <%#= p.input :login, :validate => true, :required => true, :hint => "之后不能改变" %>
       <% else %>
-        <%= p.input :login, :disabled => true, :hint => "你不能改变你的用户名" %>
+        <div class="control-group">
+          <%= p.label :login, class: "control-label" %>
+          <div class="controls">
+            <input type="text" value="<%= @student_info.user.name %>" disabled="disabled" />
+            <p class="help-block">你不能改变你的用户名</p>
+          </div>
+        </div>
       <% end %>
       <% if action_name == "new" %>
         <%= p.input :password, :validate => true, :required => true %>
@@ -51,7 +57,7 @@
           <label class="control-label"><abbr title="required">*</abbr>选择班级</label>
           <label class="field_prompt" for="grade">年级:</label>
           <% unless @grades.blank? %>
-            <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select span2" %>
+            <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select span2", :style => "margin-left: 30px;" %>
           <% else %>
             <div class="controls">
               <label>没有年级,请先创建年级,才能继续操作</label>

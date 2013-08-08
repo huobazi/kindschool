@@ -41,15 +41,17 @@
     <div class="work_form">
       <div class="form_div">
         <%= simple_form_for(@staff, :url => update_allocation_my_school_teachers_path(:staff_id => @staff.id), :html => {:class => "form-horizontal", :method => :post}) do |f| %>
+          <% n = 0 %>
           <% @kind.squads.group_by{|o| o.grade ? o.grade.name : "年级"}.each do |k,v| %>
+            <% n = n + 1 %>
             <li class='check_boxes'>
             <fieldset>
-              <legend class="label"><label>年级: <%= k%></label></legend>
+              <legend class="label"><input class="check_all" id="flag_<%= n.to_s %>" type="checkbox" name="" /><label style="display: inline;padding-left: 0">年级: <%= k %></label></legend>
               <ol>
                 <% v.each do |squad| %>
                   <li>
                     <label for="squad_<%= squad.id%>">
-                    <input id="squad_<%= squad.id%>" name="squad[]" type="checkbox" value="<%= squad.id%>"  <%= @staff.squads.include?(squad) ? "checked=true" : nil %> /> <%= squad.name %></label>
+                      <input class="flag_<%= n.to_s %>_value" id="squad_<%= squad.id%>" name="squad[]" type="checkbox" value="<%= squad.id%>"  <%= @staff.squads.include?(squad) ? "checked=true" : nil %> /> <%= squad.name %></label>
                   </li>
                 <% end %>
               </ol>
@@ -67,3 +69,12 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+$(".check_all").each(function() {
+  var check_val = "." + $(this).attr("id") + "_value"
+  $(this).click(function() {
+    $(check_val).attr("checked", this.checked)
+  })
+})
+</script>
