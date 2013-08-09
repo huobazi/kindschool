@@ -2,6 +2,14 @@
   <div class="avatar pull-left"><img src="<%= seedling.student_info.user.asset_logo ? seedling.student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
   </div>
   <div class="right_info">
+    <div class="pull-right">
+      <% if choose_operate_show("my_school/seedlings/show") %>
+        <a href="<%= my_school_seedling_path(seedling) %>" title="查看<%= seedling.name %>" alt="查看<%= seedling.name %>"><i class="icon-eye-open"></i></a>
+      <% end %>
+      <% if choose_operate_show("my_school/seedlings/edit") %>
+        <a href="<%= edit_my_school_seedling_path(seedling) %>" title="编辑<%= seedling.name %>" alt="编辑<%= seedling.name %>"><i class="icon-edit"></i></a>
+      <% end %>
+    </div>
     <div class="infos">
       <div class="title">
         <%= link_to seedling.name, my_school_seedling_path(seedling) %>
