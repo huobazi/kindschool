@@ -1,6 +1,8 @@
 ﻿defaults: &defaults
   #微信token
   weixin_token: "weiyi"
+  #为true则需要验证
+  token_validate: true
   
 
 development:

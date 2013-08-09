@@ -3,7 +3,9 @@
     $('#physical_record_send_date_equals').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
-    });
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });;
   })
 
 </script>

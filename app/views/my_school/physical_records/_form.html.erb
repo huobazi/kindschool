@@ -5,7 +5,9 @@
     $('#physical_record_send_date').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
-    });
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });;
     $("#grade").change(function(){
       $.get( "/my_school/physical_records/grade_class",
       { grade: $('#grade').val()},

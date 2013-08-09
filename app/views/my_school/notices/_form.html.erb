@@ -4,7 +4,9 @@
     $('#notice_send_date').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
-    });
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });;
   });
 </script>
 <%= f.input :title, :validate => true, :required => true,:input_html=>{:class=>"span5"}%>

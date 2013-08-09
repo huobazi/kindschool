@@ -84,6 +84,8 @@
     $('#message_send_date').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
-    });
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });;
   });
 </script>
