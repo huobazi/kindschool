@@ -3,6 +3,15 @@
   </div>
   <div class="right_info">
     <div class="replies pull-right">
+      <% if controller_name == "activities" %>
+        <% if choose_operate_show("my_school/activities/edit") %>
+          <a href="<%= edit_my_school_activity_path(activity) %>" title="编辑<%= activity.title %>" alt="编辑<%= activity.title %>"><i class="icon-edit"></i></a>
+        <% end %>
+      <% else %>
+        <% if choose_operate_show("my_school/interest_activities/edit") %>
+          <a href="<%= edit_my_school_interest_activity_path(activity) %>" title="编辑<%= activity.title %>" alt="编辑<%= activity.title %>"><i class="icon-edit"></i></a>
+        <% end %>
+      <% end %>
       <% if activity.activity_entries.any? %>
         <% if controller_name == "activities" %>
           <%= link_to activity.activity_entries.count, my_school_activity_path(activity, anchor: "activity_entry_1"), class: "count" %>
