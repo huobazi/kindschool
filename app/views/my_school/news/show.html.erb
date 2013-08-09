@@ -67,6 +67,7 @@
           <div class="show" id="news">
             <div class="content_up">
               <p class="title"><span><%= @new.title %></span></p>
+              <p class="info"> <span class="link">总共被浏览了<%= @new.show_count %>次</span></p>
               <p class="info"><span class="link"><%= @new.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @new.try(:created_at).try(:to_long_datetime) %></span></p>
               <%if @new.approve_status != 0 %>
                 <p class="info">审核状态:<span><%= News::STATUS[@new.approve_status] %></span>
