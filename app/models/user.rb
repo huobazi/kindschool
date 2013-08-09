@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   before_save :encrypt_password #,:automatically_generate_account
   
   before_create :automatically_generate_account, :unless => :role_student?
+  
 
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
   validates_length_of :phone, :is => 11
