@@ -4,15 +4,21 @@
     $('#student_info_birthday').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
     });
     $('#student_info_come_in_at').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
-    });
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });;
     $('#student_info_family_birthday').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
-    });
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });;
     $("#student_info_user_attributes_login").val("")
     $("#student_info_user_attributes_password").val("")
   });
