@@ -20,15 +20,15 @@
           </a>
           <ul>
             <li>
-            <% if controller_name == "growth_records" %>
-              <%if choose_operate_show('my_school/growth_records/home')%>
-                <%= link_to "宝宝在家", home_my_school_growth_records_path %></li>
+              <% if controller_name == "growth_records" %>
+                <%if choose_operate_show('my_school/growth_records/home')%>
+                  <%= link_to "宝宝在家", home_my_school_growth_records_path %></li>
               <% end %>
             <% else %>
               <%if choose_operate_show('my_school/garden_growth_records/garden')%>
-                <%= link_to "宝宝在园", garden_my_school_garden_growth_records_path %></li>
+                  <%= link_to "宝宝在园", garden_my_school_garden_growth_records_path %></li>
+                <% end %>
               <% end %>
-            <% end %>
             <li>/</li>
             <li>查看成长记录</li>
           </ul>
@@ -46,14 +46,14 @@
               </a>
             <% end %>
           <% else %>
-              <% if choose_operate_show("my_school/garden_growth_records/new") %>
-                <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new)%>" title="添加">
-                  <div class="work_action_add">
-                  </div>
-                  <div class="work_action_add_move">
-                  </div>
-                </a>
-              <% end %>
+            <% if choose_operate_show("my_school/garden_growth_records/new") %>
+              <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new)%>" title="添加">
+                <div class="work_action_add">
+                </div>
+                <div class="work_action_add_move">
+                </div>
+              </a>
+            <% end %>
           <% end %>
         </li>
         <li>
@@ -66,16 +66,16 @@
                 </div>
               </a>
             <% end %>
-        <% else %>
-          <% if choose_operate_show("my_school/garden_growth_records/garden") %>
-            <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:edit,:id=>@growth_record.id)%>" title="编辑">
-              <div class="work_action_edit">
-              </div>
-              <div class="work_action_edit_move">
-              </div>
-            </a>
+          <% else %>
+            <% if choose_operate_show("my_school/garden_growth_records/garden") %>
+              <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:edit,:id=>@growth_record.id)%>" title="编辑">
+                <div class="work_action_edit">
+                </div>
+                <div class="work_action_edit_move">
+                </div>
+              </a>
+            <% end %>
           <% end %>
-        <% end %>
         </li>
         <li>
           <% if controller_name == "growth_records" %>
@@ -135,6 +135,21 @@
           <div class="content">
             <%= simple_format raw(@growth_record.content) %>
           </div>
+          <div class="spra">
+            <% @growth_record.asset_imgs.each do |img| %>
+              <div class="img_div">
+                <div class="img_border">
+                  &nbsp;&nbsp;
+                  <a href="<%= img.public_filename %>" class="fancybox"  title="">
+                    <img src="<%= img.public_filename(:middle) %>" alt="照片"class="img-polaroid"/>
+                  </a>
+                </div>
+                <% if current_user.id == @growth_record.creater_id || current_user.tp == 2 %>
+                  <%= link_to "删除",url_for(:action=>:delete_img,:id=>@growth_record.id,:img_id=>img.id) ,:class=>"btn"%>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
       <%= render :partial=>"/my_school/comments/load_comments" ,:locals=>{:resource_type=>@growth_record.class.to_s,:resource_id=>@growth_record.id} %>
@@ -144,11 +159,20 @@
 </div>
 
 <script type="text/javascript">
-var reward = $("#growth_record_reward").attr("value")
-var options = {
-        value: reward,
-        max: 5,
-        enabled: false
-    }
-    $('#reward').rater(options);
+  var reward = $("#growth_record_reward").attr("value")
+  var options = {
+    value: reward,
+    max: 5,
+    enabled: false
+  }
+  $('#reward').rater(options);
+  $(function() {
+    $(".jCarouselLite").jCarouselLite({
+      btnNext: ".main .next",
+      btnPrev: ".main .prev",
+      auto: 2000,
+      onMouse:true
+    });
+    $(".fancybox").fancybox();
+  });
 </script>

@@ -619,16 +619,15 @@ ul, li {
     color: #494542;
 }
 .new_message{
-    background-color: #B0CC20;
     border-radius: 5px 5px 5px 5px;
     color: white;
     float: right;
-    font-size: 14px;
-    line-height: 26px;
+    font-size: 12px;
+    margin-left: 5px;
     margin-top: -2px;
+    padding: 2px 5px 5px;
     text-align: center;
     text-decoration: none;
-    margin-left: 5px;
 }
 .new_message:hover,.new_message:focus{
     color: white;

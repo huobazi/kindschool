@@ -188,6 +188,9 @@ School::Application.routes.draw do
         get :grade_squad_partial
         get :squad_student_partial
       end
+      member do
+        get :delete_img
+      end
     end
 
     resources :topic_categories do
@@ -200,6 +203,9 @@ School::Application.routes.draw do
       collection do
         get :garden
         delete :destroy_multiple
+      end
+      member do
+        get :delete_img
       end
     end
 
