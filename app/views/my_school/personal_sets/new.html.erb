@@ -1,0 +1,72 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>个人集锦</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+             <li><%= link_to "个人集锦", my_school_personal_sets_path %></li>
+            <li>/</li>
+            <li>添加个人集锦</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+      <a href="<%=url_for(:controller=>"/my_school/personal_sets",:action=>:index)%>" title="返回">
+            <div class="work_action_return">
+            </div>
+            <div class="work_action_return_move">
+            </div>
+          </a>
+      </ul>
+    </div>
+     <div id="topic_category_tabs">
+        <ul class="nav nav-tabs">
+          <li class="">
+            <%=link_to "图片上传","###",:class=>"img_personal_set_up btn"%>
+          </li>
+          <li class="<%#= params[:tp_id] ? "" : "active" %>">
+            <%=link_to "文字上传","###",:class=>"content_personal_set_up "%>
+          </li>
+        </ul>
+      </div>
+    <div class="work_form">
+      <div class="form_div">
+        <%= form_for(@personal_set, :validate => true, :url=>my_school_personal_sets_path(@personal_set), :html =>{:multipart=>true,:class=>"form-horizontal"}) do |f| %>
+          <div class="img_form">
+            <%= render 'img_form', :f=>f %>
+          </div>
+          <div class="content_form" style="display:none">
+            <%= render 'form',:f=>f %>
+          </div>
+          <div class="control-group">
+           <div class="controls">
+            <%= f.submit('创建',:class=>"btn") %>
+           </div>
+          </div>
+       <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$("a.img_personal_set_up").click(function(){
+  $(this).addClass("btn");
+  $("a.content_personal_set_up").removeClass("btn");
+  $(".content_form").hide();
+  $(".img_form").show();
+
+});
+$("a.content_personal_set_up").click(function(){
+  $(this).addClass("btn");
+  $("a.img_personal_set_up").removeClass("btn");
+  $(".content_form").show();
+  $(".img_form").hide();
+});
+</script>
+

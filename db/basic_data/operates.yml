@@ -1521,6 +1521,18 @@ album_entry_record_create:
   protocol: ""
   <<: *DEFAULTS
 
+personnel_sets_index:
+  id: 9100
+  parent_id: 9
+  name: "个人锦集"
+  level: 2
+  sequence: 0
+  note: "个人锦集"
+  controller: "my_school/personnel_sets"
+  action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+
 activity_index:
   id: 10000
   parent_id: 10

@@ -4,6 +4,7 @@ School::Application.routes.draw do
   match 'code/recode' => 'code#recode'
   match 'my_school' => 'my_school/main#index'
   namespace :my_school do
+    resources :personal_sets
     resources :approve_modules do 
       collection do
         get :get_edit_ids
