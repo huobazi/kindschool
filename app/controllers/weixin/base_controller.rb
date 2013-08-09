@@ -31,13 +31,13 @@ class Weixin::BaseController < ApplicationController
   
   protected
   def is_www?
-    Rails.logger.info("====@subdomain======#{@subdomain}==========")
+    Rails.logger.info("==1==@subdomain======#{@subdomain}==========")
     return @subdomain == "www" || @subdomain.blank? || @subdomain == "weiyi"
   end
   private
   def my_school
     #    @kind = Kindergarten.first
-    Rails.logger.info("====@required_type======#{@required_type}==========")
+    Rails.logger.info("==2==@subdomain======#{@subdomain}==========")
     if is_www?
       @required_type = :www
     else
