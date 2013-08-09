@@ -31,12 +31,13 @@ class Weixin::BaseController < ApplicationController
   
   protected
   def is_www?
-    Rails.logger.info("====@required_type======#{@required_type}==========")
-    return @required_type == "www" || @required_type.blank? || @required_type == "weiyi"
+    Rails.logger.info("==1==@subdomain======#{@subdomain}==========")
+    return @subdomain == "www" || @subdomain.blank? || @subdomain == "weiyi"
   end
   private
   def my_school
     #    @kind = Kindergarten.first
+    Rails.logger.info("==2==@subdomain======#{@subdomain}==========")
     if is_www?
       @required_type = :www
     else
@@ -55,7 +56,7 @@ class Weixin::BaseController < ApplicationController
     @validate_data = []
     @validate_data << (params[:nonce] || "")
     @validate_data << (params[:timestamp] || "")
-    token = (@required_type == :www || @required_type.blank?) ? WEBSITE_CONFIG["weixin_token"] : @kind.weixin_token 
+    token = is_www? ? WEBSITE_CONFIG["weixin_token"] : @kind.weixin_token
     #    token = @kind.weixin_token
     @validate_data << (token || "")
     @validate_data.sort.join("")
