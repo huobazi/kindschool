@@ -28,7 +28,7 @@
       </ul>
     </div>
     <div class="work_list">
-      <%= form_for(@user, :url => { :controller => "/my_school/users", :action => :update}, :multipart => true, :html => {:class => "form-horizontal"}) do |f| %>
+      <%= form_for(@user, :url => { :controller => "/my_school/users", :action => :update}, :multipart => true, :html => {:class => "form-horizontal", :multipart => true}) do |f| %>
         <div class="control-group">
           <%= f.label :kindergarten_label, :class => "control-label" %>&nbsp;&nbsp;
           <%= f.text_field :kindergarten_label, :disabled => true %>

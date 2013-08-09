@@ -7,7 +7,7 @@
 
 
     <%if current_user.is_send && @message%>
-      <%= link_to "发短信" ,url_for(:action=>:new,:message_id=>@message.id),:class=>'new_message' %>
+      <%= link_to "发短信" ,url_for(:action=>:new,:message_id=>@message.id),:class=>'new_message btn btn-warning' %>
     <% end %>
   </div>
   <div class="show_title">

@@ -62,11 +62,11 @@
     <div class="work_form">
       <div class="form_div">
         <% if controller_name == "growth_records" %>
-          <%= simple_form_for @growth_record, :validate => true, :url => {:controller=>"/my_school/growth_records",:action=>:update}, :html =>{:class=>"form-horizontal"} do |f| %>
+          <%= simple_form_for @growth_record, :validate => true, :url => {:controller=>"/my_school/growth_records",:action=>:update}, :html =>{:class=>"form-horizontal", :multipart => true} do |f| %>
             <%= render :partial => "form",:object=>f %>
           <% end %>
         <% else %>
-          <%= simple_form_for @growth_record, :validate => true, :url => {:controller=>"/my_school/garden_growth_records",:action=>:update}, :html =>{:class=>"form-horizontal"} do |f| %>
+          <%= simple_form_for @growth_record, :validate => true, :url => {:controller=>"/my_school/garden_growth_records",:action=>:update}, :html =>{:class=>"form-horizontal", :multipart => true} do |f| %>
             <%= render :partial => "my_school/growth_records/form",:object=>f %>
           <% end %>
         <% end %>

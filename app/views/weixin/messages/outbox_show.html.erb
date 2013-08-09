@@ -9,12 +9,12 @@
       <a href="<%= url_for(:action=>:outbox) %>" title="返回" class="weixin_return">返回</a>消息详情
     <% end %>
 
-    <%= link_to("删除",url_for(:controller=>"/weixin/messages",:action=>:destroy,:id=>@message.id),:method=>:delete, :confirm => "您确定删除该消息吗?", :class => "new_message")%>
+    <%= link_to("删除",url_for(:controller=>"/weixin/messages",:action=>:destroy,:id=>@message.id),:method=>:delete, :confirm => "您确定删除该消息吗?", :class => "new_message btn btn-warning")%>
 
     <% if action_name == "draft_show" %>
-      <%= link_to "修改", url_for(:controller=>"/weixin/messages",:action=>:draft_edit,:id=>@message.id), :class => "new_message" %>
+      <%= link_to "修改", url_for(:controller=>"/weixin/messages",:action=>:draft_edit,:id=>@message.id), :class => "new_message btn btn-warning" %>
     <% else %>
-      <%= link_to "修改", url_for(:controller=>"/weixin/messages",:action=>:edit,:id=>@message.id), :class => "new_message" %>
+      <%= link_to "修改", url_for(:controller=>"/weixin/messages",:action=>:edit,:id=>@message.id), :class => "new_message btn btn-warning" %>
     <% end %>
   </div>
   <div class="show_title">

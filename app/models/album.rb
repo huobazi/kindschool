@@ -7,7 +7,7 @@ class Album < ActiveRecord::Base
   belongs_to :grade
   has_many :album_entries , :dependent => :destroy
 
-  validates :title, :presence => true, :length => {minimum: 3, maximum: 12}
+  validates :title, :presence => true, :length => {:minimum=> 3, :maximum=> 12}
 
    def show_main_img
     if self.album_entry_id
