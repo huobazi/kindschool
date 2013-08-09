@@ -4,7 +4,7 @@
 <div class="message_div">
   <div class="message_title">
     草稿箱
-    <%= link_to "发消息", new_weixin_message_path, :class => "new_message" %>
+    <%= link_to "发消息", new_weixin_message_path, :class => "new_message btn btn-warning" %>
   </div>
   <div class="message_list">
     <ul class="data_list">
@@ -14,7 +14,7 @@
         <% @messages.each do |message| %>
           <li class="<%= message.entry_id.blank? ? "" : "return_li"%>">
             <a href="<%= url_for(:action=>:draft_show,:id=>message.id) %>" title="查看信息">
-              <div><label class="message_user">发件人:<%=message.sender ? message.sender.name : ""%></label><label class="message_time"><%=message.send_date ? message.send_date.to_long_datetime : ""%></label></div>
+              <div><label class="message_user">发件人:<%=message.sender ? message.sender_name : ""%></label><label class="message_time"><%=message.send_date ? message.send_date.to_long_datetime : ""%></label></div>
               <% if message.entry_id %>
                 <div class="message_content">回复内容:<%= truncate(message.content) %></div>
               <% else %>

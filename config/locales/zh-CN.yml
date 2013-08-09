@@ -240,9 +240,9 @@ zh-CN:
       weixin_share_user: "推送记录详细"
     attributes:
       admin_user:
-        current_sign_in_at: "当前登陆时间"
-        last_sign_in_at: "最后登陆时间"
-        sign_in_count: "登陆次数"
+        current_sign_in_at: "当前登录时间"
+        last_sign_in_at: "最后登录时间"
+        sign_in_count: "登录次数"
         password: "密码"
         password_confirmation: "确认密码"
       asset_img:
@@ -514,6 +514,9 @@ zh-CN:
         student_info_id: "学员"
         student_info_label: "学员"
         tp: "类型"
+        siesta: "午休"
+        dine: "进餐"
+        reward: "评价星数"
       seedling_record:
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"
@@ -544,6 +547,7 @@ zh-CN:
         tp: "类型"
         title: "相册标题"
         content: "内容"
+        is_top: "是否置顶"
       album_entry:
         album: "相册"
         asset_img: "图片"

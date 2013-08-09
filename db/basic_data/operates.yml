@@ -368,6 +368,19 @@ forum_show:
   params: ""
   protocol: ""
   <<: *DEFAULTS
+
+topic_entry_edit:
+  id: 3011
+  parent_id: 3
+  name: "修改贴子回复"
+  level: 2
+  sequence: 0
+  note: "修改贴子回复"
+  controller: "my_school/topic_entries"
+  action: "edit"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
 #||||||||||||||||||||||||||人员管理功能
 squad_manage:
   id: 4001
@@ -1652,6 +1665,18 @@ interest_activity_destroy_multi:
   protocol: ""
   <<: *DEFAULTS
 
+activity_entry_edit:
+  id: 10016
+  parent_id: 10
+  name: "修改活动回复"
+  level: 2
+  sequence: 0
+  note: "修改活动回复"
+  controller: "my_school/activity_entries"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
 news_index:
   id: 11000
   parent_id: 2
@@ -1739,5 +1764,17 @@ student_info_execl:
   note: "学员信息下载"
   controller: "my_school/student_infos"
   action: "student_execl"
+  protocol: ""
+  <<: *DEFAULTS
+
+student_infos_download:
+  id: 13000
+  parent_id: 5
+  name: "学籍表格下载"
+  level: 2
+  sequence: 4
+  note: "学籍表格下载"
+  controller: "my_school/student_infos"
+  action: "download_student_infos"
   protocol: ""
   <<: *DEFAULTS

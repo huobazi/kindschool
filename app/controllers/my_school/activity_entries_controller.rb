@@ -20,6 +20,25 @@ class MySchool::ActivityEntriesController < MySchool::ManageController
     end
   end
 
+  def edit
+    @activity_entry = ActivityEntry.find(params[:id])
+    if params[:page]
+      @page = params[:page]
+    end
+  end
+
+  def update
+    @activity_entry = ActivityEntry.find(params[:id])
+
+    if @activity_entry.update_attributes(params[:activity])
+      flash[:success] = "添加活动回复成功"
+    else
+      flash[:error] = "添加回复失败"
+    end
+    redirect_to my_school_activity_path(@activity_entry.activity_id, anchor: "activity_entry_#{@activity_entry.id}", page: params[:page])
+
+  end
+
   def destroy
     @activity_entry = ActivityEntry.find(params[:id])
     if current_user.tp == 2

@@ -2,9 +2,40 @@
   <div class="avatar pull-left"><img src="<%= growth_record.student_info.user.asset_logo ? growth_record.student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
   </div>
   <div class="right_info">
+    <% if controller_name == "garden_growth_records" %>
+      <div class="reward pull-right">
+      </div>
+    <% end %>
+    <div class="pull-right">
+      <% if controller_name == "growth_records" %>
+        <% if choose_operate_show("my_school/growth_records/show") %>
+          <a title="查看<%= growth_record.student_info_label %>的成长记录" alt="要看<%= growth_record.student_info_label %>的成长记录" href="<%= my_school_growth_record_path(growth_record) %>"><i class="icon-eye-open"></i></a>
+        <% end %>
+      <% else %>
+        <% if choose_operate_show("my_school/garden_growth_records/show") %>
+          <a title="查看<%= growth_record.student_info_label %>的成长记录" alt="要看<%= growth_record.student_info_label %>的成长记录" href="<%= my_school_growth_record_path(growth_record) %>"><i class="icon-eye-open"></i></a>
+        <% end %>
+      <% end %>
+      <% if controller_name == "growth_records" %>
+        <% if choose_operate_show("my_school/growth_records/edit") %>
+          <a title="编辑<%= growth_record.student_info_label %>的成长记录" alt="编辑<%= growth_record.student_info_label %>的成长记录" href="<%= edit_my_school_growth_record_path(growth_record) %>"><i class="icon-edit"></i></a>
+        <% end %>
+      <% else %>
+        <% if choose_operate_show("my_school/garden_growth_records/edit") %>
+          <a title="编辑<%= growth_record.student_info_label %>的成长记录" alt="编辑<%= growth_record.student_info_label %>的成长记录" href="<%= edit_my_school_garden_growth_record_path(growth_record) %>"><i class="icon-edit"></i></a>
+        <% end %>
+      <% end %>
+    </div>
     <div class="infos">
       <div class="title">
-        <a href="<%= url_for(my_school_growth_record_path(growth_record)) %>"><em>从</em><abbr><%= growth_record.start_at.try(:to_short_datetime) %></abbr><em>&nbsp;到&nbsp;</em><abbr><%= growth_record.end_at.try(:to_short_datetime) %></abbr></a>
+        <% if controller_name == "growth_records" %>
+          <%= link_to "#{growth_record.student_info_label}的成长记录", my_school_growth_record_path(growth_record) %>
+        <% else %>
+          <%= link_to "#{growth_record.student_info_label}的成长记录", my_school_garden_growth_record_path(growth_record) %>
+        <% end %>
+      </div>
+      <div class="title">
+        <em>从</em><abbr><%= growth_record.start_at.try(:to_short_datetime) %></abbr><em>&nbsp;到&nbsp;</em><abbr><%= growth_record.end_at.try(:to_short_datetime) %></abbr>
       </div>
       <div class="info">
         <em><%= growth_record.creater.try(:name) %></em>
@@ -13,4 +44,13 @@
     </div>
   </div>
 </div>
-
+<span style="display:none;" id="reward" for="<%= growth_record.reward %>"></span>
+<script type="text/javascript">
+var count = $("#reward").attr("for") || 0;
+var options = {
+    value: count,
+    max: 5,
+    enabled: false
+}
+$('.reward').rater(options);
+</script>

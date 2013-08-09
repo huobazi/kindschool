@@ -9,12 +9,12 @@
       <a href="<%= url_for(:action=>:outbox) %>" title="返回" class="weixin_return">返回</a>消息详情
     <% end %>
 
-    <%= link_to("删除",url_for(:controller=>"/weixin/messages",:action=>:destroy,:id=>@message.id),:method=>:delete, :confirm => "您确定删除该消息吗?", :class => "new_message")%>
+    <%= link_to("删除",url_for(:controller=>"/weixin/messages",:action=>:destroy,:id=>@message.id),:method=>:delete, :confirm => "您确定删除该消息吗?", :class => "new_message btn btn-warning")%>
 
     <% if action_name == "draft_show" %>
-      <%= link_to "修改", url_for(:controller=>"/weixin/messages",:action=>:draft_edit,:id=>@message.id), :class => "new_message" %>
+      <%= link_to "修改", url_for(:controller=>"/weixin/messages",:action=>:draft_edit,:id=>@message.id), :class => "new_message btn btn-warning" %>
     <% else %>
-      <%= link_to "修改", url_for(:controller=>"/weixin/messages",:action=>:edit,:id=>@message.id), :class => "new_message" %>
+      <%= link_to "修改", url_for(:controller=>"/weixin/messages",:action=>:edit,:id=>@message.id), :class => "new_message btn btn-warning" %>
     <% end %>
   </div>
   <div class="show_title">
@@ -36,7 +36,7 @@
       </label>
     </div>
     <div class="title">
-      <label>发件人:<%= @message.sender ? @message.sender.name : "" %></label>
+      <label>发件人:<%= @message.sender_name %></label>
     </div>
     <div class="title">
       <label>标 题:<%= @message.title %></label>
@@ -46,6 +46,9 @@
     </div>
     <div class="limit_title">
       <label>发送类型:<%= @message.tp == 1 ? "短信加站内信" : "站内信" %></label>
+    </div>
+    <div class="limit_title">
+      <label>审核状态:<%= Message::STATUS[@message.approve_status]%></label>
     </div>
     <% if action_name=="outbox_show" %>
       <div class="limit_title">
@@ -80,7 +83,7 @@
       <ul class="data_list">
         <% @return_messages.each do |message| %>
           <li>
-            <div><label class="message_user"><%=message.sender ? message.sender.name : ""%>:回复</label><label class="message_time"><%=message.send_date ? message.send_date.to_long_datetime : ""%></label></div>
+            <div><label class="message_user"><%=message.sender_name%>:回复</label><label class="message_time"><%=message.send_date ? message.send_date.to_long_datetime : ""%></label></div>
             <div class="message_content"><%= message.content %></div>
           </li>
         <% end %>

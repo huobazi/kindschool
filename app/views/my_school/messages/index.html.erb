@@ -50,7 +50,7 @@
         <table class="list">
           <%= form_tag my_school_message_path(@message,:tp=>"receiver"), :method=> :delete, :id => "destroy_multi_form" do %>
             <tr>
-              <th><input type="checkbox" name="" value="" alt="全选" id="message_all">全选</th>
+              <th><input type="checkbox" name="" value="" alt="全选" id="message_all"><label for="message_all" style="display: inline;">&nbsp;全选</label></th>
               <th>发送人</th>
               <th>标题</th>
               <th>发布时间</th>
@@ -61,7 +61,7 @@
             <% @message.each do |message| %>
               <tr>
                 <td><input id="message_<%= message.id %>" class="message_check" name="message[]" type="checkbox" value="<%= message.id %>" /></td>
-                <td><%= message.sender ? message.sender.name : ""%></td>
+                <td><%= message.sender_name %></td>
                 <td><%= link_to "#{message.title}",:action=>:show,:id=>message.id %></td>
                 <td><%= message.send_date ? message.send_date.to_all_datetime : "" %></td>
                 <td><%= message.read_status == 1 ? "已读" : "未读" %></td>

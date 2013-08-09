@@ -1,6 +1,8 @@
 <%unless @squads.blank? %>
-  <span>班级<%= select_tag "#{params[:name] || 'class_number'}",
+  <span>班级&nbsp;&nbsp;<%= select_tag "#{params[:name] || 'class_number'}",
       options_for_select(@squads.collect{|s|[s.name,s.id]} )  %></span>
+    <br />
+    <br />
   <% if params[:no_student].blank? %>
     <div id="student_partial">
       <%(@student_infos||[]).each do |st_in|%>

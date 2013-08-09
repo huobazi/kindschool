@@ -1,12 +1,13 @@
 source 'http://ruby.taobao.org'
 #source 'https://rubygems.org'
 
+
 gem 'rails', '3.2.13'
 gem 'thin'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+gem 'mysql2','0.3.11'
 gem 'activeadmin'
 # Gems used only for assets and not required
 # in production environments by default.
@@ -61,3 +62,5 @@ gem "acts_as_paranoid", "~>0.4.0"
 gem "carrierwave"
 #https://github.com/Macrow/rails_kindeditor
 gem "rails_kindeditor"
+
+gem 'roo'

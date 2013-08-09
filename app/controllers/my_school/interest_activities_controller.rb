@@ -85,12 +85,16 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
   end
 
   def create
-    if params[:activity].present?
-      if current_user.get_users_ranges[:tp] == :teachers
-        unless current_user.get_users_ranges[:squads].collect(&:id).include?(params[:activity][:squad_id].to_i)
-          flash[:error] = "非法操作"
-          redirect_to :action => :index
-          return
+    if params[:visible].presence == "all"
+      params[:activity].delete :squad_id
+    else
+      if params[:activity].present?
+        if current_user.get_users_ranges[:tp] == :teachers
+          unless current_user.get_users_ranges[:squads].collect(&:id).include?(params[:activity][:squad_id].to_i)
+            flash[:error] = "非法操作"
+            redirect_to :action => :index
+            return
+          end
         end
       end
     end

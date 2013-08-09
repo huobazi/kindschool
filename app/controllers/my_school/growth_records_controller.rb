@@ -11,7 +11,31 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     end
     render :index
   end
-
+  def delete_img
+    if current_user.get_users_ranges[:tp] == :student
+      @growth_record = @kind.growth_records.where("tp = ? and (creater_id = ? or student_info_id = ?)", 1, current_user.id, current_user.student_info.id).find_by_id(params[:id])
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @growth_record = GrowthRecord.where("student_infos.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) and tp=1",current_user.staff.id).joins("INNER JOIN student_infos on(student_infos.id = growth_records.student_info_id)").find_by_id(params[:id])
+    else
+      @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 1)
+    end
+    if @growth_record.nil?
+      flash[:error] = "没有权限或该宝宝在家成长记录不存在"
+      redirect_to :action => :home
+    end
+    if params[:img_id]
+      if img = @growth_record.asset_imgs.find_by_id(params[:img_id])
+        if img.destroy
+          flash[:notice] = "图片删除成功。"
+        else
+          flash[:error] = "图片删除失败。"
+        end
+      else
+        flash[:error] = "图片不存在。"
+      end
+    end
+    redirect_to :action=>:show,:id=>@growth_record.id
+  end
   def new
     if current_user.get_users_ranges[:tp] == :teachers
       flash[:notice] = "没有权限或非法操作"
@@ -36,11 +60,24 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     @growth_record = GrowthRecord.new(params[:growth_record])
     if current_user.get_users_ranges[:tp] == :student
       @growth_record.student_info_id = current_user.student_info.id
+      @growth_record.squad_name = current_user.student_info.squad.name
+    else
+      if (@squad = @kind.squads.find_by_id(params[:squad])) && @squad.name.present?
+        @growth_record.squad_name = @squad.name
+      else
+        flash[:error] = "非法操作"
+        redirect_to :action => :index
+        return
+      end
     end
     @growth_record.kindergarten_id = @kind.id
     @growth_record.creater_id = current_user.id
     @growth_record.tp = 1
-
+    unless params[:asset_imgs].blank?
+      params[:asset_imgs].each do |k,v|
+        @growth_record.asset_imgs << AssetImg.new(:uploaded_data=>v)
+      end
+    end
     if @growth_record.save!
       flash[:success] = "添加宝宝在家成长记录成功"
       redirect_to :action => :show, :id => @growth_record.id
@@ -96,6 +133,12 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     else
       @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 1)
     end
+    unless params[:asset_imgs].blank?
+      params[:asset_imgs].each do |k,v|
+        @growth_record.asset_imgs << AssetImg.new(:uploaded_data=>v)
+      end
+      @growth_record.save
+    end
     if @growth_record.update_attributes(params[:growth_record])
       flash[:success] = "修改宝宝在家成长记录成功"
       redirect_to :action => :show, :id => @growth_record.id
@@ -149,7 +192,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
   def squad_student_partial
     if grade=@kind.grades.where(:id=>params[:grade].to_i).first
       if squad = grade.squads.where(:id=>params[:squad].to_i).first
-         @student_infos = squad.student_infos
+        @student_infos = squad.student_infos
       end
     elsif squad = Squad.where(:id => params[:squad].to_i).first
       @student_infos = squad.student_infos

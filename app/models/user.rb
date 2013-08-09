@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates_as_paranoid
   attr_accessible :kindergarten_id, :logo,:login, :name, :note, :number, :status,:chain_code,
     :tp,:crypted_password,:salt,:role_id,:remember_token,:remember_token_expires_at,:chain_delete,
-    :gender,:phone,:area_id,:weixin_code,:token_key,:token_secret,:token_at, :email,:is_send,:is_receive
+    :gender,:phone,:area_id,:weixin_code,:wei_yi_code,:token_key,:token_secret,:token_at, :email,:is_send,:is_receive
 
   attr_accessible :password, :password_confirmation
   attr_accessor :password, :password_confirmation
@@ -28,18 +28,33 @@ class User < ActiveRecord::Base
   
   has_one  :approve_entry
 
-  before_save :encrypt_password
+  before_save :encrypt_password #,:automatically_generate_account
+  
+  before_create :automatically_generate_account, :unless => :role_student?
+  
 
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
   validates_length_of :phone, :is => 11
   validates :phone,:presence => true,:uniqueness => true#{ :scope => :kindergarten_id}
-  validates :name, :login, :kindergarten_id,:presence => true
+  validates :name, :kindergarten_id,:presence => true
+  validates :login,:presence => true , :if => :role_student?
   validates_uniqueness_of_without_deleted :login
   validates_uniqueness_of_without_deleted :email,:scope => :kindergarten_id, :allow_blank => true
+  validates_uniqueness_of_without_deleted :phone,:scope => :kindergarten_id, :allow_blank => true
 
   GENDER_DATA = {"M"=>"女","G"=>"男"}
   TP_DATA = {"0"=>"学员","1"=>"教职工","2"=>"管理员"}
   STATUS_DATA = {"start"=>"在园","graduate"=>"毕业","leave"=>"离开","freeze"=>"冻结"}
+
+  def automatically_generate_account
+   kind = self.kindergarten
+   user = kind.users.order("id desc").where(:tp=>0).first
+   if !user.blank?
+    self.login = user.login.next_number
+   else
+    self.login = PRE_STUDENT+"0001"
+   end
+  end
 
   def gender_label
     User::GENDER_DATA[self.gender.to_s]
@@ -70,6 +85,15 @@ class User < ActiveRecord::Base
     raise StandardError,"密码错误." unless u.authenticated?(password)
     u && u.authenticated?(password) ? u : nil
   end
+  
+  def self.authenticate_weiyi(login, password)
+    raise StandardError,"请输入用户名." if login.blank?
+    u = find_by_login(login)
+    raise StandardError,"不存在该用户." unless u
+    raise StandardError,"密码错误." unless u.authenticated?(password)
+    u && u.authenticated?(password) ? u : nil
+  end
+
   def authenticated?(password)
     crypted_password == encrypt(password)
   end
@@ -229,9 +253,9 @@ class User < ActiveRecord::Base
       user_ids = []
       squad = data[:squad]
       #学生不考虑发年级组长
-#      if squad.grade && squad.grade.staff && (user = squad.grade.staff.user)
-#        user_ids << user.id.to_s
-#      end
+      #      if squad.grade && squad.grade.staff && (user = squad.grade.staff.user)
+      #        user_ids << user.id.to_s
+      #      end
       if !data[:playgroup].blank?
         squads = data[:playgroup]
         squads.each do |squad_play|
@@ -252,6 +276,23 @@ class User < ActiveRecord::Base
       {:kind_id=>self.kindergarten_id,:user_id=>self.id,:status=>1}).joins("LEFT JOIN message_entries ON(messages.id = message_entries.message_id)").count("1")
   end
 
+  #完整的带角色名字
+  def full_name
+    "#{self.role ? self.role.name : ''} #{self.name}"
+  end
+  
+  #发送系统消息
+  #消息类型为2或者3
+  def send_system_message!(title,content,tp=2)
+    if title && content
+      message = Message.new(:title=>title,:content=>content,:tp=>tp,:send_date=>Time.now.utc,:kindergarten_id=>self.kindergarten_id,:status=>1)
+      sms = 0
+      sms = 1 if(tp == 2 && self.is_receive) || tp == 3
+      message.message_entries << MessageEntry.new(:phone=>self.phone,:receiver_id=>self.id,:sms=>sms)
+      message.save
+    end
+  end
+
   protected
   # before filter
   def encrypt_password
@@ -263,6 +304,7 @@ class User < ActiveRecord::Base
   def password_required?
     crypted_password.blank? || !password.blank?
   end
-
-  
+  def role_student?
+    self.tp != 0
+  end
 end

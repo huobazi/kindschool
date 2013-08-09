@@ -1,13 +1,6 @@
 <% f = form %>
 <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
-<% if params[:topic_category_id] %>
-  <%= f.input :topic_category, :validate => true, :as => :select, :collection => Hash[f.object.kindergarten.topic_categories.map{|topic_category| ["#{topic_category.name}", topic_category.id]}],:selected => params[:topic_category_id], :input_html=>{:disabled => true} %>
-  <%= f.input :topic_category_id, :as => :hidden, :input_html => {:value => params[:topic_category_id]} %>
-<% elsif action_name == "new" %>
-  <%= f.input :topic_category, :validate => true, :as => :select, :collection => Hash[f.object.kindergarten.topic_categories.map{|topic_category| ["#{topic_category.name}", topic_category.id]}],:input_html=>{:name=>"topic[topic_category_id]"} %>
-<% else %>
-  <%= f.input :topic_category_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
-<% end %>
+
 <% if action_name == "new" %>
   <% if current_user.get_users_ranges[:tp] == :student %>
     <%= f.input :squad_label, :required => true, :as => :string, :input_html => { :disabled => true, :value => current_user.student_info.squad.name } %>
@@ -24,10 +17,11 @@
       <% else %>
         <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
         <div class="controls">
-          <label>还未有负责的班级</label>
+          <label>没有班级,请先创建班级,才能继续操作</label>
         </div>
       <% end %>
     </div>
+    <br />
   <% else %>
     <div class="field controls">
       <%= radio_button_tag 'visible', 'all', :checked => true %><span class="field_prompt" for="visible_all">全园可见</span>
@@ -47,15 +41,26 @@
       <div id="grade_squad_partial">
       </div>
     </div>
+    <br />
   <% end %>
 
 <% else %>
   <%= f.input :squad_label, :as => :string, :disabled => true %>
 <% end %>
 
+<% if params[:topic_category_id] %>
+  <%= f.input :topic_category, :validate => true, :as => :select, :collection => Hash[f.object.kindergarten.topic_categories.map{|topic_category| ["#{topic_category.name}", topic_category.id]}],:selected => params[:topic_category_id], :input_html=>{:disabled => true} %>
+  <%= f.input :topic_category_id, :as => :hidden, :input_html => {:value => params[:topic_category_id]} %>
+<% elsif action_name == "new" %>
+  <%= f.input :topic_category, :validate => true, :as => :select, :collection => Hash[f.object.kindergarten.topic_categories.map{|topic_category| ["#{topic_category.name}", topic_category.id]}],:input_html=>{:name=>"topic[topic_category_id]"} %>
+<% else %>
+  <%= f.input :topic_category_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
+<% end %>
+
+
 <% if current_user.get_users_ranges[:tp] == :all %>
-  <%= f.input :is_show, :as => :boolean %>
-  <%= f.input :is_top, :as => :boolean %>
+  <%= f.input :is_top %>
+  <%= f.input :is_show %>
 <% end %>
 <%= f.input :title, :validate => true, :required => true, :input_html => {:class => "span5 profile_input required"} %>
 <%#= f.input :content, :validate => true, :required => true, :input_html => { :class => "span5" } %>
@@ -77,7 +82,7 @@
 
 <div class="control-group">
   <div class="controls">
-    <%= f.button :submit %>
+    <%= f.button :submit, disable_with: "正在提交" %>
   </div>
 </div>
 

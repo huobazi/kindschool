@@ -3,6 +3,11 @@
 class MySchool::AlbumEntriesController < MySchool::ManageController
    def create
    	 @album = @kind.albums.find(params[:album_id])
+    if current_user.get_users_ranges[:tp] == :student
+      flash[:error] = "没有权限"
+      redirect_to my_school_album_path(@album)
+      return
+    end
    	 @album_entry = @album.album_entries.new(params[:album_entry]) 
    	   flag = false
    	 unless params[:uploaded_data].blank?
@@ -27,9 +32,14 @@ class MySchool::AlbumEntriesController < MySchool::ManageController
 
    def new
       @album = @kind.albums.find(params[:album_id])
+    if current_user.get_users_ranges[:tp] == :student
+      flash[:error] = "没有权限"
+      redirect_to my_school_album_path(@album)
+      return
+    end
       @album_entry=AlbumEntry.new()
    end
-   
+
    def update
     @album = @kind.albums.find(params[:album_id])
    	@album_entry = @album.album_entries.find(params[:id])

@@ -7,7 +7,7 @@
 
 
     <%if current_user.is_send && @message%>
-      <%= link_to "发短信" ,url_for(:action=>:new,:message_id=>@message.id),:class=>'new_message' %>
+      <%= link_to "发短信" ,url_for(:action=>:new,:message_id=>@message.id),:class=>'new_message btn btn-warning' %>
     <% end %>
   </div>
   <div class="show_title">
@@ -15,7 +15,7 @@
       <label><%= @message.title %></label>
     </div>
     <div class="title">
-      <label>发件人:<%= @message.sender ? @message.sender.name : "" %></label>
+      <label>发件人:<%= @message.sender_name %></label>
     </div>
     <div class="limit_title">
       <label>时 间:<%= @message.send_date ? @message.send_date.to_long_datetime : "" %></label>
@@ -27,7 +27,7 @@
       <ul class="data_list">
         <% @return_messages.each do |message| %>
           <li>
-            <div><label class="message_user"><%=message.sender ? message.sender.name : ""%>:回复</label><label class="message_time"><%=message.send_date ? message.send_date.to_long_datetime : ""%></label></div>
+            <div><label class="message_user"><%=message.sender_name%>:回复</label><label class="message_time"><%=message.send_date ? message.send_date.to_long_datetime : ""%></label></div>
             <div class="message_content"><%= message.content %></div>
           </li>
         <% end %>

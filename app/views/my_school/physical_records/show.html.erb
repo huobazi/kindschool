@@ -57,40 +57,15 @@
 
     <div class="work_form">
       <div class="form_div">
-        <form class="form-horizontal">
-          <div class="control-group">
-            <label class="control-label">所属幼儿园</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=@kind.name %>
-              </label>
-            </div>
+        <div class="show" id="physical_record">
+          <div class="content_up">
+            <p class="title"><span><%= @physical_record.student_info_label %>的体检记录</span></p>
+            <p class="info">体检时间:<span class="time"><%= @physical_record.try(:send_date).try(:to_short_datetime) %></span>&nbsp;由&nbsp;<span class="link"><%= @physical_record.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @physical_record.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
-          <div class="control-group">
-            <label class="control-label">学员</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=@physical_record.student_info.user.try(:name) unless @physical_record.student_info.blank?  %>
-              </label>
-            </div>
+          <div class="content">
+            <%= raw(@physical_record.content) %>
           </div>
-          <div class="control-group">
-            <label class="control-label" >体检记录:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=raw @physical_record.content%>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >体检时间:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @physical_record.send_date.try(:to_short_datetime)%>
-              </label>
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>

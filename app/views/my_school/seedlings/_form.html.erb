@@ -44,37 +44,64 @@
 <div class="control-group">
 	<%=f.label :shot_at, '注射时间: ' ,:class=>"control-label"%>
 <div class="controls">
-  <%= f.text_field(:shot_at, :validate => true, :class => "time_datepicker") %>
+  <% if action_name == "new" %>
+    <%= f.text_field(:shot_at, :validate => true, :class => "time_datepicker") %>
+  <% else %>
+    <%= f.text_field(:shot_at, :validate => true, :class => "time_datepicker", :value => @seedling.shot_at.to_short_datetime) %>
+  <% end %>
 </div>
 </div>
 <div class="control-group">
 	<%=f.label :expire_at, '过期时间: ' ,:class=>"control-label"%>
-<div class="controls">
-  <%= f.text_field(:expire_at, :validate => true, :class => "time_datepicker") %>
+  <div class="controls">
+    <% if action_name == "new" %>
+      <%= f.text_field(:expire_at, :validate => true, :class => "time_datepicker") %>
+    <% else %>
+      <%= f.text_field(:expire_at, :validate => true, :class => "time_datepicker", :value => @seedling.expire_at.to_short_datetime) %>
+    <% end %>
+  </div>
 </div>
-</div>
-<div class="control-group">
-	<%=f.label :student_info_id, '学生: ' ,:class=>"control-label"%>
-<div class="controls">
-    <span>年级<%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]})%></span>
-     <div id="class_number_partial">
-       <%unless @squads.blank? %>
-        <span>班级<%= select_tag "class_number", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])) %></span>
-       <%end%>
-    <div id="student_partial">
-       <span >学生：
-       	<%(@student_infos||[]).each do |st_in|%>
-        <%=radio_button_tag("seedling_record[student_info_id]",st_in.id)%><%=st_in.name%>
-        <%end%>
-       </span>
-      </div>
-    </div>
+<% if action_name == "new" %>
+  <div class="control-group">
+    <%=f.label :student_info_id, '学生: ' ,:class=>"control-label"%>
+    <div class="controls">
+        <span>年级&nbsp;<%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]})%></span>
+        <br />
+        <br />
+         <div id="class_number_partial">
+           <%unless @squads.blank? %>
+            <span>班级&nbsp;&nbsp;<%= select_tag "class_number", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])) %></span>
+            <br />
+           <%end%>
+        <div id="student_partial">
+           <br />
+           <span >学生：&nbsp;&nbsp;
+            <%(@student_infos||[]).each do |st_in|%>
+            <%=radio_button_tag("seedling_record[student_info_id]",st_in.id)%><%=st_in.name%>
+            <%end%>
+           </span>
+          </div>
+        </div>
 
-</div>
-</div>
- <div class="control-group">
+    </div>
+  </div>
+<% else %>
+  <div class="control-group">
+    <%= f.label :student_info, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :student_info_label, :disabled => true %>
+    </div>
+  </div>
+<% end %>
+
+<%= hidden_field @seedling, :creater_id %>
+<div class="control-group">
 <div class="controls">
-<%= f.submit('创建',:class=>"btn") %>
+  <% if action_name == "new" %>
+    <%= f.submit "创建", :class => "btn" %>
+  <% else %>
+    <%= f.submit "更新", :class => "btn" %>
+  <% end %>
 </div>
 </div>
 <script>
@@ -103,16 +130,18 @@ $("input[name='commit']").click(function(){
     }
   }
 
-  if ( !($("input[name='seedling_record[student_info_id]']").is(':checked')) )  {
-    if( $("#grade").next("span.help-inline").length == 0 ) {
-      $("<span class='help-inline'>必须选择学员</span>").insertAfter($("#grade"))
-    }
-    flag.push(true); 
-  } else {
+  if ( $("input[name='seedling_record[student_info_id]']").is(':checked') )  {
     if($("#grade").next("span.help-inline").length > 0) {
       $("#grade").next("span.help-inline").remove()
     }
-    flag.push(false);
+    flag.push(false); 
+  } else if ( $("#seedling_record_student_info_label").length > 0 ) {
+    flag.push(false)
+  } else {
+    if( $("#grade").next("span.help-inline").length == 0 ) {
+      $("<span class='help-inline'>必须选择学员</span>").insertAfter($("#grade"))
+    }
+    flag.push(true);
   }
 
   for( i in flag ) {

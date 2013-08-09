@@ -6,11 +6,11 @@ class  MySchool::TopicsController < MySchool::ManageController
     if params[:topic_category_id]
       if topic_category = @kind.topic_categories.find_by_id(params[:topic_category_id])
         if current_user.get_users_ranges[:tp] == :student
-          @topics = @kind.topics.where("topic_category_id = ? and (creater_id = ? or squad_id = ? or squad_id is null)", topic_category.id, current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top ASC").("created_at DESC")
+          @topics = @kind.topics.where("topic_category_id = ? and (creater_id = ? or squad_id = ? or squad_id is null)", topic_category.id, current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top DESC").("created_at DESC")
         elsif current_user.get_users_ranges[:tp] == :teachers
-          @topics = @kind.topics.search(params[:topic] || {}).where("topic_category_id = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", topic_category.id, current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
+          @topics = @kind.topics.search(params[:topic] || {}).where("topic_category_id = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", topic_category.id, current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
         else
-          @topics = @kind.topics.where(:topic_category_id => topic_category.id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+          @topics = @kind.topics.where(:topic_category_id => topic_category.id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
         end
       else
         flash[:notice] = "没有权限或没有该论坛分类"
@@ -18,9 +18,9 @@ class  MySchool::TopicsController < MySchool::ManageController
       end
     else
       if current_user.get_users_ranges[:tp] == :student
-        @topics = @kind.topics.where("creater_id = ? or squad_id = ? or squad_id is null", current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+        @topics = @kind.topics.where("creater_id = ? or squad_id = ? or squad_id is null", current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
       elsif current_user.get_users_ranges[:tp] == :teachers
-        @topics = @kind.topics.search(params[:topic] || {}).where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
+        @topics = @kind.topics.search(params[:topic] || {}).where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
       else
         @topics = @kind.topics.search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top DESC").order("created_at DESC")
       end
@@ -44,6 +44,7 @@ class  MySchool::TopicsController < MySchool::ManageController
     end
 
     @topic_entry = TopicEntry.new
+    @topic_entry_count = @topic.topic_entries.count
     @topic_entry.topic_id = @topic.id
     @topic_entry.creater_id = current_user.id
     @topic_entries = @topic.topic_entries.page(params[:page] || 1).per(10)
@@ -66,12 +67,16 @@ class  MySchool::TopicsController < MySchool::ManageController
   end
 
   def create
-    if params[:topic].present? && params[:topic][:squad_id].present?
-      if current_user.get_users_ranges[:tp] == :teachers
-        unless current_user.get_users_ranges[:squads].collect(&:id).include?(params[:topic][:squad_id].to_i)
-          flash[:error] = "非法操作"
-          redirect_to :action => :index
-          return
+    if params[:visible].presence == "all"
+      params[:topic].delete :squad_id
+    else
+      if params[:topic].present? && params[:topic][:squad_id].present?
+        if current_user.get_users_ranges[:tp] == :teachers
+          unless current_user.get_users_ranges[:squads].collect(&:id).include?(params[:topic][:squad_id].to_i)
+            flash[:error] = "非法操作"
+            redirect_to :action => :index
+            return
+          end
         end
       end
     end

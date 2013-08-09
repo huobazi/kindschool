@@ -50,14 +50,17 @@
   <div class="control-group">
     <label class="control-label" for="inputPassword">是否发短信</label>
     <div class="controls">
-      <%= check_box_tag('message[tp]',"1",@message.tp==1)%>
+      <%  if action_name == "new" %>
+        <%= check_box_tag('message[tp]',"1",true)%>
+      <% else %>
+        <%= check_box_tag('message[tp]',"1",@message.tp==1)%>
+      <% end %>
       <div class="count_div">
         <div id="sms_count">
           开通收短信的用户将收到短信
         </div>
       </div>
     </div>
-
   </div>
 <%end%>
 
@@ -112,42 +115,43 @@
   });
   var load_users = [];
   $(function() {
-    function load_form(){
-      var content = $("#message_content").val();
-      var title = $("#message_title").val();
-      $("#message_inputs input")
-      $.cookie("m_c", content, {expires: 30,  path: '/'});
-      $.cookie("m_t", title, {expires: 30, path: '/'});
-      ids = [];
-      $("#message_inputs input").each(function(){
-        ids.push($(this).val());
-      });
-      $.cookie("m_u", ids.join(","), {expires: 30, path: '/'});
-    }
-    function set_form(){
-      $("#message_content").val($.cookie("m_c"));
-      $("#message_title").val($.cookie("m_t"));
-      if($.cookie("m_u")){
-        load_users = $.cookie("m_u").split(",");
+<% if action_name == "new"  %>
+      function load_form(){
+        var content = $("#message_content").val();
+        var title = $("#message_title").val();
+        $("#message_inputs input")
+        $.cookie("m_c", content, {expires: 30,  path: '/'});
+        $.cookie("m_t", title, {expires: 30, path: '/'});
+        ids = [];
+        $("#message_inputs input").each(function(){
+          ids.push($(this).val());
+        });
+        $.cookie("m_u", ids.join(","), {expires: 30, path: '/'});
       }
-      load_length();
-    }
-    $("#message_content,#message_title").change(function(){load_form()});
-    $(window).load(function(){
-      set_form();
-<% if action_name == "draft_edit"%>
-        $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_edit_ids,:id=>@message.id) %>");
-<% end %>
-<% if action_name == "new" %>
+      function set_form(){
+        $("#message_content").val($.cookie("m_c"));
+        $("#message_title").val($.cookie("m_t"));
+        if($.cookie("m_u")){
+          load_users = $.cookie("m_u").split(",");
+        }
+        load_length();
+      }
+      $("#message_content,#message_title").change(function(){load_form()});
+      $(window).load(function(){
+        set_form();
   <% if @receiver_id %>
           $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_users_all) %>",{receiver_id:<%= @receiver_id %>,load_ids:load_users});
   <%else%>
-        if(load_users.length > 0){
-          $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_users_all) %>",{ids:load_users});
-        }
+          if(load_users.length > 0){
+            $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_users_all) %>",{ids:load_users});
+          }
   <% end %>
+      })
+<% elsif action_name == "draft_edit" %>
+      $(window).load(function(){
+        $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_edit_ids,:id=>@message.id) %>");
+      })
 <% end %>
-    })
     $("#message_inputs .message_user label").live('click',function(){
       if($(this).parent().siblings().size() == 1){
         $(this).parent().parent().remove();

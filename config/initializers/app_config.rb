@@ -3,6 +3,9 @@ SMS_CONFIG = YAML.load_file("config/sms.yml")[::Rails.env]
 # 创建平台配置文件
 WEBSITE_CONFIG = YAML.load_file("config/site_config/website.yml")[::Rails.env]
 
+#学生前缀名
+PRE_STUDENT = "WYS"
+
 #模板信息
 PAGE_CONTENTS = YAML.load_file("config/site_config/page_contents.yml")
 #默认action，可以快速使用，配置菜单功能
@@ -103,7 +106,8 @@ MENUS ={"home"=>{
     },
     "70000" => {
       "71000" => {
-        "my_school/topics" => ["index", "new", "edit", "show"]
+        "my_school/topics" => ["index", "new", "edit", "show"],
+        "my_school/topic_entries" => ["edit"]
       },
       "72000" => {
         "my_school/topics" => ["my"]
@@ -111,7 +115,8 @@ MENUS ={"home"=>{
     },
     "120000" => {
       "121000" => {
-        "my_school/activities" => ["index", "new", "edit", "show"]
+        "my_school/activities" => ["index", "new", "edit", "show"],
+        "my_school/activity_entries" => ["edit"]
       },
       "122000"=>{
         "my_school/interest_activities" => ["index", "new", "edit", "show"]

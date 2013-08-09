@@ -1,0 +1,6 @@
+<span >学生:&nbsp;&nbsp;
+<%(@student_infos||[]).each do |st_in|%>
+<%=radio_button_tag("physical_record[student_info_id]",st_in.id)%><%=st_in.name%>
+<%end%>       
+</span>
+

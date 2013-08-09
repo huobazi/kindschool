@@ -30,9 +30,12 @@ class Weixin::BaseController < ApplicationController
 
   
   private
+  def is_www?
+    return @required_type == "www" || @required_type.blank? || @required_type == "weiyi"
+  end
+  
   def my_school
     #    @kind = Kindergarten.first
-    
     if is_www?
       @required_type = :www
     else
@@ -45,9 +48,7 @@ class Weixin::BaseController < ApplicationController
     end
   end
 
-  def is_www?
-    return @subdomain == "" || @subdomain == "www"
-  end
+
 
   def get_validate_data
     @validate_data = []

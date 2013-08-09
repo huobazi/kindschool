@@ -13,7 +13,7 @@ class Weixin::MessagesController < Weixin::ManageController
     end
     params[:messages] = {} if params[:messages].blank?
     params[:messages][:message_entries_receiver_id_equals] = current_user.id
-    @messages = Message.search(params[:messages] || {}).where("messages.kindergarten_id=:kind_id AND messages.status = :status",
+    @messages = Message.search(params[:messages] || {}).where("messages.approve_status=0 AND messages.kindergarten_id=:kind_id AND messages.status = :status",
       {:kind_id=>@kind.id,:status=>1}).page(params[:page] || 1).per(10).order("messages.send_date DESC")
   end
   #发件箱
@@ -69,6 +69,10 @@ class Weixin::MessagesController < Weixin::ManageController
       params[:message].merge(:send_date => Time.now.utc)
     end
     respond_to do |format|
+      if params[:message]
+        tp_data = params[:message].delete(:tp)
+        params[:message][:tp] = tp_data.blank? ? 0 : 1
+      end
       if @message.save && @message.update_attributes(params[:message])
         flash[:notice] = '更新消息成功.'
         if @message.status == true
@@ -102,6 +106,11 @@ class Weixin::MessagesController < Weixin::ManageController
   end
   def show
     if @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+      if @message.approve_status != 0
+        flash[:error] = '您无法查看该消息。'
+        redirect_to(:action=>:index)
+        return
+      end
       if entry = @message.message_entries.find_by_receiver_id(current_user.id)
         if !entry.read_status
           entry.update_attribute(:read_status, true)
@@ -141,6 +150,10 @@ class Weixin::MessagesController < Weixin::ManageController
   end
 
   def create
+    if params[:message]
+      tp_data = params[:message].delete(:tp)
+      params[:message][:tp] = tp_data.blank? ? 0 : 1
+    end
     @message = Message.new(params[:message])
     @message.kindergarten = @kind
     @message.send_date = Time.now.utc
@@ -184,6 +197,10 @@ class Weixin::MessagesController < Weixin::ManageController
   def update
     @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
     respond_to do |format|
+      if params[:message]
+        tp_data = params[:message].delete(:tp)
+        params[:message][:tp] = tp_data.blank? ? 0 : 1
+      end
       if @message.update_attributes(params[:message])
         flash[:notice] = '更新消息成功.'
         format.html { redirect_to(:action=>:outbox_show,:id=>@message.id) }

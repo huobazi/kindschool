@@ -19,13 +19,21 @@
  <div class="control-group">
  	<%=f.label :start_at, '开始时间:' ,:class=>"control-label"%>
 <div class="controls">
-  <%= f.text_field(:start_at , :validate => true, :class => "time_datepicker") %>
+  <% if action_name == "new" %>
+    <%= f.text_field(:start_at , :validate => true, :class => "time_datepicker") %>
+  <% else %>
+    <%= f.text_field(:start_at , :validate => true, :class => "time_datepicker", :value => @cook_book.start_at.to_short_datetime) %>
+  <% end %>
 </div>
  </div>
 <div class="control-group">
 	<%=f.label :end_at, '结束时间: ' ,:class=>"control-label"%>
 <div class="controls">
-  <%= f.text_field(:end_at , :validate => true, :class => "time_datepicker") %>
+  <% if action_name == "new" %>
+    <%= f.text_field(:end_at , :validate => true, :class => "time_datepicker") %>
+  <% else %>
+    <%= f.text_field(:end_at , :validate => true, :class => "time_datepicker", :value => @cook_book.end_at.to_short_datetime) %>
+  <% end %>
 </div>
 </div>
 <div class="control-group">
@@ -39,9 +47,14 @@
   <%= f.text_field(:content,:class => 'profile_input') %>
 
 </div>
+<%= hidden_field @cook_book, :creater_id %>
  <div class="control-group">
 <div class="controls">
-<%= f.submit('创建',:class=>"btn") %>
+  <% if action_name == "new" %>
+    <%= f.submit('创建',:class=>"btn") %>
+  <% else %>
+    <%= f.submit('更新',:class=>"btn") %>
+  <% end %>
 </div>
 </div>
 <script type="text/javascript">

@@ -20,15 +20,15 @@
           </a>
           <ul>
             <li>
-            <% if controller_name == "growth_records" %>
-              <%if choose_operate_show('my_school/growth_records/home')%>
-                <%= link_to "宝宝在家", home_my_school_growth_records_path %></li>
+              <% if controller_name == "growth_records" %>
+                <%if choose_operate_show('my_school/growth_records/home')%>
+                  <%= link_to "宝宝在家", home_my_school_growth_records_path %></li>
               <% end %>
             <% else %>
               <%if choose_operate_show('my_school/garden_growth_records/garden')%>
-                <%= link_to "宝宝在园", garden_my_school_garden_growth_records_path %></li>
+                  <%= link_to "宝宝在园", garden_my_school_garden_growth_records_path %></li>
+                <% end %>
               <% end %>
-            <% end %>
             <li>/</li>
             <li>查看成长记录</li>
           </ul>
@@ -46,14 +46,14 @@
               </a>
             <% end %>
           <% else %>
-              <% if choose_operate_show("my_school/garden_growth_records/new") %>
-                <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new)%>" title="添加">
-                  <div class="work_action_add">
-                  </div>
-                  <div class="work_action_add_move">
-                  </div>
-                </a>
-              <% end %>
+            <% if choose_operate_show("my_school/garden_growth_records/new") %>
+              <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new)%>" title="添加">
+                <div class="work_action_add">
+                </div>
+                <div class="work_action_add_move">
+                </div>
+              </a>
+            <% end %>
           <% end %>
         </li>
         <li>
@@ -66,16 +66,16 @@
                 </div>
               </a>
             <% end %>
-        <% else %>
-          <% if choose_operate_show("my_school/garden_growth_records/garden") %>
-            <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:edit,:id=>@growth_record.id)%>" title="编辑">
-              <div class="work_action_edit">
-              </div>
-              <div class="work_action_edit_move">
-              </div>
-            </a>
+          <% else %>
+            <% if choose_operate_show("my_school/garden_growth_records/garden") %>
+              <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:edit,:id=>@growth_record.id)%>" title="编辑">
+                <div class="work_action_edit">
+                </div>
+                <div class="work_action_edit_move">
+                </div>
+              </a>
+            <% end %>
           <% end %>
-        <% end %>
         </li>
         <li>
           <% if controller_name == "growth_records" %>
@@ -106,14 +106,73 @@
         <div class="show" id="growth_record">
           <div class="content_up">
             <p class="title"><span><%= @growth_record.student_info_label %></span></p>
+            <% if controller_name == "garden_growth_records" %>
+              <span id="growth_record_reward" style="display: none;" value="<%= @growth_record.reward %>"></span>
+              <table class="attributes">
+                <tr>
+                  <th>评价星数</th>
+                  <td style="width: 20%;">
+                    <% @growth_record.reward.times do %>
+                      <div id="reward">
+                      </div>
+                    <% end %>
+                  </td>
+                  <th>午休</th>
+                  <td><%= raw @growth_record.siesta %></td>
+                </tr>
+                <tr>
+                  <th>班级</th>
+                  <td><%= @growth_record.squad_name %></td>
+                  <th>进餐</th>
+                  <td><%= raw @growth_record.dine %></td>
+                </tr>
+              </table>
+            <% else %>
+              <p class="info">所在班级: <%= @growth_record.squad_name %></p>
+            <% end %>
             <p class="info"><span class="time"><%= @growth_record.try(:start_at).try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @growth_record.try(:end_at).try(:to_short_datetime) %></span>&nbsp;由&nbsp;<span class="link"><%= @growth_record.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @growth_record.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
           <div class="content">
-            <%= simple_format h(@growth_record.content) %>
+            <%= simple_format raw(@growth_record.content) %>
+          </div>
+          <div class="spra">
+            <% @growth_record.asset_imgs.each do |img| %>
+              <div class="img_div">
+                <div class="img_border">
+                  &nbsp;&nbsp;
+                  <a href="<%= img.public_filename %>" class="fancybox"  title="">
+                    <img src="<%= img.public_filename(:middle) %>" alt="照片"class="img-polaroid"/>
+                  </a>
+                </div>
+                <% if current_user.id == @growth_record.creater_id || current_user.tp == 2 %>
+                  <%= link_to "删除",url_for(:action=>:delete_img,:id=>@growth_record.id,:img_id=>img.id) ,:class=>"btn"%>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
+      <%= render :partial=>"/my_school/comments/load_comments" ,:locals=>{:resource_type=>@growth_record.class.to_s,:resource_id=>@growth_record.id} %>
     </div>
   </div>
 
 </div>
+
+<script type="text/javascript">
+  var reward = $("#growth_record_reward").attr("value")
+  var options = {
+    value: reward,
+    max: 5,
+    enabled: false
+  }
+  $('#reward').rater(options);
+  $(function() {
+    $(".jCarouselLite").jCarouselLite({
+      btnNext: ".main .next",
+      btnPrev: ".main .prev",
+      auto: 2000,
+      onMouse:true
+    });
+    $(".fancybox").fancybox();
+  });
+</script>

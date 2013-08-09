@@ -27,4 +27,22 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
       redirect_to my_school_topic_path(@topic_entry.topic_id)
     end
   end
+
+  def edit
+    @topic_entry = TopicEntry.find(params[:id])
+    if params[:page].present?
+      @page = params[:page]
+    end
+  end
+
+  def update
+    @topic_entry = TopicEntry.find(params[:id])
+
+    if @topic_entry.update_attributes(params[:topic_entry])
+      flash[:success] = "修改回复成功"
+    else
+      flash[:sucees] = "修改回复失败"
+    end
+    redirect_to my_school_topic_path(@topic_entry.topic_id, anchor: "topic_entry_#{@topic_entry.id}", page: params[:page])
+  end
 end

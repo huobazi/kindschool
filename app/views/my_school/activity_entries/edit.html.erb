@@ -1,0 +1,67 @@
+<div class="show_publicity">
+  <img src="/t/colorful/small_publicity.jpg" alt="展示图"/>
+</div>
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>活动信息</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li>活动管理</li>
+            <li>/</li>
+            <li>修改活动回复</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="work_form">
+      <div class="form_div">
+        <%= simple_form_for @activity_entry, :validate => true, :url => {:controller=>"/my_school/activity_entries",:action=>:update, page: @page}, :html =>{:class=>"form-horizontal"} do |f| %>
+          <div class="control-group">
+            <label class="control-label" style="text-align: left;">编辑活动回贴</label>
+          </div>
+
+          <div class="control-group">
+            <%= f.kindeditor :note, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false%>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <%= f.button :submit, disable_with: "正在提交"   %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script type="text/javascript">
+var flag = []
+$("input[type='submit']").click(function(){
+    if (topic_content.html().length < 3 || topic_content.isEmpty()) {
+      if ( $("#activity_entry_note").next("span.help-inline").length == 0 ) {
+        $("<span class='help-inline'>长度不够(不得少于3个字符)<span>").insertAfter("#activity_entry_note")
+      }
+      flag.push(true)
+    } else {
+      if ( $("#activity_entry_note").next("span.help-inline").length > 0 ) {
+        $("#activity_entry_note").next("span.help-inline").remove()
+      }
+      flag.push(false)
+    }
+
+    for( i in flag ) {
+      if(flag[i] == true) {
+        flag.length = 0;
+        return false;
+      }
+    }
+
+  })
+</script>

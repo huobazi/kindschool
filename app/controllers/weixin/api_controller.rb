@@ -5,7 +5,7 @@ class Weixin::ApiController < Weixin::BaseController
   before_filter :token_validate , :if=>proc {|c| (@required_type != :www && @required_type != "") && @kind.weixin_status == 0 }
   #交互接口
   def index
-    if @required_type == :www || @required_type == ""
+    if is_www?
       load_platform
     else
       load_school
@@ -26,6 +26,11 @@ class Weixin::ApiController < Weixin::BaseController
           :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
           :FuncFlag=>0
         })
+    elsif xml_data[:Event] == "unsubscribe"
+      user = User.find_by_weixin_code(xml_data[:FromUserName])
+      if user
+        user.update_attribute(:weixin_code,nil)
+      end
     else
       if logged_in?
         #查看消息
@@ -162,6 +167,31 @@ class Weixin::ApiController < Weixin::BaseController
   #平台接口
   def load_platform
     xml_data = params[:xml]
+    if xml_data[:Event] == "subscribe"
+      x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+          :FromUserName=>xml_data[:ToUserName],
+          :CreateTime=>Time.now.to_i,
+          :MsgType=>"text",
+          :Content=>"欢迎关注微壹平台\n\r #{get_weiyi_menu} ",
+          :FuncFlag=>0
+        })
+    elsif xml_data[:Event] == "unsubscribe"
+      user = User.find_by_weiyi_code(xml_data[:FromUserName])
+      if user
+        user.update_attribute(:weiyi_code,nil)
+      end
+    else
+      if xml_data[:Content] == "1"
+        #绑定
+        x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+            :FromUserName=>xml_data[:ToUserName],
+            :CreateTime=>Time.now.to_i,
+            :MsgType=>"text",
+            :Content=>"欢迎关注微壹平台\n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_weiyi?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
+            :FuncFlag=>0
+          })
+      end
+    end
     render :text=>"平台"
   end
 
@@ -179,6 +209,10 @@ class Weixin::ApiController < Weixin::BaseController
     else
       "1、进行账号绑定\n\r 2、幼儿园介绍\n\r h、查看菜单"
     end
+  end
+  
+  def get_weiyi_menu
+    "1、进行账号绑定\n\r 2、平台介绍\n\r"
   end
 
   def get_read_new_message

@@ -32,15 +32,17 @@ class MySchool::SeedlingsController < MySchool::ManageController
 
    def new
      @seedling = @kind.seedling_records.new
+     @seedling.creater_id = current_user.id
      if (@grades = @kind.grades) && !@grades.blank?
         if (@squads = @grades.first.squads) && !@squads.blank?
           @student_infos = @squads.first.student_infos 
         end
      end
    end
-   
+
    def create
     @seedling = @kind.seedling_records.new(params[:seedling_record])
+    @seedling.creater_id = current_user.id
      respond_to do |format|
       if @seedling.save
         format.html { redirect_to my_school_seedlings_path, notice: '学员的疫苗创建成功.' }

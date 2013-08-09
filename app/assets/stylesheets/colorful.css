@@ -176,7 +176,12 @@ a{
     margin-top: 5px;
     padding-top: 3px;
 }
-
+.small_approve_ul{
+    background-color: #a5c600;
+    width: 100%;
+    margin-top: 5px;
+    padding-top: 3px;
+}
 .field_with_errors .message {
     color: #D00;
     padding-left: 5px;
@@ -781,6 +786,28 @@ table.user_attributes td {
     border-bottom: 1px dotted #DBDBDB;
 }
 
+table.attributes {
+  width: 100%;
+}
+
+table.attributes th {
+    background-color: #DBDBDB;
+    width: 80px;
+    font-weight: normal;
+    border-bottom: 1px dotted #948A8A;
+}
+table.attributes tr {
+  height: 35px;
+  line-height: 35px;
+}
+
+table.attributes td {
+    text-align: left;
+    text-indent: 10px;
+    background-color: #F5F5F5;
+    border-bottom: 1px dotted #DBDBDB;
+}
+
 .table a {
     color: #6E86CD;
 }
@@ -797,7 +824,7 @@ table.user_attributes td {
 .pagination ul a {
     color: #9B9B9B;
 }
-/*=======登陆===========*/
+/*=======登录===========*/
 .login{
     margin-top: 25px;
 }
@@ -1076,6 +1103,7 @@ table.user_attributes td {
 
 #image_wall li{
     float: left;
+    margin-right: 20px;
 }
 .blue{
     color: blue;
@@ -1084,13 +1112,18 @@ table.user_attributes td {
     color: red;
 }
 
-
-
 #topic_category_tabs {
-    padding-top: 10px;
+  padding-top: 20px;
+  padding-left: 50px;
+}
+.tabs_style {
+  padding-top: 20px;
+}
+.tabs_style a {
+  color: #333333;
 }
 #topic_category_tabs a {
-    color: #333333;
+  color: #333333;
 }
 .float_left {
     float: left;
@@ -1131,6 +1164,25 @@ a.album_a .album_img{
     width: 248px;
 }
 
+.photo_style .title {
+  margin-top: 15px;
+  font-size: 18px;
+}
+.photo_style .title .name {
+  color: #222;
+}
+.photo_style .actions {
+  padding-left: 185px;
+}
+.photo_style .image_actions {
+  padding-left: 15px;
+}
+.photo_style .image_actions a {
+  color: #333;
+}
+.photo_style .image_actions a:hover {
+  color: #222;
+}
 .paginate_div{
     width: 100%;
     display: inherit;
@@ -1138,6 +1190,10 @@ a.album_a .album_img{
 }
 .search_form{
     padding: 20px 20px 20px 35px;
+}
+
+.search_form input[type="submit"] {
+  margin-top: -10px;
 }
 .control-group .controls .show_receiver_entry{
     float: left;
@@ -1576,7 +1632,19 @@ ul.teacher_list li{
 }
 
 /*========成长记录===========*/
-
+.img_div{
+    float: left;
+    width: 30%;
+    padding: 5px;
+    overflow: hidden;
+    text-align: center;
+}
+.img_border{
+    padding: 3px;
+}
+.img_border img{
+    max-height: 100px;
+}
 .select_field .field_prompt {
     width: 160px;
     text-align: right;
@@ -1623,10 +1691,11 @@ span.help-inline {
     padding: 30px;
 }
 .show .title {
-    font-size: 28px;
+    font-size: 18px;
+    font-weight: bold;
 }
 .show .info {
-    font-size: 20px;
+    font-size: 17px;
     padding-top: 10px;
     color: #B6B6B6;
 }
@@ -1641,7 +1710,6 @@ span.help-inline {
 }
 
 .show .info .link {
-    text-decoration: underline;
 }
 
 .show .content_up {
@@ -1651,11 +1719,17 @@ span.help-inline {
 .show .content {
     padding-top: 20px;
     text-indent: 20px;
-    font-size: 20px;
+    font-size: 17px;
     word_wrap: break-word;
     inherit: auto;
-    min-height: 200px;
+    min-height: 100px;
     overflow: auto;
+}
+.show .spra {
+    display: inline-block;
+    padding-bottom: 5px;
+    padding-top: 2px;
+    width: 100%;
 }
 .show .logo {
     padding-top: 20px;
@@ -1809,6 +1883,9 @@ span.help-inline {
     text-decoration: none;
 }
 
+#cook_books.topics .topic .right_info {
+  padding-left: 10px;
+}
 fieldset.people_manage legend label {
     font-size: 18px;
     color: #646060;
@@ -1851,4 +1928,36 @@ fieldset.two_cols .control-group .controls input[type="checkbox"] {
 }
 fieldset.two_cols .control-group .controls input[type="radio"] {
   width: 40px;
+}
+
+/*===============角色管理===================*/
+
+fieldset.role ol li {
+  float: left;
+}
+
+fieldset.role ol li label {
+  width: 200px;
+}
+
+.role_submit_style {
+  padding-top: 15px;
+}
+
+.role_submit_style .controls {
+  margin: 0 auto;
+  width: 160px;
+}
+
+.role .attributes th {
+  width: 140px;
+}
+
+fieldset.staff_squad ol li {
+  float: left;
+  width: 200px;
+}
+
+.comment_submit{
+    padding: 5px;
 }

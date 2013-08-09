@@ -42,7 +42,7 @@
         <%end%>
         <%if choose_operate_show('my_school/news/destroy')%>
         <li>
-          <%= link_to(url_for(:controller=>"/my_school/news",:action=>:destroy,:id=>@new.id),:method=>:delete, :confirm => "您确定删除该通知吗?") do %>
+          <%= link_to(url_for(:controller=>"/my_school/news",:action=>:destroy,:id=>@new.id),:method=>:delete, :confirm => "您确定删除该新闻吗?") do %>
             <div class="work_action_delete">
             </div>
             <div class="work_action_delete_move">
@@ -63,48 +63,21 @@
 
     <div class="work_form">
       <div class="form_div">
-        <form class="form-horizontal">
-          <div class="control-group">
-            <label class="control-label">所属幼儿园:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=@kind.name %>
-              </label>
+        <div class="form_div">
+          <div class="show" id="news">
+            <div class="content_up">
+              <p class="title"><span><%= @new.title %></span></p>
+              <p class="info"><span class="link"><%= @new.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @new.try(:created_at).try(:to_long_datetime) %></span></p>
+              <%if @new.approve_status != 0 %>
+                <p class="info">审核状态:<span><%= News::STATUS[@new.approve_status] %></span>
+                </p>
+              <%end%>
+            </div>
+            <div class="content">
+              <%=raw @new.content %>
             </div>
           </div>
-          <div class="control-group">
-            <label class="control-label" >新闻标题:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=raw @new.title%>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >内容:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=raw @new.content%>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >创建时间:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @new.created_at.try(:to_long_datetime)%>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >审核状态:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= Activity::STATUS[@new.approve_status]%>
-              </label>
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>
