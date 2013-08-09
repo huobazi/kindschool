@@ -559,6 +559,7 @@ ul, li {
     border: 1px solid #CBCBCB;
     list-style-type: none;
     margin: 5px;
+    padding: 5px;
     border-radius:5px;
 }
 .message_div .message_list .data_list li:hover{
@@ -927,4 +928,47 @@ li.replies_count {
 #topic_category_tabs a {
     color: #333333;
     font-size: 16px;
+}
+/*===========回复=======*/
+.comment_submit{
+    padding: 5px;
+}
+.comment_submit .total{
+    padding: 5px 5px 10px;
+}
+.show_entry {
+    margin-bottom: 20px;
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #DDD;
+    padding: 10px 0 10px 0;
+}
+.normal_link {
+    color: #B6B6B6;
+}
+.bold_link {
+    font-weight: bold;
+    color: #000;
+}
+.show_entry:last-child {
+    border-bottom: none;
+}
+.show_entry .content_left {
+    float: left;
+    width: 20%;
+}
+.show_entry .content_right {
+    float :left;
+    width: 80%;
+}
+.show_entry .user_head_logo {
+    width: 100%;
+}
+
+.show_entry .info .author {
+    font-weight: bold;
+}
+
+.show_entry .content {
+    word_wrap: break-word;
 }

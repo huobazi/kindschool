@@ -1939,3 +1939,7 @@ fieldset.staff_squad ol li {
   float: left;
   width: 200px;
 }
+
+.comment_submit{
+    padding: 5px;
+}
