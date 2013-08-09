@@ -4,8 +4,9 @@
 <div class="message_div">
   <div class="message_title">
     <a href="<%= url_for(:action=>:index) %>" title="返回" class="weixin_return">返回</a>主题活动
-    <%= link_to("删除",url_for(:controller=>"/weixin/activities",:action=>:destroy,:id=>@activity.id),:method=>:delete, :confirm => "您确定删除该活动吗?", :class => "new_message")%>
-    <%= link_to "修改", edit_weixin_activity_path(@activity), :class => "new_message" %>
+
+    <%= link_to("删除",url_for(:controller=>"/weixin/activities",:action=>:destroy,:id=>@activity.id),:method=>:delete, :confirm => "您确定删除该活动吗?", :class => "new_message btn btn-warning")%>
+    <%= link_to "修改", edit_weixin_activity_path(@activity), :class => "new_message btn btn-warning" %>
   </div>
   <div class="message_list">
     <ul class="data_list">

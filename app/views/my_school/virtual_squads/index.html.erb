@@ -3,7 +3,9 @@
     $('#virtual_squad_created_at_equals').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
-    });
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });;
   })
 
 </script>

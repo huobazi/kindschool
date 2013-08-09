@@ -1632,7 +1632,19 @@ ul.teacher_list li{
 }
 
 /*========成长记录===========*/
-
+.img_div{
+    float: left;
+    width: 30%;
+    padding: 5px;
+    overflow: hidden;
+    text-align: center;
+}
+.img_border{
+    padding: 3px;
+}
+.img_border img{
+    max-height: 100px;
+}
 .select_field .field_prompt {
     width: 160px;
     text-align: right;
@@ -1710,8 +1722,14 @@ span.help-inline {
     font-size: 17px;
     word_wrap: break-word;
     inherit: auto;
-    min-height: 200px;
+    min-height: 100px;
     overflow: auto;
+}
+.show .spra {
+    display: inline-block;
+    padding-bottom: 5px;
+    padding-top: 2px;
+    width: 100%;
 }
 .show .logo {
     padding-top: 20px;
@@ -1938,4 +1956,8 @@ fieldset.role ol li label {
 fieldset.staff_squad ol li {
   float: left;
   width: 200px;
+}
+
+.comment_submit{
+    padding: 5px;
 }

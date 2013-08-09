@@ -181,13 +181,16 @@
             <div class="total">
               <b>共收到<%= @activity_entries.total_count %>条回复</b>
             </div>
-            <% @activity_entries.each do |activity_entry| %>
+            <% @activity_entries.each_with_index do |activity_entry, index| %>
+              <% params[:page] ? (page_index = params[:page].to_i) : (page_index = 1) %>
+              <%  level = (page_index-1)*10 + index + 1 %>
               <div id="activity_entry_<%= activity_entry.id %>" class="show_entry">
                 <div class="content_left">
                   <div class="user_head_logo"><img src="<%= activity_entry.creater.asset_logo ? activity_entry.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/></div>
                 </div>
                 <div class="content_right">
                   <p info>
+                    <span><%= level %>楼&nbsp;</span>
                     <span class="author">
                       <%= link_to activity_entry.creater.try(:name), my_school_user_path(@activity_entry.creater), :class => "bold_link" %>
                     </span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(activity_entry.created_at) %></span></p>

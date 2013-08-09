@@ -21,6 +21,7 @@
       </li>
     </ul>
     <br/>
+    <%= render :partial=>"/my_school/comments/load_comments" ,:locals=>{:resource_type=>@cook_book.class.to_s,:resource_id=>@cook_book.id} %>
   </div>
 </div>
 <%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
