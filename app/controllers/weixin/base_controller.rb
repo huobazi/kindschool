@@ -29,11 +29,12 @@ class Weixin::BaseController < ApplicationController
   end
 
   
-  private
+  protected
   def is_www?
+    Rails.logger.info("====@required_type======#{@required_type}==========")
     return @required_type == "www" || @required_type.blank? || @required_type == "weiyi"
   end
-  
+  private
   def my_school
     #    @kind = Kindergarten.first
     if is_www?
