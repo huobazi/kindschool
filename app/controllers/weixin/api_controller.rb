@@ -192,7 +192,7 @@ class Weixin::ApiController < Weixin::BaseController
           })
       end
     end
-    render :text=>"平台"
+    render :text=>x_data
   end
 
   private

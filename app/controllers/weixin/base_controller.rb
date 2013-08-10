@@ -31,13 +31,13 @@ class Weixin::BaseController < ApplicationController
   
   protected
   def is_www?
-    Rails.logger.info("====@subdomain======#{@subdomain}==========")
+    Rails.logger.info("==1==@subdomain======#{@subdomain}==========")
     return @subdomain == "www" || @subdomain.blank? || @subdomain == "weiyi"
   end
   private
   def my_school
     #    @kind = Kindergarten.first
-    Rails.logger.info("====@required_type======#{@required_type}==========")
+    Rails.logger.info("==2==@subdomain======#{@subdomain}==========")
     if is_www?
       @required_type = :www
     else
@@ -67,11 +67,13 @@ class Weixin::BaseController < ApplicationController
       @current_user ||= session[:user] && User.find_by_id(session[:user]) || :false
     else
       if Digest::SHA1.hexdigest(get_validate_data) == params[:signature]
-        if xml_data = params[:xml]
-          if self.current_user = User.find_by_weixin_code_and_kindergarten_id(xml_data[:FromUserName],@kind.id)
-          else
-            session[:user] = nil
-            @current_user = :false
+        unless is_www?
+          if xml_data = params[:xml]
+            if self.current_user = User.find_by_weixin_code_and_kindergarten_id(xml_data[:FromUserName],@kind.id)
+            else
+              session[:user] = nil
+              @current_user = :false
+            end
           end
         end
       else
