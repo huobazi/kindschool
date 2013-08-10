@@ -971,3 +971,33 @@ li.replies_count {
 .show_entry .content {
     word_wrap: break-word;
 }
+
+/*=======成长记录==============*/
+
+.message_div .message_list .data_list ul.rater-star li {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+table.attributes {
+  width: 100%;
+}
+
+table.attributes th {
+    background-color: #DBDBDB;
+    width: 80px;
+    font-weight: normal;
+    border-bottom: 1px dotted #948A8A;
+}
+table.attributes tr {
+  height: 30px;
+  line-height: 30px;
+}
+
+table.attributes td {
+    text-align: left;
+    text-indent: 10px;
+    background-color: #F5F5F5;
+    border-bottom: 1px dotted #DBDBDB;
+}

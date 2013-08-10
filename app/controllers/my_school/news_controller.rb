@@ -51,6 +51,11 @@ class MySchool::NewsController <  MySchool::ManageController
 
    def show
    	@new = @kind.news.find(params[:id])
+
+    ActiveRecord::Base.transaction do
+      @new.show_count += 1
+      @new.save
+    end
    end
 
    def destroy

@@ -38,7 +38,13 @@
     <% if action_name == "new" %>
       <%= p.input :login, :validate => true, :hint => "之后不能改变" %>
     <% else %>
-      <%= p.input :login, :validate => true, :disabled => true, :hint => "您不能改变您的用户名" %>
+      <div class="control-group">
+        <%= p.label :login, class: "control-label" %>
+        <div class="controls">
+          <input type="text" value="<%= @staff.user.name %>" disabled="disabled" />
+          <p class="help-block">你不能改变你的用户名</p>
+        </div>
+      </div>
     <% end %>
     <% if action_name == "new" %>
       <%= p.input :password, :required => true, :validate => true %>

@@ -14,6 +14,7 @@
 /public/asset_logos/*
 /public/page_imgs/*
 /public/uploads/*
+/public/photo_galleries/*
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp

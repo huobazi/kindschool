@@ -17,15 +17,22 @@
     <%= javascript_include_tag "fancybox/jquery.fancybox",
       "fancybox/jquery.fancybox-buttons",
       "fancybox/jquery.fancybox-thumbs",
-      "fancybox/jquery.fancybox-media", 
-      "bootstrap-datepicker", 
+      "fancybox/jquery.fancybox-media",
+      "bootstrap-datepicker",
       "bootstrap-datepicker.zh-CN"
-    %>
+  %>
     <%= csrf_meta_tags %>
     <!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
   </head>
   <body lang="en">
     <%= yield %>
-    <%= render :partial => "/modules/colorful/weixin_foot" %>
+    <div class="food">
+      <div class="food_content">
+        <hr />
+        <label>
+          @2013 by 微壹. All rights reserved.
+        </label>
+      </div>
+    </div>
   </body>
 </html>

@@ -1695,7 +1695,7 @@ span.help-inline {
     font-weight: bold;
 }
 .show .info {
-    font-size: 17px;
+    font-size: 15px;
     padding-top: 10px;
     color: #B6B6B6;
 }
@@ -1826,7 +1826,7 @@ span.help-inline {
 
 .topics .topic .title abbr {
     color: #201919;
-    font-size: 20px;
+    font-size: 17px;
 }
 
 .topics .topic .title em {
@@ -1847,7 +1847,7 @@ span.help-inline {
 }
 
 .topics .topic .info em {
-    font-size: 16px;
+    font-size: 15px;
     font-style: normal;
 }
 
