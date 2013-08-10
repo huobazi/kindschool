@@ -1413,7 +1413,7 @@ garden_growth_records_edit:
   action: "edit"
   protocol: ""
   <<: *DEFAULTS
-garden_growth_records_edit:
+garden_growth_records_destroy:
   id: 8116
   parent_id: 8
   name: "删除成长记录(宝宝在园)"
@@ -1518,6 +1518,18 @@ album_entry_record_create:
   note: "照片集锦_单张图片上传"
   controller: "my_school/album_entries"
   action: "create"
+  protocol: ""
+  <<: *DEFAULTS
+
+personnel_sets_index:
+  id: 9100
+  parent_id: 9
+  name: "个人锦集"
+  level: 2
+  sequence: 0
+  note: "个人锦集"
+  controller: "my_school/personnel_sets"
+  action: "index"
   protocol: ""
   <<: *DEFAULTS
 
