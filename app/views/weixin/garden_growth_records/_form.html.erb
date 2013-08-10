@@ -80,6 +80,25 @@
   </div>
 </div>
 
+<div class="field">
+  <label class="field_prompt" for="growth_record_siesta">午休:</label>
+  <%= f.text_field :siesta, class: "text-content" %>
+</div>
+
+<div class="field">
+  <label class="field_prompt" for="growth_record_dine">进餐:</label>
+  <%= f.text_field :dine, class: "text-content" %>
+</div>
+
+<div class="field">
+  <label class="field_prompt">评价星数:</label>
+  <div id="reward"></div>
+  <% if action_name == "new" %>
+    <%= f.input :reward, as: :hidden %>
+  <% else %>
+    <%= f.input :reward, as: :hidden, input_html: {value: f.object.reward} %>
+  <% end %>
+</div>
 <div class="field" id="content_field">
   <label class="field_prompt" for="growth_record_content">内容:</label>
   <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :allowFlashUpload => false, :simple_mode => true %>
@@ -167,6 +186,17 @@ $(document).ready(function() {
       }
     }
 })
+
+
+  var count = $("#growth_record_reward").val() || 0;
+  var options = {
+    value: count,
+    max: 5,
+    after_click: function(ret) {
+      $('#growth_record_reward').val(ret.number);
+    }
+  }
+  $('#reward').rater(options);
 
 })
 </script>
