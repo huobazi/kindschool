@@ -59,7 +59,7 @@ class Weixin::MainController < Weixin::BaseController
             redirect_to :action => :weiyi_error_messages
             return
           end
-          user.update_attribute(:weiyi_code,params[:code])
+          user.update_attribute(:weiyi_code,(session[:weiyi_code] || params[:code]))
           # render :text=> "该微信账号已绑定，通过幼儿园的公共账号访问."
           flash[:success] = "该微信账户绑定成功，请通过幼儿园的公共账号访问."
           redirect_to :action => :weiyi_error_messages
