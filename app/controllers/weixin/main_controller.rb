@@ -36,7 +36,7 @@ class Weixin::MainController < Weixin::BaseController
         redirect_to :action => :weiyi_error_messages,:layout=>"colorful_weixin_weiyi"
         return
       else
-        user = User.find_by_weiyi_code(params[:code])
+        user = User.find_by_weiyi_code(session[:weiyi_code] || params[:code])
         unless user.blank?
           # render :text=> "该微信账号已绑定微壹平台微信公共帐号，通过幼儿园的公共账号访问."
           flash[:error] = "该微信账号已绑定微壹平台微信公共帐号，通过幼儿园的公共账号访问."
