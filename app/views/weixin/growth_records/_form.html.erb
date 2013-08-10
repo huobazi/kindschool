@@ -172,7 +172,18 @@ $(document).ready(function() {
         return false;
       }
     }
-})
+  })
+
+
+  var count = $("#growth_record_reward").val() || 0;
+  var options = {
+    value: count,
+    max: 5,
+    after_click: function(ret) {
+      $('#growth_record_reward').val(ret.number);
+    }
+  }
+  $('#reward').rater(options);
 
 })
 </script>
