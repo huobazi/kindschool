@@ -238,7 +238,7 @@ School::Application.routes.draw do
     end
     resources :main do
       collection do
-        get :bind_user,:error_messages,:get_user_all_teachers,:get_user_all_squads
+        get :bind_user,:error_messages,:get_user_all_teachers,:get_user_all_squads,:weiyi_error_messages
         post :bind_user
         get :bind_weiyi
         post :bind_weiyi
