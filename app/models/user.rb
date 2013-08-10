@@ -48,8 +48,9 @@ class User < ActiveRecord::Base
   STATUS_DATA = {"start"=>"在园","graduate"=>"毕业","leave"=>"离开","freeze"=>"冻结"}
 
   def automatically_generate_account
-   kind = self.kindergarten
-   user = kind.users.order("id desc").where(:tp=>0).first
+   #kind = self.kindergarten
+   #user = kind.users.order("id desc").where(:tp=>0).first
+   user = User.where(:tp=>0).order("id desc").first
    if !user.blank?
     self.login = user.login.next_number
    else
