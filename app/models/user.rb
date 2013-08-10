@@ -25,16 +25,18 @@ class User < ActiveRecord::Base
   has_many :news , :class_name=>"New"
 
   has_many :approve_module_users , :class_name=>"ApproveModuleUser"
-  
+
   has_one  :approve_entry
 
+  has_many :personal_sets ,:class_name=>"PersonalSet"
+
   before_save :encrypt_password #,:automatically_generate_account
-  
+
   before_create :automatically_generate_account, :unless => :role_student?
 
+
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
-  validates_length_of :phone, :is => 11
-  validates :phone,:presence => true,:uniqueness => true#{ :scope => :kindergarten_id}
+  validates :phone,:presence => true,:uniqueness => true, format: {with: /^(\+\d+-)?[1-9]{1}[0-9]{10}$/, message: "手机格式不正确"}#{ :scope => :kindergarten_id}
   validates :name, :kindergarten_id,:presence => true
   validates :login,:presence => true , :if => :role_student?
   validates_uniqueness_of_without_deleted :login

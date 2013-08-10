@@ -2,10 +2,10 @@
 class Weixin::ApiController < Weixin::BaseController
   protect_from_forgery :except=>:index
   #  include AuthenticatedSystem
-  before_filter :token_validate , :if=>proc {|c| (@required_type != :www && @required_type != "") && @kind.weixin_status == 0 }
+  before_filter :token_validate , :if=>proc {|c| WEBSITE_CONFIG["token_validate"] || (!is_www? && @kind.weixin_status == 0)}
   #交互接口
   def index
-    if @required_type == :www || @required_type.blank?
+    if is_www?
       load_platform
     else
       load_school
@@ -192,7 +192,7 @@ class Weixin::ApiController < Weixin::BaseController
           })
       end
     end
-    render :text=>"平台"
+    render :text=>x_data
   end
 
   private

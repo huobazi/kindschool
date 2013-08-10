@@ -249,8 +249,14 @@
     title: "照片集锦"
     height_level: "b"
     sequence: 1200
-
-
+  - id: 82000
+    name: "个人集锦"
+    operate_id: 9100
+    number: 82000
+    url: "/my_school/personal_sets"
+    title: "个人集锦"
+    height_level: "b"
+    sequence: 1200
 
 - id: 90000
   number: 90000

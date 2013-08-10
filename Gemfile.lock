@@ -237,7 +237,7 @@ DEPENDENCIES
   kaminari (~> 0.14.1)
   kaminari-bootstrap (~> 0.1.2)
   mini_magick (>= 3.5.0)
-  mysql2
+  mysql2 (= 0.3.11)
   pothoven-attachment_fu
   pry-rails
   rails (= 3.2.13)

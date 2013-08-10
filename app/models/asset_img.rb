@@ -7,9 +7,6 @@ class AssetImg < ActiveRecord::Base
   #    :thumbnails => { :thumb => '80x80>', :tiny => '40x40>' },
   #    :processor => :Rmagick
   has_many :children, :class_name=>'AssetImg', :foreign_key=>'parent_id'
-  has_many :album_entries
-
-
   belongs_to :resource, :polymorphic => true #指定图片的类型/对象
 
   has_attachment :content_type => :image,

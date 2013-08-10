@@ -3,11 +3,15 @@
     $('#growth_record_start_at_equals').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
-    });
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });;
     $('#growth_record_end_at_equals').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
-    });
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });;
   });
 </script>
 <div class="show_work">

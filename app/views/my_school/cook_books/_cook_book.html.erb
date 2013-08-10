@@ -1,5 +1,13 @@
 <div class="topic topic_line pull-left">
   <div class="right_info">
+    <div class="pull-right">
+      <% if choose_operate_show("my_school/cook_books/show") %>
+        <a href="<%= my_school_cook_book_path(cook_book) %>" title="查看菜谱" alt="编辑菜谱" ><i class="icon-eye-open"></i></a>
+      <% end %>
+      <% if choose_operate_show("my_school/cook_books/edit") %>
+        <a href="<%= edit_my_school_cook_book_path(cook_book) %>" title="编辑菜谱" alt="编辑菜谱"><i class="icon-edit"></i>
+      <% end %>
+    </div>
     <div class="infos">
       <div class="title">
         <a href="<%= url_for(my_school_cook_book_path(cook_book)) %>"><em>从</em><abbr><%= cook_book.start_at.try(:to_short_datetime) %></abbr><em>&nbsp;到&nbsp;</em><abbr><%= cook_book.end_at.try(:to_short_datetime) %></abbr></a>
@@ -7,6 +15,11 @@
       <div class="info">
         <em><%= CookBook::RANGE_TP_DATA[cook_book.range_tp.to_s] %></em><em>&nbsp;*&nbsp;</em><em><%= cook_book.creater.try(:name) %></em><em>&nbsp;创建于&nbsp;</em><abbr><%= cook_book.created_at.try(:to_long_datetime) %></abbr>
       </div>
+      <% if cook_book_counter == 0 %>
+        <div class="content" style="height: 200px;margin-top: 10px;">
+          <%= raw cook_book.content %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

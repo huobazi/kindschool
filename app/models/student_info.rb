@@ -17,6 +17,7 @@ class StudentInfo < ActiveRecord::Base
   just_define_datetime_picker :birthday, :add_to_attr_accessible => true
   just_define_datetime_picker :come_in_at, :add_to_attr_accessible => true
   just_define_datetime_picker :family_birthday, :add_to_attr_accessible => true
+  
 
   def self.verification_import(file,kind_id)
     spreadsheet = open_spreadsheet(file)

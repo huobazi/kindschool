@@ -102,6 +102,9 @@ MENUS ={"home"=>{
       "81000" =>{
         "my_school/albums" => ["index","new","show","edit"],
         "my_school/album_entries" => ["index","new","show","edit"]
+      },
+      "82000" => {
+        "my_school/personal_sets" => DEFULT_ACTION
       }
     },
     "70000" => {
