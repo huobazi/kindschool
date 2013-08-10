@@ -15,7 +15,7 @@ class PhotoGallery < ActiveRecord::Base
     :jpeg_quality=>75,
     :storage => :file_system,
     :max_size => 10.megabytes,
-    :thumbnails => { :thumb => '480x360>', :tiny => '40x30>',:middle=>'219x145>' },
+    :thumbnails => { :thumb => '480x360>', :tiny => '40x30>' },
     :processor => :MiniMagick#:Rmagick
   #:resize_to => '640x360>',
   #    :thumbnails => { :thumb => '140x105>' }

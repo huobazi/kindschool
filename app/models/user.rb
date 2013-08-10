@@ -38,7 +38,9 @@ class User < ActiveRecord::Base
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
   validates :phone,:presence => true,:uniqueness => true, format: {with: /^(\+\d+-)?[1-9]{1}[0-9]{10}$/, message: "手机格式不正确"}#{ :scope => :kindergarten_id}
   validates :name, :kindergarten_id,:presence => true
-  validates :login,:presence => true , :if => :role_student?
+  validates :login,:presence => true ,format: {with: /^PRE_STUDENT$/, message: "注册名不能以#{PRE_STUDENT}"} , :if => :role_student?
+  # validates :login,:presence => true,:uniqueness => true, format: {with: /^(\+\d+-)?[1-9]{1}[0-9]{10}$/, message: "手机格式不正确"}#{ :scope => :kindergarten_id}
+
   validates_uniqueness_of_without_deleted :login
   validates_uniqueness_of_without_deleted :email,:scope => :kindergarten_id, :allow_blank => true
   validates_uniqueness_of_without_deleted :phone,:scope => :kindergarten_id, :allow_blank => true
