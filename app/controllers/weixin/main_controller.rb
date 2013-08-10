@@ -31,7 +31,7 @@ class Weixin::MainController < Weixin::BaseController
     #4、不存在时，绑定的动作post的请求，绑定到code的字段里去，需要验证用户名密码
     #5、User 的authenticate取另外一个名字，验证密码时不加幼儿园id
     if @required_type == :www
-      if params[:code].blank?
+      if session[:weiyi_code].blank? && params[:code].blank?
         flash[:error] = "微信信息不正确"
         redirect_to :action => :weiyi_error_messages,:layout=>"colorful_weixin_weiyi"
         return
@@ -44,6 +44,11 @@ class Weixin::MainController < Weixin::BaseController
           return
         end
         unless request.post?
+          unless params[:code].blank?
+            session[:weiyi_code] = params[:code]
+          end
+          session[:weiyi_code] ||= params[:code]
+          
           render :layout=>"colorful_weixin_weiyi"
           return 
         end
