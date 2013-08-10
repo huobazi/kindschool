@@ -54,7 +54,7 @@ class Weixin::MainController < Weixin::BaseController
         end
         begin
           user = User.authenticate_weiyi(params[:login], params[:password])
-          unless user.weiyi_code.blank? && user.weiyi_code != params[:code]
+          if !user.weiyi_code.blank? && user.weiyi_code != params[:code]
             flash[:error] = "该账号已绑定了另一个微信账号"
             redirect_to :action => :weiyi_error_messages
             return
