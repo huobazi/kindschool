@@ -40,29 +40,34 @@ class Weixin::MainController < Weixin::BaseController
         unless user.blank?
           # render :text=> "该微信账号已绑定微壹平台微信公共帐号，通过幼儿园的公共账号访问."
           flash[:error] = "该微信账号已绑定微壹平台微信公共帐号，通过幼儿园的公共账号访问."
-          redirect_to :action => :weiyi_error_messages,:layout=>"colorful_weixin_weiyi"
+          redirect_to :action => :weiyi_error_messages
           return
         end
-        return unless request.post?
+        unless request.post?
+          render :layout=>"colorful_weixin_weiyi"
+          return 
+        end
         begin
           user = User.authenticate_weiyi(params[:login], params[:password])
           unless user.weiyi_code.blank? && user.weiyi_code != params[:code]
             flash[:error] = "该账号已绑定了另一个微信账号"
-            redirect_to :action => :weiyi_error_messages,:layout=>"colorful_weixin_weiyi"
+            redirect_to :action => :weiyi_error_messages
             return
           end
           user.update_attribute(:weiyi_code,params[:code])
           # render :text=> "该微信账号已绑定，通过幼儿园的公共账号访问."
-          flash[:error] = "该微信账号已绑定微壹平台微信公共帐号，通过幼儿园的公共账号访问."
-          redirect_to :action => :weiyi_error_messages,:layout=>"colorful_weixin_weiyi"
+          flash[:notice] = "该微信账号已绑定微壹平台微信公共帐号，请通过幼儿园的公共账号访问."
+          redirect_to :action => :weiyi_error_messages
         rescue StandardError => error
           @user_errors = error
+          render :layout=>"colorful_weixin_weiyi"
+          return 
         end
       end
     else
       # render :text=> "您需要关注\"微壹平台\"微信公共帐号."
       flash[:error] = "您需要关注\"微壹平台\"微信公共帐号."
-      redirect_to :action => :weiyi_error_messages,:layout=>"colorful_weixin_weiyi"
+      redirect_to :action => :weiyi_error_messages
     end
   end
 
