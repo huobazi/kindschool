@@ -11,6 +11,7 @@ ActiveAdmin.setup do |config|
     admin.build_menu do |menu|
       menu.add :label => "幼儿园管理", :priority => 2
       menu.add :label => "资料库", :priority => 2
+      menu.add :label => "微壹平台管理", :priority => 2
       menu.add :label => "系统配置", :priority => 4
     end
   end

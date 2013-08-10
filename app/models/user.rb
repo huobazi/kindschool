@@ -38,7 +38,11 @@ class User < ActiveRecord::Base
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
   validates :phone,:presence => true,:uniqueness => true, format: {with: /^(\+\d+-)?[1-9]{1}[0-9]{10}$/, message: "手机格式不正确"}#{ :scope => :kindergarten_id}
   validates :name, :kindergarten_id,:presence => true
-  validates :login,:presence => true , :if => :role_student?
+  # validates :login,:presence => true ,format: {with: /^[w][y][s]/, message: "注册名不能以#{PRE_STUDENT}"} , :if => :role_student?
+  validates :login,:presence => true #,format: {with: /^wys/, message: "注册名不能以#{PRE_STUDENT}"} , :if => :role_student?
+validates_format_of :login,:without=>/^#{PRE_STUDENT}/,:message=>"帐户不能以#{PRE_STUDENT}开头" 
+  # validates :login,:presence => true,:uniqueness => true, format: {with: /^(\+\d+-)?[1-9]{1}[0-9]{10}$/, message: "手机格式不正确"}#{ :scope => :kindergarten_id}
+
   validates_uniqueness_of_without_deleted :login
   validates_uniqueness_of_without_deleted :email,:scope => :kindergarten_id, :allow_blank => true
   validates_uniqueness_of_without_deleted :phone,:scope => :kindergarten_id, :allow_blank => true
@@ -48,8 +52,9 @@ class User < ActiveRecord::Base
   STATUS_DATA = {"start"=>"在园","graduate"=>"毕业","leave"=>"离开","freeze"=>"冻结"}
 
   def automatically_generate_account
-   kind = self.kindergarten
-   user = kind.users.order("id desc").where(:tp=>0).first
+   #kind = self.kindergarten
+   #user = kind.users.order("id desc").where(:tp=>0).first
+   user = User.where(:tp=>0).order("id desc").first
    if !user.blank?
     self.login = user.login.next_number
    else

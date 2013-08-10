@@ -28,11 +28,14 @@ class  MySchool::StudentInfosController < MySchool::ManageController
      if x.blank? && a.blank? && b.blank? && c.blank?
        StudentInfo.import(params[:file],@kind.id)
        redirect_to my_school_student_infos_path, notice: "学生信息导入成功."
+       return
      else
        redirect_to my_school_student_infos_path, notice: "#{x.join(',')}手机号或班级名字不能为空,#{a.join(',')}系统已经存在电话号码不能添加,#{b.join(',')}班级不存在,#{c.join(',')}手机号码重复"
+       return
      end
     else
       redirect_to my_school_student_infos_path, notice: "没有选择导入表格."
+      return
     end
     raise "导入模板出问题，请与管理员联系."
     rescue Exception =>ex
