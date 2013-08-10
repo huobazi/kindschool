@@ -3,7 +3,7 @@ class Weixin::MainController < Weixin::BaseController
   layout proc{ |controller| get_layout }
 
   before_filter :login_from_cookie
-  before_filter :login_required, :except => [:bind_user,:error_messages,:about,:contact_us]
+  before_filter :login_required, :except => [:bind_user,:error_messages,:about,:contact_us,:bind_weiyi]
 
   #平台首页
   def index
@@ -26,7 +26,7 @@ class Weixin::MainController < Weixin::BaseController
     #3、如果存在，就提示您已绑定成功，通过幼儿园的公共账号访问
     #4、不存在时，绑定的动作post的请求，绑定到code的字段里去，需要验证用户名密码
     #5、User 的authenticate取另外一个名字，验证密码时不加幼儿园id
-    if @required_type == "www"
+    if @required_type == :www
      if params[:code].blank?
        flash[:error] = "微信信息不正确"
        redirect_to :action => :error_messages
@@ -109,7 +109,7 @@ end
 
   #出错信息
   def error_messages
-  
+    @logo_url =  @kind && @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png'
   end
 
   #老师信息，动态加载
