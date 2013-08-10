@@ -4,7 +4,7 @@ SMS_CONFIG = YAML.load_file("config/sms.yml")[::Rails.env]
 WEBSITE_CONFIG = YAML.load_file("config/site_config/website.yml")[::Rails.env]
 
 #学生前缀名
-PRE_STUDENT = "WYS"
+PRE_STUDENT = "wys"
 
 #模板信息
 PAGE_CONTENTS = YAML.load_file("config/site_config/page_contents.yml")
