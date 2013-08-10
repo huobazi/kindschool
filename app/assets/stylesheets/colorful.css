@@ -788,17 +788,18 @@ table.user_attributes td {
 
 table.attributes {
   width: 100%;
+  font-size: 14px;
 }
 
 table.attributes th {
-    background-color: #DBDBDB;
+    background-color: #ECECEC;
     width: 80px;
     font-weight: normal;
     border-bottom: 1px dotted #948A8A;
 }
 table.attributes tr {
-  height: 35px;
-  line-height: 35px;
+  height: 20px;
+  line-height: 20px;
 }
 
 table.attributes td {
@@ -1638,6 +1639,18 @@ ul.teacher_list li{
     padding: 5px;
     overflow: hidden;
     text-align: center;
+    position: relative;
+}
+
+.img_div a.btn-delete {
+  position: absolute;
+  width: 21px;
+  height: 23px;
+  right: 2px;
+  background: url("/t/colorful/tips_delete.png") no-repeat 0 0;
+  top: -6px;
+  line-height: 26px;
+  color: #fff;
 }
 .img_border{
     padding: 3px;
@@ -1697,7 +1710,7 @@ span.help-inline {
 .show .info {
     font-size: 15px;
     padding-top: 10px;
-    color: #B6B6B6;
+    /* color: #B6B6B6; */
 }
 
 .show .info .time {
@@ -1722,7 +1735,6 @@ span.help-inline {
     font-size: 17px;
     word_wrap: break-word;
     inherit: auto;
-    min-height: 100px;
     overflow: auto;
 }
 .show .spra {
@@ -1826,7 +1838,7 @@ span.help-inline {
 
 .topics .topic .title abbr {
     color: #201919;
-    font-size: 17px;
+    font-size: 15px;
 }
 
 .topics .topic .title em {
@@ -1837,7 +1849,7 @@ span.help-inline {
 .topics .topic .title a:link, .topics .topic .title a:visited {
     color: #2c64d7;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .topics .topic .info {
@@ -1847,13 +1859,13 @@ span.help-inline {
 }
 
 .topics .topic .info em {
-    font-size: 15px;
+    font-size: 14px;
     font-style: normal;
 }
 
 .topics .topic .info abbr {
     color: #999;
-    font-size: 16px;
+    font-size: 14px;
     font-style: normal
 }
 

@@ -263,11 +263,17 @@ School::Application.routes.draw do
         get :grade_squad
         get :squad_student
       end
+      member do
+        get :delete_img
+      end
     end
     resources :garden_growth_records do
       collection do
         get :grade_squad
         get :squad_student
+      end
+      member do
+        get :delete_img
       end
     end
     resources :activities do

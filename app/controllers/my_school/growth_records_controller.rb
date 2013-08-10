@@ -22,20 +22,22 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     if @growth_record.nil?
       flash[:error] = "没有权限或该宝宝在家成长记录不存在"
       redirect_to :action => :home
-    end
-    if params[:img_id]
-      if img = @growth_record.asset_imgs.find_by_id(params[:img_id])
-        if img.destroy
-          flash[:notice] = "图片删除成功。"
+    else
+      if params[:img_id]
+        if img = @growth_record.asset_imgs.find_by_id(params[:img_id])
+          if img.destroy
+            flash[:notice] = "图片删除成功。"
+          else
+            flash[:error] = "图片删除失败。"
+          end
         else
-          flash[:error] = "图片删除失败。"
+          flash[:error] = "图片不存在。"
         end
-      else
-        flash[:error] = "图片不存在。"
       end
+      redirect_to :action=>:show,:id=>@growth_record.id
     end
-    redirect_to :action=>:show,:id=>@growth_record.id
   end
+
   def new
     if current_user.get_users_ranges[:tp] == :teachers
       flash[:notice] = "没有权限或非法操作"
