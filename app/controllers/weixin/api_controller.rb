@@ -183,11 +183,40 @@ class Weixin::ApiController < Weixin::BaseController
     else
       if xml_data[:Content] == "1"
         #绑定
+        if User.find_by_weiyi_code(xml_data[:FromUserName])
+          x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+              :FromUserName=>xml_data[:ToUserName],
+              :CreateTime=>Time.now.to_i,
+              :MsgType=>"text",
+              :Content=>"欢迎关注微壹平台  \n\r 您的账户已绑定成功",
+              :FuncFlag=>0
+            })
+        else
+          x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+              :FromUserName=>xml_data[:ToUserName],
+              :CreateTime=>Time.now.to_i,
+              :MsgType=>"text",
+              :Content=>"欢迎关注微壹平台  \n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_weiyi?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
+              :FuncFlag=>0
+            })
+        end
+      elsif xml_data[:Content] == "2"
+        if config = WeiyiConfig.find_by_number("about")
+          about = config.content
+        end
         x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
             :FromUserName=>xml_data[:ToUserName],
             :CreateTime=>Time.now.to_i,
             :MsgType=>"text",
-            :Content=>"欢迎关注微壹平台  \n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_weiyi?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
+            :Content=>"感谢您关注微壹平台  \n\r #{about}",
+            :FuncFlag=>0
+          })
+      else
+        x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+            :FromUserName=>xml_data[:ToUserName],
+            :CreateTime=>Time.now.to_i,
+            :MsgType=>"text",
+            :Content=>"欢迎关注微壹平台\n\r #{get_weiyi_menu} ",
             :FuncFlag=>0
           })
       end
@@ -212,7 +241,7 @@ class Weixin::ApiController < Weixin::BaseController
   end
   
   def get_weiyi_menu
-    "1、进行账号绑定\n\r 2、平台介绍\n\r"
+    "1、进行账号绑定\n\r 2、平台介绍\n\r 3、查看帮助菜单"
   end
 
   def get_read_new_message

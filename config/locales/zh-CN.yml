@@ -238,7 +238,11 @@ zh-CN:
       comment_databank: "点评资料库"
       weixin_share: "微信资料库推送"
       weixin_share_user: "推送记录详细"
+      weiyi_config: "微壹平台配置"
     attributes:
+      weiyi_config:
+        number: "编号"
+        content: "描述"
       admin_user:
         current_sign_in_at: "当前登录时间"
         last_sign_in_at: "最后登录时间"
