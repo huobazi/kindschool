@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>School</title>
+    <link rel="stylesheet" media="all" href=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <%= stylesheet_link_tag    "app_bootstrap", :media => "all" %>
+    <%= stylesheet_link_tag    "colorful_responsive","colorful_weixin", "datepicker", :media => "all" %>
+    <%= stylesheet_link_tag    "jquery.rater", :media => "all" %>
+    <%= stylesheet_link_tag    "fancybox/jquery.fancybox",
+      "fancybox/jquery.fancybox-buttons",
+      "fancybox/jquery.fancybox-thumbs" %>
+
+    <%= javascript_include_tag "colorful_weixin" %>
+    <%= javascript_include_tag "jquery.rater" %>
+    <%= javascript_include_tag "fancybox/jquery.fancybox",
+      "fancybox/jquery.fancybox-buttons",
+      "fancybox/jquery.fancybox-thumbs",
+      "fancybox/jquery.fancybox-media",
+      "bootstrap-datepicker",
+      "bootstrap-datepicker.zh-CN"
+  %>
+    <%= csrf_meta_tags %>
+    <!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
+  </head>
+  <body lang="en">
+    <%= yield %>
+    <div class="food">
+      <div class="food_content">
+        <hr />
+        <label>
+          @2013 by 微壹. All rights reserved.
+        </label>
+      </div>
+    </div>
+  </body>
+</html>
