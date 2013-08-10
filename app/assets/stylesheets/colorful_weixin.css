@@ -991,8 +991,8 @@ table.attributes th {
     border-bottom: 1px dotted #948A8A;
 }
 table.attributes tr {
-  height: 35px;
-  line-height: 35px;
+  height: 30px;
+  line-height: 30px;
 }
 
 table.attributes td {

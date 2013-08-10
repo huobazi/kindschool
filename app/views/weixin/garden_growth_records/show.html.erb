@@ -12,13 +12,26 @@
   <div class="message_list">
     <ul class="data_list">
       <li class="show">
-        <table class="attributes">
-          <tr>
-            <th>ssss</th>
-            <td>sss</td>
-          </tr>
-        </table>
         <p class="title"><span class="name"><%= @growth_record.student_info_label %></span></p>
+        <span id="growth_record_reward" style="display: none;" value="<%= @growth_record.reward %>"></span>
+        <div class="info">
+          <table class="attributes">
+            <tr>
+              <th>午休</th>
+              <td><%= @growth_record.siesta %></td>
+            </tr>
+            <tr>
+              <th>进餐</th>
+              <td><%= @growth_record.dine %></td>
+            </tr>
+            <tr>
+              <th>评价星数</th>
+              <td>
+                <div id="reward"></div>
+              </td>
+            </tr>
+          </table>
+        </div>
         <p class="info"><span><%= @growth_record.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span><%= @growth_record.end_at.try(:to_short_datetime) %></span></p>
         <p class="info">由<span class="author"><%= @growth_record.creater.try(:name) %></span>创建于&nbsp;<span><%= @growth_record.created_at.try(:to_long_datetime) %></span></p>
         <div class="content">
@@ -31,3 +44,13 @@
 </div>
 <%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
 <%= render :partial => "/modules/colorful/weixin_menu_one"%>
+
+<script type="text/javascript">
+  var reward = $("#growth_record_reward").attr("value")
+  var options = {
+    value: reward,
+    max: 5,
+    enabled: false
+  }
+  $('#reward').rater(options);
+</script>
