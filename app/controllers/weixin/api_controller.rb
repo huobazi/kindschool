@@ -1,5 +1,4 @@
 #encoding:utf-8
-require 'open-uri'
 class Weixin::ApiController < Weixin::BaseController
   protect_from_forgery :except=>:index
   #  include AuthenticatedSystem
@@ -120,9 +119,7 @@ class Weixin::ApiController < Weixin::BaseController
 
         elsif xml_data[:MsgType] == "image"
           photo = PhotoGallery.new
-          open(xml_data[:PicUrl]){|file|
-            photo.uploaded_data = file
-          }
+          photo.source_uri= xml_data[:PicUrl]
           current_user.personal_sets << photo
           current_user.save
         else
