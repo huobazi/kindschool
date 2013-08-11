@@ -82,10 +82,32 @@
     <% end %>
   </div>
 </div>
-
+<div class="field">
+  <label class="field_prompt">照片</label>&nbsp;&nbsp;
+  <% f.object.asset_imgs.each do |img| %>
+    <div class="img_div">
+      <div class="img_border">
+        &nbsp;&nbsp; <img src="<%= img.public_filename(:middle) %>" alt="照片"class="img-polaroid"/>
+      </div>
+    </div>
+  <% end %>
+  <% img_size = f.object.asset_imgs.size %>
+  <% if img_size < 2  %>
+    <% (2 - img_size).times.each do |i| %>
+      <div class="img_div">
+        <%= file_field_tag "asset_imgs[#{i}]",:for=>"img#{i}" %>
+        <br />
+        <div class="img_border">
+          &nbsp;&nbsp; <img src="/t/colorful/user_logo.png" alt="照片" id="img<%= i %>" class="img-polaroid"/>
+        </div>
+        <br />
+      </div>
+    <% end %>
+  <% end %>
+</div>
 <div class="field" id="content_field">
   <label class="field_prompt" for="growth_record_content">内容:</label>
-  <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :allowFlashUpload => false, :simple_mode => true %>
+  <%= f.text_area :content, :class => "text-area" %>
 </div>
 
 <% if current_user.get_users_ranges[:tp] == :student %>
@@ -186,4 +208,32 @@ $(document).ready(function() {
   $('#reward').rater(options);
 
 })
+</script>
+
+<script  type="text/javascript">
+  /**
+   * 使用HTML5 File API, 來即時預覽image
+   */
+  $("input[type=file]").change(function(){
+    var objUrl = getObjectURL(this.files[0]);
+    if (objUrl) {
+      $("#" + $(this).attr("for")).attr("src", objUrl) ;
+    }
+  }) ;
+
+  /**
+   * 建立一個可存取到該file的url
+   * PS: 瀏覽器必須支援HTML5 File API
+   */
+  function getObjectURL(file) {
+    var url = null ;
+    if (window.createObjectURL!=undefined) { // basic
+      url = window.createObjectURL(file) ;
+    } else if (window.URL!=undefined) { // mozilla(firefox)
+      url = window.URL.createObjectURL(file) ;
+    } else if (window.webkitURL!=undefined) { // webkit or chrome
+      url = window.webkitURL.createObjectURL(file) ;
+    }
+    return url ;
+  }
 </script>

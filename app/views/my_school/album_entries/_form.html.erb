@@ -12,12 +12,44 @@
  </div>
  <div class="control-group">
  	<%=f.label nil, '相片文件:' ,:class=>"control-label"%>
-<div class="controls">
-     <%= file_field_tag "uploaded_data" %>
-</div>
+  <div class="controls">
+    <%= file_field_tag "uploaded_data" %>
+  </div>
+  <div class="controls img_border" style="margin-top: 10px;">
+    <img src="/t/colorful/user_logo.png" alt="照片" id="photo" class="img-polaroid"/>
+  </div>
+
  </div>
   <div class="control-group">
    <div class="controls">
     <%= f.submit('创建',:class=>"btn") %>
    </div>
   </div>
+
+<script  type="text/javascript">
+  /**
+   * 使用HTML5 File API, 來即時預覽image
+   */
+  $("input[type=file]").change(function(){
+    var objUrl = getObjectURL(this.files[0]);
+    if (objUrl) {
+      $("#photo").attr("src", objUrl)
+    }
+  }) ;
+
+  /**
+   * 建立一個可存取到該file的url
+   * PS: 瀏覽器必須支援HTML5 File API
+   */
+  function getObjectURL(file) {
+    var url = null ;
+    if (window.createObjectURL!=undefined) { // basic
+      url = window.createObjectURL(file) ;
+    } else if (window.URL!=undefined) { // mozilla(firefox)
+      url = window.URL.createObjectURL(file) ;
+    } else if (window.webkitURL!=undefined) { // webkit or chrome
+      url = window.webkitURL.createObjectURL(file) ;
+    }
+    return url ;
+  }
+</script>

@@ -126,7 +126,12 @@
                 </tr>
               </table>
             <% else %>
-              <p class="info">所在班级: <%= @growth_record.squad_name %></p>
+              <table class="attributes">
+              <tr>
+                <th>所在班级</th>
+                <td style="text-align: center;"><%= @growth_record.squad_name %></td>
+              </tr>
+              </table>
             <% end %>
             <p class="info"><span class="time"><%= @growth_record.try(:start_at).try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @growth_record.try(:end_at).try(:to_short_datetime) %></span>&nbsp;由&nbsp;<span class="link"><%= @growth_record.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @growth_record.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
@@ -135,15 +140,15 @@
           </div>
           <div class="spra">
             <% @growth_record.asset_imgs.each do |img| %>
-              <div class="img_div">
+              <div class="img_div" for="flag_<%= img.id %>">
                 <div class="img_border">
                   &nbsp;&nbsp;
-                  <a href="<%= img.public_filename %>" class="fancybox"  title="">
+                  <a href="<%= img.public_filename(:thumb) %>" class="fancybox"  title="<%= @growth_record.student_info_label %>成长记录的照片">
                     <img src="<%= img.public_filename(:middle) %>" alt="照片"class="img-polaroid"/>
                   </a>
                 </div>
                 <% if current_user.id == @growth_record.creater_id || current_user.tp == 2 %>
-                  <%= link_to "删除",url_for(:action=>:delete_img,:id=>@growth_record.id,:img_id=>img.id) ,:class=>"btn"%>
+                  <%= link_to "",url_for(:action=>:delete_img,:id=>@growth_record.id,:img_id=>img.id), id: "flag_#{img.id}", class: "btn-delete", style: "margin-top: 10px; display: none;", confirm: "你确定删除该图片吗" %>
                 <% end %>
               </div>
             <% end %>
@@ -173,4 +178,13 @@
     });
     $(".fancybox").fancybox();
   });
+
+
+  var flag;
+  $(".img_div").mouseover(function() {
+    flag = "#" + $(this).attr("for");
+    $(flag).show();
+  }).mouseout(function() {
+    $(flag).hide();
+  })
 </script>

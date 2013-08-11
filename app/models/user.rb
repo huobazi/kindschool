@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   validates :name, :kindergarten_id,:presence => true
   # validates :login,:presence => true ,format: {with: /^[w][y][s]/, message: "注册名不能以#{PRE_STUDENT}"} , :if => :role_student?
   validates :login,:presence => true #,format: {with: /^wys/, message: "注册名不能以#{PRE_STUDENT}"} , :if => :role_student?
-validates_format_of :login,:without=>/^wys/,:message=>"帐户不能以#{PRE_STUDENT}开头" 
+validates_format_of :login,:without=>/^#{PRE_STUDENT}/,:message=>"帐户不能以#{PRE_STUDENT}开头" 
   # validates :login,:presence => true,:uniqueness => true, format: {with: /^(\+\d+-)?[1-9]{1}[0-9]{10}$/, message: "手机格式不正确"}#{ :scope => :kindergarten_id}
 
   validates_uniqueness_of_without_deleted :login
