@@ -35,7 +35,22 @@
         <p class="info"><span><%= @growth_record.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span><%= @growth_record.end_at.try(:to_short_datetime) %></span></p>
         <p class="info">由<span class="author"><%= @growth_record.creater.try(:name) %></span>创建于&nbsp;<span><%= @growth_record.created_at.try(:to_long_datetime) %></span></p>
         <div class="content">
-          <%= simple_format @growth_record.content %>
+          <%= simple_format raw @growth_record.content %>
+        </div>
+        <div class="spra" style="margin-top: 40px;">
+          <% @growth_record.asset_imgs.each do |img| %>
+            <div class="img_div" style="margin-bottom: 15px;">
+              <div class="img_border">
+                &nbsp;&nbsp;
+                <a href="<%= img.public_filename(:thumb) %>" class="fancybox"  title="<%= @growth_record.student_info_label %>的成长记录的照片">
+                  <img src="<%= img.public_filename(:middle) %>" alt="照片"class="img-polaroid"/>
+                </a>
+              </div>
+              <% if current_user.id == @growth_record.creater_id || current_user.tp == 2 %>
+                <%= link_to "删除",url_for(:action=>:delete_img,:id=>@growth_record.id,:img_id=>img.id) ,:class=>"btn", style: "margin-left: 20px; margin-top: 15px;"%>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </li>
     </ul>
@@ -53,4 +68,5 @@
     enabled: false
   }
   $('#reward').rater(options);
+  $(".fancybox").fancybox();
 </script>

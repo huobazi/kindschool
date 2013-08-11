@@ -3,11 +3,14 @@
   </div>
   <div class="right_info">
     <div class="replies pull-right">
+      <% if choose_operate_show("my_school/topics/show") %>
+        <a href="<%= my_school_topic_path(topic) %>" title="查看<%= topic.title %>" alt="查看<%= topic.title %>"><i class="icon-eye-open"></i></a>
+      <% end %>
       <% if choose_operate_show("my_school/topics/edit") %>
         <a href="<%= edit_my_school_topic_path(topic) %>" title="编辑<%= topic.title %>" alt="编辑<%= topic.title %>"><i class="icon-edit"></i></a>
       <% end %>
       <% if topic.topic_entries.any? %>
-        <%= link_to topic.topic_entries.count, my_school_topic_path(topic, anchor: "topic_entry_1"), class: "count" %>
+        <%= link_to topic.topic_entries.count, my_school_topic_path(topic, anchor: "topic_entry_1"), class: "count", style: "margin: 0" %>
       <% end %>
     </div>
     <div class="infos">

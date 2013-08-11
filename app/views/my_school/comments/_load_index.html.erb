@@ -16,17 +16,15 @@
   <hr/>
   <% else %>
     <div class="total"><b>共收到<%= @comments.total_count %>条回复</b></div>
-    <% n = 0 %>
-    <% @comments.each do |comment| %>
-      <% n = n + 1 %>
+    <% @comments.each_with_index do |comment, index| %>
       <% params[:page] ? (page_index = params[:page].to_i) : (page_index = 1) %>
-      <%  level = (page_index-1)*10 + n %>
+      <%  level = (page_index-1)*10 + index + 1 %>
       <div class="show_entry">
         <div class="content_left">
           <div class="user_head_logo"><img src="<%= comment.user.asset_logo ? comment.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/></div>
         </div>
         <div class="content_right">
-          <p class="info"><span>#<%= level %>楼&nbsp;</span><span class="author"><%= comment.user.try(:name) %></span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(comment.try(:created_at)) %></span></p>
+          <p class="info"><span><%= level %>楼&nbsp;</span><span class="author"><%= comment.user.try(:name) %></span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(comment.try(:created_at)) %></span></p>
           <div class="content"><%= comment.comment %></div>
         </div>
       </div>
@@ -40,13 +38,13 @@
     <div class="control-group">
       <label class="control-label" for="comment">评论</label>
       <div class="controls">
-        <textarea id="comment" placeholder="发布评论" rows="4" class="input-xlarge"/>
+        <textarea id="comment" placeholder="发布评论" rows="4" class="input-xlarge span5"/>
         <span class="help-block" style="display: none;">评论不能为空.</span>
       </div>
     </div>
     <div class="control-group">
       <div class="controls">
-        <a id="comment_submit" class="btn" href="###">评论</a>
+        <a id="comment_submit" class="btn" href="javascript: void(0)" data-disable-with="正在提交">评论</a>
       </div>
     </div>
   </form>

@@ -74,13 +74,15 @@
               <% end %>
               <span><%= @topic.title %><span>
             </p>
+            <table class="attributes">
+              <tr>
+                <th>班级</th>
+                <td style="width: 30%;"><%= @topic.squad.try(:name) %></td>
+                <th>分类</th>
+                <td style="text-align: center;"><%= @topic.topic_category.name %></td>
+              </tr>
+            </table>
             <p class="info">
-              <span class="squad_name">班级:<%= @topic.squad.try(:name) %></span>
-            </p>
-            <p class="info">
-              <span class="link">
-                <%= @topic.topic_category.name %>
-              </span>
               <span class="link">
                 <%= @topic.creater.try(:name) %>
               </span>&nbsp;创建于&nbsp;<span class="time"><%= @topic.try(:created_at).try(:to_long_datetime) %></span>

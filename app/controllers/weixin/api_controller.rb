@@ -33,79 +33,105 @@ class Weixin::ApiController < Weixin::BaseController
       end
     else
       if logged_in?
-        #查看消息
-        if xml_data[:Content] == "1"
-          #未读消息
-          x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
-              :FromUserName=>xml_data[:ToUserName],
-              :CreateTime=>Time.now.to_i,
-              :MsgType=>"text",
-              :Content=>"#{current_user.name}您好!\n\r #{get_read_new_message}",
-              :FuncFlag=>0
-            })
-        elsif xml_data[:Content] == "2"
-          #幼儿园介绍
-          x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
-              :FromUserName=>xml_data[:ToUserName],
-              :CreateTime=>Time.now.to_i,
-              :MsgType=>"news",
-              :Content=>"#{@kind.name}",
-              :Articles=>[{:Title=>"幼儿园介绍",:Description=>"#{@kind.note}",:PicUrl=>"http://#{request.host_with_port}#{@kind.asset_img ? @kind.asset_img.public_filename(:tiny) : '/t/colorful/logo.png'}",:Url=>"http://#{request.host_with_port}/weixin/about?#{get_validate_string}"}],
-              :FuncFlag=>0
-            })
-        elsif xml_data[:Content] == "3"
-          #菜谱信息
-          x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
-              :FromUserName=>xml_data[:ToUserName],
-              :CreateTime=>Time.now.to_i,
-              :MsgType=>"text",
-              :Content=>"#{current_user.name}您好!班级主题活动: \n\r <a href=\"http://#{request.host_with_port}/weixin/activities?#{get_validate_string}\"> 进入家园互动</a>",
-              :FuncFlag=>0
-            })
-        elsif xml_data[:Content] == "4"
-          #菜谱信息
-          x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
-              :FromUserName=>xml_data[:ToUserName],
-              :CreateTime=>Time.now.to_i,
-              :MsgType=>"text",
-              :Content=>"#{current_user.name}您好!近期菜谱: \n\r #{get_read_cook_books}",
-              :FuncFlag=>0
-            })
-        elsif xml_data[:Content] == "5"
-          #照片集锦
-          albums = @kind.albums.where(:is_show=>1).order("send_date DESC").limit(8)
-          if albums.blank?
+        if xml_data[:MsgType] == "text"
+          #查看消息
+          if xml_data[:Content] == "1"
+            #未读消息
             x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
                 :FromUserName=>xml_data[:ToUserName],
                 :CreateTime=>Time.now.to_i,
                 :MsgType=>"text",
-                :Content=>"#{current_user.name}您好! \n\r 没有相册集锦消息\r\n <a href=\"http://#{request.host_with_port}/weixin?#{get_validate_string}\"> 进入家园互动</a>",
+                :Content=>"#{current_user.name}您好!\n\r #{get_read_new_message}",
+                :FuncFlag=>0
+              })
+          elsif xml_data[:Content] == "2"
+            #幼儿园介绍
+            x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+                :FromUserName=>xml_data[:ToUserName],
+                :CreateTime=>Time.now.to_i,
+                :MsgType=>"news",
+                :Content=>"#{@kind.name}",
+                :Articles=>[{:Title=>"幼儿园介绍",:Description=>"#{@kind.note}",:PicUrl=>"http://#{request.host_with_port}#{@kind.asset_img ? @kind.asset_img.public_filename(:tiny) : '/t/colorful/logo.png'}",:Url=>"http://#{request.host_with_port}/weixin/about?#{get_validate_string}"}],
+                :FuncFlag=>0
+              })
+          elsif xml_data[:Content] == "3"
+            #菜谱信息
+            x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
+                :FromUserName=>xml_data[:ToUserName],
+                :CreateTime=>Time.now.to_i,
+                :MsgType=>"text",
+                :Content=>"#{current_user.name}您好!班级主题活动: \n\r <a href=\"http://#{request.host_with_port}/weixin/activities?#{get_validate_string}\"> 进入家园互动</a>",
+                :FuncFlag=>0
+              })
+          elsif xml_data[:Content] == "4"
+            #菜谱信息
+            x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
+                :FromUserName=>xml_data[:ToUserName],
+                :CreateTime=>Time.now.to_i,
+                :MsgType=>"text",
+                :Content=>"#{current_user.name}您好!近期菜谱: \n\r #{get_read_cook_books}",
+                :FuncFlag=>0
+              })
+          elsif xml_data[:Content] == "5"
+            #照片集锦
+            albums = @kind.albums.where(:is_show=>1).order("send_date DESC").limit(8)
+            if albums.blank?
+              x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
+                  :FromUserName=>xml_data[:ToUserName],
+                  :CreateTime=>Time.now.to_i,
+                  :MsgType=>"text",
+                  :Content=>"#{current_user.name}您好! \n\r 没有相册集锦消息\r\n <a href=\"http://#{request.host_with_port}/weixin?#{get_validate_string}\"> 进入家园互动</a>",
+                  :FuncFlag=>0
+                })
+            else
+              hash = {:ToUserName=>xml_data[:FromUserName],
+                :FromUserName=>xml_data[:ToUserName],
+                :CreateTime=>Time.now.to_i,
+                :MsgType=>"news",
+                :Content=>"照片集锦",
+                :FuncFlag=>0
+              }
+              albums_data = []
+              albums.each do |album|
+                albums_data << {:Title=>"#{album.title}",:Description=>"",:PicUrl=>"http://#{request.host_with_port}#{album.show_main_img ? album.show_main_img.public_filename(:tiny) : '/t/colorful/login_img5.png'}",:Url=>"http://#{request.host_with_port}/weixin/albums/#{album.id}?#{get_validate_string}"}
+              end
+              hash[:Articles] = albums_data
+              x_data = mas_data(hash)
+            end
+          elsif xml_data[:Content] == "6"
+            #宝宝成长
+            x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
+                :FromUserName=>xml_data[:ToUserName],
+                :CreateTime=>Time.now.to_i,
+                :MsgType=>"text",
+                :Content=>"#{current_user.name}您好! \n\r 查看宝宝成长信息\r\n <a href=\"http://#{request.host_with_port}/weixin/garden_growth_records?#{get_validate_string}\"> 点击进入</a>",
                 :FuncFlag=>0
               })
           else
-            hash = {:ToUserName=>xml_data[:FromUserName],
-              :FromUserName=>xml_data[:ToUserName],
-              :CreateTime=>Time.now.to_i,
-              :MsgType=>"news",
-              :Content=>"照片集锦",
-              :FuncFlag=>0
-            }
-            albums_data = []
-            albums.each do |album|
-              albums_data << {:Title=>"#{album.title}",:Description=>"",:PicUrl=>"http://#{request.host_with_port}#{album.show_main_img ? album.show_main_img.public_filename(:tiny) : '/t/colorful/login_img5.png'}",:Url=>"http://#{request.host_with_port}/weixin/albums/#{album.id}?#{get_validate_string}"}
-            end
-            hash[:Articles] = albums_data
-            x_data = mas_data(hash)
+            x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+                :FromUserName=>xml_data[:ToUserName],
+                :CreateTime=>Time.now.to_i,
+                :MsgType=>"text",
+                :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
+                :FuncFlag=>0
+              })
           end
-        elsif xml_data[:Content] == "6"
-          #宝宝成长
-          x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
-              :FromUserName=>xml_data[:ToUserName],
-              :CreateTime=>Time.now.to_i,
-              :MsgType=>"text",
-              :Content=>"#{current_user.name}您好! \n\r 查看宝宝成长信息\r\n <a href=\"http://#{request.host_with_port}/weixin/garden_growth_records?#{get_validate_string}\"> 点击进入</a>",
-              :FuncFlag=>0
-            })
+
+        elsif xml_data[:MsgType] == "image"
+          photo = PhotoGallery.new
+          photo.source_uri= xml_data[:PicUrl]
+          personal = PersonalSet.new()
+          personal.resource = photo
+          current_user.personal_sets << personal
+          if current_user.save
+            x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
+                :FromUserName=>xml_data[:ToUserName],
+                :CreateTime=>Time.now.to_i,
+                :MsgType=>"text",
+                :Content=>"#{current_user.name}您好!\n\r 照片上传成功，您可以在照片集锦的个人集锦中查看。",
+                :FuncFlag=>0
+              })
+          end
         else
           x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
