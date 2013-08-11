@@ -68,7 +68,7 @@
         </div>
       </div>
       <% if action_name == "new" %>
-        <%= f.input :reward, as: :hidden %>
+        <%= f.input :reward, as: :hidden, input_html: {value: 1} %>
       <% else %>
         <%= f.input :reward, as: :hidden, input_html: {value: f.object.reward} %>
       <% end %>
@@ -80,16 +80,16 @@
         <% f.object.asset_imgs.each do |img| %>
           <div class="img_div">
             <div class="img_border">
-              &nbsp;&nbsp; <img src="<%= img.public_filename(:middle) %>" alt="照片"class="img-polaroid"/>
+              &nbsp;&nbsp; <img src="<%= img.public_filename(:middle) %>" alt="照片" class="img-polaroid"/>
             </div>
           </div>
         <% end %>
         <% img_size = f.object.asset_imgs.size %>
         <% if img_size < 2  %>
           <% (2 - img_size).times.each do |i| %>
-            <div class="img_div">
+            <div class="img_div" style="text-align:left;">
               <%= file_field_tag "asset_imgs[#{i}]",:for=>"img#{i}" %>
-              <div class="img_border">
+              <div class="img_border" style="margin-top: 10px;">
                 &nbsp;&nbsp; <img src="/t/colorful/user_logo.png" alt="照片" id="img<%= i %>" class="img-polaroid"/>
               </div>
             </div>
@@ -175,7 +175,7 @@
             }).trigger("change")
           }
 
-          var count = $("#growth_record_reward").val() || 0;
+          var count = $("#growth_record_reward").val();
           var options = {
             value: count,
             max: 5,
@@ -187,32 +187,32 @@
 
 
         })
-      </script>
+</script>
 
-      <script  type="text/javascript">
-        /**
-         * 使用HTML5 File API, 來即時預覽image
-         */
-        $("input[type=file]").change(function(){
-          var objUrl = getObjectURL(this.files[0]);
-          if (objUrl) {
-            $("#" + $(this).attr("for")).attr("src", objUrl) ;
-          }
-        }) ;
+<script type="text/javascript">
+  /**
+   * 使用HTML5 File API, 來即時預覽image
+   */
+  $("input[type=file]").change(function(){
+    var objUrl = getObjectURL(this.files[0]);
+    if (objUrl) {
+      $("#" + $(this).attr("for")).attr("src", objUrl) ;
+    }
+  }) ;
 
-        /**
-         * 建立一個可存取到該file的url
-         * PS: 瀏覽器必須支援HTML5 File API
-         */
-        function getObjectURL(file) {
-          var url = null ;
-          if (window.createObjectURL!=undefined) { // basic
-            url = window.createObjectURL(file) ;
-          } else if (window.URL!=undefined) { // mozilla(firefox)
-            url = window.URL.createObjectURL(file) ;
-          } else if (window.webkitURL!=undefined) { // webkit or chrome
-            url = window.webkitURL.createObjectURL(file) ;
-          }
-          return url ;
-        }
-      </script>
+  /**
+   * 建立一個可存取到該file的url
+   * PS: 瀏覽器必須支援HTML5 File API
+   */
+  function getObjectURL(file) {
+    var url = null ;
+    if (window.createObjectURL!=undefined) { // basic
+      url = window.createObjectURL(file) ;
+    } else if (window.URL!=undefined) { // mozilla(firefox)
+      url = window.URL.createObjectURL(file) ;
+    } else if (window.webkitURL!=undefined) { // webkit or chrome
+      url = window.webkitURL.createObjectURL(file) ;
+    }
+    return url ;
+  }
+</script>

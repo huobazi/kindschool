@@ -1,5 +1,6 @@
 #encoding:utf-8
 #个人锦集--图片
+require 'open-uri'
 class PhotoGallery < ActiveRecord::Base
   # attr_accessible :title, :body
   attr_accessible :uploaded_data
@@ -20,9 +21,16 @@ class PhotoGallery < ActiveRecord::Base
   #:resize_to => '640x360>',
   #    :thumbnails => { :thumb => '140x105>' }
   def swf_uploaded_data=(data)
-    data.content_type = MIME::Types.type_for(data.original_filename)
+    data.content_type = data.content_type || MIME::Types.type_for(data.original_filename)
     self.uploaded_data = data
   end
   validates_as_attachment
 
+  def source_uri=(uri)
+    io = open(URI.parse(uri))
+    (class << io; self; end;).class_eval do
+      define_method(:original_filename) { base_uri.path.split('/').last }
+    end
+    self.uploaded_data = io
+  end
 end

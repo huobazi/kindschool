@@ -13,6 +13,8 @@
     $('#seedling_record_expire_at').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
     });
     $("#grade").change(function(){
             $.get( "/my_school/seedlings/grade_class",

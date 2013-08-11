@@ -74,13 +74,15 @@
               <% end %>
               <span><%= @topic.title %><span>
             </p>
+            <table class="attributes">
+              <tr>
+                <th>班级</th>
+                <td style="width: 30%;"><%= @topic.squad.try(:name) %></td>
+                <th>分类</th>
+                <td style="text-align: center;"><%= @topic.topic_category.name %></td>
+              </tr>
+            </table>
             <p class="info">
-              <span class="squad_name">班级:<%= @topic.squad.try(:name) %></span>
-            </p>
-            <p class="info">
-              <span class="link">
-                <%= @topic.topic_category.name %>
-              </span>
               <span class="link">
                 <%= @topic.creater.try(:name) %>
               </span>&nbsp;创建于&nbsp;<span class="time"><%= @topic.try(:created_at).try(:to_long_datetime) %></span>
@@ -97,7 +99,7 @@
               <%  level = (page_index-1)*10 + index + 1 %>
               <div id="topic_entry_<%= topic_entry.id %>" class="show_entry">
                 <div class="content_left">
-                  <div class="user_head_logo"><img src="<%= topic_entry.creater.asset_logo ? topic_entry.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/></div>
+                  <div class="user_head_logo"><img src="<%= topic_entry.creater.asset_logo ? topic_entry.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="48" alt="头像"/></div>
                 </div>
                 <div class="content_right">
                   <p class="info"><span><%= level %>楼&nbsp;</span><span class="author"><%= topic_entry.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(topic_entry.try(:created_at)) %></span></p>

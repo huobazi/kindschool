@@ -11,7 +11,7 @@
     </div>
     <div class="image_actions" id="image_actions_<%= a_e.id %>" style="display: none;">
       <%= link_to '编辑',"###",:class=> "blue a_album_edit", :for=>"#album_entry_#{a_e.id}"%>
-      <%= link_to '删除', my_school_album_album_entry_path(@album.id,a_e), method: :delete, data: { confirm: 'Are you sure?' }, :class => "blue" %>
+      <%= link_to '删除', my_school_album_album_entry_path(@album.id,a_e), method: :delete, data: { confirm: '你确定删除该照片吗' }, :class => "blue" %>
       <%= link_to '设置为相册封面',choose_main_img_my_school_album_album_entry_path(@album.id,a_e),:class=>'set_as_album_cover blue'%>
     </div>
     <div id="album_entry_<%=a_e.id%>" class="album_entry_title" style="display:none">
