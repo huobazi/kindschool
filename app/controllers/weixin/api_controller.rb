@@ -120,7 +120,8 @@ class Weixin::ApiController < Weixin::BaseController
         elsif xml_data[:MsgType] == "image"
           photo = PhotoGallery.new
           photo.source_uri= xml_data[:PicUrl]
-          current_user.personal_sets << photo
+          personal = PersonalSet.new(:resource => photo)
+          current_user.personal_sets << personal
           current_user.save
         else
           x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
