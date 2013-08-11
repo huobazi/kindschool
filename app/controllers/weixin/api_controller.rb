@@ -123,7 +123,15 @@ class Weixin::ApiController < Weixin::BaseController
           personal = PersonalSet.new()
           personal.resource = photo
           current_user.personal_sets << personal
-          current_user.save
+          if current_user.save
+            x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
+                :FromUserName=>xml_data[:ToUserName],
+                :CreateTime=>Time.now.to_i,
+                :MsgType=>"text",
+                :Content=>"#{current_user.name}您好!\n\r 照片上传成功，您可以在照片集锦的个人集锦中查看。",
+                :FuncFlag=>0
+              })
+          end
         else
           x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
