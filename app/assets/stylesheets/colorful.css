@@ -1752,7 +1752,7 @@ span.help-inline {
     margin-bottom: 20px;
     float: left;
     width: 100%;
-    border-bottom: 1px solid #DDD;
+    border-bottom: 1px dashed #9d9c9c;
     padding: 10px 0 10px 0;
 }
 .normal_link {
@@ -1770,18 +1770,21 @@ span.help-inline {
 }
 .show_entry .content_right {
     float :left;
-    width: 80%;
+    width: 85%;
+    padding-left: 10px;
 }
 .show_entry .user_head_logo {
-    width: 100px;
+  width: 48px;
 }
 
 .show_entry .info .author {
-    font-weight: bold;
+  font-weight: bold;
+  color: #00848E;
 }
 
 .show_entry .content {
     word_wrap: break-word;
+    margin-top: -10px;
 }
 #show_message_entry{
     color: blue;

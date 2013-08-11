@@ -16,7 +16,8 @@
     <div class="infos">
       <div class="title">
         <% if topic.is_top == true %>
-          <a href="<%= my_school_topic_path(topic) %>" alt="[置顶]<%= topic.title %>" title="[置顶]<%= topic.title %>"><i class=" icon-arrow-up"></i><%= topic.title %></a>
+          <a href="<%= my_school_topic_path(topic) %>" alt="[置顶]<%= topic.title %>" title="[置顶]<%= topic.title %>"><%= topic.title %></a>
+          <span><img src="/t/colorful/is_top.gif" alt="" /></span>
         <% else %>
           <%= link_to topic.title, my_school_topic_path(topic) %>
         <% end %>
