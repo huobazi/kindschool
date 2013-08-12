@@ -11,6 +11,25 @@
       })
     });
   </script>
+  <script type="text/javascript">
+  jQuery(function() {
+    $('#personal_set_created_at_greater_than').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });
+    $('#personal_set_created_at_less_than').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });
+
+
+  })
+
+</script>
   <div class="show_work">
   <%= render :partial => "/modules/colorful/work_menu" %>
   <div class="work">
@@ -39,6 +58,17 @@
         </li>
       </ul>
     </div>
+   <div class="search_form">
+      <%= form_tag '/my_school/personal_sets' , :method=>"get" do %>
+        <b>上传时间大于：</b>
+       <%= text_field :personal_set,:created_at_greater_than,:style=>"width:100px;" ,:value=>"#{params[:personal_set][:created_at_greater_than] if params[:personal_set] }"  %>
+       <b>上传时间小于：</b>
+       <%= text_field :personal_set,:created_at_less_than,:style=>"width:100px;" ,:value=>"#{params[:personal_set][:created_at_less_than] if params[:personal_set] }"  %>
+        <%= submit_tag "搜索" %>
+      <%end%>
+    </div>
+
+
   <div class="work_list" >
 
   <div id="timeline">
