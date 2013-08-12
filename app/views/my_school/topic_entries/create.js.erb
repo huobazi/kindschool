@@ -1,0 +1,5 @@
+(function() {
+  $('<%= escape_javascript(render "topic_entry", :topic_entry => @topic_entry, :topic_entry_counter => @topic.topic_entries.count - 1) %>').hide().insertBefore($('nav.pagination')).fadeIn('fast');
+    $('#topic_entry_content').val('');
+})()
+

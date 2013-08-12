@@ -203,7 +203,7 @@
                 </div>
               </div>
             <% end %>
-            <%= paginate @activity_entries %>
+            <%= paginate @activity_entries, params: {anchor: "topic_entries"} %>
           <% else %>
             暂无回复
           <% end %>

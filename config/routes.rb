@@ -217,7 +217,11 @@ School::Application.routes.draw do
         get :grade_squad_partial
       end
     end
-    resources :topic_entries
+    resources :topic_entries do
+      member do
+        get :virtual_delete
+      end
+    end
     resources :activities do
       collection do
         delete :destroy_multiple
