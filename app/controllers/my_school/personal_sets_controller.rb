@@ -3,8 +3,15 @@
 #
 class MySchool::PersonalSetsController < MySchool::ManageController
   def index
+    userrole = current_user.get_users_ranges[:tp]
+    if userrole == :student
+      @flag="student"
+    elsif userrole = :teacher
+      @flag= "teacher"
+    end
   	@sets = current_user.personal_sets
   end
+  
   def new
   	@personal_set = PersonalSet.new()
   end

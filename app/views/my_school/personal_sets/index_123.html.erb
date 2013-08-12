@@ -1,0 +1,46 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>个人集锦</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+
+            <%=(link_to "<div class='work_action_add'>
+  </div><div class='work_action_add_move'>
+  </div>".html_safe ,new_my_school_personal_set_path)%>
+            <% 
+  #if choose_operate_show('my_school/personal_sets/new')
+  %>
+
+        </li>
+      </ul>
+    </div>
+    <div class="work_list" >
+      <ul id="" >
+        <% (@sets || []).each do |set| %>
+        <li><%#=set.inspect%>
+          <%if set.resource_type=="PhotoGallery"%>
+          <img src="<%= set.resource.try(:public_filename) %>" width="226px" height="226px"  class="img-rounded" />
+          <%else%>
+          <%=set.resource.try(:content)%>
+          </li>
+        <%end%>
+        <% end %>
+      </ul>
+      <div class="paginate_div">
+     <%#= paginate @sets  %>
+     </div>
+    </div>
+  </div>
+</div>

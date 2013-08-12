@@ -5,6 +5,7 @@ class CreateKindeditorAssets < ActiveRecord::Migration
       t.string :asset
       t.integer :file_size
       t.string :file_type
+      t.string :asset_type
       t.timestamps
     end
   end
