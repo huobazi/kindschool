@@ -1976,3 +1976,6 @@ fieldset.staff_squad ol li {
 .comment_submit{
     padding: 5px;
 }
+.content a{
+    color: blue;
+}
