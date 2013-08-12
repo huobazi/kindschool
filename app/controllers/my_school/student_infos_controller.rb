@@ -4,6 +4,8 @@ class  MySchool::StudentInfosController < MySchool::ManageController
   def index
     if current_user.tp == 0
       @student_infos = @kind.student_infos.where(:id=>current_user.id).page(params[:page] || 1).per(10)
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @student_infos = @kind.student_infos.where("squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?)",current_user.staff.id).search(params[:student_info] || {}).page(params[:page] || 1).per(10).order("student_infos.created_at DESC")
     else
       @student_infos = @kind.student_infos.search(params[:student_info] || {}).page(params[:page] || 1).per(10)
     end
@@ -49,12 +51,18 @@ class  MySchool::StudentInfosController < MySchool::ManageController
   def show
     if current_user.tp == 0
       @student_info = StudentInfo.find_by_user_id_and_kindergarten_id(current_user.id, @kind.id)
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @student_info = @kind.student_infos.where("squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?)",current_user.staff.id).find_by_id(params[:id])
     else
       @student_info = StudentInfo.find_by_id_and_kindergarten_id(params[:id], @kind.id)
       @user_squads = @student_info.user.user_squads
       @virtual_squads = @kind.squads.where(:tp=>1)
     end
 
+    if @student_info.nil?
+      flash[:error] = "没有权限或学员不存在"
+      redirect_to :action => :index
+    end
   end
 
   def virtual_squad

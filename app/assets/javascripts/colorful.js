@@ -110,4 +110,32 @@ $(document).ready(function() {
     $(".time_datepicker").one("click", function() {
         $(this).val(now);
     })
+
+  $('[data-remote]').live('ajax:before', function() {
+    var $loader = $('#remote-loader');
+    if (!$loader.length) {
+      $loader = $('<div id="remote-loader"></div>').hide().prependTo($('body'));
+    }
+    $loader.html('<span class="label label-warning">正在加载...</span>');
+    $loader.fadeIn();
+  }).ajaxSuccess(function() {
+    var $loader = $('#remote-loader');
+    $loader.html('<span class="label label-warning">操作成功</span>');
+    setTimeout(function() {
+      $loader.fadeOut(function(){
+        $(this).remove();
+      });
+    }, 500);
+  }).ajaxError(function() {
+    var $loader = $('#remote-loader');
+    var $error = $('<span class="label label-important">操作失败</span>');
+    $loader.html($error);
+    $error.click(function() {
+      $loader.fadeOut(function(){
+        $(this).remove();
+      });
+    });
+  });
 })
+
+
