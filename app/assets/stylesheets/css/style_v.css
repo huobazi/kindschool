@@ -164,3 +164,6 @@ h1,h2,h4,h5,h6 {
 #timeline ul li a.link_to_grow{
 	float:right;
 }
+.personal_set_delete{
+	float:right;
+}
