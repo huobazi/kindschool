@@ -93,8 +93,8 @@ h1,h2,h4,h5,h6 {
 				}
 				#issues li img {
 					float: left;
-					max-height: 400px ;
-					margin: 50px;
+					max-height: 320px ;
+					margin: 80px 50px 50px;
 					-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF)"; /* IE 8 */   
 					filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);/* IE 6 & 7 */      
 					zoom: 1;
@@ -115,6 +115,7 @@ h1,h2,h4,h5,h6 {
 					text-align: center;
 					text-shadow: #000 1px 1px 2px;
 				    padding-top: 200px;
+				    padding-bottom: 20px;
 				}
 				#issues li p {
 					font-size: 14px;
