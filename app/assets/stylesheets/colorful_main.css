@@ -325,3 +325,9 @@ ul li a:hover{
 .show_count_time{
 float:right;width:300px
 }
+.content a{
+    color: blue;
+}
+.show_label a{
+    color: blue;
+}

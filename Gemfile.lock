@@ -223,30 +223,35 @@ DEPENDENCIES
   NextNumber
   activeadmin
   acts_as_paranoid (~> 0.4.0)
-  acts_as_tree
+  acts_as_tree (~> 1.4.0)
   anjlab-bootstrap-rails (>= 2.1)
-  bootstrap-datepicker-rails
-  carrierwave
-  client_side_validations
-  client_side_validations-simple_form
+  bootstrap-datepicker-rails (~> 1.1.1.5)
+  carrierwave (~> 0.9.0)
+  client_side_validations (~> 3.2.5)
+  client_side_validations-simple_form (~> 2.1.0)
   coffee-rails (~> 3.2.1)
+<<<<<<< HEAD
   daemons
   delayed_job_active_record
   execjs
+=======
+  daemons (~> 1.1.9)
+  delayed_job_active_record (~> 4.0.0)
+>>>>>>> dd4a137dc5b8c50ce14f1163059b5e796c6f3408
   jquery-rails (= 2.0.3)
   jquery-ui-rails
-  just-datetime-picker
+  just-datetime-picker (~> 0.0.6)
   kaminari (~> 0.14.1)
   kaminari-bootstrap (~> 0.1.2)
   mini_magick (>= 3.5.0)
   mysql2 (= 0.3.11)
-  pothoven-attachment_fu
+  pothoven-attachment_fu (~> 3.2.8)
   pry-rails
   rails (= 3.2.13)
-  rails_kindeditor
+  rails_kindeditor (~> 0.4.0)
   rd_searchlogic (~> 3.0.1)
-  roo
+  roo (~> 1.11.2)
   sass-rails (~> 3.2.3)
-  simple_form
+  simple_form (~> 2.1.0)
   therubyracer
   uglifier (>= 1.0.3)
