@@ -8,7 +8,7 @@
   </div>
   <div class="content_right">
     <% if topic_entry.is_show == true %>
-      <p class="info"><span"><%= level %>楼&nbsp;</span><span class="author"><%= topic_entry.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(topic_entry.try(:created_at)) %></span></p>
+      <p class="info"><span><%= level %>楼&nbsp;</span><span class="author"><%= topic_entry.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(topic_entry.try(:created_at)) %></span></p>
       <div class="content"><%= raw topic_entry.content %></div>
     <% else %>
       <p class="info"><span><%= level %>楼</span></p>
@@ -24,8 +24,10 @@
       <% end %>
     <% end %>
     <% if destroy_topic_entry?(topic_entry) %>
-      <% unless topic_entry.is_show == false %>
-        <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "topic_entries", :action=>:virtual_delete,:id=>topic_entry.id), :method => :get, confirm: "你确定删除该贴子回复吗", remote: true %>
+      <% if choose_operate_show("my_school/topic_entries/virtual_delete") %>
+        <% unless topic_entry.is_show == false %>
+          <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "topic_entries", :action=>:virtual_delete,:id=>topic_entry.id), :method => :get, confirm: "你确定删除该贴子回复吗", remote: true %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
