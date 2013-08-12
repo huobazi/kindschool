@@ -5,6 +5,12 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
 
     @topic = Topic.find_by_id(params[:topic_entry][:topic_id])
 
+    if @topic.nil?
+      flash[:error] = "非法操作"
+      redirect_to my_school_topics_path
+      return
+    end
+
     respond_to do |format|
       if @topic_entry.save!
         flash[:success] = "添加回复成功"

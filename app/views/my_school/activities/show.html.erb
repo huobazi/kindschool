@@ -210,7 +210,7 @@
         </div>
 
 
-          <%= simple_form_for(@activity_entry, :validate => true, :url => my_school_activity_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
+          <%= simple_form_for(@activity_entry, :validate => true, :url => my_school_activity_entries_path, :html => {:class => "form-horizontal"}, remote: true) do |f| %>
             <% if controller_name == "activities" %>
               <%= render :partial => "activity_form", :object => f %>
             <% else %>
