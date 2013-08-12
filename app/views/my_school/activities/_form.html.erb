@@ -65,11 +65,13 @@
     <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'activity_content',:allowFileManager => false,:allowUpload=>false%>
 </div>
 
-
 <%= f.simple_fields_for :asset_img_attributes do |p| %>
-  <%= p.input :uploaded_data, :as => :file, :name => "asset_img", :label => "上传展示图片(推荐尺寸480x360)", :required => false  %>
+  <%= p.input :uploaded_data, :as => :file, :name => "asset_img", :label => "上传展示图片(推荐尺寸480x360)", :required => false, input_html: {for: "flag_img"}  %>
 <% end %>
 
+<div class="control-group">
+  <div class="img_border controls"><img src="" alt="" id="flag_img" /></div>
+</div>
 <%= f.input :kindergarten_id, :as => :hidden %>
 <%= f.input :creater_id, :as => :hidden %>
 
@@ -134,4 +136,32 @@ var flag = []
       $("#select_squad").hide()
     }
   })
+</script>
+
+<script type="text/javascript">
+  /**
+   * 使用HTML5 File API, 來即時預覽image
+   */
+  $("input[type=file]").change(function(){
+    var objUrl = getObjectURL(this.files[0]);
+    if (objUrl) {
+      $("#" + $(this).attr("for")).attr("src", objUrl) ;
+    }
+  }) ;
+
+  /**
+   * 建立一個可存取到該file的url
+   * PS: 瀏覽器必須支援HTML5 File API
+   */
+  function getObjectURL(file) {
+    var url = null ;
+    if (window.createObjectURL!=undefined) { // basic
+      url = window.createObjectURL(file) ;
+    } else if (window.URL!=undefined) { // mozilla(firefox)
+      url = window.URL.createObjectURL(file) ;
+    } else if (window.webkitURL!=undefined) { // webkit or chrome
+      url = window.webkitURL.createObjectURL(file) ;
+    }
+    return url ;
+  }
 </script>

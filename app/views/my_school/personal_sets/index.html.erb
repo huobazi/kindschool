@@ -1,4 +1,17 @@
-<div class="show_work">
+<%= stylesheet_link_tag    "css/style_v.css" %> 
+<%= javascript_include_tag "js/jquery.timelinr-0.9.53.js" %>
+  <script>
+    $(function(){
+      $().timelinr({
+        orientation:  'vertical',
+        issuesSpeed:  300,
+        datesSpeed:   100,
+        arrowKeys:    'true',
+        startAt:    3
+      })
+    });
+  </script>
+  <div class="show_work">
   <%= render :partial => "/modules/colorful/work_menu" %>
   <div class="work">
     <div class="headline">
@@ -26,24 +39,35 @@
         </li>
       </ul>
     </div>
-    <div class="work_list" >
-      <ul id="" >
-        <% (@sets || []).each do |set| %>
-        <li><%#=set.inspect%>
-          <%if set.resource_type=="PhotoGallery"%>
-          <img src="<%= set.resource.try(:public_filename) %>" width="226px" height="226px"  class="img-rounded" />
+  <div class="work_list" >
+
+  <div id="timeline">
+    <ul id="dates">
+      <% (@sets || []).each do |set| %>
+      <li><a href="#<%=set.created_at.try(:to_long_datetime)%>" class="selected"><%=set.created_at.try(:to_long_datetime)%></a></li>
+      <%end%>
+    </ul>
+    <ul id="issues">
+      <% (@sets || []).each do |set| %>
+      <li id="<%=set.created_at.try(:to_long_datetime)%>" class="selected">
+        <%if set.resource_type=="PhotoGallery"%>
+          <img src="<%= set.resource.try(:public_filename) %>" width="256px" height="256px"  class="img-rounded" />
           <%else%>
-          <%=set.resource.try(:content)%>
+          <h1><%=set.resource.try(:content)%></h1>
           </li>
         <%end%>
-        <% end %>
-      </ul>
-      <div class="paginate_div">
+      </li>
+      <% end %>
+    </ul>
+    <div id="grad_top"></div>
+    <div id="grad_bottom"></div>
+    <a href="#" id="next">+</a>
+    <a href="#" id="prev">-</a>
+  </div>
+  <div class="paginate_div">
      <%#= paginate @sets  %>
      </div>
     </div>
   </div>
 </div>
 
-<script type="text/javascript">
-</script>

@@ -35,10 +35,10 @@
             </a>
             <div class="title">
               <span class="name">
+                <%= link_to album.title, my_school_album_path(album) %>
                 <% if album.is_top == true %>
-                  <i class="icon-arrow-up"></i>
+                  <span><img src="/t/colorful/is_top.gif" alt="置顶" /></span>
                 <% end %>
-                <%= album.title %>
                 <% if album.squad.present? %>
                   (班级:&nbsp;<%= album.try(:squad_name) %>)
                 <% else %>
