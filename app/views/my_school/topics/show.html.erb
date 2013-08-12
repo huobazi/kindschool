@@ -69,10 +69,10 @@
         <div id="topic_show" class="show">
           <div class="content_up">
             <p class="title">
-              <% if @topic.is_top == true %>
-                <i class="icon-arrow-up"></i>
-              <% end %>
               <span><%= @topic.title %><span>
+              <% if @topic.is_top == true %>
+                <span><img src="/t/colorful/is_top.gif" alt="" /></span>
+              <% end %>
             </p>
             <table class="attributes">
               <tr>
@@ -94,33 +94,16 @@
         <div id="topic_entries">
           <% unless @topic_entries.blank? %>
             <div class="total"><b>共收到<%= @topic_entries.total_count %>条回复</b></div>
-            <% @topic_entries.each_with_index do |topic_entry, index| %>
-              <% params[:page] ? (page_index = params[:page].to_i) : (page_index = 1) %>
-              <%  level = (page_index-1)*10 + index + 1 %>
-              <div id="topic_entry_<%= topic_entry.id %>" class="show_entry">
-                <div class="content_left">
-                  <div class="user_head_logo"><img src="<%= topic_entry.creater.asset_logo ? topic_entry.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="48" alt="头像"/></div>
-                </div>
-                <div class="content_right">
-                  <p class="info"><span><%= level %>楼&nbsp;</span><span class="author"><%= topic_entry.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(topic_entry.try(:created_at)) %></span></p>
-                  <div class="content"><%= raw topic_entry.content %></div>
-                </div>
-                <div class="actions">
-                  <% if edit_topic_entry(topic_entry) %>
-                    <% if choose_operate_show("my_school/topic_entries/edit") %>
-                      <a href="<%= url_for(edit_my_school_topic_entry_path(topic_entry, page: params[:page])) %>" ><i class="icon-edit"></i></a>
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-            <%= paginate @topic_entries %>
+            <%= render :partial => "my_school/topic_entries/topic_entry", :collection => @topic_entries %>
+            <%= paginate @topic_entries, params: {anchor: "topic_entries"} %>
           <% else %>
             暂无回复
           <% end %>
         </div>
-        <%= simple_form_for(@topic_entry, :validate => true, :url => my_school_topic_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
-          <%= render :partial => "topic_form", :object => f %>
+        <% if @topic_entries.last_page? %>
+          <%= simple_form_for(@topic_entry, :validate => true, :url => my_school_topic_entries_path, :html => {:class => "form-horizontal"}, remote: true) do |f| %>
+            <%= render :partial => "topic_form", :object => f %>
+          <% end %>
         <% end %>
       </div>
     </div>
