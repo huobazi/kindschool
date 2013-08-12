@@ -52,7 +52,7 @@
             <%= render :partial => "form", :object => f %>
           <% end %>
         <% else %>
-          <%= simple_form_for(@growth_record, :validate => true, :url => my_school_garden_growth_records_path(:personal_set_id=>@set.id), :html => {:class => "form-horizontal", :multipart => true}) do |f| %>
+          <%= simple_form_for(@growth_record, :validate => true, :url => my_school_garden_growth_records_path(:personal_set_id=>@set.try(:id)), :html => {:class => "form-horizontal", :multipart => true}) do |f| %>
             <%= render :partial => "my_school/growth_records/form", :object => f %>
           <% end %>
         <% end %>
