@@ -59,9 +59,9 @@
           <h1><%=set.resource.try(:content)%></h1>
         <%end%>
         <%if @flag=="student"%>
-        <%=link_to "添加到成长记录" , new_my_school_growth_record_path(:personal_set_id=>set.id)%>
+        <%=link_to "添加到成长记录" , new_my_school_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
         <%else%>
-        <%=link_to "添加到成长记录" ,new_my_school_garden_growth_record_path(:personal_set_id=>set.id)%>
+        <%=link_to "添加到成长记录" ,new_my_school_garden_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
         <%end%>
       </li>
       <% end %>
@@ -72,7 +72,7 @@
     <a href="#" id="prev">-</a>
   </div>
   <div class="paginate_div">
-     <%#= paginate @sets  %>
+     <%= paginate @sets  %>
      </div>
     </div>
   </div>
