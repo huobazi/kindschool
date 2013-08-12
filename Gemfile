@@ -43,7 +43,7 @@ gem 'pothoven-attachment_fu',"~> 3.2.8"
 gem "just-datetime-picker","~> 0.0.6"
 gem "acts_as_tree","~> 1.4.0"
 #https://github.com/collectiveidea/delayed_job
-gem 'delayed_job_active_record',"~> 4.0.0"
+gem 'delayed_job_active_record',"0.4.4"
 gem "daemons","~> 1.1.9" 
 gem "anjlab-bootstrap-rails", ">= 2.1", :require => "bootstrap-rails"
 gem 'bootstrap-datepicker-rails',"~> 1.1.1.5"

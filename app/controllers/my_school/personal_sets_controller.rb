@@ -9,7 +9,7 @@ class MySchool::PersonalSetsController < MySchool::ManageController
     elsif userrole == :teacher
       @flag= "teacher"
     end
-  	@sets = current_user.personal_sets.page(params[:page] || 1).per(10)
+  	@sets = current_user.personal_sets.search(params[:personal_set] || {}).page(params[:page] || 1).per(10)
   end
   
   def new
