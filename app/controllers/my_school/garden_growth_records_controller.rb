@@ -58,7 +58,21 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
     @growth_record.kindergarten_id = @kind.id
     @growth_record.creater_id = current_user.id
     @growth_record.tp = 0
-    render "my_school/growth_records/new"
+    unless params[:personal_set_id].blank?
+       @set = current_user.personal_sets.find(params[:personal_set_id])
+      if  !@set.blank? && @set.resource
+       if @set.resource_type == "PhotoGallery"
+          @growth_record.asset_imgs << AssetImg.new(:uploaded_data=>@set.resource.uploaded_data) 
+         @set_imge = @set.resource.public_filename
+       elsif @set.resource_type=="TextSet"
+         @growth_record.content = @set.resource.content 
+       else
+
+       end
+      end
+    end
+    
+     render "my_school/growth_records/new"
   end
 
   def create
@@ -77,6 +91,16 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
       @growth_record.creater_id = current_user.id
       @growth_record.kindergarten_id = @kind.id
       @growth_record.tp = 0
+      unless params[:personal_set_id].blank?
+       set = current_user.personal_sets.find(params[:personal_set_id])
+      if  !set.blank? && set.resource
+       if set.resource_type == "PhotoGallery"
+          asset_img = AssetImg.new()
+          asset_img.source_uri= "http://#{request.host_with_port}#{set.resource.public_filename}"
+          @growth_record.asset_imgs  << asset_img
+       end
+      end
+    end
       unless params[:asset_imgs].blank?
         params[:asset_imgs].each do |k,v|
           @growth_record.asset_imgs << AssetImg.new(:uploaded_data=>v)
