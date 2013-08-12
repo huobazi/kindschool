@@ -95,8 +95,12 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
        set = current_user.personal_sets.find(params[:personal_set_id])
       if  !set.blank? && set.resource
        if set.resource_type == "PhotoGallery"
-          asset_img = AssetImg.new()
-          asset_img.source_uri= "http://#{request.host_with_port}#{set.resource.public_filename}"
+          asset_img = AssetImg.new() 
+          puts "pppppppppppp\n\n\n\n\n#{Rails.root}/public#{set.resource.public_filename}"
+          puts set.resource.public_filename.inspect
+          puts "#{Rails.root}/public#{set.resource.public_filename}"
+          asset_img.source_uri= "#{Rails.root}/public#{set.resource.public_filename}"
+          
           @growth_record.asset_imgs  << asset_img
        end
       end
