@@ -108,13 +108,30 @@ class Weixin::ApiController < Weixin::BaseController
                 :FuncFlag=>0
               })
           else
-            x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
-                :FromUserName=>xml_data[:ToUserName],
-                :CreateTime=>Time.now.to_i,
-                :MsgType=>"text",
-                :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
-                :FuncFlag=>0
-              })
+            if xml_data[:Content].size > 5
+              text = TextSet.new(:content=>xml_data[:Content])
+              personal = PersonalSet.new()
+              personal.resource = text
+              current_user.personal_sets << personal
+              if current_user.save
+                x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
+                    :FromUserName=>xml_data[:ToUserName],
+                    :CreateTime=>Time.now.to_i,
+                    :MsgType=>"text",
+                    :Content=>"#{current_user.name}您好!\n\r 文字记录上传成功，您可以在照片集锦的个人集锦中查看。",
+                    :FuncFlag=>0
+                  })
+              end
+            else
+              x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+                  :FromUserName=>xml_data[:ToUserName],
+                  :CreateTime=>Time.now.to_i,
+                  :MsgType=>"text",
+                  :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
+                  :FuncFlag=>0
+                })
+            end
+            
           end
 
         elsif xml_data[:MsgType] == "image"
