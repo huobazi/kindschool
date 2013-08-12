@@ -23,11 +23,4 @@ class AssetImg < ActiveRecord::Base
     self.uploaded_data = data
   end
   validates_as_attachment
-  def source_uri=(uri)
-    io = open(URI.parse(uri))
-    (class << io; self; end;).class_eval do
-      define_method(:original_filename) { base_uri.path.split('/').last }
-    end
-    self.uploaded_data = io
-  end
 end

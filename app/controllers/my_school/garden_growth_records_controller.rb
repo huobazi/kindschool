@@ -1,4 +1,7 @@
 #encoding:utf-8
+# require 'action_controller'
+# require 'action_controller/test_process.rb'
+require 'action_dispatch/testing/test_process'
 class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
 
   def garden
@@ -95,12 +98,10 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
        set = current_user.personal_sets.find(params[:personal_set_id])
       if  !set.blank? && set.resource
        if set.resource_type == "PhotoGallery"
-          asset_img = AssetImg.new() 
-          puts "pppppppppppp\n\n\n\n\n#{Rails.root}/public#{set.resource.public_filename}"
-          puts set.resource.public_filename.inspect
-          puts "#{Rails.root}/public#{set.resource.public_filename}"
-          asset_img.source_uri= "#{Rails.root}/public#{set.resource.public_filename}"
-          
+          asset_img = AssetImg.new()
+          file_url =  "#{Rails.root}/public#{set.resource.public_filename}"
+          uploaded_data =  fixture_file_upload file_url, 'image/png' # (file_url, 'image/jpeg', false) 
+          asset_img = AssetImg.new(:uploaded_data=>uploaded_data)
           @growth_record.asset_imgs  << asset_img
        end
       end
@@ -188,5 +189,10 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
       format.json { head :no_content }
     end
   end
+  private
+   def fixture_file_upload(path, mime_type = nil, binary = false)
+      fixture_path = self.class.fixture_path if self.class.respond_to?(:fixture_path)
+      Rack::Test::UploadedFile.new("#{fixture_path}#{path}", mime_type, binary)
+    end
 
 end
