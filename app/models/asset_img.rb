@@ -30,4 +30,11 @@ class AssetImg < ActiveRecord::Base
     end
     self.uploaded_data = io
   end
+  def source_url=(file_url)
+    io = open(file_url)
+    (class << io; self; end;).class_eval do
+      define_method(:original_filename) { base_uri.path.split('/').last }
+    end
+    self.uploaded_data = io
+  end
 end
