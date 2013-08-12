@@ -1,6 +1,5 @@
 #encoding:utf-8
 require 'mime/types'
-require 'open-uri'
 class AssetImg < ActiveRecord::Base
   attr_accessible :resource_id,:uploaded_data
   #  has_attachment  :content_type => :image, :storage => :file_system,
