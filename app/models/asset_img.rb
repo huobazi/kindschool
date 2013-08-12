@@ -1,6 +1,5 @@
 #encoding:utf-8
 require 'mime/types'
-require 'open-uri'
 class AssetImg < ActiveRecord::Base
   attr_accessible :resource_id,:uploaded_data
   #  has_attachment  :content_type => :image, :storage => :file_system,
@@ -23,18 +22,4 @@ class AssetImg < ActiveRecord::Base
     self.uploaded_data = data
   end
   validates_as_attachment
-  def source_uri=(uri)
-    io = open(URI.parse(uri))
-    (class << io; self; end;).class_eval do
-      define_method(:original_filename) { base_uri.path.split('/').last }
-    end
-    self.uploaded_data = io
-  end
-  def source_url=(file_url)
-    io = open(file_url)
-    (class << io; self; end;).class_eval do
-      define_method(:original_filename) { base_uri.path.split('/').last }
-    end
-    self.uploaded_data = io
-  end
 end
