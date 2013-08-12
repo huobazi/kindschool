@@ -13,6 +13,7 @@
 /public/asset_imgs/*
 /public/asset_logos/*
 /public/page_imgs/*
+/public/assets/*
 /public/uploads/*
 /public/photo_galleries/*
 # Ignore all logfiles and tempfiles.

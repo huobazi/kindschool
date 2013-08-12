@@ -11,6 +11,25 @@
       })
     });
   </script>
+  <script type="text/javascript">
+  jQuery(function() {
+    $('#personal_set_created_at_greater_than').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });
+    $('#personal_set_created_at_less_than').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });
+
+
+  })
+
+</script>
   <div class="show_work">
   <%= render :partial => "/modules/colorful/work_menu" %>
   <div class="work">
@@ -39,6 +58,17 @@
         </li>
       </ul>
     </div>
+   <div class="search_form">
+      <%= form_tag '/my_school/personal_sets' , :method=>"get" do %>
+        <b>上传时间大于：</b>
+       <%= text_field :personal_set,:created_at_greater_than,:style=>"width:100px;" ,:value=>"#{params[:personal_set][:created_at_greater_than] if params[:personal_set] }"  %>
+       <b>上传时间小于：</b>
+       <%= text_field :personal_set,:created_at_less_than,:style=>"width:100px;" ,:value=>"#{params[:personal_set][:created_at_less_than] if params[:personal_set] }"  %>
+        <%= submit_tag "搜索" %>
+      <%end%>
+    </div>
+
+
   <div class="work_list" >
 
   <div id="timeline">
@@ -59,9 +89,10 @@
           <h1><%=set.resource.try(:content)%></h1>
         <%end%>
         <%if @flag=="student"%>
-        <%=link_to "添加到成长记录" , new_my_school_growth_record_path(:personal_set_id=>set.id)%>
+        <%=link_to "添加到成长记录" , new_my_school_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
         <%else%>
-        <%=link_to "添加到成长记录" ,new_my_school_garden_growth_record_path(:personal_set_id=>set.id)%>
+        <%=link_to "添加到成长记录" ,new_my_school_garden_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
+        <%= link_to '删除', my_school_personal_set_path(set), :method=> :delete, :data=> { :confirm=> '你确定删除该信息吗' },:class=> "destroy" ,:class=>"personal_set_delete btn"%>
         <%end%>
       </li>
       <% end %>
@@ -72,7 +103,7 @@
     <a href="#" id="prev">-</a>
   </div>
   <div class="paginate_div">
-     <%#= paginate @sets  %>
+     <%= paginate @sets  %>
      </div>
     </div>
   </div>
