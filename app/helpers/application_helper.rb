@@ -31,27 +31,21 @@ module ApplicationHelper
 
 
   def destroy_topic_entry?(topic_entry)
-    if current_user.tp == 2
+    if current_user.get_users_ranges[:tp] == :all
       true
-    elsif topic_entry.creater_id == current_user.id
-      true
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      if topic_entry.topic.squad.present? && current_user.staff.squad_ids.include?(topic_entry.topic.squad_id)
+        true
+      else
+        false
+      end
     else
       false
     end
   end
 
-  def edit_topic_entry(topic_entry)
+  def edit_topic_entry?(topic_entry)
     if topic_entry.creater_id == current_user.id
-      true
-    else
-      false
-    end
-  end
-
-  def destroy_activity_entry?(activity_entry)
-    if current_user.tp == 2
-      true
-    elsif activity_entry.creater_id == current_user.id
       true
     else
       false

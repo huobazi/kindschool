@@ -1755,6 +1755,11 @@ span.help-inline {
     border-bottom: 1px dashed #9d9c9c;
     padding: 10px 0 10px 0;
 }
+.show_entry .delete {
+  display: block;
+  text-align: center;
+  color: #DB2C2C;
+}
 .normal_link {
     color: #B6B6B6;
 }
@@ -1978,4 +1983,20 @@ fieldset.staff_squad ol li {
 }
 .content a{
     color: blue;
+}
+
+/* ==== ajax prompt ==== */
+
+#remote-loader {
+  position: fixed;
+  left: 50%;
+  top: 15px;
+  margin-left: -40px;
+  width: 80px;
+  text-align: center;
+
+}
+
+#remote-loader .label.important {
+  cursor: pointer;
 }

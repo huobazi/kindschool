@@ -63,4 +63,5 @@ School::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  config.assets.precompile += %w( app_bootstrap.css colorful.css jquery.rater.css fancybox/jquery.fancybox.css fancybox/jquery.fancybox-buttons.css fancybox/jquery.fancybox-thumbs.css datepicker.css colorful.js rails.validations.js rails.validations.simple_form.js fancybox/jquery.fancybox.js fancybox/jquery.fancybox-buttons.js fancybox/jquery.fancybox-thumbs.js fancybox/jquery.fancybox-media.js bootstrap-datepicker.js bootstrap-datepicker.zh-CN.js jquery.rater.js colorful_main.css colorful_weixin.css colorful_responsive.css scaffolds.css active_admin.css colorful_weixin.js jquery.jcarouselLite.js jquery.validate.js)
 end
