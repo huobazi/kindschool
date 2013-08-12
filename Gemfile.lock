@@ -247,7 +247,7 @@ DEPENDENCIES
   pothoven-attachment_fu
   pry-rails
   rails (= 3.2.13)
-  rails_kindeditor
+  rails_kindeditor (~> 0.4.0)
   rd_searchlogic (~> 3.0.1)
   roo
   sass-rails (~> 3.2.3)
