@@ -6,4 +6,700 @@
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
-KindEditor.plugin("table",function(e){function t(e,t){t=t.toUpperCase(),e.css("background-color",t),e.css("color","#000000"===t?"#FFFFFF":"#000000"),e.html(t)}function i(i,n){function l(){e.each(r,function(){this.remove()}),r=[],e(document).unbind("click,mousedown",l),i.unbind("click,mousedown",l)}n.bind("click,mousedown",function(e){e.stopPropagation()}),n.click(function(){l();var n=e(this),o=n.pos(),s=e.colorpicker({x:o.x,y:o.y+n.height(),z:811214,selectedColor:e(this).html(),colors:a.colorTable,noColor:a.lang("noColor"),shadowMode:a.shadowMode,click:function(e){t(n,e),l()}});r.push(s),e(document).bind("click,mousedown",l),i.bind("click,mousedown",l)})}function n(e,t,i){for(var n=0,a=0,l=t.cells.length;l>a&&t.cells[a]!=i;a++)n+=t.cells[a].rowSpan-1;return i.cellIndex-n}var a=this,l="table",o=a.lang(l+"."),s="ke-zeroborder",r=[];a.plugin.table={prop:function(n){var r=['<div style="padding:20px;">','<div class="ke-dialog-row">','<label for="keRows" style="width:90px;">'+o.cells+"</label>",o.rows+' <input type="text" id="keRows" class="ke-input-text ke-input-number" name="rows" value="" maxlength="4" /> &nbsp; ',o.cols+' <input type="text" class="ke-input-text ke-input-number" name="cols" value="" maxlength="4" />',"</div>",'<div class="ke-dialog-row">','<label for="keWidth" style="width:90px;">'+o.size+"</label>",o.width+' <input type="text" id="keWidth" class="ke-input-text ke-input-number" name="width" value="" maxlength="4" /> &nbsp; ','<select name="widthType">','<option value="%">'+o.percent+"</option>",'<option value="px">'+o.px+"</option>","</select> &nbsp; ",o.height+' <input type="text" class="ke-input-text ke-input-number" name="height" value="" maxlength="4" /> &nbsp; ','<select name="heightType">','<option value="%">'+o.percent+"</option>",'<option value="px">'+o.px+"</option>","</select>","</div>",'<div class="ke-dialog-row">','<label for="kePadding" style="width:90px;">'+o.space+"</label>",o.padding+' <input type="text" id="kePadding" class="ke-input-text ke-input-number" name="padding" value="" maxlength="4" /> &nbsp; ',o.spacing+' <input type="text" class="ke-input-text ke-input-number" name="spacing" value="" maxlength="4" />',"</div>",'<div class="ke-dialog-row">','<label for="keAlign" style="width:90px;">'+o.align+"</label>",'<select id="keAlign" name="align">','<option value="">'+o.alignDefault+"</option>",'<option value="left">'+o.alignLeft+"</option>",'<option value="center">'+o.alignCenter+"</option>",'<option value="right">'+o.alignRight+"</option>","</select>","</div>",'<div class="ke-dialog-row">','<label for="keBorder" style="width:90px;">'+o.border+"</label>",o.borderWidth+' <input type="text" id="keBorder" class="ke-input-text ke-input-number" name="border" value="" maxlength="4" /> &nbsp; ',o.borderColor+' <span class="ke-inline-block ke-input-color"></span>',"</div>",'<div class="ke-dialog-row">','<label for="keBgColor" style="width:90px;">'+o.backgroundColor+"</label>",'<span class="ke-inline-block ke-input-color"></span>',"</div>","</div>"].join(""),d=a.createDialog({name:l,width:500,title:a.lang(l),body:r,beforeRemove:function(){k.unbind()},yesBtn:{name:a.lang("yes"),click:function(){var t=p.val(),i=c.val(),n=h.val(),l=g.val(),o=m.val(),r=f.val(),d=v.val(),u=b.val(),S=_.val(),x=y.val(),U=e(k[0]).html()||"",F=e(k[1]).html()||"";if(0==t||!/^\d+$/.test(t))return alert(a.lang("invalidRows")),p[0].focus(),void 0;if(0==i||!/^\d+$/.test(i))return alert(a.lang("invalidRows")),c[0].focus(),void 0;if(!/^\d*$/.test(n))return alert(a.lang("invalidWidth")),h[0].focus(),void 0;if(!/^\d*$/.test(l))return alert(a.lang("invalidHeight")),g[0].focus(),void 0;if(!/^\d*$/.test(d))return alert(a.lang("invalidPadding")),v[0].focus(),void 0;if(!/^\d*$/.test(u))return alert(a.lang("invalidSpacing")),b[0].focus(),void 0;if(!/^\d*$/.test(x))return alert(a.lang("invalidBorder")),y[0].focus(),void 0;if(w)return""!==n?w.width(n+o):w.css("width",""),void 0!==w[0].width&&w.removeAttr("width"),""!==l?w.height(l+r):w.css("height",""),void 0!==w[0].height&&w.removeAttr("height"),w.css("background-color",F),void 0!==w[0].bgColor&&w.removeAttr("bgColor"),""!==d?w[0].cellPadding=d:w.removeAttr("cellPadding"),""!==u?w[0].cellSpacing=u:w.removeAttr("cellSpacing"),""!==S?w[0].align=S:w.removeAttr("align"),""!==x?w.attr("border",x):w.removeAttr("border"),""===x||"0"===x?w.addClass(s):w.removeClass(s),""!==U?w.attr("borderColor",U):w.removeAttr("borderColor"),a.hideDialog().focus(),void 0;var E="";""!==n&&(E+="width:"+n+o+";"),""!==l&&(E+="height:"+l+r+";"),""!==F&&(E+="background-color:"+F+";");var C="<table";""!==E&&(C+=' style="'+E+'"'),""!==d&&(C+=' cellpadding="'+d+'"'),""!==u&&(C+=' cellspacing="'+u+'"'),""!==S&&(C+=' align="'+S+'"'),""!==x&&(C+=' border="'+x+'"'),(""===x||"0"===x)&&(C+=' class="'+s+'"'),""!==U&&(C+=' bordercolor="'+U+'"'),C+=">";for(var T=0;t>T;T++){C+="<tr>";for(var I=0;i>I;I++)C+="<td>"+(e.IE?"&nbsp;":"<br />")+"</td>";C+="</tr>"}C+="</table>",e.IE||(C+="<br />"),a.insertHtml(C),a.select().hideDialog().focus(),a.addBookmark()}}}),u=d.div,p=e('[name="rows"]',u).val(3),c=e('[name="cols"]',u).val(2),h=e('[name="width"]',u).val(100),g=e('[name="height"]',u),m=e('[name="widthType"]',u),f=e('[name="heightType"]',u),v=e('[name="padding"]',u).val(2),b=e('[name="spacing"]',u).val(0),_=e('[name="align"]',u),y=e('[name="border"]',u).val(1),k=e(".ke-input-color",u);i(u,k.eq(0)),i(u,k.eq(1)),t(k.eq(0),"#000000"),t(k.eq(1),""),p[0].focus(),p[0].select();var w;if(!n&&(w=a.plugin.getSelectedTable())){p.val(w[0].rows.length),c.val(w[0].rows.length>0?w[0].rows[0].cells.length:0),p.attr("disabled",!0),c.attr("disabled",!0);var S,x=w[0].style.width||w[0].width,U=w[0].style.height||w[0].height;void 0!==x&&(S=/^(\d+)((?:px|%)*)$/.exec(x))?(h.val(S[1]),m.val(S[2])):h.val(""),void 0!==U&&(S=/^(\d+)((?:px|%)*)$/.exec(U))&&(g.val(S[1]),f.val(S[2])),v.val(w[0].cellPadding||""),b.val(w[0].cellSpacing||""),_.val(w[0].align||""),y.val(void 0===w[0].border?"":w[0].border),t(k.eq(0),e.toHex(w.attr("borderColor")||"")),t(k.eq(1),e.toHex(w[0].style.backgroundColor||w[0].bgColor||"")),h[0].focus(),h[0].select()}},cellprop:function(){var n=['<div style="padding:20px;">','<div class="ke-dialog-row">','<label for="keWidth" style="width:90px;">'+o.size+"</label>",o.width+' <input type="text" id="keWidth" class="ke-input-text ke-input-number" name="width" value="" maxlength="4" /> &nbsp; ','<select name="widthType">','<option value="%">'+o.percent+"</option>",'<option value="px">'+o.px+"</option>","</select> &nbsp; ",o.height+' <input type="text" class="ke-input-text ke-input-number" name="height" value="" maxlength="4" /> &nbsp; ','<select name="heightType">','<option value="%">'+o.percent+"</option>",'<option value="px">'+o.px+"</option>","</select>","</div>",'<div class="ke-dialog-row">','<label for="keAlign" style="width:90px;">'+o.align+"</label>",o.textAlign+' <select id="keAlign" name="textAlign">','<option value="">'+o.alignDefault+"</option>",'<option value="left">'+o.alignLeft+"</option>",'<option value="center">'+o.alignCenter+"</option>",'<option value="right">'+o.alignRight+"</option>","</select> ",o.verticalAlign+' <select name="verticalAlign">','<option value="">'+o.alignDefault+"</option>",'<option value="top">'+o.alignTop+"</option>",'<option value="middle">'+o.alignMiddle+"</option>",'<option value="bottom">'+o.alignBottom+"</option>",'<option value="baseline">'+o.alignBaseline+"</option>","</select>","</div>",'<div class="ke-dialog-row">','<label for="keBorder" style="width:90px;">'+o.border+"</label>",o.borderWidth+' <input type="text" id="keBorder" class="ke-input-text ke-input-number" name="border" value="" maxlength="4" /> &nbsp; ',o.borderColor+' <span class="ke-inline-block ke-input-color"></span>',"</div>",'<div class="ke-dialog-row">','<label for="keBgColor" style="width:90px;">'+o.backgroundColor+"</label>",'<span class="ke-inline-block ke-input-color"></span>',"</div>","</div>"].join(""),s=a.createDialog({name:l,width:500,title:a.lang("tablecell"),body:n,beforeRemove:function(){b.unbind()},yesBtn:{name:a.lang("yes"),click:function(){var t=d.val(),i=u.val(),n=p.val(),l=c.val(),o=(h.val(),g.val(),m.val()),s=f.val(),r=v.val(),_=e(b[0]).html()||"",k=e(b[1]).html()||"";return/^\d*$/.test(t)?/^\d*$/.test(i)?/^\d*$/.test(r)?(y.css({width:""!==t?t+n:"",height:""!==i?i+l:"","background-color":k,"text-align":o,"vertical-align":s,"border-width":r,"border-style":""!==r?"solid":"","border-color":_}),a.hideDialog().focus(),a.addBookmark(),void 0):(alert(a.lang("invalidBorder")),v[0].focus(),void 0):(alert(a.lang("invalidHeight")),u[0].focus(),void 0):(alert(a.lang("invalidWidth")),d[0].focus(),void 0)}}}),r=s.div,d=e('[name="width"]',r).val(100),u=e('[name="height"]',r),p=e('[name="widthType"]',r),c=e('[name="heightType"]',r),h=e('[name="padding"]',r).val(2),g=e('[name="spacing"]',r).val(0),m=e('[name="textAlign"]',r),f=e('[name="verticalAlign"]',r),v=e('[name="border"]',r).val(1),b=e(".ke-input-color",r);i(r,b.eq(0)),i(r,b.eq(1)),t(b.eq(0),"#000000"),t(b.eq(1),""),d[0].focus(),d[0].select();var _,y=a.plugin.getSelectedCell(),k=y[0].style.width||y[0].width||"",w=y[0].style.height||y[0].height||"";(_=/^(\d+)((?:px|%)*)$/.exec(k))?(d.val(_[1]),p.val(_[2])):d.val(""),(_=/^(\d+)((?:px|%)*)$/.exec(w))&&(u.val(_[1]),c.val(_[2])),m.val(y[0].style.textAlign||""),f.val(y[0].style.verticalAlign||"");var S=y[0].style.borderWidth||"";S&&(S=parseInt(S)),v.val(S),t(b.eq(0),e.toHex(y[0].style.borderColor||"")),t(b.eq(1),e.toHex(y[0].style.backgroundColor||"")),d[0].focus(),d[0].select()},insert:function(){this.prop(!0)},"delete":function(){var e=a.plugin.getSelectedTable();a.cmd.range.setStartBefore(e[0]).collapse(!0),a.cmd.select(),e.remove(),a.addBookmark()},colinsert:function(t){var i=a.plugin.getSelectedTable()[0],l=a.plugin.getSelectedRow()[0],o=a.plugin.getSelectedCell()[0],s=o.cellIndex+t;s+=i.rows[0].cells.length-l.cells.length;for(var r=0,d=i.rows.length;d>r;r++){var u=i.rows[r],p=u.insertCell(s);p.innerHTML=e.IE?"":"<br />",s=n(i,u,p)}a.cmd.range.selectNodeContents(o).collapse(!0),a.cmd.select(),a.addBookmark()},colinsertleft:function(){this.colinsert(0)},colinsertright:function(){this.colinsert(1)},rowinsert:function(t){var i=a.plugin.getSelectedTable()[0],n=a.plugin.getSelectedRow()[0],l=a.plugin.getSelectedCell()[0],o=n.rowIndex;1===t&&(o=n.rowIndex+(l.rowSpan-1)+t);for(var s=i.insertRow(o),r=0,d=n.cells.length;d>r;r++){n.cells[r].rowSpan>1&&(d-=n.cells[r].rowSpan-1);var u=s.insertCell(r);1===t&&n.cells[r].colSpan>1&&(u.colSpan=n.cells[r].colSpan),u.innerHTML=e.IE?"":"<br />"}for(var p=o;p>=0;p--){var c=i.rows[p].cells;if(c.length>r){for(var h=l.cellIndex;h>=0;h--)c[h].rowSpan>1&&(c[h].rowSpan+=1);break}}a.cmd.range.selectNodeContents(l).collapse(!0),a.cmd.select(),a.addBookmark()},rowinsertabove:function(){this.rowinsert(0)},rowinsertbelow:function(){this.rowinsert(1)},rowmerge:function(){var e=a.plugin.getSelectedTable()[0],t=a.plugin.getSelectedRow()[0],i=a.plugin.getSelectedCell()[0],n=t.rowIndex,l=n+i.rowSpan,o=e.rows[l];if(!(e.rows.length<=l)){var s=i.cellIndex;if(!(o.cells.length<=s)){var r=o.cells[s];i.colSpan===r.colSpan&&(i.rowSpan+=r.rowSpan,o.deleteCell(s),a.cmd.range.selectNodeContents(i).collapse(!0),a.cmd.select(),a.addBookmark())}}},colmerge:function(){var e=(a.plugin.getSelectedTable()[0],a.plugin.getSelectedRow()[0]),t=a.plugin.getSelectedCell()[0],i=(e.rowIndex,t.cellIndex),n=i+1;if(!(e.cells.length<=n)){var l=e.cells[n];t.rowSpan===l.rowSpan&&(t.colSpan+=l.colSpan,e.deleteCell(n),a.cmd.range.selectNodeContents(t).collapse(!0),a.cmd.select(),a.addBookmark())}},rowsplit:function(){var t=a.plugin.getSelectedTable()[0],i=a.plugin.getSelectedRow()[0],l=a.plugin.getSelectedCell()[0],o=i.rowIndex;if(1!==l.rowSpan){for(var s=n(t,i,l),r=1,d=l.rowSpan;d>r;r++){var u=t.rows[o+r],p=u.insertCell(s);l.colSpan>1&&(p.colSpan=l.colSpan),p.innerHTML=e.IE?"":"<br />",s=n(t,u,p)}e(l).removeAttr("rowSpan"),a.cmd.range.selectNodeContents(l).collapse(!0),a.cmd.select(),a.addBookmark()}},colsplit:function(){var t=(a.plugin.getSelectedTable()[0],a.plugin.getSelectedRow()[0]),i=a.plugin.getSelectedCell()[0],n=i.cellIndex;if(1!==i.colSpan){for(var l=1,o=i.colSpan;o>l;l++){var s=t.insertCell(n+l);i.rowSpan>1&&(s.rowSpan=i.rowSpan),s.innerHTML=e.IE?"":"<br />"}e(i).removeAttr("colSpan"),a.cmd.range.selectNodeContents(i).collapse(!0),a.cmd.select(),a.addBookmark()}},coldelete:function(){for(var t=a.plugin.getSelectedTable()[0],i=a.plugin.getSelectedRow()[0],n=a.plugin.getSelectedCell()[0],l=n.cellIndex,o=0,s=t.rows.length;s>o;o++){var r=t.rows[o],d=r.cells[l];d.colSpan>1?(d.colSpan-=1,1===d.colSpan&&e(d).removeAttr("colSpan")):r.deleteCell(l),d.rowSpan>1&&(o+=d.rowSpan-1)}0===i.cells.length?(a.cmd.range.setStartBefore(t).collapse(!0),a.cmd.select(),e(t).remove()):a.cmd.selection(!0),a.addBookmark()},rowdelete:function(){for(var t=a.plugin.getSelectedTable()[0],i=a.plugin.getSelectedRow()[0],n=a.plugin.getSelectedCell()[0],l=i.rowIndex,o=n.rowSpan-1;o>=0;o--)t.deleteRow(l+o);0===t.rows.length?(a.cmd.range.setStartBefore(t).collapse(!0),a.cmd.select(),e(t).remove()):a.cmd.selection(!0),a.addBookmark()}},a.clickToolbar(l,a.plugin.table.prop)});
+
+KindEditor.plugin('table', function(K) {
+	var self = this, name = 'table', lang = self.lang(name + '.'), zeroborder = 'ke-zeroborder';
+	// 设置颜色
+	function _setColor(box, color) {
+		color = color.toUpperCase();
+		box.css('background-color', color);
+		box.css('color', color === '#000000' ? '#FFFFFF' : '#000000');
+		box.html(color);
+	}
+	// 初始化取色器
+	var pickerList = [];
+	function _initColorPicker(dialogDiv, colorBox) {
+		colorBox.bind('click,mousedown', function(e){
+			e.stopPropagation();
+		});
+		function removePicker() {
+			K.each(pickerList, function() {
+				this.remove();
+			});
+			pickerList = [];
+			K(document).unbind('click,mousedown', removePicker);
+			dialogDiv.unbind('click,mousedown', removePicker);
+		}
+		colorBox.click(function(e) {
+			removePicker();
+			var box = K(this),
+				pos = box.pos();
+			var picker = K.colorpicker({
+				x : pos.x,
+				y : pos.y + box.height(),
+				z : 811214,
+				selectedColor : K(this).html(),
+				colors : self.colorTable,
+				noColor : self.lang('noColor'),
+				shadowMode : self.shadowMode,
+				click : function(color) {
+					_setColor(box, color);
+					removePicker();
+				}
+			});
+			pickerList.push(picker);
+			K(document).bind('click,mousedown', removePicker);
+			dialogDiv.bind('click,mousedown', removePicker);
+		});
+	}
+	// 取得下一行cell的index
+	function _getCellIndex(table, row, cell) {
+		var rowSpanCount = 0;
+		for (var i = 0, len = row.cells.length; i < len; i++) {
+			if (row.cells[i] == cell) {
+				break;
+			}
+			rowSpanCount += row.cells[i].rowSpan - 1;
+		}
+		return cell.cellIndex - rowSpanCount;
+	}
+	self.plugin.table = {
+		//insert or modify table
+		prop : function(isInsert) {
+			var html = [
+				'<div style="padding:20px;">',
+				//rows, cols
+				'<div class="ke-dialog-row">',
+				'<label for="keRows" style="width:90px;">' + lang.cells + '</label>',
+				lang.rows + ' <input type="text" id="keRows" class="ke-input-text ke-input-number" name="rows" value="" maxlength="4" /> &nbsp; ',
+				lang.cols + ' <input type="text" class="ke-input-text ke-input-number" name="cols" value="" maxlength="4" />',
+				'</div>',
+				//width, height
+				'<div class="ke-dialog-row">',
+				'<label for="keWidth" style="width:90px;">' + lang.size + '</label>',
+				lang.width + ' <input type="text" id="keWidth" class="ke-input-text ke-input-number" name="width" value="" maxlength="4" /> &nbsp; ',
+				'<select name="widthType">',
+				'<option value="%">' + lang.percent + '</option>',
+				'<option value="px">' + lang.px + '</option>',
+				'</select> &nbsp; ',
+				lang.height + ' <input type="text" class="ke-input-text ke-input-number" name="height" value="" maxlength="4" /> &nbsp; ',
+				'<select name="heightType">',
+				'<option value="%">' + lang.percent + '</option>',
+				'<option value="px">' + lang.px + '</option>',
+				'</select>',
+				'</div>',
+				//space, padding
+				'<div class="ke-dialog-row">',
+				'<label for="kePadding" style="width:90px;">' + lang.space + '</label>',
+				lang.padding + ' <input type="text" id="kePadding" class="ke-input-text ke-input-number" name="padding" value="" maxlength="4" /> &nbsp; ',
+				lang.spacing + ' <input type="text" class="ke-input-text ke-input-number" name="spacing" value="" maxlength="4" />',
+				'</div>',
+				//align
+				'<div class="ke-dialog-row">',
+				'<label for="keAlign" style="width:90px;">' + lang.align + '</label>',
+				'<select id="keAlign" name="align">',
+				'<option value="">' + lang.alignDefault + '</option>',
+				'<option value="left">' + lang.alignLeft + '</option>',
+				'<option value="center">' + lang.alignCenter + '</option>',
+				'<option value="right">' + lang.alignRight + '</option>',
+				'</select>',
+				'</div>',
+				//border
+				'<div class="ke-dialog-row">',
+				'<label for="keBorder" style="width:90px;">' + lang.border + '</label>',
+				lang.borderWidth + ' <input type="text" id="keBorder" class="ke-input-text ke-input-number" name="border" value="" maxlength="4" /> &nbsp; ',
+				lang.borderColor + ' <span class="ke-inline-block ke-input-color"></span>',
+				'</div>',
+				//background color
+				'<div class="ke-dialog-row">',
+				'<label for="keBgColor" style="width:90px;">' + lang.backgroundColor + '</label>',
+				'<span class="ke-inline-block ke-input-color"></span>',
+				'</div>',
+				'</div>'
+			].join('');
+			var dialog = self.createDialog({
+				name : name,
+				width : 500,
+				title : self.lang(name),
+				body : html,
+				beforeRemove : function() {
+					colorBox.unbind();
+				},
+				yesBtn : {
+					name : self.lang('yes'),
+					click : function(e) {
+						var rows = rowsBox.val(),
+							cols = colsBox.val(),
+							width = widthBox.val(),
+							height = heightBox.val(),
+							widthType = widthTypeBox.val(),
+							heightType = heightTypeBox.val(),
+							padding = paddingBox.val(),
+							spacing = spacingBox.val(),
+							align = alignBox.val(),
+							border = borderBox.val(),
+							borderColor = K(colorBox[0]).html() || '',
+							bgColor = K(colorBox[1]).html() || '';
+						if (rows == 0 || !/^\d+$/.test(rows)) {
+							alert(self.lang('invalidRows'));
+							rowsBox[0].focus();
+							return;
+						}
+						if (cols == 0 || !/^\d+$/.test(cols)) {
+							alert(self.lang('invalidRows'));
+							colsBox[0].focus();
+							return;
+						}
+						if (!/^\d*$/.test(width)) {
+							alert(self.lang('invalidWidth'));
+							widthBox[0].focus();
+							return;
+						}
+						if (!/^\d*$/.test(height)) {
+							alert(self.lang('invalidHeight'));
+							heightBox[0].focus();
+							return;
+						}
+						if (!/^\d*$/.test(padding)) {
+							alert(self.lang('invalidPadding'));
+							paddingBox[0].focus();
+							return;
+						}
+						if (!/^\d*$/.test(spacing)) {
+							alert(self.lang('invalidSpacing'));
+							spacingBox[0].focus();
+							return;
+						}
+						if (!/^\d*$/.test(border)) {
+							alert(self.lang('invalidBorder'));
+							borderBox[0].focus();
+							return;
+						}
+						//modify table
+						if (table) {
+							if (width !== '') {
+								table.width(width + widthType);
+							} else {
+								table.css('width', '');
+							}
+							if (table[0].width !== undefined) {
+								table.removeAttr('width');
+							}
+							if (height !== '') {
+								table.height(height + heightType);
+							} else {
+								table.css('height', '');
+							}
+							if (table[0].height !== undefined) {
+								table.removeAttr('height');
+							}
+							table.css('background-color', bgColor);
+							if (table[0].bgColor !== undefined) {
+								table.removeAttr('bgColor');
+							}
+							if (padding !== '') {
+								table[0].cellPadding = padding;
+							} else {
+								table.removeAttr('cellPadding');
+							}
+							if (spacing !== '') {
+								table[0].cellSpacing = spacing;
+							} else {
+								table.removeAttr('cellSpacing');
+							}
+							if (align !== '') {
+								table[0].align = align;
+							} else {
+								table.removeAttr('align');
+							}
+							if (border !== '') {
+								table.attr('border', border);
+							} else {
+								table.removeAttr('border');
+							}
+							if (border === '' || border === '0') {
+								table.addClass(zeroborder);
+							} else {
+								table.removeClass(zeroborder);
+							}
+							if (borderColor !== '') {
+								table.attr('borderColor', borderColor);
+							} else {
+								table.removeAttr('borderColor');
+							}
+							self.hideDialog().focus();
+							return;
+						}
+						//insert new table
+						var style = '';
+						if (width !== '') {
+							style += 'width:' + width + widthType + ';';
+						}
+						if (height !== '') {
+							style += 'height:' + height + heightType + ';';
+						}
+						if (bgColor !== '') {
+							style += 'background-color:' + bgColor + ';';
+						}
+						var html = '<table';
+						if (style !== '') {
+							html += ' style="' + style + '"';
+						}
+						if (padding !== '') {
+							html += ' cellpadding="' + padding + '"';
+						}
+						if (spacing !== '') {
+							html += ' cellspacing="' + spacing + '"';
+						}
+						if (align !== '') {
+							html += ' align="' + align + '"';
+						}
+						if (border !== '') {
+							html += ' border="' + border + '"';
+						}
+						if (border === '' || border === '0') {
+							html += ' class="' + zeroborder + '"';
+						}
+						if (borderColor !== '') {
+							html += ' bordercolor="' + borderColor + '"';
+						}
+						html += '>';
+						for (var i = 0; i < rows; i++) {
+							html += '<tr>';
+							for (var j = 0; j < cols; j++) {
+								html += '<td>' + (K.IE ? '&nbsp;' : '<br />') + '</td>';
+							}
+							html += '</tr>';
+						}
+						html += '</table>';
+						if (!K.IE) {
+							html += '<br />';
+						}
+						self.insertHtml(html);
+						self.select().hideDialog().focus();
+						self.addBookmark();
+					}
+				}
+			}),
+			div = dialog.div,
+			rowsBox = K('[name="rows"]', div).val(3),
+			colsBox = K('[name="cols"]', div).val(2),
+			widthBox = K('[name="width"]', div).val(100),
+			heightBox = K('[name="height"]', div),
+			widthTypeBox = K('[name="widthType"]', div),
+			heightTypeBox = K('[name="heightType"]', div),
+			paddingBox = K('[name="padding"]', div).val(2),
+			spacingBox = K('[name="spacing"]', div).val(0),
+			alignBox = K('[name="align"]', div),
+			borderBox = K('[name="border"]', div).val(1),
+			colorBox = K('.ke-input-color', div);
+			_initColorPicker(div, colorBox.eq(0));
+			_initColorPicker(div, colorBox.eq(1));
+			_setColor(colorBox.eq(0), '#000000');
+			_setColor(colorBox.eq(1), '');
+			// foucs and select
+			rowsBox[0].focus();
+			rowsBox[0].select();
+			var table;
+			if (isInsert) {
+				return;
+			}
+			//get selected table node
+			table = self.plugin.getSelectedTable();
+			if (table) {
+				rowsBox.val(table[0].rows.length);
+				colsBox.val(table[0].rows.length > 0 ? table[0].rows[0].cells.length : 0);
+				rowsBox.attr('disabled', true);
+				colsBox.attr('disabled', true);
+				var match,
+					tableWidth = table[0].style.width || table[0].width,
+					tableHeight = table[0].style.height || table[0].height;
+				if (tableWidth !== undefined && (match = /^(\d+)((?:px|%)*)$/.exec(tableWidth))) {
+					widthBox.val(match[1]);
+					widthTypeBox.val(match[2]);
+				} else {
+					widthBox.val('');
+				}
+				if (tableHeight !== undefined && (match = /^(\d+)((?:px|%)*)$/.exec(tableHeight))) {
+					heightBox.val(match[1]);
+					heightTypeBox.val(match[2]);
+				}
+				paddingBox.val(table[0].cellPadding || '');
+				spacingBox.val(table[0].cellSpacing || '');
+				alignBox.val(table[0].align || '');
+				borderBox.val(table[0].border === undefined ? '' : table[0].border);
+				_setColor(colorBox.eq(0), K.toHex(table.attr('borderColor') || ''));
+				_setColor(colorBox.eq(1), K.toHex(table[0].style.backgroundColor || table[0].bgColor || ''));
+				widthBox[0].focus();
+				widthBox[0].select();
+			}
+		},
+		//modify cell
+		cellprop : function() {
+			var html = [
+				'<div style="padding:20px;">',
+				//width, height
+				'<div class="ke-dialog-row">',
+				'<label for="keWidth" style="width:90px;">' + lang.size + '</label>',
+				lang.width + ' <input type="text" id="keWidth" class="ke-input-text ke-input-number" name="width" value="" maxlength="4" /> &nbsp; ',
+				'<select name="widthType">',
+				'<option value="%">' + lang.percent + '</option>',
+				'<option value="px">' + lang.px + '</option>',
+				'</select> &nbsp; ',
+				lang.height + ' <input type="text" class="ke-input-text ke-input-number" name="height" value="" maxlength="4" /> &nbsp; ',
+				'<select name="heightType">',
+				'<option value="%">' + lang.percent + '</option>',
+				'<option value="px">' + lang.px + '</option>',
+				'</select>',
+				'</div>',
+				//align
+				'<div class="ke-dialog-row">',
+				'<label for="keAlign" style="width:90px;">' + lang.align + '</label>',
+				lang.textAlign + ' <select id="keAlign" name="textAlign">',
+				'<option value="">' + lang.alignDefault + '</option>',
+				'<option value="left">' + lang.alignLeft + '</option>',
+				'<option value="center">' + lang.alignCenter + '</option>',
+				'<option value="right">' + lang.alignRight + '</option>',
+				'</select> ',
+				lang.verticalAlign + ' <select name="verticalAlign">',
+				'<option value="">' + lang.alignDefault + '</option>',
+				'<option value="top">' + lang.alignTop + '</option>',
+				'<option value="middle">' + lang.alignMiddle + '</option>',
+				'<option value="bottom">' + lang.alignBottom + '</option>',
+				'<option value="baseline">' + lang.alignBaseline + '</option>',
+				'</select>',
+				'</div>',
+				//border
+				'<div class="ke-dialog-row">',
+				'<label for="keBorder" style="width:90px;">' + lang.border + '</label>',
+				lang.borderWidth + ' <input type="text" id="keBorder" class="ke-input-text ke-input-number" name="border" value="" maxlength="4" /> &nbsp; ',
+				lang.borderColor + ' <span class="ke-inline-block ke-input-color"></span>',
+				'</div>',
+				//background color
+				'<div class="ke-dialog-row">',
+				'<label for="keBgColor" style="width:90px;">' + lang.backgroundColor + '</label>',
+				'<span class="ke-inline-block ke-input-color"></span>',
+				'</div>',
+				'</div>'
+			].join('');
+			var dialog = self.createDialog({
+				name : name,
+				width : 500,
+				title : self.lang('tablecell'),
+				body : html,
+				beforeRemove : function() {
+					colorBox.unbind();
+				},
+				yesBtn : {
+					name : self.lang('yes'),
+					click : function(e) {
+						var width = widthBox.val(),
+							height = heightBox.val(),
+							widthType = widthTypeBox.val(),
+							heightType = heightTypeBox.val(),
+							padding = paddingBox.val(),
+							spacing = spacingBox.val(),
+							textAlign = textAlignBox.val(),
+							verticalAlign = verticalAlignBox.val(),
+							border = borderBox.val(),
+							borderColor = K(colorBox[0]).html() || '',
+							bgColor = K(colorBox[1]).html() || '';
+						if (!/^\d*$/.test(width)) {
+							alert(self.lang('invalidWidth'));
+							widthBox[0].focus();
+							return;
+						}
+						if (!/^\d*$/.test(height)) {
+							alert(self.lang('invalidHeight'));
+							heightBox[0].focus();
+							return;
+						}
+						if (!/^\d*$/.test(border)) {
+							alert(self.lang('invalidBorder'));
+							borderBox[0].focus();
+							return;
+						}
+						cell.css({
+							width : width !== '' ? (width + widthType) : '',
+							height : height !== '' ? (height + heightType) : '',
+							'background-color' : bgColor,
+							'text-align' : textAlign,
+							'vertical-align' : verticalAlign,
+							'border-width' : border,
+							'border-style' : border !== '' ? 'solid' : '',
+							'border-color' : borderColor
+						});
+						self.hideDialog().focus();
+						self.addBookmark();
+					}
+				}
+			}),
+			div = dialog.div,
+			widthBox = K('[name="width"]', div).val(100),
+			heightBox = K('[name="height"]', div),
+			widthTypeBox = K('[name="widthType"]', div),
+			heightTypeBox = K('[name="heightType"]', div),
+			paddingBox = K('[name="padding"]', div).val(2),
+			spacingBox = K('[name="spacing"]', div).val(0),
+			textAlignBox = K('[name="textAlign"]', div),
+			verticalAlignBox = K('[name="verticalAlign"]', div),
+			borderBox = K('[name="border"]', div).val(1),
+			colorBox = K('.ke-input-color', div);
+			_initColorPicker(div, colorBox.eq(0));
+			_initColorPicker(div, colorBox.eq(1));
+			_setColor(colorBox.eq(0), '#000000');
+			_setColor(colorBox.eq(1), '');
+			// foucs and select
+			widthBox[0].focus();
+			widthBox[0].select();
+			// get selected cell
+			var cell = self.plugin.getSelectedCell();
+			var match,
+				cellWidth = cell[0].style.width || cell[0].width || '',
+				cellHeight = cell[0].style.height || cell[0].height || '';
+			if ((match = /^(\d+)((?:px|%)*)$/.exec(cellWidth))) {
+				widthBox.val(match[1]);
+				widthTypeBox.val(match[2]);
+			} else {
+				widthBox.val('');
+			}
+			if ((match = /^(\d+)((?:px|%)*)$/.exec(cellHeight))) {
+				heightBox.val(match[1]);
+				heightTypeBox.val(match[2]);
+			}
+			textAlignBox.val(cell[0].style.textAlign || '');
+			verticalAlignBox.val(cell[0].style.verticalAlign || '');
+			var border = cell[0].style.borderWidth || '';
+			if (border) {
+				border = parseInt(border);
+			}
+			borderBox.val(border);
+			_setColor(colorBox.eq(0), K.toHex(cell[0].style.borderColor || ''));
+			_setColor(colorBox.eq(1), K.toHex(cell[0].style.backgroundColor || ''));
+			widthBox[0].focus();
+			widthBox[0].select();
+		},
+		insert : function() {
+			this.prop(true);
+		},
+		'delete' : function() {
+			var table = self.plugin.getSelectedTable();
+			self.cmd.range.setStartBefore(table[0]).collapse(true);
+			self.cmd.select();
+			table.remove();
+			self.addBookmark();
+		},
+		colinsert : function(offset) {
+			var table = self.plugin.getSelectedTable()[0],
+				row = self.plugin.getSelectedRow()[0],
+				cell = self.plugin.getSelectedCell()[0],
+				index = cell.cellIndex + offset;
+			// 取得第一行的index
+			index += table.rows[0].cells.length - row.cells.length;
+
+			for (var i = 0, len = table.rows.length; i < len; i++) {
+				var newRow = table.rows[i],
+					newCell = newRow.insertCell(index);
+				newCell.innerHTML = K.IE ? '' : '<br />';
+				// 调整下一行的单元格index
+				index = _getCellIndex(table, newRow, newCell);
+			}
+			self.cmd.range.selectNodeContents(cell).collapse(true);
+			self.cmd.select();
+			self.addBookmark();
+		},
+		colinsertleft : function() {
+			this.colinsert(0);
+		},
+		colinsertright : function() {
+			this.colinsert(1);
+		},
+		rowinsert : function(offset) {
+			var table = self.plugin.getSelectedTable()[0],
+				row = self.plugin.getSelectedRow()[0],
+				cell = self.plugin.getSelectedCell()[0];
+			var rowIndex = row.rowIndex;
+			if (offset === 1) {
+				rowIndex = row.rowIndex + (cell.rowSpan - 1) + offset;
+			}
+			var newRow = table.insertRow(rowIndex);
+
+			for (var i = 0, len = row.cells.length; i < len; i++) {
+				// 调整cell个数
+				if (row.cells[i].rowSpan > 1) {
+					len -= row.cells[i].rowSpan - 1;
+				}
+				var newCell = newRow.insertCell(i);
+				// copy colspan
+				if (offset === 1 && row.cells[i].colSpan > 1) {
+					newCell.colSpan = row.cells[i].colSpan;
+				}
+				newCell.innerHTML = K.IE ? '' : '<br />';
+			}
+			// 调整rowspan
+			for (var j = rowIndex; j >= 0; j--) {
+				var cells = table.rows[j].cells;
+				if (cells.length > i) {
+					for (var k = cell.cellIndex; k >= 0; k--) {
+						if (cells[k].rowSpan > 1) {
+							cells[k].rowSpan += 1;
+						}
+					}
+					break;
+				}
+			}
+			self.cmd.range.selectNodeContents(cell).collapse(true);
+			self.cmd.select();
+			self.addBookmark();
+		},
+		rowinsertabove : function() {
+			this.rowinsert(0);
+		},
+		rowinsertbelow : function() {
+			this.rowinsert(1);
+		},
+		rowmerge : function() {
+			var table = self.plugin.getSelectedTable()[0],
+				row = self.plugin.getSelectedRow()[0],
+				cell = self.plugin.getSelectedCell()[0],
+				rowIndex = row.rowIndex, // 当前行的index
+				nextRowIndex = rowIndex + cell.rowSpan, // 下一行的index
+				nextRow = table.rows[nextRowIndex]; // 下一行
+			// 最后一行不能合并
+			if (table.rows.length <= nextRowIndex) {
+				return;
+			}
+			var cellIndex = cell.cellIndex; // 下一行单元格的index
+			if (nextRow.cells.length <= cellIndex) {
+				return;
+			}
+			var nextCell = nextRow.cells[cellIndex]; // 下一行单元格
+			// 上下行的colspan不一致时不能合并
+			if (cell.colSpan !== nextCell.colSpan) {
+				return;
+			}
+			cell.rowSpan += nextCell.rowSpan;
+			nextRow.deleteCell(cellIndex);
+			self.cmd.range.selectNodeContents(cell).collapse(true);
+			self.cmd.select();
+			self.addBookmark();
+		},
+		colmerge : function() {
+			var table = self.plugin.getSelectedTable()[0],
+				row = self.plugin.getSelectedRow()[0],
+				cell = self.plugin.getSelectedCell()[0],
+				rowIndex = row.rowIndex, // 当前行的index
+				cellIndex = cell.cellIndex,
+				nextCellIndex = cellIndex + 1;
+			// 最后一列不能合并
+			if (row.cells.length <= nextCellIndex) {
+				return;
+			}
+			var nextCell = row.cells[nextCellIndex];
+			// 左右列的rowspan不一致时不能合并
+			if (cell.rowSpan !== nextCell.rowSpan) {
+				return;
+			}
+			cell.colSpan += nextCell.colSpan;
+			row.deleteCell(nextCellIndex);
+			self.cmd.range.selectNodeContents(cell).collapse(true);
+			self.cmd.select();
+			self.addBookmark();
+		},
+		rowsplit : function() {
+			var table = self.plugin.getSelectedTable()[0],
+				row = self.plugin.getSelectedRow()[0],
+				cell = self.plugin.getSelectedCell()[0],
+				rowIndex = row.rowIndex;
+			// 不是可分割单元格
+			if (cell.rowSpan === 1) {
+				return;
+			}
+			var cellIndex = _getCellIndex(table, row, cell);
+			for (var i = 1, len = cell.rowSpan; i < len; i++) {
+				var newRow = table.rows[rowIndex + i],
+					newCell = newRow.insertCell(cellIndex);
+				if (cell.colSpan > 1) {
+					newCell.colSpan = cell.colSpan;
+				}
+				newCell.innerHTML = K.IE ? '' : '<br />';
+				// 调整下一行的单元格index
+				cellIndex = _getCellIndex(table, newRow, newCell);
+			}
+			K(cell).removeAttr('rowSpan');
+			self.cmd.range.selectNodeContents(cell).collapse(true);
+			self.cmd.select();
+			self.addBookmark();
+		},
+		colsplit : function() {
+			var table = self.plugin.getSelectedTable()[0],
+				row = self.plugin.getSelectedRow()[0],
+				cell = self.plugin.getSelectedCell()[0],
+				cellIndex = cell.cellIndex;
+			// 不是可分割单元格
+			if (cell.colSpan === 1) {
+				return;
+			}
+			for (var i = 1, len = cell.colSpan; i < len; i++) {
+				var newCell = row.insertCell(cellIndex + i);
+				if (cell.rowSpan > 1) {
+					newCell.rowSpan = cell.rowSpan;
+				}
+				newCell.innerHTML = K.IE ? '' : '<br />';
+			}
+			K(cell).removeAttr('colSpan');
+			self.cmd.range.selectNodeContents(cell).collapse(true);
+			self.cmd.select();
+			self.addBookmark();
+		},
+		coldelete : function() {
+			var table = self.plugin.getSelectedTable()[0],
+				row = self.plugin.getSelectedRow()[0],
+				cell = self.plugin.getSelectedCell()[0],
+				index = cell.cellIndex;
+			for (var i = 0, len = table.rows.length; i < len; i++) {
+				var newRow = table.rows[i],
+					newCell = newRow.cells[index];
+				if (newCell.colSpan > 1) {
+					newCell.colSpan -= 1;
+					if (newCell.colSpan === 1) {
+						K(newCell).removeAttr('colSpan');
+					}
+				} else {
+					newRow.deleteCell(index);
+				}
+				// 跳过不需要删除的行
+				if (newCell.rowSpan > 1) {
+					i += newCell.rowSpan - 1;
+				}
+			}
+			if (row.cells.length === 0) {
+				self.cmd.range.setStartBefore(table).collapse(true);
+				self.cmd.select();
+				K(table).remove();
+			} else {
+				self.cmd.selection(true);
+			}
+			self.addBookmark();
+		},
+		rowdelete : function() {
+			var table = self.plugin.getSelectedTable()[0],
+				row = self.plugin.getSelectedRow()[0],
+				cell = self.plugin.getSelectedCell()[0],
+				rowIndex = row.rowIndex;
+			// 从下到上删除
+			for (var i = cell.rowSpan - 1; i >= 0; i--) {
+				table.deleteRow(rowIndex + i);
+			}
+			if (table.rows.length === 0) {
+				self.cmd.range.setStartBefore(table).collapse(true);
+				self.cmd.select();
+				K(table).remove();
+			} else {
+				self.cmd.selection(true);
+			}
+			self.addBookmark();
+		}
+	};
+	self.clickToolbar(name, self.plugin.table.prop);
+});
