@@ -113,6 +113,7 @@ h1,h2,h4,h5,h6 {
 					font-size: 48px;
 					text-align: center;
 					text-shadow: #000 1px 1px 2px;
+				    padding-top: 200px;
 				}
 				#issues li p {
 					font-size: 14px;
@@ -124,7 +125,7 @@ h1,h2,h4,h5,h6 {
 		
 		#grad_top,
 		#grad_bottom {
-			width: 500px;
+			width: 100%;
 			height: 80px;
 			position: absolute;
 		}
@@ -154,11 +155,11 @@ h1,h2,h4,h5,h6 {
 				background-position:  0 0;
 			}
 			#next {
-				bottom: 0;
+				bottom: 20px;
 				background-image: url('../images/next_v.png');
 			}
 			#prev {
-				top: 0;
+				top: 20px;
 				background-image: url('../images/prev_v.png');
 			}
 				#next.disabled,
