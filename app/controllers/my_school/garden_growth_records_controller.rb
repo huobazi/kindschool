@@ -96,16 +96,16 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
       @growth_record.tp = 0
       unless params[:personal_set_id].blank?
        set = current_user.personal_sets.find(params[:personal_set_id])
-      if  !set.blank? && set.resource
-       if set.resource_type == "PhotoGallery"
-          asset_img = AssetImg.new()
-          file_url =  "#{Rails.root}/public#{set.resource.public_filename}"
-          uploaded_data =  fixture_file_upload file_url, 'image/png' # (file_url, 'image/jpeg', false) 
-          asset_img = AssetImg.new(:uploaded_data=>uploaded_data)
-          @growth_record.asset_imgs  << asset_img
+       if  !set.blank? && set.resource
+         if set.resource_type == "PhotoGallery"
+           asset_img = AssetImg.new()
+           file_url =  "#{Rails.root}/public#{set.resource.public_filename}"
+           uploaded_data =  fixture_file_upload file_url, 'image/png' # (file_url, 'image/jpeg', false) 
+           asset_img = AssetImg.new(:uploaded_data=>uploaded_data)
+           @growth_record.asset_imgs  << asset_img
+         end
        end
       end
-    end
       unless params[:asset_imgs].blank?
         params[:asset_imgs].each do |k,v|
           @growth_record.asset_imgs << AssetImg.new(:uploaded_data=>v)
