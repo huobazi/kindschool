@@ -96,6 +96,9 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
       if  !set.blank? && set.resource
        if set.resource_type == "PhotoGallery"
           asset_img = AssetImg.new()
+          Rails.logger.info("================aaaa======\n\n" )
+          Rails.logger.info("http://#{request.host_with_port}#{set.resource.public_filename}" )
+          Rails.logger.info("================aaaa======\n\n" )
           asset_img.source_uri= "http://#{request.host_with_port}#{set.resource.public_filename}"
           @growth_record.asset_imgs  << asset_img
        end
