@@ -5,11 +5,19 @@
     <%= stylesheet_link_tag    "app_bootstrap", :media => "all" %>
     <%= stylesheet_link_tag    "colorful", :media => "all" %>
     <%= stylesheet_link_tag    "colorful_main" , :media => "all"%>
-    
+
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+    <%= javascript_include_tag "DD_belatedPNG_0.0.8a" %>
+<!--[if lte IE 6]>
+    <script type="text/javascript">
+        alert(1);
+        DD_belatedPNG.fix('div, ul, img, li, input , a');
+    </script>
+<![endif]-->
   </head>
   <body style="background-color: #d9edfa">
+
     <div  class="wrapper">
       <div class="main_logo">
         <% if @kind %>
@@ -22,25 +30,25 @@
         <div class="menu_center official_menu_center">
           <ul>
             <li>
-            <%= link_to "<div class='offical_home'>
-                </div>".html_safe,:controller=>"/my_school/main",:action=>:index %>
+              <%= link_to "<div class='offical_home'>
+</div>".html_safe,:controller=>"/my_school/main",:action=>:index %>
             </li>
             <li>
-               <%= link_to "<div class='offical_about_us'>
-                </div>".html_safe,:controller=>"/my_school/main",:action=>:show_official_about_us %>
+              <%= link_to "<div class='offical_about_us'>
+</div>".html_safe,:controller=>"/my_school/main",:action=>:show_official_about_us %>
             </li>
             <li>
               <%= link_to "<div class='offical_feature'>
-                </div>".html_safe,:controller=>"/my_school/main",:action=>:feature %>
+</div>".html_safe,:controller=>"/my_school/main",:action=>:feature %>
             </li>
             <li>
               <%= link_to "<div class='offical_admiss_infor'>
-                </div>".html_safe,:controller=>"/my_school/main",:action=>:admissions_information %>
+</div>".html_safe,:controller=>"/my_school/main",:action=>:admissions_information %>
             </li>
             <li>
               <!-- <a href="#{}"></a> -->
               <%= link_to "<div class='offical_school_index'>
-                </div>".html_safe,{:controller=>"/my_school/home",:action=>:index} ,{:target=>"_blank"}%>
+</div>".html_safe,{:controller=>"/my_school/home",:action=>:index} ,{:target=>"_blank"}%>
             </li>
           </ul>
         </div>
