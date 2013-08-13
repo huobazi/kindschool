@@ -13,7 +13,7 @@ class NoisyImage
 
     label = chars.join("")
     image = MiniMagick::Image.new('mini_captcha.jpg')
-    image.run_command("convert -background #a4c500 -pointsize 16 -kerning 1 +noise Laplacian -undercolor lightgrey label:#{label} mini_captcha.jpg")
+    image.run_command("convert -background #a4c500 -pointsize 16 -kerning 1  -undercolor lightgrey label:#{label} mini_captcha.jpg")#+noise Laplacian
     image.to_blob
 
     @code = label
