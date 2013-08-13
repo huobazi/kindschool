@@ -96,6 +96,7 @@ School::Application.routes.draw do
       end
       member do
         get :set_send_sms,:set_gather_sms
+        post :reset_password
       end
     end
     resources :activity_entries

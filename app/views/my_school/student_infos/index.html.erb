@@ -102,6 +102,7 @@
                     <% if choose_operate_show("my_school/users/set_gather_sms") %>
                       <%= link_to (student.user.is_receive ? "取消收短信" : "设为可收短信"), set_gather_sms_my_school_user_path(student.user) %>
                     <% end %>
+                    <%=link_to '重置密码',reset_password_my_school_user_path(student.user), method: :post,data: { confirm: '确定要重置密码?' } %>
                   </div>
                 </td>
               </tr>
