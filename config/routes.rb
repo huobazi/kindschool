@@ -90,7 +90,9 @@ School::Application.routes.draw do
       end
     end
 
-    resources :growth_record_stats
+    resources :statistics do
+      get :growth_record, :on => :collection
+    end
     resources :users do
       collection do
         get :login,:logout,:error_notice,:show,:change_password_view

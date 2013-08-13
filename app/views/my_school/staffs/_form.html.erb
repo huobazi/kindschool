@@ -34,7 +34,7 @@
     <%= p.input :gender, :as => :radio, :collection => {"男" => "M", "女" => "G"}, :required => true %>
     <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
     <%= p.input :name, :validate => true %>
-    <%= p.input :phone %>
+    <%= p.input :phone, :validate => true %>
     <% if action_name == "new" %>
       <%= p.input :login, :validate => true, :hint => "之后不能改变" %>
     <% else %>
