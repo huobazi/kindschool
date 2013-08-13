@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>School</title>
+    <title><%=@kind.name%></title>
+
     <%= stylesheet_link_tag    "app_bootstrap", :media => "all" %>
     <%= stylesheet_link_tag    "colorful", :media => "all" %>
     <%= stylesheet_link_tag    "colorful_main" , :media => "all"%>
-    
+    <meta name="description" content="<%=@description%>" />
+    <meta name="keywords" content="<%=@keywords%>" />
+
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
