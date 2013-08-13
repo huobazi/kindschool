@@ -40,14 +40,14 @@ class MySchool::UsersController < MySchool::ManageController
       user = User.authenticate(params[:login], params[:password],@kind.id)
        if WEBSITE_CONFIG["weixin_blind"]
         if user.weiyi_code.blank?
-          flash[:notice] = "您需要绑定\"微壹平台\"微信公共帐号"
-          redirect_to :action => :login,:controller=>"/my_school/users"
-          return
+          raise "您需要绑定\"微壹平台\"微信公共帐号"
+#          redirect_to :action => :login,:controller=>"/my_school/users"
+#          return
         end
         if user.weixin_code.blank?
-          flash[:notice] = "您需要绑定幼儿园的公共账号访问"
-          redirect_to :action => :login,:controller=>"/my_school/users"
-          return
+          raise "您需要绑定幼儿园的公共账号访问"
+#          redirect_to :action => :login,:controller=>"/my_school/users"
+#          return
         end
        end
       self.current_user = user
