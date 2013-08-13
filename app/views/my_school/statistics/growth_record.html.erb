@@ -60,6 +60,11 @@ function backDate(){
   initDate();
 }
 
+function curDate() {
+  var dateLong = curD.getTime();
+  curD.setTime(dateLong);
+  initDate();
+}
 
 function nextDate(){
   var dateLong = curD.getTime();
@@ -67,11 +72,20 @@ function nextDate(){
   initDate();
 }
 
-
 </script>
+
+<%= form_tag '/my_school/statistics/growth_record' , :method=>"get", :id => "stat_growth_record" do %>
 <a class="normal_link" href="javascript:void(0);"  onclick="backDate();">上一周</a>
-<input type="text"  id="val"  />
+<%= hidden_field_tag "start_at" %>
+<%= hidden_field_tag "end_at" %>
+<% if params[:start_at].present? or params[:end_at].present? %>
+  <input type="text"  id="val" value="<%= params[:start_at] %>~<%= params[:end_at] %>" />
+<% else %>
+  <input type="text"  id="val"  />
+<% end %>
 <a class="normal_link" href="javascript:void(0);" onclick="nextDate();" >下一周</a>
+<a class="normal_link" href="javascript:void(0);" onclick="curDate();" >本周</a>
+<% end %>
 
 
 <div id="growth_record_stats">
@@ -86,21 +100,13 @@ function nextDate(){
 
 <script type="text/javascript">
 $(document).ready(function() {
-
-
-$(".normal_link").each(function() {
-  $(this).click(function() {
-    $.get(
-            "/my_school/statistics/growth_record",
-            {
-              start_at: $("#val").val().split("~")[0],
-              end_at: $("#val").val().split("~")[1]
-            },
-            function(result) {
-              $("#growth_record_stats").html(result)
-            }
-          )
-      })
+  $(".normal_link").each(function() {
+    $(this).click(function() {
+      $("#start_at").val($("#val").val().split("~")[0]);
+      $("#end_at").val($("#val").val().split("~")[1])
+      $("#stat_growth_record").submit();
+    })
   })
 })
+
 </script>
