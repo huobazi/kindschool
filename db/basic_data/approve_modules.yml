@@ -14,3 +14,7 @@ activities:
   name: "活动信息"
   number: "Activity"
   status: false
+topics:
+  name: "活动信息"
+  number: "Topic"
+  status: false
