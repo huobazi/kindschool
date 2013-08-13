@@ -6,8 +6,15 @@
     <%= stylesheet_link_tag    "colorful", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+    <%= javascript_include_tag "DD_belatedPNG_0.0.8a" %>
+<!--[if lte IE 6]>
+    <script type="text/javascript">
+        DD_belatedPNG.fix('div, ul, img, li, input , a');
+    </script>
+<![endif]-->
   </head>
   <body>
+
     <div class="wrapper_all">
       <%= yield %>
     </div>

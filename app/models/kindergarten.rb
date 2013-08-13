@@ -69,6 +69,8 @@ class Kindergarten < ActiveRecord::Base
 
   has_many :approve_modules
 
+  has_one :shrink_record
+
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img
 
@@ -83,6 +85,13 @@ class Kindergarten < ActiveRecord::Base
         self.page_contents << PageContent.new((v || {}).merge(:number=>k))
       end
     end
+    #创建了幼儿园的SEO初始化
+    shrink_record = ShrinkRecord.new()
+    #幼儿园名字 幼儿园 幼儿园的number 幼儿园地址
+    shrink_record.keywords = self.name+","+self.number+",幼儿园,"+self.address+"."
+    #幼儿园名字 幼儿园 幼儿园的number 幼儿园地址
+    shrink_record.description = self.name+","+self.number+",幼儿园,"+self.address+"." 
+    self.shrink_record = shrink_record
     #创建所需要的审核模块
     approve_modules = YAML.load_file("#{Rails.root}/db/basic_data/approve_modules.yml")
     approve_modules.each do |k,approve_module|
