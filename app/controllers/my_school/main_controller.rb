@@ -1,5 +1,6 @@
 #encoding:utf-8
 class MySchool::MainController < MySchool::BaseController
+  before_filter :find_shrink_record
   #幼儿园首页
   layout "colorful_main"
   def index
@@ -72,6 +73,14 @@ class MySchool::MainController < MySchool::BaseController
 
   def show_new_list
     @news = @kind.news.where(:approve_status=>0).page(params[:page] || 1).per(10)
+  end
+  private
+  def find_shrink_record
+    if @kind.shrink_record
+       @keywords = @kind.shrink_record.keywords
+       @description = @kind.shrink_record.description
+    end 
+
   end
 
 end
