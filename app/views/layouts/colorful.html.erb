@@ -19,17 +19,18 @@
       "bootstrap-datepicker.zh-CN",
       "DD_belatedPNG_0.0.8a"
   %>
-   <%= javascript_include_tag "jquery.rater" %>
-   <%= javascript_include_tag "rails.validations" %>
-   <%= javascript_include_tag "rails.validations.simple_form" %>
+    <%= javascript_include_tag "jquery.rater" %>
+    <%= javascript_include_tag "rails.validations" %>
+    <%= javascript_include_tag "rails.validations.simple_form" %>
     <%= csrf_meta_tags %>
-  </head>
-  <body>
-<!--[if lte IE 6]>
+    <!--[if lte IE 6]>
     <script type="text/javascript">
         DD_belatedPNG.fix('div, ul, img, li, input , a');
     </script>
 <![endif]-->
+  </head>
+  <body>
+
     <div class="wrapper">
       <%= render :partial => "/modules/colorful/head" %>
       <%= yield %>
