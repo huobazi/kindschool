@@ -3,7 +3,9 @@
   jQuery(function() {
     $('#growth_record_start_at').datepicker({
       language: "zh-CN",
-      format:"yyyy-mm-dd"
+      format:"yyyy-mm-dd",
+viewMode: "weeks",
+minViewMode: "weeks"
     }).on("changeDate", function() {
       $(this).datepicker('hide')
     });;
