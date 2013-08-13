@@ -36,7 +36,7 @@
     <%= p.input :name, :validate => true %>
     <%= p.input :phone, :validate => true %>
     <% if action_name == "new" %>
-      <%= p.input :login, :validate => true, :hint => "帐号只允许使用6到16位字符的英文、数字和下划线组合，保存之后不能改变" %>
+      <%= p.input :login, :validate => true, :hint => "帐号只允许使用6到20位字符的英文、数字和下划线组合，保存之后不能改变" %>
     <% else %>
       <div class="control-group">
         <%= p.label :login, class: "control-label" %>

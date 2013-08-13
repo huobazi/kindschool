@@ -94,8 +94,7 @@ a{
     padding: 0px;
 }
 #main .menu_center ul li{
-    float: none;
-    display: inline-block;
+    float: left;
 }
 /*=======首页样式======================end*/
 .small_menu{
