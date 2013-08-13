@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <title>School</title>
@@ -25,12 +25,13 @@
     <%= csrf_meta_tags %>
     <!--[if lte IE 6]>
     <script type="text/javascript">
+             try{
         DD_belatedPNG.fix('div, ul, img, li, input , a');
+        }catch(err){}
     </script>
 <![endif]-->
   </head>
   <body>
-
     <div class="wrapper">
       <%= render :partial => "/modules/colorful/head" %>
       <%= yield %>
