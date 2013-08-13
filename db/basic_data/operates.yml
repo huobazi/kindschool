@@ -381,6 +381,19 @@ topic_entry_edit:
   params: ""
   protocol: ""
   <<: *DEFAULTS
+
+topic_entry_delete:
+  id: 3012
+  parent_id: 3
+  name: "删除贴子回复"
+  level: 2
+  sequence: 0
+  note: "删除贴子回复"
+  controller: "my_school/topic_entries"
+  action: "virtual_delete"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
 #||||||||||||||||||||||||||人员管理功能
 squad_manage:
   id: 4001
@@ -1686,6 +1699,18 @@ activity_entry_edit:
   note: "修改活动回复"
   controller: "my_school/activity_entries"
   action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+activity_entry_delete:
+  id: 10017
+  parent_id: 10
+  name: "删除活动回复"
+  level: 2
+  sequence: 0
+  note: "删除活动回复"
+  controller: "my_school/activity_entries"
+  action: "virtual_delete"
   protocol: ""
   <<: *DEFAULTS
 

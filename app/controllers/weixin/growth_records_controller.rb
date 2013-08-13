@@ -97,6 +97,15 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
     @growth_record = GrowthRecord.new(params[:growth_record])
     if current_user.get_users_ranges[:tp] == :student
       @growth_record.student_info_id = current_user.student_info.id
+      @growth_record.squad_name = current_user.student_info.squad.name
+    else
+      if (@squad = @kind.squads.find_by_id(params[:squad])) && @squad.name.present?
+        @growth_record.squad_name = @squad.name
+      else
+        flash[:error] = "非法操作"
+        redirect_to :action => :index
+        return
+      end
     end
     @growth_record.kindergarten_id = @kind.id
     @growth_record.creater_id = current_user.id

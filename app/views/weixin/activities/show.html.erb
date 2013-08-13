@@ -12,6 +12,7 @@
     <ul class="data_list">
       <li class="show">
         <p class="title"><span class="name"><%= @activity.title %></span></p>
+        <p class="info">班级:<%= @activity.squad.try(:name) %></p>
         <p class="info"><span class="time"><%= @activity.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span><%= @activity.end_at.try(:to_short_datetime) %></span></p>
         <p class="info">由&nbsp;<span class="author"><%= @activity.creater.try(:name) %></span>&nbsp;创建于&nbsp;<span><%= @activity.created_at.try(:to_long_datetime) %></span></p>
         <div class="ctivity_content_logo">

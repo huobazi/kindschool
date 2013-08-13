@@ -1,5 +1,12 @@
 (function() {
-  $('<%= escape_javascript(render "topic_entry", :topic_entry => @topic_entry, :topic_entry_counter => @topic.topic_entries.count - 1) %>').hide().insertBefore($('nav.pagination')).fadeIn('fast');
-    $('#topic_entry_content').val('');
+  if($("#topic_entries div").length > 0) {
+    if($("nav.pagination").length > 0) {
+      $('<%= escape_javascript(render "topic_entry", :topic_entry => @topic_entry, :topic_entry_counter => @topic.topic_entries.count - 1) %>').hide().insertBefore($("#topic_entries").children().last()).fadeIn('fast');
+    } else {
+      $('<%= escape_javascript(render "topic_entry", :topic_entry => @topic_entry, :topic_entry_counter => @topic.topic_entries.count - 1) %>').hide().insertAfter($("#topic_entries").children().last()).fadeIn('fast');
+    }
+  } else {
+    $("#topic_entries").empty();
+    $('<%= escape_javascript(render "topic_entry", :topic_entry => @topic_entry, :topic_entry_counter => @topic.topic_entries.count - 1) %>').hide().appendTo($("#topic_entries")).fadeIn('fast');
+  }
 })()
-
