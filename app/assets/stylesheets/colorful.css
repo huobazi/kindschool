@@ -1099,7 +1099,8 @@ table.attributes td {
 .tab .check_rangs,.tab .check_grades{
     float: left;
     padding: 6px;
-    width: 147px;
+/*    width: 147px;*/
+    margin-left: 10px;
 }
 .tab .rangs_tag{
     width: 100%;
@@ -1642,11 +1643,15 @@ ul.teacher_list li{
 /*========成长记录===========*/
 .img_div{
     float: left;
-    width: 30%;
+    width: 28%;
     padding: 5px;
+    margin-right: 15px;
     overflow: hidden;
     text-align: center;
     position: relative;
+}
+.img_div input{
+    width: 170px;
 }
 
 .img_div a.btn-delete {
