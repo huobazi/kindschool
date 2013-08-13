@@ -61,6 +61,9 @@ a{
     width: 100%;
     text-align: center;
 }
+#main .menu_center ul {
+    width: 100%;
+}
 #main .menu_center ul li{
     border-right: 1px solid white;
     margin-left: 50px;
