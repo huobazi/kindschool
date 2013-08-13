@@ -89,6 +89,8 @@ School::Application.routes.draw do
         delete :destroy_multiple
       end
     end
+
+    resources :growth_record_stats
     resources :users do
       collection do
         get :login,:logout,:error_notice,:show,:change_password_view
@@ -99,7 +101,11 @@ School::Application.routes.draw do
         post :reset_password
       end
     end
-    resources :activity_entries
+    resources :activity_entries do
+      member do
+        get :virtual_delete
+      end
+    end
     resources :squads do
       collection do
         delete :destroy_multiple

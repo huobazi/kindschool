@@ -13,10 +13,8 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
 
     respond_to do |format|
       if @topic_entry.save!
-        flash[:success] = "添加回复成功"
         format.js { render :layout => false }
       else
-        flash[:error] = "操作失败"
         format.html { render :action => "new" }
         format.js { render :layout => false }
       end
@@ -43,6 +41,8 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
 
   def virtual_delete
     @topic_entry = TopicEntry.find_by_id(params[:id])
+
+    @topic = Topic.find_by_id(@topic_entry.topic_id)
 
     if current_user.get_users_ranges[:tp] == :all
       @topic_entry.is_show = 0

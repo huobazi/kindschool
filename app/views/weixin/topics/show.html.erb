@@ -11,6 +11,7 @@
     <ul class="data_list">
       <li class="show">
         <p class="title"><span class="name"><%= @topic.title %></span></p>
+        <p class="info">班级:<%= @topic.squad.try(:name) %></p>
         <p class="info"><span class="author"><%= @topic.creater.try(:name) %></span>&nbsp;发表于&nbsp;<span><%= @topic.created_at.to_long_datetime %></span></p>
         <div class="content"><%= simple_format @topic.content %></div>
       </li>

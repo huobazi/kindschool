@@ -8,7 +8,7 @@ class MySchool::UsersController < MySchool::ManageController
 
   end
   def error_notice
-    
+
   end
   #登录
   def login
@@ -59,7 +59,7 @@ class MySchool::UsersController < MySchool::ManageController
         end
         operates_data = self.current_user.operates.collect{ |operate| "#{operate.controller}/#{operate.action}"}
         current_user.approve_module_users.each do |approve|
-         approve_module = approve.approve_module    
+         approve_module = approve.approve_module
          if approve_module.status == true
           operates_data << "my_school/approves"
            if approve_module.number == "News"
@@ -67,9 +67,9 @@ class MySchool::UsersController < MySchool::ManageController
            elsif approve_module.number == "Activity"
              operates_data << "my_school/approves/activities_list"
            elsif approve_module.number == "Notice"
-             operates_data << "my_school/approves/notices_list"              
+             operates_data << "my_school/approves/notices_list"
            elsif approve_module.number == "Message"
-             operates_data << "my_school/approves/messages_list"              
+             operates_data << "my_school/approves/messages_list"
            end
          end
         end

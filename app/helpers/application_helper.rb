@@ -44,8 +44,30 @@ module ApplicationHelper
     end
   end
 
+  def destroy_activity_entry?(activity_entry)
+    if current_user.get_users_ranges[:tp] == :all
+      true
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      if activity_entry.activity.squad.present? && current_user.staff.squad_ids.include?(activity_entry.activity.squad_id)
+        true
+      else
+        false
+      end
+    else
+      false
+    end
+  end
+
   def edit_topic_entry?(topic_entry)
     if topic_entry.creater_id == current_user.id
+      true
+    else
+      false
+    end
+  end
+
+  def edit_activity_entry?(activity_entry)
+    if activity_entry.creater_id == current_user.id
       true
     else
       false
