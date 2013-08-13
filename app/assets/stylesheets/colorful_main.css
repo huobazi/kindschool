@@ -291,7 +291,7 @@ a:hover{
 }
 .box_feat_img img{
     border: 0 none;
-    max-width: 200%;
+    max-width: 300px;
     vertical-align: middle;
 }
 .show_menu_center{

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  keywords: MyText
+  description: MyText
+  kindergarten_id: 1
+  url: MyString
+
+two:
+  keywords: MyText
+  description: MyText
+  kindergarten_id: 1
+  url: MyString

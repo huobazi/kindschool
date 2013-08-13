@@ -1,0 +1,112 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>
+          成长记录统计
+        </label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li>
+              统计
+            </li>
+            <li>/</li>
+            <li>成长记录统计</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+      </ul>
+    </div>
+
+
+    <div class="work_list">
+      <div class="topics">
+<script type="text/javascript">
+
+var curD = new Date();
+var firstD  =  new Date();
+var lastD = new Date();
+var dayTime = 24*60*60*1000 ;
+function initDate(){
+  curD.setHours(12,12,12,0);
+  var dateLong = curD.getTime();
+
+
+  if ( curD.getDay()== 0 ){
+    dateLong = dateLong - (6*dayTime);
+  }else {
+    dateLong = dateLong - (curD.getDay()-1)*dayTime;
+  }
+
+  curD.setTime(dateLong);
+
+  firstD = curD;
+  lastD.setTime(firstD.getTime()+6*dayTime);
+  var ss = firstD.getFullYear()+'-'+(firstD.getMonth()+1)+'-'+firstD.getDate()+'~'+lastD.getFullYear()+'-'+(lastD.getMonth()+1)+'-'+lastD.getDate();
+  document.getElementById('val').setAttribute('value',ss);
+
+
+}
+
+function backDate(){
+  var dateLong = curD.getTime();
+  curD.setTime(dateLong - (6*dayTime));
+  initDate();
+}
+
+function curDate() {
+  var dateLong = curD.getTime();
+  curD.setTime(dateLong);
+  initDate();
+}
+
+function nextDate(){
+  var dateLong = curD.getTime();
+  curD.setTime(dateLong + (7*dayTime));
+  initDate();
+}
+
+</script>
+
+<%= form_tag '/my_school/statistics/growth_record' , :method=>"get", :id => "stat_growth_record" do %>
+<a class="normal_link" href="javascript:void(0);"  onclick="backDate();">上一周</a>
+<%= hidden_field_tag "start_at" %>
+<%= hidden_field_tag "end_at" %>
+<% if params[:start_at].present? or params[:end_at].present? %>
+  <input type="text"  id="val" value="<%= params[:start_at] %>~<%= params[:end_at] %>" />
+<% else %>
+  <input type="text"  id="val"  />
+<% end %>
+<a class="normal_link" href="javascript:void(0);" onclick="nextDate();" >下一周</a>
+<a class="normal_link" href="javascript:void(0);" onclick="curDate();" >本周</a>
+<% end %>
+
+
+<div id="growth_record_stats">
+  <%= render "growth_record" %>
+</div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".normal_link").each(function() {
+    $(this).click(function() {
+      $("#start_at").val($("#val").val().split("~")[0]);
+      $("#end_at").val($("#val").val().split("~")[1])
+      $("#stat_growth_record").submit();
+    })
+  })
+})
+
+</script>

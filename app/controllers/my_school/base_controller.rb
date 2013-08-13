@@ -7,7 +7,7 @@ class MySchool::BaseController < ApplicationController
   
   private
   def my_school
-    if @kind = Kindergarten.find_by_number(@subdomain)
+    if @kind = Kindergarten.find_by_number(@subdomain)   
     else
       redirect_to :action => :no_kindergarten,:controller=>"/my_school/main"
     end

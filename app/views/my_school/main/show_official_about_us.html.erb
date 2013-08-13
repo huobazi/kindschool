@@ -18,14 +18,14 @@
    
     <div class="contact_us_class_image">
     	<div class="class_big_image">
-                    <img src="<%=@entry_img.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_img.page_img.public_filename  %>" alt="" width="560"  height="370"/>
+                    <img src="<%=@entry_img.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_img.page_img.public_filename  %>" alt="" style="width: 560px;height:370px;"/>
     	</div>
     	<div class="class_middle_image">
     	<div class="class_middle_top_image">
-    		<img src="<%=@entry_top.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_top.page_img.public_filename%>" alt="" width="275" height="180"   >
+          <img src="<%=@entry_top.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_top.page_img.public_filename%>" alt="" style="width: 275px;height: 180px;"/>
     	</div>
         <div class="class_middle_bottom_image">
-    		<img src="<%=@entry_bottom.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_bottom.page_img.public_filename%>" alt="" width="275" height="180"   >
+          <img src="<%=@entry_bottom.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_bottom.page_img.public_filename%>" alt="" style="width: 275px;height: 180px;"   />
     	</div>
     	</div>
     </div>
