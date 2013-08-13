@@ -167,19 +167,19 @@ a{
 .small_personnel_ul{
     background-color: #f7a200;
     width: 100%;
-    margin-top: 5px;
+/*    margin-top: 5px;*/
     padding-top: 3px;
 }
 .small_system_ul{
     background-color: #008fdc;
     width: 100%;
-    margin-top: 5px;
+/*    margin-top: 5px;*/
     padding-top: 3px;
 }
 .small_approve_ul{
     background-color: #a5c600;
     width: 100%;
-    margin-top: 5px;
+/*    margin-top: 5px;*/
     padding-top: 3px;
 }
 .field_with_errors .message {
@@ -340,6 +340,7 @@ a{
     margin: 7px;
     border: 4px #a5c600 solid;
     height: 177px;
+    width: 239px;
 }
 
 
@@ -411,6 +412,9 @@ a{
 .activity_content_text{
     word-wrap: break-word;
     color: #2c2c2c;
+}
+.activity_content_text a{
+    color: blue;
 }
 .activity_content li{
     float: left;
@@ -895,8 +899,10 @@ table.attributes td {
     background-repeat: no-repeat;
     border: medium none;
     color: white;
-    font-size: 18px;
+    font-size: 20px;
     height: 56px;
+    line-height: 50px;
+    vertical-align: middle;
     padding-left: 40px;
     width: 273px;
     border-radius: 6px 6px 8px 8px;
@@ -910,6 +916,7 @@ table.attributes td {
     font-size: 18px;
     height: 56px;
     padding-left: 40px;
+    line-height: 50px;
     width: 273px;
     border-radius:6px;
     padding-right:10px;
@@ -1092,7 +1099,8 @@ table.attributes td {
 .tab .check_rangs,.tab .check_grades{
     float: left;
     padding: 6px;
-    width: 147px;
+/*    width: 147px;*/
+    margin-left: 10px;
 }
 .tab .rangs_tag{
     width: 100%;
@@ -1635,11 +1643,15 @@ ul.teacher_list li{
 /*========成长记录===========*/
 .img_div{
     float: left;
-    width: 30%;
+    width: 28%;
     padding: 5px;
+    margin-right: 15px;
     overflow: hidden;
     text-align: center;
     position: relative;
+}
+.img_div input{
+    width: 170px;
 }
 
 .img_div a.btn-delete {
@@ -1999,4 +2011,7 @@ fieldset.staff_squad ol li {
 
 #remote-loader .label.important {
   cursor: pointer;
+}
+.page_content_img{
+    width: 300px;
 }

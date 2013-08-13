@@ -225,6 +225,36 @@ class MySchool::UsersController < MySchool::ManageController
     redirect_to :back
   end
 
+
+  #重置密码
+  def reset_password
+    if user = User.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+       data_time = 7.day.ago
+        ret_records = user.ret_password_records.where("created_at > ?",data_time)
+       if ret_records.size > 2
+        flash[:notice] = "7天内，你已经超过三次重置密码！"
+       else
+       user.ret_password_records << RetPasswordRecord.new 
+       password = Standard.rand_password
+       user.password = password
+       if user.save!
+       title = "您已经成功重置#{@kind.name}微壹校讯通平台密码"
+       if @kind.aliases_url.blank?
+        web_address = "http://#{@kind.number}.#{WEBSITE_CONFIG["web_host"]}"
+        else
+        web_address = @kind.aliases_url
+       end
+        content = "您的登录名:#{user.login},密码:#{password},登录地址:#{web_address}"
+        user.send_system_message!(title,content,3)
+        end
+      end
+    else
+       flash[:notice]="该用户不存在"
+    end
+    #zmanby
+     redirect_to :back
+  end
+
   private
 
   def load_noisy_image

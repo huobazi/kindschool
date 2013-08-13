@@ -58,21 +58,21 @@
 <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
 
 <% if controller_name == "garden_growth_records" %>
-    <%= f.input :siesta, :validate => true, :input_html => { class: "span5"} %>
+  <%= f.input :siesta, :validate => true, :input_html => { class: "span5"} %>
     <%= f.input :dine, :validate => true, input_html: {class: "span5"} %>
-    <div class="control-group">
-      <%= f.label :reward, class: "control-label" %>
-        <div class="controls">
-          <div id="reward">
+      <div class="control-group">
+        <%= f.label :reward, class: "control-label" %>
+          <div class="controls">
+            <div id="reward">
+            </div>
           </div>
         </div>
-      </div>
-      <% if action_name == "new" %>
-        <%= f.input :reward, as: :hidden, input_html: {value: 1} %>
-      <% else %>
-        <%= f.input :reward, as: :hidden, input_html: {value: f.object.reward} %>
+        <% if action_name == "new" %>
+          <%= f.input :reward, as: :hidden, input_html: {value: 1} %>
+        <% else %>
+          <%= f.input :reward, as: :hidden, input_html: {value: f.object.reward} %>
+        <% end %>
       <% end %>
-    <% end %>
 
       <%= f.input :content, :required => true, :input_html => {:rows => "10", :class => "span5"}%>
       <div class="control-group">
@@ -88,7 +88,7 @@
         <% if img_size < 2  %>
           <% (2 - img_size).times.each do |i| %>
             <div class="img_div" style="text-align:left;">
-              <%= file_field_tag "asset_imgs[#{i}]",:for=>"img#{i}" %>
+              <%= file_field_tag "asset_imgs[#{i}]",:for=>"img#{i}"%>
               <div class="img_border" style="margin-top: 10px;">
                 &nbsp;&nbsp; <img src="/t/colorful/user_logo.png" alt="照片" id="img<%= i %>" class="img-polaroid"/>
               </div>
@@ -187,32 +187,38 @@
 
 
         })
-</script>
+      </script>
 
-<script type="text/javascript">
-  /**
-   * 使用HTML5 File API, 來即時預覽image
-   */
-  $("input[type=file]").change(function(){
-    var objUrl = getObjectURL(this.files[0]);
-    if (objUrl) {
-      $("#" + $(this).attr("for")).attr("src", objUrl) ;
-    }
-  }) ;
+      <script type="text/javascript">
+        /**
+         * 使用HTML5 File API, 來即時預覽image
+         */
+        $("input[type=file]").change(function(){
+          try{
+            if(!+[1,]){
+            }else{
+              var objUrl = getObjectURL(this.files[0],$(this).attr("id"));
+            };
+            if (objUrl) {
+              $("#" + $(this).attr("for")).attr("src", objUrl) ;
+            }}catch(err){}
+        }) ;
 
-  /**
-   * 建立一個可存取到該file的url
-   * PS: 瀏覽器必須支援HTML5 File API
-   */
-  function getObjectURL(file) {
-    var url = null ;
-    if (window.createObjectURL!=undefined) { // basic
-      url = window.createObjectURL(file) ;
-    } else if (window.URL!=undefined) { // mozilla(firefox)
-      url = window.URL.createObjectURL(file) ;
-    } else if (window.webkitURL!=undefined) { // webkit or chrome
-      url = window.webkitURL.createObjectURL(file) ;
-    }
-    return url ;
-  }
-</script>
+        /**
+         * 建立一個可存取到該file的url
+         * PS: 瀏覽器必須支援HTML5 File API
+         */
+        function getObjectURL(file) {
+          var url = null ;
+          if(!+[1,]){
+          }else{
+            if (window.createObjectURL!=undefined) { // basic
+              url = window.createObjectURL(file) ;
+            } else if (window.URL!=undefined) { // mozilla(firefox)
+              url = window.URL.createObjectURL(file) ;
+            } else if (window.webkitURL!=undefined) { // webkit or chrome
+              url = window.webkitURL.createObjectURL(file) ;
+            }};
+          return url ;
+        }
+      </script>

@@ -817,6 +817,17 @@ users_set_gather_sms:
   action: "set_gather_sms"
   protocol: ""
   <<: *DEFAULTS
+users_reset_password:
+  id: 4017
+  parent_id: 5
+  name: "重置密码"
+  level: 2
+  sequence: 4
+  note: "重置密码"
+  controller: "my_school/users"
+  action: "reset_password"
+  protocol: ""
+  <<: *DEFAULTS
 #--------------------------system
 template_config:
   id: 5001
