@@ -77,7 +77,7 @@
             <table class="attributes">
               <tr>
                 <th>班级</th>
-                <td style="width: 30%;"><%= @topic.squad.try(:name) %></td>
+                <td style="width: 30%; text-align: center;"><%= @topic.squad.try(:name) %></td>
                 <th>分类</th>
                 <td style="text-align: center;"><%= @topic.topic_category.name %></td>
               </tr>
@@ -100,7 +100,7 @@
             暂无回复
           <% end %>
         </div>
-        <% if @topic_entries.last_page? %>
+        <% if (!@topic_entries.blank? and @topic_entries.last_page?) || @topic_entries.blank? %>
           <%= simple_form_for(@topic_entry, :validate => true, :url => my_school_topic_entries_path, :html => {:class => "form-horizontal"}, remote: true) do |f| %>
             <%= render :partial => "topic_form", :object => f %>
           <% end %>

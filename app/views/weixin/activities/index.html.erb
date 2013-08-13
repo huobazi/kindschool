@@ -16,6 +16,7 @@
         <% @activities.each do |activity| %>
           <li class="show" data-id="<%= activity.id %>">
             <p class="title"><span><%= activity.title %><span></p>
+            <p class="info">班级活动:<%= activity.squad.try(:name) %></p>
             <p class="info"><span>创建人:</span><span class="author"><%= activity.creater ? activity.creater.name : "" %></span></p>
             <div class="ctivity_content_logo">
               <% if activity.asset_img.blank? %>

@@ -92,6 +92,7 @@
         <%=link_to "添加到成长记录" , new_my_school_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
         <%else%>
         <%=link_to "添加到成长记录" ,new_my_school_garden_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
+        <%= link_to '删除', my_school_personal_set_path(set), :method=> :delete, :data=> { :confirm=> '你确定删除该信息吗' },:class=> "destroy" ,:class=>"personal_set_delete btn"%>
         <%end%>
       </li>
       <% end %>

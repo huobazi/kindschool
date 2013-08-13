@@ -4,6 +4,8 @@
   #为true则需要验证
   token_validate: false
   
+  #公司网站域名
+  web_host: weiyizixun.com
 
 development:
   weixin_blind: false

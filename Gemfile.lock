@@ -232,7 +232,10 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   daemons (~> 1.1.9)
   delayed_job_active_record (= 0.4.4)
+<<<<<<< HEAD
   execjs
+=======
+>>>>>>> 83f8ee99a129e2e922bc15f82ebfcf4eaba8583d
   jquery-rails (= 2.0.3)
   jquery-ui-rails
   just-datetime-picker (~> 0.0.6)

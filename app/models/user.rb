@@ -29,7 +29,9 @@ class User < ActiveRecord::Base
   has_one  :approve_entry
 
   has_many :personal_sets ,:class_name=>"PersonalSet"
-
+  
+  has_many :ret_password_records
+   
   before_save :encrypt_password #,:automatically_generate_account
 
   before_create :automatically_generate_account, :unless => :role_student?

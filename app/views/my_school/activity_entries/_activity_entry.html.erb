@@ -1,0 +1,42 @@
+<% params[:page] ? (page_index = params[:page].to_i) : (page_index = 1) %>
+  <%  level = (page_index-1)*10 + activity_entry_counter + 1 %>
+  <div id="activity_entry_<%= activity_entry.id %>" class="show_entry">
+    <div class="content_left">
+      <% if activity_entry.is_show %>
+        <div class="user_head_logo"><img src="<%= activity_entry.creater.asset_logo ? activity_entry.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="48" alt="头像"/></div>
+      <% end %>
+    </div>
+    <div class="content_right">
+      <% if activity_entry.is_show == true %>
+        <p class="info">
+          <span><%= level %>楼&nbsp;</span>
+          <span class="author">
+            <%= activity_entry.creater.try(:name) %>
+          </span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(activity_entry.created_at) %></span></p>
+        <div class="content"><%= raw activity_entry.note %></div>
+      <% else %>
+        <p class="info"><span><%= level %>楼</span></p>
+        <del class="delete">该楼已被删除</del>
+      <% end %>
+    </div>
+    <div>
+      <% if edit_activity_entry?(activity_entry) %>
+        <% if choose_operate_show("my_school/activity_entries/edit") %>
+          <% unless activity_entry.is_show == false %>
+            <a href="<%= url_for(edit_my_school_activity_entry_path(activity_entry, page: params[:page])) %>"><i class="icon-edit"></i></a>
+          <% end %>
+        <% end %>
+      <% end %>
+      <% if destroy_activity_entry?(activity_entry) %>
+        <% if choose_operate_show("my_school/activity_entries/virtual_delete") %>
+          <% unless activity_entry.is_show == false %>
+            <% if controller_name == "activities" %>
+              <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "activity_entries", :action=>:virtual_delete,:id=>activity_entry.id, flag: true), :method => :get, confirm: "你确定删除该贴子回复吗", remote: true %>
+            <% else %>
+              <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "activity_entries", :action=>:virtual_delete,:id=>activity_entry.id), :method => :get, confirm: "你确定删除该贴子回复吗", remote: true %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>

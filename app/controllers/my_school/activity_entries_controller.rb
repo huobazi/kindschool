@@ -7,12 +7,30 @@ class MySchool::ActivityEntriesController < MySchool::ManageController
     end
     @activity_entry = ActivityEntry.new(params[:activity_entry])
 
+    @activity = Activity.find_by_id(params[:activity_entry][:activity_id])
+
+    if @activity.nil?
+      flash[:error] = "法非操作"
+      if params[:mark] == "interest_activities"
+        redirect_to my_school_interest_activities_path
+      else
+        redirect_to my_school_activities_path
+      end
+      return
+    end
+
     if @activity_entry.save!
       flash[:success] = "添加回复成功"
       if params[:mark] == "interest_activities"
-        redirect_to my_school_interest_activity_path(@activity_entry.activity_id, :anchor => "activity_entry_#{@activity_entry.id}", :page => @activity_entry.activity.last_page)
+        # redirect_to my_school_interest_activity_path(@activity_entry.activity_id, :anchor => "activity_entry_#{@activity_entry.id}", :page => @activity_entry.activity.last_page)
+        respond_to do |format|
+          format.js { render :layout => false }
+        end
       elsif params[:mark] == "activities"
-        redirect_to my_school_activity_path(@activity_entry.activity_id, :anchor => "activity_entry_#{@activity_entry.id}", :page => @activity_entry.activity.last_page)
+        # redirect_to my_school_activity_path(@activity_entry.activity_id, :anchor => "activity_entry_#{@activity_entry.id}", :page => @activity_entry.activity.last_page)
+        respond_to do |format|
+          format.js { render :layout => false }
+        end
       end
     else
       flash[:error] = "操作失败"
@@ -65,5 +83,44 @@ class MySchool::ActivityEntriesController < MySchool::ManageController
         redirect_to my_school_activity_path(@activity_entry.activity_id)
       end
     end
+  end
+
+  def virtual_delete
+    @activity_entry = ActivityEntry.find_by_id(params[:id])
+
+    @activity = Activity.find_by_id(@activity_entry.activity_id)
+
+    if current_user.get_users_ranges[:tp] == :all
+      @activity_entry.is_show = 0
+      @activity_entry.deleted_at = Time.now.utc
+      @activity_entry.save
+      respond_to do |format|
+        format.js { render :layout => false }
+      end
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      if @activity_entry.activity.squad.present? && current_user.staff.squad_ids.include?(@activity_entry.activity.squad_id)
+        @activity_entry.is_show = 0
+        @activity_entry.deleted_at = Time.now.utc
+        @activity_entry.save
+        respond_to do |format|
+          format.js { render :layout => false }
+        end
+      else
+        flash[:error] = "没有权限或贴子回复不存在"
+        if params[:flag].presence == true
+          redirect_to my_school_activity_path(@activity_entry.acitivity_id)
+        else
+          redirect_to my_school_interest_activity_path(@activity_entry.acitivity_id)
+        end
+      end
+    else
+      flash[:error] = "没有权限"
+      if params[:flag].presence == true
+        redirect_to my_school_activity_path(@activity_entry.acitivity_id)
+      else
+        redirect_to my_school_interest_activity_path(@activity_entry.acitivity_id)
+      end
+    end
+
   end
 end
