@@ -36,22 +36,32 @@
          </li>
          <%if choose_operate_show("my_school/approves/news_list")%>
           <li>
+            <div class="<%=['news_list','news_show'].include?(action_name) ?  'work_selected' : ''%>"></div>
           <a class="" href="/my_school/approves/news_list">新闻内容审核</a>
          </li>
          <%end%>
          <%if choose_operate_show("my_school/approves/activities_list")%>
          <li>
+          <div class="<%=['activities_list','activity_show'].include?(action_name) ?  'work_selected' : ''%>"></div>
          <a href="/my_school/approves/activities_list">活动信息审核</a>
          </li>
          <%end%>
          <%if choose_operate_show("my_school/approves/notices_list")%>
         <li>
+          <div class="<%=['notices_list','notice_show'].include?(action_name) ?  'work_selected' : ''%>"></div>
          <a href="/my_school/approves/notices_list">通知信息审核</a>
         </li>
         <%end%>
         <%if choose_operate_show("my_school/approves/messages_list")%>
         <li>
-         <a href="/my_school/approves/messages_list">消息的审核</a>
+          <div class="<%=['messages_list','message_show'].include?(action_name) ?  'work_selected' : ''%>"></div>
+         <a href="/my_school/approves/messages_list">消息审核</a>
+        </li>
+        <%end%>
+        <%if choose_operate_show("my_school/approves/topics_list")%>
+        <li>
+          <div class="<%=['topics_list','topic_show'].include?(action_name) ?  'work_selected' : ''%>"></div>
+         <a href="/my_school/approves/topics_list">帖子论坛审核</a>
         </li>
         <%end%>
          <%end%>

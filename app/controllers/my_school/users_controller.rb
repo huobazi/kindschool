@@ -70,6 +70,8 @@ class MySchool::UsersController < MySchool::ManageController
              operates_data << "my_school/approves/notices_list"
            elsif approve_module.number == "Message"
              operates_data << "my_school/approves/messages_list"
+           elsif approve_module.number == "Topic"
+             operates_data << "my_school/approves/topics_list"
            end
          end
         end
