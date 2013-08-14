@@ -13,6 +13,11 @@ class Topic < ActiveRecord::Base
 
   has_many :topic_entries
 
+  has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
+
+  include ResourceApproveStatusStart
+  before_save :news_approve_status_start
+
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end

@@ -4,7 +4,7 @@
     $("#dialog_change_users" ).dialog({
       dialogClass: "no-close",
       autoOpen: false,
-      height:500,
+      height:400,
       width:"80%",
       buttons: {
         "确定": function () {
@@ -113,7 +113,7 @@
       $("#sms_count").hide();
     }
   });
-  var load_users = [];
+  var load_users_data = [];
   $(function() {
 <% if action_name == "new"  %>
       function load_form(){
@@ -132,7 +132,7 @@
         $("#message_content").val($.cookie("m_c"));
         $("#message_title").val($.cookie("m_t"));
         if($.cookie("m_u")){
-          load_users = $.cookie("m_u").split(",");
+          load_users_data = $.cookie("m_u").split(",");
         }
         load_length();
       }
@@ -140,10 +140,10 @@
       $(window).load(function(){
         set_form();
   <% if @receiver_id %>
-          $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_users_all) %>",{receiver_id:<%= @receiver_id %>,load_ids:load_users});
+          $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_users_all) %>",{receiver_id:<%= @receiver_id %>,load_ids:load_users_data});
   <%else%>
           if(load_users.length > 0){
-            $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_users_all) %>",{ids:load_users});
+            $("#message_inputs").load("<%= url_for(:controller=>"/my_school/messages",:action=>:get_users_all) %>",{ids:load_users_data});
           }
   <% end %>
       })

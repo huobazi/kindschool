@@ -46,6 +46,17 @@ class MySchool::ApprovesController < MySchool::ManageController
      end
    end
 
+   def topics_list
+     @topics = @kind.topics.where(:approve_status=>1).page(params[:page] || 1).per(10)  
+   end
+
+   def topic_show
+     @topic = @kind.topics.find(params[:topic_id])
+     if approve_record=@topic.approve_record
+       @approve_entries = approve_record.approve_entries
+     end
+   end
+
    def one_news_approve
     if approve_record = ApproveRecord.find(params[:approve_record_id])
         if  params[:approve_record] && params[:approve_record][:status]=="0"
@@ -65,18 +76,6 @@ class MySchool::ApprovesController < MySchool::ManageController
         end
         approve_entry.user = current_user
         approve_record.approve_entries << approve_entry
-     # else
-     #   approve_record = ApproveRecord.new()
-     #   approve_record.resource = @new
-     #   approve_record.status = params[:approve_record][:status] if params[:approve_record]
-     #   approve_entry = ApproveEntry.new(:note=>params[:approve_entry][:note]) if params[:approve_entry]
-     #    if approve_record.status==0
-     #      approve_entry.status = 2
-     #    else
-     #      approve_entry.status = 1 
-     #    end
-     #    approve_entry.user = current_user
-     #    approve_record.approve_entries << approve_entry
      else
       flash[:notice]= "没有该记录." 
       redirect_to :controller=>"home",:action=>"index"
@@ -92,7 +91,8 @@ class MySchool::ApprovesController < MySchool::ManageController
          format.html { redirect_to(:action=>:notice_show,:notice_id=>approve_record.resource.id) } 
        elsif approve_record.resource_type == "Message"
          format.html { redirect_to(:action=>:message_show,:message_id=>approve_record.resource.id) } 
-
+       elsif approve_record.resource_type == "Topic"
+         format.html { redirect_to(:action=>:topic_show,:topic_id=>approve_record.resource.id) } 
        end
        format.xml  { head :ok }
       end
