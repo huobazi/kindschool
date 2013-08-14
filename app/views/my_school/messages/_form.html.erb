@@ -77,8 +77,8 @@
 <br/>
 <script type="text/javascript">
   $("#message_title").tooltip();
-  $("#message_title").keyup(function() {
-    if ( $(this).val().length > 39 ) {
+  $("#message_title").keyup(function(event) {
+    if ( event.target.value.length > 39 ) {
       if ($(this).next("span.help-inline").length == 0) {
         $(this).after("<span class='help-inline'>字数不能超过40个字<span>");
       }
