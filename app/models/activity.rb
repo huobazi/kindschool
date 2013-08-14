@@ -35,6 +35,11 @@ class Activity < ActiveRecord::Base
   def squad_label
     self.squad ? self.squad.name : "没有班级信息"
   end
+  
+  def change_arry_approve_record
+     [:content,:title, :end_at,:note, :send_range, :send_range_ids,:squad_id, :start_at] 
+  end
+
   include ResourceApproveStatusStart
   before_save :news_approve_status_start
 end

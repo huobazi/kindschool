@@ -6,6 +6,15 @@ module ResourceApproveStatusStart
     if kind =  self.kindergarten
       if approve_module=kind.approve_modules.find_by_number(self.class.to_s)
          if approve_module.status
+          #这个里面判断是否是修改要审核的字段
+           attr_ab = self.change_arry_approve_record
+           flag = false
+           attr_ab.each  do |at|
+            if self.send("#{at}") != self.send("#{at}_was")
+              flag = true
+            end
+           end
+           if flag == true
            if self.approve_status_was == self.approve_status
             self.approve_status = 1
             if  self.approve_record.blank?
@@ -19,6 +28,7 @@ module ResourceApproveStatusStart
                self.approve_record.approve_entries << approve_entry
             end
            end
+          end
          end
       end
     end    
@@ -45,5 +55,8 @@ module ResourceApproveStatusStart
     end
 
   end
-	
+  private
+  # def change_attr_accessible?()
+
+  # end
 end
