@@ -339,19 +339,44 @@ ActiveAdmin.register Kindergarten do
               t.column("名称") {|item| item.name}
               tr :class => "odd" do
                 td ""
-                td "页面内容总数", :style => "text-align: right;"
+                td "论坛分类总数", :style => "text-align: right;"
                 td "#{kind.topic_categories.count}"
                 td ""
               end
             end
           else
-            "不创建论坛分类"
+            "还没有论坛分类"
           end
         end
 
         ul do
           li do
             link_to "创建论坛分类", :controller => "/admin/topic_categories", :action => :new, :kindergarten_id => kind.id
+          end
+        end
+      end
+
+
+      div do
+        br
+        panel "seo关键字优化" do
+          unless kind.shrink_record.blank?
+            ul do
+              li do
+                kind.shrink_record.keywords
+              end
+              li do
+                kind.shrink_record.description
+              end
+            end
+          else
+            "还没有seo关键字优化"
+          end
+        end
+
+        ul do
+          li do
+            link_to "创建seo关键字优化", :controller => "/admin/shrink_records", :action => :new, :kindergarten_id => kind.id
           end
         end
       end

@@ -1866,7 +1866,6 @@ span.help-inline {
 .topics .topic .title {
     font-size: 14px;
     margin-top: 2px;
-    margin-bottom: 6px;
     padding-left: 10px;
 }
 
@@ -2029,3 +2028,86 @@ fieldset.staff_squad ol li {
 .page_content_img{
     width: 300px;
 }
+
+/* =====统计=========*/
+.stat-list .content {
+  padding: 15px 15px 0 15px;
+}
+.stat-list .content p {
+  line-height: 20px;
+  height: 20px;
+  font-size: 15px;
+}
+.stat-list .header {
+  line-height: 200%;
+  padding: 7px 10px;
+  background-color: hsl(0,0%,93%);
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+.stat-box {
+  padding: 10px 10px 0 10px;
+  width: 100%;
+  float: left;
+}
+
+.stat-box .squad_list {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.stat-box .title {
+  background: #e2e2e2;
+  color: #333333;
+  line-height: 18px;
+  height: 18px;
+  font-weight: bold;
+  padding: 8px;
+  font-size: 14px;
+}
+.stat-box .squad_info {
+  clear: both;
+  padding-left: 15px;
+  font-size: 15px;
+  background: #888;
+  color: white;
+  margin-bottom: 0;
+  padding-right: 20px;
+}
+.stat-box .squad_list .squad_item {
+  float: left;
+  width: 100%;
+}
+.stat-box .student_list {
+  width: 100%;
+  float: left;
+  clear: both;
+  padding: 15px;
+}
+
+.stat-box .student_list .student_item {
+  width: 30%;
+  float: left;
+  margin-bottom: 10px;
+}
+
+.add {
+  background: url("/t/colorful/add.png") no-repeat;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: -3px;
+}
+
+.del {
+  background: url("/t/colorful/del.png") no-repeat;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: -3px;
+}
+
+
