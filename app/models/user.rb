@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   validates :phone,:presence => true,:uniqueness => true, :format=> {:with=> /^(\+\d+-)?[1-9]{1}[0-9]{10}$/, :message=> "手机格式不正确"}#{ :scope => :kindergarten_id}
   validates :name, :kindergarten_id,:presence => true
   # validates :login,:presence => true ,format: {with: /^[w][y][s]/, message: "注册名不能以#{PRE_STUDENT}"} , :if => :role_student?
-  validates :login, :length=>{:maximum=>20,:minimum=>5}, :format=> {:with => /^[a-z0-9_\-@\.]*$/i,:message=>"帐号只允许使用5到20位字符的英文、数字和下划线组合"}
+  validates :login, :length=>{:maximum=>20,:minimum=>5}, :format=> {:with => /^[a-z0-9_\-@\.]*$/i,:message=>"帐号只允许使用5到20位字符的英文、数字和下划线组合"}, :if => :role_student?
   validates :login,:presence => true, :if => :role_student? #,format: {with: /^wys/, message: "注册名不能以#{PRE_STUDENT}"} , :if => :role_student?
   validates_format_of :login,:without=>/^#{PRE_STUDENT}/,:message=>"帐户不能以#{PRE_STUDENT}开头" , :if => :role_student?
   # validates :login,:presence => true,:uniqueness => true, format: {with: /^(\+\d+-)?[1-9]{1}[0-9]{10}$/, message: "手机格式不正确"}#{ :scope => :kindergarten_id}

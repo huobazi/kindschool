@@ -21,6 +21,8 @@ School::Application.routes.draw do
         get :notice_show
         get :messages_list
         get :message_show
+        get :topics_list
+        get :topic_show
       end
     end
     resources :comments do

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%=@kind.name%></title>
+    <title><%=@kind.try(:name)%></title>
 
     <%= stylesheet_link_tag    "app_bootstrap", :media => "all" %>
     <%= stylesheet_link_tag    "colorful", :media => "all" %>
