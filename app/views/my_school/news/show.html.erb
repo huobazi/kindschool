@@ -69,12 +69,7 @@
               <p class="title"><span><%= @new.title %></span></p>
               <p class="info"> <span class="link">总共被浏览了<%= @new.show_count %>次</span></p>
               <p class="info"><span class="link"><%= @new.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @new.try(:created_at).try(:to_long_datetime) %></span></p>
-              <%if @new.approve_status != 0 %>
-                <p class="info">审核状态:<span><%= News::STATUS[@new.approve_status] %></span>
-                </p>
-                <%=link_to "查看审核日志","###",:id=>"viewing_the_audit_log",:class=>"blue"%>
-              <%end%>
-      <div class="viewing_the_audit_log_div" ></div>
+  <%= render :partial=>"/my_school/approves/load_approves_log" ,:locals=>{:record_id=>@new.approve_record.try(:id),:approve_status=>@new.approve_status} %>
             </div>
             <div class="content">
               <%=raw @new.content %>
@@ -85,22 +80,4 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
-  $(function(){
-    $("#viewing_the_audit_log").click(function(){
-      if($(".viewing_the_audit_log_div").text() == ""){
-      $(".viewing_the_audit_log_div").load("<%=url_for(:controller=>'my_school/approves',:action=>:get_approve_record_log,:id=>@new.approve_record.try(:id))%>")
-      $(".viewing_the_audit_log_div").show();
-  }
-    else
-    {
-      if($(".viewing_the_audit_log_div").css("display") == "none"){
-                $(".viewing_the_audit_log_div").show();
-              }else{
-                $(".viewing_the_audit_log_div").hide();
-              }
-    }
-  })
-    })
-</script>
 
