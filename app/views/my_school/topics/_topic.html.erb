@@ -3,6 +3,9 @@
   </div>
   <div class="right_info">
     <div class="replies pull-right">
+      <%if topic.approve_status != 0 %>
+      <span>审核状态: <%= News::STATUS[topic.approve_status] %></span>
+      <%end%>
       <% if choose_operate_show("my_school/topics/show") %>
         <a href="<%= my_school_topic_path(topic) %>" title="查看<%= topic.title %>" alt="查看<%= topic.title %>"><i class="icon-eye-open"></i></a>
       <% end %>

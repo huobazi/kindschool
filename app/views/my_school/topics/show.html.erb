@@ -87,6 +87,9 @@
                 <%= @topic.creater.try(:name) %>
               </span>&nbsp;创建于&nbsp;<span class="time"><%= @topic.try(:created_at).try(:to_long_datetime) %></span>
             </p>
+            <%if @topic.approve_status != 0 %>
+      <span>审核状态: <%= News::STATUS[@topic.approve_status] %></span>
+      <%end%>
           </div>
           <div class="content"><%= raw @topic.content %></div>
         </div>
