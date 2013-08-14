@@ -40,7 +40,7 @@
   </div>
 </div>
 
-<%= f.input :title, :validate => true, :required => true,:input_html=>{:class=>"span5", "data-toggle" => "tooltip", :title => "标题必须填写，字数必须控制在30个字以内"} %>
+<%= f.input :title, :validate => true, :required => true,:input_html=>{:class=>"span5", "data-toggle" => "tooltip", :title => "标题必须填写，字数必须控制在40个字以内", :maxlength => "40"} %>
 <div style="float:right;">
   <p  id="numtj"><var style="color:#C00">--</var>/<span id="numcalcu">800</span></p>
 </div>
@@ -77,6 +77,15 @@
 <br/>
 <script type="text/javascript">
   $("#message_title").tooltip();
+  $("#message_title").keyup(function() {
+    if ( $(this).val().length > 39 ) {
+      if ($(this).next("span.help-inline").length == 0) {
+        $(this).after("<span class='help-inline'>字数不能超过40个字<span>");
+      }
+    } else {
+      $(".help-inline").hide();
+    }
+  })
 </script>
 <script type="text/javascript">
   $(function() {
