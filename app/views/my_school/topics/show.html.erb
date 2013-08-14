@@ -1,6 +1,3 @@
-<div class="show_publicity">
-  <img src="/t/colorful/small_publicity.jpg" alt="展示图"/>
-</div>
 <div class="show_work">
   <%= render :partial => "/modules/colorful/work_menu" %>
   <div class="work">
@@ -87,6 +84,9 @@
                 <%= @topic.creater.try(:name) %>
               </span>&nbsp;创建于&nbsp;<span class="time"><%= @topic.try(:created_at).try(:to_long_datetime) %></span>
             </p>
+            <%if @topic.approve_status != 0 %>
+      <span>审核状态: <%= News::STATUS[@topic.approve_status] %></span>
+      <%end%>
           </div>
           <div class="content"><%= raw @topic.content %></div>
         </div>

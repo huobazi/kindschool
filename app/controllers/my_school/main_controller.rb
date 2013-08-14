@@ -76,7 +76,7 @@ class MySchool::MainController < MySchool::BaseController
   end
   private
   def find_shrink_record
-    if @kind.shrink_record
+    if @kind && @kind.shrink_record
        @keywords = @kind.shrink_record.keywords
        @description = @kind.shrink_record.description
     end 
