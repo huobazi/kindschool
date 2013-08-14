@@ -1,13 +1,13 @@
 <div class="stat-list">
   <div class="header">宝宝家园成长记录统计</div>
   <div class="content">
-    <p>成长记录总数量:<%= @growth_records_count %></p>
-    <p>宝宝在家成长记录数量:<%= @home_growth_records_count %></p>
-    <p>宝宝在园成长记录数量:<%= @garden_growth_records_count %></p>
+    <p><i class="icon-list"></i>成长记录总数量:<%= @growth_records_count %></p>
+    <p><i class="icon-home"></i>宝宝在家成长记录数量:<%= @home_growth_records_count %></p>
+    <p><i class="icon-certificate"></i>宝宝在园成长记录数量:<%= @garden_growth_records_count %></p>
   </div>
 
   <div class="stat-box">
-    <p class="title"><a href="javascript:void(0);" class="fold"><i class="pull-right del"></i></a><span class="pull-right">周成长记录数量:<%= @home_growth_record_count %></span>宝宝在家成长记录</p>
+    <p class="title"><a href="javascript:void(0);" class="fold"><i class="pull-right del"></i></a><span class="pull-right">周成长记录数量:<%= @home_growth_record_count %></span><i class="icon-home"></i>宝宝在家成长记录</p>
     <ul class="squad_list">
       <% @kind.squads.each do |squad| %>
         <li class="squad_item">
@@ -29,7 +29,7 @@
   </div>
 
   <div class="stat-box">
-    <p class="title clearfix"><a href="javascript:void(0);" class="fold"><i class="pull-right del"></i></a><span class="pull-right">周成长记录数量:<%= @garden_growth_record_count %></span>宝宝在园成长记录</p>
+    <p class="title clearfix"><a href="javascript:void(0);" class="fold"><i class="pull-right f del"></i></a><span class="pull-right">周成长记录数量:<%= @garden_growth_record_count %></span><i class="icon-certificate"></i>宝宝在园成长记录</p>
     <ul class="squad_list">
       <% @kind.squads.each do |squad| %>
         <li class="squad_item">
@@ -53,10 +53,10 @@ $(document).ready(function() {
   $(".fold").each(function() {
     $(this).click(function() {
       $(this).parent().parent().children(".squad_list").slideToggle("2000", function() {
-        if ( $(this).parent().find("i").hasClass("del") ) {
-          $(this).parent().find("i").removeClass("del").addClass("add");
+        if ( $(this).parent().find("i.f").hasClass("del") ) {
+          $(this).parent().find("i.f").removeClass("del").addClass("add");
         } else {
-          $(this).parent().find("i").removeClass("add").addClass("del");
+          $(this).parent().find("i.f").removeClass("add").addClass("del");
         }
       });
     })
