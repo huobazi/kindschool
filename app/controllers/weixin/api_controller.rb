@@ -2,7 +2,7 @@
 class Weixin::ApiController < Weixin::BaseController
   protect_from_forgery :except=>:index
   #  include AuthenticatedSystem
-  before_filter :token_validate , :if=>proc {|c| WEBSITE_CONFIG["token_validate"] || (!is_www? && @kind.weixin_status == 0)}
+  before_filter :token_validate , :if=>proc {|c| weiyi_token_validate? || (!is_www? && @kind.weixin_status == 0)}
   #交互接口
   def index
     if is_www?
@@ -13,7 +13,14 @@ class Weixin::ApiController < Weixin::BaseController
   end
 
   protected
-  
+  #微壹是否需要验证
+  def weiyi_token_validate?
+    if weiyi_config = WeiyiConfig.find_by_number("weixin_validate")
+      return weiyi_config.content == "1"
+    else
+      return false
+    end
+  end
   #学校api接口
   def load_school
     xml_data = params[:xml]
