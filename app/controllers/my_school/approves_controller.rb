@@ -1,7 +1,7 @@
 #encoding:utf-8
 #审核内容
 class MySchool::ApprovesController < MySchool::ManageController
-  before_filter :kind_allow
+  before_filter :kind_allow ,:except=>[:get_approve_record_log]
    def index
    end
    def news_list
@@ -97,10 +97,16 @@ class MySchool::ApprovesController < MySchool::ManageController
        format.xml  { head :ok }
       end
      end
-    
-     
   end
 
+  def get_approve_record_log
+    if approve_record = ApproveRecord.find(params[:id])
+      @approve_entries = approve_record.approve_entries
+      render :partial=>"/my_school/approves/approve_list_from",:layout=>false
+    else
+      render :text=>"审核不存在。",:layout=>false
+    end
+  end
   private
   def kind_allow
     approve_modules = @kind.approve_modules.where(:status=>true)

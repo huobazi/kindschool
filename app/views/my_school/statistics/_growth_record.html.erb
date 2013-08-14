@@ -1,35 +1,65 @@
-  <p>总共成长记录数量:<%= @growth_record_count %></p>
-  <p>宝宝在家成长记录数量: <%= @home_growth_record_count %></p>
-  <p>宝宝在园成长记录数量: <%= @garden_growth_record_count %></p>
+<div class="stat-list">
+  <div class="header">宝宝家园成长记录统计</div>
+  <div class="content">
+    <p><i class="icon-list"></i>成长记录总数量:<%= @growth_records_count %></p>
+    <p><i class="icon-home"></i>宝宝在家成长记录数量:<%= @home_growth_records_count %></p>
+    <p><i class="icon-certificate"></i>宝宝在园成长记录数量:<%= @garden_growth_records_count %></p>
+  </div>
 
-  <hr />
-  <p>宝宝在家成长记录</p>
-  <% @kind.squads.each do |squad| %>
-    <% @squad_growth_record_count = GrowthRecord.where("student_infos.squad_id = ? and tp = 1", squad.id).joins(:student_info).count %>
-    <p><%= squad.name %>: (<%= @squad_growth_record_count %>)</p>
-    <p style="text-indent: 10px;">学员</p>
-    <div style="text-indent: 20px;">
-      <% squad.student_infos.each do |student_info| %>
-        <p><%= student_info.user.try(:name) %>(<%= student_info.growth_records.where(tp: 1).count %>)</p>
-      <% end %>
-    </div>
+  <div class="stat-box">
+    <p class="title"><a href="javascript:void(0);" class="fold"><i class="pull-right del"></i></a><span class="pull-right">周成长记录数量:<%= @home_growth_record_count %></span><i class="icon-home"></i>宝宝在家成长记录</p>
+    <ul class="squad_list">
+      <% @kind.squads.each do |squad| %>
+        <li class="squad_item">
+          <% @squad_growth_record_count = GrowthRecord.where("student_infos.squad_id = ? and tp = 1", squad.id).joins(:student_info).count %>
+          <p class="squad_info"><%= squad.name %><span class="pull-right">成长记录数量:<%= @squad_growth_record_count %></span></p>
+          <ol class="student_list">
+            <% squad.student_infos.each do |student_info| %>
+              <li class="student_item">
+                <div style="display:inline;">
+                  <img src="<%= student_info.user.asset_logo ? student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="48" alt="头像"/>
+                </div>
+                <%= student_info.user.try(:name) %>(<%= student_info.growth_records.where(tp: 1).count %>)
+              </li>
+            <% end %>
+          </ol>
+          </li>
+        <% end %>
+    </ul>
+  </div>
 
-    <hr />
-  <% end %>
+  <div class="stat-box">
+    <p class="title clearfix"><a href="javascript:void(0);" class="fold"><i class="pull-right f del"></i></a><span class="pull-right">周成长记录数量:<%= @garden_growth_record_count %></span><i class="icon-certificate"></i>宝宝在园成长记录</p>
+    <ul class="squad_list">
+      <% @kind.squads.each do |squad| %>
+        <li class="squad_item">
+          <% @squad_growth_record_count = GrowthRecord.where("student_infos.squad_id = ? and tp = 0", squad.id).joins(:student_info).count %>
+          <p class="squad_info"><%= squad.name %><span class="pull-right">成长记录数量:<%= @squad_growth_record_count %></span></p>
+          <ol class="student_list">
+            <% squad.student_infos.each do |student_info| %>
+              <li class="student_item">
+                <%= student_info.user.try(:name) %>(<%= student_info.growth_records.where(tp: 0).count %>)
+              </li>
+            <% end %>
+          </ol>
+          </li>
+        <% end %>
+    </ul>
+  </div>
 
-  <p></p>
-
-  <p>宝宝在园成长记录</p>
-
-  <% @kind.squads.each do |squad| %>
-    <% @squad_growth_record_count = GrowthRecord.where("student_infos.squad_id = ? and tp = 0", squad.id).joins(:student_info).count %>
-    <p><%= squad.name %>: (<%= @squad_growth_record_count %>)</p>
-    <p style="text-indent: 10px;">学员</p>
-    <div style="text-indent: 20px;">
-      <% squad.student_infos.each do |student_info| %>
-        <p><%= student_info.user.try(:name) %>(<%= student_info.growth_records.where(tp: 0).count %>)</p>
-      <% end %>
-    </div>
-
-    <hr />
-  <% end %>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".fold").each(function() {
+    $(this).click(function() {
+      $(this).parent().parent().children(".squad_list").slideToggle("2000", function() {
+        if ( $(this).parent().find("i.f").hasClass("del") ) {
+          $(this).parent().find("i.f").removeClass("del").addClass("add");
+        } else {
+          $(this).parent().find("i.f").removeClass("add").addClass("del");
+        }
+      });
+    })
+  })
+})
+</script>

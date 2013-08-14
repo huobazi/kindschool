@@ -1,0 +1,23 @@
+<div class="growth_record_stat stat-box">
+  <p>年级总数量:<%= @grades_count %></p>
+  <p>班级总数量:<%= @squads_count %></p>
+  <p>学员总数量:<%= @student_infos_count %></p>
+</div>
+<div class="stat-box">
+  <p class="title"><span class="pull-right">周成长记录数量<%= @home_growth_record_count %></span>宝宝在家成长记录</p>
+  <ul class="squad_list">
+    <% @kind.squads.each do |squad| %>
+      <li class="squad_item">
+        <% @squad_growth_record_count = GrowthRecord.where("student_infos.squad_id = ? and tp = 1", squad.id).joins(:student_info).count %>
+        <p class="squad_info"><%= squad.name %><span class="pull-right">成长记录数量:<%= @squad_growth_record_count %></span></p>
+        <ol class="student_list">
+          <% squad.student_infos.each do |student_info| %>
+            <li class="student_item">
+              <%= student_info.user.try(:name) %>(<%= student_info.growth_records.where(tp: 1).count %>)
+            </li>
+          <% end %>
+        </ol>
+        </li>
+      <% end %>
+  </ul>
+</div>

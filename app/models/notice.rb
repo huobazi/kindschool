@@ -23,6 +23,11 @@ class Notice < ActiveRecord::Base
   def send_range_label
     Notice::SEND_RANGE_DATA["#{self.send_range || 0}"]
   end
+
+  def change_arry_approve_record
+     [:content,:title,:send_date,:send_range,:send_range_ids] 
+  end
+  
   include ResourceApproveStatusStart
   before_save :news_approve_status_start
 

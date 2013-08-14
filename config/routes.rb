@@ -23,6 +23,7 @@ School::Application.routes.draw do
         get :message_show
         get :topics_list
         get :topic_show
+        get :get_approve_record_log
       end
     end
     resources :comments do
@@ -93,7 +94,7 @@ School::Application.routes.draw do
     end
 
     resources :statistics do
-      get :growth_record, :on => :collection
+      get :growth_record, :kind_stat, :on => :collection
     end
     resources :users do
       collection do
