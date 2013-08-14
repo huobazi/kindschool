@@ -19,6 +19,6 @@ namespace :sms do
         end
       end
     end
-    puts "短信回复获取完毕."
+    puts "短信回复获取完毕.#{Time.now}"
   end
 end
