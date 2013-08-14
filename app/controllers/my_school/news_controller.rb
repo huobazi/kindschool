@@ -55,6 +55,9 @@ class MySchool::NewsController <  MySchool::ManageController
       @new.show_count =@new.show_count.to_i + 1
       @new.save
     end
+    if approve_record=@new.approve_record
+       @approve_entries = approve_record.approve_entries
+     end
    end
 
    def destroy
