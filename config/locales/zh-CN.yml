@@ -239,6 +239,7 @@ zh-CN:
       weixin_share: "微信资料库推送"
       weixin_share_user: "推送记录详细"
       weiyi_config: "微壹平台配置"
+      shrink_record: "seo关键字优化"
     attributes:
       weiyi_config:
         number: "编号"
@@ -645,6 +646,11 @@ zh-CN:
         kindergarten: "所属幼儿园"
         read_status: "阅读状态"
         read_at: "阅读时间"
+      shrink_record:
+        keywords: "关键字"
+        description: "描述"
+        kindergarten: "幼儿园"
+        kindergarten_label: "所属幼儿园"
     errors:
       <<: *errors
   views:

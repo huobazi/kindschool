@@ -147,12 +147,24 @@
     height_level: "a"
     sequence: 370
     operate_id: 5500
+
 - id: 40000
   number: "statistics"
   name: "统计"
+  operate_id: 11
   height_level: "a"
   url: "###"
   sequence: 400
+  children:
+  - id: 41000
+    name: "宝宝在园统计"
+    operate_id: 14000
+    url: "/my_school/statistics/growth_record"
+    number: 41000
+    title: "宝宝在园统计"
+    height_level: "a"
+    sequence: 410
+
 - id: 50000
   number: "home"
   name: "/t/colorful/home.png"

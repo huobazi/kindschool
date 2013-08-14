@@ -86,6 +86,15 @@ activity:
   note: "活动信息"
   <<: *DEFAULTS
 
+statistics:
+  id: 11
+  parent_id: 1
+  name: "统计"
+  level: 1
+  sequence: 1
+  note: "统计"
+  <<: *DEFAULTS
+
 #---------------------------功能
 
 #||||||||||||||||||||||||||公告通知功能
@@ -1824,5 +1833,17 @@ student_infos_download:
   note: "学籍表格下载"
   controller: "my_school/student_infos"
   action: "download_student_infos"
+  protocol: ""
+  <<: *DEFAULTS
+
+statistic_growth_record:
+  id: 14000
+  parent_id: 11
+  name: "宝宝在园统计"
+  level: 2
+  sequence: 4
+  note: "宝宝在园统计"
+  controller: "my_school/statistics"
+  action: "growth_record"
   protocol: ""
   <<: *DEFAULTS
