@@ -15,6 +15,6 @@ activities:
   number: "Activity"
   status: false
 topics:
-  name: "活动信息"
+  name: "帖子论坛"
   number: "Topic"
   status: false
