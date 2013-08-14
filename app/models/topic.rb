@@ -22,6 +22,10 @@ class Topic < ActiveRecord::Base
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end
 
+  def change_arry_approve_record
+     [:content,:title] 
+  end
+ 
 
   def topic_category_label
     self.topic_category ? self.topic_category.name : "论坛分类信息丢失"
