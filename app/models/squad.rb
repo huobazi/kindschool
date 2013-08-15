@@ -17,7 +17,7 @@ class Squad < ActiveRecord::Base
   belongs_to :grade  #年级
   has_one :career_strategy, :class_name=>"CareerStrategy",:foreign_key=>:from_id #升学策略
   has_many :source_career_strategies, :class_name=>"CareerStrategy",:foreign_key=>:to_id #升学策略
-  
+
   has_many :student_infos  #学生信息
   has_many :users,:through=>:student_infos #学生的用户信息
   has_many :teachers
@@ -27,6 +27,7 @@ class Squad < ActiveRecord::Base
   has_many :user_squads_all_users,:through=>:user_squads,:source=>:user #所有延时班的人
   has_many :user_squads_teacher_users,:through=>:user_squads,:source=>:user,:conditions => "users.tp = 1 OR users.tp = 2" #所有延时班的老师
   has_many :user_squads_student_users,:through=>:user_squads,:source=>:user,:conditions => "users.tp = 0"  #所有延时班的学生
+
   has_many :activities
   has_many :topics
 

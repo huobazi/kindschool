@@ -2,14 +2,21 @@
 class  MySchool::StatisticsController < MySchool::ManageController
 
   def growth_record
+    if current_user.get_users_ranges[:tp] == :student
+      flash[:error] = "没有权限"
+      redirect_to my_school_home_path
+      return
+    else current_user.get_users_ranges[:tp] == :teachers
+      @squads = current_user.get_users_ranges[:squads]
+    end
     if params[:start_at].present? and params[:end_at].present?
-      @growth_records = @kind.growth_records.where("start_at >= ? and end_at <= ?", params[:start_at], params[:end_at])
-      @home_growth_record_count = @growth_records.where(tp: 1).count
-      @garden_growth_record_count = @growth_records.where(tp: 0).count
+      @growth_records = @kind.growth_records.week_stat(params[:start_at], params[:end_at])
+      @home_growth_records = @growth_records.where(tp: 1)
+      @garden_growth_records = @growth_records.where(tp: 0)
     else
-      @growth_records        = @kind.growth_records.where("start_at >= ? and end_at <= ?", Time.now.beginning_of_week, Time.now.end_of_week)
-      @home_growth_record_count   = @kind.growth_records.where(tp: 1).count
-      @garden_growth_record_count = @kind.growth_records.where(tp: 0).count
+      @growth_records        = @kind.growth_records.week_stat(Time.now.beginning_of_week, Time.now.end_of_week)
+      @home_growth_records   = @growth_records.where(tp: 1)
+      @garden_growth_records = @growth_records.where(tp: 0)
     end
 
    @growth_records_count = @kind.growth_records.count

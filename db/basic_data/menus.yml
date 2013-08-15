@@ -154,16 +154,24 @@
   operate_id: 11
   height_level: "a"
   url: "###"
-  sequence: 400
+  sequence: 90
   children:
   - id: 41000
-    name: "宝宝在园统计"
+    name: "宝宝家园统计"
     operate_id: 14000
     url: "/my_school/statistics/growth_record"
     number: 41000
-    title: "宝宝在园统计"
+    title: "宝宝家园统计"
     height_level: "a"
-    sequence: 410
+    sequence: 91
+  - id: 42000
+    name: "幼儿园信息统计 "
+    operate_id: 15000
+    url: "/my_school/statistics/kind_stat"
+    number: 42000
+    title: "幼儿园信息统计"
+    height_level: "a"
+    sequence: 92
 
 - id: 50000
   number: "home"

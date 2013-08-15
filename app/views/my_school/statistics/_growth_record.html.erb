@@ -2,47 +2,60 @@
   <div class="header">宝宝家园成长记录统计</div>
   <div class="content">
     <p><i class="icon-list"></i>成长记录总数量:<%= @growth_records_count %></p>
-    <p><i class="icon-home"></i>宝宝在家成长记录数量:<%= @home_growth_records_count %></p>
-    <p><i class="icon-certificate"></i>宝宝在园成长记录数量:<%= @garden_growth_records_count %></p>
+    <p><i class="icon-home"></i>宝宝在家成长记录总数量:<%= @home_growth_records_count %></p>
+    <p><i class="icon-certificate"></i>宝宝在园成长记录总数量:<%= @garden_growth_records_count %></p>
   </div>
 
   <div class="stat-box">
-    <p class="title"><a href="javascript:void(0);" class="fold"><i class="pull-right del"></i></a><span class="pull-right">周成长记录数量:<%= @home_growth_record_count %></span><i class="icon-home"></i>宝宝在家成长记录</p>
+    <p class="title"><a href="javascript:void(0);" class="fold"><i class="pull-right f del"></i></a><span class="pull-right">周成长记录数量:<%= @home_growth_records.count %></span><i class="icon-home"></i>宝宝在家成长记录</p>
     <ul class="squad_list">
       <% @kind.squads.each do |squad| %>
-        <li class="squad_item">
-          <% @squad_growth_record_count = GrowthRecord.where("student_infos.squad_id = ? and tp = 1", squad.id).joins(:student_info).count %>
-          <p class="squad_info"><%= squad.name %><span class="pull-right">成长记录数量:<%= @squad_growth_record_count %></span></p>
-          <ol class="student_list">
-            <% squad.student_infos.each do |student_info| %>
-              <li class="student_item">
-                <div style="display:inline;">
-                  <img src="<%= student_info.user.asset_logo ? student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="48" alt="头像"/>
-                </div>
-                <%= student_info.user.try(:name) %>(<%= student_info.growth_records.where(tp: 1).count %>)
-              </li>
-            <% end %>
-          </ol>
-          </li>
+        <% if current_user.get_users_ranges[:tp] == :teachers && @squads.collect(&:id).include?(squad.id) %>
+          <li class="squad_item" for="squad_<%= squad.id %>">
+            <div class="process">
+              <div><i class="hand"></i><%= squad.try(:name) %></div>
+              <span class="squad_student_count" style="display: none;"><%= squad.student_infos.count %></span>
+              <p class="squad_info percentage">""</p>
+              <span class="percentage_number"></span>
+              <a class="squad_fold" href="javascript:void(0);"><i class="icon-plus q pull-right"></i></a>
+            </div>
+            <ol class="student_list" style="display: none;">
+              <% squad.student_infos.each do |student_info| %>
+                <li class="student_item">
+                  <i class="icon-ok" style="display: none;"></i>
+                  <%= student_info.user.try(:name) %>(<i class="squad_<%= squad.id %>" style="color: #15a230;"><%= @home_growth_records.where(student_info_id: student_info.id).count %></i>)
+                </li>
+              <% end %>
+            </ol>
+            </li>
+          <% end %>
         <% end %>
     </ul>
   </div>
 
   <div class="stat-box">
-    <p class="title clearfix"><a href="javascript:void(0);" class="fold"><i class="pull-right f del"></i></a><span class="pull-right">周成长记录数量:<%= @garden_growth_record_count %></span><i class="icon-certificate"></i>宝宝在园成长记录</p>
+    <p class="title"><a href="javascript:void(0);" class="fold"><i class="pull-right f del"></i></a><span class="pull-right">周成长记录数量:<%= @garden_growth_records.count %></span><i class="icon-certificate"></i>宝宝在园成长记录</p>
     <ul class="squad_list">
       <% @kind.squads.each do |squad| %>
-        <li class="squad_item">
-          <% @squad_growth_record_count = GrowthRecord.where("student_infos.squad_id = ? and tp = 0", squad.id).joins(:student_info).count %>
-          <p class="squad_info"><%= squad.name %><span class="pull-right">成长记录数量:<%= @squad_growth_record_count %></span></p>
-          <ol class="student_list">
-            <% squad.student_infos.each do |student_info| %>
-              <li class="student_item">
-                <%= student_info.user.try(:name) %>(<%= student_info.growth_records.where(tp: 0).count %>)
-              </li>
-            <% end %>
-          </ol>
-          </li>
+        <% if current_user.get_users_ranges[:tp] == :teachers && @squads.collect(&:id).include?(squad.id) %>
+          <li class="squad_item" for="squad_<%= squad.id %>">
+            <div class="process">
+              <div><i class="hand"></i></i><%= squad.try(:name) %></div>
+              <span class="squad_student_count" style="display: none;"><%= squad.student_infos.count %></span>
+              <p class="squad_info percentage">""</p>
+              <span class="percentage_number"></span>
+              <a class="squad_fold" href="javascript:void(0);"><i class="icon-plus q pull-right"></i></a>
+            </div>
+            <ol class="student_list" style="display: none;">
+              <% squad.student_infos.each do |student_info| %>
+                <li class="student_item">
+                  <i class="icon-ok" style="display:none;"></i>
+                  <%= student_info.user.try(:name) %>(<i class="squad_<%= squad.id %>" style="color: #15a230;"><%= @home_growth_records.where(student_info_id: student_info.id).count %></i>)
+                </li>
+              <% end %>
+            </ol>
+            </li>
+          <% end %>
         <% end %>
     </ul>
   </div>
@@ -50,6 +63,31 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
+
+
+    $(".squad_item").each(function() {
+      var squad_number = 0;
+      $(this).each(function() {
+        var squad_flag = "i." + $(this).attr("for");
+        $(this).find(squad_flag).each(function() {
+
+          if( $(this).text() > 0 ) {
+            squad_number += 1;
+          }
+        })
+
+
+      })
+
+
+      var squad_student_count = parseInt($(this).find("span.squad_student_count").text());
+      var percentage = parseInt((parseFloat(squad_number)/squad_student_count * 100).toPrecision(3)) + "%";
+      $(this).find(".percentage").css("width", percentage);
+      $(this).find(".percentage_number").text(percentage);
+
+
+    })
+
   $(".fold").each(function() {
     $(this).click(function() {
       $(this).parent().parent().children(".squad_list").slideToggle("2000", function() {
@@ -60,6 +98,74 @@ $(document).ready(function() {
         }
       });
     })
+  });
+
+  $(".percentage_number").each(function() {
+    if (parseInt($(this).text()) == 100 ) {
+      $(this).parent().find("i.hand").addClass("icon-hand-up")
+    } else {
+      $(this).parent().find("i.hand").addClass("icon-hand-down")
+    }
   })
+
+  $(".squad_fold").each(function() {
+    $(this).click(function() {
+      $(this).parent().next(".student_list").slideToggle("5000", function() {
+        if ( $(this).parent().find("i.q").hasClass("icon-minus") ) {
+          $(this).parent().find("i.q").removeClass("icon-minus").addClass("icon-plus");
+        } else {
+          $(this).parent().find("i.q").removeClass("icon-plus").addClass("icon-minus");
+        }
+      });
+    })
+  })
+
+  $("#stat-failure").click(function(event) {
+    $(".f").removeClass("add").addClass("del")
+    $(".squad_list").show();
+    $(".q").removeClass("icon-plus").addClass("icon-minus")
+    $(".student_list").show();
+    event.preventDefault();
+    $(".percentage").each(function() {
+
+      if ( parseInt($(this).next("span").text()) < 100 ) {
+        var squad_flag = "." + $(this).parent().parent().attr("for");
+
+        $(squad_flag).each(function() {
+          if ( $(this).text() == 0 ) {
+            $(this).parent().addClass("stat-failure");
+          } else {
+            $(this).parent().removeClass("stat-success");
+            $(this).parent().children(".icon-ok").removeClass("flag-icon").hide();
+          }
+        })
+
+      }
+    })
+  })
+
+  $("#stat-success").click(function(event) {
+    $(".f").removeClass("add").addClass("del")
+    $(".squad_list").show();
+    $(".q").removeClass("icon-plus").addClass("icon-minus")
+    $(".student_list").show();
+    event.preventDefault();
+    $(".percentage").each(function() {
+
+      var squad_flag = "." + $(this).parent().parent().attr("for");
+
+      $(squad_flag).each(function() {
+        if ( $(this).text() > 0 ) {
+          $(this).parent().addClass("stat-success");
+          $(this).parent().children(".icon-ok").addClass("flag-icon").show();
+        } else {
+          $(this).parent().removeClass("stat-failure");
+        }
+      })
+
+    })
+  })
+
+
 })
 </script>

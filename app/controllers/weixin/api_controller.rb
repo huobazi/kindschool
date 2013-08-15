@@ -223,7 +223,7 @@ class Weixin::ApiController < Weixin::BaseController
             :FromUserName=>xml_data[:ToUserName],
             :CreateTime=>Time.now.to_i,
             :MsgType=>"text",
-            :Content=>"感谢您欢迎关注微壹平台\n\r #{get_weiyi_menu} ",
+            :Content=>"感谢您关注微壹平台\n\r #{get_weiyi_menu} ",
             :FuncFlag=>0
           })
       elsif xml_data[:Event] == "unsubscribe"
@@ -239,7 +239,7 @@ class Weixin::ApiController < Weixin::BaseController
                 :FromUserName=>xml_data[:ToUserName],
                 :CreateTime=>Time.now.to_i,
                 :MsgType=>"text",
-                :Content=>"感谢您欢迎关注微壹平台  \n\r 您的账户已绑定成功",
+                :Content=>"感谢您关注微壹平台  \n\r 您的账户已绑定成功",
                 :FuncFlag=>0
               })
           else
@@ -247,7 +247,7 @@ class Weixin::ApiController < Weixin::BaseController
                 :FromUserName=>xml_data[:ToUserName],
                 :CreateTime=>Time.now.to_i,
                 :MsgType=>"text",
-                :Content=>"感谢您欢迎关注微壹平台  \n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_weiyi?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
+                :Content=>"感谢您关注微壹平台  \n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_weiyi?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
                 :FuncFlag=>0
               })
           end
@@ -267,7 +267,7 @@ class Weixin::ApiController < Weixin::BaseController
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
               :MsgType=>"text",
-              :Content=>"感谢您欢迎关注微壹平台\n\r #{get_weiyi_menu} ",
+              :Content=>"感谢您关注微壹平台\n\r #{get_weiyi_menu} ",
               :FuncFlag=>0
             })
         end

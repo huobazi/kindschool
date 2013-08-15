@@ -67,7 +67,6 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
   end
 
   def create
-    binding.pry
     if current_user.get_users_ranges[:tp] == :teachers
       flash[:notice] = "没有权限或非法操作"
       redirect_to :controller => "/my_school/growth_records", :action => :home

@@ -41,6 +41,9 @@ MENUS ={"home"=>{
   "statistics" => {
     "41000" => {
       "my_school/statistics" => ["growth_record"]
+    },
+    "42000" => {
+      "my_school/statistics" => ["kind_stat"]
     }
   },
   "personnel"=>{
