@@ -106,7 +106,7 @@ class Weixin::MainController < Weixin::BaseController
         return
       end
       user.update_attribute(:weixin_code, session[:weixin_code])
-      if user.wei_yi_code.blank?
+      if user.weiyi_code.blank?
         flash[:success] = "幼儿园公共账户绑定成功，您还需要绑定微信公共账户\"微一园讯通\""
         redirect_to :action=>:error_messages
       else
