@@ -58,7 +58,7 @@ class StudentInfo < ActiveRecord::Base
             user.name = row["姓名"]
             user.kindergarten_id = kind_id
             student_info.kindergarten_id = kind_id
-            user.gender = row["性别"]=="男" ? "M" : "G"
+            user.gender = row["性别"]=="男" ?  "G" : "M"
             #给user生成帐号跟密码
             #user.login =
             password = Standard.rand_password
