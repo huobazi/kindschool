@@ -117,11 +117,11 @@ MENUS ={"home"=>{
       }
     },
     "statistics" => {
-      "42000" => {
-        "my_school/statistics" => ["kind_stat"]
-      },
       "41000" => {
         "my_school/statistics" => ["growth_record"]
+      },
+      "42000" => {
+        "my_school/statistics" => ["kind_stat"]
       }
     },
     "120000" => {
