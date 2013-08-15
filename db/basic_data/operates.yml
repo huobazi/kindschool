@@ -1848,7 +1848,7 @@ statistic_growth_record:
   protocol: ""
   <<: *DEFAULTS
 statistic_kind_stat:
-  id: 15000
+  id: 14100
   parent_id: 11
   name: "幼儿园信息统计"
   level: 2

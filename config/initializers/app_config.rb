@@ -38,7 +38,7 @@ MENUS ={"home"=>{
     "my_school/news"=>DEFULT_ACTION
    }
 },
-  "statistics" => {
+  "40000" => {
     "41000" => {
       "my_school/statistics" => ["growth_record"]
     },

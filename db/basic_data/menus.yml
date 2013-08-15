@@ -149,7 +149,7 @@
     operate_id: 5500
 
 - id: 40000
-  number: "statistics"
+  number: 40000
   name: "统计"
   operate_id: 11
   height_level: "a"
@@ -165,13 +165,13 @@
     height_level: "a"
     sequence: 91
   - id: 42000
-    name: "幼儿园信息统计 "
-    operate_id: 15000
+    name: "幼儿园信息统计"
+    operate_id: 14100
     url: "/my_school/statistics/kind_stat"
     number: 42000
     title: "幼儿园信息统计"
     height_level: "a"
-    sequence: 92
+    sequence: 91
 
 - id: 50000
   number: "home"
