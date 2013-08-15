@@ -172,6 +172,14 @@
     title: "幼儿园统计"
     height_level: "a"
     sequence: 91
+  - id: 43000
+    name: "消息统计"
+    operate_id: 14200
+    url: "/my_school/statistics/message"
+    number: 43000
+    title: "消息统计"
+    height_level: "a"
+    sequence: 91
 
 - id: 50000
   number: "home"

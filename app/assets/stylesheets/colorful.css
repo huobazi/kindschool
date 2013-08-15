@@ -145,7 +145,7 @@ a{
 .small_statistics_menu{
     border-radius:0px 0px 5px 0px;
     background-color: #bb4da0;
-    width: 40px;
+    width: 50px;
 }
 .center_menu li{
     height: 30px;
@@ -2181,6 +2181,8 @@ fieldset.staff_squad ol li {
   margin-right: 10px;
 }
 
+}
+
 .panel .detail_stat {
   padding-left: 10px;
   display: none;
@@ -2196,4 +2198,58 @@ fieldset.staff_squad ol li {
   width: 45%;
   float: left;
   display: inline-block;
+}
+
+.message-list .cell {
+  overflow: hidden;
+  box-shadow: 0 1px 0 hsl(0,0%,90%);
+  padding: 8px 10px 
+}
+
+.message-list .cell .block {
+  float: left;
+  text-align: center;
+  font-size: 14px;
+  color: hsl(0,0%,70%);
+  line-height: 48px;
+}
+.message-list .cell .block.count {
+  width: 150px;
+  text-align: left;
+}
+.message-list .cell .block.count a {
+  text-decoration: none;
+  color: #08c;
+}
+
+.message-list .message_wrap {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 48px;
+  width: 70%;
+  padding-left: 10px;
+  color: #08c;
+}
+
+.message-list .created_time {
+  color: hsl(0,7%,70%);
+  font-size: 13px;
+  line-height: 53px;
+  padding: 0 8px;
+}
+
+.cell .third {
+  height: 70px;
+  overflow: auto;
+  overflow-x: hidden;
+  width: 100%;
+  display: none;
+  padding-left: 10px;
+}
+
+.cell .third .recipient_user {
+  width: 25%;
+  float: left;
+  height: 30px;
 }

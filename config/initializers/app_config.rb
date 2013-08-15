@@ -122,6 +122,9 @@ MENUS ={"home"=>{
       },
       "41000" => {
         "my_school/statistics" => ["growth_record"]
+      },
+      "43000" => {
+        "my_school/statistics" => ["message"]
       }
     },
     "120000" => {
