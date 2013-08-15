@@ -15,5 +15,5 @@ test:
   <<: *defaults
 
 production:
-  weixin_blind: false
+  weixin_blind: true
   <<: *defaults

@@ -121,12 +121,7 @@
           </div>
           <%if @message.approve_status != 0%>
           <div class="control-group">
-            <label class="control-label" >审核状态:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= Message::STATUS[@message.approve_status]%>
-              </label>
-            </div>
+            <%= render :partial=>"/my_school/approves/load_approves_log" ,:locals=>{:record_id=>@message.approve_record.try(:id),:approve_status=>@message.approve_status} %>
           </div>
           <%end%>
           <% if action_name=="outbox_show" %>

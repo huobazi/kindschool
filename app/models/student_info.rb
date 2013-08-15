@@ -58,7 +58,7 @@ class StudentInfo < ActiveRecord::Base
             user.name = row["姓名"]
             user.kindergarten_id = kind_id
             student_info.kindergarten_id = kind_id
-            user.gender = row["性别"]=="男" ? "M" : "G"
+            user.gender = row["性别"]=="男" ?  "G" : "M"
             #给user生成帐号跟密码
             #user.login =
             password = Standard.rand_password
@@ -71,11 +71,11 @@ class StudentInfo < ActiveRecord::Base
             else
              student_info.card_category = 2
             end
-            student_info.card_code = row["证件号码"]   
+            student_info.card_code = row["证件号码"].to_s   
             student_info.family_address = row["现住址"]
             student_info.come_in_at = row["入园日期"]
             student_info.guardian = row["监护人姓名"]
-            student_info.guardian_card_code = row["监护人身份证号码"]
+            student_info.guardian_card_code = row["监护人身份证号码"].to_s
             student_info.user = user
             squad = Squad.find_by_name_and_kindergarten_id(row["班级名称"],kind_id)
             student_info.squad = squad
@@ -86,8 +86,14 @@ class StudentInfo < ActiveRecord::Base
       user_password.each do |u_password|
         user = u_password[:user]
         password = u_password[:password]
-        title = "您已经成功注册了微壹幼儿园校讯通平台"
-        content = "您的登录名:#{user.login},密码:#{password}"
+        kind = user.kindergarten
+        title = "您已经成功注册了#{kind.name}微壹校讯通平台"
+        if kind.aliases_url.blank?
+         web_address = "http://#{kind.number}.#{WEBSITE_CONFIG["web_host"]}"
+        else
+         web_address = kind.aliases_url
+        end
+        content = "您的登录名:#{user.login},密码:#{password},登录地址:#{web_address}"
         user.send_system_message!(title,content,3)
       end
       # raise ""

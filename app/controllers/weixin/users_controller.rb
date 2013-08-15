@@ -35,10 +35,10 @@ class Weixin::UsersController < Weixin::ManageController
       user = User.authenticate(params[:login], params[:password],@kind.id)
       if WEBSITE_CONFIG["weixin_blind"]
        if user.weiyi_code.blank?
-          raise  "您需要绑定\"微壹平台\"微信公共帐号"
+          raise  "您需要绑定\"微一园讯通\"微信公共帐号"
         end
         if user.weixin_code.blank?
-          raise "您需要绑定幼儿园的公共账号访问"
+          raise "您需要绑定幼儿园的公共账号后才能访问"
         end
      end
       self.current_user = user

@@ -69,10 +69,7 @@
               <p class="title"><span><%= @new.title %></span></p>
               <p class="info"> <span class="link">总共被浏览了<%= @new.show_count %>次</span></p>
               <p class="info"><span class="link"><%= @new.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @new.try(:created_at).try(:to_long_datetime) %></span></p>
-              <%if @new.approve_status != 0 %>
-                <p class="info">审核状态:<span><%= News::STATUS[@new.approve_status] %></span>
-                </p>
-              <%end%>
+  <%= render :partial=>"/my_school/approves/load_approves_log" ,:locals=>{:record_id=>@new.approve_record.try(:id),:approve_status=>@new.approve_status} %>
             </div>
             <div class="content">
               <%=raw @new.content %>
@@ -82,5 +79,5 @@
       </div>
     </div>
   </div>
-
 </div>
+

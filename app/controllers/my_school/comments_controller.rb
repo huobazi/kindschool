@@ -52,6 +52,8 @@ class MySchool::CommentsController < MySchool::ManageController
       end
     elsif params[:resource_type] == "CookBook"
       @record = @kind.cook_books.find_by_id(params[:resource_id])
+    elsif params[:resource_type] == "Album"
+      @record = @kind.albums.find_by_id(params[:resource_id])
     end
   end
 end

@@ -5,7 +5,7 @@ module MySchool::ManageHelper
 	end
 	def calculated_figures
 		str = current_user.name + current_user.role.try(:name).to_s
-	    601-str.size-50
+	    270-str.size-40
 	end
 
 end
