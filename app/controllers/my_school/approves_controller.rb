@@ -100,7 +100,7 @@ class MySchool::ApprovesController < MySchool::ManageController
   end
 
   def get_approve_record_log
-    if approve_record = ApproveRecord.find(params[:id])
+    if approve_record = ApproveRecord.find_by_id(params[:id])
       @approve_entries = approve_record.approve_entries
       render :partial=>"/my_school/approves/approve_list_from",:layout=>false
     else
