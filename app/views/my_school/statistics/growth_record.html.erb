@@ -77,6 +77,7 @@
         <%= form_tag '/my_school/statistics/growth_record' , :method=>"get", :id => "stat_growth_record" do %>
         <%= hidden_field_tag "start_at" %>
         <%= hidden_field_tag "end_at" %>
+        <p>
         <% if params[:start_at].present? or params[:end_at].present? %>
           <input type="text" style="margin-top: 10px;"  id="val" value="<%= params[:start_at] %>~<%= params[:end_at] %>" />
         <% else %>
@@ -85,6 +86,9 @@
         <a class="normal_link btn" href="javascript:void(0);"  onclick="backDate();">上一周</a>
         <a class="normal_link btn" href="javascript:void(0);" onclick="curDate();" >本周</a>
         <a class="normal_link btn" href="javascript:void(0);" onclick="nextDate();" >下一周</a>
+        </p>
+        <a class="btn btn-success" style="color: white;" id="stat-failure" href="javascript:void(0);" >选择成长记录未完成的学员</a>
+        <a class="btn btn-inverse" style="color: white;" id="stat-success" href="javascript:void(0);" >选择成长记录已完成的学员</a>
         <% end %>
 
 

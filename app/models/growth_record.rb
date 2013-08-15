@@ -2,6 +2,8 @@
 class GrowthRecord < ActiveRecord::Base
   attr_accessible :content, :creater_id, :end_at, :kindergarten_id, :squad_name, :start_at, :student_info_id, :tp, :student_info, :siesta, :dine, :reward
 
+  scope :week_stat, ->(start_at, end_at) { where("start_at >= ? and end_at <= ?", start_at, end_at) }
+
   belongs_to :kindergarten
   belongs_to :student_info
 
@@ -36,6 +38,13 @@ class GrowthRecord < ActiveRecord::Base
 
   validate :end_at_large_than_start_at
 
+  def self.squad_student_info_count(squad_id)
+    where("student_infos.squad_id = ?", squad_id).joins(:student_info).count
+  end
+
+  def self.student_info_growth_record_count(student_info_id)
+    where("student_info_id = ?", student_info_id).count
+  end
   private
   #发送消息
   def load_messages

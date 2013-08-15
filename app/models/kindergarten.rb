@@ -35,6 +35,7 @@ class Kindergarten < ActiveRecord::Base
 
   has_many :option_operates
   has_many :operates, :through => :option_operates
+  has_many :topic_entries, :through => :topics
 
   has_many :career_strategies
   has_many :graduate_career_strategies,:conditions=>"squads.graduate=0",:through=>:career_strategies,:source=>:from,:order=>"career_strategies.graduation DESC"
