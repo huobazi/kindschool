@@ -38,14 +38,6 @@ MENUS ={"home"=>{
     "my_school/news"=>DEFULT_ACTION
    }
 },
-  "statistics" => {
-    "41000" => {
-      "my_school/statistics" => ["growth_record"]
-    },
-    "42000" => {
-      "my_school/statistics" => ["kind_stat"]
-    }
-  },
   "personnel"=>{
   "11000"=>{
   "my_school/grades"=>DEFULT_ACTION
@@ -122,6 +114,14 @@ MENUS ={"home"=>{
       },
       "72000" => {
         "my_school/topics" => ["my"]
+      }
+    },
+    "statistics" => {
+      "41000" => {
+        "my_school/statistics" => ["growth_record"]
+      },
+      "42000" => {
+        "my_school/statistics" => ["kind_stat"]
       }
     },
     "120000" => {
