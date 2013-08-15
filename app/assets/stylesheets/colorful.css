@@ -892,10 +892,10 @@ table.attributes td {
     width: 108px;
 }
 .login .login_img_big{
-    float: left;
+   float: left;
     height: 172px;
     margin-top: -12px;
-    text-align: center;
+    text-align: left;
     width: 218px;
 }
 .login .img_small_foot{
@@ -913,6 +913,8 @@ table.attributes td {
 }
 .login .login_qrcode{
     width: 172px;
+    float: left;
+    margin-left: 5px;
 }
 .login .login_imgs{
     float: left;
