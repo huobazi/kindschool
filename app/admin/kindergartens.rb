@@ -33,6 +33,13 @@ ActiveAdmin.register Kindergarten do
         raw "<img src='#{obj.asset_img.public_filename(:tiny)}'  onerror='this.src='/assets/no_img.png'"
       end
     end
+    column :asset_logo do |obj|
+      if obj.asset_logo.blank?
+        raw "二维码不存在"
+      else
+        raw "<img src='#{obj.asset_logo.public_filename(:tiny)}'  onerror='this.src='/assets/no_img.png'"
+      end
+    end
 
     column :admin do |obj|
       if obj.admin.blank?
@@ -70,6 +77,9 @@ ActiveAdmin.register Kindergarten do
     f.inputs "LOGO", :for => [:asset_img, f.object.asset_img || AssetImg.new] do |img|
       img.input :uploaded_data,:as=>:file,:name => "asset_img"
     end
+    f.inputs "二维码", :for => [:asset_logo, f.object.asset_logo || AssetLogo.new] do |img|
+      img.input :uploaded_data,:as=>:file,:name => "asset_logo"
+    end
     f.actions
   end
 
@@ -98,6 +108,13 @@ ActiveAdmin.register Kindergarten do
           raw "图片不存在"
         else
           raw "<img src='#{obj.asset_img.public_filename(:tiny)}'  onerror='this.src='/assets/no_img.png'"
+        end
+      end
+      row :asset_logo do |obj|
+        if obj.asset_logo.blank?
+          raw "二维码不存在"
+        else
+          raw "<img src='#{obj.asset_logo.public_filename(:tiny)}'  onerror='this.src='/assets/no_img.png'"
         end
       end
       row :created_at

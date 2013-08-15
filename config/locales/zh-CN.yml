@@ -267,6 +267,7 @@ zh-CN:
         weixin_code: "微信账号"
         weixin_token: "微信token"
         asset_img: "LOGO"
+        asset_logo: "二维码"
         admin: "管理员"
         created_at: "创建时间"
         updated_at: "更新时间"
