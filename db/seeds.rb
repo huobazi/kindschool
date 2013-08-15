@@ -48,6 +48,7 @@ Template.transaction do
    puts "\n导入微壹平台数据数据"
    unless WeiyiConfig.find_by_number("about")
      WeiyiConfig.create(:number=>"about",:content=>"微壹是服务于幼儿园的校讯通平台。")
+     WeiyiConfig.create(:number=>"contact",:content=>"联系我们的介绍内容。")
      WeiyiConfig.create(:number=>"weixin_validate",:content=>"0")
    end
 end

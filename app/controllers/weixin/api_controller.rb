@@ -226,6 +226,22 @@ class Weixin::ApiController < Weixin::BaseController
             :Content=>"感谢您关注微壹平台\n\r #{get_weiyi_menu} ",
             :FuncFlag=>0
           })
+      elsif xml_data[:Event] == "CLICK"
+        if xml_data[:EventKey] == "Bind"
+          x_data = weiyi_bind(xml_data)
+        elsif xml_data[:EventKey] == "About"
+          x_data = weiyi_about(xml_data)
+        elsif xml_data[:EventKey] == "Contact"
+          x_data = weiyi_about(xml_data,"contact")
+        else
+          x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+              :FromUserName=>xml_data[:ToUserName],
+              :CreateTime=>Time.now.to_i,
+              :MsgType=>"text",
+              :Content=>"感谢您关注微壹平台\n\r #{get_weiyi_menu} ",
+              :FuncFlag=>0
+            })
+        end
       elsif xml_data[:Event] == "unsubscribe"
         user = User.find_by_weiyi_code(xml_data[:FromUserName])
         if user
@@ -233,35 +249,11 @@ class Weixin::ApiController < Weixin::BaseController
         end
       else
         if xml_data[:Content] == "1"
-          #绑定
-          if User.find_by_weiyi_code(xml_data[:FromUserName])
-            x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
-                :FromUserName=>xml_data[:ToUserName],
-                :CreateTime=>Time.now.to_i,
-                :MsgType=>"text",
-                :Content=>"感谢您关注微壹平台  \n\r 您的账户已绑定成功",
-                :FuncFlag=>0
-              })
-          else
-            x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
-                :FromUserName=>xml_data[:ToUserName],
-                :CreateTime=>Time.now.to_i,
-                :MsgType=>"text",
-                :Content=>"感谢您关注微壹平台  \n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_weiyi?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
-                :FuncFlag=>0
-              })
-          end
+          x_data = weiyi_bind(xml_data)
         elsif xml_data[:Content] == "2"
-          if config = WeiyiConfig.find_by_number("about")
-            about = config.content
-          end
-          x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
-              :FromUserName=>xml_data[:ToUserName],
-              :CreateTime=>Time.now.to_i,
-              :MsgType=>"text",
-              :Content=>"感谢您关注微壹平台  \n\r #{about}",
-              :FuncFlag=>0
-            })
+          x_data = weiyi_about(xml_data)
+        elsif xml_data[:Content] == "3"
+          x_data = weiyi_about(xml_data)
         else
           x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
               :FromUserName=>xml_data[:ToUserName],
@@ -278,6 +270,45 @@ class Weixin::ApiController < Weixin::BaseController
 
   private
 
+  def weiyi_about(xml_data,tp="about")
+    if tp == "about"
+      if config = WeiyiConfig.find_by_number("about")
+        about = config.content
+      end
+    else
+      if contact = WeiyiConfig.find_by_number("contact")
+        about = contact.content
+      end
+    end
+    mas_data({:ToUserName=>xml_data[:FromUserName],
+        :FromUserName=>xml_data[:ToUserName],
+        :CreateTime=>Time.now.to_i,
+        :MsgType=>"text",
+        :Content=>"感谢您关注微壹平台  \n\r #{about}",
+        :FuncFlag=>0
+      })
+  end
+  
+  def weiyi_bind(xml_data)
+    #绑定
+    if User.find_by_weiyi_code(xml_data[:FromUserName])
+      mas_data({:ToUserName=>xml_data[:FromUserName],
+          :FromUserName=>xml_data[:ToUserName],
+          :CreateTime=>Time.now.to_i,
+          :MsgType=>"text",
+          :Content=>"感谢您关注微壹平台  \n\r 您的账户已绑定成功",
+          :FuncFlag=>0
+        })
+    else
+      mas_data({:ToUserName=>xml_data[:FromUserName],
+          :FromUserName=>xml_data[:ToUserName],
+          :CreateTime=>Time.now.to_i,
+          :MsgType=>"text",
+          :Content=>"感谢您关注微壹平台  \n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_weiyi?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
+          :FuncFlag=>0
+        })
+    end
+  end
 
   def token_validate
     render :text=>params[:echostr]
