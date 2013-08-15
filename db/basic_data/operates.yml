@@ -1839,11 +1839,22 @@ student_infos_download:
 statistic_growth_record:
   id: 14000
   parent_id: 11
-  name: "宝宝在园统计"
+  name: "宝宝家园统计"
   level: 2
   sequence: 4
-  note: "宝宝在园统计"
+  note: "宝宝家园统计"
   controller: "my_school/statistics"
   action: "growth_record"
+  protocol: ""
+  <<: *DEFAULTS
+statistic_growth_record:
+  id: 15000
+  parent_id: 11
+  name: "幼儿园信息统计"
+  level: 2
+  sequence: 4
+  note: "幼儿园信息统计"
+  controller: "my_school/statistics"
+  action: "kind_stat"
   protocol: ""
   <<: *DEFAULTS
