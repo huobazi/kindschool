@@ -75,6 +75,7 @@ class StudentInfo < ActiveRecord::Base
             student_info.family_address = row["现住址"]
             student_info.come_in_at = row["入园日期"]
             student_info.guardian = row["监护人姓名"]
+            logger.info("==========#{row["监护人身份证号码"].inspect}============\n\n\n\n\n")
             student_info.guardian_card_code = row["监护人身份证号码"].to_s
             student_info.user = user
             squad = Squad.find_by_name_and_kindergarten_id(row["班级名称"],kind_id)
