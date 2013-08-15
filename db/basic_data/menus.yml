@@ -149,7 +149,7 @@
     operate_id: 5500
 
 - id: 40000
-  number: 40000
+  number: "statistics"
   name: "统计"
   operate_id: 11
   height_level: "a"
