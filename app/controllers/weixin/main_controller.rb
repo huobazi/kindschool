@@ -71,7 +71,7 @@ class Weixin::MainController < Weixin::BaseController
       end
     else
       # render :text=> "您需要关注\"微壹平台\"微信公共帐号."
-      flash[:error] = "您需要关注\"微壹平台\"微信公共帐号."
+      flash[:error] = "您需要关注\"微一园讯通\"微信公共帐户."
       redirect_to :action => :weiyi_error_messages
     end
   end
@@ -101,14 +101,20 @@ class Weixin::MainController < Weixin::BaseController
     begin
       user = User.authenticate(params[:login], params[:password],@kind.id)
       unless user.weixin_code.blank? && user.weixin_code != session[:weixin_code]
-        flash[:error] = "该账户已绑定了另一个微信账号"
+        flash[:error] = "该账户已绑定了另一个微信账户"
         redirect_to :action => :error_messages
         return
       end
       user.update_attribute(:weixin_code, session[:weixin_code])
-      flash[:success] = "账户绑定成功"
-      self.current_user = user
-      redirect_to :controller => "/weixin/main",:action=>:index
+      if user.wei_yi_code.blank?
+        flash[:success] = "幼儿园公共账户绑定成功，您还需要绑定微信公共账户\"微一园讯通\""
+        redirect_to :action=>:error_messages
+      else
+        flash[:success] = "幼儿园公共账户绑定成功"
+        self.current_user = user
+        redirect_to :controller => "/weixin/main",:action=>:index
+      end
+      
     rescue StandardError => error
       @user_errors = error
     end
