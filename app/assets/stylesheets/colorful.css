@@ -122,6 +122,15 @@ a{
 .small_login_menu a{
     padding-right: 10px;
 }
+.small_login_menu .message_count_a{
+    padding-right:2px;
+    padding-left:2px;
+}
+.small_login_menu .logout_a{
+    border-left: 1px solid white;
+    padding-left: 5px;
+    padding-right: 10px;
+}
 .small_login_menu a:hover{
     text-decoration: underline;
 }
@@ -2031,138 +2040,138 @@ fieldset.staff_squad ol li {
 
 /* =====统计=========*/
 .stat-list .content {
-  padding: 15px 15px 0 15px;
+    padding: 15px 15px 0 15px;
 }
 .stat-list .content p {
-  line-height: 20px;
-  height: 20px;
-  font-size: 15px;
+    line-height: 20px;
+    height: 20px;
+    font-size: 15px;
 }
 .stat-list .header {
-  line-height: 200%;
-  padding: 7px 10px;
-  background-color: hsl(0,0%,93%);
-  font-size: 16px;
-  color: #333;
-  font-weight: bold;
+    line-height: 200%;
+    padding: 7px 10px;
+    background-color: hsl(0,0%,93%);
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
 }
 
 .stat-box {
-  padding: 10px 10px 0 10px;
-  width: 100%;
-  float: left;
+    padding: 10px 10px 0 10px;
+    width: 100%;
+    float: left;
 }
 
 .stat-box .squad_list {
-  padding-left: 15px;
-  padding-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .stat-box .title {
-  background: #e2e2e2;
-  color: #333333;
-  line-height: 18px;
-  height: 18px;
-  font-weight: bold;
-  padding: 8px;
-  font-size: 14px;
+    background: #e2e2e2;
+    color: #333333;
+    line-height: 18px;
+    height: 18px;
+    font-weight: bold;
+    padding: 8px;
+    font-size: 14px;
 }
 .stat-box .squad_info {
-  clear: both;
-  margin-bottom: 0;
-  display: inline-block;
-  text-indent: -99999px;
+    clear: both;
+    margin-bottom: 0;
+    display: inline-block;
+    text-indent: -99999px;
 }
 .stat-box .squad_list .squad_item {
-  float: left;
-  width: 100%;
+    float: left;
+    width: 100%;
 }
 .stat-box .student_list {
-  width: 100%;
-  float: left;
-  clear: both;
-  padding: 15px;
+    width: 100%;
+    float: left;
+    clear: both;
+    padding: 15px;
 }
 
 .stat-box .student_list .student_item {
-  width: 30%;
-  float: left;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  position: relative;
+    width: 30%;
+    float: left;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    position: relative;
 }
 
 .add {
-  background: url("/t/colorful/add.png") no-repeat;
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  margin-left: 10px;
-  margin-top: -3px;
+    background: url("/t/colorful/add.png") no-repeat;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: -3px;
 }
 
 .del {
-  background: url("/t/colorful/del.png") no-repeat;
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  margin-left: 10px;
-  margin-top: -3px;
+    background: url("/t/colorful/del.png") no-repeat;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: -3px;
 }
 
 .percentage {
-  color: #fff;
-  padding: 0 2px;
-  background-color: #15a230;
-  min-width: 2px;
-  line-height: 25px;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
+    color: #fff;
+    padding: 0 2px;
+    background-color: #15a230;
+    min-width: 2px;
+    line-height: 25px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 .stat-failure {
-  border: 1px solid #b94a48;
-  padding: 2px;
+    border: 1px solid #b94a48;
+    padding: 2px;
 }
 
 .stat-success {
-  border: 1px solid #3a87ad;
-  padding: 2px;
+    border: 1px solid #3a87ad;
+    padding: 2px;
 }
 
 .flag-icon {
-  position: absolute;
-  top: 5px;
-  right: 5px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }
 
 .panel {
-  width: 45%;
-  min-height: 100px;
-  float: left;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  background: hsla(0,0%,100%,1);
-  box-shadow: 0 0 1px hsl(0,0%,40%);
-  min-height: 150px;
+    width: 45%;
+    min-height: 100px;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    background: hsla(0,0%,100%,1);
+    box-shadow: 0 0 1px hsl(0,0%,40%);
+    min-height: 150px;
 }
 
 .panel .header {
-  background: hsl(0,0%,93%);
-  padding: 7px 10px;
-  font-size: 14px;
-  color: hsl(202,6%,34%);
-  font-weight: 700; 
+    background: hsl(0,0%,93%);
+    padding: 7px 10px;
+    font-size: 14px;
+    color: hsl(202,6%,34%);
+    font-weight: 700;
 }
 
 .panel .inner {
-  padding: 8px 10px;
+    padding: 8px 10px;
 }
 
 .panel .inner a {
-  color: #404040;
-  line-height: 24px;
+    color: #404040;
+    line-height: 24px;
 }
 
 .panel .inner span {
-  margin-right: 10px;
+    margin-right: 10px;
 }

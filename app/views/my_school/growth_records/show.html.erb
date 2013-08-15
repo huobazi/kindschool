@@ -148,7 +148,7 @@
                   </a>
                 </div>
                 <% if current_user.id == @growth_record.creater_id || current_user.tp == 2 %>
-                  <%= link_to "",url_for(:action=>:delete_img,:id=>@growth_record.id,:img_id=>img.id), id: "flag_#{img.id}", class: "btn-delete", style: "margin-top: 10px; display: none;", confirm: "你确定删除该图片吗" %>
+                  <%= link_to "",url_for(:action=>:delete_img,:id=>@growth_record.id,:img_id=>img.id), :id=> "flag_#{img.id}", :class=> "btn-delete", :style=> "margin-top: 10px; display: none;", :confirm=> "你确定删除该图片吗" %>
                 <% end %>
               </div>
             <% end %>
