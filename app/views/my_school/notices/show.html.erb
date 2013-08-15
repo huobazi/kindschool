@@ -91,11 +91,7 @@
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label" >审核状态:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= Notice::STATUS[@notice.approve_status]%>
-              </label>
+            <%= render :partial=>"/my_school/approves/load_approves_log" ,:locals=>{:record_id=>@notice.approve_record.try(:id),:approve_status=>@notice.approve_status} %>
             </div>
           </div>
         </form>
