@@ -879,28 +879,46 @@ table.attributes td {
 .login .login_img_left{
     float: left;
     height: 400px;
-    width: 312px;
+    width: 325px;
 }
 .login .login_img_right{
     float: left;
     height: 400px;
-    width: 208px;
+    width: 218px;
 }
 .login .login_img_small{
-    width: 104px;
-    height: 104px;
     float: left;
+    height: 108px;
+    width: 108px;
 }
 .login .login_img_big{
-    width: 206px;
-    height: 206px;
     float: left;
+    height: 172px;
+    margin-top: -12px;
+    text-align: center;
+    width: 218px;
+}
+.login .img_small_foot{
+     margin-top: 56px;
+}
+.login .login_img_foot{
+    margin-top:0px;
+}
+.login .login_qrcode_label{
+    color: #575757;
+    float: right;
+    font-weight: bold;
+    padding-top: 12px;
+    width: 15px;
+}
+.login .login_qrcode{
+    width: 172px;
 }
 .login .login_imgs{
-    padding-left: 50px;
-    padding-top: 80px;
-    width: 550px;
     float: left;
+    padding-left: 40px;
+    padding-top: 80px;
+    width: 565px;
 }
 .login .login_form{
     background-image: url("/t/colorful/login_form.png");
