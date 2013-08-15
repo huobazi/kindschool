@@ -28,7 +28,6 @@
       <%= form_tag '/my_school/statistics/message' , :method=>"get" do %>
         <b>标题：</b>
         <%= text_field :message,:title_like,:style=>"width:100px;" ,:value=>"#{params[:message][:title_like] if params[:message] }"%>
-        <%= radio_button %>
         <b>内容：</b>
         <%= text_field :message,:content_like,:style=>"width:100px;" ,:value=>"#{params[:message][:content_like] if params[:message] }"  %>
         <b>发件人：</b>

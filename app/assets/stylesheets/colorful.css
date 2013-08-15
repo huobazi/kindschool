@@ -122,6 +122,15 @@ a{
 .small_login_menu a{
     padding-right: 10px;
 }
+.small_login_menu .message_count_a{
+    padding-right:2px;
+    padding-left:2px;
+}
+.small_login_menu .logout_a{
+    border-left: 1px solid white;
+    padding-left: 5px;
+    padding-right: 10px;
+}
 .small_login_menu a:hover{
     text-decoration: underline;
 }
@@ -884,28 +893,48 @@ table.attributes td {
 .login .login_img_left{
     float: left;
     height: 400px;
-    width: 312px;
+    width: 325px;
 }
 .login .login_img_right{
     float: left;
     height: 400px;
-    width: 208px;
+    width: 218px;
 }
 .login .login_img_small{
-    width: 104px;
-    height: 104px;
     float: left;
+    height: 108px;
+    width: 108px;
 }
 .login .login_img_big{
-    width: 206px;
-    height: 206px;
+   float: left;
+    height: 172px;
+    margin-top: -12px;
+    text-align: left;
+    width: 218px;
+}
+.login .img_small_foot{
+     margin-top: 56px;
+}
+.login .login_img_foot{
+    margin-top:0px;
+}
+.login .login_qrcode_label{
+    color: #575757;
+    float: right;
+    font-weight: bold;
+    padding-top: 12px;
+    width: 15px;
+}
+.login .login_qrcode{
+    width: 172px;
     float: left;
+    margin-left: 5px;
 }
 .login .login_imgs{
-    padding-left: 50px;
-    padding-top: 80px;
-    width: 550px;
     float: left;
+    padding-left: 40px;
+    padding-top: 80px;
+    width: 565px;
 }
 .login .login_form{
     background-image: url("/t/colorful/login_form.png");
@@ -2045,108 +2074,108 @@ fieldset.staff_squad ol li {
 
 /* =====统计=========*/
 .stat-list .content {
-  padding: 15px 15px 0 15px;
+    padding: 15px 15px 0 15px;
 }
 .stat-list .content p {
-  line-height: 20px;
-  height: 20px;
-  font-size: 15px;
+    line-height: 20px;
+    height: 20px;
+    font-size: 15px;
 }
 .stat-list .header {
-  line-height: 200%;
-  padding: 7px 10px;
-  background-color: hsl(0,0%,93%);
-  font-size: 16px;
-  color: #333;
-  font-weight: bold;
+    line-height: 200%;
+    padding: 7px 10px;
+    background-color: hsl(0,0%,93%);
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
 }
 
 .stat-box {
-  padding: 10px 10px 0 10px;
-  width: 100%;
-  float: left;
+    padding: 10px 10px 0 10px;
+    width: 100%;
+    float: left;
 }
 
 .stat-box .squad_list {
-  padding-left: 15px;
-  padding-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .stat-box .title {
-  background: #e2e2e2;
-  color: #333333;
-  line-height: 18px;
-  height: 18px;
-  font-weight: bold;
-  padding: 8px;
-  font-size: 14px;
+    background: #e2e2e2;
+    color: #333333;
+    line-height: 18px;
+    height: 18px;
+    font-weight: bold;
+    padding: 8px;
+    font-size: 14px;
 }
 .stat-box .squad_info {
-  clear: both;
-  margin-bottom: 0;
-  display: inline-block;
-  text-indent: -99999px;
+    clear: both;
+    margin-bottom: 0;
+    display: inline-block;
+    text-indent: -99999px;
 }
 .stat-box .squad_list .squad_item {
-  float: left;
-  width: 100%;
+    float: left;
+    width: 100%;
 }
 .stat-box .student_list {
-  width: 100%;
-  float: left;
-  clear: both;
-  padding: 15px;
+    width: 100%;
+    float: left;
+    clear: both;
+    padding: 15px;
 }
 
 .stat-box .student_list .student_item {
-  width: 30%;
-  float: left;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  position: relative;
+    width: 30%;
+    float: left;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    position: relative;
 }
 
 .add {
-  background: url("/t/colorful/add.png") no-repeat;
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  margin-left: 10px;
-  margin-top: -3px;
+    background: url("/t/colorful/add.png") no-repeat;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: -3px;
 }
 
 .del {
-  background: url("/t/colorful/del.png") no-repeat;
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  margin-left: 10px;
-  margin-top: -3px;
+    background: url("/t/colorful/del.png") no-repeat;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: -3px;
 }
 
 .percentage {
-  color: #fff;
-  padding: 0 2px;
-  background-color: #15a230;
-  min-width: 2px;
-  line-height: 25px;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
+    color: #fff;
+    padding: 0 2px;
+    background-color: #15a230;
+    min-width: 2px;
+    line-height: 25px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 .stat-failure {
-  border: 1px solid #b94a48;
-  padding: 2px;
+    border: 1px solid #b94a48;
+    padding: 2px;
 }
 
 .stat-success {
-  border: 1px solid #3a87ad;
-  padding: 2px;
+    border: 1px solid #3a87ad;
+    padding: 2px;
 }
 
 .flag-icon {
-  position: absolute;
-  top: 5px;
-  right: 5px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }
 
 .panel {
@@ -2161,11 +2190,11 @@ fieldset.staff_squad ol li {
 }
 
 .panel .header {
-  background: hsl(0,0%,93%);
-  padding: 7px 10px;
-  font-size: 14px;
-  color: hsl(202,6%,34%);
-  font-weight: 700; 
+    background: hsl(0,0%,93%);
+    padding: 7px 10px;
+    font-size: 14px;
+    color: hsl(202,6%,34%);
+    font-weight: 700;
 }
 
 .panel .inner {
@@ -2173,14 +2202,12 @@ fieldset.staff_squad ol li {
 }
 
 .panel .inner a {
-  color: #404040;
-  line-height: 24px;
+    color: #404040;
+    line-height: 24px;
 }
 
 .panel .inner span {
-  margin-right: 10px;
-}
-
+    margin-right: 10px;
 }
 
 .panel .detail_stat {

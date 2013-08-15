@@ -31,6 +31,7 @@ class Kindergarten < ActiveRecord::Base
 
   has_one :admin, :class_name => "User", :conditions => "tp = 2" #管理员，只有一个
   has_one :asset_img, :class_name => "AssetImg", :as => :resource, :dependent => :destroy #logo，只有一个
+  has_one :asset_logo, :class_name => "AssetLogo", :as => :resource, :dependent => :destroy #二维码，只有一个
   belongs_to :template
 
   has_many :option_operates
@@ -74,6 +75,8 @@ class Kindergarten < ActiveRecord::Base
 
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img
+  attr_accessible :asset_logo_attributes
+  accepts_nested_attributes_for :asset_logo
 
   def default_template
     Template.find_by_is_default(true).id

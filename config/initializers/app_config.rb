@@ -117,14 +117,16 @@ MENUS ={"home"=>{
       }
     },
     "statistics" => {
-      "42000" => {
-        "my_school/statistics" => ["kind_stat"]
-      },
       "41000" => {
         "my_school/statistics" => ["growth_record"]
       },
+<<<<<<< HEAD
       "43000" => {
         "my_school/statistics" => ["message"]
+=======
+      "42000" => {
+        "my_school/statistics" => ["kind_stat"]
+>>>>>>> e6e32c944b697b5a64041a08b4ea3b3fbf91260f
       }
     },
     "120000" => {

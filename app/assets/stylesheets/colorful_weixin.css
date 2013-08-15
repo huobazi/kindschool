@@ -201,6 +201,7 @@ body {
     border-bottom: 1px dashed #B2AEA6;
     padding: 5px;
     list-style-type: none;
+    line-height: 45px;
 }
 #topic_div label{
     color: #494542;
