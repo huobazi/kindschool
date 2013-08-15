@@ -29,9 +29,10 @@ class  MySchool::StatisticsController < MySchool::ManageController
   end
 
   def kind_stat
-    @grades_count = @kind.grades.count
-    @squads_count = @kind.squads.count
-    @student_infos_count = @kind.student_infos.count
+
+  end
+
+  def message
   end
 
 end

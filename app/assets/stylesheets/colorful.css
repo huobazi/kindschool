@@ -145,6 +145,7 @@ a{
 .small_statistics_menu{
     border-radius:0px 0px 5px 0px;
     background-color: #bb4da0;
+    width: 40px;
 }
 .center_menu li{
     height: 30px;
@@ -162,7 +163,6 @@ a{
     color: white;
 }
 .show_menu{
-    left: 0;
     position: absolute;
     width: 100%;
     display: none;
@@ -185,6 +185,20 @@ a{
     width: 100%;
     /*    margin-top: 5px;*/
     padding-top: 3px;
+}
+.small_statistics_ul {
+  background-color: #bb4da0;
+  width: 100%;
+  padding-top: 3px;
+}
+
+.show_menu {
+  display: none;
+  position: absolute;
+  right: 0 !important;
+  top: 22px;
+  width: 100px;
+  z-index: 99; 
 }
 .field_with_errors .message {
     color: #D00;
@@ -2136,7 +2150,7 @@ fieldset.staff_squad ol li {
 }
 
 .panel {
-  width: 45%;
+  width: 100%;
   min-height: 100px;
   float: left;
   margin-right: 20px;
@@ -2155,7 +2169,7 @@ fieldset.staff_squad ol li {
 }
 
 .panel .inner {
-  padding: 8px 10px;
+  padding: 8px 15px;
 }
 
 .panel .inner a {
@@ -2165,4 +2179,21 @@ fieldset.staff_squad ol li {
 
 .panel .inner span {
   margin-right: 10px;
+}
+
+.panel .detail_stat {
+  padding-left: 10px;
+  display: none;
+}
+
+.stat-content .left {
+  width: 45%;
+  display: inline-block;
+  float: left;
+  margin-right: 30px;
+}
+.stat-content .right {
+  width: 45%;
+  float: left;
+  display: inline-block;
 }
