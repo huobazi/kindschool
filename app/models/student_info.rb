@@ -86,8 +86,14 @@ class StudentInfo < ActiveRecord::Base
       user_password.each do |u_password|
         user = u_password[:user]
         password = u_password[:password]
-        title = "您已经成功注册了微壹幼儿园校讯通平台"
-        content = "您的登录名:#{user.login},密码:#{password}"
+        kind = user.kindergarten
+        title = "您已经成功注册了#{kind.name}微壹校讯通平台"
+        if kind.aliases_url.blank?
+         web_address = "http://#{kind.number}.#{WEBSITE_CONFIG["web_host"]}"
+        else
+         web_address = kind.aliases_url
+        end
+        content = "您的登录名:#{user.login},密码:#{password},登录地址:#{web_address}"
         user.send_system_message!(title,content,3)
       end
       # raise ""

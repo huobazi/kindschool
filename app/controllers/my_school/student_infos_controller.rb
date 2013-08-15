@@ -39,10 +39,10 @@ class  MySchool::StudentInfosController < MySchool::ManageController
       redirect_to my_school_student_infos_path, notice: "没有选择导入表格."
       return
     end
-    # raise "导入模板出问题，请与管理员联系."
-    # rescue Exception =>ex
-    #   flash[:error] = ex.message
-    #   redirect_to my_school_student_infos_path, notice: "导入模板出问题，请与管理员联系."
+    raise "导入模板出问题，请与管理员联系."
+    rescue Exception =>ex
+      flash[:error] = ex.message
+      redirect_to my_school_student_infos_path, notice: "导入模板出问题，请与管理员联系."
 
   end
 
