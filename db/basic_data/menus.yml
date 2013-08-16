@@ -264,17 +264,17 @@
 
 - id: 80000
   number: 80000
-  name: "照片集锦"
+  name: "相册集锦"
   height_level: "b"
   url: "/my_school/albums"
   sequence: 1100
   children:
   - id: 81000
-    name: "照片集锦"
+    name: "相册集锦"
     operate_id: 9000
     number: 81000
     url: "/my_school/albums"
-    title: "照片集锦"
+    title: "相册集锦"
     height_level: "b"
     sequence: 1200
   - id: 82000
