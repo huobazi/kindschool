@@ -1,0 +1,27 @@
+<div class="control-group"  id="group_appurtenance_file">
+      <%=label_tag :avatar, '上传附件:' ,:class=>"control-label"%>
+    <div class="controls" id="appurtenance_avatar">
+      <div class="appurtenance_file">
+      <%= file_field_tag("appurtenance[][avatar]") %>
+     </div>
+      <p>您上传的附件不能超过6M</p>
+    </div>
+    <div class="controls" id="a_appurtenance_arry">
+    <a class="blue">继续添加</a>
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){
+  $("#a_appurtenance_arry a").click(function(){
+   if ($("#group_appurtenance_file .controls input").size()>4){
+    $(this).hide();
+        $("#a_appurtenance_arry").after("<div class='controls'><font color='red'>*您上传的附件不能超过5个</p></font>");
+    return;
+   }
+    else
+    {
+    $("#appurtenance_avatar").after("<div class='controls'><div class='appurtenance_file'><input type='file' name='appurtenance[][avatar]' data-validate='true'></div><p>您上传的附件不能超过6M</p></div>");
+  }
+  })
+})
+</script>

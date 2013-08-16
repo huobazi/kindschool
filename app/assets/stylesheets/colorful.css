@@ -337,12 +337,12 @@ a{
 }
 .main .prev .left{
     background: url("/t/colorful/moving_direction.png") no-repeat 0 50%;
-    width: 50px;
+    width: 45px;
     height: 100%;
 }
 .main .next .right{
     background: url("/t/colorful/moving_direction.png") no-repeat scroll -50px 50%;
-    width: 40px;
+    width: 45px;
     height: 100%;
 }
 .main .jCarouselLite li{
