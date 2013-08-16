@@ -1,0 +1,118 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>
+          消息统计
+        </label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li>
+              统计
+            </li>
+            <li>/</li>
+            <li>消息统计</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+      </ul>
+    </div>
+
+    <div class="search_form">
+      <%= form_tag '/my_school/statistics/message' , :method=>"get" do %>
+        <b>标题：</b>
+        <%= text_field :message,:title_like,:style=>"width:100px;" ,:value=>"#{params[:message][:title_like] if params[:message] }"%>
+        <b>内容：</b>
+        <%= text_field :message,:content_like,:style=>"width:100px;" ,:value=>"#{params[:message][:content_like] if params[:message] }"  %>
+        <b>发件人：</b>
+        <%= text_field :message,:sender_name_like,:style=>"width:100px;" ,:value=>"#{params[:message][:sender_name_like] if params[:message] }"  %>
+        <%= submit_tag "搜索" %>
+      <%end%>
+    </div>
+
+    <div class="work_list">
+      <div class="stat-content">
+        <div class="panel" style="width: 100%;">
+          <div class="header">消息统计</div>
+          <div class="inner">
+            <div class="info">
+              <p><span>消息总数量</span><%= @messages.count %></p>
+            </div>
+
+            <div>
+              <div class="header">消息列表</div>
+              <div class="message-list">
+                <% unless @messages.blank? %>
+                  <% @messages.each do |message| %>
+                    <div class="cell">
+                      <div class="first">
+                        <div class="block">
+                          <img src="<%= message.sender.asset_logo ? message.sender.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="48" alt="<%= message.sender_name %>" title="<%= message.sender_name %>"/>
+                        </div>
+                        <div class="message_wrap">
+                          <%= message.title %>
+                        </div>
+
+                      </div>
+                      <!-- start second -->
+                      <div class="second clearfix">
+                        <div class="block count">
+                          <a><%= message.read_status_count %></a><span>/<%= message.message_entries.count %>(已读/总数)</span>
+                        </div>
+
+                        <div class="block count" style="margin-top: 13px;">
+                          <a class="recipient" href="javascript: void(0);"><i class="icon-share-alt"></i>查看接收人</a>
+                        </div>
+
+                        <div class="block count">
+                          <%= message.tp == 1 ? "短信加站内信" : "站内信" %>
+                        </div>
+
+                        <div class="created_time pull-right">
+                          <%= message.send_date.try(:to_all_datetime) %>
+                        </div>
+                      </div>
+                      <!-- end second -->
+
+                      <div class="third clearfix">
+                        <%if (@m_e = message.message_entries) && !@m_e.blank?%>
+                          <% @m_e.each do |m_e| %>
+                            <li class="recipient_user">
+                              <%= m_e.receiver.try(:name) %>
+                            </span>
+                          <% end %>
+                        <%else%>
+                          <li>无</li>
+                        <%end%>
+                      </div>
+                    </div>
+                  <% end %>
+                  <%= paginate @messages %>
+                <% else %>
+                  暂时没有消息
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+</div>
+
+</div>
+
+<script type="text/javascript">
+  $(".recipient").each(function() {
+    $(this).click(function() {
+      $(this).parent().parent().next(".third").toggle("fast");
+    })
+  })
+
+</script>

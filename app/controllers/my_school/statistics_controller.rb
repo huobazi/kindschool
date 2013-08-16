@@ -29,9 +29,18 @@ class  MySchool::StatisticsController < MySchool::ManageController
   end
 
   def kind_stat
-    @grades_count = @kind.grades.count
-    @squads_count = @kind.squads.count
-    @student_infos_count = @kind.student_infos.count
+
+  end
+
+  def message
+    unless current_user.get_users_ranges[:tp] == :all
+      flash[:error] = "没有权限"
+      redirect_to my_school_home_path
+      return
+    end
+
+    @messages = @kind.messages.search(params[:message] || {}).where("status = 1 and (tp = 0 or tp = 1)").page(params[:page] || 1).per(10).order("created_at DESC")
+
   end
 
 end

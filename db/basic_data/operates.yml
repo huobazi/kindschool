@@ -1858,3 +1858,14 @@ statistic_kind_stat:
   action: "kind_stat"
   protocol: ""
   <<: *DEFAULTS
+statistic_message:
+  id: 14200
+  parent_id: 11
+  name: "消息统计"
+  level: 2
+  sequence: 4
+  note: "消息统计"
+  controller: "my_school/statistics"
+  action: "message"
+  protocol: ""
+  <<: *DEFAULTS

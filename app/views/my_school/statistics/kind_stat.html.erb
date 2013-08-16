@@ -1,30 +1,131 @@
-<div class="stat-content">
-  <div class="panel">
-    <div class="header">人员统计</div>
-    <div class="inner">
-      <p><span>年级总数</span><%= @kind.grades.count %></p>
-      <p><span>班级总数</span><%= @kind.squads.count %></p>
-      <p><span>学员总数</span><%= @kind.student_infos.count %></p>
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>
+          幼儿园信息统计
+        </label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li>
+              统计
+            </li>
+            <li>/</li>
+            <li>幼儿园信息统计</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+      </ul>
     </div>
+
+
+    <div class="work_list">
+      <div class="stat-content">
+        <!-- start left -->
+        <div class="left">
+            <div class="panel">
+              <div class="header">人员统计</div>
+              <div class="inner">
+                <div>
+                  <p><span>年级总数</span><%= @kind.grades.count %><a class="fold" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a></p>
+                  <div class="detail_stat">
+                    <% @kind.grades.each do |grade| %>
+                      <p><span><%= grade.name %>的班级总数</span><%= grade.squads.count %></p>
+                    <% end %>
+                  </div>
+                </div>
+
+                <p><span>班级总数</span><%= @kind.squads.count %></p>
+                <p><span>学员总数</span><%= @kind.student_infos.count %></p>
+                <p><span>毕业人数量</span><%= @kind.student_infos.joins(:user).where("users.status = ?", "graduate").count %></p>
+                <p><span>教职工数量</span><%= @kind.staffs.count %></p>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="header">信息论坛统计</div>
+              <div class="inner">
+                <p><span>贴子总数</span><%= @kind.topics.count %></p>
+                <p><span>回复总数</span><%= @kind.topic_entries.count %></p>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="header">延时班统计</div>
+              <div class="inner">
+                <div>
+                  <p><span>延时班总数</span><%= @kind.squads.where(tp: 1).count %><a class="fold" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a></p>
+                  <div class="detail_stat">
+                    <% @kind.squads.where(tp: 1).each do |virtual_squad| %>
+                      <p><span><%= virtual_squad.name %>的老师数量</span><%= virtual_squad.user_squads_teacher_users.count %></p>
+                      <p><span><%= virtual_squad.name %>的学员数量</span><%= virtual_squad.user_squads_student_users.count %></p>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!-- end left -->
+        <!-- start right -->
+        <div class="right">
+            <div class="panel">
+              <div class="header">活动统计</div>
+              <div class="inner">
+                <p><span>主题活动数量</span><%= @kind.activities.where(tp: 0).count %></p>
+                <p><span>兴趣讨论数量</span><%= @kind.activities.where(tp: 1).count %></p>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="header">照片集锦</div>
+              <div class="inner">
+                <div>
+                  <p><span>照片集锦数量</span><%= @kind.albums.count %><a class="fold" href="javascript:void(0)"><i class="icon-plus f pull-right"></i></a></p>
+                  <div class="detail_stat">
+                    <% @kind.albums.each do |album| %>
+                      <p><span><%= album.title %>的照片总数</span><%= album.album_entries.count %></p>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="header">饮食保健</div>
+              <div class="inner">
+                <p><span>疫苗记录数量</span><%= @kind.seedling_records.count %></p>
+                <p><span>体检记录数量</span><%= @kind.physical_records.count %></p>
+                <p><span>菜谱数量</span><%= @kind.cook_books.count %></p>
+              </div>
+            </div>
+          </div>
+          <!-- end right -->
+      </div>
   </div>
-  <div class="panel">
-    <div class="header">信息论坛统计</div>
-    <div class="inner">
-      <p><span>贴子总数</span><%= @kind.topics.count %></p>
-      <p><span>回复总数</span><%= @kind.topic_entries.count %></p>
-    </div>
-  </div>
-  <div class="panel">
-    <div class="header">延时班统计</div>
-    <div class="inner">
-      <p><span>延时班总数</span><%= @kind.squads.where(tp: 1).count %></p>
-    </div>
-  </div>
-  <div class="panel">
-    <div class="header">活动统计</div>
-    <div class="inner">
-      <p><span>主题活动数量</span><%= @kind.activities.where(tp: 0).count %></p>
-      <p><span>兴趣讨论数量</span><%= @kind.activities.where(tp: 1).count %></p>
-    </div>
-  </div>
+
 </div>
+
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".fold").each(function() {
+
+      $(this).click(function(event) {
+        event.preventDefault();
+        $(this).parent().parent().children(".detail_stat").slideToggle("fast", function() {
+          if ( $(this).parent().find("i.f").hasClass("icon-plus") ) {
+            $(this).parent().find("i.f").removeClass("icon-plus").addClass("icon-minus");
+          } else {
+            $(this).parent().find("i.f").removeClass("icon-minus").addClass("icon-plus");
+          }
+        });
+
+      })
+
+    })
+  })
+</script>

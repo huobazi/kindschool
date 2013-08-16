@@ -165,11 +165,19 @@
     height_level: "a"
     sequence: 91
   - id: 42000
-    name: "幼儿园信息统计"
+    name: "幼儿园统计"
     operate_id: 14100
     url: "/my_school/statistics/kind_stat"
     number: 42000
-    title: "幼儿园信息统计"
+    title: "幼儿园统计"
+    height_level: "a"
+    sequence: 91
+  - id: 43000
+    name: "消息统计"
+    operate_id: 14200
+    url: "/my_school/statistics/message"
+    number: 43000
+    title: "消息统计"
     height_level: "a"
     sequence: 91
 
