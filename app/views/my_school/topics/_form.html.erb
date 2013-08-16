@@ -118,18 +118,6 @@ var flag = []
       }
     }
 
-    if( $("#topic_topic_category").val() == "" ) {
-      if ( $("#topic_topic_category").next("span.help-inline").length == 0 ) {
-        $("<span class='help-inline'>必须选择论坛分类<span>").insertAfter("#topic_topic_category")
-      }
-      flag.push(true)
-    } else {
-      if ( $("#topic_topic_category").next("span.help-inline").length > 0 ) {
-        $("#topic_topic_category").next("span.help-inline").remove()
-      }
-      flag.push(false)
-    }
-
     for( i in flag ) {
       if(flag[i] == true) {
         flag.length = 0;

@@ -133,7 +133,7 @@
               </tr>
               </table>
             <% end %>
-            <p class="info"><span class="time"><%= @growth_record.try(:start_at).try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @growth_record.try(:end_at).try(:to_short_datetime) %></span>&nbsp;由&nbsp;<span class="link"><%= @growth_record.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @growth_record.try(:created_at).try(:to_long_datetime) %></span></p>
+            <p class="info"><a href="<%= new_my_school_topic_path %>" title="分享到论坛贴子" alt="分享到论坛贴子"><i class="icon-share pull-right"></i></a><span class="time"><%= @growth_record.try(:start_at).try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @growth_record.try(:end_at).try(:to_short_datetime) %></span>&nbsp;由&nbsp;<span class="link"><%= @growth_record.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @growth_record.try(:created_at).try(:to_long_datetime) %></span></p>
           </div>
           <div class="content">
             <%= simple_format raw(@growth_record.content) %>
@@ -152,53 +152,13 @@
                 </div>
               <% end %>
             </div>
-            <a href="#share_to_topic" role="button" data-toggle="modal" title="分享到论坛贴子" alt="分享到论坛贴子"><i class="icon-share pull-right"></i></a>
+            
 
           </div>
         </div>
       </div>
       <%= render :partial=>"/my_school/comments/load_comments" ,:locals=>{:resource_type=>@growth_record.class.to_s,:resource_id=>@growth_record.id} %>
     </div>
-  </div>
-
-</div>
-
-
-<div id="share_to_topic" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">分享到论坛贴子</h3>
-  </div>
-  <div class="modal-body">
-      <%= simple_form_for(@topic, :url => my_school_topic_path(:personal_set_id=>@set.try(:id)), :html => {:multipart => true}) do |f| %>
-        <%= f.input :creater_id, :as => :hidden %>
-        <%= f.input :title, :as => :hidden %>
-        <%= f.input :content, :as => :hidden %>
-        <%= f.input :topic_category_id, :as => :hidden %>
-        <%= f.input :kindergarten_id, :as => :hidden %>
-      <% end %>
-      <div class="content">
-        <%= simple_format raw(@growth_record.content) %>
-        <div class="spra">
-          <% @growth_record.asset_imgs.each do |img| %>
-            <div class="img_div" for="flag_<%= img.id %>">
-              <div class="img_border">
-                &nbsp;&nbsp;
-                <a href="<%= img.public_filename(:thumb) %>" class="fancybox"  title="<%= @growth_record.student_info_label %>成长记录的照片">
-                  <img src="<%= img.public_filename(:middle) %>" alt="照片"class="img-polaroid"/>
-                </a>
-              </div>
-              <% if current_user.id == @growth_record.creater_id || current_user.tp == 2 %>
-                <%= link_to "",url_for(:action=>:delete_img,:id=>@growth_record.id,:img_id=>img.id), :id=> "flag_#{img.id}", :class=> "btn-delete", :style=> "margin-top: 10px; display: none;", :confirm=> "你确定删除该图片吗" %>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-    <button class="btn btn-primary">分享</button>
   </div>
 
 </div>

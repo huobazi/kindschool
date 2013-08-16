@@ -169,7 +169,7 @@ class  MySchool::TopicsController < MySchool::ManageController
     end
 
     unless current_user.get_users_ranges[:tp] == :all
-      if @topic.update_attributes( params[:topic].except(:is_show, :is_top) )
+      if @topic.update_attributes( params[:topic].except(:is_show, :is_top, :topic_category_id) )
         flash[:success] = "更新贴子成功"
         redirect_to my_school_topic_path(@topic)
       else
@@ -177,7 +177,7 @@ class  MySchool::TopicsController < MySchool::ManageController
         render :edit
       end
     else
-      if @topic.update_attributes( params[:topic] )
+      if @topic.update_attributes( params[:topic].except(:topic_category_id) )
         flash[:success] = "更新贴子成功"
         redirect_to my_school_topic_path(@topic)
       else
