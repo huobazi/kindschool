@@ -264,7 +264,7 @@
 
 - id: 80000
   number: 80000
-  name: "相册集锦"
+  name: "照片集锦"
   height_level: "b"
   url: "/my_school/albums"
   sequence: 1100
