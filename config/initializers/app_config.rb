@@ -109,7 +109,7 @@ MENUS ={"home"=>{
     },
     "70000" => {
       "71000" => {
-        "my_school/topics" => ["index", "new", "edit", "show","create"],
+        "my_school/topics" => ["index", "new", "edit", "show","create","update"],
         "my_school/topic_entries" => ["edit"]
       },
       "72000" => {

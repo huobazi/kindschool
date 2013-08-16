@@ -142,7 +142,7 @@ class  MySchool::TopicsController < MySchool::ManageController
          message << str
         end
       end
-      end
+    end
       flash[:error] = ex.message
       flash[:error] << message.join(",") unless message.blank?#{}"上传的文件大于6m请重新上传."
       render :new
@@ -179,24 +179,46 @@ class  MySchool::TopicsController < MySchool::ManageController
       @topic = @kind.topics.find_by_id(params[:id])
     end
 
+    unless params[:appurtenance].blank?
+      (params[:appurtenance] || []).each do |p_appurtenance|
+       appurtenance=Appurtenance.new(p_appurtenance)
+       appurtenance.file_name = p_appurtenance[:avatar].original_filename if p_appurtenance[:avatar]
+       if @topic.appurtenances.size < 6
+         @topic.appurtenances << appurtenance
+       end
+      end
+    end
+    Topic.transaction do
+    @topic.save!
     unless current_user.get_users_ranges[:tp] == :all
-      if @topic.update_attributes( params[:topic].except(:is_show, :is_top, :topic_category_id) )
+      if  @topic.update_attributes( params[:topic].except(:is_show, :is_top, :topic_category_id) )
         flash[:success] = "更新贴子成功"
         redirect_to my_school_topic_path(@topic)
       else
-        flash[:error] = "更新贴子失败"
-        render :edit
+        raise "更新贴子失败"
       end
     else
       if @topic.update_attributes( params[:topic].except(:topic_category_id) )
         flash[:success] = "更新贴子成功"
         redirect_to my_school_topic_path(@topic)
       else
-        flash[:error] = "更新贴子失败"
-        render :edit
+        raise  "更新贴子失败"
       end
     end
-
+   end
+   rescue Exception =>ex
+      message =[]
+      unless @topic.blank?
+      (@topic.appurtenances||[]).each do |app|
+        unless app.errors.blank?
+         str = app.errors.messages[:avatar].join("")
+         message << str
+        end
+      end
+    end
+      flash[:error] = ex.message
+      flash[:error] << message.join(",") unless message.blank?#{}"上传的文件大于6m请重新上传."
+      render :edit
   end
 
   def destroy
