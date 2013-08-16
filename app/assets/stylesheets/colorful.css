@@ -1800,6 +1800,8 @@ span.help-inline {
 .show .content_up {
     border-bottom: 1px solid #ddd;
 }
+.show #content_down{
+}
 
 .show .content {
     padding-top: 20px;
