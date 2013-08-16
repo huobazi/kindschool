@@ -170,6 +170,13 @@
     <h3 id="myModalLabel">分享到论坛贴子</h3>
   </div>
   <div class="modal-body">
+      <%= simple_form_for(@topic, :url => my_school_topic_path(:personal_set_id=>@set.try(:id)), :html => {:multipart => true}) do |f| %>
+        <%= f.input :creater_id, :as => :hidden %>
+        <%= f.input :title, :as => :hidden %>
+        <%= f.input :content, :as => :hidden %>
+        <%= f.input :topic_category_id, :as => :hidden %>
+        <%= f.input :kindergarten_id, :as => :hidden %>
+      <% end %>
       <div class="content">
         <%= simple_format raw(@growth_record.content) %>
         <div class="spra">
