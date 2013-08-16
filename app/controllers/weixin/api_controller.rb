@@ -223,7 +223,7 @@ class Weixin::ApiController < Weixin::BaseController
             :FromUserName=>xml_data[:ToUserName],
             :CreateTime=>Time.now.to_i,
             :MsgType=>"text",
-            :Content=>"微服务，一公益 \n\r #{get_weiyi_menu} ",
+            :Content=>"微服务，一公益 \n\r#{get_weiyi_menu} ",
             :FuncFlag=>0
           })
       elsif xml_data[:Event] == "CLICK"
@@ -238,7 +238,7 @@ class Weixin::ApiController < Weixin::BaseController
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
               :MsgType=>"text",
-              :Content=>"微服务，一公益 \n\r #{get_weiyi_menu} ",
+              :Content=>"微服务，一公益 \n\r#{get_weiyi_menu} ",
               :FuncFlag=>0
             })
         end
@@ -259,7 +259,7 @@ class Weixin::ApiController < Weixin::BaseController
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
               :MsgType=>"text",
-              :Content=>"微服务，一公益 \n\r #{get_weiyi_menu} ",
+              :Content=>"微服务，一公益 \n\r#{get_weiyi_menu} ",
               :FuncFlag=>0
             })
         end
@@ -284,7 +284,7 @@ class Weixin::ApiController < Weixin::BaseController
         :FromUserName=>xml_data[:ToUserName],
         :CreateTime=>Time.now.to_i,
         :MsgType=>"text",
-        :Content=>"微服务，一公益\n\r #{about}",
+        :Content=>"微服务，一公益\n\r#{about}",
         :FuncFlag=>0
       })
   end
@@ -332,12 +332,12 @@ class Weixin::ApiController < Weixin::BaseController
     if count > 0
       return "您有#{count}条未读消息\n\r <a href=\"http://#{request.host_with_port}/weixin/messages?#{get_validate_string}\"> 点击查看</a>"
     else
-      return "您没有未读消息\n\r <a href=\"http://#{request.host_with_port}/weixin/messages?#{get_validate_string}\"> 查看历史消息</a>"
+      return "您没有未读消息\n\r点击以下链接查看：\n\r <a href=\"http://#{request.host_with_port}/weixin/messages?#{get_validate_string}\"> 查看历史消息</a>"
     end
   end
   def get_read_cook_books
     if cook_book = @kind.cook_books.order("start_at DESC").first
-      return "近期菜谱:\r\n #{cook_book.start_at ? (cook_book.start_at.to_short_datetime + "\n\r ") : ""}#{cook_book.end_at ? ("至" + cook_book.end_at.to_short_datetime.to_s + "\n\r ") : ""} <a href=\"http://#{request.host_with_port}/weixin/cook_books?#{get_validate_string}\"> 点击查看</a>"
+      return "近期菜谱:\r\n点击以下链接查看：\n\r #{cook_book.start_at ? (cook_book.start_at.to_short_datetime + "\n\r ") : ""}#{cook_book.end_at ? ("至" + cook_book.end_at.to_short_datetime.to_s + "\n\r ") : ""} <a href=\"http://#{request.host_with_port}/weixin/cook_books?#{get_validate_string}\"> 点击查看</a>"
     else
       return "没有菜谱消息\r\n <a href=\"http://#{request.host_with_port}/weixin?#{get_validate_string}\"> 进入家园互动</a>"
     end
