@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates_as_paranoid
   attr_accessible :kindergarten_id, :logo,:login, :name, :note, :number, :status,:chain_code,
     :tp,:crypted_password,:salt,:role_id,:remember_token,:remember_token_expires_at,:chain_delete,
-    :gender,:phone,:area_id,:weixin_code,:wei_yi_code,:token_key,:token_secret,:token_at, :email,:is_send,:is_receive
+    :gender,:phone,:area_id,:weixin_code,:weiyi_code,:token_key,:token_secret,:token_at, :email,:is_send,:is_receive
 
   attr_accessible :password, :password_confirmation
   attr_accessor :password, :password_confirmation
@@ -136,7 +136,7 @@ class User < ActiveRecord::Base
         role_operates = self.role.option_operates unless self.role.blank?#RoleOperate.where(:role_id=>self.role_users.collect{|ru|ru.role_id}).includes(:permission)
       end
       (role_operates|| []).each do |rr|
-        @operates<<rr.operate
+        @operates<<rr.operate if rr.operate
       end
     end
     @operates
@@ -281,7 +281,7 @@ class User < ActiveRecord::Base
 
   #获取未读信息
   def get_read_new_count
-    Message.where("message_entries.read_status = 0 AND messages.kindergarten_id=:kind_id AND message_entries.receiver_id=:user_id AND messages.status=:status",
+    Message.where("message_entries.read_status = 0 AND message_entries.deleted_at IS NULL AND messages.kindergarten_id=:kind_id AND message_entries.receiver_id=:user_id AND messages.status=:status",
       {:kind_id=>self.kindergarten_id,:user_id=>self.id,:status=>1}).joins("LEFT JOIN message_entries ON(messages.id = message_entries.message_id)").count("1")
   end
 

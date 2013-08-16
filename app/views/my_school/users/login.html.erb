@@ -35,15 +35,27 @@
             <img src="/t/colorful/login_img9.png" alt="效果"/>
           </div>
         </div>
-        <div class="login_img_right">
+        <div class="login_img_right" title='您需要先关注"微一园讯通"和幼儿园的公共账号后，才能登陆系统。'>
           <div class="login_img_big">
-            <img src="/t/colorful/login_img10.png" alt="效果"/>
+            <a href="/qrcode/qrcode_weiyi.jpg" class="fancybox">
+              <img src="/qrcode/qrcode_weiyi.jpg" alt="微一园讯通二维码" class="login_qrcode"/>
+            </a>
+            <div class="login_qrcode_label">微一园讯通公共账号</div>
           </div>
-          <div class="login_img_small">
-            <img src="/t/colorful/login_img11.png" alt="效果"/>
-          </div>
-          <div class="login_img_small">
-            <img src="/t/colorful/login_img12.png" alt="效果"/>
+          <div class="login_img_big login_img_foot ">
+            <%if @kind.asset_logo%>
+              <a href="<%= @kind.asset_logo.public_filename %>" class="fancybox">
+                <img src="<%= @kind.asset_logo.public_filename %>" alt="微一园讯通二维码" class="login_qrcode"/>
+              </a>
+              <div class="login_qrcode_label">幼儿园公共账号</div>
+            <% else %>
+              <div class="login_img_small img_small_foot">
+                <img alt="效果" src="/t/colorful/login_img11.png"/>
+              </div>
+              <div class="login_img_small img_small_foot">
+                <img alt="效果" src="/t/colorful/login_img12.png"/>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
@@ -118,5 +130,6 @@
         $("#auth_loading").hide();
       })
     })
+    $(".fancybox").fancybox();
   })
 </script>

@@ -65,9 +65,9 @@
               <td><%= message.tp==1 ? "是" : "否"%></td>
               <td>
                 <%if action_name=="draft_box"%>
-<%= link_to "查看",draft_show_my_school_message_path(message)%>
+                  <%= link_to "查看",draft_show_my_school_message_path(message)%>
                 <%else%>
-                <%= link_to "查看",outbox_show_my_school_message_path(message)%>
+                  <%= link_to "查看",outbox_show_my_school_message_path(message)%>
                 <%end%>
               </td>
               <td><%if message.approve_status==2%>

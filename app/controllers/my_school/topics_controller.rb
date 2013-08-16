@@ -85,6 +85,19 @@ class  MySchool::TopicsController < MySchool::ManageController
     else
       @topic = Topic.new(params[:topic])
     end
+    unless params[:topic][:topic_category_id].present?
+      flash[:error] = "必须先选择论坛分类"
+      redirect_to :action => :new
+      return
+    else
+      if topic_category = @kind.topic_categories.find_by_id(params[:topic][:topic_category_id])
+        @topic.topic_category_id = topic_category.id
+      else
+        flash[:error] = "找不到该论坛分类或没有权限"
+        redirect_to :action => :new
+        return
+      end
+    end
     @topic.kindergarten_id = @kind.id
     @topic.creater_id = current_user.id
     if current_user.get_users_ranges[:tp] == :student

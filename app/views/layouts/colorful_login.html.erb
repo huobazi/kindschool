@@ -4,7 +4,15 @@
     <title>School</title>
     <%#= stylesheet_link_tag    "application", :media => "all" %>
     <%= stylesheet_link_tag    "colorful", :media => "all" %>
-    <%= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag    "fancybox/jquery.fancybox",
+      "fancybox/jquery.fancybox-buttons",
+      "fancybox/jquery.fancybox-thumbs",:media => "all" %>
+    <%= javascript_include_tag "application",
+      "fancybox/jquery.mousewhee",
+      "fancybox/jquery.fancybox",
+      "fancybox/jquery.fancybox-buttons",
+      "fancybox/jquery.fancybox-thumbs",
+      "fancybox/jquery.fancybox-media" %>
     <%= csrf_meta_tags %>
     <%= javascript_include_tag "DD_belatedPNG_0.0.8a" %>
 <!--[if lte IE 6]>

@@ -44,11 +44,11 @@ class MySchool::CommentsController < MySchool::ManageController
       end
     elsif params[:resource_type] == "GrowthRecord"
       if current_user.get_users_ranges[:tp] == :student
-        @record = @kind.growth_records.where("tp = ? and (creater_id = ? or student_info_id = ?)", 1, current_user.id, current_user.student_info.id).find_by_id(params[:resource_id])
+        @record = @kind.growth_records.where("(creater_id = ? or student_info_id = ?)", current_user.id, current_user.student_info.id).find_by_id(params[:resource_id])
       elsif current_user.get_users_ranges[:tp] == :teachers
-        @record = GrowthRecord.where("student_infos.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) and tp=1",current_user.staff.id).joins("INNER JOIN student_infos on(student_infos.id = growth_records.student_info_id)").find_by_id(params[:resource_id])
+        @record = GrowthRecord.where("student_infos.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?)",current_user.staff.id).joins("INNER JOIN student_infos on(student_infos.id = growth_records.student_info_id)").find_by_id(params[:resource_id])
       else
-        @record = @kind.growth_records.find_by_id_and_tp(params[:resource_id], 1)
+        @record = @kind.growth_records.find_by_id(params[:resource_id])
       end
     elsif params[:resource_type] == "CookBook"
       @record = @kind.cook_books.find_by_id(params[:resource_id])

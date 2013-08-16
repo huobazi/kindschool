@@ -94,7 +94,7 @@ School::Application.routes.draw do
     end
 
     resources :statistics do
-      get :growth_record, :kind_stat, :on => :collection
+      get :message, :growth_record, :kind_stat, :on => :collection
     end
     resources :users do
       collection do
