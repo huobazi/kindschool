@@ -87,9 +87,10 @@
             <%= render :partial=>"/my_school/approves/load_approves_log" ,:locals=>{:record_id=>@topic.approve_record.try(:id),:approve_status=>@topic.approve_status} %>
           </div>
           <div class="content"><%= raw @topic.content %></div>
-          <div class="content">
+          <div >
+            <span>已上传附件:</span>
            <%(@topic.appurtenances || []).each do |app|%>
-           <%=app.file_name%>
+           <p><%=link_to app.file_name,app.avatar_url,:class=>"blue"%></p>
            <%end%>
           </div>
         </div>
