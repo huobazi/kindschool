@@ -135,9 +135,8 @@ class User < ActiveRecord::Base
       else
         role_operates = self.role.option_operates unless self.role.blank?#RoleOperate.where(:role_id=>self.role_users.collect{|ru|ru.role_id}).includes(:permission)
       end
-      role_operates.compact!
       (role_operates|| []).each do |rr|
-        @operates<<rr.operate
+        @operates<<rr.operate if rr.operate
       end
     end
     @operates
