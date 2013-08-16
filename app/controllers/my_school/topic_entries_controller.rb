@@ -63,6 +63,13 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
         flash[:error] = "没有权限或贴子回复不存在"
         redirect_to my_school_topic_path(@topic_entry.topic_id)
       end
+    elsif current_user.id == @topic_entry.creater_id
+        @topic_entry.is_show = 0
+        @topic_entry.deleted_at = Time.now.utc
+        @topic_entry.save
+        respond_to do |format|
+          format.js { render :layout => false }
+        end
     else
       flash[:error] = "没有权限"
       redirect_to my_school_topic_path(@topic_entry.topic_id)
@@ -72,6 +79,11 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
 
   def edit
     @topic_entry = TopicEntry.find_by_id(params[:id])
+    unless @topic_entry.creater_id == current_user.id
+      flash[:error] = "没有权限或者贴子回复不存"
+      redirect_to my_school_topic_path(@topic_entry.topic_id)
+      return
+    end
     if params[:page].present?
       @page = params[:page]
     end
