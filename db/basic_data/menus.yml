@@ -157,11 +157,11 @@
   sequence: 90
   children:
   - id: 41000
-    name: "宝宝家园统计"
+    name: "成长记录统计"
     operate_id: 14000
     url: "/my_school/statistics/growth_record"
     number: 41000
-    title: "宝宝家园统计"
+    title: "成长记录统计"
     height_level: "a"
     sequence: 91
   - id: 42000
@@ -270,11 +270,11 @@
   sequence: 1100
   children:
   - id: 81000
-    name: "照片集锦"
+    name: "相册集锦"
     operate_id: 9000
     number: 81000
     url: "/my_school/albums"
-    title: "照片集锦"
+    title: "相册集锦"
     height_level: "b"
     sequence: 1200
   - id: 82000
@@ -398,7 +398,7 @@
 #   height_level: "a"
 #   url: "/my_school/approves/news_list"
 #   sequence: 1200
-#   operate_id: 
+#   operate_id:
 #   children:
 #   - id: 131000
 #     name: "新闻审核管理"

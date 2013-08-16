@@ -1,11 +1,16 @@
 <% f = form %>
+<% val = val%>
 <script type="text/javascript">
   $(function() {
     $("#dialog_change_users" ).dialog({
       dialogClass: "no-close",
       autoOpen: false,
       height:400,
+      <%if val && val=="weixin"%>
       width:"80%",
+      <%else%>
+      width:"600",
+      <%end%>
       buttons: {
         "确定": function () {
           $(this).dialog("close");

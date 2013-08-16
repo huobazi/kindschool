@@ -21,6 +21,7 @@
         </div>
       <% end %>
     </div>
+    
     <br />
   <% else %>
     <div class="field controls">
@@ -51,8 +52,8 @@
 <% if params[:topic_category_id] %>
   <%= f.input :topic_category, :validate => true, :as => :select, :collection => Hash[f.object.kindergarten.topic_categories.map{|topic_category| ["#{topic_category.name}", topic_category.id]}],:selected => params[:topic_category_id], :input_html=>{:disabled => true} %>
   <%= f.input :topic_category_id, :as => :hidden, :input_html => {:value => params[:topic_category_id]} %>
-<% elsif action_name == "new" %>
-  <%= f.input :topic_category, :validate => true, :as => :select, :collection => Hash[f.object.kindergarten.topic_categories.map{|topic_category| ["#{topic_category.name}", topic_category.id]}],:input_html=>{:name=>"topic[topic_category_id]"} %>
+<% elsif action_name == "new" || action_name == "create" %>
+  <%= f.input :topic_category, :validate => true, :as => :select, :collection => Hash[f.object.kindergarten.topic_categories.map{|topic_category| ["#{topic_category.name}", topic_category.id]}],:input_html=>{:name=>"topic[topic_category_id]"}, :include_blank => false %>
 <% else %>
   <%= f.input :topic_category_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
 <% end %>
@@ -78,7 +79,7 @@
 <% if current_user.get_users_ranges[:tp] == :student %>
   <%= f.input :squad_id, :as => :hidden %>
 <% end %>
-
+<%=render :partial => "/my_school/topics/appurtenance"%>
 
 <div class="control-group">
   <div class="controls">

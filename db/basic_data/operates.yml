@@ -615,7 +615,7 @@ staff_class_teacher:
   action: "set_class_teacher"
   protocol: ""
 
-  <<: *DEFAULTS 
+  <<: *DEFAULTS
 student_manage:
   id: 4004
   parent_id: 5
@@ -1839,10 +1839,10 @@ student_infos_download:
 statistic_growth_record:
   id: 14000
   parent_id: 11
-  name: "宝宝家园统计"
+  name: "成长记录统计"
   level: 2
   sequence: 4
-  note: "宝宝家园统计"
+  note: "成长记录统计"
   controller: "my_school/statistics"
   action: "growth_record"
   protocol: ""

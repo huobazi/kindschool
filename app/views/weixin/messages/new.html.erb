@@ -7,7 +7,7 @@
   </div>
   <div class="message_list message_form">
     <%= simple_form_for @message, :validate => true, :url => {:controller=>"/weixin/messages",:action=>:create}, :html =>{:class=>"form-horizontal"} do |f| %>
-      <%= render :partial => "/my_school/messages/form",:object=>f %>
+      <%= render :partial => "/my_school/messages/form",:object=>f,:locals=>{:val=>"weixin"} %>
     <% end %>
   </div>
 </div>

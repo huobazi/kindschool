@@ -1,7 +1,7 @@
 #encoding:utf-8
 class Topic < ActiveRecord::Base
   attr_accessible :approve_status, :approver_id, :content, :creater_id, :is_show, :is_top, :kindergarten_id, :show_count, :status, :title, :tp, :topic_category_id, :squad_id
-
+  attr_accessible :appurtenance_upload_limit
   validates :kindergarten_id, :creater_id, :topic_category_id, :title, :content, :presence => true
   validates :title, :length => { :minimum => 3 }
   validates :content, :length => { :minimum => 3 }
@@ -10,6 +10,8 @@ class Topic < ActiveRecord::Base
   belongs_to :topic_category
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
   belongs_to :squad
+   
+  has_many :appurtenances, :class_name => "Appurtenance", :as => :resource, :dependent => :destroy
 
   has_many :topic_entries
 

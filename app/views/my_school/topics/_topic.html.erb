@@ -9,7 +9,7 @@
       <% if choose_operate_show("my_school/topics/show") %>
         <a href="<%= my_school_topic_path(topic) %>" title="查看<%= topic.title %>" alt="查看<%= topic.title %>"><i class="icon-eye-open"></i></a>
       <% end %>
-      <% if choose_operate_show("my_school/topics/edit") %>
+      <% if choose_operate_show("my_school/topics/edit") and topic.creater_id == current_user.id %>
         <a href="<%= edit_my_school_topic_path(topic) %>" title="编辑<%= topic.title %>" alt="编辑<%= topic.title %>"><i class="icon-edit"></i></a>
       <% end %>
       <% if topic.topic_entries.any? %>
