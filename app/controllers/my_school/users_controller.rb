@@ -57,6 +57,9 @@ class MySchool::UsersController < MySchool::ManageController
           cookies[:auth_token] = { :value => self.current_user.remember_token ,
             :expires => self.current_user.remember_token_expires_at }
         end
+        Rails.logger.info("================")
+        Rails.logger.info(self.current_user.operates.inspect)
+        Rails.logger.info("================")
         operates_data = self.current_user.operates.collect{ |operate| "#{operate.controller}/#{operate.action}"}
         current_user.approve_module_users.each do |approve|
          approve_module = approve.approve_module
