@@ -172,7 +172,7 @@ class Weixin::ApiController < Weixin::BaseController
                 :FromUserName=>xml_data[:ToUserName],
                 :CreateTime=>Time.now.to_i,
                 :MsgType=>"text",
-                :Content=>"欢迎关注#{@kind.name}\n\r  点击以下链接进行绑定账号：\n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_user?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
+                :Content=>"欢迎关注#{@kind.name}\n\r 点击以下链接绑定账号：\n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_user?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
                 :FuncFlag=>0
               })
           elsif xml_data[:Content] == "2"
@@ -304,7 +304,7 @@ class Weixin::ApiController < Weixin::BaseController
           :FromUserName=>xml_data[:ToUserName],
           :CreateTime=>Time.now.to_i,
           :MsgType=>"text",
-          :Content=>"微服务，一公益\n\r点击以下链接进行绑定账号：\n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_weiyi?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
+          :Content=>"微服务，一公益\n\r点击以下链接绑定账号：\n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_weiyi?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
           :FuncFlag=>0
         })
     end
