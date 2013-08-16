@@ -900,6 +900,9 @@ table.attributes td {
     height: 400px;
     width: 218px;
 }
+.login .login_img_right a img{
+        border:0px;
+}
 .login .login_img_small{
     float: left;
     height: 108px;
