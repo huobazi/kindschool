@@ -66,6 +66,7 @@ class  MySchool::TopicsController < MySchool::ManageController
 
 
     if params[:growth_record_id].present? && growth_record = @kind.growth_records.find_by_id(params[:growth_record_id])
+      @topic.title = growth_record.full_growth_record_title
       @topic.content = growth_record.full_growth_record_content
     else
       flash[:error] = "没有权限或非法操作"
