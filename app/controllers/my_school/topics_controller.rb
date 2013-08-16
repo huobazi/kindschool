@@ -63,6 +63,16 @@ class  MySchool::TopicsController < MySchool::ManageController
     @topic.kindergarten_id = @kind.id
     @topic.creater_id = current_user.id
 
+
+
+    if params[:growth_record_id].present? && growth_record = @kind.growth_records.find_by_id(params[:growth_record_id])
+      @topic.content = growth_record.full_growth_record_content
+    else
+      flash[:error] = "没有权限或非法操作"
+      redirect_to :back
+      return
+    end
+
     @grades = @kind.grades
   end
 
@@ -103,14 +113,39 @@ class  MySchool::TopicsController < MySchool::ManageController
     if current_user.get_users_ranges[:tp] == :student
       @topic.squad_id = current_user.student_info.squad_id
     end
-
+    unless params[:appurtenance].blank?
+      (params[:appurtenance] || []).each do |p_appurtenance|
+       appurtenance=Appurtenance.new(p_appurtenance)
+       appurtenance.file_name = p_appurtenance[:avatar].original_filename if p_appurtenance[:avatar]
+       if @topic.appurtenances.size < 6
+         @topic.appurtenances << appurtenance
+       end
+      end
+    end
     if @topic.save!
       flash[:success] = "添加贴子成功"
       redirect_to my_school_topic_path(@topic)
+      return
     else
       flash[:error] = "添加贴子失败"
       render :new
+      return
     end
+    raise "上传的文件大于6m请重新上传."
+    rescue Exception =>ex
+      message =[]
+      unless @topic.blank?
+      (@topic.appurtenances||[]).each do |app|
+        unless app.errors.blank?
+         str = app.errors.messages[:avatar].join("")
+         message << str
+        end
+      end
+    end
+      flash[:error] = ex.message
+      flash[:error] << message.join(",") unless message.blank?#{}"上传的文件大于6m请重新上传."
+      render :new
+
   end
 
   def edit
@@ -143,24 +178,46 @@ class  MySchool::TopicsController < MySchool::ManageController
       @topic = @kind.topics.find_by_id(params[:id])
     end
 
-    unless current_user.get_users_ranges[:tp] == :all
-      if @topic.update_attributes( params[:topic].except(:is_show, :is_top) )
-        flash[:success] = "更新贴子成功"
-        redirect_to my_school_topic_path(@topic)
-      else
-        flash[:error] = "更新贴子失败"
-        render :edit
-      end
-    else
-      if @topic.update_attributes( params[:topic] )
-        flash[:success] = "更新贴子成功"
-        redirect_to my_school_topic_path(@topic)
-      else
-        flash[:error] = "更新贴子失败"
-        render :edit
+    unless params[:appurtenance].blank?
+      (params[:appurtenance] || []).each do |p_appurtenance|
+       appurtenance=Appurtenance.new(p_appurtenance)
+       appurtenance.file_name = p_appurtenance[:avatar].original_filename if p_appurtenance[:avatar]
+       if @topic.appurtenances.size < 6
+         @topic.appurtenances << appurtenance
+       end
       end
     end
-
+    Topic.transaction do
+    @topic.save!
+    unless current_user.get_users_ranges[:tp] == :all
+      if  @topic.update_attributes( params[:topic].except(:is_show, :is_top, :topic_category_id) )
+        flash[:success] = "更新贴子成功"
+        redirect_to my_school_topic_path(@topic)
+      else
+        raise "更新贴子失败"
+      end
+    else
+      if @topic.update_attributes( params[:topic].except(:topic_category_id) )
+        flash[:success] = "更新贴子成功"
+        redirect_to my_school_topic_path(@topic)
+      else
+        raise  "更新贴子失败"
+      end
+    end
+   end
+   rescue Exception =>ex
+      message =[]
+      unless @topic.blank?
+      (@topic.appurtenances||[]).each do |app|
+        unless app.errors.blank?
+         str = app.errors.messages[:avatar].join("")
+         message << str
+        end
+      end
+    end
+      flash[:error] = ex.message
+      flash[:error] << message.join(",") unless message.blank?#{}"上传的文件大于6m请重新上传."
+      render :edit
   end
 
   def destroy
@@ -176,21 +233,6 @@ class  MySchool::TopicsController < MySchool::ManageController
         format.html { redirect_to(:action=>:index) }
         format.xml  { head :ok }
       end
-    end
-  end
-
-  def destroy_multiple
-    if params[:topic].nil?
-      flash[:notice] = "必须选择贴子"
-    else
-      params[:topic].each do |topic|
-        @kind.topics.destroy(topic)
-      end
-    end
-
-    respond_to do |format|
-      format.html {redirect_to my_school_topics_path}
-      format.json { header :no_content }
     end
   end
 

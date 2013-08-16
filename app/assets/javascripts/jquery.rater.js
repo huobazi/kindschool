@@ -12,7 +12,7 @@ jQuery.fn.rater	= function(options) {
 		after_click	: null,
 		before_ajax	: null,
 		after_ajax	: null,
-		image	: '/images/star.gif',
+		image	: '/star_imgs/star.gif',
 		width	: 25,
 		height	: 25
 	}; 

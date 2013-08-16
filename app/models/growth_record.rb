@@ -38,6 +38,22 @@ class GrowthRecord < ActiveRecord::Base
 
   validate :end_at_large_than_start_at
 
+  def full_growth_record_content
+    str = ""
+    if self.tp == true
+      str = "#{self.content} <br/> "
+      str += "<div class='spra'>";
+
+      self.asset_imgs.each do |img|
+        str += "<img src='#{img.public_filename(:middle)}' />"
+      end
+
+      str += "</div>"
+    else
+
+    end
+  end
+
   def self.squad_student_info_count(squad_id)
     where("student_infos.squad_id = ?", squad_id).joins(:student_info).count
   end

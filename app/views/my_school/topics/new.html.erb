@@ -32,7 +32,7 @@
 
     <div class="work_form">
       <div class="form_div">
-        <%= simple_form_for(@topic, :validate => true, :url => my_school_topics_path, :html => {:class => "form-horizontal"}) do |f| %>
+        <%= simple_form_for(@topic, :validate => true, :url => my_school_topics_path, :html => {:class => "form-horizontal",:multipart => true}) do |f| %>
           <%= render :partial => "form", :object => f %>
         <% end %>
       </div>
