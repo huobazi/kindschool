@@ -21,6 +21,7 @@
         </div>
       <% end %>
     </div>
+    
     <br />
   <% else %>
     <div class="field controls">
@@ -78,7 +79,7 @@
 <% if current_user.get_users_ranges[:tp] == :student %>
   <%= f.input :squad_id, :as => :hidden %>
 <% end %>
-
+<%=render :partial => "/my_school/topics/appurtenance"%>
 
 <div class="control-group">
   <div class="controls">

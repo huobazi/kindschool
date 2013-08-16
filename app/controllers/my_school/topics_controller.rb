@@ -103,14 +103,39 @@ class  MySchool::TopicsController < MySchool::ManageController
     if current_user.get_users_ranges[:tp] == :student
       @topic.squad_id = current_user.student_info.squad_id
     end
-
+    unless params[:appurtenance].blank?
+      (params[:appurtenance] || []).each do |p_appurtenance|
+       appurtenance=Appurtenance.new(p_appurtenance)
+       appurtenance.file_name = p_appurtenance[:avatar].original_filename if p_appurtenance[:avatar]
+       if @topic.appurtenances.size < 6
+         @topic.appurtenances << appurtenance
+       end
+      end
+    end
     if @topic.save!
       flash[:success] = "添加贴子成功"
       redirect_to my_school_topic_path(@topic)
+      return
     else
       flash[:error] = "添加贴子失败"
       render :new
+      return
     end
+    raise "上传的文件大于6m请重新上传."
+    rescue Exception =>ex
+      message =[]
+      unless @topic.blank?
+      (@topic.appurtenances||[]).each do |app|
+        unless app.errors.blank?
+         str = app.errors.messages[:avatar].join("")
+         message << str
+        end
+      end
+      end
+      flash[:error] = ex.message
+      flash[:error] << message.join(",") unless message.blank?#{}"上传的文件大于6m请重新上传."
+      render :new
+
   end
 
   def edit
@@ -176,21 +201,6 @@ class  MySchool::TopicsController < MySchool::ManageController
         format.html { redirect_to(:action=>:index) }
         format.xml  { head :ok }
       end
-    end
-  end
-
-  def destroy_multiple
-    if params[:topic].nil?
-      flash[:notice] = "必须选择贴子"
-    else
-      params[:topic].each do |topic|
-        @kind.topics.destroy(topic)
-      end
-    end
-
-    respond_to do |format|
-      format.html {redirect_to my_school_topics_path}
-      format.json { header :no_content }
     end
   end
 

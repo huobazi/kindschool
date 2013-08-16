@@ -87,7 +87,13 @@
             <%= render :partial=>"/my_school/approves/load_approves_log" ,:locals=>{:record_id=>@topic.approve_record.try(:id),:approve_status=>@topic.approve_status} %>
           </div>
           <div class="content"><%= raw @topic.content %></div>
+          <div class="content">
+           <%(@topic.appurtenances || []).each do |app|%>
+           <%=app.file_name%>
+           <%end%>
+          </div>
         </div>
+
 
         <div id="topic_entries">
           <% unless @topic_entries.blank? %>
