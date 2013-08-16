@@ -121,6 +121,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     else
       @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 1)
     end
+    @topic = @kind.topics.new
     if @growth_record.nil?
       flash[:error] = "没有权限或该宝宝在家成长记录不存在"
       redirect_to :action => :home
