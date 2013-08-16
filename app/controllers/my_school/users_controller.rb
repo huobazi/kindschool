@@ -16,7 +16,7 @@ class MySchool::UsersController < MySchool::ManageController
       redirect_to :action => :index,:controller=>"/my_school/home"
       return
     end
-    begin
+#    begin
       if request.post?
         if session[:login_error_count]  && session[:login_error_count] > 2
           @can_auth = true
@@ -84,15 +84,15 @@ class MySchool::UsersController < MySchool::ManageController
       else
         render :layout=>"colorful_login"
       end
-    rescue StandardError => error
-      if session[:login_error_count]
-        session[:login_error_count] +=1
-      else
-        session[:login_error_count] = 1
-      end
-      @user_errors = error
-      render :layout=>"colorful_login"
-    end
+#    rescue StandardError => error
+#      if session[:login_error_count]
+#        session[:login_error_count] +=1
+#      else
+#        session[:login_error_count] = 1
+#      end
+#      @user_errors = error
+#      render :layout=>"colorful_login"
+#    end
   end
 
   def edit
