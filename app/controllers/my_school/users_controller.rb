@@ -16,7 +16,7 @@ class MySchool::UsersController < MySchool::ManageController
       redirect_to :action => :index,:controller=>"/my_school/home"
       return
     end
-#    begin
+    begin
       if request.post?
         if session[:login_error_count]  && session[:login_error_count] > 2
           @can_auth = true
@@ -38,18 +38,14 @@ class MySchool::UsersController < MySchool::ManageController
         return render :layout=>"colorful_login"
       end
       user = User.authenticate(params[:login], params[:password],@kind.id)
-       if WEBSITE_CONFIG["weixin_blind"]
+      if WEBSITE_CONFIG["weixin_blind"]
         if user.weiyi_code.blank?
           raise "您需要绑定\"微一园讯通\"微信公共帐号"
-#          redirect_to :action => :login,:controller=>"/my_school/users"
-#          return
         end
         if user.weixin_code.blank?
           raise "您需要绑定幼儿园的公共账号后才能访问"
-#          redirect_to :action => :login,:controller=>"/my_school/users"
-#          return
         end
-       end
+      end
       self.current_user = user
       if logged_in?
         if params[:remember_me] == "1"
@@ -57,28 +53,23 @@ class MySchool::UsersController < MySchool::ManageController
           cookies[:auth_token] = { :value => self.current_user.remember_token ,
             :expires => self.current_user.remember_token_expires_at }
         end
-        Rails.logger.info("================")
-        self.current_user.operates.each do |operate|
-          Rails.logger.info(operate.inspect)
-        end
-        Rails.logger.info("================")
         operates_data = self.current_user.operates.collect{ |operate| "#{operate.controller}/#{operate.action}"}
         current_user.approve_module_users.each do |approve|
-         approve_module = approve.approve_module
-         if approve_module.status == true
-          operates_data << "my_school/approves"
-           if approve_module.number == "News"
-             operates_data << "my_school/approves/news_list"
-           elsif approve_module.number == "Activity"
-             operates_data << "my_school/approves/activities_list"
-           elsif approve_module.number == "Notice"
-             operates_data << "my_school/approves/notices_list"
-           elsif approve_module.number == "Message"
-             operates_data << "my_school/approves/messages_list"
-           elsif approve_module.number == "Topic"
-             operates_data << "my_school/approves/topics_list"
-           end
-         end
+          approve_module = approve.approve_module
+          if approve_module.status == true
+            operates_data << "my_school/approves"
+            if approve_module.number == "News"
+              operates_data << "my_school/approves/news_list"
+            elsif approve_module.number == "Activity"
+              operates_data << "my_school/approves/activities_list"
+            elsif approve_module.number == "Notice"
+              operates_data << "my_school/approves/notices_list"
+            elsif approve_module.number == "Message"
+              operates_data << "my_school/approves/messages_list"
+            elsif approve_module.number == "Topic"
+              operates_data << "my_school/approves/topics_list"
+            end
+          end
         end
         operates_data.uniq!
         session[:operates] = operates_data
@@ -89,15 +80,15 @@ class MySchool::UsersController < MySchool::ManageController
       else
         render :layout=>"colorful_login"
       end
-#    rescue StandardError => error
-#      if session[:login_error_count]
-#        session[:login_error_count] +=1
-#      else
-#        session[:login_error_count] = 1
-#      end
-#      @user_errors = error
-#      render :layout=>"colorful_login"
-#    end
+    rescue StandardError => error
+      if session[:login_error_count]
+        session[:login_error_count] +=1
+      else
+        session[:login_error_count] = 1
+      end
+      @user_errors = error
+      render :layout=>"colorful_login"
+    end
   end
 
   def edit
@@ -236,30 +227,30 @@ class MySchool::UsersController < MySchool::ManageController
   #重置密码
   def reset_password
     if user = User.find_by_id_and_kindergarten_id(params[:id],@kind.id)
-       data_time = 7.day.ago
-        ret_records = user.ret_password_records.where("created_at > ?",data_time)
-       if ret_records.size > 2
+      data_time = 7.day.ago
+      ret_records = user.ret_password_records.where("created_at > ?",data_time)
+      if ret_records.size > 2
         flash[:notice] = "7天内，你已经超过三次重置密码！"
-       else
-       user.ret_password_records << RetPasswordRecord.new 
-       password = Standard.rand_password
-       user.password = password
-       if user.save!
-       title = "您已经成功重置#{@kind.name}微壹校讯通平台密码"
-       if @kind.aliases_url.blank?
-        web_address = "http://#{@kind.number}.#{WEBSITE_CONFIG["web_host"]}"
-        else
-        web_address = @kind.aliases_url
-       end
-        content = "您的登录名:#{user.login},密码:#{password},登录地址:#{web_address}"
-        user.send_system_message!(title,content,3)
+      else
+        user.ret_password_records << RetPasswordRecord.new
+        password = Standard.rand_password
+        user.password = password
+        if user.save!
+          title = "您已经成功重置#{@kind.name}微壹校讯通平台密码"
+          if @kind.aliases_url.blank?
+            web_address = "http://#{@kind.number}.#{WEBSITE_CONFIG["web_host"]}"
+          else
+            web_address = @kind.aliases_url
+          end
+          content = "您的登录名:#{user.login},密码:#{password},登录地址:#{web_address}"
+          user.send_system_message!(title,content,3)
         end
       end
     else
-       flash[:notice]="该用户不存在"
+      flash[:notice]="该用户不存在"
     end
     #zmanby
-     redirect_to :back
+    redirect_to :back
   end
 
   private
