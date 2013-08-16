@@ -4,9 +4,9 @@
     <p><i class="icon-list"></i>本周成长记录总数量:<span class="count"><%= @growth_records.count %><span></p>
     <p><i class="icon-home"></i>本周宝宝在家成长记录总数量:<span class="count"><%= @home_growth_records.count %></span></p>
     <p><i class="icon-certificate"></i>本周宝宝在园成长记录总数量:<span class="count"><%= @garden_growth_records.count %></span></p>
-    <p><i class="icon-list"></i>本周总共有<span class="count"><%= @growth_records.count %></span>位学员完成了成长记录</p>
-    <p><i class="icon-home"></i>本周总共有<span class="count"><%= @home_growth_records.count %></span>位学员完成了宝宝在家成长记录</p>
-    <p><i class="icon-certificate"></i>本周总共有<span class="count"><%= @garden_growth_records.count %></span>位学员完成了宝宝在园成长记录</p>
+    <p><i class="icon-list"></i>本周总共有<span id="week_growth_record_count" class="count"></span>位学员完成了成长记录</p>
+    <p><i class="icon-home"></i>本周总共有<span id="week_home_growth_record_count" class="count"></span>位学员完成了宝宝在家成长记录</p>
+    <p><i class="icon-certificate"></i>本周总共有<span id="week_garden_growth_record_count" class="count"></span>位学员完成了宝宝在园成长记录</p>
   </div>
 </div>
 <div class="stat-list">
@@ -17,7 +17,7 @@
     <p><i class="icon-certificate"></i>宝宝在园成长记录总数量:<span class="count"><%= @garden_growth_records_count %></span></p>
   </div>
 
-  <div class="stat-box">
+  <div class="stat-box" id="home_growth_records">
     <p class="title"><a href="javascript:void(0);" class="fold"><i class="pull-right f del"></i></a><span class="pull-right">周成长记录数量:<%= @home_growth_records.count %></span><i class="icon-home"></i>宝宝在家成长记录</p>
     <ul class="squad_list">
       <% @kind.squads.each do |squad| %>
@@ -48,7 +48,7 @@
     </ul>
   </div>
 
-  <div class="stat-box">
+  <div class="stat-box" id="garden_growth_records">
     <p class="title"><a href="javascript:void(0);" class="fold"><i class="pull-right f del"></i></a><span class="pull-right">周成长记录数量:<%= @garden_growth_records.count %></span><i class="icon-certificate"></i>宝宝在园成长记录</p>
     <ul class="squad_list">
       <% @kind.squads.each do |squad| %>
@@ -66,7 +66,7 @@
                 <% squad.student_infos.each do |student_info| %>
                   <li class="student_item">
                     <i class="icon-ok" style="display:none;"></i>
-                    <%= student_info.user.try(:name) %>(<i class="squad_<%= squad.id %>" style="color: #15a230;"><%= @home_growth_records.where(student_info_id: student_info.id).count %></i>)
+                    <%= student_info.user.try(:name) %>(<i class="squad_<%= squad.id %>" style="color: #15a230;"><%= @garden_growth_records.where(student_info_id: student_info.id).count %></i>)
                   </li>
                 <% end %>
               <% else %>
@@ -143,8 +143,34 @@ $(document).ready(function() {
     })
   })
 
+  //每周的成长记录数量统计
 
+  var week_growth_record_count = 0
+  $(".student_item").each(function() {
+    if($(this).children("i[class^=squad]").text() > 0) {
+      week_growth_record_count += 1;
+    }
+  })
+  $("#week_growth_record_count").text(week_growth_record_count);
 
+  var week_home_growth_record_count = 0
+  $("#home_growth_records .student_item").each(function() {
+    if($(this).children("i[class^=squad]").text() > 0) {
+      week_home_growth_record_count += 1;
+    }
+  })
+
+  $("#week_home_growth_record_count").text(week_home_growth_record_count)
+
+  var week_garden_growth_record_count = 0
+  $("#garden_growth_records .student_item").each(function() {
+    if($(this).children("i[class^=squad]").text() > 0) {
+      week_garden_growth_record_count += 1;
+    }
+  })
+  $("#week_garden_growth_record_count").text(week_garden_growth_record_count);
+
+  // 查看未完成成长记录的统计
   $("#stat-failure").click(function(event) {
     $(".f").removeClass("add").addClass("del")
     $(".squad_list").show();
@@ -169,6 +195,7 @@ $(document).ready(function() {
     })
   })
 
+  // 查看已经完成成长记录的统计
   $("#stat-success").click(function(event) {
     $(".f").removeClass("add").addClass("del")
     $(".squad_list").show();
