@@ -5,7 +5,7 @@ School::Application.routes.draw do
   match 'my_school' => 'my_school/main#index'
   namespace :my_school do
     resources :personal_sets
-    resources :approve_modules do 
+    resources :approve_modules do
       collection do
         get :get_edit_ids
       end

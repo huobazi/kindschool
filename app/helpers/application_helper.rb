@@ -23,7 +23,7 @@ module ApplicationHelper
     end
     menus
   end
-  
+
   #常用功能菜单
   def useful_features_menu
     menus = current_user.smarty_menu
