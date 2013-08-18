@@ -1,5 +1,5 @@
-<div class="login">
-  <div class="logo">
+<div class="login" id="longin_form_head">
+  <div class="logo" >
     <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>"  height="44px" alt="Logo"/>
   </div>
   <div class="login_window">
@@ -99,9 +99,35 @@
                 <label class="error_label">
                   <%= @user_errors %>
                 </label>
+              <% else %>
+                <label class="notice_info">
+                  第一次使用本系统，请点击“<a href="#login_course" id="link_course">激活账号指南</a>”
+                </label>
               <% end %>
             </div>
           <% end %>
+        </div>
+      </div>
+      <div id="login_course">
+        <div class="course_div">
+          <h2>帐号激活与微信绑定操作指南</h2>
+          <p>第一次使用本系统，您必须完成以下步骤，以正常使用微一园讯通平台与幼儿园互动</p>
+          <p><b>第一步</b>： 帐号激活<br/>
+            1、打开微信扫一扫，扫描本页面上部微一园讯通公众帐号二维码，点击“关注” （如何打开微信扫一扫） <br/>
+            如有疑问，请拨打微一服务热线：4000 915 985<br/>
+            2、点击：“查看消息”进入对话框，点击左下角“绑定帐号“<br/>
+            3、点击“点击绑定”链接，进入输入帐号页面<br/>
+            4、按提示输入短信上提供的用户名和密码，点击“提交”完成激活！<br/>
+          </p>
+          <p><b>第二步</b>： 绑定幼儿园微信<br/>
+            1、打开微信扫一扫，扫描本页面中部幼儿园公众帐号二维码，点击“关注”<br/>
+            2、点击：“查看消息”进入对话框，在对话框中输入数字“1”<br/>
+            3、在返回的消息上点击“点击绑定”链接，进入输入帐号页面<br/>
+            4、按提示输入短信上提供的用户名和密码，点击“提交”完成激活!&nbsp;&nbsp;<a href="#longin_form_head" style="color:blue;">回到登陆</a><br/>
+          </p>
+
+          如何打开微信“扫一扫”：<br/>
+          <img src="/star_imgs/weixin.png" alt="微信扫一扫"/>
         </div>
       </div>
     </div>
@@ -131,5 +157,25 @@
       })
     })
     $(".fancybox").fancybox();
+    $("#link_course").click(function(){
+      $("#login_course").show();
+    })
   })
+
+  $(document).ready(function() {
+    $('a[href*=#]').click(function() {
+      if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+        var $target = $(this.hash);
+        $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
+        if ($target.length) {
+          var targetOffset = $target.offset().top;
+          $('html,body').animate({
+            scrollTop: targetOffset
+          },
+          1000);
+          return false;
+        }
+      }
+    });
+  });
 </script>

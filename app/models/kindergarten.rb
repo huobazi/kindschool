@@ -73,6 +73,8 @@ class Kindergarten < ActiveRecord::Base
 
   has_one :shrink_record
 
+  has_many :teaching_plans
+
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img
   attr_accessible :asset_logo_attributes

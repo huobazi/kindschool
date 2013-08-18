@@ -342,6 +342,14 @@
     title: "宝宝在园"
     height_level: "b"
     sequence: 1020
+  - id: 103000
+    name: "教学计划"
+    operate_id: 8200
+    number: 103000
+    url: "/my_school/teaching_plans"
+    title: "教学计划"
+    height_level: "b"
+    sequence: 1020
 - id: 70000
   number: 70000
   name: "信息论坛"

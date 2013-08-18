@@ -1,0 +1,25 @@
+<div class="control-group">
+ 	<%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
+<div class="controls">
+     <%= text_field_tag(:kindergarten,@kind.name, disabled: true) %>
+</div>
+</div>
+<div class="control-group">
+ 	<%=f.label :title, '标题:' ,:class=>"control-label"%>
+<div class="controls">
+  <%= f.text_field(:title , :validate => true) %>
+
+  <p class="help-block">长度不能小于3。</p>
+</div>
+ </div>
+
+<div class="control-group">
+ <%=f.label :content, '内容: ' ,:class=>"control-label"%>
+ <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false%>
+</div>
+<%=render :partial => "/my_school/topics/appurtenance",:locals=>{:record=>@teaching_plan} %>
+<div class="control-group">
+  <div class="controls">
+    <%= f.button :submit, disable_with: "正在提交" %>
+  </div>
+</div>

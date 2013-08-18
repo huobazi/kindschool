@@ -79,7 +79,7 @@
 <% if current_user.get_users_ranges[:tp] == :student %>
   <%= f.input :squad_id, :as => :hidden %>
 <% end %>
-<%=render :partial => "/my_school/topics/appurtenance"%>
+<%=render :partial => "/my_school/topics/appurtenance",:locals=>{:record=>@topic} %>
 
 <div class="control-group">
   <div class="controls">

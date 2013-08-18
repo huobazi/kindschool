@@ -1056,7 +1056,21 @@ table.attributes td {
     text-align: center;
     width: 100%;
 }
-
+.login .notice_info{
+    color: white;
+}
+.login .notice_info a{
+    color: blue;
+    text-decoration:underline;
+}
+.login #login_course{
+    width: 100%;
+    float: left;
+    display: none;
+}
+.login .course_div{
+    padding: 10px 30px 30px;
+}
 /*======发件人选名单==============*/
 #message_inputs{
     width: 480px;

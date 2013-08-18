@@ -1,9 +1,11 @@
 School::Application.routes.draw do
 
+
   match 'code/code_image' => 'code#code_image'
   match 'code/recode' => 'code#recode'
   match 'my_school' => 'my_school/main#index'
   namespace :my_school do
+    resources :teaching_plans
     resources :personal_sets
     resources :approve_modules do
       collection do
