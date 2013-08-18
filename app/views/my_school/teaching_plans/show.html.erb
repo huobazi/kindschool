@@ -1,0 +1,87 @@
+<div class="show_publicity">
+  <img src="/t/colorful/small_publicity.jpg" alt="展示图"/>
+</div>
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>教学计划</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+             <li><%= link_to "教学计划", my_school_teaching_plan_path %></li>
+            <li>/</li>
+            <li>查看教学计划</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <%if choose_operate_show('my_school/teaching_plans/new')%>
+        <li>
+          <a href="<%=url_for(:controller=>"/my_school/teaching_plans",:action=>:new)%>" title="添加">
+            <div class="work_action_add">
+            </div>
+            <div class="work_action_add_move">
+            </div>
+          </a>
+        </li>
+        <%end%>
+        <%if choose_operate_show('my_school/teaching_plans/edit')%>
+        <li>
+          <a href="<%=url_for(:controller=>"/my_school/teaching_plans",:action=>:edit,:id=>@teaching_plan.id)%>" title="编辑">
+            <div class="work_action_edit">
+            </div>
+            <div class="work_action_edit_move">
+            </div>
+          </a>
+        </li>
+        <%end%>
+        <%if choose_operate_show('my_school/teaching_plans/destroy')%>
+        <li>
+          <%= link_to(url_for(:controller=>"/my_school/teaching_plans",:action=>:destroy,:id=>@teaching_plan.id),:method=>:delete, :confirm => "您确定删除该新闻吗?") do %>
+            <div class="work_action_delete">
+            </div>
+            <div class="work_action_delete_move">
+            </div>
+          <% end %>
+        </li>
+        <%end%>
+        <li>
+          <a href="<%=url_for(:controller=>"/my_school/teaching_plans",:action=>:index)%>" title="返回">
+            <div class="work_action_return">
+            </div>
+            <div class="work_action_return_move">
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="work_form">
+      <div class="form_div">
+        <div class="form_div">
+          <div class="show" id="news">
+            <div class="content_up">
+              <p class="title"><span><%= @teaching_plan.title %></span></p>
+              <p class="info"><span class="link"><%= @teaching_plan.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @teaching_plan.try(:created_at).try(:to_long_datetime) %></span></p>
+              <div >
+            <span>已上传附件:</span>
+           <%(@teaching_plan.appurtenances || []).each do |app|%>
+           <p><%=link_to app.file_name,app.avatar_url,:class=>"blue"%></p>
+           <%end%>
+          </div>
+            </div>
+            <div class="content">
+              <%=raw @teaching_plan.content %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

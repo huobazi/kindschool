@@ -1457,6 +1457,72 @@ garden_growth_records_destroy:
   action: "destroy"
   protocol: ""
   <<: *DEFAULTS
+teaching_plan_index:
+  id: 8200
+  parent_id: 8
+  name: "教学计划"
+  level: 2
+  sequence: 0
+  note: "教学计划"
+  controller: "my_school/teaching_plans"
+  action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+teaching_plan_new:
+  id: 8201
+  parent_id: 8
+  name: "新建教学计划"
+  level: 2
+  sequence: 0
+  note: "新建教学计划"
+  controller: "my_school/teaching_plans"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+teaching_plan_create:
+  id: 8202
+  parent_id: 8
+  name: "创建教学计划"
+  level: 2
+  sequence: 0
+  note: "创建教学计划"
+  controller: "my_school/teaching_plans"
+  action: "create"
+  protocol: ""
+  <<: *DEFAULTS
+teaching_plan_edit:
+  id: 8203
+  parent_id: 8
+  name: "编辑教学计划"
+  level: 2
+  sequence: 0
+  note: "编辑教学计划"
+  controller: "my_school/teaching_plans"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+teaching_plan_update:
+  id: 8204
+  parent_id: 8
+  name: "更新教学计划"
+  level: 2
+  sequence: 0
+  note: "更新教学计划"
+  controller: "my_school/teaching_plans"
+  action: "update"
+  protocol: ""
+  <<: *DEFAULTS
+teaching_plan_destory:
+  id: 8205
+  parent_id: 8
+  name: "删除教学计划"
+  level: 2
+  sequence: 0
+  note: "删除教学计划"
+  controller: "my_school/teaching_plans"
+  action: "destory"
+  protocol: ""
+  <<: *DEFAULTS
 
 album_record_index:
   id: 9000
