@@ -45,8 +45,24 @@ $(function(){
         });
     }
     tabs(".tab-hd","active",".tab-bd");
-});
 
+});
+$(document).ready(function() {
+    $('a[href*=#]').click(function() {
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+            var $target = $(this.hash);
+            $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');
+            if ($target.length) {
+                var targetOffset = $target.offset().top;
+                $('html,body').animate({
+                    scrollTop: targetOffset
+                },
+                1000);
+                return false;
+            }
+        }
+    });
+});
 
 /*
  *	$('#write_cokies').click(function(){
@@ -111,31 +127,31 @@ $(document).ready(function() {
         $(this).val(now);
     })
 
-  $('[data-remote]').live('ajax:before', function() {
-    var $loader = $('#remote-loader');
-    if (!$loader.length) {
-      $loader = $('<div id="remote-loader"></div>').hide().prependTo($('body'));
-    }
-    $loader.html('<span class="label label-warning">正在加载...</span>');
-    $loader.fadeIn();
-  }).ajaxSuccess(function() {
-    var $loader = $('#remote-loader');
-    $loader.html('<span class="label label-warning">操作成功</span>');
-    setTimeout(function() {
-      $loader.fadeOut(function(){
-        $(this).remove();
-      });
-    }, 500);
-  }).ajaxError(function() {
-    var $loader = $('#remote-loader');
-    var $error = $('<span class="label label-important">操作失败</span>');
-    $loader.html($error);
-    $error.click(function() {
-      $loader.fadeOut(function(){
-        $(this).remove();
-      });
+    $('[data-remote]').live('ajax:before', function() {
+        var $loader = $('#remote-loader');
+        if (!$loader.length) {
+            $loader = $('<div id="remote-loader"></div>').hide().prependTo($('body'));
+        }
+        $loader.html('<span class="label label-warning">正在加载...</span>');
+        $loader.fadeIn();
+    }).ajaxSuccess(function() {
+        var $loader = $('#remote-loader');
+        $loader.html('<span class="label label-warning">操作成功</span>');
+        setTimeout(function() {
+            $loader.fadeOut(function(){
+                $(this).remove();
+            });
+        }, 500);
+    }).ajaxError(function() {
+        var $loader = $('#remote-loader');
+        var $error = $('<span class="label label-important">操作失败</span>');
+        $loader.html($error);
+        $error.click(function() {
+            $loader.fadeOut(function(){
+                $(this).remove();
+            });
+        });
     });
-  });
 
 
 

@@ -17,15 +17,22 @@
     <%= javascript_include_tag "fancybox/jquery.fancybox",
       "fancybox/jquery.fancybox-buttons",
       "fancybox/jquery.fancybox-thumbs",
-      "fancybox/jquery.fancybox-media", 
-      "bootstrap-datepicker", 
+      "fancybox/jquery.fancybox-media",
+      "bootstrap-datepicker",
       "bootstrap-datepicker.zh-CN"
-    %>
+  %>
     <%= csrf_meta_tags %>
     <!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
   </head>
   <body lang="en">
     <%= yield %>
     <%= render :partial => "/modules/colorful/weixin_foot" %>
+    <div style="display: none;">
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc6ef73a08241f5412f477c04edbd04e9' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+    </div>
   </body>
 </html>

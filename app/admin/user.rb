@@ -50,6 +50,7 @@ ActiveAdmin.register User do
   filter :email
   filter :name
   filter :login
+  filter :phone
   filter :gender, :as => :select, :collection => {"女"=>"M","男"=>"G"}
 
   form do |f|
