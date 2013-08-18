@@ -1,0 +1,8 @@
+(function() {
+  <% if @activity_entry.errors.empty? %>
+    $("#activity_entry_<%= @activity_entry.id %>").replaceWith('<%= escape_javascript(render "activity_entry", :activity_entry => @activity_entry, :level => @level) %>')
+  <% else %>
+  $('<div class="alert alert-error" style="clear:both;">操作失败<a href="#" data-dismiss="alert" class="close">×</a></div>').hide().insertBefore('#new_activity_entry').fadeIn()
+  <% end %>
+})();
+

@@ -30,6 +30,9 @@ School::Application.routes.draw do
       collection do
         post :send_comment
       end
+      member do
+        get :virtual_delete
+      end
     end
     resources :news 
     resources :my_kindergarten do

@@ -63,15 +63,15 @@ class  MySchool::TopicsController < MySchool::ManageController
     @topic.kindergarten_id = @kind.id
     @topic.creater_id = current_user.id
 
-
-
-    if params[:growth_record_id].present? && growth_record = @kind.growth_records.find_by_id(params[:growth_record_id])
-      @topic.title = growth_record.full_growth_record_title
-      @topic.content = growth_record.full_growth_record_content
-    else
-      flash[:error] = "没有权限或非法操作"
-      redirect_to :back
-      return
+    if params[:growth_record_id].present? 
+      if growth_record = @kind.growth_records.find_by_id(params[:growth_record_id])
+        @topic.title = growth_record.full_growth_record_title
+        @topic.content = growth_record.full_growth_record_content
+      else
+        flash[:error] = "没有权限或非法操作"
+        redirect_to :back
+        return
+      end
     end
 
     @grades = @kind.grades

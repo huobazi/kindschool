@@ -126,16 +126,17 @@ $(document).ready(function() {
         $(this).remove();
       });
     }, 500);
-  }).ajaxError(function() {
+  }).ajaxError(function(event, xhr, status) {
     var $loader = $('#remote-loader');
-    var $error = $('<span class="label label-important">操作失败</span>');
+    var error_message = "<span class='label label-important'>" + xhr.responseText + "</span>";
+    var $error = $($(error_message));
     $loader.html($error);
     $error.click(function() {
       $loader.fadeOut(function(){
         $(this).remove();
       });
     });
-  });
+  })
 
 
 
