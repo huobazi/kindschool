@@ -51,6 +51,13 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
       respond_to do |format|
         format.js { render :layout => false }
       end
+    elsif current_user.id == @topic_entry.creater_id
+      @topic_entry.is_show = 0
+      @topic_entry.deleted_at = Time.now.utc
+      @topic_entry.save
+      respond_to do |format|
+        format.js { render :layout => false }
+      end
     elsif current_user.get_users_ranges[:tp] == :teachers
       if @topic_entry.topic.squad.present? && current_user.staff.squad_ids.include?(@topic_entry.topic.squad_id)
         @topic_entry.is_show = 0
@@ -72,6 +79,16 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
 
   def edit
     @topic_entry = TopicEntry.find_by_id(params[:id])
+    if @topic_entry.nil?
+      flash[:error] = "回复不存在或没有权限"
+      redirect_to :back
+      return
+    end
+    unless @topic_entry.creater_id == current_user.id
+      flash[:error] = "没有权限或者贴子回复不存在"
+      redirect_to my_school_topic_path(@topic_entry.topic_id)
+      return
+    end
     if params[:page].present?
       @page = params[:page]
     end

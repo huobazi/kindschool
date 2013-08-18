@@ -33,6 +33,8 @@ module ApplicationHelper
   def destroy_topic_entry?(topic_entry)
     if current_user.get_users_ranges[:tp] == :all
       true
+    elsif current_user.id == topic_entry.creater_id
+      true
     elsif current_user.get_users_ranges[:tp] == :teachers
       if topic_entry.topic.squad.present? && current_user.staff.squad_ids.include?(topic_entry.topic.squad_id)
         true
@@ -46,6 +48,8 @@ module ApplicationHelper
 
   def destroy_activity_entry?(activity_entry)
     if current_user.get_users_ranges[:tp] == :all
+      true
+    elsif current_user.id == activity_entry.creater_id
       true
     elsif current_user.get_users_ranges[:tp] == :teachers
       if activity_entry.activity.squad.present? && current_user.staff.squad_ids.include?(activity_entry.activity.squad_id)

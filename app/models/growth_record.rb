@@ -38,20 +38,35 @@ class GrowthRecord < ActiveRecord::Base
 
   validate :end_at_large_than_start_at
 
+  def full_growth_record_title
+    str = ""
+    if self.tp = true
+      str = "#{self.student_info_label}的宝宝在家成长记录"
+    else
+      str = "#{self.student_info_label}的宝宝在园成长记录"
+    end
+  end
   def full_growth_record_content
     str = ""
     if self.tp == true
-      str = "#{self.content} <br/> "
-      str += "<div class='spra'>";
-
-      self.asset_imgs.each do |img|
-        str += "<img src='#{img.public_filename(:middle)}' />"
-      end
-
-      str += "</div>"
+      str += "类型:宝宝在家"
     else
-
+      str += "类型:宝宝在园"
     end
+    str += "开始时间#{self.start_at.try(:to_short_datetime)} <br />"
+    str += "结束时间#{self.end_at.try(:to_short_datetime)} <br />"
+    str += "#{self.content} <br/> "
+    str += "<div class='spra'>";
+
+    unless self.asset_imgs.blank?
+      self.asset_imgs.each do |img|
+        str += "<a href='#{img.public_filename(:thumb)}' class='fancybox' title='#{self.student_info_label}'>"
+        str += "<img src='#{img.public_filename(:middle)}' />"
+        str += "</a>"
+      end
+    end
+    str += "</div>"
+
   end
 
   def self.squad_student_info_count(squad_id)

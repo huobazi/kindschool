@@ -4,6 +4,7 @@
     <div class="controls" >
       <div class="appurtenance_file">
         <p><%=link_to app.file_name,app.avatar_url,:class=>"blue"%>
+          <%=link_to "删除","###",:class=>"blue"%>
         </p>
      </div>
     </div>
@@ -13,7 +14,7 @@
       <div class="appurtenance_file">
       <%= file_field_tag("appurtenance[][avatar]") %>
      </div>
-      <p>您上传的附件不能超过6M</p>
+      <p>您上传的附件不能超过5M</p>
     </div>
     <div class="controls" id="a_appurtenance_arry">
     <a class="blue">继续添加</a>

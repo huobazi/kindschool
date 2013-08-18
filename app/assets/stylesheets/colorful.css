@@ -1824,6 +1824,8 @@ span.help-inline {
     word_wrap: break-word;
     inherit: auto;
     overflow: auto;
+    min-height: 100px;
+    overflow-y: hidden;
 }
 .show .spra {
     display: inline-block;
@@ -1944,7 +1946,7 @@ span.help-inline {
 .topics .topic .title a:link, .topics .topic .title a:visited {
     color: #2c64d7;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .topics .topic .info {
@@ -2226,7 +2228,8 @@ fieldset.staff_squad ol li {
 }
 
 .panel .inner span {
-    margin-right: 10px;
+  margin-left: 10px;
+  color: #08c;
 }
 
 .panel .detail_stat {

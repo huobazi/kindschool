@@ -40,6 +40,16 @@ class MySchool::ActivityEntriesController < MySchool::ManageController
 
   def edit
     @activity_entry = ActivityEntry.find(params[:id])
+    if @activity_entry.nil?
+      flash[:error] = "回复不存在或没有权限"
+      redirect_to :back
+      return
+    end
+    unless current_user.id = @activity_entry.creater_id
+      flash[:error] = "没有权限或回复不存在"
+      redirect_to :back
+      return
+    end
     if params[:page]
       @page = params[:page]
     end
@@ -48,12 +58,19 @@ class MySchool::ActivityEntriesController < MySchool::ManageController
   def update
     @activity_entry = ActivityEntry.find(params[:id])
 
+    if params[:flag].presence == true
+      redirect_to_controller = "activities"
+    else
+      redirect_to_controller = "interest_activities"
+    end
+
     if @activity_entry.update_attributes(params[:activity])
       flash[:success] = "添加活动回复成功"
+      redirect_to :controller => redirect_to_controller, :action => :show, :id => @activity_entry.activity_id, anchor: "activity_entry_#{@activity_entry.id}", page: params[:page]
     else
       flash[:error] = "添加回复失败"
+      redirect_to :controller => redirect_to_controller, :action => :show, :id => @activity_entry.activity_id, anchor: "activity_entry_#{@activity_entry.id}", page: params[:page]
     end
-    redirect_to my_school_activity_path(@activity_entry.activity_id, anchor: "activity_entry_#{@activity_entry.id}", page: params[:page])
 
   end
 
@@ -88,9 +105,22 @@ class MySchool::ActivityEntriesController < MySchool::ManageController
   def virtual_delete
     @activity_entry = ActivityEntry.find_by_id(params[:id])
 
+    if @activity_entry.nil?
+      flash[:error] = "没有权限或活动不存在"
+      redirect_to :action => :index
+      return
+    end
+
     @activity = Activity.find_by_id(@activity_entry.activity_id)
 
     if current_user.get_users_ranges[:tp] == :all
+      @activity_entry.is_show = 0
+      @activity_entry.deleted_at = Time.now.utc
+      @activity_entry.save
+      respond_to do |format|
+        format.js { render :layout => false }
+      end
+    elsif current_user.id == @activity_entry.creater_id
       @activity_entry.is_show = 0
       @activity_entry.deleted_at = Time.now.utc
       @activity_entry.save
@@ -108,17 +138,17 @@ class MySchool::ActivityEntriesController < MySchool::ManageController
       else
         flash[:error] = "没有权限或贴子回复不存在"
         if params[:flag].presence == true
-          redirect_to my_school_activity_path(@activity_entry.acitivity_id)
+          redirect_to my_school_activity_path(@activity_entry.activity_id)
         else
-          redirect_to my_school_interest_activity_path(@activity_entry.acitivity_id)
+          redirect_to my_school_interest_activity_path(@activity_entry.activity_id)
         end
       end
     else
       flash[:error] = "没有权限"
       if params[:flag].presence == true
-        redirect_to my_school_activity_path(@activity_entry.acitivity_id)
+        redirect_to my_school_activity_path(@activity_entry.activity_id)
       else
-        redirect_to my_school_interest_activity_path(@activity_entry.acitivity_id)
+        redirect_to my_school_interest_activity_path(@activity_entry.activity_id)
       end
     end
 

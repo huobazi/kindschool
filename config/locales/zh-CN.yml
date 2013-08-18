@@ -240,6 +240,7 @@ zh-CN:
       weixin_share_user: "推送记录详细"
       weiyi_config: "微壹平台配置"
       shrink_record: "seo关键字优化"
+      appurtenances: "附件"
     attributes:
       weiyi_config:
         number: "编号"
@@ -462,6 +463,7 @@ zh-CN:
         topic_category: "论坛分类"
         topic_category_label: "论坛分类"
         show_count: "浏览次数"
+        appurtenances: "附件"
       topic_entry:
         topic: "回复的贴子"
         content: "内容"
