@@ -2,7 +2,7 @@
 class  MySchool::ManageController < MySchool::BaseController
   include AuthenticatedSystem
   before_filter :login_from_cookie
-  before_filter :login_required,:check_operates,:choose_role, :except => [:login,:signup,:error_notice,:about,:contact_us] #if action_name != 'login'#:auth,
+  before_filter :login_required,:check_operates,:choose_role, :except => [:login,:signup,:error_notice] #if action_name != 'login'#:auth,
 
   layout proc{ |controller| get_layout }
   private
