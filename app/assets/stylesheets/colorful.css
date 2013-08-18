@@ -1056,7 +1056,21 @@ table.attributes td {
     text-align: center;
     width: 100%;
 }
-
+.login .notice_info{
+    color: white;
+}
+.login .notice_info a{
+    color: blue;
+    text-decoration:underline;
+}
+.login #login_course{
+    width: 100%;
+    float: left;
+    display: none;
+}
+.login .course_div{
+    padding: 10px 30px 30px;
+}
 /*======发件人选名单==============*/
 #message_inputs{
     width: 480px;
@@ -1810,6 +1824,8 @@ span.help-inline {
     word_wrap: break-word;
     inherit: auto;
     overflow: auto;
+    min-height: 100px;
+    overflow-y: hidden;
 }
 .show .spra {
     display: inline-block;
@@ -1930,7 +1946,7 @@ span.help-inline {
 .topics .topic .title a:link, .topics .topic .title a:visited {
     color: #2c64d7;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .topics .topic .info {
@@ -2212,7 +2228,8 @@ fieldset.staff_squad ol li {
 }
 
 .panel .inner span {
-    margin-right: 10px;
+  margin-left: 10px;
+  color: #08c;
 }
 
 .panel .detail_stat {

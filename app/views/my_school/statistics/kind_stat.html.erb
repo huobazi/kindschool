@@ -33,36 +33,43 @@
               <div class="header">人员统计</div>
               <div class="inner">
                 <div>
-                  <p><span>年级总数</span><%= @kind.grades.count %><a class="fold" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a></p>
+                  <p>年级总数<span><%= @kind.grades.count %></span><a class="fold" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a></p>
                   <div class="detail_stat">
                     <% @kind.grades.each do |grade| %>
-                      <p><span><%= grade.name %>的班级总数</span><%= grade.squads.count %></p>
+                      <p><%= grade.name %>的班级总数<span><%= grade.squads.count %></span></p>
                     <% end %>
                   </div>
                 </div>
-
-                <p><span>班级总数</span><%= @kind.squads.count %></p>
-                <p><span>学员总数</span><%= @kind.student_infos.count %></p>
-                <p><span>毕业人数量</span><%= @kind.student_infos.joins(:user).where("users.status = ?", "graduate").count %></p>
-                <p><span>教职工数量</span><%= @kind.staffs.count %></p>
+                <div>
+                  <p>班级总数<span><%= @kind.squads.count %></span><a class="fold" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a></p>
+                  <div class="detail_stat">
+                    <% @kind.squads.each do |squad| %>
+                      <p><%= squad.name %>的学员总数<span><%= squad.student_infos.count %></span></p>
+                    <% end %>
+                  </div>
+                </div>
+                <p>学员总数<span><%= @kind.student_infos.count %></span></p>
+                <p>毕业人数量<span><%= @kind.student_infos.joins(:user).where("users.status = ?", "graduate").count %></span></p>
+                <p>教职工数量<span><%= @kind.staffs.count %></span></p>
               </div>
             </div>
             <div class="panel">
               <div class="header">信息论坛统计</div>
               <div class="inner">
-                <p><span>贴子总数</span><%= @kind.topics.count %></p>
-                <p><span>回复总数</span><%= @kind.topic_entries.count %></p>
+                <p>贴子总数<span><%= @kind.topics.where(is_show: true).count %></span></p>
+                <p>删除贴子数<span><%= @kind.topics.where(is_show: false).count %></span></p>
+                <p>回复总数<span><%= @kind.topic_entries.count %></span></p>
               </div>
             </div>
             <div class="panel">
               <div class="header">延时班统计</div>
               <div class="inner">
                 <div>
-                  <p><span>延时班总数</span><%= @kind.squads.where(tp: 1).count %><a class="fold" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a></p>
+                  <p>延时班总数<span><%= @kind.squads.where(tp: 1).count %></span><a class="fold" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a></p>
                   <div class="detail_stat">
                     <% @kind.squads.where(tp: 1).each do |virtual_squad| %>
-                      <p><span><%= virtual_squad.name %>的老师数量</span><%= virtual_squad.user_squads_teacher_users.count %></p>
-                      <p><span><%= virtual_squad.name %>的学员数量</span><%= virtual_squad.user_squads_student_users.count %></p>
+                      <p><%= virtual_squad.name %>的老师数量<span><%= virtual_squad.user_squads_teacher_users.count %></span></p>
+                      <p><%= virtual_squad.name %>的学员数量<span><%= virtual_squad.user_squads_student_users.count %></span></p>
                     <% end %>
                   </div>
                 </div>
@@ -75,18 +82,18 @@
             <div class="panel">
               <div class="header">活动统计</div>
               <div class="inner">
-                <p><span>主题活动数量</span><%= @kind.activities.where(tp: 0).count %></p>
-                <p><span>兴趣讨论数量</span><%= @kind.activities.where(tp: 1).count %></p>
+                <p>主题活动数量<span><%= @kind.activities.where(tp: 0).count %></span></p>
+                <p>兴趣讨论数量<span><%= @kind.activities.where(tp: 1).count %></span></p>
               </div>
             </div>
             <div class="panel">
               <div class="header">照片集锦</div>
               <div class="inner">
                 <div>
-                  <p><span>照片集锦数量</span><%= @kind.albums.count %><a class="fold" href="javascript:void(0)"><i class="icon-plus f pull-right"></i></a></p>
+                  <p>照片集锦数量<span><%= @kind.albums.count %></span><a class="fold" href="javascript:void(0)"><i class="icon-plus f pull-right"></i></a></p>
                   <div class="detail_stat">
                     <% @kind.albums.each do |album| %>
-                      <p><span><%= album.title %>的照片总数</span><%= album.album_entries.count %></p>
+                      <p><%= album.title %>的照片总数<span><%= album.album_entries.count %></span></p>
                     <% end %>
                   </div>
                 </div>
@@ -96,9 +103,9 @@
             <div class="panel">
               <div class="header">饮食保健</div>
               <div class="inner">
-                <p><span>疫苗记录数量</span><%= @kind.seedling_records.count %></p>
-                <p><span>体检记录数量</span><%= @kind.physical_records.count %></p>
-                <p><span>菜谱数量</span><%= @kind.cook_books.count %></p>
+                <p>疫苗记录数量<span><%= @kind.seedling_records.count %></span></p>
+                <p>体检记录数量<span><%= @kind.physical_records.count %></span></p>
+                <p>菜谱数量<span><%= @kind.cook_books.count %></span></p>
               </div>
             </div>
           </div>
