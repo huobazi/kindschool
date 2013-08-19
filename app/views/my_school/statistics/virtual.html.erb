@@ -1,0 +1,17 @@
+<% if @virtual_squad.present? %>
+  <% if @all.present? %>
+    <ul class="student">
+      <% @virtual_squad.user_squads_student_users.each do |student| %>
+        <li><%= student.try(:name) %></li>
+      <%  end %>
+    </ul>
+  <% else %>
+    <ul class="student">
+      <% @virtual_squad.user_squads_student_users.group_by{|user| user.try(:student_info).try(:squad).present? ? user.student_info.squad : "班级" }.each do |k, v| %>
+      <li>
+        <%= k.name %>(<%= v.count %>)
+      </li>
+    <% end %>
+    </ul>
+  <% end %>
+<% end %>

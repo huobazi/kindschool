@@ -100,7 +100,7 @@ School::Application.routes.draw do
     end
 
     resources :statistics do
-      get :message, :growth_record, :kind_stat, :on => :collection
+      get :virtual_squad, :message, :growth_record, :kind_stat, :on => :collection
     end
     resources :users do
       collection do

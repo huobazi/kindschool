@@ -106,6 +106,9 @@ class StudentInfo < ActiveRecord::Base
   def squad_label
     self.squad ? self.squad.name : "丢失班级信息"
   end
+  def grade_label
+    self.squad && self.squad.grade ? self.squad.grade.name : "丢失年级信息"
+  end
 
   after_create :load_role
 

@@ -180,6 +180,14 @@
     title: "消息统计"
     height_level: "a"
     sequence: 91
+  - id: 44000
+    name: "延时班统计"
+    operate_id: 14300
+    url: "/my_school/statistics/virtual_squad"
+    number: 44000
+    title: "延时班统计"
+    height_level: "a"
+    sequence: 92
 
 - id: 50000
   number: "home"

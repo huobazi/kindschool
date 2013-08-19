@@ -21,4 +21,8 @@ class UserSquad < ActiveRecord::Base
     self.squad.user_squads_student_users
   end
 
+  def get_students_group_by_squad
+    # self.squad.user_squads_student_users.group_by(&:squad)
+  end
+
 end
