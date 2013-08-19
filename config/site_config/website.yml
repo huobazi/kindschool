@@ -1,9 +1,6 @@
 ﻿defaults: &defaults
   #微信token
   weixin_token: "weiyi"
-  #为true则需要验证
-  token_validate: false
-  
   #公司网站域名
   web_host: weiyizixun.com
 
