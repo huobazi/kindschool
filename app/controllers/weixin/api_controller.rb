@@ -126,7 +126,7 @@ class Weixin::ApiController < Weixin::BaseController
                       :FromUserName=>xml_data[:ToUserName],
                       :CreateTime=>Time.now.to_i,
                       :MsgType=>"text",
-                      :Content=>"#{current_user.name}您好!\n\r 文字记录上传成功，您可以在照片集锦的个人集锦中查看。点击以下链接分享到成长记录\n\r <a herf='#{url_garden}'>添加到成长记录</a>",
+                      :Content=>"#{current_user.name}您好!\n\r 文字记录上传成功，您可以在照片集锦的个人集锦中查看。点击以下链接分享到成长记录\n\r <a href='#{url_garden}'>添加到成长记录</a>",
                       :FuncFlag=>0
                     })
                 end
@@ -154,7 +154,7 @@ class Weixin::ApiController < Weixin::BaseController
                   :FromUserName=>xml_data[:ToUserName],
                   :CreateTime=>Time.now.to_i,
                   :MsgType=>"text",
-                  :Content=>"#{current_user.name}您好!\n\r 照片上传成功，您可以在照片集锦的个人集锦中查看。点击以下链接分享到成长记录\n\r<a herf='#{url_garden}'>添加到成长记录</a>",
+                  :Content=>"#{current_user.name}您好!\n\r 照片上传成功，您可以在照片集锦的个人集锦中查看。点击以下链接分享到成长记录\n\r<a href='#{url_garden}'>添加到成长记录</a>",
                   :FuncFlag=>0
                 })
             end
