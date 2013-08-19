@@ -19,7 +19,7 @@
  
 <div class="control-group">
  <%=f.label :content, '内容: ' ,:class=>"control-label"%>
- <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false%>
+ <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :simple_mode => true%>
 </div>
 
 <%=render :partial => "/my_school/topics/appurtenance",:locals=>{:record=>@teaching_plan} %>
