@@ -1,0 +1,7 @@
+(function() {
+  <% if @comment.errors.empty? %>
+    $("#comment_<%= @comment.id %>").replaceWith('<%= escape_javascript(render "comment", :comment => @comment, :level => @level) %>')
+  <% else %>
+    $('<div class="alert alert-error" style="clear:both;">操作失败<a href="#" data-dismiss="alert" class="close">×</a></div>').hide().insertBefore('#new_comment').fadeIn()
+  <% end %>
+})();

@@ -44,20 +44,14 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
 
     @topic = Topic.find_by_id(@topic_entry.topic_id)
 
-    if current_user.get_users_ranges[:tp] == :all
-      @topic_entry.is_show = 0
-      @topic_entry.deleted_at = Time.now.utc
-      @topic_entry.save
-      respond_to do |format|
-        format.js { render :layout => false }
-      end
-    elsif current_user.id == @topic_entry.creater_id
-      @topic_entry.is_show = 0
-      @topic_entry.deleted_at = Time.now.utc
-      @topic_entry.save
-      respond_to do |format|
-        format.js { render :layout => false }
-      end
+    if @topic.nil?
+      render :text => "贴子不存在或非法操作", :status => 401
+      return
+    end
+
+    @level = params[:level] || true
+
+    if current_user.get_users_ranges[:tp] == :all or current_user.id == @topic_entry.creater_id
     elsif current_user.get_users_ranges[:tp] == :teachers
       if @topic_entry.topic.squad.present? && current_user.staff.squad_ids.include?(@topic_entry.topic.squad_id)
         @topic_entry.is_show = 0
@@ -66,13 +60,20 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
         respond_to do |format|
           format.js { render :layout => false }
         end
+        return
       else
-        flash[:error] = "没有权限或贴子回复不存在"
-        redirect_to my_school_topic_path(@topic_entry.topic_id)
+        render :text => "没有权限或贴子回复不存在", :status => 401
+        return
       end
     else
-      flash[:error] = "没有权限"
-      redirect_to my_school_topic_path(@topic_entry.topic_id)
+      render :text => "没有权限", :status => 401
+      return
+    end
+    @topic_entry.is_show = 0
+    @topic_entry.deleted_at = Time.now.utc
+    @topic_entry.save
+    respond_to do |format|
+      format.js { render :layout => false }
     end
 
   end

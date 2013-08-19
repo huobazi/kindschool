@@ -2,7 +2,7 @@
 #短信记录表
 class SmsRecord < ActiveRecord::Base
   attr_accessible :chain_code, :status, :message_entry_id, :kindergarten_id, :sender_id,
-    :sender_name,:msgid,:content,:receiver_id,:receiver_name,:receiver_phone
+    :sender_name,:msgid,:content,:receiver_id,:receiver_name,:receiver_phone,:sms_count
 
   belongs_to :kindergarten
   belongs_to :message_entry
@@ -45,6 +45,6 @@ class SmsRecord < ActiveRecord::Base
       self.receiver_name = self.receiver.name
       self.receiver_phone = self.receiver.phone
     end
+    self.sms_count =  (self.content || "").size / 70
   end
-
 end

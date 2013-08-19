@@ -1,3 +1,7 @@
 (function() {
-  $("#topic_entry_<%= @topic_entry.id %>").replaceWith('<%= escape_javascript(render "topic_entry", :topic_entry => @topic_entry, :topic_entry_counter => @topic.topic_entries.count - 1) %>')
+  <% if @topic_entry.errors.empty? %>
+    $("#topic_entry_<%= @topic_entry.id %>").replaceWith('<%= escape_javascript(render "topic_entry", :topic_entry => @topic_entry, :level => @level) %>')
+  <% else %>
+    $('<div class="alert alert-error" style="clear:both;">操作失败<a href="#" data-dismiss="alert" class="close">×</a></div>').hide().insertBefore('#new_topic_entry').fadeIn()
+  <% end %>
 })();
