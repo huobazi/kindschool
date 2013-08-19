@@ -1,11 +1,25 @@
 #encoding:utf-8
 #教学计划
 class MySchool::TeachingPlansController < MySchool::ManageController
+  
   def index
   	@teaching_plans = TeachingPlan.page(params[:page] || 1).per(10)
   end
+
   def new
   	@teaching_plan = @kind.teaching_plans.new()
+  
+   if current_user.get_users_ranges[:tp] == :student
+      flash[:error] = "没有权限"
+      redirect_to action: :index
+      return
+    else current_user.get_users_ranges[:tp] == :teachers
+      @squads = current_user.get_users_ranges[:squads]
+    end
+    if @grades = @kind.grades
+        # if @squads = @grades.first.squads
+        # end
+     end
   end
   def create
   	@teaching_plan = TeachingPlan.new(params[:teaching_plan])

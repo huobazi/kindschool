@@ -12,11 +12,16 @@
   <p class="help-block">长度不能小于3。</p>
 </div>
  </div>
-
+ <div class="control-group">
+ 	<%=f.label :squad_id, '班级:' ,:class=>"control-label"%>
+  <%=render :partial=>"/my_school/squads/squads_select"%>
+ </div>
+ 
 <div class="control-group">
  <%=f.label :content, '内容: ' ,:class=>"control-label"%>
  <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false%>
 </div>
+
 <%=render :partial => "/my_school/topics/appurtenance",:locals=>{:record=>@teaching_plan} %>
 <div class="control-group">
   <div class="controls">

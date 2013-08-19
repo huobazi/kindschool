@@ -43,8 +43,9 @@ class  MySchool::StaffsController < MySchool::ManageController
 
   def destroy
     @staff = Staff.find_by_id(params[:id])
-    @staff.destroy
-
+    if user = @staff.user
+       user.destroy
+    end
     respond_to do |format|
       flash[:notice] = '删除教职工成功.'
       format.html { redirect_to(:action=>:index) }
