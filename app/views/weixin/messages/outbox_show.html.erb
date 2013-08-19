@@ -48,6 +48,9 @@
       <label>发送类型:<%= @message.tp == 1 ? "短信加站内信" : "站内信" %></label>
     </div>
     <div class="limit_title">
+      <label>短信发给所有人:<%= @message.allsms ? "是" : "否" %></label>
+    </div>
+    <div class="limit_title">
       <label>审核状态:<%= Message::STATUS[@message.approve_status]%></label>
     </div>
     <% if action_name=="outbox_show" %>

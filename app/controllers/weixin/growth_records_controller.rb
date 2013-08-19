@@ -49,7 +49,17 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
     @growth_record.kindergarten_id = @kind.id
     @growth_record.creater_id = current_user.id
     @growth_record.tp = 1
-
+    unless params[:personal_set_id].blank?
+       @set = current_user.personal_sets.find_by_id(params[:personal_set_id])
+      if  !@set.blank? && @set.resource
+       if @set.resource_type == "PhotoGallery"
+          @growth_record.asset_imgs << AssetImg.new(:uploaded_data=>@set.resource.uploaded_data)
+         @set_imge = @set.resource.public_filename
+       elsif @set.resource_type=="TextSet"
+         @growth_record.content = @set.resource.content
+       end
+      end
+    end
     if (@grades = @kind.grades) && !@grades.blank?
       if (@squads = @grades.first.squads) && !@squads.blank?
         @student_infos = @squads.first.student_infos
@@ -110,6 +120,18 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
     @growth_record.kindergarten_id = @kind.id
     @growth_record.creater_id = current_user.id
     @growth_record.tp = 1
+    unless params[:personal_set_id].blank?
+       set = current_user.personal_sets.find_by_id(params[:personal_set_id])
+       if  !set.blank? && set.resource
+         if set.resource_type == "PhotoGallery"
+           asset_img = AssetImg.new()
+           file_url =  "#{Rails.root}/public#{set.resource.public_filename}"
+           uploaded_data =  fixture_file_upload file_url, 'image/png' # (file_url, 'image/jpeg', false)
+           asset_img = AssetImg.new(:uploaded_data=>uploaded_data)
+           @growth_record.asset_imgs  << asset_img
+         end
+       end
+      end
     unless params[:asset_imgs].blank?
       params[:asset_imgs].each do |k,v|
         @growth_record.asset_imgs << AssetImg.new(:uploaded_data=>v)
@@ -190,6 +212,10 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
       format.xml { head :ok }
     end
   end
-
+  private
+   def fixture_file_upload(path, mime_type = nil, binary = false)
+      fixture_path = self.class.fixture_path if self.class.respond_to?(:fixture_path)
+      Rack::Test::UploadedFile.new("#{fixture_path}#{path}", mime_type, binary)
+    end
 end
 

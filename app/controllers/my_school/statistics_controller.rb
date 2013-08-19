@@ -29,7 +29,11 @@ class  MySchool::StatisticsController < MySchool::ManageController
   end
 
   def kind_stat
-
+    unless current_user.get_users_ranges[:tp] == :all
+      flash[:error] = "没有权限"
+      redirect_to my_school_home_path
+      return
+    end
   end
 
   def virtual_squad

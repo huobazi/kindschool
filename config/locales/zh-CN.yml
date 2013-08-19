@@ -241,8 +241,22 @@ zh-CN:
       weiyi_config: "微壹平台配置"
       shrink_record: "seo关键字优化"
       appurtenances: "附件"
+      sms_record: "短信记录"
       comment: "评论"
     attributes:
+      sms_count:
+        chain_code: "扩展码"
+        status: "状态"
+        message_entry: "所属消息"
+        kindergarten: "所属幼儿园"
+        sender: "发送人"
+        sender_name: "发送人"
+        msgid: "短信id(第三方)"
+        content: "内容"
+        receiver: "接收人"
+        receiver_name: "接收人"
+        receiver_phone: "接收手机号"
+        sms_count: "短信数量"
       weiyi_config:
         number: "编号"
         content: "描述"
@@ -503,6 +517,7 @@ zh-CN:
         chain_code: "扩展号"
         send_date: "发送时间"
         sender: "发送人"
+        allsms: "短信发给所有人"
       message_entry:
         message: "消息"
         receiver_name: "收接者"

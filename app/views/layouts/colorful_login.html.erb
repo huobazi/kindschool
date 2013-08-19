@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>School</title>
-    <%#= stylesheet_link_tag    "application", :media => "all" %>
+<%#= stylesheet_link_tag    "application", :media => "all" %>
     <%= stylesheet_link_tag    "colorful", :media => "all" %>
     <%= stylesheet_link_tag    "fancybox/jquery.fancybox",
       "fancybox/jquery.fancybox-buttons",
@@ -15,25 +15,20 @@
       "fancybox/jquery.fancybox-media" %>
     <%= csrf_meta_tags %>
     <%= javascript_include_tag "DD_belatedPNG_0.0.8a" %>
-<!--[if lte IE 6]>
-    <script type="text/javascript">
-              try{
-        DD_belatedPNG.fix('div, ul, img, li, input , a');
-        }catch(err){}
-    </script>
-<![endif]-->
+    <!--[if lte IE 6]>
+        <script type="text/javascript">
+                  try{
+            DD_belatedPNG.fix('div, ul, img, li, input , a');
+            }catch(err){}
+        </script>
+    <![endif]-->
   </head>
   <body>
 
     <div class="wrapper_all">
       <%= yield %>
     </div>
-        <div style="display: none;">
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc6ef73a08241f5412f477c04edbd04e9' type='text/javascript'%3E%3C/script%3E"));
-</script>
-
+    <div style="display: none;">
     </div>
   </body>
 </html>

@@ -47,17 +47,19 @@
 </div>
 <div class="control-group">
   <label class="control-label"><span class="required"></span>内容介绍</label>
-</div>
-<div class="control-group">
+  <div class="controls">
   <% if action_name == "edit_content" %>
-    <%#= text_field_tag :content,"#{@entry.content}", :class => 'profile_input required'%>
-    <%= kindeditor_tag :content,@entry.content,:allowFileManager => false %>
-
+  
+    <%= text_area_tag :content,@entry.content,:size=>"20x6"%>
+    <p>建议最大字数不超过72个</p>
+  
     <%= hidden_field_tag "entry_id",@entry.id %>
+
   <% else %>
-    <%#= text_field_tag :content,"", :class => 'profile_input '%>
-    <%= kindeditor_tag :content,"",:allowFileManager => false %>
+    <%= text_area_tag :content,"",:size=>"20x6"%>
+    <p>建议最大字数不超过72个</p>
   <% end %>
+</label>
 </div>
 
 <div class="control-group">

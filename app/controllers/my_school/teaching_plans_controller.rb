@@ -1,12 +1,28 @@
 #encoding:utf-8
 #教学计划
 class MySchool::TeachingPlansController < MySchool::ManageController
+  
   def index
   	@teaching_plans = TeachingPlan.page(params[:page] || 1).per(10)
   end
+
   def new
   	@teaching_plan = @kind.teaching_plans.new()
-  end
+  
+   if current_user.get_users_ranges[:tp] == :student
+      flash[:error] = "没有权限"
+      redirect_to action: :index
+      return
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @squads = current_user.get_users_ranges[:squads]
+    else
+     if @grades = @kind.grades
+        if @squads = @grades.first.squads
+        end
+    end
+  end    
+end
+
   def create
   	@teaching_plan = TeachingPlan.new(params[:teaching_plan])
     @teaching_plan.kindergarten = @kind
@@ -18,6 +34,11 @@ class MySchool::TeachingPlansController < MySchool::ManageController
        if @teaching_plan.appurtenances.size < 6
          @teaching_plan.appurtenances << appurtenance
        end
+      end
+    end
+    unless params[:class_number].blank?
+      if squad = Squad.find(params[:class_number].to_i)#where(:id=>params[:class_number].to_i).first
+         @teaching_plan.squad =  squad
       end
     end
     if @teaching_plan.save!
