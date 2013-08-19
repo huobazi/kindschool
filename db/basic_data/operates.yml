@@ -1,5 +1,5 @@
 DEFAULTS: &DEFAULTS
-  visible: true
+  visible: false
   authable: true
 #==================根
 root:
@@ -159,7 +159,7 @@ notice_index:
   params: ""
   protocol: ""
   <<: *DEFAULTS
-
+  visible: true
 notice_destroy_multi:
   id: 2105
   parent_id: 2
@@ -185,6 +185,7 @@ message_send:
   params: ""
   protocol: ""
   <<: *DEFAULTS
+  visible: true
 message_index:
   id: 2007
   parent_id: 2
@@ -196,9 +197,8 @@ message_index:
   action: "index"
   params: ""
   protocol: ""
-  visible: true
   <<: *DEFAULTS
-
+  visible: true
 message_outbox:
   id: 2008
   parent_id: 2
@@ -210,7 +210,7 @@ message_outbox:
   action: "outbox"
   params: ""
   protocol: ""
-  visible: true
+  visible: false
   <<: *DEFAULTS
 
 message_destroy_multi:
@@ -224,7 +224,7 @@ message_destroy_multi:
   action: "destroy_multiple"
   params: ""
   protocol: ""
-  visible: true
+  visible: false
   <<: *DEFAULTS
 
 message_draft_box:
@@ -238,7 +238,7 @@ message_draft_box:
   action: "draft_box"
   params: ""
   protocol: ""
-  visible: true
+  visible: false
   <<: *DEFAULTS
 message_draft_show:
   id: 2010
@@ -251,7 +251,7 @@ message_draft_show:
   action: "draft_show"
   params: ""
   protocol: ""
-  visible: true
+  visible: false
   <<: *DEFAULTS
 message_draft_edit:
   id: 2011
@@ -264,7 +264,20 @@ message_draft_edit:
   action: "draft_edit"
   params: ""
   protocol: ""
-  visible: true
+  visible: false
+  <<: *DEFAULTS
+message_allsms:
+  id: 2012
+  parent_id: 2
+  name: "短信发给所有人"
+  level: 2
+  sequence: 0
+  note: "短信发给所有人"
+  controller: "my_school/messages"
+  action: "allsms"
+  params: ""
+  protocol: ""
+  visible: false
   <<: *DEFAULTS
 
 #||||||||||||||||||||||||||论坛帖子能
@@ -280,6 +293,7 @@ forum_manage:
   params: ""
   protocol: ""
   <<: *DEFAULTS
+  visible: true
 forum_my:
   id: 3006
   parent_id: 3
@@ -858,7 +872,7 @@ content_pattern_index:
   note: "表格管理"
   controller: "my_school/content_patterns"
   action: "index"
-  visible: true
+  visible: false
   protocol: ""
   <<: *DEFAULTS
 
@@ -871,7 +885,7 @@ smarties_index:
   note: "常用功能管理"
   controller: "my_school/smarties"
   action: "index"
-  visible: true
+  visible: false
   protocol: ""
   <<: *DEFAULTS
 
@@ -1086,7 +1100,7 @@ seedlings_index:
   controller: "my_school/seedlings"
   action: "index"
   protocol: ""
-  visible: true
+  visible: false
   <<: *DEFAULTS
 seedlings_new:
   id: 6002
@@ -1255,7 +1269,7 @@ cook_books_index:
   action: "index"
   protocol: ""
   <<: *DEFAULTS
-
+  visible: true
 cook_books_new:
   id: 8002
   parent_id: 7
@@ -1522,7 +1536,7 @@ album_record_index:
   action: "index"
   protocol: ""
   <<: *DEFAULTS
-
+  visible: true
 album_record_new:
   id: 9001
   parent_id: 9
@@ -1629,6 +1643,7 @@ activity_index:
   controller: "my_school/activities"
   action: "index"
   protocol: ""
+  visible: true
   <<: *DEFAULTS
 
 activity_new:
@@ -1787,7 +1802,7 @@ news_index:
   params: ""
   protocol: ""
   <<: *DEFAULTS
-
+  visible: true
 news_new:
   id: 11001
   parent_id: 2
@@ -1888,6 +1903,7 @@ statistic_growth_record:
   action: "growth_record"
   protocol: ""
   <<: *DEFAULTS
+  visible: true
 statistic_kind_stat:
   id: 14100
   parent_id: 11
