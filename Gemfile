@@ -58,6 +58,7 @@ gem 'rd_searchlogic',"~> 3.0.1"
 group :development do
   gem "pry-rails"
 end
+#https://github.com/mvj3/rails3_acts_as_paranoid
 gem "acts_as_paranoid", "~>0.4.0"
 gem "carrierwave","~>0.9.0"
 #https://github.com/Macrow/rails_kindeditor
