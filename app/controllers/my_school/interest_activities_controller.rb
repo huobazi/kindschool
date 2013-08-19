@@ -130,7 +130,7 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
   def update
     if params[:activity].present?
       params[:activity][:kindergarten_id] = @kind.id
-      params[:activity][:tp] = 0
+      params[:activity][:tp] = 1
     end
     if current_user.get_users_ranges[:tp] == :teachers
       @activity = @kind.activities.where("tp = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", 1, current_user.staff.id, current_user.id).find_by_id(params[:id].to_i)

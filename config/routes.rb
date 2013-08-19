@@ -1,11 +1,13 @@
 School::Application.routes.draw do
 
+
   match 'code/code_image' => 'code#code_image'
   match 'code/recode' => 'code#recode'
   match 'my_school' => 'my_school/main#index'
   namespace :my_school do
+    resources :teaching_plans
     resources :personal_sets
-    resources :approve_modules do 
+    resources :approve_modules do
       collection do
         get :get_edit_ids
       end
@@ -29,6 +31,10 @@ School::Application.routes.draw do
     resources :comments do
       collection do
         post :send_comment
+        post :modify
+      end
+      member do
+        get :virtual_delete
       end
     end
     resources :news 

@@ -23,12 +23,29 @@ module ApplicationHelper
     end
     menus
   end
-  
+
   #常用功能菜单
   def useful_features_menu
     menus = current_user.smarty_menu
   end
 
+  def can_destroy_comment?(comment)
+    if current_user.get_users_ranges[:tp] == :all
+      true
+    elsif current_user.id == comment.user.id
+      true
+    else
+      false
+    end
+  end
+
+  def can_edit_comment?(comment)
+    if current_user.id == comment.user.id
+      true
+    else
+      false
+    end
+  end
 
   def destroy_topic_entry?(topic_entry)
     if current_user.get_users_ranges[:tp] == :all

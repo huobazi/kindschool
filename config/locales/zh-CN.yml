@@ -242,6 +242,7 @@ zh-CN:
       shrink_record: "seo关键字优化"
       appurtenances: "附件"
       sms_record: "短信记录"
+      comment: "评论"
     attributes:
       sms_count:
         chain_code: "扩展码"
@@ -669,6 +670,8 @@ zh-CN:
         description: "描述"
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"
+      comment:
+        comment: "评论"
     errors:
       <<: *errors
   views:

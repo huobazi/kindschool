@@ -1,5 +1,4 @@
 #encoding:utf-8
-#学员菜谱
 class MySchool::CommentsController < MySchool::ManageController
   def index
     filter_resource
@@ -18,6 +17,51 @@ class MySchool::CommentsController < MySchool::ManageController
       :resource_id=>params[:resource_id],
       :resource_type=>params[:resource_type]).page(params[:page] || 1).per(10)
     render :layout=>false
+  end
+
+  def virtual_delete
+    filter_resource
+    if @record.blank?
+      flash[:commet_notice] = "您无法删除该评论"
+      render :text => "您无法删除该评论", :status => 401
+      return
+    end
+
+    @comment = Comment.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    if current_user.get_users_ranges[:tp] == :all or @comment.user.id == current_user.id
+      @level = params[:level].presence
+      @comment.is_show = false
+      @comment.deleted_at = Time.now.utc
+      @comment.save
+      respond_to do |format|
+        format.js { render :layout => false }
+      end
+    else
+     render :text => "没有权限或非法操作", :status => 401
+    end
+  end
+
+  def modify
+    filter_resource
+    if @record.blank?
+      flash[:commet_notice] = "您无法编辑该评论"
+      render :text => "您无法编辑该评论"
+      return
+    end
+
+    comment = Comment.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    unless comment.user.id == current_user.id
+      flash[:error] = "没有权限或非法操作"
+      redirect_to request.referer
+    end
+    comment.comment = params[:comment][:comment]
+    if comment.save
+      flash[:success] = "修改评论成功"
+      redirect_to request.referer
+    else
+      flash[:error] = "修改评论失败"
+      redirect_to request.referer
+    end
   end
 
   def send_comment

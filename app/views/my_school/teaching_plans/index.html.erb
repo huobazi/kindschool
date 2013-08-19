@@ -1,0 +1,53 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>教学计划</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+         <li><%=(link_to "<div class='work_action_add'>
+            </div><div class='work_action_add_move'>
+            </div>".html_safe ,new_my_school_teaching_path_path) if  choose_operate_show("my_school/teaching_paths/new") %>
+        </li>
+        <li>
+          <a href="/" title="删除" id="destroy_multiple">
+            <div class="work_action_delete">
+            </div>
+            <div class="work_action_delete_move">
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="search_form">
+     <%#= form_tag '/my_school/cook_books' , :method=>"get" do %>
+      <b>开始时间：</b>
+      <%#= text_field :cook_book,:start_at_equals,:style=>"width:100px;" ,:value=>"#{params[:cook_book][:start_at_equals] if params[:cook_book] }"  %>
+      <b>结束时间：</b>
+      <%#= text_field :cook_book,:end_at_equals,:style=>"width:100px;" ,:value=>"#{params[:cook_book][:end_at_equals] if params[:cook_book] }"  %>
+      <%#= submit_tag "搜索" %>
+      <%#end%>
+    </div>
+
+    <div class="work_list">
+        <% unless @teaching_plans.blank? %>
+          <div class="topics" id="cook_books">
+            <%= render partial: "teaching_plans", collection: @teaching_plans %>
+          </div>
+        <%= paginate @teaching_plans  %>
+        <% else %>
+          暂无教学计划
+        <% end %>
+    </div>
+  </div>
+
+</div>
