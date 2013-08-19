@@ -1000,6 +1000,13 @@ table.attributes td {
     cursor: pointer;
     width: 122px;
 }
+.login .auth_code_div{
+    margin-top: 5px;
+}
+.login .auth_code_div_s{
+    margin-top: 15px;
+}
+
 .login #auth_loading{
     display: none;
     float: right;
@@ -1009,7 +1016,7 @@ table.attributes td {
     height: 40px;
 }
 .login .login_form_span{
-    padding: 20px;
+    margin: 10px 20px 20px;
 }
 .login .login_submit{
     width: 170px;
@@ -1070,6 +1077,9 @@ table.attributes td {
 }
 .login .course_div{
     padding: 10px 30px 30px;
+}
+.login .sao_weixin_img img{
+    display: inline;
 }
 /*======发件人选名单==============*/
 #message_inputs{
