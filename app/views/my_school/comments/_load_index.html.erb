@@ -35,11 +35,30 @@
           <% end %>
         </div>
         <div class="actions">
+          <a style="cursor: pointer" type="button" data-toggle="modal" data-target="#edit_comment"><i class="icon-edit"></i></a>
           <% if comment.is_show %>
-            <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "comments", :action=>:virtual_delete,:id=>comment.id, :level => level, :resource_id => params[:resource_id], :resource_type => params[:resource_type]), :method => :get, confirm: "你确定删除该贴子回复吗", remote: true %>
+            <% if can_destroy_comment?(comment) %>
+              <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "comments", :action=>:virtual_delete,:id=>comment.id, :level => level, :resource_id => params[:resource_id], :resource_type => params[:resource_type]), :method => :get, confirm: "你确定删除该贴子回复吗", remote: true %>
+            <% end %>
           <% end %>
         </div>
       </div>
+      <!-- Modal -->
+      <div id="edit_comment" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">编辑回复</h3>
+        </div>
+        <div class="modal-body">
+          <%= form_for comment, :validate => true, :url => {:controller=>"/my_school/comments",:action=>:modify, resource_type: params[:resource_type], resource_id: params[:resource_id], id: comment.id}, :html =>{:class=>"form-horizontal", :multipart => true, :method => "get"} do |f| %>
+            <%= f.text_area :comment, class: "span5", rows: "5" %>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+          <%= f.submit disable_with: "正在提交...", class: "btn btn-primary" %>
+        </div>
+      </div>
+       <% end %>
     <% end %>
 
     <div id="paginator">
@@ -60,6 +79,9 @@
       </div>
     </div>
   </form>
+
+
+
   <script type="text/javascript">
     jQuery(function() {
       $("#comment_submit").click(function(){

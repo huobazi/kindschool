@@ -23,7 +23,7 @@ class MySchool::CommentsController < MySchool::ManageController
     filter_resource
     if @record.blank?
       flash[:commet_notice] = "您无法删除该评论"
-      render :text => "您无法删除该评论"
+      render :text => "您无法删除该评论", :status => 401
       return
     end
 
@@ -39,6 +39,17 @@ class MySchool::CommentsController < MySchool::ManageController
     else
      render :text => "没有权限或非法操作", :status => 401
     end
+  end
+
+  def modify
+    binding.pry
+    filter_resource
+    if @record.blank?
+      flash[:commet_notice] = "您无法编辑该评论"
+      render :text => "您无法编辑该评论"
+      return
+    end
+
   end
 
   def send_comment

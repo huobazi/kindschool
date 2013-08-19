@@ -241,6 +241,7 @@ zh-CN:
       weiyi_config: "微壹平台配置"
       shrink_record: "seo关键字优化"
       appurtenances: "附件"
+      comment: "评论"
     attributes:
       weiyi_config:
         number: "编号"
@@ -654,6 +655,8 @@ zh-CN:
         description: "描述"
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"
+      comment:
+        comment: "评论"
     errors:
       <<: *errors
   views:
