@@ -11,6 +11,7 @@ class  MySchool::StaffsController < MySchool::ManageController
   def new
     @staff = Staff.new
     @staff.user = User.new(:kindergarten_id => @kind.id, :tp => 1)
+    @role_teacher = @kind.roles.where(:name=>"老师").first
   end
 
   def create
