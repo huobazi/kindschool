@@ -33,31 +33,50 @@
           <div class="inner">
             <div>
               <p class="sum">延时班总数<span><%= @kind.squads.where(tp: 1).count %></span></p>
-              <!-- start cell -->
-              <div class="cell">
-                <% @kind.squads.where(tp: 1).each do |virtual_squad| %>
-                  <div class="clearfix">
-                    <p><%= virtual_squad.name %>班的老师总数<span><%= virtual_squad.user_squads_teacher_users.count %></span><a class="fold" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a></p>
-                    <ul class="detail_stat teacher">
-                      <% virtual_squad.user_squads_teacher_users.each do |teacher| %>
-                        <li><%= teacher.try(:name) %></li>
-                      <% end %>
-                    </ul>
-                  </div>
-                  <div class="clearfix">
-                    <p><%= virtual_squad.name %>班的学员总数<span><%= virtual_squad.user_squads_student_users.count %></span><a class="fold" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a></p>
+              <% unless @kind.squads.where(tp: 1).blank? %>
+                <div id="virtual_squads">
+                  <% @kind.squads.where(tp: 1).each do |virtual_squad| %>
+                    <!-- start cell -->
+                    <div class="cell">
+                        <div class="clearfix">
+                          <p><%= virtual_squad.name %>班的老师总数<span><%= virtual_squad.user_squads_teacher_users.count %></span>
+                          <% unless virtual_squad.user_squads_teacher_users.blank? %>
+                            <a class="fold" title="查看延时班的老师" alt="查看延时班的老师" href="javascript:void(0);">
+                            <i class="icon-plus f pull-right"></i></a>
+                          <% end %>
+                          </p>
+                          <ul class="detail_stat teacher">
+                            <% unless virtual_squad.user_squads_teacher_users.blank? %>
+                              <% virtual_squad.user_squads_teacher_users.each do |teacher| %>
+                                <li><%= teacher.try(:name) %></li>
+                              <% end %>
+                            <% else %>
+                              暂时没有延时班老师
+                            <% end %>
+                          </ul>
+                        </div>
+                        <div class="clearfix">
+                          <p><%= virtual_squad.name %>班的学员总数<span><%= virtual_squad.user_squads_student_users.count %></span>
+                          <% unless virtual_squad.user_squads_student_users.blank? %>
+                            <a class="fold" title="查看延时班的老师" alt="查看延时班的学员" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a>
+                          <% end %>
+                          </p>
 
-                    <div class="detail_stat">
-                      <a href="javascript: void(0);" class="btn s" id="all" for="<%= virtual_squad.id %>">查看全部学员</a>
-                      <a href="javascript: void(0);" class="btn s" id="from_squad" for="<%= virtual_squad.id %>">查看来自班级的学员</a>
-                      <div id="students">
-                      </div>
+                          <div class="detail_stat action">
+                            <a href="javascript: void(0);" class="btn btn-primary s" flag="all" for="<%= virtual_squad.id %>">查看全部学员</a>
+                            <a href="javascript: void(0);" class="btn btn-primary s" flag="from_squad" for="<%= virtual_squad.id %>">查看来自班级的学员</a>
+                            <div class="students">
+                            </div>
+                          </div>
+
+                        </div>
                     </div>
-
-                  </div>
-                <% end %>
-              </div>
-              <!-- end cell -->
+                    <!-- end cell -->
+                  <% end %>
+                </div>
+              <% else %>
+                没有延时班
+              <% end %>
             </div>
           </div>
         </div>
@@ -88,17 +107,18 @@
     })
 
     $(".s").each(function() {
+      var s = $(this);
       $(this).click(function() {
         $.ajax({
           type: "get",
           url: "/my_school/statistics/virtual_squad",
-          data: {virtual_squad_id: $(this).attr("for"), flag: $(this).attr("id")},
+          data: {virtual_squad_id: $(this).attr("for"), flag: $(this).attr("flag")},
           beforeSend: function() {
-            $("#students").html('<img id="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
+            s.parent().children(".students").html('<img class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
           },
           success: function(result) {
-            $("#loading_img").hide();
-            $("#students").html(result);
+            s.parent().children(".students").children(".loading_img").hide();
+            s.parent().children(".students").html(result);
           }
         })
       })
