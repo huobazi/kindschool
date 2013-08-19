@@ -345,6 +345,7 @@ zh-CN:
         kindergarten_label: "所属幼儿园"
         squad_label: "所属班级"
         grade: "年级"
+        grade_label: "年级"
         squad: "班级"
         squad_id: "班级"
         birthday: "出生日期"
