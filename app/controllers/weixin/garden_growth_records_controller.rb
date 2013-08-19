@@ -60,14 +60,14 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
     @growth_record.creater_id = current_user.id
     @growth_record.tp = 0
     unless params[:personal_set_id].blank?
-       @set = current_user.personal_sets.find_by_id(params[:personal_set_id])
+      @set = current_user.personal_sets.find_by_id(params[:personal_set_id])
       if  !@set.blank? && @set.resource
-       if @set.resource_type == "PhotoGallery"
+        if @set.resource_type == "PhotoGallery"
           @growth_record.asset_imgs << AssetImg.new(:uploaded_data=>@set.resource.uploaded_data)
-         @set_imge = @set.resource.public_filename
-       elsif @set.resource_type=="TextSet"
-         @growth_record.content = @set.resource.content
-       end
+          @set_imge = @set.resource.public_filename
+        elsif @set.resource_type=="TextSet"
+          @growth_record.content = @set.resource.content
+        end
       end
     end
   end
@@ -102,6 +102,18 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
       @growth_record.kindergarten_id = @kind.id
       @growth_record.creater_id = current_user.id
       @growth_record.tp = 0
+      unless params[:personal_set_id].blank?
+        set = current_user.personal_sets.find_by_id(params[:personal_set_id])
+        if  !set.blank? && set.resource
+          if set.resource_type == "PhotoGallery"
+            asset_img = AssetImg.new()
+            file_url =  "#{Rails.root}/public#{set.resource.public_filename}"
+            uploaded_data =  fixture_file_upload file_url, 'image/png' # (file_url, 'image/jpeg', false)
+            asset_img = AssetImg.new(:uploaded_data=>uploaded_data)
+            @growth_record.asset_imgs  << asset_img
+          end
+        end
+      end
       unless params[:asset_imgs].blank?
         params[:asset_imgs].each do |k,v|
           @growth_record.asset_imgs << AssetImg.new(:uploaded_data=>v)
@@ -156,7 +168,7 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
   def squad_student
     if grade=@kind.grades.where(:id=>params[:grade].to_i).first
       if squad = grade.squads.where(:id=>params[:squad].to_i).first
-         @student_infos = squad.student_infos
+        @student_infos = squad.student_infos
       end
     end
     render "squad_student", :layout => false
@@ -174,12 +186,12 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
   end
 
   protected
-    def student_at_garden?
-      if current_user.get_users_ranges[:tp] == :student
-        flash[:error] = "权限不够"
-        redirect_to :action => :index
-      end
+  def student_at_garden?
+    if current_user.get_users_ranges[:tp] == :student
+      flash[:error] = "权限不够"
+      redirect_to :action => :index
     end
+  end
 
 end
 

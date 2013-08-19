@@ -93,7 +93,7 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
       @growth_record.kindergarten_id = @kind.id
       @growth_record.tp = 0
       unless params[:personal_set_id].blank?
-       set = current_user.personal_sets.find(params[:personal_set_id])
+       set = current_user.personal_sets.find_by_id(params[:personal_set_id])
        if  !set.blank? && set.resource
          if set.resource_type == "PhotoGallery"
            asset_img = AssetImg.new()
