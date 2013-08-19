@@ -67,7 +67,7 @@
   <legend><label><strong>教职工角色</strong></label></legend>
   <div class="control-group">
     <div class="controls">
-      <%=select_tag "role[id]", options_for_select(@kind.roles.where("number <> ?",'student').collect { |e|[e.name,e.id]  },@staff.user.role.try(:id))%>
+      <%=select_tag "role[id]", options_for_select(@kind.roles.where("number <> ?",'student').order("id").collect { |e|[e.name,e.id]  },@role_teacher.try(:id) || @staff.user.role.try(:id))%>
     </div>
   </div>
 

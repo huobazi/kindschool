@@ -235,7 +235,7 @@
     url: "/my_school/notices"
     title: "通知信息"
     height_level: "b"
-    sequence: 615
+    sequence: 601
     operate_id: 2005
   - id: 63000
     name: "发件箱"
@@ -284,14 +284,14 @@
     url: "/my_school/personal_sets"
     title: "个人集锦"
     height_level: "b"
-    sequence: 1200
+    sequence: 1201
 
 - id: 90000
   number: 90000
   name: "饮食保健"
   height_level: "b"
   operate_id: 7
-  url: "/my_school/seedlings"
+  url: "/my_school/cook_books"
   sequence: 900
   children:
   - id: 91000
@@ -301,7 +301,7 @@
     url: "/my_school/seedlings"
     title: "疫苗记录"
     height_level: "b"
-    sequence: 910
+    sequence: 930
   - id: 92000
     name: "体检记录"
     operate_id: 7001
@@ -317,7 +317,7 @@
     url: "/my_school/cook_books"
     title: "菜谱"
     height_level: "b"
-    sequence: 930
+    sequence: 910
 - id: 100000
   number: 100000
   name: "成长记录"
@@ -349,7 +349,7 @@
     url: "/my_school/teaching_plans"
     title: "教学计划"
     height_level: "b"
-    sequence: 1020
+    sequence: 1030
 - id: 70000
   number: 70000
   name: "信息论坛"
