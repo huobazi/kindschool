@@ -235,7 +235,7 @@
     url: "/my_school/notices"
     title: "通知信息"
     height_level: "b"
-    sequence: 615
+    sequence: 601
     operate_id: 2005
   - id: 63000
     name: "发件箱"
@@ -284,7 +284,7 @@
     url: "/my_school/personal_sets"
     title: "个人集锦"
     height_level: "b"
-    sequence: 1200
+    sequence: 1201
 
 - id: 90000
   number: 90000
