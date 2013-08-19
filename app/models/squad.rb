@@ -31,6 +31,8 @@ class Squad < ActiveRecord::Base
   has_many :activities
   has_many :topics
 
+  has_many :topics
+
   def full_name
     "#{self.grade ? self.grade.name + "-" : ""}#{self.name}"
   end

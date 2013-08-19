@@ -32,9 +32,11 @@ class StudentInfo < ActiveRecord::Base
         number = i 
       end
         phone << row["手机号码"].to_i
+        puts "11111111111111\n\n\n\n\n"
         if user = User.find_by_phone(row["手机号码"].to_i)
           exist_phone << user.phone
         end
+        puts "2222#{user.inspect}22222222222222\n\n\n\n"
         unless squads = Squad.find_by_name_and_kindergarten_id(row["班级名称"],kind_id)
           unexist_squads << row["班级名称"]
         end

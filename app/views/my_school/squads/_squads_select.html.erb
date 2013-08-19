@@ -1,0 +1,30 @@
+<% if current_user.get_users_ranges[:tp] == :teachers %>
+    <div class="control-group">
+      <% unless @squads.empty? %>
+        <%= f.label :squad, class: "control-label" %>
+        <div class="controls">
+          <%= select_tag "album[squad_id]", options_for_select((@squads.collect{|s|[s.name,s.id]}.unshift(["全部", "NULL"]) || [])), :class => "select" %>
+        </div>
+      <% else %>
+        <label>没有负责的班级,请先分配负责的班级才能继续操作</label>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="controls">
+        <span>年级&nbsp;<%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}.unshift(["全部",0]),(@grade.id unless @grade.blank?) ) %></span>
+         <div id="class_number_partial">
+           <%unless @squads.blank? %>
+            <span>班级<%= select_tag "class_number", options_for_select((@squads.collect{|s|[s.name,s.id]} || []),(@squad.id unless @squad.blank?)) %></span>
+           <%end%>
+        </div>
+    </div>
+  <% end %>
+<script type="text/javascript">
+  $("#grade").change(function(){
+  $.get( "/my_school/albums/grade_class",
+          { grade: $('#grade').val()},
+          function(result){
+              $("#class_number_partial").html(result);
+           })
+         });
+</script>
