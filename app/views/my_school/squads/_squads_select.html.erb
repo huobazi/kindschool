@@ -3,7 +3,7 @@
       <% unless @squads.empty? %>
         <%= f.label :squad, class: "control-label" %>
         <div class="controls">
-          <%= select_tag "album[squad_id]", options_for_select((@squads.collect{|s|[s.name,s.id]}.unshift(["全部", "NULL"]) || [])), :class => "select" %>
+          <%= select_tag "album[squad_id]", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
         </div>
       <% else %>
         <label>没有负责的班级,请先分配负责的班级才能继续操作</label>
@@ -11,7 +11,7 @@
     </div>
   <% else %>
     <div class="controls">
-        <span>年级&nbsp;<%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}.unshift(["全部",0]),(@grade.id unless @grade.blank?) ) %></span>
+        <span>年级&nbsp;<%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]},(@grade.id unless @grade.blank?) ) %></span>
          <div id="class_number_partial">
            <%unless @squads.blank? %>
             <span>班级<%= select_tag "class_number", options_for_select((@squads.collect{|s|[s.name,s.id]} || []),(@squad.id unless @squad.blank?)) %></span>
