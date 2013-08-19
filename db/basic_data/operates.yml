@@ -1910,3 +1910,14 @@ statistic_message:
   action: "message"
   protocol: ""
   <<: *DEFAULTS
+statistics_virtual_squad:
+  id: 14300
+  parent_id: 11
+  name: "延时班统计"
+  level: 2
+  sequence: 4
+  note: "延时班统计"
+  controller: "my_school/statistics"
+  action: "virtual_squad"
+  protocol: ""
+  <<: *DEFAULTS

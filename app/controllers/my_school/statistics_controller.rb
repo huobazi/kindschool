@@ -32,6 +32,22 @@ class  MySchool::StatisticsController < MySchool::ManageController
 
   end
 
+  def virtual_squad
+    if request.xhr?
+      if params[:virtual_squad_id].present?
+        @virtual_squad = @kind.squads.where(tp: 1).find_by_id(params[:virtual_squad_id])
+        if params[:flag].presence == "all"
+          @all = true
+        elsif params[:flag].presence == "from_squad"
+          @all = false
+        end
+        respond_to do |format|
+          format.html { render "virtual", :layout => false }
+        end
+      end
+    end
+  end
+
   def message
     unless current_user.get_users_ranges[:tp] == :all
       flash[:error] = "没有权限"

@@ -1,0 +1,109 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>
+          延时班信息统计
+        </label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li>
+              统计
+            </li>
+            <li>/</li>
+            <li>延时班信息统计</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+      </ul>
+    </div>
+
+
+    <div class="work_list">
+      <div class="stat-content">
+        <!-- start panel -->
+        <div class="panel">
+          <div class="header">延时班信息统计</div>
+          <div class="inner">
+            <div>
+              <p class="sum">延时班总数<span><%= @kind.squads.where(tp: 1).count %></span></p>
+              <!-- start cell -->
+              <div class="cell">
+                <% @kind.squads.where(tp: 1).each do |virtual_squad| %>
+                  <div class="clearfix">
+                    <p><%= virtual_squad.name %>班的老师总数<span><%= virtual_squad.user_squads_teacher_users.count %></span><a class="fold" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a></p>
+                    <ul class="detail_stat teacher">
+                      <% virtual_squad.user_squads_teacher_users.each do |teacher| %>
+                        <li><%= teacher.try(:name) %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                  <div class="clearfix">
+                    <p><%= virtual_squad.name %>班的学员总数<span><%= virtual_squad.user_squads_student_users.count %></span><a class="fold" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a></p>
+
+                    <div class="detail_stat">
+                      <a href="javascript: void(0);" class="btn s" id="all" for="<%= virtual_squad.id %>">查看全部学员</a>
+                      <a href="javascript: void(0);" class="btn s" id="from_squad" for="<%= virtual_squad.id %>">查看来自班级的学员</a>
+                      <div id="students">
+                      </div>
+                    </div>
+
+                  </div>
+                <% end %>
+              </div>
+              <!-- end cell -->
+            </div>
+          </div>
+        </div>
+        <!-- end panel -->
+      </div>
+  </div>
+
+</div>
+
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".fold").each(function() {
+
+      $(this).click(function(event) {
+        event.preventDefault();
+        $(this).parent().parent().children(".detail_stat").slideToggle("fast", function() {
+          if ( $(this).parent().find("i.f").hasClass("icon-plus") ) {
+            $(this).parent().find("i.f").removeClass("icon-plus").addClass("icon-minus");
+          } else {
+            $(this).parent().find("i.f").removeClass("icon-minus").addClass("icon-plus");
+          }
+        });
+
+      })
+
+    })
+
+    $(".s").each(function() {
+      $(this).click(function() {
+        $.ajax({
+          type: "get",
+          url: "/my_school/statistics/virtual_squad",
+          data: {virtual_squad_id: $(this).attr("for"), flag: $(this).attr("id")},
+          beforeSend: function() {
+            $("#students").html('<img id="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
+          },
+          success: function(result) {
+            $("#loading_img").hide();
+            $("#students").html(result);
+          }
+        })
+      })
+    })
+
+  })
+</script>
+
