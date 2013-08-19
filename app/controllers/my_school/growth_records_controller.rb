@@ -51,15 +51,13 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     @growth_record.creater_id = current_user.id
     @growth_record.tp = 1
     unless params[:personal_set_id].blank?
-       @set = current_user.personal_sets.find(params[:personal_set_id])
+       @set = current_user.personal_sets.find_by_id(params[:personal_set_id])
       if  !@set.blank? && @set.resource
        if @set.resource_type == "PhotoGallery"
           @growth_record.asset_imgs << AssetImg.new(:uploaded_data=>@set.resource.uploaded_data) 
          @set_imge = @set.resource.public_filename
        elsif @set.resource_type=="TextSet"
          @growth_record.content = @set.resource.content 
-       else
-
        end
       end
     end
