@@ -192,6 +192,10 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
       redirect_to :action => :index
     end
   end
-
+  private
+   def fixture_file_upload(path, mime_type = nil, binary = false)
+      fixture_path = self.class.fixture_path if self.class.respond_to?(:fixture_path)
+      Rack::Test::UploadedFile.new("#{fixture_path}#{path}", mime_type, binary)
+    end
 end
 
