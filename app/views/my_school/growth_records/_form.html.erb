@@ -80,7 +80,11 @@
         <% f.object.asset_imgs.each do |img| %>
           <div class="img_div">
             <div class="img_border">
-              &nbsp;&nbsp; <img src="<%= @set_imge %>" alt="照片" class="img-polaroid"/>
+              <% if action_name == "new" || action_name == "create" %>
+                &nbsp;&nbsp; <img src="<%= @set_imge %>" alt="照片"class="img-polaroid"/>
+              <% else %>
+                &nbsp;&nbsp; <img src="<%= img.public_filename(:middle) %>" alt="照片"class="img-polaroid"/>
+              <% end %>
             </div>
           </div>
         <% end %>
