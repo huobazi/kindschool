@@ -27,7 +27,7 @@ class MySchool::CommentsController < MySchool::ManageController
       return
     end
 
-    @comment = Comment.find_by_id(params[:id])
+    @comment = Comment.find_by_id_and_kindergarten_id(params[:id], @kind.id)
     if current_user.get_users_ranges[:tp] == :all or @comment.user.id == current_user.id
       @level = params[:level].presence
       @comment.is_show = false
@@ -42,7 +42,6 @@ class MySchool::CommentsController < MySchool::ManageController
   end
 
   def modify
-    binding.pry
     filter_resource
     if @record.blank?
       flash[:commet_notice] = "您无法编辑该评论"
@@ -50,6 +49,19 @@ class MySchool::CommentsController < MySchool::ManageController
       return
     end
 
+    comment = Comment.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    unless comment.user.id == current_user.id
+      flash[:error] = "没有权限或非法操作"
+      redirect_to request.referer
+    end
+    comment.comment = params[:comment][:comment]
+    if comment.save
+      flash[:success] = "修改评论成功"
+      redirect_to request.referer
+    else
+      flash[:error] = "修改评论失败"
+      redirect_to request.referer
+    end
   end
 
   def send_comment

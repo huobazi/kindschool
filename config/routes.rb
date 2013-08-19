@@ -31,7 +31,7 @@ School::Application.routes.draw do
     resources :comments do
       collection do
         post :send_comment
-        get :modify
+        post :modify
       end
       member do
         get :virtual_delete

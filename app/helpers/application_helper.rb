@@ -32,7 +32,15 @@ module ApplicationHelper
   def can_destroy_comment?(comment)
     if current_user.get_users_ranges[:tp] == :all
       true
-    elsif current_user.id = comment.user.id
+    elsif current_user.id == comment.user.id
+      true
+    else
+      false
+    end
+  end
+
+  def can_edit_comment?(comment)
+    if current_user.id == comment.user.id
       true
     else
       false
