@@ -96,7 +96,10 @@ MENUS ={"home"=>{
    },
      "102000" => {
      "my_school/garden_growth_records" => ["garden", "new", "edit", "show"]
-   }
+   },
+     "103000" => {
+      "my_school/teaching_plans" => DEFULT_ACTION
+     }
    },
     "80000" => {
       "81000" =>{

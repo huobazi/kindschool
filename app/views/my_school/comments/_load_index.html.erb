@@ -19,22 +19,58 @@
     <% @comments.each_with_index do |comment, index| %>
       <% params[:page] ? (page_index = params[:page].to_i) : (page_index = 1) %>
       <%  level = (page_index-1)*10 + index + 1 %>
-      <div class="show_entry">
+      <div class="show_entry" id="comment_<%= comment.id %>">
         <div class="content_left">
-          <div class="user_head_logo"><img src="<%= comment.user.asset_logo ? comment.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="48" alt="头像"/></div>
+          <% if comment.is_show %>
+            <div class="user_head_logo"><img src="<%= comment.user.asset_logo ? comment.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="48" alt="头像"/></div>
+          <% end %>
         </div>
         <div class="content_right">
-          <p class="info"><span><%= level %>楼&nbsp;</span><span class="author"><%= comment.user.try(:name) %></span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(comment.try(:created_at)) %></span></p>
-          <div class="content"><%= comment.comment %></div>
+          <% if comment.is_show %>
+            <p class="info"><span><%= level %>楼&nbsp;</span><span class="author"><%= comment.user.try(:name) %></span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(comment.try(:created_at)) %></span></p>
+            <div class="content"><%= comment.comment %></div>
+          <% else %>
+            <p class="info"><span><%= level %>楼</span></p>
+            <del class="delete">该楼的回复已被删除</del>
+          <% end %>
+        </div>
+        <div class="actions">
+          <% if can_edit_comment?(comment) %>
+            <a style="cursor: pointer" type="button" data-toggle="modal" data-target="#edit_comment"><i class="icon-edit"></i></a>
+          <% end %>
+          <% if comment.is_show %>
+            <% if can_destroy_comment?(comment) %>
+              <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "comments", :action=>:virtual_delete,:id=>comment.id, :level => level, :resource_id => params[:resource_id], :resource_type => params[:resource_type]), :method => :get, confirm: "你确定删除该贴子回复吗", remote: true %>
+            <% end %>
+          <% end %>
         </div>
       </div>
+      <!-- Modal -->
+      <div id="edit_comment" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">编辑评论</h3>
+        </div>
+        <div class="modal-body">
+          <%= form_for comment, :validate => true, :url => {:controller=>"/my_school/comments",:action=>:modify}, :html =>{:class=>"form-horizontal", :multipart => true, :method => "post"} do |f| %>
+            <%= f.text_area :comment, class: "span5", rows: "5" %>
+            <%= f.hidden_field :id, value: comment.id, name: "id" %>
+            <%= f.hidden_field :resource_type, name: "resource_type" %>
+            <%= f.hidden_field :resource_id, name: "resource_id" %>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+          <%= f.submit disable_with: "正在提交...", class: "btn btn-primary" %>
+        </div>
+      </div>
+       <% end %>
     <% end %>
 
     <div id="paginator">
       <%= paginate @comments, :remote => true,:params=>{:resource_type=>params[:resource_type],:resource_id=>params[:resource_id]} %>
     </div>
   <% end %>
-  <form class="form-horizontal">
+  <form class="form-horizontal" id="new_comment">
     <div class="control-group">
       <label class="control-label" for="comment">评论</label>
       <div class="controls">
@@ -48,6 +84,9 @@
       </div>
     </div>
   </form>
+
+
+
   <script type="text/javascript">
     jQuery(function() {
       $("#comment_submit").click(function(){
@@ -68,17 +107,17 @@
             $(this).remove();
           });
         }, 500);
-      }).ajaxError(function() {
+      }).ajaxError(function(event, xhr, status) {
         var $loader = $('#remote-loader');
-        var $error = $('<span class="label label-important">操作失败</span>');
+        var error_message = "<span class='label label-important'>" + xhr.responseText + "</span>";
+        var $error = $(error_message);
         $loader.html($error);
         $error.click(function() {
           $loader.fadeOut(function(){
             $(this).remove();
           });
-       });
+        });
       });
-
 
     });
   </script>

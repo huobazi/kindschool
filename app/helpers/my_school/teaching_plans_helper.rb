@@ -1,0 +1,2 @@
+module MySchool::TeachingPlansHelper
+end

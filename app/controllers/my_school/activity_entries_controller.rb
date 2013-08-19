@@ -106,27 +106,15 @@ class MySchool::ActivityEntriesController < MySchool::ManageController
     @activity_entry = ActivityEntry.find_by_id(params[:id])
 
     if @activity_entry.nil?
-      flash[:error] = "没有权限或活动不存在"
-      redirect_to :action => :index
+      render :text => "没有权限或活动不存在", :status => 401
       return
     end
 
+    @level = params[:level] || true
+
     @activity = Activity.find_by_id(@activity_entry.activity_id)
 
-    if current_user.get_users_ranges[:tp] == :all
-      @activity_entry.is_show = 0
-      @activity_entry.deleted_at = Time.now.utc
-      @activity_entry.save
-      respond_to do |format|
-        format.js { render :layout => false }
-      end
-    elsif current_user.id == @activity_entry.creater_id
-      @activity_entry.is_show = 0
-      @activity_entry.deleted_at = Time.now.utc
-      @activity_entry.save
-      respond_to do |format|
-        format.js { render :layout => false }
-      end
+    if current_user.get_users_ranges[:tp] == :all or current_user.id == @activity_entry.creater_id
     elsif current_user.get_users_ranges[:tp] == :teachers
       if @activity_entry.activity.squad.present? && current_user.staff.squad_ids.include?(@activity_entry.activity.squad_id)
         @activity_entry.is_show = 0
@@ -135,21 +123,21 @@ class MySchool::ActivityEntriesController < MySchool::ManageController
         respond_to do |format|
           format.js { render :layout => false }
         end
+        return
       else
-        flash[:error] = "没有权限或贴子回复不存在"
-        if params[:flag].presence == true
-          redirect_to my_school_activity_path(@activity_entry.activity_id)
-        else
-          redirect_to my_school_interest_activity_path(@activity_entry.activity_id)
-        end
+        render :text => "没有权限", status: 401
+        return
       end
     else
-      flash[:error] = "没有权限"
-      if params[:flag].presence == true
-        redirect_to my_school_activity_path(@activity_entry.activity_id)
-      else
-        redirect_to my_school_interest_activity_path(@activity_entry.activity_id)
-      end
+      render :text => "没有权限", status: 401
+      return
+    end
+
+    @activity_entry.is_show = 0
+    @activity_entry.deleted_at = Time.now.utc
+    @activity_entry.save
+    respond_to do |format|
+      format.js { render :layout => false }
     end
 
   end

@@ -1,4 +1,0 @@
-(function() {
-  $("#activity_entry_<%= @activity_entry.id %>").replaceWith('<%= escape_javascript(render "activity_entry", :activity_entry => @activity_entry, :activity_entry_counter => @activity.activity_entries.count - 1) %>')
-})();
-

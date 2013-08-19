@@ -1,5 +1,7 @@
-<% params[:page] ? (page_index = params[:page].to_i) : (page_index = 1) %>
+<% unless @level.present? %>
+  <% params[:page] ? (page_index = params[:page].to_i) : (page_index = 1) %>
   <%  level = (page_index-1)*10 + activity_entry_counter + 1 %>
+<% end %>
   <div id="activity_entry_<%= activity_entry.id %>" class="show_entry">
     <div class="content_left">
       <% if activity_entry.is_show %>
@@ -31,11 +33,7 @@
       <% end %>
       <% if destroy_activity_entry?(activity_entry) or choose_operate_show("my_school/activity_entries/virtual_delete") %>
         <% unless activity_entry.is_show == false %>
-          <% if controller_name == "activities" %>
-            <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "activity_entries", :action=>:virtual_delete,:id=>activity_entry.id, flag: true), :method => :get, confirm: "你确定删除该贴子回复吗", remote: true %>
-          <% else %>
-            <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "activity_entries", :action=>:virtual_delete,:id=>activity_entry.id), :method => :get, confirm: "你确定删除该贴子回复吗", remote: true %>
-          <% end %>
+         <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "activity_entries", :action=>:virtual_delete,:id=>activity_entry.id, level: level), :method => :get, confirm: "你确定删除该贴子回复吗", remote: true %>
         <% end %>
       <% end %>
     </div>

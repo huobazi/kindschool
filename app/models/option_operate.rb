@@ -15,4 +15,5 @@ class OptionOperate < ActiveRecord::Base
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end
+
 end

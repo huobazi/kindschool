@@ -2,7 +2,7 @@
 class Message < ActiveRecord::Base
   acts_as_paranoid
   attr_accessible :approve_status, :approver_id, :chain_code, :content, :entry_id,
-    :kindergarten_id, :parent_id, :send_date, :sender_id, :sender_name, :status, :title, :tp
+    :kindergarten_id, :parent_id, :send_date, :sender_id, :sender_name, :status, :title, :tp,:allsms
   belongs_to :kindergarten
   belongs_to :sender, :class_name => "User",:foreign_key=>:sender_id
   has_many :message_entries
@@ -82,7 +82,7 @@ class Message < ActiveRecord::Base
           message_entries_data =  self.message_entries
         end
         message_entries_data.each do |entry|
-          if([1,2].include?(self.tp) && entry.receiver.is_receive) || self.tp == 3
+          if([1,2].include?(self.tp) && (self.allsms || entry.receiver.is_receive)) || self.tp == 3
             role = self.sender.role if self.sender && self.sender.role
             if self.approve_status == 0 && entry.sms_record.blank?
               entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
