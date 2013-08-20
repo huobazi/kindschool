@@ -9,4 +9,5 @@
     $("#topic_entries").empty();
     $('<%= escape_javascript(render "activity_entry", :activity_entry => @activity_entry, :activity_entry_counter => @activity.activity_entries.count - 1) %>').hide().appendTo($("#topic_entries")).fadeIn('fast');
   }
+  activity_entry_note.html("")
 })()
