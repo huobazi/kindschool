@@ -10,5 +10,6 @@
     $('<%= escape_javascript(render "topic_entry", :topic_entry => @topic_entry, :topic_entry_counter => @topic.topic_entries.count - 1) %>').hide().appendTo($("#topic_entries")).fadeIn('fast');
   }
 
-  topic_entry_content.html("")
+  topic_entry_content.html("");
+  $("#topic_entries").find("#total").html(<%= @topic.topic_entries.count %>)
 })()

@@ -177,7 +177,7 @@
           </div>
           <% unless @activity_entries.blank? %>
             <div class="total">
-              <b>共收到<%= @activity_entries.total_count %>条回复</b>
+              <b>共收到<span id="total"><%= @activity_entries.total_count %></span>条回复</b>
             </div>
             <%= render partial: "my_school/activity_entries/activity_entry", collection: @activity_entries %>
             <%= paginate @activity_entries, params: {anchor: "topic_entries"} %>
