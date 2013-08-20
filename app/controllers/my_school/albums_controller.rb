@@ -1,30 +1,30 @@
 #encoding:utf-8
 #相册锦集
 class MySchool::AlbumsController  < MySchool::ManageController
-   def index
+  def index
 
-     if current_user.get_users_ranges[:tp] == :student
-       if (session[:operates] || []).include?('my_school/albums/new')
-          @albums = @kind.albums.where("squad_id = ? or squad_id is null", current_user.student_info.squad_id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
-        else
-          @albums = @kind.albums.where("is_show = 1 and (squad_id = ? or squad_id is null)", current_user.student_info.squad_id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
-       end
-     elsif current_user.get_users_ranges[:tp] == :teachers
-       if (session[:operates] || []).include?('my_school/albums/new')
-          @albums = @kind.albums.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
-        else
-          @albums = @kind.albums.where("is_show = 1 and ( squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL )", current_user.staff.id, current_user.id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
-       end
-     else
-       if (session[:operates] || []).include?('my_school/albums/new')
-          @albums = @kind.albums.page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
-       else
-          @albums = @kind.albums.where(is_show: 1).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
-       end
-     end
-   end
+    if current_user.get_users_ranges[:tp] == :student
+      if (session[:operates] || []).include?('my_school/albums/new')
+        @albums = @kind.albums.where("squad_id = ? or squad_id is null", current_user.student_info.squad_id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+      else
+        @albums = @kind.albums.where("is_show = 1 and (squad_id = ? or squad_id is null)", current_user.student_info.squad_id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+      end
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      if (session[:operates] || []).include?('my_school/albums/new')
+        @albums = @kind.albums.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+      else
+        @albums = @kind.albums.where("is_show = 1 and ( squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL )", current_user.staff.id, current_user.id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+      end
+    else
+      if (session[:operates] || []).include?('my_school/albums/new')
+        @albums = @kind.albums.page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+      else
+        @albums = @kind.albums.where(is_show: 1).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+      end
+    end
+  end
 
-   def new
+  def new
     @album = @kind.albums.new
     if current_user.get_users_ranges[:tp] == :student
       flash[:error] = "没有权限"
@@ -33,13 +33,13 @@ class MySchool::AlbumsController  < MySchool::ManageController
     else current_user.get_users_ranges[:tp] == :teachers
       @squads = current_user.get_users_ranges[:squads]
     end
-     if @grades = @kind.grades
-     #    if @squads = @grades.first.squads
-     #    end
-     end
-   end
+    if @grades = @kind.grades
+      #    if @squads = @grades.first.squads
+      #    end
+    end
+  end
 
-   def create
+  def create
     if current_user.get_users_ranges[:tp] == :student
       flash[:error] = "没有权限"
       redirect_to action: :index
@@ -61,78 +61,78 @@ class MySchool::AlbumsController  < MySchool::ManageController
     @album = @kind.albums.new(params[:album])
     unless params[:class_number].blank?
       if squad = Squad.find(params[:class_number].to_i)#where(:id=>params[:class_number].to_i).first
-         @album.squad =  squad
-         @album.squad_name = squad.name
+        @album.squad =  squad
+        @album.squad_name = squad.name
       end
     end
     @album.send_date = Time.now
-     respond_to do |format|
+    respond_to do |format|
       if @album.save
         format.html { redirect_to my_school_albums_path, :notice=> '相册锦集创建成功.' }
       else
         format.html { render :action=> "new" }
       end
     end
-   end
+  end
 
-   def grade_class
+  def grade_class
     if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
-       @squads = grade.squads
+      @squads = grade.squads
     end
-     render "grade_class", :layout => false
-   end
+    render "grade_class", :layout => false
+  end
 
-   def edit
+  def edit
     if current_user.get_users_ranges[:tp] == :student
       flash[:error] = "没有权限"
       redirect_to action: :index
       return
     elsif current_user.get_users_ranges[:tp] == :teachers
-       @album = @kind.albums.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
+      @album = @kind.albums.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
     else
       @album = @kind.albums.find(params[:id])
     end
     if @album.nil?
-       flash[:error] = "没有权限或相册不存在"
-       redirect_to action: "index"
-       return
+      flash[:error] = "没有权限或相册不存在"
+      redirect_to action: "index"
+      return
     end
     if @grades = @kind.grades
-        if @squads = @grades.first.squads
-        end
-     end
-      if @squad = @album.squad
-          @grade = @squad.grade
-      else
-          @squads  = []
+      if @squads = @grades.first.squads
       end
+    end
+    if @squad = @album.squad
+      @grade = @squad.grade
+    else
+      @squads  = []
+    end
 
-   end
+  end
 
-   def update
+  def update
 
     if current_user.get_users_ranges[:tp] == :student
       flash[:error] = "没有权限"
       redirect_to action: :index
       return
     elsif current_user.get_users_ranges[:tp] == :teachers
-       @album = @kind.albums.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
+      @album = @kind.albums.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
     else
       @album = @kind.albums.find(params[:id])
     end
 
     if @album.nil?
-       flash[:error] = "没有权限或相册不存在"
-       redirect_to action: "index"
-       return
+      flash[:error] = "没有权限或相册不存在"
+      redirect_to action: "index"
+      return
     end
     unless params[:class_number].blank?
-     if squad = Squad.find(params[:class_number].to_i)#where(:id=>params[:class_number].to_i).first
+      if squad = Squad.find(params[:class_number].to_i)#where(:id=>params[:class_number].to_i).first
         @album.squad =  squad
         @album.squad_name = squad.name
       end
     end
-     @album.save
+    @album.save
     respond_to do |format|
       if @album.update_attributes(params[:album])
         format.html { redirect_to my_school_albums_path, notice: '相册锦集修改成功.' }
@@ -141,24 +141,40 @@ class MySchool::AlbumsController  < MySchool::ManageController
       end
     end
 
-   end
+  end
 
-   def show
-     if current_user.get_users_ranges[:tp] == :student
-       @album = @kind.albums.where("squad_id = ? or squad_id is null", current_user.student_info.squad_id).find_by_id(params[:id])
-     elsif current_user.get_users_ranges[:tp] == :teachers
-       @album = @kind.albums.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
-     else
-       @album = @kind.albums.find_by_id(params[:id])
-     end
-     if @album.nil?
-       flash[:error] = "没有权限或相册不存在"
-       redirect_to action: "index"
-       return
-     end
-     @album_entries=@album.album_entries.page(params[:page] || 1).per(6).order("created_at DESC")
-     @album_entry=AlbumEntry.new()
-   end
+  def show
+    if current_user.get_users_ranges[:tp] == :student
+      @album = @kind.albums.where("squad_id = ? or squad_id is null", current_user.student_info.squad_id).find_by_id(params[:id])
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @album = @kind.albums.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
+    else
+      @album = @kind.albums.find_by_id(params[:id])
+    end
+    if @album.nil?
+      flash[:error] = "没有权限或相册不存在"
+      redirect_to action: "index"
+      return
+    end
+    @album_entries=@album.album_entries.order("created_at DESC")
+    @album_entry=AlbumEntry.new()
+  end
+  def entry_index
+    if current_user.get_users_ranges[:tp] == :student
+      @album = @kind.albums.where("squad_id = ? or squad_id is null", current_user.student_info.squad_id).find_by_id(params[:id])
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @album = @kind.albums.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
+    else
+      @album = @kind.albums.find_by_id(params[:id])
+    end
+    if @album.nil?
+      flash[:error] = "没有权限或相册不存在"
+      redirect_to action: "index"
+      return
+    end
+    @album_entries=@album.album_entries.order("created_at DESC")
+    @album_entry=AlbumEntry.new()
+  end
 
   def destroy
     if current_user.get_users_ranges[:tp] == :student
@@ -166,15 +182,15 @@ class MySchool::AlbumsController  < MySchool::ManageController
       redirect_to action: :index
       return
     elsif current_user.get_users_ranges[:tp] == :teachers
-       @album = @kind.albums.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
+      @album = @kind.albums.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
     else
       @album = @kind.albums.find(params[:id])
     end
     if @album.nil?
-       flash[:error] = "没有权限或相册不存在"
-       redirect_to action: "index"
-       return
-     end
+      flash[:error] = "没有权限或相册不存在"
+      redirect_to action: "index"
+      return
+    end
     @album.destroy
     respond_to do |format|
       format.html { redirect_to my_school_albums_path }

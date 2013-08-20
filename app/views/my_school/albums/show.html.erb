@@ -9,13 +9,13 @@
         <div class="messages_root"></div>
         <label>相册锦集<%#=link_to '相册锦集',my_school_albums_path,:class=>"blue"%>
           <!-- -> -->
-          <%#=@album.title%></label>
+<%#=@album.title%></label>
         <div class="crumbs">
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
           </a>
-         <ul>
-             <li><%= link_to "相册锦集", my_school_albums_path %></li>
+          <ul>
+            <li><%= link_to "相册锦集", my_school_albums_path %></li>
             <li>/</li>
             <li><%=@album.title%></li>
           </ul>
@@ -23,41 +23,43 @@
       </div>
       <ul class="work_action">
         <% unless current_user.get_users_ranges[:tp] == :student %>
-          <%#if choose_operate_show('my_school/album_entries/new')%>
-          <li>
-            <%=link_to "<div class='work_action_add'>
-              </div><div class='work_action_add_move'>
-              </div>".html_safe ,new_my_school_album_album_entry_path(@album.id)%>
+          <%if choose_operate_show('my_school/album_entries/create')%>
+            <li>
+              <%=link_to "<div class='work_action_add'>
+    </div><div class='work_action_add_move'>
+    </div>".html_safe ,new_my_school_album_album_entry_path(@album.id)%>
             </li>
-              <%#end%>
+          <%end%>
+          <%if choose_operate_show('my_school/albums/entry_index')%>
+            <li>
+              <%=link_to "<div class='work_action_add'>
+    </div><div class='work_action_add_move'>
+    </div>".html_safe ,entry_index_my_school_album_album_path(@album.id)%>
+            </li>
+          <%end%>
         <% end %>
-              <li>
-               <a href="<%=url_for(:controller=>"/my_school/albums",:action=>:index)%>" title="返回">
-              <div class="work_action_return">
-              </div>
-              <div class="work_action_return_move">
-              </div>
-            </a>
-          </li>
+        <li>
+          <a href="<%=url_for(:controller=>"/my_school/albums",:action=>:index)%>" title="返回">
+            <div class="work_action_return">
+            </div>
+            <div class="work_action_return_move">
+            </div>
+          </a>
+        </li>
       </ul>
     </div>
-
     <div class="work_form">
       <div class="form_div" style="float:left;width:700px">
-
-        <%=render 'album_image'%>
-        <%#if choose_operate_show('my_school/album_entries/create')%>
-       <!--  <div class="work_form">
-         <div class="form_div" style="float:left">
-        -->  <%#= form_for(@album_entry,:url=>my_school_album_album_entries_path(@album.id,@album_entry),:html =>{:multipart=>true,:class=>"form-horizontal"},) do |f| %>
-          <%#= render 'form2', :f=>f %>
-       <%# end %>
-       <!-- </div>
-    </div> -->
-    <%#end%>
+        <div class="albums_title">
+          <%= @album.title %>
+        </div>
+        <%=render 'album_entry'%>
+        <hr/>
+        <div class="albums_title">
+          <%= @album.content %>
+        </div>
       </div>
       <%= render :partial=>"/my_school/comments/load_comments" ,:locals=>{:resource_type=>@album.class.to_s,:resource_id=>@album.id} %>
     </div>
   </div>
-
 </div>

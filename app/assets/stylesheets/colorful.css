@@ -1244,6 +1244,9 @@ a.album_a .album_img{
     width: 204px;
     z-index: 1;
 }
+#records {
+    width: 100%;
+}
 #album_wall li{
     display: inherit;
     float: left;

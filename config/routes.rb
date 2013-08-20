@@ -66,6 +66,7 @@ School::Application.routes.draw do
     end
     resources :albums do
       collection {get :grade_class}
+      member{get :entry_index}
       resources :album_entries do
         member {get :choose_main_img}
       end

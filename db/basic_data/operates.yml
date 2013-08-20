@@ -1620,6 +1620,17 @@ album_entry_record_create:
   action: "create"
   protocol: ""
   <<: *DEFAULTS
+album_entry_index:
+  id: 9008
+  parent_id: 9
+  name: "管理相册的照片"
+  level: 2
+  sequence: 0
+  note: "照片集锦_管理相册的照片"
+  controller: "my_school/albums"
+  action: "entry_index"
+  protocol: ""
+  <<: *DEFAULTS
 
 personnel_sets_index:
   id: 9100
