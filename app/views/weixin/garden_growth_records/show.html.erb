@@ -48,6 +48,7 @@
       </li>
     </ul>
     <br/>
+    <%= render :partial=>"/my_school/comments/load_comments" ,:locals=>{:resource_type=>@growth_record.class.to_s,:resource_id=>@growth_record.id} %>
   </div>
 </div>
 <%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
