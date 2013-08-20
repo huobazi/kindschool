@@ -1,9 +1,22 @@
 <% unless @student_infos.empty? %>
   <label class="field_prompt" for="student">学员:</label>
   <%= select_tag "student_info_id", options_for_select((@student_infos.collect{|s|[s.user.name,s.id]} || [])), :class => "select", :name => "growth_record[student_info_id]" %>
+  <label class="checkbox inline" style="margin-left: 20px;">
+    <input type="checkbox" id="unfinished" value="option1" <%= @unfinished.presence == true ? " checked='checked'" : "" %>>选择本周内未完成的学员
+  </label>
 <% else %>
   <label class="field_prompt" for="student">学员:</label>
   <div class="controls">
-    <label>没有学员,请先创建年级,才能继续操作</label>
+    <% if @unfinished.presence == true %>
+      <label>该班级内的学员都完成了成长记录</label>
+    <% else %>
+      <label>没有学员,请先创建年级,才能继续操作</label>
+    <% end %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $("#unfinished").on('change', function() {
+    $("#squad").trigger('change')
+  })
+</script>

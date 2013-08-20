@@ -10,8 +10,7 @@
     </div>
     <div class="infos">
       <div class="title">
-        <a href="<%= url_for(my_school_teaching_plan_path(teaching_plans)) %>">
-        </a>
+        <%=link_to teaching_plans.title,my_school_teaching_plan_path(teaching_plans) %>
       </div>
       <div class="info">
         <em>&nbsp;*&nbsp;</em><em><%= teaching_plans.creater.try(:name) %></em><em>&nbsp;创建于&nbsp;</em><abbr><%= teaching_plans.created_at.try(:to_long_datetime) %></abbr>
