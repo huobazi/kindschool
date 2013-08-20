@@ -172,28 +172,16 @@
               {
                 var unfinished = true || false
               }
-              $.get(
-                "/my_school/growth_records/squad_student_partial",
-                {
-                  squad: $("#squad").val(),
-                  unfinished: unfinished
-                },
-                function(result) {
-                  $("#squad_student_partial").html(result)
-                }
-              )
-
-              $.post({
+              $.ajax({
                 url: "/my_school/growth_records/squad_student_partial",
                 data: {
                   squad: $("#squad").val(),
                   unfinished: unfinished
                 },
-                context: this,
                 beforeSend: function() {
-                  $("#squad_student_partial").html('<img class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
+                  $("#squad_student_partial").html('<img style="margin-left: 250px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
                 },
-                success: function() {
+                success: function(result) {
                   $("#squad_student_partial").children(".loading_img").hide()
                   $("#squad_student_partial").html(result)
                 }
