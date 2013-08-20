@@ -22,6 +22,9 @@
       <div id="grade_squad_partial">
         <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
         <%= select_tag "squad", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+      <label class="checkbox inline">
+        <input type="checkbox" id="unfinished" value="option1" <%= @unfinished.presence == true ? " checked='checked'" : "" %>>选择本周内未完成的学员
+      </label>
       </div>
       <div id="squad_student_partial">
       </div>
@@ -156,7 +159,7 @@ $(document).ready(function() {
         $("#squad_student_partial").html(result)
       }
     )
-  });
+  })
   var flag = []
   var time_re = /\d{4}-\d{2}-\d{2}/;
   $("input[name='commit']").click(function(){
@@ -228,6 +231,11 @@ $(document).ready(function() {
 })
 </script>
 
+<script type="text/javascript">
+  if ($("#squad_for_teacher").length > 0) {
+    
+  }
+</script>
 
 <script  type="text/javascript">
   /**

@@ -1,6 +1,10 @@
 <% unless @squads.blank? %>
   <label class="field_prompt" for="squad">班级:</label>
-  <%= select_tag "squad_id", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select span2", :name => "student_info[squad_id]", :style => "margin-left: 120px;"  %>
+  <% if @has_default_squad.present? %>
+    <%= select_tag "squad_id", options_for_select((@squads.collect{|s|[s.name,s.id]} || []), :selected => @has_default_squad), :class => "select span2", :name => "student_info[squad_id]", :style => "margin-left: 120px;"  %>
+  <% else %>
+    <%= select_tag "squad_id", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select span2", :name => "student_info[squad_id]", :style => "margin-left: 120px;"  %>
+  <% end %>
 <% else %>
 <br />
 <div class="controls">
