@@ -31,7 +31,7 @@
       </div>
     </div>
     <%= p.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
-    <%= p.input :gender, :as => :radio, :collection => {"男" => "M", "女" => "G"}, :required => true %>
+    <%= p.input :gender, :as => :radio, :collection => {"男" => "G", "女" => "M"}, :required => true %>
     <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
     <%= p.input :name, :validate => true %>
     <%= p.input :phone, :validate => true %>
@@ -41,7 +41,7 @@
       <div class="control-group">
         <%= p.label :login, class: "control-label" %>
         <div class="controls">
-          <input type="text" value="<%= @staff.user.name %>" disabled="disabled" />
+          <input type="text" value="<%= @staff.user.login %>" disabled="disabled" />
           <p class="help-block">你不能改变你的用户名</p>
         </div>
       </div>

@@ -52,7 +52,7 @@ class Squad < ActiveRecord::Base
     if teacher = self.teachers.find_by_tp(1)
       teacher.staff.user.name
     else
-      "暂时没有班主任"
+      "没有班主任"
     end
   end
 

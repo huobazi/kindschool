@@ -50,8 +50,8 @@
         </div>
         <div class="control-group">
           <%= f.label :gender, :class => "control-label" %>&nbsp;&nbsp;
-          <input type="radio" id="user_G" name="user[gender]" value="G" checked="checked" />男
-          <input type="radio" id="user_M" name="user[gender]" value="M" />女
+          <input type="radio" id="user_G" name="user[gender]" value="G" <%= current_user.gender == "G" ? "checked": "" %> />男
+          <input type="radio" id="user_M" name="user[gender]" value="M" <%= current_user.gender == "M" ? "checked" : "" %>/>女
         </div>
         <div class="control-group">
           <%= f.label :phone, :class => "control-label" %>&nbsp;&nbsp;

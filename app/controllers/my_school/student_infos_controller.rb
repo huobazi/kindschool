@@ -2,8 +2,8 @@
 class  MySchool::StudentInfosController < MySchool::ManageController
 
   def index
-    if current_user.tp == 0
-      @student_infos = @kind.student_infos.where(:id=>current_user.id).page(params[:page] || 1).per(10)
+    if current_user.get_users_ranges[:tp] == :student
+      @student_infos = @kind.student_infos.where(:id=>current_user.student_info.id).page(params[:page] || 1).per(10)
     elsif current_user.get_users_ranges[:tp] == :teachers
       @student_infos = @kind.student_infos.where("squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?)",current_user.staff.id).search(params[:student_info] || {}).page(params[:page] || 1).per(10).order("student_infos.created_at DESC")
     else
@@ -122,15 +122,29 @@ class  MySchool::StudentInfosController < MySchool::ManageController
         redirect_to :controller => "/my_school/users", :action => :show, :id => current_user.id
       else
         @student_info = StudentInfo.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+        if @student_info.nil?
+          flash[:error] = "没有权限或非法操作"
+          redirect_to :back
+          return
+        end
       end
     elsif current_user.get_users_ranges[:tp] == :teachers
       if (@student_info = StudentInfo.find_by_id_and_kindergarten_id(params[:id], @kind.id)) && current_user.staff.squads.include?(@student_info.squad)
+        @squads = current_user.staff.squads
+        @squad_id = @student_info.squad_id
       else
         flash[:notice] = "没有权限"
         redirect_to :controller => "/my_school/users", :action => :show, :id => current_user.id
       end
     else current_user.get_users_ranges[:tp] == :all
       @student_info = StudentInfo.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+      if @student_info.nil?
+        flash[:error] = "没有权限或非法操作"
+        redirect_to :back
+        return
+      end
+      @grades = @kind.grades
+      @grade_id = @student_info.squad.try(:grade_id)
     end
   end
 
@@ -140,7 +154,9 @@ class  MySchool::StudentInfosController < MySchool::ManageController
       if current_user.student_info.id != params[:id].to_i
         flash[:notice] = "不能编辑他人的信息"
         redirect_to :controller => "/my_school/users", :action => :show, :id => current_user.id
+        return
       end
+      params[:student_info].except(:squad_id)
     elsif current_user.get_users_ranges[:tp] == :teachers
       if (@student_info = StudentInfo.find_by_id_and_kindergarten_id(params[:id], @kind.id)) && current_user.staff.squads.include?(@student_info.squad)
       else
@@ -149,7 +165,7 @@ class  MySchool::StudentInfosController < MySchool::ManageController
       end
     end
 
-    
+
     respond_to do |format|
       if @student_info.update_attributes(params[:student_info])
         if params[:asset_logo] && (user = @student_info.user)
@@ -199,6 +215,9 @@ class  MySchool::StudentInfosController < MySchool::ManageController
   def grade_squad_partial
     if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
       @squads = grade.squads
+      if params[:has_default_squad].present?
+        @has_default_squad = params[:has_default_squad].to_i
+      end
     end
     render "grade_squad", :layout => false
   end
