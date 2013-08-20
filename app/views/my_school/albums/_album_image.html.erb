@@ -1,45 +1,47 @@
 <div id="records">
   <% unless @album_entries.empty? %>
-  <ul id="image_wall">
-    <% @album_entries.each do |a_e| %>
-      <li style="width:228px;" class="photo_style" for="image_actions_<%= a_e.id %>" >
-    <a href="<%=a_e.asset_img.public_filename%>" class="fancybox"  title="创建时间<%= a_e.created_at.try(:to_long_datetime) %>--<%= a_e.title %>">
-      <img src="<%= a_e.asset_img ? a_e.asset_img.public_filename(:middle) : '/t/colorful/logo.png' %>" width="226px" height="226px" alt="<%=a_e.title%>" class="img-rounded" />
-    </a>
-    <div class="title">
-      <span class="name"><%=raw a_e.title%><%= a_e.id == @album.album_entry_id ? "---相册封面" : ""%></span>
+    <ul id="image_wall">
+      <% @album_entries.each do |a_e| %>
+        <li style="width:222px;min-height: 300px;" class="photo_style" for="image_actions_<%= a_e.id %>" >
+          <a href="<%=a_e.asset_img.public_filename%>" class="fancybox"  title="创建时间<%= a_e.created_at.try(:to_long_datetime) %>--<%= a_e.title %>">
+            <div class="photo_style_div">
+            <img src="<%= a_e.asset_img ? a_e.asset_img.public_filename(:middle) : '/t/colorful/logo.png' %>" alt="<%=a_e.title%>" class="img-rounded" />
+            </div>
+          </a>
+          <div class="title">
+            <span class="name" title="<%= a_e.title %>"><%= truncate(a_e.title, :length => 11)%><%= a_e.id == @album.album_entry_id ? "---相册封面" : ""%></span>
+          </div>
+          <div class="image_actions" id="image_actions_<%= a_e.id %>" style="display: none;">
+            <%= link_to '编辑',"###",:class=> "blue a_album_edit", :for=>"#album_entry_#{a_e.id}"%>
+            <%= link_to '删除', my_school_album_album_entry_path(@album.id,a_e), :method =>:delete, :data=> { :confirm=> '你确定删除该照片吗' }, :class => "blue" %>
+            <%= link_to '设置为相册封面',choose_main_img_my_school_album_album_entry_path(@album.id,a_e),:class=>'set_as_album_cover blue'%>
+          </div>
+          <div id="album_entry_<%=a_e.id%>" class="album_entry_title" style="display:none">
+            <%= form_for(a_e,:url=>my_school_album_album_entry_path(@album.id,a_e),:html =>{:multipart=>true,:class=>"form-horizontal"}) do |f| %>
+              <%=f.label :title, '相片标题:'%>
+              <%= f.text_field(:title) -%>
+              <%= f.submit('提交',:class=>"btn") %>
+              <%=link_to "取消" ,"###",:class=>'blue a_cancle'%>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+    <div class="paginate_div">
+      <%= paginate @album_entries  %>
     </div>
-    <div class="image_actions" id="image_actions_<%= a_e.id %>" style="display: none;">
-      <%= link_to '编辑',"###",:class=> "blue a_album_edit", :for=>"#album_entry_#{a_e.id}"%>
-      <%= link_to '删除', my_school_album_album_entry_path(@album.id,a_e), method: :delete, data: { confirm: '你确定删除该照片吗' }, :class => "blue" %>
-      <%= link_to '设置为相册封面',choose_main_img_my_school_album_album_entry_path(@album.id,a_e),:class=>'set_as_album_cover blue'%>
-    </div>
-    <div id="album_entry_<%=a_e.id%>" class="album_entry_title" style="display:none">
-      <%= form_for(a_e,:url=>my_school_album_album_entry_path(@album.id,a_e),:html =>{:multipart=>true,:class=>"form-horizontal"},) do |f| %>
-        <%=f.label :title, '相片标题:'%>
-      <%= f.text_field(:title) -%>
-      <%= f.submit('提交',:class=>"btn") %>
-      <%=link_to "取消" ,"###",:class=>'blue a_cancle'%>
-    <% end %>
-    </div>
-    </li>
-  <% end %>
-  </ul>
-  <div class="paginate_div">
-    <%= paginate @album_entries  %>
-  </div>
   <% else %>
     暂时没有上传图片
   <% end %>
 </div>
 <script type="text/javascript">
-$(".a_album_edit").click(function(){
-   $(".album_entry_title").hide();
-   $($(this).attr("for")).show();
-});
-$(".a_cancle").click(function(){
-  $(".album_entry_title").hide();
-});
+  $(".a_album_edit").click(function(){
+    $(".album_entry_title").hide();
+    $($(this).attr("for")).show();
+  });
+  $(".a_cancle").click(function(){
+    $(".album_entry_title").hide();
+  });
   $(".fancybox").fancybox();
 
   var flag;

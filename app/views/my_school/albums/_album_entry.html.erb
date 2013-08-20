@@ -1,0 +1,32 @@
+<script type="text/javascript">
+  //$(document).ready(
+   window.onload = function() {
+    $("div#my-folio-of-works").slideViewerPro({
+      thumbs: 6,
+      autoslide: true,
+      asTimer: 999999,
+      typo: true,
+      galBorderWidth: 0,
+      thumbsBorderOpacity: 0,
+      buttonsTextColor: "#707070",
+      buttonsWidth: 40,
+      thumbsActiveBorderOpacity: 0.8,
+      thumbsActiveBorderColor: "aqua",
+      shuffle: false
+    });
+  }
+</script>
+<div id="records">
+  <% unless @album_entries.blank? %>
+    <div id="my-folio-of-works" class="svwp">
+      <ul>
+        <% @album_entries.each do |a_e| %>
+          <li><img src="<%=a_e.asset_img.public_filename%>" alt="创建时间<%= a_e.created_at.try(:to_long_datetime) %>--<%=a_e.title%>"/></li>
+        <% end %>
+      </ul>
+    </div>
+  <% else %>
+    暂时没有上传图片
+  <% end %>
+</div>
+
