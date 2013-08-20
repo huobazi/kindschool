@@ -79,7 +79,7 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
   end
 
   def edit
-    @topic_entry = TopicEntry.find_by_id(params[:id])
+    @topic_entry = TopicEntry.where(is_show: true).find_by_id(params[:id])
     if @topic_entry.nil?
       flash[:error] = "回复不存在或没有权限"
       redirect_to :back
@@ -96,7 +96,7 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
   end
 
   def update
-    @topic_entry = TopicEntry.find(params[:id])
+    @topic_entry = TopicEntry.where(is_show: true).find(params[:id])
 
     if @topic_entry.update_attributes(params[:topic_entry])
       flash[:success] = "修改回复成功"

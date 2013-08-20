@@ -88,7 +88,7 @@
 
         <div id="topic_entries">
           <% unless @topic_entries.blank? %>
-            <div class="total"><b>共收到<%= @topic_entries.total_count %>条回复</b></div>
+            <div class="total"><b>共收到<span id="total"><%= @topic_entries.total_count %></span>条回复</b></div>
             <%= render :partial => "my_school/topic_entries/topic_entry", :collection => @topic_entries %>
             <%= paginate @topic_entries, params: {anchor: "topic_entries"} %>
           <% else %>

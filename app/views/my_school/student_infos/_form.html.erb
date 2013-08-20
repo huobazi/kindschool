@@ -37,7 +37,7 @@
     </div>
     <div class="left_table">
       <%= p.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
-      <%= p.input :gender, :as => :radio, :collection => {"男" => "M", "女" => "G"}, :required => true %>
+      <%= p.input :gender, :as => :radio, :collection => {"女" => "M", "男" => "G"}, :required => true %>
       <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
       <%= p.input :name, :validate => true, :required => true %>
       <%= p.input :phone, :validate => true %>
@@ -73,8 +73,28 @@
           </div>
         </div>
       <% else %>
-        <%= f.input :grade_label, :as => :string, :disabled => true %>
-        <%= f.input :squad_label, :as => :string, :disabled => true %>
+        <% if current_user.get_users_ranges[:tp] == :student %>
+          <%= f.input :grade_label, :as => :string, :disabled => true %>
+          <%= f.input :squad_label, :as => :string, :disabled => true %>
+        <% elsif current_user.get_users_ranges[:tp] == :all %>
+            <div class="select_field">
+              <label class="control-label"><abbr title="required">*</abbr>选择班级</label>
+              <label class="field_prompt" for="grade">年级:</label>
+              <span id="has_default_squad" style="display: none;" for="<%= @student_info.squad_id %>"></span>
+              <% unless @grades.blank? %>
+                <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}, @grade_id), :class => "select span2", :style => "margin-left: 30px;" %>
+              <% else %>
+                <div class="controls">
+                  <label>没有年级,请先创建年级,才能继续操作</label>
+                </div>
+              <% end %>
+              <div id="grade_squad_partial">
+              </div>
+            </div>
+        <% elsif current_user.get_users_ranges[:tp] == :teachers %>
+          <label class="control-label"><abbr title="required">*</abbr>选择班级</label>
+          <%= select_tag "squad_id", options_for_select((@squads.collect{|s|[s.name,s.id]} || []), :selected => @squad_id), :class => "select span2", :name => "student_info[squad_id]", :style => "margin-left: 120px;"  %>
+        <% end %>
       <% end %>
 
       <%= p.input :tp,:as=>:hidden %>
@@ -154,11 +174,15 @@
   </div>
 </div>
 <script type="text/javascript">
+  if ($("#has_default_squad").length > 0) {
+    var has_default_squad = $("#has_default_squad").attr("for")
+  }
 $("#grade").change(function() {
     $.get(
       "/my_school/student_infos/grade_squad_partial",
       {
-        grade: $("#grade").val()
+        grade: $("#grade").val(),
+        has_default_squad: has_default_squad
       },
       function(result) {
         $("#grade_squad_partial").html(result);
@@ -166,7 +190,8 @@ $("#grade").change(function() {
     )
 
 }).trigger("change")
-var flag = []
+  var flag = [];
+  var time_re = /\d{4}-\d{2}-\d{2}/;
   $("input[name='commit']").click(function(){
     if ( $("#squad_id").length > 0 ) {
       if($("#grade").next("span.help-inline").length > 0) {
@@ -180,6 +205,20 @@ var flag = []
         $("<span class='help-inline'>必须选择班级</span>").insertAfter($("#grade"))
       }
       flag.push(true);
+    }
+
+    if ( $("#student_info_birthday").val().length > 0 && $("#student_info_come_in_at").val().length > 0 && time_re.test($("#student_info_birthday").val()) && time_re.test($("#student_info_come_in_at").val()) ) {
+      if( Date.parse($("#student_info_come_in_at").val()) < Date.parse($("#student_info_birthday").val()) ) {
+        if( $("#student_info_come_in_at").next("span.help-inline").length == 0 ) {
+          $("<span class='help-inline'>结束时间必须大于开始时间</span>").insertAfter($("#student_info_come_in_at"))
+        }
+        flag.push(true);
+      } else {
+        if($("#student_info_come_in_at").next("span.help-inline").length > 0) {
+          $("#student_info_come_in_at").next("span.help-inline").remove()
+        }
+        flag.push(false);
+      }
     }
 
     for( i in flag ) {

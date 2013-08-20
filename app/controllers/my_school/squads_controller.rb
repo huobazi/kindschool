@@ -1,7 +1,7 @@
 #encoding:utf-8
 class  MySchool::SquadsController < MySchool::ManageController
   def index
-    @squads = @kind.squads.search(params[:squad] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+    @squads = @kind.squads.where(tp: 0).search(params[:squad] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
   end
 
   def new
@@ -24,7 +24,11 @@ class  MySchool::SquadsController < MySchool::ManageController
   end
 
   def edit
-    @squad = Squad.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+    @squad = Squad.where(tp: 0).find_by_id_and_kindergarten_id(params[:id],@kind.id)
+    if @squad.nil?
+      flash[:error] = "没有权限或非法操作"
+      redirect_to :action => :index
+    end
   end
 
   def destroy
@@ -39,12 +43,20 @@ class  MySchool::SquadsController < MySchool::ManageController
   end
 
   def show
-    @squad = Squad.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    @squad = Squad.where(tp: 0).find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    if @squad.nil?
+      flash[:error] = "没有权限或非法操作"
+      redirect_to :action => :index
+    end
   end
 
   def update
     params[:squad][:kindergarten_id] = @kind.id if params[:squad]
-    @squad = Squad.find_by_id_and_kindergarten_id(params[:id],@kind.id)
+    @squad = Squad.where(tp: 0).find_by_id_and_kindergarten_id(params[:id],@kind.id)
+    if @squad.nil?
+      flash[:error] = "没有权限或非法操作"
+      redirect_to :action => :index
+    end
     respond_to do |format|
       if @squad.update_attributes(params[:squad])
         #TODO:添加事务
