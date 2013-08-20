@@ -2244,11 +2244,25 @@ fieldset.staff_squad ol li {
     line-height: 24px;
 }
 
-.panel .cell .virtual_squad {
-  border: 1px solid red;
-}
 .panel .cell {
-  padding: 8px 10px
+  border-bottom: 1px solid #dbdbdb;
+  margin-bottom: 15px;
+}
+
+.panel .cell:last-child {
+  border-bottom: none;
+}
+
+.panel #virtual_squads {
+  padding-left: 15px;
+}
+
+.panel .cell .action {
+  padding-bottom: 20px;
+}
+
+.panel .cell .btn-primary {
+  color: white;
 }
 
 .panel .cell ul {
