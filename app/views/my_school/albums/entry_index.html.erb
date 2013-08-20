@@ -30,13 +30,6 @@
     </div>".html_safe ,new_my_school_album_album_entry_path(@album.id)%>
             </li>
           <%end%>
-          <%if choose_operate_show('my_school/albums/entry_index')%>
-            <li>
-              <%=link_to "<div class='work_action_adjust'>
-    </div><div class='work_action_adjust_move'>
-    </div>".html_safe ,url_for(:controller=>"my_school/albums",:action=>:entry_index,:id=>@album.id)%>
-            </li>
-          <%end%>
         <% end %>
         <li>
           <a href="<%=url_for(:controller=>"/my_school/albums",:action=>:index)%>" title="返回">
@@ -50,17 +43,8 @@
     </div>
     <div class="work_form">
       <div class="form_div" style="float:left;width:700px">
-        <div class="albums_title">
-          <%= @album.title %>
-          <hr/>
-        </div>
-        <%=render 'album_entry'%>
-        <hr/>
-        <div class="albums_title">
-          <%= @album.content %>
-        </div>
+        <%=render 'album_image'%>
       </div>
-      <%= render :partial=>"/my_school/comments/load_comments" ,:locals=>{:resource_type=>@album.class.to_s,:resource_id=>@album.id} %>
     </div>
   </div>
 </div>
