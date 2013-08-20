@@ -35,16 +35,24 @@
                 <div>
                   <p>年级总数<span><%= @kind.grades.count %></span><a class="fold" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a></p>
                   <div class="detail_stat">
-                    <% @kind.grades.each do |grade| %>
-                      <p><%= grade.name %>的班级总数<span><%= grade.squads.count %></span></p>
+                    <% unless @kind.grades.blank? %>
+                      <% @kind.grades.each do |grade| %>
+                        <p><%= grade.name %>的班级总数<span><%= grade.squads.count %></span></p>
+                      <% end %>
+                    <% else %>
+                      没有年级
                     <% end %>
                   </div>
                 </div>
                 <div>
                   <p>班级总数<span><%= @kind.squads.count %></span><a class="fold" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a></p>
                   <div class="detail_stat">
-                    <% @kind.squads.each do |squad| %>
-                      <p><%= squad.name %>的学员总数<span><%= squad.student_infos.count %></span></p>
+                    <% unless @kind.squads.blank? %>
+                      <% @kind.squads.each do |squad| %>
+                        <p><%= squad.name %>的学员总数<span><%= squad.student_infos.count %></span></p>
+                      <% end %>
+                    <% else %>
+                      没有班级
                     <% end %>
                   </div>
                 </div>
@@ -67,9 +75,13 @@
                 <div>
                   <p>延时班总数<span><%= @kind.squads.where(tp: 1).count %></span><a class="fold" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a></p>
                   <div class="detail_stat">
-                    <% @kind.squads.where(tp: 1).each do |virtual_squad| %>
-                      <p><%= virtual_squad.name %>的老师数量<span><%= virtual_squad.user_squads_teacher_users.count %></span></p>
-                      <p><%= virtual_squad.name %>的学员数量<span><%= virtual_squad.user_squads_student_users.count %></span></p>
+                    <% unless @kind.squads.where(tp: 1).blank? %>
+                      <% @kind.squads.where(tp: 1).each do |virtual_squad| %>
+                        <p><%= virtual_squad.name %>的老师数量<span><%= virtual_squad.user_squads_teacher_users.count %></span></p>
+                        <p><%= virtual_squad.name %>的学员数量<span><%= virtual_squad.user_squads_student_users.count %></span></p>
+                      <% end %>
+                    <% else %>
+                      没有延时班
                     <% end %>
                   </div>
                 </div>

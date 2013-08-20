@@ -128,6 +128,9 @@ MENUS ={"home"=>{
       },
       "42000" => {
         "my_school/statistics" => ["kind_stat"]
+      },
+      "44000" => {
+        "my_school/statistics" => ["virtual_squad"]
       }
     },
     "120000" => {
