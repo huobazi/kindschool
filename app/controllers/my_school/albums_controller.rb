@@ -172,7 +172,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
       redirect_to action: "index"
       return
     end
-    @album_entries=@album.album_entries.order("created_at DESC")
+    @album_entries=@album.album_entries.page(params[:page] || 1).per(6).order("created_at DESC")
     @album_entry=AlbumEntry.new()
   end
 

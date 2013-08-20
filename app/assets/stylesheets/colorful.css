@@ -196,18 +196,18 @@ a{
     padding-top: 3px;
 }
 .small_statistics_ul {
-  background-color: #bb4da0;
-  width: 100%;
-  padding-top: 3px;
+    background-color: #bb4da0;
+    width: 100%;
+    padding-top: 3px;
 }
 
 .show_menu {
-  display: none;
-  position: absolute;
-  right: 0 !important;
-  top: 22px;
-  width: 100px;
-  z-index: 99;
+    display: none;
+    position: absolute;
+    right: 0 !important;
+    top: 22px;
+    width: 100px;
+    z-index: 99;
 }
 .field_with_errors .message {
     color: #D00;
@@ -629,6 +629,19 @@ a{
     width: 52px;
     display: none;
 }
+.work_action_adjust{
+    background-image: url("/t/colorful/interface.png");
+    background-position:-70px 0px;
+    height: 46px;
+    width: 52px;
+}
+.work_action_adjust_move{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -70px -57px;
+    height: 65px;
+    width: 52px;
+    display: none;
+}
 .work_action_edit{
     background-image: url("/t/colorful/interface.png");
     background-position:-346px 0px;
@@ -901,7 +914,7 @@ table.attributes td {
     width: 218px;
 }
 .login .login_img_right a img{
-        border:0px;
+    border:0px;
 }
 .login .login_img_small{
     float: left;
@@ -909,14 +922,14 @@ table.attributes td {
     width: 108px;
 }
 .login .login_img_big{
-   float: left;
+    float: left;
     height: 172px;
     margin-top: -12px;
     text-align: left;
     width: 218px;
 }
 .login .img_small_foot{
-     margin-top: 56px;
+    margin-top: 56px;
 }
 .login .login_img_foot{
     margin-top:0px;
@@ -1192,8 +1205,13 @@ table.attributes td {
 }
 
 #image_wall li{
+    border: 1px solid #C4C4C4;
     float: left;
-    margin-right: 20px;
+    margin-right: 5px;
+    padding-top: 5px;
+    margin-top: 5px;
+    text-align: center;
+    border-radius: 6px 6px 6px 6px;
 }
 .blue{
     color: blue;
@@ -1258,11 +1276,12 @@ a.album_a .album_img{
 }
 
 .photo_style .title {
-    margin-top: 15px;
+    margin-top: 3px;
     font-size: 18px;
 }
 .photo_style .title .name {
     color: #222;
+    word-wrap: break-word;
 }
 .photo_style .actions {
     padding-left: 185px;
@@ -1275,6 +1294,12 @@ a.album_a .album_img{
 }
 .photo_style .image_actions a:hover {
     color: #222;
+}
+.photo_style .photo_style_div{
+    border-radius: 6px 6px 6px 6px;
+    height: 156px;
+    overflow: hidden;
+    width: 228px;
 }
 .paginate_div{
     width: 100%;
@@ -2213,21 +2238,21 @@ fieldset.staff_squad ol li {
 }
 
 .panel {
-  width: 100%;
-  min-height: 100px;
-  float: left;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  background: hsla(0,0%,100%,1);
-  box-shadow: 0 0 1px hsl(0,0%,40%);
-  min-height: 150px;
+    width: 100%;
+    min-height: 100px;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    background: hsla(0,0%,100%,1);
+    box-shadow: 0 0 1px hsl(0,0%,40%);
+    min-height: 150px;
 }
 
 .panel .sum {
-  border-bottom: 1px solid #E8E5E5;
-  height: 2em;
-  line-height: 2em;
-  padding-bottom: 7px;
+    border-bottom: 1px solid #E8E5E5;
+    height: 2em;
+    line-height: 2em;
+    padding-bottom: 7px;
 }
 
 .panel .header {
@@ -2239,7 +2264,7 @@ fieldset.staff_squad ol li {
 }
 
 .panel .inner {
-  padding: 8px 15px;
+    padding: 8px 15px;
 }
 
 .panel .inner a {
@@ -2248,143 +2273,143 @@ fieldset.staff_squad ol li {
 }
 
 .panel .cell {
-  border-bottom: 1px solid #dbdbdb;
-  margin-bottom: 15px;
+    border-bottom: 1px solid #dbdbdb;
+    margin-bottom: 15px;
 }
 
 .panel .cell:last-child {
-  border-bottom: none;
+    border-bottom: none;
 }
 
 .panel #virtual_squads {
-  padding-left: 15px;
+    padding-left: 15px;
 }
 
 .panel .cell .action {
-  padding-bottom: 20px;
+    padding-bottom: 20px;
 }
 
 .panel .cell .btn-primary {
-  color: white;
+    color: white;
 }
 
 .panel .cell ul {
-  float: left;
-  width: 100%;
-  padding-bottom: 10px;
+    float: left;
+    width: 100%;
+    padding-bottom: 10px;
 }
 
 .panel .cell ul.teacher li {
-  float: left;
-  margin-left: 20px;
-  width: 30%;
-  height: 2em;
-  line-height: 2em;
+    float: left;
+    margin-left: 20px;
+    width: 30%;
+    height: 2em;
+    line-height: 2em;
 }
 
 .panel .cell ul.student {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 .panel .cell ul.student li {
-  float: left;
-  margin-left: 20px;
-  width: 30%;
-  height: 2em;
-  line-height: 2em;
+    float: left;
+    margin-left: 20px;
+    width: 30%;
+    height: 2em;
+    line-height: 2em;
 }
 
 .tab-style {
-  position: relative;
-  margin: 15px 0;
-  padding: 39px 19px 14px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
+    position: relative;
+    margin: 15px 0;
+    padding: 39px 19px 14px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 .panel .cell p {
-  height: 1.5em;
-  line-height: 1.5em;
+    height: 1.5em;
+    line-height: 1.5em;
 }
 
 .panel .inner span {
-  margin-left: 10px;
-  color: #08c;
+    margin-left: 10px;
+    color: #08c;
 }
 
 .panel .detail_stat {
-  padding-left: 10px;
-  display: none;
+    padding-left: 10px;
+    display: none;
 }
 
 .stat-content .left {
-  width: 45%;
-  display: inline-block;
-  float: left;
-  margin-right: 30px;
+    width: 45%;
+    display: inline-block;
+    float: left;
+    margin-right: 30px;
 }
 .stat-content .right {
-  width: 45%;
-  float: left;
-  display: inline-block;
+    width: 45%;
+    float: left;
+    display: inline-block;
 }
 
 .stat-list .content p span.count {
-  color: #08c;
+    color: #08c;
 }
 
 .message-list .cell {
-  overflow: hidden;
-  box-shadow: 0 1px 0 hsl(0,0%,90%);
-  padding: 8px 10px
+    overflow: hidden;
+    box-shadow: 0 1px 0 hsl(0,0%,90%);
+    padding: 8px 10px
 }
 
 .message-list .cell .block {
-  float: left;
-  text-align: center;
-  font-size: 14px;
-  color: hsl(0,0%,70%);
-  line-height: 48px;
+    float: left;
+    text-align: center;
+    font-size: 14px;
+    color: hsl(0,0%,70%);
+    line-height: 48px;
 }
 .message-list .cell .block.count {
-  width: 150px;
-  text-align: left;
+    width: 150px;
+    text-align: left;
 }
 .message-list .cell .block.count a {
-  text-decoration: none;
-  color: #08c;
+    text-decoration: none;
+    color: #08c;
 }
 
 .message-list .message_wrap {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  line-height: 48px;
-  width: 70%;
-  padding-left: 10px;
-  color: #08c;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 48px;
+    width: 70%;
+    padding-left: 10px;
+    color: #08c;
 }
 
 .message-list .created_time {
-  color: hsl(0,7%,70%);
-  font-size: 13px;
-  line-height: 53px;
-  padding: 0 8px;
+    color: hsl(0,7%,70%);
+    font-size: 13px;
+    line-height: 53px;
+    padding: 0 8px;
 }
 
 .cell .third {
-  height: 70px;
-  overflow: auto;
-  overflow-x: hidden;
-  width: 100%;
-  display: none;
-  padding-left: 10px;
+    height: 70px;
+    overflow: auto;
+    overflow-x: hidden;
+    width: 100%;
+    display: none;
+    padding-left: 10px;
 }
 
 .cell .third .recipient_user {
-  width: 25%;
-  float: left;
-  height: 30px;
+    width: 25%;
+    float: left;
+    height: 30px;
 }
