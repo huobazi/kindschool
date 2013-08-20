@@ -46,7 +46,6 @@ class User < ActiveRecord::Base
   validates_format_of :login,:without=>/^#{PRE_STUDENT}/,:message=>"帐户不能以#{PRE_STUDENT}开头" , :if => :role_student?
   # validates :login,:presence => true,:uniqueness => true, format: {with: /^(\+\d+-)?[1-9]{1}[0-9]{10}$/, message: "手机格式不正确"}#{ :scope => :kindergarten_id}
 
-  validates :presence => true
   validates_uniqueness_of_without_deleted :login
   validates_uniqueness_of_without_deleted :email,:scope => :kindergarten_id, :allow_blank => true
   validates_uniqueness_of_without_deleted :phone,:scope => :kindergarten_id, :allow_blank => true
