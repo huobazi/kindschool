@@ -96,16 +96,16 @@
                   <label class="control-label">本月群发短信消息数量</label>
                   <div class="controls">
                     <label class="show_label">
-                      剩余次数：<%=@kind.get_allsms_count %> / 总数：<%=@kind.allsms_count %>
+                      剩余次数：<%=@kind.get_surplu_allsms_count %> / 总数：<%=@kind.allsms_count %>
                     </label>
                   </div>
                 </div>
               <% else %>
                 <div class="control-group">
-                  <label class="control-label">本月群发短信数量</label>
+                  <label class="control-label">本月群发短信消息数量</label>
                   <div class="controls">
                     <label class="show_label">
-                      剩余次数：<%=@kind.get_allsms_count %> / 总数：<%=@kind.allsms_count %>
+                      <%=@kind.get_allsms_count %>
                     </label>
                   </div>
                 </div>

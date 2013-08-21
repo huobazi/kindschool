@@ -297,10 +297,15 @@ class Kindergarten < ActiveRecord::Base
     end
   end
 
-  #获取当月还剩群发短信数
+  #获取当月还剩群发短信消息数
+  def get_surplu_allsms_count
+    surplu_allsms_count = self.allsms_count - self.get_allsms_count
+    surplu_allsms_count < 0 ? 0 : surplu_allsms_count
+  end
+
+  #获取当月还剩群发短信消息数
   def get_allsms_count
     time = Time.now.strftime("%Y-%m-01")
-    surplu_allsms_count = self.allsms_count - self.messages.with_deleted.where("status=1 AND approve_status=0 AND allsms=1 AND created_at > ?",time).count
-    surplu_allsms_count < 0 ? 0 : surplu_allsms_count
+    self.messages.with_deleted.where("status=1 AND approve_status=0 AND allsms=1 AND created_at > ?",time).count
   end
 end

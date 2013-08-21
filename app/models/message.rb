@@ -123,7 +123,7 @@ class Message < ActiveRecord::Base
         #如果是编辑
         if self.id_was
           if !self.status_was && self.status
-            if curr_kindergarten.get_allsms_count == 0
+            if curr_kindergarten.get_surplu_allsms_count == 0
               errors.add(:content,"您的幼儿园的本月群发短信条数次数不足！")
               raise "您的幼儿园的本月群发短信条数次数不足！"
             end
@@ -131,7 +131,7 @@ class Message < ActiveRecord::Base
         else
           #这是新增
           if self.status
-            if curr_kindergarten.get_allsms_count == 0
+            if curr_kindergarten.get_surplu_allsms_count == 0
               errors.add(:content,"您的幼儿园的本月群发短信条数次数不足！")
               raise "您的幼儿园的本月群发短信条数次数不足！"
             end
