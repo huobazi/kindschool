@@ -1,4 +1,5 @@
 <div class="topic topic_line pull-left">
+  <div class="iCheck_checkbox pull-left" style="margin-top: -10px;"><input type="checkbox" class="check" /></div>
   <div class="right_info" style="padding-left: 10px;">
     <div class="pull-right">
       <a title="查看<%= news.title %>" alt="要看<%= news.title %>" href="<%= my_school_news_path(news) %>"><i class="icon-eye-open"></i></a>
@@ -20,4 +21,17 @@
   </div>
 </div>
 
-
+<script type="text/javascript">
+  $('input').iCheck({
+    checkboxClass: 'icheckbox_square-blue',
+    radioClass: 'iradio_square-blue',
+    increaseArea: '20%' // optional
+  });
+  $("#check_all").on('ifClicked', function() {
+    if(this.checked) {
+      $(".check").iCheck('uncheck');
+    } else {
+      $(".check").iCheck('check');
+    }
+  })
+</script>

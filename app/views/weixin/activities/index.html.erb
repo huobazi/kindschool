@@ -8,11 +8,14 @@
   <div class="message_list">
     <ul class="data_list">
       <% unless current_user.get_users_ranges[:tp] == :student %>
-        <%= link_to "提交活动", new_weixin_activity_path, :class => "new_topic" %>
+        <p class="has-btn-new" style="margin: 0 auto;">
+          <%= link_to "创建活动", new_weixin_activity_path, :class => "span6 btn btn-warning" %>
+        </p>
       <% end %>
       <% if @activities.blank? %>
         <li><div class="message_content">还没有活动</div></li>
       <% else %>
+        <ul style="clear: both;">
         <% @activities.each do |activity| %>
           <li class="show" data-id="<%= activity.id %>">
             <p class="title"><span><%= activity.title %><span></p>

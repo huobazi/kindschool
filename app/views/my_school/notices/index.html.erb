@@ -66,7 +66,7 @@
         <table class="list">
           <%= form_tag destroy_multiple_my_school_notices_path, method: :delete, :id => "destroy_multi_form" do %>
             <tr>
-              <th><input type="checkbox" name="" value="" alt="全选" id="notice_all"><label for="notice_all" style="display: inline;">&nbsp;<strong>全选</strong></label></th>
+              <th style="width: 90px;"><input type="checkbox" name="" value="" alt="全选" id="check_all">&nbsp;<label style="display: inline;font-size: 13px;" for="check_all">全选</label></th>
               <th>发布人</th>
               <th>标题</th>
               <th>发布时间</th>
@@ -75,7 +75,7 @@
             </tr>
             <% @notices.each do |notice| %>
             <tr>
-              <td><input id="notice_<%= notice.id %>" class="notice_check" name="notice[]" type="checkbox" value="<%= notice.id %>" /></td>
+              <td><input id="notice_<%= notice.id %>" class="check" name="notice[]" type="checkbox" value="<%= notice.id %>" /></td>
               <td><%= notice.creater ? notice.creater.name : ""%></td>
               <td><%= link_to notice.title,:action=>:show,:id=>notice.id %></td>
               <td><%= notice.send_date ? notice.send_date.to_short_datetime : "" %></td>
@@ -100,9 +100,18 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-  $("#notice_all").click(function(){
-    $(".notice_check").attr("checked",this.checked);
+  $('input').iCheck({
+    checkboxClass: 'icheckbox_square-blue',
+    radioClass: 'iradio_square-blue',
+    increaseArea: '20%' // optional
   });
+  $("#check_all").on('ifClicked', function() {
+    if(this.checked) {
+      $(".check").iCheck('uncheck');
+    } else {
+      $(".check").iCheck('check');
+    }
+  })
   $("#destroy_multiple").click(function(){
       $("#destroy_multi_form").submit();
       return false;
