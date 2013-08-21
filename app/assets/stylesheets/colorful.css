@@ -1993,7 +1993,7 @@ span.help-inline {
 }
 
 .topics .topic .right_info {
-    padding-left: 85px;
+    padding-left: 100px;
 }
 .topics .topic .infos {
     padding-right: 74px;
@@ -2030,6 +2030,10 @@ span.help-inline {
 .topics .topic .info em {
     font-size: 14px;
     font-style: normal;
+}
+
+.topic .iCheck_checkbox {
+  padding-top: 22px;
 }
 
 .topics .topic .info abbr {
