@@ -192,6 +192,18 @@ body {
 #growth_div label,#message_div label{
     color: #494542;
 }
+#activity_div ul{
+    margin: 0px;
+    padding: 0px;
+}
+#activity_div li,#message_div li{
+    border-bottom: 1px dashed #B2AEA6;
+    padding: 5px;
+    list-style-type: none;
+}
+#activity_div label,#message_div label{
+    color: #494542;
+}
 #topic_div ul{
     margin: 0px;
     padding: 0px;
