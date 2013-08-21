@@ -1025,12 +1025,12 @@ table.attributes td {
 /* ====================== ajax loading ===================== */
 
 #remote-loader {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    margin-left: -40px;
-    width: 80px;
-    text-align: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -40px;
+  width: 80px;
+  text-align: center;
 
 }
 

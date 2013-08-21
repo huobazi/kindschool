@@ -1,6 +1,6 @@
 <div class="topic topic_line pull-left">
   <div class="iCheck_checkbox pull-left"><input type="checkbox" class="check" /></div>
-  <div class="avatar pull-left"><img src="<%= growth_record.student_info.user.asset_logo ? growth_record.student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
+  <div class="avatar pull-left"><img src="<%= growth_record.student_info.try(:user).try(:asset_logo) ? growth_record.student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
   </div>
   <div class="right_info">
     <% if controller_name == "garden_growth_records" %>

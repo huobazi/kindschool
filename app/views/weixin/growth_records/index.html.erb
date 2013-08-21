@@ -9,7 +9,7 @@
     <ul class="data_list clearfix">
       <% unless current_user.get_users_ranges[:tp] == :teachers %>
         <p class="has-btn-new" style="margin:0 auto;">
-          <%= link_to "添加成长记录", new_weixin_growth_record_path, :class => "span6 btn btn-warning", :style => "color: #fff;" %>
+          <%= link_to "添加成长记录", new_weixin_growth_record_path, :class => "span6 btn btn-warning btn-large", :style => "color: #fff;" %>
         </p>
       <% end %>
       <% if @growth_records.blank? %>
