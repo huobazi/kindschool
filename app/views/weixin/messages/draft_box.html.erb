@@ -4,25 +4,29 @@
 <div class="message_div">
   <div class="message_title">
     草稿箱
-    <%= link_to "发消息", new_weixin_message_path, :class => "new_message btn btn-warning" %>
   </div>
   <div class="message_list">
     <ul class="data_list">
+      <p class="has-btn-new" style="margin: 0 auto;">
+        <%= link_to "发消息", new_weixin_message_path, :class => "span6 btn btn-warning btn-large" %>
+      </p>
       <% if @messages.blank? %>
         <li><div class="message_content">您还草稿信息。</div></li>
       <% else %>
-        <% @messages.each do |message| %>
-          <li class="<%= message.entry_id.blank? ? "" : "return_li"%>">
-            <a href="<%= url_for(:action=>:draft_show,:id=>message.id) %>" title="查看信息">
-              <div><label class="message_user">发件人:<%=message.sender ? message.sender_name : ""%></label><label class="message_time"><%=message.send_date ? message.send_date.to_long_datetime : ""%></label></div>
-              <% if message.entry_id %>
-                <div class="message_content">回复内容:<%= truncate(message.content) %></div>
-              <% else %>
-                <div class="message_content">信息内容:<%= message.title %></div>
-              <% end %>
-            </a>
-          </li>
-        <% end %>
+        <ul style="clear: both;">
+          <% @messages.each do |message| %>
+            <li class="<%= message.entry_id.blank? ? "" : "return_li"%>">
+              <a href="<%= url_for(:action=>:draft_show,:id=>message.id) %>" title="查看信息">
+                <div><label class="message_user">发件人:<%=message.sender ? message.sender_name : ""%></label><label class="message_time"><%=message.send_date ? message.send_date.to_long_datetime : ""%></label></div>
+                <% if message.entry_id %>
+                  <div class="message_content">回复内容:<%= truncate(message.content) %></div>
+                <% else %>
+                  <div class="message_content">信息内容:<%= message.title %></div>
+                <% end %>
+              </a>
+            </li>
+          <% end %>
+        </ul>
       <% end %>
     </ul>
     <br/>
