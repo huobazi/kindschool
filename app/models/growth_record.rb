@@ -29,11 +29,11 @@ class GrowthRecord < ActiveRecord::Base
   end
 
   def student_info_label
-    self.student_info ? self.student_info.user.name : "丢失学员信息"
+    self.student_info ? self.student_info.user.name : "该学员不存在或已删除"
   end
 
   def squad_name_label
-    self.student_info ? self.student_info.squad.name : "丢失班级信息"
+    self.student_info ? self.student_info.squad.name : "该班级不存在或已删除"
   end
 
   validate :end_at_large_than_start_at

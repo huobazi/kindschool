@@ -71,6 +71,10 @@ ActiveAdmin.register Kindergarten do
       f.input :aliases_url
       f.input :sms_count
       f.input :sms_user_count
+      f.input :begin_allsms
+      f.input :open_allsms
+      f.input :allsms_count
+
       f.input :note
     end
 
@@ -101,6 +105,9 @@ ActiveAdmin.register Kindergarten do
       row :aliases_url
       row :sms_count
       row :sms_user_count
+      row :begin_allsms
+      row :open_allsms
+      row :allsms_count
       row :note
 
       row :asset_img do |obj|
@@ -151,7 +158,7 @@ ActiveAdmin.register Kindergarten do
           unless kind.staff_users.blank?
             table_for(kind.staff_users) do |t|
               t.column("名称") {|item| auto_link item}
-              t.column("性别") {|item| item.gender == "M" ? "男" : "女"}
+              t.column("性别") {|item| item.gender == "G" ? "男" : "女"}
               t.column("入职时间") {|item| item.staff ? item.staff.come_in_at : ""}
               t.column("教育背景") {|item| item.staff ? item.staff.education : ""}
               t.column("操作") {|item|
@@ -177,8 +184,12 @@ ActiveAdmin.register Kindergarten do
         br
         panel "功能信息" do
           unless kind.operates.blank?
-            table_for(kind.operates) do |t|
-              t.column("功能") {|item| item.name}
+            ul(:class=>"operate_ul") do
+            kind.operates.each do |item|
+              li do
+                item.name
+              end
+            end
             end
           end
         end

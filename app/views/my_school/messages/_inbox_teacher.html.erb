@@ -1,0 +1,19 @@
+<div class="tab">
+  <% unless @data.blank? %>
+    <% if  @data[:tp]== :all %>
+       <ul class="tab-hd"><li class="active">选择个人</li></ul>
+      <ul class="tab-bd">
+        <li>
+          <div class="rangs_tag">
+            <div class="check_rangs"><input type="checkbox" name="rangs_users" value="1" id="rangs_users_1"/><label for="rangs_users_1" >教职工</label></div>
+          </div>
+          <div id="users_resource" class="ranges_resource">
+            <div id="teachers_resource_div" class="ranges_resource_div">
+              <%= render :partial =>"/my_school/messages/teachers" %>
+            </div>
+          </div>
+        </li>
+      </ul>
+    <% end %>
+  <% end %>
+</div>

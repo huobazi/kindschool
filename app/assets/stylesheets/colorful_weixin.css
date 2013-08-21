@@ -192,6 +192,18 @@ body {
 #growth_div label,#message_div label{
     color: #494542;
 }
+#activity_div ul{
+    margin: 0px;
+    padding: 0px;
+}
+#activity_div li,#message_div li{
+    border-bottom: 1px dashed #B2AEA6;
+    padding: 5px;
+    list-style-type: none;
+}
+#activity_div label,#message_div label{
+    color: #494542;
+}
 #topic_div ul{
     margin: 0px;
     padding: 0px;
@@ -444,6 +456,13 @@ body {
 }
 #new_message input{
     padding-left: 5px;
+}
+.has-btn-new {
+  width: 90%;
+  padding: 10px 0;
+}
+.has-btn-new a {
+  width: 100%;
 }
 .ui-dialog-title{
     font-size: 20px;
@@ -1001,4 +1020,20 @@ table.attributes td {
     text-indent: 10px;
     background-color: #F5F5F5;
     border-bottom: 1px dotted #DBDBDB;
+}
+
+/* ====================== ajax loading ===================== */
+
+#remote-loader {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -40px;
+  width: 80px;
+  text-align: center;
+
+}
+
+#remote-loader .label.important {
+    cursor: pointer;
 }
