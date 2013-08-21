@@ -177,8 +177,12 @@ ActiveAdmin.register Kindergarten do
         br
         panel "功能信息" do
           unless kind.operates.blank?
-            table_for(kind.operates) do |t|
-              t.column("功能") {|item| item.name}
+            ul(:class=>"operate_ul") do
+            kind.operates.each do |item|
+              li do
+                item.name
+              end
+            end
             end
           end
         end

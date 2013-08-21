@@ -1,6 +1,22 @@
 <div class="login" id="longin_form_head">
   <div class="logo" >
     <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>"  height="44px" alt="Logo"/>
+    <% if @kind %>
+      <span id="kind_name"><%= @kind.name %></span>
+      <script type="text/javascript">
+        $(function(){
+          $("#kind_name").lettering();
+          function load_color(){
+            var kind_color = ["#EF554C","#f6ab1d","violet","#00c0f6","#a4c500","#f7a200"];
+            $("#kind_name span").each(function(index, Element){
+              var color = kind_color[index%kind_color.length];
+              $(this).css("color",color)
+            })
+          }
+          load_color();
+        })
+      </script>
+    <% end %>
   </div>
   <div class="login_window">
     <div class="login_head"></div>
@@ -80,9 +96,9 @@
                 </div>
               </div>
             <% else %>
-          <div class="auth_code_div_s">
-            <br/>
-          </div>
+              <div class="auth_code_div_s">
+                <br/>
+              </div>
             <% end %>
             <div class="login_submit_div">
               <div class="login_submit">

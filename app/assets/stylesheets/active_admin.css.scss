@@ -35,3 +35,8 @@ body.active_admin table tr td.tdColumn{
     width: 200px;
 
 }
+ul.operate_ul li{
+    display: inline-block;
+    list-style: none outside none;
+    width: 20%;
+}

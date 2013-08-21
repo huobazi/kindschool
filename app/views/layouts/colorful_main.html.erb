@@ -12,7 +12,7 @@
 
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
-    <%= javascript_include_tag "DD_belatedPNG_0.0.8a" %>
+    <%= javascript_include_tag "DD_belatedPNG_0.0.8a","jquery.lettering" %>
     <!--[if lte IE 6]>
         <script type="text/javascript">
           try{
@@ -20,6 +20,9 @@
             }catch(err){}
         </script>
     <![endif]-->
+    <style type="text/css" media="screen">
+
+    </style>
   </head>
   <body style="background-color: #d9edfa">
 
@@ -27,9 +30,20 @@
       <div class="main_logo">
         <% if @kind %>
           <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" width="100" height="79" alt="Logo"/>
-          <%#*<span class="kind_name_while">%>
-            <%#= @kind.name %>
-          <%#*</span>%>
+          <span id="kind_name"><%= @kind.name %></span>
+          <script type="text/javascript">
+            $(function(){
+              $("#kind_name").lettering();
+              function load_color(){
+                var kind_color = ["#EF554C","#f6ab1d","violet","#00c0f6","#a4c500","#f7a200"];
+                $("#kind_name span").each(function(index, Element){
+                  var color = kind_color[index%kind_color.length];
+                  $(this).css("color",color)
+                })
+              }
+              load_color();
+            })
+          </script>
         <% end %>
       </div>
       <div id="main" class="menu">
