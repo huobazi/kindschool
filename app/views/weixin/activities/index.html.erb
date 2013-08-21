@@ -9,32 +9,33 @@
     <ul class="data_list">
       <% unless current_user.get_users_ranges[:tp] == :student %>
         <p class="has-btn-new" style="margin: 0 auto;">
-          <%= link_to "创建活动", new_weixin_activity_path, :class => "span6 btn btn-warning" %>
+        <%= link_to "创建活动", new_weixin_activity_path, :class => "span6 btn btn-warning", :style => "color: #fff;" %>
         </p>
       <% end %>
       <% if @activities.blank? %>
         <li><div class="message_content">还没有活动</div></li>
       <% else %>
         <ul style="clear: both;">
-        <% @activities.each do |activity| %>
-          <li class="show" data-id="<%= activity.id %>">
-            <p class="title"><span><%= activity.title %><span></p>
-            <p class="info">班级活动:<%= activity.squad.try(:name) %></p>
-            <p class="info"><span>创建人:</span><span class="author"><%= activity.creater ? activity.creater.name : "" %></span></p>
-            <div class="ctivity_content_logo">
-              <% if activity.asset_img.blank? %>
-                <img src="/t/colorful/activity_logo1.jpg" alt="" />
-              <% else %>
-                <a href="<%= activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
-                  <img src="<%= activity.asset_img.public_filename(:middle) %>" />
-                </a>
-              <% end %>
-            </div>
-            <div class="content">
-              <%= simple_format activity.content %>
-            </div>
-          </li>
-        <% end %>
+          <% @activities.each do |activity| %>
+            <li class="show" data-id="<%= activity.id %>">
+              <p class="title"><span><%= activity.title %><span></p>
+              <p class="info">班级活动:<%= activity.squad.try(:name) %></p>
+              <p class="info"><span>创建人:</span><span class="author"><%= activity.creater ? activity.creater.name : "" %></span></p>
+              <div class="ctivity_content_logo">
+                <% if activity.asset_img.blank? %>
+                  <img src="/t/colorful/activity_logo1.jpg" alt="" />
+                <% else %>
+                  <a href="<%= activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
+                    <img src="<%= activity.asset_img.public_filename(:middle) %>" />
+                  </a>
+                <% end %>
+              </div>
+              <div class="content">
+                <%= simple_format activity.content %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
       <% end %>
     </ul>
     <br/>
