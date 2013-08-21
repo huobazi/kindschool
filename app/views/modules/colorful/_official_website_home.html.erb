@@ -16,7 +16,7 @@
     <%if entry.number == "official_home_pub_img" %>
     <tr>  
       <td><span>首页宣传图片</span></td>
-      <td><img src="<%=entry.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : entry.page_img.public_filename %>" alt="" width="400" ></td>
+      <td><img src="<%=entry.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : entry.page_img.public_filename %>" alt="" width="400" /></td>
       <td>
         <%= link_to "编辑",:controller=>"/my_school/page_contents",:action=>:edit_content,:id=>page_content.id,:entry_id=>entry.id %>
       </td>    
@@ -25,7 +25,7 @@
     <tr>  
       <td><span>老师信息</span></td>
       <td><div class="official_home_teacher_img">
-                  <img src="<%=entry.page_img.blank? ? '/t/colorful/activity_logo1.jpg' : entry.page_img.public_filename %>" alt="" width="200"   >
+                  <img src="<%=entry.page_img.blank? ? '/t/colorful/activity_logo1.jpg' : entry.page_img.public_filename %>" alt="" width="200"   />
                 </div>
                 <div class="teacher_info">
                 <div class="teacher_title">
@@ -52,13 +52,13 @@
            <%= file_field_tag 'home_publicity_img', :class => 'profile_input required' %>
          </label>
          <span> 建议高度970像素,宽度为370像素</span>
-         <img src="<%=@entry.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry.page_img.public_filename %>" alt="" width="400" >
+         <img src="<%=@entry.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry.page_img.public_filename %>" alt="" width="400" />
       <%= hidden_field_tag "entry_id",@entry.id %>
         </div>
       </div>
   <%else%>
     <div class="control-group">
-  <label class="control-label"></span>老师姓名及职位</label>
+  <label class="control-label">老师姓名及职位</label>
   <div class="controls">
     <label class="show_label">
         <%= text_field_tag :teacher_title,@entry.title, :class => 'profile_input required'%>
@@ -85,7 +85,7 @@
       </label>
       <span>建议高度为200像素,宽200像素</span>
       <div class="official_home_teacher_img">
-                  <img src="<%=@entry.page_img.blank? ? '/t/colorful/activity_logo1.jpg' : @entry.page_img.public_filename %>" alt="" width="200"   >
+                  <img src="<%=@entry.page_img.blank? ? '/t/colorful/activity_logo1.jpg' : @entry.page_img.public_filename %>" alt="" width="200"   />
                 </div>
       <%= hidden_field_tag "entry_id",@entry.id %>
     </div>
@@ -107,7 +107,7 @@
     <%end%>
   <%end%>
 <div class="control-group">
-  <label class="control-label"></span>老师姓名及职位</label>
+  <label class="control-label">老师姓名及职位</label>
   <div class="controls">
     <label class="show_label">
         <%= text_field_tag :teacher_title,"", :class => 'profile_input required'%>
