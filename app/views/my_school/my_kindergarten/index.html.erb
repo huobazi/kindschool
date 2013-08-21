@@ -72,6 +72,47 @@
               </div>
             </div>
           <% end %>
+          <fieldset>
+            <legend>基础参数</legend>
+            <div class="control-group">
+              <label class="control-label">独立域名</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%=@kind.aliases_url.blank? ? "无" : @kind.aliases_url %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">短信用户数量</label>
+              <div class="controls">
+                <label class="show_label">
+                  已用数量：<%=@kind.get_gather_sms_count %> / 可用总数：<%=@kind.sms_user_count %>
+                </label>
+              </div>
+            </div>
+            <% if @kind.open_allsms %>
+              <div class="control-group">
+                <label class="control-label">群发短信数量</label>
+                <div class="controls">
+                  <label class="show_label">
+                    剩余次数：<%=@kind.get_allsms_count %> / 总数：<%=@kind.allsms_count %>
+                  </label>
+                </div>
+              </div>
+            <% end %>
+            <div class="control-group">
+              <label class="control-label">二维码</label>
+              <div class="controls">
+                <label class="show_label">
+                  <% if @kind.asset_logo %>
+                    <img src="<%= @kind.asset_logo.public_filename %>" alt="微一园讯通二维码" class="login_qrcode"/>
+                  <% else %>
+                    无
+                  <% end %>
+                </label>
+              </div>
+            </div>
+          </fieldset>
         </form>
       </div>
     </div>

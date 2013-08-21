@@ -4,7 +4,7 @@
 <div class="message_div">
   <div class="message_title">
     <a href="<%= url_for(:action=>:index) %>" title="返回" class="weixin_return">返回</a>宝宝在家
-    <%= link_to("删除",url_for(:controller=>"/weixin/growth_records",:action=>:destroy,:id=>@growth_record.id),:method=>:delete, :confirm => "您确定删除该成长记录吗?", :class => "new_message btn btn-warning")%>
+    <%= link_to("删除",url_for(:controller=>"/weixin/growth_records",:action=>:destroy,:id=>@growth_record.id),:method=>:delete, :confirm => "您确定删除该成长记录吗?", :class => "new_message btn btn-danger")%>
     <%= link_to "修改", edit_weixin_growth_record_path(@growth_record), :class => "new_message btn btn-warning" %>
   </div>
   <div class="message_list">

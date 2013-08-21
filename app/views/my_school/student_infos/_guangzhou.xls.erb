@@ -14,7 +14,7 @@
       <Row>
         <Cell><Data ss:Type="String"><%= student_info.user.try(:name) %></Data></Cell>
         <Cell><Data ss:Type="String"><%= student_info.squad.name %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= student_info.user.gender == "M" ? "男" : "女" %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= student_info.user.gender == "G" ? "男" : "女" %></Data></Cell>
         <Cell><Data ss:Type="String"><%= student_info.birthday.try(:to_short_datetime)%></Data></Cell>
         <Cell><Data ss:Type="String"><%= student_info.card_category_label %></Data></Cell>
         <Cell><Data ss:Type="String"><%= student_info.card_code %></Data></Cell>

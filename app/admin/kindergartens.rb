@@ -71,6 +71,8 @@ ActiveAdmin.register Kindergarten do
       f.input :aliases_url
       f.input :sms_count
       f.input :sms_user_count
+      f.input :allsms_count
+      f.input :open_allsms
       f.input :note
     end
 
@@ -101,6 +103,8 @@ ActiveAdmin.register Kindergarten do
       row :aliases_url
       row :sms_count
       row :sms_user_count
+      row :allsms_count
+      row :open_allsms
       row :note
 
       row :asset_img do |obj|
@@ -151,7 +155,7 @@ ActiveAdmin.register Kindergarten do
           unless kind.staff_users.blank?
             table_for(kind.staff_users) do |t|
               t.column("名称") {|item| auto_link item}
-              t.column("性别") {|item| item.gender == "M" ? "男" : "女"}
+              t.column("性别") {|item| item.gender == "G" ? "男" : "女"}
               t.column("入职时间") {|item| item.staff ? item.staff.come_in_at : ""}
               t.column("教育背景") {|item| item.staff ? item.staff.education : ""}
               t.column("操作") {|item|

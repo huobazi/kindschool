@@ -67,19 +67,19 @@
       </div>
     </div>
   </div>
-  <% if choose_operate_show("my_school/messages/allsms") %>
-    <div class="control-group">
-      <label class="control-label" for="inputPassword">短信发给所有人</label>
-      <div class="controls">
-        <%  if action_name == "new" %>
-          <%= check_box_tag('message[allsms]',"1",false)%>
-        <% else %>
-          <%= check_box_tag('message[allsms]',"1",@message.allsms)%>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
 <%end%>
+<% if choose_operate_show("my_school/messages/allsms") %>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">短信发给所有人</label>
+    <div class="controls">
+      <%  if action_name == "new" %>
+        <%= check_box_tag('message[allsms]',"1",false)%>
+      <% else %>
+        <%= check_box_tag('message[allsms]',"1",@message.allsms)%>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
 <div class="control-group">
   <div class="controls">

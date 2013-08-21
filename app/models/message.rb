@@ -26,8 +26,6 @@ class Message < ActiveRecord::Base
 
   STATUS = { 0=>"审核通过",1=> "待审核", 2=>"审核不通过"}
 
-  include ResourceApproveStatusStart
-  before_save :messages_approve_status_start
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
@@ -39,10 +37,13 @@ class Message < ActiveRecord::Base
   end
 
   before_create :load_user_info
-
-
+  before_save :load_allsms_count
+  include ResourceApproveStatusStart
+  before_save :messages_approve_status_start
   before_save :load_sms_records
 
+
+  
 
   #是否是回复的
   def if_return?
@@ -56,16 +57,16 @@ class Message < ActiveRecord::Base
   
   #该消息是否已经回复
   def is_retrun?(user_id)
-   is_retrun = self.return_messages.where(:sender_id=>user_id).first
-   unless is_retrun.blank?
-    return true 
-   else
-    return false
-   end
+    is_retrun = self.return_messages.where(:sender_id=>user_id).first
+    unless is_retrun.blank?
+      return true
+    else
+      return false
+    end
   end
   #该消息回复记录
   def is_retrun(user_id)
-   is_retrun = self.return_messages.where(:sender_id=>user_id)
+    is_retrun = self.return_messages.where(:sender_id=>user_id)
   end
 
   private
@@ -106,6 +107,34 @@ class Message < ActiveRecord::Base
           end
         end
       end
+    end
+  end
+
+  #判断群发短信数量是否足够
+  def load_allsms_count
+    if curr_kindergarten = self.kindergarten || Kindergarten.find_by_id(self.kindergarten_id)
+      if curr_kindergarten.open_allsms
+        #如果是编辑
+        if self.id_was
+          if !self.status_was && self.status
+            if curr_kindergarten.get_allsms_count == 0
+              errors.add(:content,"您幼儿园的本月群发短信条数次数不足！")
+              raise "您幼儿园的本月群发短信条数次数不足！"
+            end
+          end
+        else
+          #这是新增
+          if self.status
+            if curr_kindergarten.get_allsms_count == 0
+              errors.add(:content,"您幼儿园的本月群发短信条数次数不足！")
+              raise "您幼儿园的本月群发短信条数次数不足！"
+            end
+          end
+        end
+      end
+    else
+      errors.add(:content,"所属幼儿园不存在")
+      raise "所属幼儿园不存在"
     end
   end
 end

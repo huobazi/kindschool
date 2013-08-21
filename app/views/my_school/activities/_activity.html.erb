@@ -1,5 +1,6 @@
 <div class="topic topic_line pull-left">
-  <div class="avatar pull-left"><img src="<%= activity.creater.asset_logo ? activity.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
+  <div class="iCheck_checkbox pull-left"><input type="checkbox" class="check" /></div>
+  <div class="avatar pull-left"><img src="<%= activity.creater.try(:asset_logo) ? activity.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
   </div>
   <div class="right_info">
     <div class="replies pull-right">
@@ -44,3 +45,18 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $('input').iCheck({
+    checkboxClass: 'icheckbox_square-blue',
+    radioClass: 'iradio_square-blue',
+    increaseArea: '20%' // optional
+  });
+  $("#check_all").on('ifClicked', function() {
+    if(this.checked) {
+      $(".check").iCheck('uncheck');
+    } else {
+      $(".check").iCheck('check');
+    }
+  })
+</script>

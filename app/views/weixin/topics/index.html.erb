@@ -10,18 +10,22 @@
       <%= form_tag '/weixin/topics', :method => :get, :id => "topic_search" do %>
         <%= select_tag "category_id",options_for_select(@kind.topic_categories.collect {|p| [ p.name, p.id ] }, params[:category_id]), :prompt => "选择类别", :class => "select" %>
       <% end %>
-      <%= link_to "发贴子", new_weixin_topic_path, :class => "new_topic" %>
+      <p style="margin: 0 auto;" class="has-btn-new">
+      <%= link_to "发贴子", new_weixin_topic_path, :class => "span6 btn btn-warning", :style => "color: #fff;" %>
+      </p>
       <% if @topics.blank? %>
         <li><div class="message_content">还没有贴子。</div></li>
       <% else %>
-        <% @topics.each do |topic| %>
-          <li class="show relative" data-id="<%= topic.id %>">
-            <p class="title"><span class="name"><%= topic.title %><span></p>
-            <p class="info">班级贴子:<%= topic.squad.try(:name) %></p>
-            <p class="info">由<span class="author"><%= topic.creater.try(:name) %></span>发表于&nbsp;<span><%= topic.created_at.try(:to_long_datetime) %></span></p>
-            <span class="reply_count absolute"><%= topic.topic_entries.any? ? topic.topic_entries.count : "" %><span>
-          </li>
-         <% end %>
+        <ul style="clear: both;">
+          <% @topics.each do |topic| %>
+            <li class="show relative" data-id="<%= topic.id %>">
+              <p class="title"><span class="name"><%= topic.title %><span></p>
+              <p class="info">班级贴子:<%= topic.squad.try(:name) %></p>
+              <p class="info">由<span class="author"><%= topic.creater.try(:name) %></span>发表于&nbsp;<span><%= topic.created_at.try(:to_long_datetime) %></span></p>
+              <span class="reply_count absolute"><%= topic.topic_entries.any? ? topic.topic_entries.count : "" %><span>
+            </li>
+           <% end %>
+         </ul>
       <% end %>
     </ul>
     <br/>

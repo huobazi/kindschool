@@ -29,7 +29,7 @@
     <div  class="wrapper">
       <div class="main_logo">
         <% if @kind %>
-          <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" width="100" height="79" alt="Logo"/>
+          <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" width="100" height="79" alt="Logo" class="logo_vertical"/>
           <span id="kind_name"><%= @kind.name %></span>
           <script type="text/javascript">
             $(function(){
