@@ -33,7 +33,7 @@ ActiveAdmin.register PageContent do
       f.input :name
       f.input :logo_url
       f.input :note
-      f.input :kindergarten, :as => :hidden
+      f.input :kindergarten_id, :as => :hidden
     end
     f.actions
   end

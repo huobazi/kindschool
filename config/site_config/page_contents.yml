@@ -1,7 +1,7 @@
 root_showcase:
   name: "首页滑动窗"
   logo_url: "/t/colorful/showcase.png"
-  note: "首页滑动窗,可以添加多张图片展示幼儿园的环境。推荐尺寸是宽717像素，高是531像素。数量达到3张才能够展示效果。"
+  note: "首页滑动窗,可以添加多张图片展示幼儿园的环境。推荐尺寸是宽717像素，高是531像素。<span style='color:red;'>数量达到3张才能够展示效果。</span>"
 about_me:
   name: "关于我们"
   logo_url: "/t/colorful/about_me.png"
