@@ -71,6 +71,8 @@ ActiveAdmin.register Kindergarten do
       f.input :aliases_url
       f.input :sms_count
       f.input :sms_user_count
+      f.input :allsms_count
+      f.input :open_allsms
       f.input :note
     end
 
@@ -101,6 +103,8 @@ ActiveAdmin.register Kindergarten do
       row :aliases_url
       row :sms_count
       row :sms_user_count
+      row :allsms_count
+      row :open_allsms
       row :note
 
       row :asset_img do |obj|
