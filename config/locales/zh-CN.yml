@@ -293,7 +293,7 @@ zh-CN:
         sms_count: "可用短信数量"
         sms_user_count: "短信用户数量"
         allsms_count: "每月群发短信次数"
-        open_allsms: "开启群发短信"
+        open_allsms: "开启限制数量群发"
         telephone: "联系电话"
       user:
         name: "姓名"
