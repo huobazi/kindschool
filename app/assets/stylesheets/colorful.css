@@ -10,7 +10,7 @@ body{
 #kind_name{
     color: violet;
     vertical-align: middle;
-    font-size: 38px;
+    font-size: 48px;
     font-weight: bold;
     /*text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,0.1), 0 0 5px rgba(0,0,0,0.1),0 1px 3px rgba(0,0,0,0.3),0 3px 5px rgba(0,0,0,0.2),0 5px 10px rgba(0,0,0,0.25);*/
     /*text-shadow: 0 0 4px white, -0 -5px 4px #ff3, 2px -10px 6px #fd3, -2px -15px 11px #f80,-2px -25px 18px #f20;*/
@@ -71,15 +71,15 @@ a{
 }
 .logo{
     width: 60%;
-    padding-left: 35px;
-    padding-bottom: 13px;
+    padding-left: 15px;
+    padding-bottom: 20px;
 }
 .logo_vertical{
     vertical-align: middle;
 }
 /*=======首页样式======================begin*/
 .main_logo{
-    padding-bottom: 5px;
+    padding-bottom: 15px;
     padding-top: 5px;
     text-align: center;
 }
