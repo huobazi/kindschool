@@ -1021,3 +1021,19 @@ table.attributes td {
     background-color: #F5F5F5;
     border-bottom: 1px dotted #DBDBDB;
 }
+
+/* ====================== ajax loading ===================== */
+
+#remote-loader {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -40px;
+    width: 80px;
+    text-align: center;
+
+}
+
+#remote-loader .label.important {
+    cursor: pointer;
+}

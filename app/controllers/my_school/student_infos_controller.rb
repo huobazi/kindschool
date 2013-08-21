@@ -198,15 +198,23 @@ class  MySchool::StudentInfosController < MySchool::ManageController
     end
   end
 
-  def destroy_multiple
-    if params[:student].nil?
-      flash[:notice] = "必须先选择学员"
+  def delete
+    unless params[:student].blank? 
+      @student_infos = @kind.student_infos.where(:id=>params[:student])
     else
-      params[:student].each do |student|
-        @kind.student_infos.destroy(student)
+      @student_infos = @kind.student_infos.where(:id=>params[:id])
+    end
+    if @student_infos.blank?
+      flash[:error] = "请选择学员"
+      redirect_to :action => :index
+    end
+    @student_infos.each do |student_info|
+      if user = student_info.user
+        user.destroy
       end
     end
     respond_to do |format|
+      flash[:success] = "删除学员成功"
       format.html { redirect_to my_school_student_infos_path }
       format.json { head :no_content }
     end
