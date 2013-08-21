@@ -155,6 +155,8 @@ class MySchool::MessagesController < MySchool::ManageController
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
       end
     end
+  rescue
+    render :action => "new"
   end
 
   def update

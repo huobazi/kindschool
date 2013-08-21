@@ -2,7 +2,7 @@
 #幼儿园
 class Kindergarten < ActiveRecord::Base
   attr_accessible :logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token,:latlng,:address,
-    :aliases_url,:sms_count,:sms_user_count,:telephone
+    :aliases_url,:sms_count,:sms_user_count,:telephone,:allsms_count,:open_allsms
 
   validates :name,:presence => true, :uniqueness => true, :length => { :maximum => 100}
   validates :number,:presence => true, :uniqueness => true, :length => { :maximum => 100},:exclusion => { :in => %w(www) }
@@ -295,5 +295,12 @@ class Kindergarten < ActiveRecord::Base
     else
       return (self.users.maximum(:chain_code) || 0) + 1
     end
+  end
+
+  #获取当月还剩群发短信数
+  def get_allsms_count
+    time = Time.now.strftime("%Y-%m-01")
+    surplu_allsms_count = self.allsms_count - self.messages.with_deleted.where("status=1 AND approve_status=0 AND allsms=1 AND created_at > ?",time).count
+    surplu_allsms_count < 0 ? 0 : surplu_allsms_count
   end
 end

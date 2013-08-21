@@ -1,0 +1,24 @@
+<fieldset class="people_manage">
+      <legend><label>该班级的学员</label></legend>
+      <div class="work_list">
+        <% unless @squad.student_infos.blank? %>
+            <table class="table table-striped table-hover">
+              <tr>
+                <th>姓名</th>
+                <th>账号</th>
+                <th>男</th>
+                <th>出生日期</th>
+              </tr>
+              <% @squad.student_infos.each do |student| %>
+                <tr>
+                  <td><%= student.user.name %></td>
+                  <td><%= student.user.login %></td>
+                  <td><%= student.user.gender == "M" ? "女" : "男"  %></td>
+                  <td><%= student.birthday ? student.birthday.to_short_datetime : "" %></td>
+                </tr>
+              <% end %>
+            </table>
+        <% else %>
+        <% end %>
+      </div>
+    </fieldset>
