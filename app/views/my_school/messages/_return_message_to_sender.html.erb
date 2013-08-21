@@ -1,0 +1,19 @@
+<h4>回复信息</h4>
+<% @message.is_retrun(current_user.id).each do |message| %>
+<div class="control-group">
+            <label class="control-label" >发送时间:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= message.send_date.try(:to_all_datetime)%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >内容:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= message.content %>
+              </label>
+            </div>
+          </div>
+<%end%>
