@@ -53,6 +53,20 @@ class Message < ActiveRecord::Base
   def if_sernder?
     [0,1].include?(self.tp)
   end
+  
+  #该消息是否已经回复
+  def is_retrun?(user_id)
+   is_retrun = self.return_messages.where(:sender_id=>user_id).first
+   unless is_retrun.blank?
+    return true 
+   else
+    return false
+   end
+  end
+  #该消息回复记录
+  def is_retrun(user_id)
+   is_retrun = self.return_messages.where(:sender_id=>user_id)
+  end
 
   private
   #创建是加载
