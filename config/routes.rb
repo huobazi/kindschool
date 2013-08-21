@@ -304,6 +304,11 @@ School::Application.routes.draw do
         get :grade_squad_partial
       end
     end
+    resources :interest_activities do
+      collection do
+        get :grade_squad_partial
+      end
+    end
     resources :activity_entries
     resources :topic_entries
     resources :messages do

@@ -72,6 +72,7 @@
       <%end%>
     </div>
     <div class="work_list">
+      <div><input type="checkbox" id="check_all" />全选</div>
       <div class="topics">
         <% unless @activities.blank? %>
           <%= render partial: "/my_school/activities/activity", collection: @activities %>
@@ -87,9 +88,6 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-  $("#activity_all").click(function(){
-    $(".activity_check").attr("checked",this.checked);
-  })
-  $(".fancybox").fancybox();
+    $(".fancybox").fancybox();
 });
 </script>

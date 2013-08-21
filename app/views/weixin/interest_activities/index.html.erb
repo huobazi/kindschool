@@ -3,23 +3,23 @@
 </div>
 <div class="message_div">
   <div class="message_title">
-    <span>主题活动</span><span>></span><span>主题活动</span>
+    <span>活动</span><span>></span><span>兴趣讨论</span>
   </div>
   <div class="message_list">
     <ul class="data_list">
       <% unless current_user.get_users_ranges[:tp] == :student %>
         <p class="has-btn-new" style="margin: 0 auto;">
-        <%= link_to "创建活动", new_weixin_activity_path, :class => "span6 btn btn-warning", :style => "color: #fff;" %>
+        <%= link_to "创建兴趣讨论", new_weixin_activity_path, :class => "span6 btn btn-warning", :style => "color: #fff;" %>
         </p>
       <% end %>
       <% if @activities.blank? %>
-        <li><div class="message_content">还没有活动</div></li>
+        <li><div class="message_content">还没有兴趣讨论</div></li>
       <% else %>
         <ul style="clear: both;">
           <% @activities.each do |activity| %>
             <li class="show" data-id="<%= activity.id %>">
               <p class="title"><span><%= activity.title %><span></p>
-              <p class="info">班级活动:<%= activity.squad.try(:name) %></p>
+              <p class="info">班级兴趣讨论:<%= activity.squad.try(:name) %></p>
               <p class="info"><span>创建人:</span><span class="author"><%= activity.creater ? activity.creater.name : "" %></span></p>
               <div class="ctivity_content_logo">
                 <% if activity.asset_img.blank? %>
@@ -54,7 +54,8 @@
 <script type="text/javascript">
 $(".show").each(function() {
   $(this).click(function() {
-    window.location.href = "activities/" + $(this).attr("data-id")
+    window.location.href = "interest_activities/" + $(this).attr("data-id")
   })
 })
 </script>
+

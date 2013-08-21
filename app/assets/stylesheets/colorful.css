@@ -1993,10 +1993,11 @@ span.help-inline {
 .topics .topic .avatar {
     width: 70px;
     margin-left: 10px;
+    margin-right: 10px;
 }
 
 .topics .topic .right_info {
-    padding-left: 100px;
+    /*padding-left: 100px;*/
 }
 .topics .topic .infos {
     padding-right: 74px;

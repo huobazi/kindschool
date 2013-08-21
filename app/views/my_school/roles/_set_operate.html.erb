@@ -10,8 +10,8 @@
   <% n = n + 1 %>
   <li class='check_boxes'>
     <%if k != 'root' && !k.blank? %>
-    <fieldset class="role">
-      <legend class="label"><input  id="<%= "flag_" + n.to_s %>" type="checkbox" name="" value="" alt="全选" class="flag_check_all" /><label style="display: inline; padding-left: 0" for="<%= "flag_" + n.to_s %>"><%= k %></label></legend>
+    <fieldset class="role" style="padding-bottom: 10px;">
+      <legend class="label" style="padding: 5px 0 5px 5px;background: #CDDFEB; color: #000;"><input  id="<%= "flag_" + n.to_s %>" type="checkbox" name="" value="" alt="全选" class="flag_check_all" /><label style="display: inline; padding-left: 0" for="<%= "flag_" + n.to_s %>"><%= k %></label></legend>
       <ol>
         <% v.each do |operate| %>
           <li>
@@ -31,13 +31,28 @@
 </div>
 
 <script type="text/javascript">
+$('input').iCheck({
+  checkboxClass: 'icheckbox_square-blue',
+  radioClass: 'iradio_square-blue',
+  increaseArea: '20%' // optional
+});
+
 $(".flag_check_all").each(function() {
   var check_val = "." + $(this).attr("id") + "_value"
-  $(this).click(function() {
-    $(check_val).attr("checked", this.checked)
+  $(this).on('ifToggled', function() {
+    if( this.checked ) {
+      $(check_val).iCheck("check");
+    } else {
+      $(check_val).iCheck("uncheck");
+    }
   })
 })
-$(".check_all_roles").click(function() {
-  $("input[class^='flag']").attr("checked", this.checked)
+
+$(".check_all_roles").on('ifToggled', function() {
+  if ( this.checked ) {
+    $("input[class^='flag']").iCheck("check");
+  } else {
+    $("input[class^='flag']").iCheck("uncheck");
+  }
 })
 </script>

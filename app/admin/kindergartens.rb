@@ -155,7 +155,7 @@ ActiveAdmin.register Kindergarten do
           unless kind.staff_users.blank?
             table_for(kind.staff_users) do |t|
               t.column("名称") {|item| auto_link item}
-              t.column("性别") {|item| item.gender == "M" ? "男" : "女"}
+              t.column("性别") {|item| item.gender == "G" ? "男" : "女"}
               t.column("入职时间") {|item| item.staff ? item.staff.come_in_at : ""}
               t.column("教育背景") {|item| item.staff ? item.staff.education : ""}
               t.column("操作") {|item|
