@@ -181,6 +181,7 @@ School::Application.routes.draw do
         get :virtual_squad 
         post :virtual_squad_choose
         post :import
+        get :delete
       end
     end
     resources :templates do
