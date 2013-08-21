@@ -1781,6 +1781,7 @@ ul.teacher_list{
     width:90%;
     border-bottom: 2px solid #fdb968;
     color: #fdb968;
+    font-size: 20px;
 }
 ul.teacher_list li{
     height: 150px;

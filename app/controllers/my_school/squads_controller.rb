@@ -44,6 +44,7 @@ class  MySchool::SquadsController < MySchool::ManageController
 
   def show
     @squad = Squad.where(tp: 0).find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    @data = current_user.get_users_ranges
     if @squad.nil?
       flash[:error] = "没有权限或非法操作"
       redirect_to :action => :index
