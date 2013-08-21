@@ -113,21 +113,27 @@ class Message < ActiveRecord::Base
   #判断群发短信数量是否足够
   def load_allsms_count
     if curr_kindergarten = self.kindergarten || Kindergarten.find_by_id(self.kindergarten_id)
+      unless curr_kindergarten.begin_allsms
+        if(self.id_was && !self.status_was && self.status) || self.status
+          errors.add(:content,"您的幼儿园短信群发已关闭！")
+          raise "您的幼儿园短信群发已关闭！"
+        end
+      end
       if curr_kindergarten.open_allsms
         #如果是编辑
         if self.id_was
           if !self.status_was && self.status
             if curr_kindergarten.get_allsms_count == 0
-              errors.add(:content,"您幼儿园的本月群发短信条数次数不足！")
-              raise "您幼儿园的本月群发短信条数次数不足！"
+              errors.add(:content,"您的幼儿园的本月群发短信条数次数不足！")
+              raise "您的幼儿园的本月群发短信条数次数不足！"
             end
           end
         else
           #这是新增
           if self.status
             if curr_kindergarten.get_allsms_count == 0
-              errors.add(:content,"您幼儿园的本月群发短信条数次数不足！")
-              raise "您幼儿园的本月群发短信条数次数不足！"
+              errors.add(:content,"您的幼儿园的本月群发短信条数次数不足！")
+              raise "您的幼儿园的本月群发短信条数次数不足！"
             end
           end
         end

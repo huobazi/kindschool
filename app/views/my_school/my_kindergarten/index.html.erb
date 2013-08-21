@@ -90,12 +90,32 @@
                 </label>
               </div>
             </div>
-            <% if @kind.open_allsms %>
+            <% if @kind.begin_allsms %>
+              <% if @kind.open_allsms %>
+                <div class="control-group">
+                  <label class="control-label">本月群发短信消息数量</label>
+                  <div class="controls">
+                    <label class="show_label">
+                      剩余次数：<%=@kind.get_allsms_count %> / 总数：<%=@kind.allsms_count %>
+                    </label>
+                  </div>
+                </div>
+              <% else %>
+                <div class="control-group">
+                  <label class="control-label">本月群发短信数量</label>
+                  <div class="controls">
+                    <label class="show_label">
+                      剩余次数：<%=@kind.get_allsms_count %> / 总数：<%=@kind.allsms_count %>
+                    </label>
+                  </div>
+                </div>
+              <% end %>
+            <% else %>
               <div class="control-group">
-                <label class="control-label">群发短信数量</label>
+                <label class="control-label">群发短信功能</label>
                 <div class="controls">
                   <label class="show_label">
-                    剩余次数：<%=@kind.get_allsms_count %> / 总数：<%=@kind.allsms_count %>
+                    关闭
                   </label>
                 </div>
               </div>
