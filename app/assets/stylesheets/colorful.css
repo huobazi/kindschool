@@ -2484,3 +2484,22 @@ fieldset.staff_squad ol li {
 .input_select_all {
   margin-left: -10px;
 }
+
+.validate_icon {
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  margin-top: 1px;
+  vertical-align: text-top;
+  display: inline-block;
+  margin-left: 5px;
+  background: url("/t/colorful/validate_icons.png") no-repeat;
+}
+
+.validate_success_icon {
+  background-position: center -16px;
+}
+
+.validate_error_icon {
+  background-position: center -32px;
+}
