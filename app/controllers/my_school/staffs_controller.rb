@@ -105,4 +105,7 @@ class  MySchool::StaffsController < MySchool::ManageController
     end
   end
 
+  def phone_uniqueness_validator
+  end
+
 end
