@@ -34,7 +34,8 @@ class  MySchool::StaffsController < MySchool::ManageController
         end
         redirect_to my_school_staff_path(@staff), :notice => "操作成功"
       end
-    rescue Exception
+    rescue Exception =>ex
+      flash[:error] = ex.message
       render :action => "new"
     end
   end
