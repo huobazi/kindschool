@@ -22,7 +22,8 @@ class  MySchool::StaffsController < MySchool::ManageController
         @staff.user.role = role
       end
     end
-    if @staff.save!
+    begin
+      @staff.save!
       if params[:asset_logo] && (user = @staff.user)
         if user.asset_logo
           user.asset_logo.update_attribute(:uploaded_data, params[:asset_logo])
@@ -32,9 +33,8 @@ class  MySchool::StaffsController < MySchool::ManageController
         end
       end
       redirect_to my_school_staff_path(@staff), :notice => "操作成功"
-    else
-      flash[:error] = "操作失败"
-      redirect_to my_school_staffs_path
+    rescue Exception
+      render :action => "new"
     end
   end
 
@@ -51,7 +51,8 @@ class  MySchool::StaffsController < MySchool::ManageController
       end
     end
     respond_to do |format|
-      if @staff.save && @staff.update_attributes(params[:staff])
+      begin
+        @staff.save! && @staff.update_attributes!(params[:staff])
         if params[:asset_logo] && (user = @staff.user)
           if user.asset_logo
             user.asset_logo.update_attribute(:uploaded_data, params[:asset_logo])
@@ -63,9 +64,10 @@ class  MySchool::StaffsController < MySchool::ManageController
         flash[:notice] = '修改教职工成功.'
         format.html { redirect_to(:action=>:show,:id=>@staff.id) }
         format.xml  { head :ok }
-      else
-        format.html { render :action => :edit }
-        format.xml  { render :xml => @staff.errors, :status => :unprocessable_entity }
+      rescue Exception =>ex
+        flash[:error] = ex.message
+        # redirect_to my_school_student_infos_path, notice: "导入模板出问题，请与管理员联系."
+        render :edit
       end
     end
   end
@@ -94,7 +96,9 @@ class  MySchool::StaffsController < MySchool::ManageController
   end
 
   def phone_uniqueness_validator
-    binding.pry
+    if params[:phone].present?
+      
+    end
   end
 
 end
