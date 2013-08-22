@@ -120,6 +120,7 @@ School::Application.routes.draw do
     end
     resources :squads do
       collection do
+        get :set_squads_teacher
         delete :destroy_multiple
         post :add_strategy
       end

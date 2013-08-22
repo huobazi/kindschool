@@ -75,23 +75,9 @@ class  MySchool::SquadsController < MySchool::ManageController
   rescue
     render :action=>'edit'
   end
+  def set_squads_teacher
 
-  def destroy_multiple
-    if params[:squad].nil?
-      flash[:notice] = "必须先选择班级"
-    else
-      params[:squad].each do |squad|
-        if squad.student_infos.any?
-          next
-        end
-        @kind.squads.destroy(squad)
-      end
-    end
-    respond_to do |format|
-      format.html { redirect_to my_school_squads_path }
-      format.json { head :no_content }
-    end
+    render :layout=>false
   end
-
 end
 

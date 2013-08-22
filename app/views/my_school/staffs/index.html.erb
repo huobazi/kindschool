@@ -98,7 +98,9 @@
                           <%= link_to (staff.user.is_receive ? "取消收短信" : "设为可收短信"), set_gather_sms_my_school_user_path(staff.user) %>
                         <% end %>
                         <% if choose_operate_show("my_school/users/reset_password") %>
-                        <%=link_to '重置密码',reset_password_my_school_user_path(staff.user), method: :post,data: { confirm: '确定要重置密码?' } %>
+                        <%=link_to '重置密码',reset_password_my_school_user_path(staff.user),:title=>"最后重置时间:#{
+                    staff.user.ret_password_records.first ? 
+                    staff.user.ret_password_records.try(:first).try(:created_at).try(:to_long_datetime) :  '无' }", method: :post,data: { confirm: '确定要重置密码?' } %>
                         <%end%>
                       <% end %>
                     </div>
