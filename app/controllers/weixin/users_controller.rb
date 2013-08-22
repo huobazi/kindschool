@@ -34,13 +34,13 @@ class Weixin::UsersController < Weixin::ManageController
       end
       user = User.authenticate(params[:login], params[:password],@kind.id)
       if WEBSITE_CONFIG["weixin_blind"]
-       if user.weiyi_code.blank?
+        if user.weiyi_code.blank?
           raise  "您需要绑定\"微一园讯通\"微信公共帐号"
         end
         if user.weixin_code.blank?
           raise "您需要绑定幼儿园的公共账号后才能访问"
         end
-     end
+      end
       self.current_user = user
       
       if logged_in?
@@ -77,6 +77,38 @@ class Weixin::UsersController < Weixin::ManageController
     redirect_to :action => "login"
     #    redirect_back_or_default(root_path)
   end
+
+
+  def change_password_view
+    @user = User.find_by_id(current_user.id)
+  end
+
+  def change_password
+    if params[:user]
+      if params[:user][:password].blank?
+        flash[:error] = "密码不能为空"
+        raise "密码不能为空"
+      end
+      if params[:user][:password] != params[:user][:password_confirmation]
+        flash[:error] = "密码不一致"
+        raise "密码不一致"
+      end
+    else
+      flash[:error] = "请输入密码"
+      raise "请输入密码"
+    end
+    if current_user.update_attributes(:password=>params[:user][:password],:password_confirmation=>params[:user][:password_confirmation])
+      flash[:success] = "更新密码成功"
+      redirect_to :controller => "/weixin/main", :action => :index
+    else
+      flash[:error] = "更新密码失败"
+      redirect_to :controller => "/weixin/users", :action => :change_password_view
+    end
+  rescue Exception =>ex
+    flash[:error] = ex.message if flash[:error].blank?
+    redirect_to :controller => "/weixin/users", :action => :change_password_view
+  end
+
   private
 
   def load_noisy_image
