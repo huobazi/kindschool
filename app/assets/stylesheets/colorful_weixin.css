@@ -1021,3 +1021,7 @@ table.attributes td {
     background-color: #F5F5F5;
     border-bottom: 1px dotted #DBDBDB;
 }
+
+#kind_name span {
+    padding-left: 5px;
+}
