@@ -76,21 +76,23 @@ class  MySchool::SquadsController < MySchool::ManageController
     render :action=>'edit'
   end
 
-  def destroy_multiple
-    if params[:squad].nil?
-      flash[:notice] = "必须先选择班级"
+  def set_squads_teacher
+    users = User.where(:id=>params[:ids])
+    @squad = Squad.where(tp: 0).find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    users.each do |user|
+      Teacher.find_or_create_by_squad_id_and_staff_id(@squad.id,user.staff.id)
+    end
+    render :layout=>false
+  end
+  def cancel_class_teacher
+    @squad = Squad.where(tp: 0).find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    if teacher = @squad.teachers.where(:staff_id=>params[:staff_id]).first
+      flash[:notice] = "取消成功"
+      teacher.destroy
     else
-      params[:squad].each do |squad|
-        if squad.student_infos.any?
-          next
-        end
-        @kind.squads.destroy(squad)
-      end
+      flash[:notice] = "非法操作"
     end
-    respond_to do |format|
-      format.html { redirect_to my_school_squads_path }
-      format.json { head :no_content }
-    end
+  redirect_to :action =>:show, :id => params[:id]
   end
 
 end

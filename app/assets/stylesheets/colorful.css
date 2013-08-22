@@ -2455,7 +2455,7 @@ fieldset.staff_squad ol li {
     float: left;
     height: 30px;
 }
-.btn {
+.btn-login {
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
@@ -2479,4 +2479,8 @@ fieldset.staff_squad ol li {
     text-align: center;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
     vertical-align: middle;
+}
+
+.input_select_all {
+  margin-left: -10px;
 }

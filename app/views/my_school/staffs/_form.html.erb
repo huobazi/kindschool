@@ -83,3 +83,23 @@
     <%= f.button :submit, disable_with: "正在提交..." %>
   </div>
 </div>
+
+<script type="text/javascript">
+  $("#staff_user_attributes_phone").blur(function() {
+    $.ajax({
+      url: "/my_school/staffs/phone_uniqueness_validator",
+      data: {
+        phone: $(this).val()
+      },
+      method: "get",
+      beforeSend: function() {
+      },
+      success: function() {
+
+      },
+      error: function() {
+
+      }
+    })
+  })
+</script>

@@ -106,19 +106,20 @@ class  MySchool::StudentInfosController < MySchool::ManageController
   def create
     @student_info = StudentInfo.new(params[:student_info])
     @student_info.kindergarten_id = @kind.id
-    if @student_info.save!
-      if params[:asset_logo] && (user = @student_info.user)
-        if user.asset_logo
-          user.asset_logo.update_attribute(:uploaded_data, params[:asset_logo])
-        else
-          user.asset_logo = AssetLogo.new(:uploaded_data=> params[:asset_logo])
-          user.save
+    begin
+      if @student_info.save!
+        if params[:asset_logo] && (user = @student_info.user)
+          if user.asset_logo
+            user.asset_logo.update_attribute(:uploaded_data, params[:asset_logo])
+          else
+            user.asset_logo = AssetLogo.new(:uploaded_data=> params[:asset_logo])
+            user.save
+          end
         end
+        redirect_to my_school_student_info_path(@student_info), :notice => "添加学员成功"
       end
-      redirect_to my_school_student_info_path(@student_info), :notice => "添加学员成功"
-    else
-      flash[:error] = "操作失败"
-      redirect_to my_school_student_infos_path
+    rescue Exception
+      render "new"
     end
   end
 
@@ -173,39 +174,26 @@ class  MySchool::StudentInfosController < MySchool::ManageController
     end
 
 
-    respond_to do |format|
-      if @student_info.update_attributes(params[:student_info])
-        if params[:asset_logo] && (user = @student_info.user)
-          if user.asset_logo
-            user.asset_logo.update_attribute(:uploaded_data, params[:asset_logo])
-          else
-            user.asset_logo = AssetLogo.new(:uploaded_data=> params[:asset_logo])
-            user.save
+      begin
+        if @student_info.update_attributes!(params[:student_info])
+          if params[:asset_logo] && (user = @student_info.user)
+            if user.asset_logo
+              user.asset_logo.update_attribute(:uploaded_data, params[:asset_logo])
+            else
+              user.asset_logo = AssetLogo.new(:uploaded_data=> params[:asset_logo])
+              user.save
+            end
           end
+          flash[:notice] = '更新学员成功.'
+          redirect_to :action => :show, :id => @student_info.id
         end
-        flash[:notice] = '更新学员成功.'
-        format.html { redirect_to(:action=>:show,:id=>@student_info.id) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => :edit }
-        format.xml  { render :xml => @student_info.errors, :status => :unprocessable_entity }
+      rescue Exception=>ex
+        flash[:error] = ex.message
+        render :edit
       end
-    end
   end
 
   def destroy
-    @student_info = StudentInfo.find_by_id_and_kindergarten_id(params[:id], @kind.id)
-   if  user = @student_info.user
-     user.destroy
-   end
-    respond_to do |format|
-      flash[:notice] = '删除学员成功.'
-      format.html { redirect_to(:action=>:index) }
-      format.xml  { head :ok }
-    end
-  end
-
-  def delete
     unless params[:student].blank? 
       @student_infos = @kind.student_infos.where(:id=>params[:student])
     else
