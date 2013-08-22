@@ -35,9 +35,9 @@
       </ul>
     </div>
     <div class="work_list">
-      <div><input type="checkbox" id="check_all" />全选</div>
       <% unless @news.empty? %>
         <div class="topics">
+          <div><input type="checkbox" id="check_all" />全选</div>
           <%= render partial: "news", collection: @news %>
         </div>
         <%= paginate @news  %>

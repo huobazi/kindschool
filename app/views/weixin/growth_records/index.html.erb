@@ -6,26 +6,22 @@
     <span>宝宝成长</span><span>></span><span>宝宝在家</span>
   </div>
   <div class="message_list">
+    <% unless current_user.get_users_ranges[:tp] == :teachers %>
+        <%= link_to "添加成长记录", new_weixin_growth_record_path, :class => "btn btn-warning btn-large has-btn-new" %>
+    <% end %>
     <ul class="data_list clearfix">
-      <% unless current_user.get_users_ranges[:tp] == :teachers %>
-        <p class="has-btn-new" style="margin:0 auto;">
-          <%= link_to "添加成长记录", new_weixin_growth_record_path, :class => "span6 btn btn-warning btn-large", :style => "color: #fff;" %>
-        </p>
-      <% end %>
       <% if @growth_records.blank? %>
         <li><div class="message_content">还没有成长记录</div></li>
       <% else %>
-        <ul style="clear:both;">
-          <% @growth_records.each do |growth_record| %>
-            <li class="show" data-id="<%= growth_record.id %>">
-              <p class="title"><span class="name"><%= growth_record.student_info_label %></span></p>
-              <p class="info"><span><%= growth_record.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span><%= growth_record.end_at.try(:to_short_datetime) %></span>&nbsp;由<span class="author"><%= growth_record.try(:creater).try(:name) %></span>创建于&nbsp;<span><%= growth_record.created_at.try(:to_long_datetime) %></span></p>
-              <div class="content">
-                <%= simple_format growth_record.content %>
-              </div>
-            </li>
-          <% end %>
-        </ul>
+        <% @growth_records.each do |growth_record| %>
+          <li class="show" data-id="<%= growth_record.id %>">
+            <p class="title"><span class="name"><%= growth_record.student_info_label %></span></p>
+            <p class="info"><span><%= growth_record.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span><%= growth_record.end_at.try(:to_short_datetime) %></span>&nbsp;由<span class="author"><%= growth_record.try(:creater).try(:name) %></span>创建于&nbsp;<span><%= growth_record.created_at.try(:to_long_datetime) %></span></p>
+            <div class="content">
+              <%= simple_format growth_record.content %>
+            </div>
+          </li>
+        <% end %>
       <% end %>
     </ul>
     <br/>

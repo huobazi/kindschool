@@ -22,9 +22,6 @@
       <div id="grade_squad_partial">
         <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
         <%= select_tag "squad", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
-      <label class="checkbox inline">
-        <input type="checkbox" id="unfinished" value="option1" <%= @unfinished.presence == true ? " checked='checked'" : "" %>>选择本周内未完成的学员
-      </label>
       </div>
       <div id="squad_student_partial">
       </div>
@@ -150,16 +147,25 @@ $(document).ready(function() {
     )
   });
   $("#squad").change(function() {
-    $.get(
-      "/weixin/growth_records/squad_student",
-      {
-        grade: $("#grade").val(), squad: $("#squad").val()
+    if ( $("#unfinished").is(":checked") )
+    {
+      var unfinished = true || false
+    }
+    $.ajax({
+      url: "/weixin/growth_records/squad_student",
+      data: {
+        squad: $("#squad").val(),
+        unfinished: unfinished
       },
-      function(result) {
+      beforeSend: function() {
+        $("#squad_student_partial").html('<img style="margin-left: 10px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
+      },
+      success: function(result) {
+        $("#squad_student_partial").children(".loading_img").hide()
         $("#squad_student_partial").html(result)
       }
-    )
-  })
+    })
+  }).trigger('change')
   var flag = []
   var time_re = /\d{4}-\d{2}-\d{2}/;
   $("input[name='commit']").click(function(){

@@ -57,10 +57,15 @@
 </fieldset>
 <fieldset>
   <legend><label><strong>教职工信息</strong></label></legend>
-  <%= f.input :birthday, :as => :string, :class => "input-mediun time_datepicker"  %>
-  <%= f.input :come_in_at, :as => :string, :class => "input-mediun time_datepicker" %>
-  <%= f.input :card_code %>
+  <% if action_name == "new" or action_name == "create" %>
+    <%= f.input :birthday, :as => :string, :class => "input-mediun time_datepicker"  %>
+    <%= f.input :come_in_at, :as => :string, :class => "input-mediun time_datepicker" %>
+  <% else %>
+    <%= f.input :birthday, :as => :string, :class => "input-mediun time_datepicker", input_html: {value: f.object.birthday.try(:to_short_datetime)}  %>
+    <%= f.input :come_in_at, :as => :string, :class => "input-mediun time_datepicker", input_html: {value: f.object.come_in_at.try(:to_short_datetime)} %>
+  <% end %>
   <%= f.input :attendance_code %>
+  <%= f.input :card_code %>
   <%= f.input :education, :input_html => {:class => "span5"} %>
 </fieldset>
 <fieldset>

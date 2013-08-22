@@ -23,6 +23,7 @@
 <fieldset class="people_manage">
       <legend><label>该班级的负责老师</label></legend>
       <%=render :partial => "/my_school/virtual_squads/personnel_selection"-%>
+      
         <div class="work_list">
           <% unless @squad.teachers.blank? %>
             <table class="table table-striped table-hover">

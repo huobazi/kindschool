@@ -163,6 +163,7 @@ School::Application.routes.draw do
     resources :staffs do
       collection do
         delete :destroy_multiple
+        get :delete
       end
     end
     resources :page_contents do
@@ -270,8 +271,8 @@ School::Application.routes.draw do
     end
     resources :users do
       collection do
-        get :login,:error_messages
-        post :login
+        get :login,:error_messages,:change_password_view
+        post :login,:change_password
       end
     end
     resources :cook_books

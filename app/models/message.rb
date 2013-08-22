@@ -16,7 +16,8 @@ class Message < ActiveRecord::Base
   validates :title, :presence => {:if => :if_return?}
 
   validates :content, :length => { :minimum => 1 }
-
+  validate_harmonious_of :title,:content
+  
   STATUS_DATA = {"0"=>"草稿","1"=>"已发送"}
   #系统提示消息，开通短信，将受到短信；
   #系统短信消息，所有人都将收到短信；
@@ -67,6 +68,16 @@ class Message < ActiveRecord::Base
   #该消息回复记录
   def is_retrun(user_id)
     is_retrun = self.return_messages.where(:sender_id=>user_id)
+  end
+
+  #该消息是否已读
+  def is_read?(user_id)
+    receiver_meassages = self.message_entries.where(:receiver_id=>user_id,:read_status=>1)
+    unless receiver_meassages.blank?
+      return true
+    else
+      return false
+    end
   end
 
   private
