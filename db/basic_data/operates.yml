@@ -673,7 +673,7 @@ student_destroy:
   sequence: 4
   note: "删除学员"
   controller: "my_school/student_infos"
-  action: "destroy"
+  action: "delete"
   protocol: ""
   <<: *DEFAULTS
 
