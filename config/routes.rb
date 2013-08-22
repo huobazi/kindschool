@@ -164,8 +164,7 @@ School::Application.routes.draw do
     end
     resources :staffs do
       collection do
-        delete :destroy_multiple
-        get :delete, :phone_uniqueness_validator
+        get :phone_uniqueness_validator
       end
     end
     resources :page_contents do

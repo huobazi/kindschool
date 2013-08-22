@@ -602,7 +602,7 @@ staff_destroy:
   sequence: 3
   note: "删除教职工"
   controller: "my_school/staffs"
-  action: "delete"
+  action: "destroy"
   protocol: ""
   <<: *DEFAULTS
 staff_allocation_squad:
@@ -684,7 +684,7 @@ student_destroy:
   sequence: 4
   note: "删除学员"
   controller: "my_school/student_infos"
-  action: "delete"
+  action: "destroy"
   protocol: ""
   <<: *DEFAULTS
 
