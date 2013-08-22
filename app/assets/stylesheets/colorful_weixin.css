@@ -277,6 +277,7 @@ body {
 }
 .user_title{
     width: 100%;
+    padding-bottom: 3px;
 }
 .user_logo{
     display: inline-block;
@@ -297,6 +298,10 @@ body {
 }
 .user_entry table{
     background-color: white;
+}
+.info_action{
+    text-align: right;
+    padding: 5px;
 }
 /*====绑定用户界面===============*/
 .bind{

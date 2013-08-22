@@ -125,6 +125,8 @@ School::Application.routes.draw do
       end
       member do
         get :add_strategy_view
+        get :set_squads_teacher
+        get :cancel_class_teacher
       end
     end
     resources :notices do
@@ -271,8 +273,8 @@ School::Application.routes.draw do
     end
     resources :users do
       collection do
-        get :login,:error_messages
-        post :login
+        get :login,:error_messages,:change_password_view
+        post :login,:change_password
       end
     end
     resources :cook_books

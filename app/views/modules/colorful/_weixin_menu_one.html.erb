@@ -13,6 +13,9 @@
           <label>学生</label>
         </div>
       </div>
+      <div class="info_action">
+        <a href="/weixin/users/change_password_view" class="btn btn-warning">修改密码</a>
+      </div>
       <div class="user_entry">
         <table class="table table-bordered">
           <% if student_info = current_user.student_info %>
@@ -37,7 +40,35 @@
     <a href="###" class="menu_one_a" for="#teacher_infos" id="get_user_all_teachers"><div class="w_arrow"></div><label>老师的信息</label></a>
     <div id="teacher_infos"></div>
   </div>
-<% elsif  current_user.tp == 1 %>
+<% elsif  current_user.tp == 1 || current_user.tp == 2%>
+  <div class="menu_one">
+    <a href="###" class="menu_one_a hide_div" for="#user_infos" ><div class="w_arrow"></div><label>我的信息</label></a>
+    <div id="user_infos">
+      <div class="b_arr">
+      </div>
+      <div class="user_title">
+        <div class="user_logo">
+          <img src="<%= current_user.asset_logo ? current_user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" class="img-polaroid" width="61" alt="头像"/>
+        </div>
+        <div class="user_name">
+          <label><%= current_user.name %></label>
+          <label><%= current_user.role ? current_user.role.name : "" %></label>
+        </div>
+      </div>
+      <div class="info_action">
+        <a href="/weixin/users/change_password_view" class="btn btn-warning">修改密码</a>
+      </div>
+      <div class="user_entry">
+        <table class="table table-bordered">
+          <tr><td><b>电话号码</b></td><td><%= current_user.phone %> </td></tr>
+          <% if staff = current_user.staff %>
+            <tr><td><b>出生日期</b></td><td><%= staff.birthday ? staff.birthday.to_short_datetime : "" %> </td></tr>
+            <tr><td><b>入园时间</b></td><td><%= staff.come_in_at ? staff.come_in_at.to_short_datetime : "" %> </td></tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
   <div class="menu_one">
     <a href="###" class="menu_one_a" for="#squads_infos" id="get_user_all_squads"><div class="w_arrow"></div><label>班级的信息</label></a>
     <div id="squads_infos"></div>
@@ -59,26 +90,26 @@
         div.show();
       }
     })
-$(".menu_one").on("click", ".menu_one_ul .li_title",function(){
-  var li_child = $(this).next();
-  if(li_child.css("display") == "block"){
-    li_child.hide();
-  }else{
-    li_child.show();
-  }
-})
+    $(".menu_one").on("click", ".menu_one_ul .li_title",function(){
+      var li_child = $(this).next();
+      if(li_child.css("display") == "block"){
+        li_child.hide();
+      }else{
+        li_child.show();
+      }
+    })
 <% if  current_user.tp == 0 %>
-  $("#get_user_all_teachers").click(function(){
-    if($("#teacher_infos").html() == ""){
-      $("#teacher_infos").load("<%= url_for(:controller=>"/weixin/main",:action=>"get_user_all_teachers") %>")
-    }
-  })
+      $("#get_user_all_teachers").click(function(){
+        if($("#teacher_infos").html() == ""){
+          $("#teacher_infos").load("<%= url_for(:controller=>"/weixin/main",:action=>"get_user_all_teachers") %>")
+        }
+      })
 <% elsif  current_user.tp == 1 %>
-  $("#get_user_all_squads").click(function(){
-    if($("#squads_infos").html() == ""){
-      $("#squads_infos").load("<%= url_for(:controller=>"/weixin/main",:action=>"get_user_all_squads") %>")
-    }
-  })
+      $("#get_user_all_squads").click(function(){
+        if($("#squads_infos").html() == ""){
+          $("#squads_infos").load("<%= url_for(:controller=>"/weixin/main",:action=>"get_user_all_squads") %>")
+        }
+      })
 <% end %>
-})
+  })
 </script>

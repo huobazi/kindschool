@@ -44,8 +44,8 @@ gem "acts_as_tree","~> 1.4.0"
 #https://github.com/collectiveidea/delayed_job
 gem 'delayed_job_active_record',"0.4.4"
 gem "daemons","~> 1.1.9"
-gem "anjlab-bootstrap-rails", ">= 2.1", :require => "bootstrap-rails"
-gem 'bootstrap-datepicker-rails',"~> 1.1.1.5"
+gem "anjlab-bootstrap-rails", "2.3.1.2", :require => "bootstrap-rails"
+gem 'bootstrap-datepicker-rails',"1.1.1.5"
 # 分页插件
 gem "kaminari", "~> 0.14.1"
 gem "kaminari-bootstrap", "~> 0.1.2"

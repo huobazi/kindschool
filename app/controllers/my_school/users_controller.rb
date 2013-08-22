@@ -137,8 +137,6 @@ class MySchool::UsersController < MySchool::ManageController
       flash[:error] = "原始密码不正确"
       redirect_to :controller => "/my_school/users", :action => :change_password_view
     end
-
-
   end
 
   #  #新建用户
@@ -244,6 +242,7 @@ class MySchool::UsersController < MySchool::ManageController
           end
           content = "您的登录名:#{user.login},密码:#{password},登录地址:#{web_address}"
           user.send_system_message!(title,content,3)
+          flash[:notice]="短信发送成功"
         end
       end
     else
