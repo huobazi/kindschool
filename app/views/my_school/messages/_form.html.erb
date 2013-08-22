@@ -68,7 +68,7 @@
     </div>
   </div>
 <%end%>
-<% if choose_operate_show("my_school/messages/allsms") %>
+<% if @kind.begin_allsms && choose_operate_show("my_school/messages/allsms") %>
   <div class="control-group">
     <label class="control-label" for="inputPassword">短信发给所有人</label>
     <div class="controls">

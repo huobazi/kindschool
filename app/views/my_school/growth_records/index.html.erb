@@ -93,9 +93,9 @@
 
 
     <div class="work_list">
-      <div><input type="checkbox" id="check_all" />全选</div>
       <div class="topics">
         <% unless @growth_records.blank? %>
+          <div><input type="checkbox" id="check_all" />全选</div>
           <%= render partial: "/my_school/growth_records/growth_record", collection: @growth_records %>
           <%= paginate @growth_records %>
         <%else%>

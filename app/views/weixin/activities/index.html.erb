@@ -9,7 +9,7 @@
     <ul class="data_list">
       <% unless current_user.get_users_ranges[:tp] == :student %>
         <p class="has-btn-new" style="margin: 0 auto;">
-        <%= link_to "创建活动", new_weixin_activity_path, :class => "span6 btn btn-warning", :style => "color: #fff;" %>
+        <%= link_to "创建活动", new_weixin_activity_path, :class => "span6 btn btn-warning btn-large", :style => "color: #fff;" %>
         </p>
       <% end %>
       <% if @activities.blank? %>

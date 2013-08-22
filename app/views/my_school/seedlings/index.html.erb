@@ -51,9 +51,9 @@
     </div>
 
     <div class="work_list">
-      <div><input type="checkbox" id="check_all" />全选</div>
       <% unless @seedlings.blank? %>
         <div class="topics">
+          <div><input type="checkbox" id="check_all" />全选</div>
           <%= render partial: "seedling", collection: @seedlings %>
         </div>
         <%= paginate @seedlings %>
