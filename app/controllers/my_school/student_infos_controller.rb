@@ -194,18 +194,6 @@ class  MySchool::StudentInfosController < MySchool::ManageController
   end
 
   def destroy
-    @student_info = StudentInfo.find_by_id_and_kindergarten_id(params[:id], @kind.id)
-   if  user = @student_info.user
-     user.destroy
-   end
-    respond_to do |format|
-      flash[:notice] = '删除学员成功.'
-      format.html { redirect_to(:action=>:index) }
-      format.xml  { head :ok }
-    end
-  end
-
-  def delete
     unless params[:student].blank? 
       @student_infos = @kind.student_infos.where(:id=>params[:student])
     else

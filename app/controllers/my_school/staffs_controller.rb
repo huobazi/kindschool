@@ -42,18 +42,6 @@ class  MySchool::StaffsController < MySchool::ManageController
     @staff = Staff.find_by_id(params[:id])
   end
 
-  def destroy
-    @staff = Staff.find_by_id(params[:id])
-    if user = @staff.user
-       user.destroy
-    end
-    respond_to do |format|
-      flash[:notice] = '删除教职工成功.'
-      format.html { redirect_to(:action=>:index) }
-      format.xml  { head :ok }
-    end
-  end
-
   def update
     @staff = Staff.find_by_id(params[:id])
     if params[:role] && params[:role][:id]
@@ -82,7 +70,7 @@ class  MySchool::StaffsController < MySchool::ManageController
     end
   end
 
-  def delete
+  def destroy
     unless params[:staff].blank? 
       @staffs = @kind.staffs.where(:id=>params[:staff])
     else
@@ -103,6 +91,9 @@ class  MySchool::StaffsController < MySchool::ManageController
       format.html { redirect_to my_school_staffs_path }
       format.json { head :no_content }
     end
+  end
+
+  def phone_uniqueness_validator
   end
 
 end
