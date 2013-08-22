@@ -10,7 +10,6 @@ if defined?(Bundler)
   # If you want your assets lazily compiled in production, use this line
   # Bundler.require(:default, :assets, Rails.env)
 end
-
 module School
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -60,6 +59,8 @@ module School
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.middleware.use JQuery::FileUpload::Rails::Middleware
   end
 end
 I18n.default_locale = "zh-CN"

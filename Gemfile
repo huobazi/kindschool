@@ -67,3 +67,8 @@ gem "rails_kindeditor", "~>0.4.0"
 gem 'roo' , "~>1.11.2"
 #https://github.com/lnsoso/harmonious_dictionary
 gem "harmonious_dictionary", "~>0.0.1"
+
+#https://github.com/tors/jquery-fileupload-rails
+gem "jquery-fileupload-rails","0.4.1"
+
+#https://github.com/jhjguxin/sitemap_generator  #TODO:需要研究 SEO的网站地图

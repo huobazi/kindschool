@@ -15,7 +15,7 @@
 //= require jquery.ui.all
 //= require twitter/bootstrap
 //= require kindeditor
-
+//= require jquery-fileupload
 
 $(function(){
     $("div.head div.center_menu").hover(function(){
