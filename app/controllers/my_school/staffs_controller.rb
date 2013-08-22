@@ -94,6 +94,7 @@ class  MySchool::StaffsController < MySchool::ManageController
   end
 
   def phone_uniqueness_validator
+    binding.pry
   end
 
 end

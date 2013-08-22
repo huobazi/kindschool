@@ -55,9 +55,9 @@
  <div class="control-group">
 <div class="controls">
   <% if action_name == "new" %>
-    <%= f.submit('创建',:class=>"btn") %>
+    <%= f.submit('创建',:class=>"btn", "data-disable-with" => "正在提交") %>
   <% else %>
-    <%= f.submit('更新',:class=>"btn") %>
+    <%= f.submit('更新',:class=>"btn", "data-disable-with" => "正在提交") %>
   <% end %>
 </div>
 </div>
