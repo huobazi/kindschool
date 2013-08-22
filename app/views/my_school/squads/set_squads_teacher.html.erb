@@ -23,14 +23,16 @@
 <div class="squads_teacher_list">
 <fieldset class="people_manage">
       <legend><label>该班级的负责老师</label></legend>
+      <%if choose_operate_show("my_school/squads/set_squads_teacher")%>
       <div class="set_squads_teacher">
         <form class="form-horizontal">
         <%=render :partial => "/my_school/virtual_squads/personnel_selection"-%>
         <div class="controls">
-         <%=link_to "添加#{@squad.try(:name)}老师","###",:class=>"btn",:id=>"change_squads_teacher"%>
+         <%=link_to "添加#{@squad.name}老师","###",:class=>"btn",:id=>"change_squads_teacher"%>
         </div>
       </form>
       </div>
+      <%end%>
         <div class="work_list">
          <%= render :partial => "teacher_list" %>
         </div>
@@ -43,12 +45,17 @@
 <script type="text/javascript">
    $(function() {
     $("#change_squads_teacher").click(function(){
-    	var inputs="";
-    	inputs=$("#message_inputs .message_user input");
+      var inputs=""
+        inputs=$("#message_inputs .message_user input")
+       var ids = new Array();
+      for(i=0;i<inputs.length;i++)
+       {
+        ids.push(inputs[i].value);
+        }
       $.ajax({
-        url: "/my_school/squads/set_squads_teacher",
+        url: "/my_school/squads/<%=@squad.id%>/set_squads_teacher",
         data: {
-          squad: <%=@squad.id%> ,
+          ids: ids
               },
         beforeSend: function() {
           $(".squads_teacher_list").html('<img style="margin-left: 250px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')

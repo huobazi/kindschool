@@ -12,11 +12,14 @@
                   <td><%= teacher.staff.try(:user).try(:login) %></td>
                   <td><%= teacher.tp == 1 ? "是" : "否" %></td>
                   <td>
-                    <% if teacher.tp == 0 %>
-                        <%= link_to "设为班主任", :controller => "/my_school/teachers", :action => :set_class_teacher, :teacher_id => teacher.id, :squad_id => teacher.squad_id, :staff_id => teacher.staff_id, :if_squad => true %>
-                    <% else %>
-                      <%= nil %>
-                    <% end %>
+                    <%if choose_operate_show("my_school/teachers/set_class_teacher")%>
+                    <% if teacher.tp == 0 %> 
+                        <%= link_to "设为班主任", :controller => "/my_school/teachers", :action => :set_class_teacher, :teacher_id => teacher.id, :squad_id => teacher.squad_id, :staff_id => teacher.staff_id, :if_squad => true %>|
+                        <% else %> <%= nil %> <% end %> 
+                        <%end%>
+                        <%if choose_operate_show("my_school/squads/cancel_class_teacher")%>
+                        <%= link_to "取消负责老师", :controller => "/my_school/squads", :action => :cancel_class_teacher, :staff_id => teacher.staff_id, :id => @squad.id%>
+                        <%end%>
                   </td>
                 </tr>
               <% end %>

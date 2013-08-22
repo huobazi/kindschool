@@ -75,9 +75,25 @@ class  MySchool::SquadsController < MySchool::ManageController
   rescue
     render :action=>'edit'
   end
-  def set_squads_teacher
 
+  def set_squads_teacher
+    users = User.where(:id=>params[:ids])
+    @squad = Squad.where(tp: 0).find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    users.each do |user|
+      Teacher.find_or_create_by_squad_id_and_staff_id(@squad.id,user.staff.id)
+    end
     render :layout=>false
   end
+  def cancel_class_teacher
+    @squad = Squad.where(tp: 0).find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    if teacher = @squad.teachers.where(:staff_id=>params[:staff_id]).first
+      flash[:notice] = "取消成功"
+      teacher.destroy
+    else
+      flash[:notice] = "非法操作"
+    end
+  redirect_to :action =>:show, :id => params[:id]
+  end
+
 end
 
