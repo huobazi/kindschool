@@ -14,6 +14,21 @@
       &nbsp;
     </div>
     <%= button_tag "消息信箱" ,:id=>"show_messages"%>
+    <br/>
+    <span id="kind_name"><%= @kind.name %></span>
+          <script type="text/javascript">
+            $(function(){
+              $("#kind_name").lettering();
+              function load_color(){
+                var kind_color = ["#EF554C","#f6ab1d","violet","#00c0f6","#a4c500","#f7a200"];
+                $("#kind_name span").each(function(index, Element){
+                  var color = kind_color[index%kind_color.length];
+                  $(this).css("color",color)
+                })
+              }
+              load_color();
+            })
+          </script>
   </div>
 </h1>
 <div>

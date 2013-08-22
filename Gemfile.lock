@@ -92,6 +92,7 @@ GEM
     fastercsv (1.5.5)
     formtastic (2.2.1)
       actionpack (>= 3.0)
+    harmonious_dictionary (0.0.1)
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -237,6 +238,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   daemons (~> 1.1.9)
   delayed_job_active_record (= 0.4.4)
+  harmonious_dictionary (~> 0.0.1)
   jquery-rails (= 2.0.3)
   jquery-ui-rails
   just-datetime-picker (~> 0.0.6)
