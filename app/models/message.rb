@@ -70,6 +70,16 @@ class Message < ActiveRecord::Base
     is_retrun = self.return_messages.where(:sender_id=>user_id)
   end
 
+  #该消息是否已读
+  def is_read?(user_id)
+    receiver_meassages = self.message_entries.where(:receiver_id=>user_id,:read_status=>1)
+    unless receiver_meassages.blank?
+      return true
+    else
+      return false
+    end
+  end
+
   private
   #创建是加载
   def load_user_info
