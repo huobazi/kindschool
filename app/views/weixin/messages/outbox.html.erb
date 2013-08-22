@@ -4,9 +4,9 @@
 <div class="message_div">
   <div class="message_title">
     发件箱
-    <%= link_to "发消息", new_weixin_message_path, :class => "new_message btn btn-warning" %>
   </div>
   <div class="message_list">
+    <%= link_to "发消息", new_weixin_message_path, :class => "btn btn-warning has-btn-new btn-large" %>
     <ul class="data_list">
       <% if @messages.blank? %>
         <li><div class="message_content">您还没有发件信息。</div></li>

@@ -1,9 +1,11 @@
 <% unless @student_infos.empty? %>
   <label class="field_prompt" for="student">学员:</label>
   <%= select_tag "student_info_id", options_for_select((@student_infos.collect{|s|[s.user.name,s.id]} || [])), :class => "select", :name => "growth_record[student_info_id]" %>
-  <label class="checkbox inline" style="margin-left: 20px;">
-    <input type="checkbox" id="unfinished" value="option1" <%= @unfinished.presence == true ? " checked='checked'" : "" %>>选择本周内未完成的学员
-  </label>
+  <% if current_user.get_users_ranges[:tp] == :teachers %>
+    <label class="checkbox inline" style="margin-left: 20px;">
+      <input type="checkbox" id="unfinished" value="option1" <%= @unfinished.presence == true ? " checked='checked'" : "" %>>选择本周内未完成的学员
+    </label>
+  <% end %>
 <% else %>
   <label class="field_prompt" for="student">学员:</label>
   <div class="controls">

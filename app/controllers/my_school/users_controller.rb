@@ -137,8 +137,6 @@ class MySchool::UsersController < MySchool::ManageController
       flash[:error] = "原始密码不正确"
       redirect_to :controller => "/my_school/users", :action => :change_password_view
     end
-
-
   end
 
   #  #新建用户

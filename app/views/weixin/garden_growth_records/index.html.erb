@@ -6,16 +6,13 @@
     <span>宝宝成长</span><span>></span><span>宝宝在园</span>
   </div>
   <div class="message_list">
-    <ul class="data_list clearfix">
-      <% unless current_user.get_users_ranges[:tp] == :student %>
-      <p class="has-btn-new" style="margin: 0 auto;">
-        <%= link_to "添加成长记录", new_weixin_garden_growth_record_path, :class => "span6 btn btn-warning btn-large", :style => "color: #fff;" %>
-      </p>
-      <% end %>
+    <% unless current_user.get_users_ranges[:tp] == :student %>
+      <%= link_to "添加成长记录", new_weixin_garden_growth_record_path, :class => "btn btn-warning btn-large has-btn-new" %>
+    <% end %>
+    <ul class="data_list">
       <% if @growth_records.blank? %>
         <li><div class="message_content">还没有成长记录</div></li>
       <% else %>
-        <ul style="clear: both;">
         <% @growth_records.each do |growth_record| %>
           <li class="show" data-id="<%= growth_record.id %>">
             <p class="title"><span class="name"><%= growth_record.student_info_label %></span></p>
@@ -25,7 +22,6 @@
             </div>
           </li>
         <% end %>
-        </ul>
       <% end %>
     </ul>
     <br/>
