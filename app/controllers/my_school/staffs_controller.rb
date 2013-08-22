@@ -50,9 +50,8 @@ class  MySchool::StaffsController < MySchool::ManageController
         @staff.user.role = role
       end
     end
-    respond_to do |format|
       begin
-        @staff.save! && @staff.update_attributes!(params[:staff])
+       if  @staff.update_attributes!(params[:staff]) && @staff.save!
         if params[:asset_logo] && (user = @staff.user)
           if user.asset_logo
             user.asset_logo.update_attribute(:uploaded_data, params[:asset_logo])
@@ -62,13 +61,11 @@ class  MySchool::StaffsController < MySchool::ManageController
           end
         end
         flash[:notice] = '修改教职工成功.'
-        format.html { redirect_to(:action=>:show,:id=>@staff.id) }
-        format.xml  { head :ok }
+        redirect_to(:action=>:show,:id=>@staff.id)
+       end
       rescue Exception =>ex
         flash[:error] = ex.message
-        # redirect_to my_school_student_infos_path, notice: "导入模板出问题，请与管理员联系."
-        render :edit
-      end
+         redirect_to :back#my_school_student_infos_path, notice: "导入模板出问题，请与管理员联系."
     end
   end
 
