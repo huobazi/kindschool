@@ -10,7 +10,7 @@
   </div>
   <div class="actions">
     <% if comment.is_show %>
-      <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "comments", :action=>:virtual_delete,:id=>comment.id, :resource_id => params[:resource_id], :resource_type => params[:resource_type]), :method => :get, confirm: "你确定删除该贴子回复吗", remote: true %>
+      <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "comments", :action=>:virtual_delete,:id=>comment.id, :resource_id => params[:resource_id], :resource_type => params[:resource_type]), :method => :get, :confirm=> "你确定删除该贴子回复吗", :remote=> true %>
     <% end %>
   </div>
 </div>

@@ -82,13 +82,24 @@ class  MySchool::StaffsController < MySchool::ManageController
     end
   end
 
-  def destroy_multiple
-    if params[:staff].nil?
-      flash[:notice] = "必须先选择教职工"
+  def delete
+    unless params[:staff].blank? 
+      @staffs = @kind.staffs.where(:id=>params[:staff])
     else
-      Staff.destroy(params[:staff])
+      @staffs = @kind.staffs.where(:id=>params[:id])
+    end
+    if @staffs.blank?
+      flash[:error] = "请选择教职工"
+      redirect_to :action => :index
+      return
+    end
+    @staffs.each do |staff|
+      if user = staff.user
+        user.destroy
+      end
     end
     respond_to do |format|
+      flash[:success] = "删除教职工成功"
       format.html { redirect_to my_school_staffs_path }
       format.json { head :no_content }
     end

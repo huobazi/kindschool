@@ -16,7 +16,8 @@ class Message < ActiveRecord::Base
   validates :title, :presence => {:if => :if_return?}
 
   validates :content, :length => { :minimum => 1 }
-
+  validate_harmonious_of :title,:content
+  
   STATUS_DATA = {"0"=>"草稿","1"=>"已发送"}
   #系统提示消息，开通短信，将受到短信；
   #系统短信消息，所有人都将收到短信；

@@ -32,12 +32,14 @@
             <!--
               <a id="destroy_multiple" href="javascript: void(0)" data-confirm="您确定删除选中学员吗?" data-method="get" rel="nofollow">
             -->
+            <% if choose_operate_show("my_school/student_infos/delete") %>
               <a id="destroy_multiple" href="javascript: void(0)" rel="nofollow">
-              <div class="work_action_delete">
-              </div>
-              <div class="work_action_delete_move">
-              </div>
-            </a>
+                <div class="work_action_delete">
+                </div>
+                <div class="work_action_delete_move">
+                </div>
+              </a>
+            <% end %>
           </li>
         </ul>
       <% end %>
@@ -135,7 +137,11 @@
       }
     })
     $("#destroy_multiple").click(function(){
-      $("#destroy_multi_form").submit();
+      if (confirm('您确定删除选中的学员吗')) {
+        $("#destroy_multi_form").submit();
+      } else {
+        return false;
+      }
     });
   });
 </script>
