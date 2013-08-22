@@ -65,3 +65,5 @@ gem "carrierwave","~>0.9.0"
 gem "rails_kindeditor", "~>0.4.0"
 
 gem 'roo' , "~>1.11.2"
+#https://github.com/lnsoso/harmonious_dictionary
+gem "harmonious_dictionary", "~>0.0.1"
