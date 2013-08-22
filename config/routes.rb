@@ -163,6 +163,7 @@ School::Application.routes.draw do
     resources :staffs do
       collection do
         delete :destroy_multiple
+        get :delete
       end
     end
     resources :page_contents do

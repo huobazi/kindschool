@@ -93,7 +93,14 @@ class  MySchool::StudentInfosController < MySchool::ManageController
     @student_info = StudentInfo.new
     @student_info.kindergarten = @kind
     @student_info.user = User.new(:kindergarten_id => @kind.id, :tp => 0)
-    @grades = @kind.grades
+    if current_user.get_users_ranges[:tp] == :all
+      @grades = @kind.grades
+    end
+
+    if current_user.get_users_ranges[:tp] == :teachers
+      @squads = current_user.get_users_ranges[:squads]
+    end
+
   end
 
   def create
