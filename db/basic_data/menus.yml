@@ -229,6 +229,22 @@
     height_level: "b"
     sequence: 611
     operate_id: 2007
+  - id: 61002
+    name: "发通知"
+    number: 61002
+    url: "/my_school/notices/new"
+    title: "发通知"
+    height_level: "b"
+    sequence: 614
+    operate_id: 2001
+  - id: 62003
+    name: "通知信息"
+    number: 62003
+    url: "/my_school/notices"
+    title: "通知信息"
+    height_level: "b"
+    sequence: 601
+    operate_id: 2005
   - id: 63000
     name: "发件箱"
     number: 63000
