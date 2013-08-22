@@ -244,6 +244,7 @@ class MySchool::UsersController < MySchool::ManageController
           end
           content = "您的登录名:#{user.login},密码:#{password},登录地址:#{web_address}"
           user.send_system_message!(title,content,3)
+          flash[:notice]="短信发送成功"
         end
       end
     else

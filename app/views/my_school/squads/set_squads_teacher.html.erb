@@ -27,7 +27,7 @@
         <form class="form-horizontal">
         <%=render :partial => "/my_school/virtual_squads/personnel_selection"-%>
         <div class="controls">
-         <%=link_to "添加#{@squad.name}老师","###",:class=>"btn",:id=>"change_squads_teacher"%>
+         <%=link_to "添加#{@squad.try(:name)}老师","###",:class=>"btn",:id=>"change_squads_teacher"%>
         </div>
       </form>
       </div>
@@ -43,6 +43,8 @@
 <script type="text/javascript">
    $(function() {
     $("#change_squads_teacher").click(function(){
+    	var inputs="";
+    	inputs=$("#message_inputs .message_user input");
       $.ajax({
         url: "/my_school/squads/set_squads_teacher",
         data: {
