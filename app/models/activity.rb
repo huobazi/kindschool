@@ -21,6 +21,8 @@ class Activity < ActiveRecord::Base
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img
 
+  before_destroy :ensure_not_activity_entries
+
   STATUS = { 0=>"审核通过",1=> "待审核", 2=>"审核不通过"}
 
   def kindergarten_label
@@ -42,4 +44,13 @@ class Activity < ActiveRecord::Base
 
   include ResourceApproveStatusStart
   before_save :news_approve_status_start
+
+  def ensure_not_activity_entries
+    unless self.activity_entries.blank?
+      self.activity_entries.each do |activity_entry|
+        activity_entry.is_show = false
+        activity_entry.save
+      end
+    end
+  end
 end

@@ -51,8 +51,8 @@
         <% end %>
         </li>
         <li>
-          <% if choose_operate_show("my_school/activities/destroy_multi_form") %>
-            <a href="/" title="删除" id="destroy_multiple">
+          <% if choose_operate_show("my_school/activities/destroy") %>
+            <a href="javascript: void(0)" rel="nofollow" title="删除" id="destroy_multiple">
               <div class="work_action_delete">
               </div>
               <div class="work_action_delete_move">
@@ -75,7 +75,9 @@
       <div class="topics">
         <% unless @activities.blank? %>
           <div class="input_select_all"><input type="checkbox" id="check_all" />全选</div>
-          <%= render partial: "/my_school/activities/activity", collection: @activities %>
+          <%= form_tag my_school_activity_path(@activities), method: :delete, :id => "destroy_multi_form" do %>
+            <%= render partial: "/my_school/activities/activity", collection: @activities %>
+          <% end %>
           <%= paginate @activities %>
         <% else %>
           没有活动
@@ -89,5 +91,10 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $(".fancybox").fancybox();
+});
+$("#destroy_multiple").click(function(){
+  if (confirm('您确定删除选中的贴子吗')) {
+    $("#destroy_multi_form").submit();
+  }
 });
 </script>

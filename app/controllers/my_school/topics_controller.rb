@@ -234,12 +234,6 @@ class  MySchool::TopicsController < MySchool::ManageController
     end
     @topics.each do |topic|
       topic.destroy
-      unless topic.topic_entries.blank?
-        topic.topic_entries.each do |topic_entry|
-          topic_entry.is_show = false
-          topic_entry.save
-        end
-      end
     end
     respond_to do |format|
       flash[:success] = "删除贴子成功"
