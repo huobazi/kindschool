@@ -1,18 +1,13 @@
-<% if @error.presence == true %>
-  if ( $("#staff_user_attributes_phone").next($(".validate_icon")).length > 0 ) {
-    $("#staff_user_attributes_phone").next($(".validate_icon")).remove();
+<% if @message.present? %>
+  if ( $("#staff_user_attributes_phone").parent().find(".validate_success_icon").length > 0 ) {
+    $("#staff_user_attributes_phone").parent().find(".validate_success_icon").remove();
   }
-  $("<i class='validate_icon validate_error_icon'></i>").insertAfter($("#staff_user_attributes_phone"));
-  <% if @message.present? %>
-    if ( $("#staff_user_attributes_phone").nextAll().length > 0 ) {
-      $("#staff_user_attributes_phone").nextAll().remove();
-    }
-    $('<span class="help-inline"><%= @message %></span>').insertAfter($("#staff_user_attributes_phone"));
-    $("<i class='validate_icon validate_error_icon'></i>").insertAfter($("#staff_user_attributes_phone"));
-  <% end %>
-<% else %>
-  if ( $("#staff_user_attributes_phone").next($(".validate_icon")).length > 0 ) {
-    $("#staff_user_attributes_phone").next($(".validate_icon")).remove();
+  if ($("#staff_user_attributes_phone").parent().find("span.help-inline").length > 0) {
+    $("#staff_user_attributes_phone").parent().find("span.help-inline").remove();
   }
-  $("<i class='validate_icon validate_success_icon'></i>").insertAfter($("#staff_user_attributes_phone"));
+
+  if ($("#staff_user_attributes_phone").parent().find("i.validate_icon").length > 0) {
+    $("#staff_user_attributes_phone").parent().find("i.validate_icon").remove();
+  }
+  $("<i class='validate_icon validate_error_icon'></i><span class='help-inline'><%= @message %></span>").appendTo($("#staff_user_attributes_phone").parent());
 <% end %>

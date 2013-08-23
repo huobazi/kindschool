@@ -88,18 +88,7 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-  $('input').iCheck({
-    checkboxClass: 'icheckbox_square-blue',
-    radioClass: 'iradio_square-blue',
-    increaseArea: '20%' // optional
-  });
-  $("#check_all").on('ifClicked', function() {
-    if(this.checked) {
-      $(".check").iCheck('uncheck');
-    } else {
-      $(".check").iCheck('check');
-    }
-  })
+
   $("#destroy_multiple").click(function(){
       $("#destroy_multi_form").submit();
       return false;
