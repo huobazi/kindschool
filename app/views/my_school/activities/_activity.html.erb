@@ -22,6 +22,9 @@
           <a href="<%= edit_my_school_interest_activity_path(activity) %>" title="编辑<%= activity.title %>" alt="编辑<%= activity.title %>"><i class="icon-edit"></i></a>
         <% end %>
       <% end %>
+      <% if choose_operate_show("my_school/activities/destroy") %>
+        <a href="<%= my_school_activity_path(activity) %>" data-method="delete" data-confirm="您确定要删除该活动吗" title="删除<%= activity.title %>" alt="删除<%= activity.title %>"><i class="icon-remove-sign"></i></a>
+      <% end %>
       <% if activity.activity_entries.any? %>
         <% if controller_name == "activities" %>
           <%= link_to activity.activity_entries.count, my_school_activity_path(activity, anchor: "activity_entry_1"), class: "count", style: "margin: 0;" %>

@@ -89,7 +89,8 @@
     $.ajax({
       url: "/my_school/staffs/phone_uniqueness_validator",
       data: {
-        phone: $(this).val()
+        phone: $(this).val(),
+        element: $(this).attr("id")
       },
       method: "get",
       beforeSend: function() {
