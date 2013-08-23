@@ -329,14 +329,14 @@
 - id: 100000
   number: 100000
   name: "成长记录"
-  # operate_id: 8004
+  operate_id: 8
   height_level: "b"
   url: "/my_school/growth_records/home"
   sequence: 1000
   children:
   - id: 101000
     name: "宝宝在家"
-    operate_id: 8004
+    operate_id: 8009
     number: 101000
     url: "/my_school/growth_records/home"
     title: "宝宝在家"
@@ -344,7 +344,7 @@
     sequence: 1010
   - id: 102000
     name: "宝宝在园"
-    operate_id: 8005
+    operate_id: 8010
     number: 102000
     url: "/my_school/garden_growth_records/garden"
     title: "宝宝在园"
