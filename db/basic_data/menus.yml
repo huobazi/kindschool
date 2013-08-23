@@ -292,7 +292,7 @@
     url: "/my_school/personal_sets"
     title: "个人集锦"
     height_level: "b"
-    sequence: 1101
+    sequence: 1201
 
 - id: 90000
   number: 90000
@@ -329,7 +329,7 @@
 - id: 100000
   number: 100000
   name: "成长记录"
-  # operate_id: 8
+  # operate_id: 8004
   height_level: "b"
   url: "/my_school/growth_records/home"
   sequence: 1000
