@@ -329,7 +329,6 @@
 - id: 100000
   number: 100000
   name: "成长记录"
-  operate_id: 8
   height_level: "b"
   url: "/my_school/growth_records/home"
   sequence: 1000
