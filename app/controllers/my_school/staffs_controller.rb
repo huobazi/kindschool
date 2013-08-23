@@ -23,17 +23,19 @@ class  MySchool::StaffsController < MySchool::ManageController
       end
     end
     begin
-      @staff.save!
-      if params[:asset_logo] && (user = @staff.user)
-        if user.asset_logo
-          user.asset_logo.update_attribute(:uploaded_data, params[:asset_logo])
-        else
-          user.asset_logo = AssetLogo.new(:uploaded_data=> params[:asset_logo])
-          user.save
+      if @staff.save!
+        if params[:asset_logo] && (user = @staff.user)
+          if user.asset_logo
+            user.asset_logo.update_attribute(:uploaded_data, params[:asset_logo])
+          else
+            user.asset_logo = AssetLogo.new(:uploaded_data=> params[:asset_logo])
+            user.save
+          end
         end
+        redirect_to my_school_staff_path(@staff), :notice => "操作成功"
       end
-      redirect_to my_school_staff_path(@staff), :notice => "操作成功"
-    rescue Exception
+    rescue Exception =>ex
+      flash[:error] = ex.message
       render :action => "new"
     end
   end
@@ -50,22 +52,22 @@ class  MySchool::StaffsController < MySchool::ManageController
         @staff.user.role = role
       end
     end
-      begin
-       if  @staff.update_attributes!(params[:staff]) && @staff.save!
-        if params[:asset_logo] && (user = @staff.user)
-          if user.asset_logo
-            user.asset_logo.update_attribute(:uploaded_data, params[:asset_logo])
-          else
-            user.asset_logo = AssetLogo.new(:uploaded_data=> params[:asset_logo])
-            user.save
-          end
+    begin
+     if  @staff.update_attributes!(params[:staff]) && @staff.save!
+      if params[:asset_logo] && (user = @staff.user)
+        if user.asset_logo
+          user.asset_logo.update_attribute(:uploaded_data, params[:asset_logo])
+        else
+          user.asset_logo = AssetLogo.new(:uploaded_data=> params[:asset_logo])
+          user.save
         end
-        flash[:notice] = '修改教职工成功.'
-        redirect_to(:action=>:show,:id=>@staff.id)
-       end
-      rescue Exception =>ex
-        flash[:error] = ex.message
-         redirect_to :back#my_school_student_infos_path, notice: "导入模板出问题，请与管理员联系."
+      end
+      flash[:notice] = '修改教职工成功.'
+      redirect_to(:action=>:show,:id=>@staff.id)
+     end
+    rescue Exception =>ex
+      flash[:error] = ex.message
+      render :action => :edit
     end
   end
 
