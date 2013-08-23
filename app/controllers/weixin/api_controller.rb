@@ -245,8 +245,8 @@ class Weixin::ApiController < Weixin::BaseController
             })
         end
       elsif xml_data[:Event] == "unsubscribe"
-        user = User.find_by_weiyi_code(xml_data[:FromUserName])
-        if user
+        if user = User.find_by_weiyi_code(xml_data[:FromUserName])
+          session[:weiyi_code] = nil
           user.update_attribute(:weiyi_code,nil)
         end
       else
