@@ -8,6 +8,10 @@ body{
     padding: 0;
     position: relative;
 }
+input {
+    width:expression(this.type=="radio" ?"auto":"Default");
+    width:expression(this.type=="checkbox" ?"auto":"Default");
+}
 input.search_btn{
     width: 45px;
 }
@@ -40,7 +44,8 @@ input.search_btn{
     padding-left: 3px;
 }
 div.ui-dialog{
-    position: fixed;
+    /*    position: fixed;*/
+    position: absolute;
 }
 .wrapper input {
     height: auto;
@@ -1149,6 +1154,7 @@ table.attributes td {
     border-radius: 4px 4px 4px 4px;
     max-height: 250px;
     min-height: 30px;
+    _height: expression(this.scrollHeight > 250 ? "250px" : (this.scrollHeight < 30 ? "30px" : "auto"));
     float: left;
     overflow: auto;
 }
@@ -1237,9 +1243,10 @@ table.attributes td {
 }
 .tab .check_rangs,.tab .check_grades{
     float: left;
+    margin-left: 5px;
     padding: 6px;
-    /*    width: 147px;*/
-    margin-left: 10px;
+    width: 45%;
+    text-align: left;
 }
 .tab .rangs_tag{
     width: 100%;
@@ -1247,6 +1254,12 @@ table.attributes td {
 }
 .tab .check_rangs input,.tab .check_grades input,.tab .checkall input,.tab .checkall label,.tab .check_rangs label,.tab .check_grades label{
     float: left;
+    vertical-align: top;
+    width: auto;
+}
+.tab .rangs_tag .check_rangs input,.tab .rangs_tag .check_rangs label{
+    vertical-align: top;
+    width: auto;
 }
 
 #image_wall li{
