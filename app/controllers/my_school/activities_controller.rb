@@ -143,9 +143,9 @@ class MySchool::ActivitiesController < MySchool::ManageController
 
   def destroy
     unless params[:activity].blank? 
-      @activities = @kind.activities.where(:id=>params[:activity])
+      @activities = @kind.activities.where(:tp => 0, :id=>params[:activity])
     else
-      @activities = @kind.activities.where(:id=>params[:id])
+      @activities = @kind.activities.where(:tp => 0, :id=>params[:id])
     end
     if @activities.blank?
       flash[:error] = "请选择活动"
