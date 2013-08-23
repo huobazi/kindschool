@@ -97,10 +97,7 @@ class  MySchool::StaffsController < MySchool::ManageController
   def phone_uniqueness_validator
     if params[:phone].present?
       phones = User.pluck(:phone)
-      if params[:phone].length != 11 or !(params[:phone] =~ /^(\+\d+-)?[1-9]{1}[0-9]{10}$/)
-        @error = true
-      elsif phones.include?(params[:phone])
-        @error = true
+      if phones.include?(params[:phone])
         @message = "用户名被占用"
       end
       render "phone_uniqueness_validator.js.erb", :layout => false
