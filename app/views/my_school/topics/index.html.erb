@@ -57,7 +57,7 @@
       <b>内容：</b>
       <%= text_field :topic,:content_like,:style=>"width:100px;" ,:value=>"#{params[:topic][:content_like] if params[:topic] }"  %>
 
-      <%= submit_tag "搜索" %>
+      <%= submit_tag "搜索"  , :class => "btn search_btn"%>
       <%end%>
     </div>
     <div class="work_list">

@@ -1,8 +1,10 @@
 #encoding:utf-8
 #相册锦集
+require 'mime/types'
 class MySchool::AlbumsController  < MySchool::ManageController
+  #  protect_from_forgery :except=>:add_entry_imgs
+  
   def index
-
     if current_user.get_users_ranges[:tp] == :student
       if (session[:operates] || []).include?('my_school/albums/new')
         @albums = @kind.albums.where("squad_id = ? or squad_id is null", current_user.student_info.squad_id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
@@ -19,7 +21,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
       if (session[:operates] || []).include?('my_school/albums/new')
         @albums = @kind.albums.page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
       else
-        @albums = @kind.albums.where(is_show: 1).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+        @albums = @kind.albums.where(:is_show=> 1).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
       end
     end
   end
@@ -28,7 +30,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
     @album = @kind.albums.new
     if current_user.get_users_ranges[:tp] == :student
       flash[:error] = "没有权限"
-      redirect_to action: :index
+      redirect_to :action=> :index
       return
     else current_user.get_users_ranges[:tp] == :teachers
       @squads = current_user.get_users_ranges[:squads]
@@ -42,7 +44,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
   def create
     if current_user.get_users_ranges[:tp] == :student
       flash[:error] = "没有权限"
-      redirect_to action: :index
+      redirect_to :action=> :index
       return
     end
     if params[:album].present? && params[:album][:squad_id].present?
@@ -75,6 +77,37 @@ class MySchool::AlbumsController  < MySchool::ManageController
     end
   end
 
+  #增加相册的图片
+  def add_entry_imgs
+    if @album = @kind.albums.find(params[:id])
+      if current_user.get_users_ranges[:tp] == :student
+        puts "============1"
+        render :text=>"没有权限"
+        return
+      end
+      @album_entry = @album.album_entries.new(params[:album_entry])
+      if params[:Filedata].blank?
+        puts "============2"
+        render :text=>"没有上传文件."
+      else
+        puts "============3"
+        asset_img = AssetImg.new
+#        file_url =  params[:Filedata]
+#        uploaded_data =  fixture_file_upload file_url, 'image/png' # (file_url, 'image/jpeg', false)
+        asset_img = AssetImg.new(:uploaded_data=>params[:Filedata])
+#        asset_img.swf_uploaded_data= params[:Filedata]
+        @album_entry.asset_img = asset_img
+        if @album_entry.save! && @album_entry.asset_img.save!
+          @album_entry.asset_img_id = @album_entry.asset_img.id
+          @album_entry.save
+          render :json => { :result => 'success', :asset => @album_entry.id }
+        else
+          render :json => { :result => 'error', :error => @album_entry.errors.full_messages.to_sentence }
+        end
+      end
+    end
+  end
+
   def grade_class
     if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
       @squads = grade.squads
@@ -85,7 +118,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
   def edit
     if current_user.get_users_ranges[:tp] == :student
       flash[:error] = "没有权限"
-      redirect_to action: :index
+      redirect_to :action=> :index
       return
     elsif current_user.get_users_ranges[:tp] == :teachers
       @album = @kind.albums.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
@@ -94,7 +127,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
     end
     if @album.nil?
       flash[:error] = "没有权限或相册不存在"
-      redirect_to action: "index"
+      redirect_to :action=> "index"
       return
     end
     if @grades = @kind.grades
@@ -113,7 +146,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
 
     if current_user.get_users_ranges[:tp] == :student
       flash[:error] = "没有权限"
-      redirect_to action: :index
+      redirect_to :action=> :index
       return
     elsif current_user.get_users_ranges[:tp] == :teachers
       @album = @kind.albums.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
@@ -123,7 +156,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
 
     if @album.nil?
       flash[:error] = "没有权限或相册不存在"
-      redirect_to action: "index"
+      redirect_to :action=> :index
       return
     end
     unless params[:class_number].blank?
@@ -135,9 +168,9 @@ class MySchool::AlbumsController  < MySchool::ManageController
     @album.save
     respond_to do |format|
       if @album.update_attributes(params[:album])
-        format.html { redirect_to my_school_albums_path, notice: '相册锦集修改成功.' }
+        format.html { redirect_to my_school_albums_path, :notice=> '相册锦集修改成功.' }
       else
-        format.html { render action: "edit" }
+        format.html { render :action=> :edit }
       end
     end
 
@@ -153,7 +186,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
     end
     if @album.nil?
       flash[:error] = "没有权限或相册不存在"
-      redirect_to action: "index"
+      redirect_to :action=> :index
       return
     end
     @album_entries=@album.album_entries.order("created_at DESC")
@@ -169,7 +202,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
     end
     if @album.nil?
       flash[:error] = "没有权限或相册不存在"
-      redirect_to action: "index"
+      redirect_to :action=>index
       return
     end
     @album_entries=@album.album_entries.page(params[:page] || 1).per(6).order("created_at DESC")
@@ -179,7 +212,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
   def destroy
     if current_user.get_users_ranges[:tp] == :student
       flash[:error] = "没有权限"
-      redirect_to action: :index
+      redirect_to :action=> :index
       return
     elsif current_user.get_users_ranges[:tp] == :teachers
       @album = @kind.albums.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
@@ -188,7 +221,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
     end
     if @album.nil?
       flash[:error] = "没有权限或相册不存在"
-      redirect_to action: "index"
+      redirect_to :action=> :index
       return
     end
     @album.destroy
@@ -196,6 +229,12 @@ class MySchool::AlbumsController  < MySchool::ManageController
       format.html { redirect_to my_school_albums_path }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def fixture_file_upload(path, mime_type = nil, binary = false)
+    fixture_path = self.class.fixture_path if self.class.respond_to?(:fixture_path)
+    Rack::Test::UploadedFile.new("#{fixture_path}#{path}", mime_type, binary)
   end
 
 end

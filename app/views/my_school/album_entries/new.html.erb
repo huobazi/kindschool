@@ -12,7 +12,7 @@
             <div class="icon_home"></div>
           </a>
           <ul>
-             <li><%= link_to "相册锦集", my_school_albums_path %></li>
+            <li><%= link_to "相册锦集", my_school_albums_path %></li>
             <li>/</li>
             <li><%=link_to @album.title , my_school_album_path(@album),:class=>'blue'%></li>
             <li>/</li>
@@ -21,12 +21,9 @@
         </div>
       </div>
       <ul class="work_action">
-         <li>
-          <%=link_to "<div class='work_action_return'>
-            </div>
-            <div class='work_action_return_move'>
-            </div>".html_safe ,my_school_album_path(@album)%>
-          </li>
+        <li>
+          <%=link_to "<div class='work_action_return'></div><div class='work_action_return_move'></div>".html_safe ,my_school_album_path(@album)%>
+        </li>
       </ul>
     </div>
 
@@ -35,8 +32,24 @@
         <%= form_for(@album_entry,:url=>my_school_album_album_entries_path(@album.id,@album_entry),:html =>{:multipart=>true,:class=>"form-horizontal"}) do |f| %>
           <%= render 'form', :f=>f %>
         <%end%>
+        <hr/>
+        <%= uploadify_rails_options %>
+          <div>
+            <input type="text" name="uploaded_data" id="uploadify"/>
+            <div id="uploadify_queue_div">
+
+            </div>
+          </div>
       </div>
+
     </div>
   </div>
-
 </div>
+<script type='text/javascript'>
+  $(document).ready(function() {
+    var option = <%= uploadify_rails_options %>;
+    option["uploader"] = "<%= url_for(:controller=>"/my_school/albums",:action=>"add_entry_imgs",:id=>@album.id) %>";
+    console.info(option);
+    $('input#uploadify').uploadify(option);
+  });
+</script>

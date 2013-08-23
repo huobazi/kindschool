@@ -9,7 +9,7 @@
 <%if val && val=="weixin"%>
         width:"80%",
 <%else%>
-        width:"600",
+        width:600,
 <%end%>
       buttons: {
         "确定": function () {
@@ -67,19 +67,20 @@
       </div>
     </div>
   </div>
-<%end%>
-<% if @kind.begin_allsms && choose_operate_show("my_school/messages/allsms") %>
-  <div class="control-group">
-    <label class="control-label" for="inputPassword">短信发给所有人</label>
-    <div class="controls">
-      <%  if action_name == "new" %>
-        <%= check_box_tag('message[allsms]',"1",false)%>
-      <% else %>
-        <%= check_box_tag('message[allsms]',"1",@message.allsms)%>
-      <% end %>
+  <% if @kind.begin_allsms && choose_operate_show("my_school/messages/allsms") %>
+    <div class="control-group">
+      <label class="control-label" for="inputPassword">短信发给所有人</label>
+      <div class="controls">
+        <%  if action_name == "new" %>
+          <%= check_box_tag('message[allsms]',"1",false)%>
+        <% else %>
+          <%= check_box_tag('message[allsms]',"1",@message.allsms)%>
+        <% end %>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+<%end%>
+
 
 <div class="control-group">
   <div class="controls">

@@ -112,7 +112,7 @@ class Message < ActiveRecord::Base
             role = self.sender.role if self.sender && self.sender.role
             if self.approve_status == 0 && entry.sms_record.blank?
               entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
-                :sender_name=>self.sender_name,:content=>"#{self.title} #{self.content} #{role ? (role.name + '-') : ''}#{self.sender_name}",:receiver_id=>entry.receiver.id,
+                :sender_name=>self.sender_name,:content=>"#{self.content} #{role ? (role.name + '-') : ''}#{self.sender_name}",:receiver_id=>entry.receiver.id,
                 :receiver_name=>entry.receiver.name,:receiver_phone=>entry.receiver.phone,:kindergarten_id=>self.kindergarten_id)
             end
           end

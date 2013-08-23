@@ -67,3 +67,10 @@ gem "rails_kindeditor", "~>0.4.0"
 gem 'roo' , "~>1.11.2"
 #https://github.com/lnsoso/harmonious_dictionary
 gem "harmonious_dictionary", "~>0.0.1"
+
+gem "flash_cookie_session","1.1.5"
+gem 'uploadify-rails',"3.1.1.1"
+
+
+#https://github.com/jhjguxin/sitemap_generator  #TODO:需要研究 SEO的网站地图
+

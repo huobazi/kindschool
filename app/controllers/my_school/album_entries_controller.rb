@@ -27,7 +27,6 @@ class MySchool::AlbumEntriesController < MySchool::ManageController
         format.html { redirect_to  my_school_album_path(@album), notice: '没有上传文件' }
       end
     end
-
   end
 
   def new

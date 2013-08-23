@@ -5,7 +5,7 @@
     <%= stylesheet_link_tag    "app_bootstrap", :media => "all" %>
     <%= stylesheet_link_tag    "colorful", :media => "all" %>
     <%= stylesheet_link_tag    "jquery.rater", :media => "all" %>
-    <%= stylesheet_link_tag    "blue", :media => "all" %>
+    <%#= stylesheet_link_tag    "blue", :media => "all" %>
     <%= stylesheet_link_tag    "fancybox/jquery.fancybox",
       "fancybox/jquery.fancybox-buttons",
       "fancybox/jquery.fancybox-thumbs",
@@ -24,13 +24,15 @@
       "jquery.lettering",
       "DD_belatedPNG_0.0.8a"
   %>
+    <%= javascript_include_tag(:uploadify) %>
     <%= javascript_include_tag "jquery.rater" %>
-    <%= javascript_include_tag "jquery.icheck.min" %>
+    <%#= javascript_include_tag "jquery.icheck.min" %>
     <%= javascript_include_tag "rails.validations" %>
     <%= javascript_include_tag "rails.validations.simple_form" %>
     <%= javascript_include_tag "rails.validations.customValidators" %>
     <meta charset="utf-8"/>
     <%= csrf_meta_tags %>
+
     <!--[if lte IE 6]>
     <script type="text/javascript">
              try{

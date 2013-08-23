@@ -52,7 +52,7 @@
         <%= select_tag("staff[user_is_send_equals]", options_for_select([["全部",""],["可发短信",1],["不可发短信",0]],(params[:staff].blank? ? "" : params[:staff][:user_is_send_equals])),:style=>"width:100px;") %>
         <b>收短信：</b>
         <%= select_tag("staff[user_is_receive_equals]", options_for_select([["全部",""],["可收短信",1],["不可收短信",0]],(params[:staff].blank? ? "" : params[:staff][:user_is_receive_equals])),:style=>"width:100px;") %>
-        <%= submit_tag "搜索" %>
+        <%= submit_tag "搜索"  , :class => "btn search_btn"%>
       <%end%>
     </div>
     <div class="work_list">
