@@ -1,13 +1,13 @@
 <% if @message.present? %>
-  if ( $("#staff_user_attributes_phone").parent().find(".validate_success_icon").length > 0 ) {
-    $("#staff_user_attributes_phone").parent().find(".validate_success_icon").remove();
+  if ( $("#<%= @element %>").parent().find(".validate_success_icon").length > 0 ) {
+    $("#<%= @element %>").parent().find(".validate_success_icon").remove();
   }
-  if ($("#staff_user_attributes_phone").parent().find("span.help-inline").length > 0) {
-    $("#staff_user_attributes_phone").parent().find("span.help-inline").remove();
+  if ($("#<%= @element %>").parent().find("span.help-inline").length > 0) {
+    $("#<%= @element %>").parent().find("span.help-inline").remove();
   }
 
-  if ($("#staff_user_attributes_phone").parent().find("i.validate_icon").length > 0) {
-    $("#staff_user_attributes_phone").parent().find("i.validate_icon").remove();
+  if ($("#<%= @element %>").parent().find("i.validate_icon").length > 0) {
+    $("#<%= @element %>").parent().find("i.validate_icon").remove();
   }
-  $("<i class='validate_icon validate_error_icon'></i><span class='help-inline'><%= @message %></span>").appendTo($("#staff_user_attributes_phone").parent());
+  $("<i class='validate_icon validate_error_icon'></i><span class='help-inline'><%= @message %></span>").appendTo($("#<%= @element %>").parent());
 <% end %>
