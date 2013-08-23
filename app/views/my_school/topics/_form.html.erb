@@ -60,8 +60,17 @@
 
 
 <% if current_user.get_users_ranges[:tp] == :all %>
-  <%= f.input :is_top %>
-  <%= f.input :is_show %>
+  <div class="controls" style="margin-bottom: 10px;">
+    <label class="checkbox inline">
+      <%= hidden_field_tag 'topic[is_top]', '0' %>
+      <%= check_box(:topic, :is_top, {:checked=>@topic.is_top}, true, false)  %> 置顶
+    </label>
+    <label class="checkbox inline">
+      <%= hidden_field_tag 'topic[is_show]', '0' %>
+      <%= check_box(:topic, :is_show, {:checked=>@topic.is_show}, true, false)  %> 显示在页面上
+    </label> 
+  </div>
+
 <% end %>
 <%= f.input :title, :validate => true, :required => true, :input_html => {:class => "span5 profile_input required"} %>
 <%#= f.input :content, :validate => true, :required => true, :input_html => { :class => "span5" } %>
