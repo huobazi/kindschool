@@ -15,8 +15,7 @@
 //= require jquery.ui.all
 //= require twitter/bootstrap
 //= require kindeditor
-//= require jquery-fileupload
-
+//= require uploadify
 $(function(){
     $("div.head div.center_menu").hover(function(){
         $(this).find(".show_menu").show();

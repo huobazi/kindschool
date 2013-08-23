@@ -1,6 +1,6 @@
 /*
  *= require jquery.ui.all
- *= require jquery.fileupload-ui
+ *= require uploadify
 */
 body{
     background-color: #f0ebe2;
@@ -776,12 +776,13 @@ a{
 }
 /*===========表单==============*/
 .work_form{
-    padding: 20px 20px 20px 35px;
+    padding: 20px 15px 20px 25px;
 }
 .work_form .form_div{
     border: 1px solid #e3e3e3;
     background-color: #FBFBFB;
-    padding: 20px;
+    padding: 10px;
+    padding-top: 20px;
 }
 .work_form .big_form_div{
     border: 1px solid #e3e3e3;
