@@ -33,19 +33,3 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  $('input').iCheck({
-    checkboxClass: 'icheckbox_square-blue',
-    radioClass: 'iradio_square-blue',
-    increaseArea: '20%' // optional
-  });
-  $("#check_all").on('ifClicked', function() {
-    if(this.checked) {
-      $(".check").iCheck('uncheck');
-    } else {
-      $(".check").iCheck('check');
-    }
-  })
-
-</script>

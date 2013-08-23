@@ -137,6 +137,9 @@ $(document).ready(function() {
     });
   })
 
-})
+  $("#check_all").click(function(){
+     $(".check").attr("checked",this.checked);
+  });
 
+})
 
