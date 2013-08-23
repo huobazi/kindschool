@@ -105,4 +105,15 @@ class  MySchool::StaffsController < MySchool::ManageController
     end
   end
 
+  def login_uniqueness_validator
+    if params[:login].present? and params[:element].present?
+      logins = User.pluck(:login)
+      if logins.include?(params[:login])
+        @message = "用户名被占用"
+        @element = params[:element]
+      end
+      render "login_uniqueness_validator.js.erb", :layout => false
+    end
+  end
+
 end

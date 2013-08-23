@@ -103,4 +103,22 @@
       }
     })
   })
+  $("#staff_user_attributes_login").blur(function() {
+    $.ajax({
+      url: "/my_school/staffs/login_uniqueness_validator",
+      data: {
+        login: $(this).val(),
+        element: $(this).attr("id")
+      },
+      method: "get",
+      beforeSend: function() {
+      },
+      success: function() {
+
+      },
+      error: function() {
+
+      }
+    })
+  })
 </script>
