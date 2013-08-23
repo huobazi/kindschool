@@ -31,12 +31,8 @@
 </div>
 
 <script type="text/javascript">
-$('input').iCheck({
-  checkboxClass: 'icheckbox_square-blue',
-  radioClass: 'iradio_square-blue',
-  increaseArea: '20%' // optional
-});
 
+/*
 $(".flag_check_all").each(function() {
   var check_val = "." + $(this).attr("id") + "_value"
   $(this).on('ifToggled', function() {
@@ -55,4 +51,15 @@ $(".check_all_roles").on('ifToggled', function() {
     $("input[class^='flag']").iCheck("uncheck");
   }
 })
+*/
+$(".flag_check_all").each(function() {
+  var check_val = "." + $(this).attr("id") + "_value"
+  $(this).click(function() {
+    $(check_val).attr("checked", this.checked)
+  })
+})
+$(".check_all_roles").click(function() {
+  $("input[class^='flag']").attr("checked", this.checked)
+})
+
 </script>
