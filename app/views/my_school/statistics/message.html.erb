@@ -32,7 +32,7 @@
         <%= text_field :message,:content_like,:style=>"width:100px;" ,:value=>"#{params[:message][:content_like] if params[:message] }"  %>
         <b>发件人：</b>
         <%= text_field :message,:sender_name_like,:style=>"width:100px;" ,:value=>"#{params[:message][:sender_name_like] if params[:message] }"  %>
-        <%= submit_tag "搜索" %>
+        <%= submit_tag "搜索"  , :class => "btn search_btn"%>
       <%end%>
     </div>
 

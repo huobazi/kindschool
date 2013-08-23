@@ -39,7 +39,7 @@
       <%= form_tag '/my_school/messages' , :method=>"get" do %>
         <b>阅读状态：</b>
         <%= select_tag("messages[message_entries_read_status_equals]", options_for_select([["全部",""],["已读",1],["未读",0]],(params[:messages].blank? ? "" : params[:messages][:message_entries_read_status_equals])),:style=>"width:100px;") %>
-        <%= submit_tag "搜索" %>
+        <%= submit_tag "搜索"  , :class => "btn search_btn"%>
       <%end%>
     </div>
     <div class="work_list">

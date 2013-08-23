@@ -29,8 +29,8 @@
           <% end %>
         </li>
         <li>
-          <% if choose_operate_show("my_school/topic/destroy_multiple") %>
-            <a href="/" title="删除" id="destroy_multiple">
+          <% if choose_operate_show("my_school/topics/destroy") %>
+            <a href="javascript: void(0)" rel="nofollow" title="删除" id="destroy_multiple">
               <div class="work_action_delete">
               </div>
               <div class="work_action_delete_move">
@@ -59,14 +59,16 @@
       <b>内容：</b>
       <%= text_field :topic,:content_like,:style=>"width:100px;" ,:value=>"#{params[:topic][:content_like] if params[:topic] }"  %>
 
-      <%= submit_tag "搜索" %>
+      <%= submit_tag "搜索"  , :class => "btn search_btn"%>
       <%end%>
     </div>
     <div class="work_list">
       <div class="topics">
         <% unless @topics.empty? %>
           <div class="input_select_all"><input type="checkbox" id="check_all" />全选</div>
-          <%= render partial: "topic", collection: @topics %>
+          <%= form_tag my_school_topic_path(@topics), method: :delete, :id => "destroy_multi_form" do %>
+            <%= render partial: "topic", collection: @topics %>
+          <% end %>
           <%= paginate @topics %>
         <% else %>
           没有贴子
@@ -82,11 +84,11 @@ $(document).ready(function(){
   $("#topic_all").click(function(){
     $(".topic_check").attr("checked",this.checked);
   });
+
   $("#destroy_multiple").click(function(){
+    if (confirm('您确定删除选中的贴子吗')) {
       $("#destroy_multi_form").submit();
-      return false;
+    }
   });
-
-
 });
 </script>

@@ -58,7 +58,7 @@
           <%= text_field :student_info,:user_phone_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:user_phone_like] if params[:student_info] }"  %>
           <b>收短信：</b>
           <%= select_tag("student_info[user_is_receive_equals]", options_for_select([["全部",""],["可收短信",1],["不可收短信",0]],(params[:student_info].blank? ? "" : params[:student_info][:user_is_receive_equals])),:style=>"width:100px;") %>
-          <%= submit_tag "搜索" %>
+          <%= submit_tag "搜索"  , :class => "btn search_btn"%>
         <%end%>
         <%if choose_operate_show("my_school/student_infos/download_student_infos")%>
         <p>

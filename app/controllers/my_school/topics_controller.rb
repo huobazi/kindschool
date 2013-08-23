@@ -222,18 +222,23 @@ class  MySchool::TopicsController < MySchool::ManageController
   end
 
   def destroy
-    if current_user.get_users_ranges[:tp] == :student
-      flash[:error] = "没有权限"
-      redirect_to :action => :index
+    unless params[:topic].blank? 
+      @topics = @kind.topics.where(:id=>params[:topic])
     else
-      @topic = Topic.find_by_id_and_kindergarten_id(params[:id], @kind.id)
-      @topic.destroy
-
-      respond_to do |format|
-        flash[:notice] = '删除贴子成功.'
-        format.html { redirect_to(:action=>:index) }
-        format.xml  { head :ok }
-      end
+      @topics = @kind.topics.where(:id=>params[:id])
+    end
+    if @topics.blank?
+      flash[:error] = "请选择贴子"
+      redirect_to :action => :index
+      return
+    end
+    @topics.each do |topic|
+      topic.destroy
+    end
+    respond_to do |format|
+      flash[:success] = "删除贴子成功"
+      format.html { redirect_to my_school_topics_path }
+      format.json { head :no_content }
     end
   end
 
