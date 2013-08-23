@@ -566,6 +566,7 @@ a{
     padding: 14px 0 10px 30px;
     border-bottom: 1px solid #9B9B9B;
     position: relative;
+    z-index: 2;
 }
 .work_menu .work_ul li:last-child{
     border: none;
@@ -1268,6 +1269,12 @@ table.attributes td {
     padding-top: 20px;
     padding-left: 50px;
 }
+#topic_category_tabs li{
+    background-color: #FFFFFF;
+    margin-bottom:0px;
+    float: left;
+    line-height: 20px;
+}
 .tabs_style {
     padding-top: 20px;
 }
@@ -1276,6 +1283,18 @@ table.attributes td {
 }
 #topic_category_tabs a {
     color: #333333;
+    line-height: 20px;
+    margin-right: 2px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+#topic_category_tabs li.active a {
+    border-left: 1px solid #DDDDDD;
+    border-top: 1px solid #DDDDDD;
+    border-left: 1px solid #DDDDDD;
+    background-color: #C4C4C4;
 }
 .float_left {
     float: left;
@@ -2050,7 +2069,7 @@ span.help-inline {
 }
 
 .topic .iCheck_checkbox {
-  padding-top: 22px;
+    padding-top: 22px;
 }
 
 .topics .topic .info abbr {
@@ -2494,24 +2513,24 @@ fieldset.staff_squad ol li {
 }
 
 .input_select_all {
-  margin-left: -10px;
+    margin-left: -10px;
 }
 
 .validate_icon {
-  width: 16px;
-  height: 16px;
-  line-height: 16px;
-  margin-top: 1px;
-  vertical-align: text-top;
-  display: inline-block;
-  margin-left: 5px;
-  background: url("/t/colorful/validate_icons.png") no-repeat;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    margin-top: 1px;
+    vertical-align: text-top;
+    display: inline-block;
+    margin-left: 5px;
+    background: url("/t/colorful/validate_icons.png") no-repeat;
 }
 
 .validate_success_icon {
-  background-position: center -16px;
+    background-position: center -16px;
 }
 
 .validate_error_icon {
-  background-position: center -32px;
+    background-position: center -32px;
 }
