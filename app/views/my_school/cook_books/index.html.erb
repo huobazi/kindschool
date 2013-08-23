@@ -50,7 +50,7 @@
       <%= text_field :cook_book,:start_at_equals,:style=>"width:100px;" ,:value=>"#{params[:cook_book][:start_at_equals] if params[:cook_book] }"  %>
       <b>结束时间：</b>
       <%= text_field :cook_book,:end_at_equals,:style=>"width:100px;" ,:value=>"#{params[:cook_book][:end_at_equals] if params[:cook_book] }"  %>
-      <%= submit_tag "搜索" %>
+      <%= submit_tag "搜索" , :class => "btn search_btn"%>
       <%end%>
     </div>
 

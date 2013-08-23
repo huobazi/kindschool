@@ -8,6 +8,9 @@ body{
     padding: 0;
     position: relative;
 }
+input.search_btn{
+    width: 45px;
+}
 /* 除IE6浏览器的通用方法 */
 .ie6fixedTL{position:fixed;left:0;top:0}
 .ie6fixedBR{position:fixed;right:0;bottom:0}
@@ -535,9 +538,10 @@ a{
 .work{
     width: 785px;
     float: left;
-    border-left: 2px solid #E6E3DE;
+    border-left: 1px solid #E6E3DE;
     min-height: 550px;
     background-color: white;
+    overflow: hidden;
 }
 .work_menu a{
     color: #9B9B9B;
@@ -599,7 +603,7 @@ a{
     position: absolute;
     top: -2px;
     width: 207px;
-    z-index: 1;
+    z-index: 2;
 }
 /*---------中间功能-----------------*/
 .work .headline{
@@ -609,6 +613,7 @@ a{
     position: relative;
     border-bottom: 1px solid #E3E3E3;
     padding-bottom: 30px;
+    z-index: 1;
 }
 .work .headline_title label{
     padding-left: 30px;

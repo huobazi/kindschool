@@ -43,7 +43,7 @@
      <%= form_tag '/my_school/topic_categories' , :method=>"get" do %>
       <b>名称：</b>
       <%= text_field :topic_category,:name_like,:style=>"width:100px;" ,:value=>"#{params[:topic_category][:name_like] if params[:topic_category] }"  %>
-      <%= submit_tag "搜索" %>
+      <%= submit_tag "搜索"  , :class => "btn search_btn"%>
       <%end%>
     </div>
     <div class="work_list">
