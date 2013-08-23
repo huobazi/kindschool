@@ -123,10 +123,12 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
+    /*
     $('input').iCheck({
       checkboxClass: 'icheckbox_square-blue',
       radioClass: 'iradio_square-blue',
-      increaseArea: '20%' // optional
+      increaseArea: '20%', // optional
+      inheritID: false;
     });
     $("#check_all").on('ifClicked', function() {
       if(this.checked) {
@@ -135,6 +137,7 @@
         $(".check").iCheck('check');
       }
     })
+    */
     $("#destroy_multiple").click(function(){
       if (confirm('您确定删除选中的教职工吗')) {
         $("#destroy_multi_form").submit();

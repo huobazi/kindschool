@@ -81,8 +81,8 @@
       <% sys_admin_menus("b").each do |menu| %>
       <%#=menu.inspect%>
         <li>
-          <%#=menu[:children][0].inspect%>
-          <%= link_to  menu[:name].match(/^\//) ? image_tag('/t/colorful/home.png') : menu[:name], menu[:children][1] ?  menu[:children][1][:url] : menu[:url] %>
+          <%#=menu.inspect%>
+          <%= link_to  menu[:name].match(/^\//) ? image_tag('/t/colorful/home.png') : menu[:name], menu[:children][0] ?  menu[:children][0][:url] : menu[:url] %>
           <%if menu[:current]%>
             <div class="menu_selected">
             </div>

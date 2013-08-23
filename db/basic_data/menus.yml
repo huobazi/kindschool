@@ -208,7 +208,7 @@
 - id: 60000
   number: 60000
   name: "通知公告"
-  operate_id: 2
+  # operate_id: 2
   height_level: "b"
   url: "/my_school/notices"
   sequence: 600
@@ -292,13 +292,13 @@
     url: "/my_school/personal_sets"
     title: "个人集锦"
     height_level: "b"
-    sequence: 1101
+    sequence: 1201
 
 - id: 90000
   number: 90000
   name: "饮食保健"
   height_level: "b"
-  operate_id: 7
+  # operate_id: 7
   url: "/my_school/cook_books"
   sequence: 900
   children:
@@ -329,14 +329,13 @@
 - id: 100000
   number: 100000
   name: "成长记录"
-  operate_id: 8
   height_level: "b"
   url: "/my_school/growth_records/home"
   sequence: 1000
   children:
   - id: 101000
     name: "宝宝在家"
-    operate_id: 8004
+    operate_id: 8009
     number: 101000
     url: "/my_school/growth_records/home"
     title: "宝宝在家"
@@ -344,7 +343,7 @@
     sequence: 1010
   - id: 102000
     name: "宝宝在园"
-    operate_id: 8005
+    operate_id: 8010
     number: 102000
     url: "/my_school/garden_growth_records/garden"
     title: "宝宝在园"
@@ -364,7 +363,7 @@
   height_level: "b"
   url: "/my_school/topics"
   sequence: 800
-  operate_id: 3
+  # operate_id: 3
   children:
   - id: 71000
     name: "论坛贴子"
@@ -389,7 +388,7 @@
   height_level: "b"
   url: "/my_school/activities"
   sequence: 1200
-  operate_id: 10
+  # operate_id: 10
   children:
   - id: 121000
     name: "主题活动"
