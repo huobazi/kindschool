@@ -16,6 +16,7 @@
 /public/assets/*
 /public/uploads/*
 /public/photo_galleries/*
+/Gemfile.lock
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
