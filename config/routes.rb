@@ -169,7 +169,7 @@ School::Application.routes.draw do
     end
     resources :staffs do
       collection do
-        get :phone_uniqueness_validator
+        get :phone_uniqueness_validator, :login_uniqueness_validator
       end
     end
     resources :page_contents do

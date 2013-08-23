@@ -238,7 +238,7 @@ $("#grade").change(function() {
 </script>
 
 <script type="text/javascript">
-$("#student_info_user_attributes_phone").blur(function() {
+  $("#student_info_user_attributes_phone").blur(function() {
     $.ajax({
       url: "/my_school/staffs/phone_uniqueness_validator",
       data: {
@@ -256,4 +256,5 @@ $("#student_info_user_attributes_phone").blur(function() {
       }
     })
   })
+
 </script>
