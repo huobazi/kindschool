@@ -33,7 +33,11 @@
               <div class="header">人员统计</div>
               <div class="inner">
                 <div>
-                  <p>年级总数<span><%= @kind.grades.count %></span><a class="fold" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a></p>
+                  <p>年级总数<span><%= @kind.grades.count %></span><a class="fold" href="javascript:void(0);">
+                    <% unless @kind.grades.blank? %>
+                      <i class="icon-plus f pull-right"></i>
+                    <% end %>
+                  </a></p>
                   <div class="detail_stat">
                     <% unless @kind.grades.blank? %>
                       <% @kind.grades.each do |grade| %>
@@ -45,7 +49,11 @@
                   </div>
                 </div>
                 <div>
-                  <p>班级总数<span><%= @kind.squads.count %></span><a class="fold" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a></p>
+                  <p>班级总数<span><%= @kind.squads.count %></span><a class="fold" href="javascript:void(0);">
+                    <% unless @kind.squads.blank? %>
+                      <i class="icon-plus f pull-right"></i>
+                    <% end %>
+                  </a></p>
                   <div class="detail_stat">
                     <% unless @kind.squads.blank? %>
                       <% @kind.squads.each do |squad| %>
@@ -73,7 +81,11 @@
               <div class="header">延时班统计</div>
               <div class="inner">
                 <div>
-                  <p>延时班总数<span><%= @kind.squads.where(tp: 1).count %></span><a class="fold" href="javascript:void(0);"><i class="icon-plus f pull-right"></i></a></p>
+                  <p>延时班总数<span><%= @kind.squads.where(tp: 1).count %></span><a class="fold" href="javascript:void(0);">
+                  <% unless @kind.squads.where(tp: 1).blank? %>
+                    <i class="icon-plus f pull-right"></i>
+                  <% end %>
+                  </a></p>
                   <div class="detail_stat">
                     <% unless @kind.squads.where(tp: 1).blank? %>
                       <% @kind.squads.where(tp: 1).each do |virtual_squad| %>
@@ -102,12 +114,18 @@
               <div class="header">照片集锦</div>
               <div class="inner">
                 <div>
-                  <p>照片集锦数量<span><%= @kind.albums.count %></span><a class="fold" href="javascript:void(0)"><i class="icon-plus f pull-right"></i></a></p>
-                  <div class="detail_stat">
-                    <% @kind.albums.each do |album| %>
-                      <p><%= album.title %>的照片总数<span><%= album.album_entries.count %></span></p>
+                  <p>照片集锦数量<span><%= @kind.albums.count %></span><a class="fold" href="javascript:void(0)">
+                    <% unless @kind.albums.blank? %>
+                      <i class="icon-plus f pull-right"></i>
                     <% end %>
-                  </div>
+                  </a></p>
+                  <% unless @kind.albums.blank? %>
+                    <div class="detail_stat">
+                      <% @kind.albums.each do |album| %>
+                        <p><%= album.title %>的照片总数<span><%= album.album_entries.count %></span></p>
+                      <% end %>
+                    </div>
+                  <% end %>
                 </div>
               </div>
             </div>
