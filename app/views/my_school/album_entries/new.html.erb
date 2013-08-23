@@ -32,7 +32,6 @@
         <%= form_for(@album_entry,:url=>my_school_album_album_entries_path(@album.id,@album_entry),:html =>{:multipart=>true,:class=>"form-horizontal"}) do |f| %>
           <%= render 'form', :f=>f %>
         <%end%>
-        <!--
         <hr/>
         <%= uploadify_rails_options %>
           <div>
@@ -41,13 +40,11 @@
 
             </div>
           </div>
-        -->
       </div>
 
     </div>
   </div>
 </div>
-<!--
 <script type='text/javascript'>
   $(document).ready(function() {
     var option = <%= uploadify_rails_options %>;
@@ -56,4 +53,3 @@
     $('input#uploadify').uploadify(option);
   });
 </script>
--->
