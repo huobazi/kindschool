@@ -18,8 +18,12 @@ class AssetImg < ActiveRecord::Base
   #:resize_to => '640x360>',
   #    :thumbnails => { :thumb => '140x105>' }
   def swf_uploaded_data=(data)
-    data.content_type = MIME::Types.type_for(data.original_filename)
+    data.content_type = MIME::Types.type_for(data.original_filename).join("")
+    puts "========================="
+    puts data.content_type
+    puts data.inspect
     self.uploaded_data = data
+    self.save
   end
   validates_as_attachment
 end

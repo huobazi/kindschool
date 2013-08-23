@@ -93,11 +93,11 @@ class MySchool::AlbumsController  < MySchool::ManageController
         puts "============3"
         asset_img = AssetImg.new
 #        file_url =  params[:Filedata]
-#        uploaded_data =  fixture_file_upload file_url, 'image/png' # (file_url, 'image/jpeg', false)
-        asset_img = AssetImg.new(:uploaded_data=>params[:Filedata])
-#        asset_img.swf_uploaded_data= params[:Filedata]
+        # uploaded_data =  fixture_file_upload params[:Filedata].tempfile, 'image/png' # (file_url, 'image/jpeg', false)
+        # asset_img = AssetImg.new(:uploaded_data=>params[:Filedata])#params[:Filedata])
+       asset_img.swf_uploaded_data= params[:Filedata]
         @album_entry.asset_img = asset_img
-        if @album_entry.save! && @album_entry.asset_img.save!
+        if @album_entry.save!# && @album_entry.asset_img.save!
           @album_entry.asset_img_id = @album_entry.asset_img.id
           @album_entry.save
           render :json => { :result => 'success', :asset => @album_entry.id }

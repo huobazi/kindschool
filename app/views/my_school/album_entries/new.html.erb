@@ -35,8 +35,25 @@
         <%= form_for(@album_entry,:url=>my_school_album_album_entries_path(@album.id,@album_entry),:html =>{:multipart=>true,:class=>"form-horizontal"}) do |f| %>
           <%= render 'form', :f=>f %>
         <%end%>
+        <hr/>
+        <%= uploadify_rails_options %>
+          <div>
+            <input type="text" name="uploaded_data" id="uploadify"/>
+            <div id="uploadify_queue_div">
+
+            </div>
+          </div>
       </div>
     </div>
   </div>
 
 </div>
+<script type='text/javascript'>
+$(document).ready(function() {
+var option = <%= uploadify_rails_options %>;
+option["uploader"] = "<%= url_for(:controller=>"/my_school/albums",:action=>"add_entry_imgs",:id=>@album.id) %>";
+console.info(option);
+$('input#uploadify').uploadify(option);
+});
+</script>
+
