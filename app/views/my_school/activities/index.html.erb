@@ -75,8 +75,14 @@
       <div class="topics">
         <% unless @activities.blank? %>
           <div class="input_select_all"><input type="checkbox" id="check_all" />全选</div>
-          <%= form_tag my_school_activity_path(@activities), method: :delete, :id => "destroy_multi_form" do %>
-            <%= render partial: "/my_school/activities/activity", collection: @activities %>
+          <% if controller_name == "activities" %>
+            <%= form_tag my_school_activity_path(@activities), method: :delete, :id => "destroy_multi_form" do %>
+              <%= render partial: "/my_school/activities/activity", collection: @activities %>
+            <% end %>
+          <% else %>
+            <%= form_tag my_school_interest_activity_path(@activities), method: :delete, :id => "destroy_multi_form" do %>
+              <%= render partial: "/my_school/activities/activity", collection: @activities %>
+            <% end %>
           <% end %>
           <%= paginate @activities %>
         <% else %>

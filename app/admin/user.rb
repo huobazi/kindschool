@@ -69,6 +69,7 @@ ActiveAdmin.register User do
 #      f.input :role, :as => :string, :input_html => { :disabled => true }
       f.input :gender,:as=>:radio,:collection=>{"女"=>"M","男"=>"G"}, :required => true
       f.input :weixin_code
+      f.input :weiyi_code
       f.input :tp_label, :as => :string, :input_html => { :disabled => true }
       f.input :kindergarten_label, :as => :string, :input_html => { :disabled => true }
       f.input :tp,:as=>:hidden
@@ -92,6 +93,7 @@ ActiveAdmin.register User do
       row :kindergarten
       row :tp_label
       row :weixin_code
+      row :weiyi_code
       row :created_at
       row :updated_at
       row :is_send

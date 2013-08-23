@@ -147,12 +147,23 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
   end
 
   def destroy
-    @activity = Activity.find_by_id_and_kindergarten_id(params[:id], @kind.id)
-    @activity.destroy
+    unless params[:activity].blank? 
+      @activities = @kind.activities.where(:tp => 1, :id=>params[:activity])
+    else
+      @activities = @kind.activities.where(:tp => 1, :id=>params[:id])
+    end
+    if @activities.blank?
+      flash[:error] = "请选择活动"
+      redirect_to :action => :index
+      return
+    end
+    @activities.each do |activity|
+      activity.destroy
+    end
     respond_to do |format|
-      flash[:notice] = "删除兴趣讨论成功"
-      format.html { redirect_to(:action => :index) }
-      format.xml { head :ok }
+      flash[:success] = "删除活动成功"
+      format.html { redirect_to my_school_activities_path }
+      format.json { head :no_content }
     end
   end
 

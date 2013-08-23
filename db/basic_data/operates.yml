@@ -1788,18 +1788,6 @@ interest_activity_destroy:
   protocol: ""
   <<: *DEFAULTS
 
-interest_activity_destroy_multi:
-  id: 10015
-  parent_id: 10
-  name: "删除多个兴趣讨论"
-  level: 2
-  sequence: 0
-  note: "删除多个兴趣讨论"
-  controller: "my_school/interest_activities"
-  action: "destroy_multiple"
-  protocol: ""
-  <<: *DEFAULTS
-
 activity_entry_delete:
   id: 10017
   parent_id: 10
