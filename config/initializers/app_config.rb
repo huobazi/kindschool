@@ -45,7 +45,7 @@ MENUS ={"home"=>{
   "my_school/squads" => ["index", "new","create","update", "show", "edit"],
   "my_school/teachers" => ["set_class_teacher_for_squad_view"]
 }, "13000" => {
-  "my_school/staffs" => ["index", "new", "show", "edit"],
+  "my_school/staffs" => ["index", "new", "show", "edit", "create", "update"],
   "my_school/teachers" => ["allocation"]
   },
   "14000" => {

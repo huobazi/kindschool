@@ -57,7 +57,7 @@
     <div class="work_list">
       <% unless @cook_books.blank? %>
         <div class="topics" id="cook_books">
-          <div><input type="checkbox" id="check_all" />全选</div>
+          <div class="input_select_all"><input type="checkbox" id="check_all" />全选</div>
           <%= render partial: "cook_book", collection: @cook_books %>
         </div>
       <%= paginate @cook_books  %>

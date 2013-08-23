@@ -463,15 +463,26 @@ squad_destroy:
   action: "destroy"
   protocol: ""
   <<: *DEFAULTS
-squad_class_teacher:
+squad_set_squads_teacher:
   id: 4242
   parent_id: 5
   name: "为班级分配老师"
   level: 2
   sequence: 1
   note: "为班级分配老师"
-  controller: "my_school/teachers"
-  action: "set_class_teacher_for_squad_view"
+  controller: "my_school/squads"
+  action: "set_squads_teacher"
+  protocol: ""
+  <<: *DEFAULTS
+squad_cancel_class_teacher:
+  id: 4244
+  parent_id: 5
+  name: "班级取消老师"
+  level: 2
+  sequence: 1
+  note: "班级取消老师"
+  controller: "my_school/squads"
+  action: "cancel_class_teacher"
   protocol: ""
   <<: *DEFAULTS
 
@@ -591,7 +602,7 @@ staff_destroy:
   sequence: 3
   note: "删除教职工"
   controller: "my_school/staffs"
-  action: "delete"
+  action: "destroy"
   protocol: ""
   <<: *DEFAULTS
 staff_allocation_squad:
@@ -608,10 +619,10 @@ staff_allocation_squad:
 staff_class_teacher:
   id: 4163
   parent_id: 5
-  name: "为教职工分配班级"
+  name: "为班级分配教职工"
   level: 2
   sequence: 3
-  note: "为教职工分配班级"
+  note: "为班级分配教职工"
   controller: "my_school/teachers"
   action: "set_class_teacher"
   protocol: ""
@@ -673,7 +684,7 @@ student_destroy:
   sequence: 4
   note: "删除学员"
   controller: "my_school/student_infos"
-  action: "delete"
+  action: "destroy"
   protocol: ""
   <<: *DEFAULTS
 

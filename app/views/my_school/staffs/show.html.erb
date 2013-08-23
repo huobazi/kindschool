@@ -58,7 +58,7 @@
         </li>
         <li>
           <% if choose_operate_show("my_school/staffs/delete") %>
-            <%= link_to(url_for(:controller=>"/my_school/staffs",:action=>:delete,:id=>@staff.id),:method=>:get, :confirm => "您确定删除该教职工吗?") do %>
+            <%= link_to(url_for(:controller=>"/my_school/staffs",:action=>:destroy,:id=>@staff.id),:method=>:get, :confirm => "您确定删除该教职工吗?") do %>
               <div class="work_action_delete">
               </div>
               <div class="work_action_delete_move">

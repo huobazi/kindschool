@@ -125,12 +125,13 @@ School::Application.routes.draw do
     end
     resources :squads do
       collection do
-        get :set_squads_teacher
         delete :destroy_multiple
         post :add_strategy
       end
       member do
         get :add_strategy_view
+        get :set_squads_teacher
+        get :cancel_class_teacher
       end
     end
     resources :notices do
@@ -168,8 +169,7 @@ School::Application.routes.draw do
     end
     resources :staffs do
       collection do
-        delete :destroy_multiple
-        get :delete
+        get :phone_uniqueness_validator
       end
     end
     resources :page_contents do
