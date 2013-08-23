@@ -10,7 +10,6 @@ if defined?(Bundler)
   # If you want your assets lazily compiled in production, use this line
   # Bundler.require(:default, :assets, Rails.env)
 end
-
 module School
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -66,3 +65,5 @@ I18n.default_locale = "zh-CN"
 require "#{Rails.root}/lib/authenticated_system"
 require "#{Rails.root}/lib/file_size_validator"
 require "#{Rails.root}/lib/model_additions"
+require "flash_cookie_session"
+require "uploadify-rails"

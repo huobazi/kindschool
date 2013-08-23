@@ -86,8 +86,14 @@ GEM
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.3)
     erubis (2.7.0)
+<<<<<<< HEAD
+=======
+    eventmachine (1.0.3)
+>>>>>>> 18b81edd73a42cf8fa404f86e4bacc3a6d4aa518
     execjs (2.0.0)
     fastercsv (1.5.5)
+    flash_cookie_session (1.1.5)
+      rails (>= 3.0)
     formtastic (2.2.1)
       actionpack (>= 3.0)
     harmonious_dictionary (0.0.1)
@@ -213,6 +219,7 @@ GEM
     uglifier (2.1.2)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    uploadify-rails (3.1.1.1)
     warden (1.2.3)
       rack (>= 1.0)
 
@@ -232,7 +239,11 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   daemons (~> 1.1.9)
   delayed_job_active_record (= 0.4.4)
+<<<<<<< HEAD
   execjs
+=======
+  flash_cookie_session (= 1.1.5)
+>>>>>>> 18b81edd73a42cf8fa404f86e4bacc3a6d4aa518
   harmonious_dictionary (~> 0.0.1)
   jquery-rails (= 2.0.3)
   jquery-ui-rails
@@ -251,3 +262,4 @@ DEPENDENCIES
   simple_form (~> 2.1.0)
   therubyracer
   uglifier (>= 1.0.3)
+  uploadify-rails (= 3.1.1.1)

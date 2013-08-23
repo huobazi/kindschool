@@ -51,6 +51,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of_without_deleted :email,:scope => :kindergarten_id, :allow_blank => true
   validates_uniqueness_of_without_deleted :phone,:scope => :kindergarten_id, :allow_blank => true
 
+
   GENDER_DATA = {"M"=>"女","G"=>"男"}
   TP_DATA = {"0"=>"学员","1"=>"教职工","2"=>"管理员"}
   STATUS_DATA = {"start"=>"在园","graduate"=>"毕业","leave"=>"离开","freeze"=>"冻结"}

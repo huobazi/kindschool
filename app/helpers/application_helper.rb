@@ -1,6 +1,8 @@
 # encoding: utf-8
+include UploadifyRailsHelper
+
 module ApplicationHelper
-   def sys_admin_menus(t=nil)
+  def sys_admin_menus(t=nil)
     current_menus = MENUS
     menus = current_user.authed_menus(t)
     miss = true
@@ -8,16 +10,16 @@ module ApplicationHelper
       current_menu = m[:children] #&& m[:children].select{|c| c[:url].to_s.size>1 && request.path.start_with?(c[:url].to_s)}
       if mmm=current_menus[m[:number]]
         current_menu.each do |cu|
-         if mmmm=mmm[cu[:number]]#!mmm[cu[:number]].blank?#.include?(params[:action])
+          if mmmm=mmm[cu[:number]]#!mmm[cu[:number]].blank?#.include?(params[:action])
             if control=mmmm[params[:controller]]
-             if control.include?(params[:action])
+              if control.include?(params[:action])
                 cu[:current] = true
                 m[:current] = true
                 miss = false
-             # break
-             end
+                # break
+              end
             end
-         end
+          end
         end
       end
     end
@@ -115,4 +117,17 @@ module ApplicationHelper
     end
   end
 
+#  def get_required_form_data
+#    required_form_data
+#  end
+#
+#private
+#  def required_form_data
+#    @session_key ||= ::Rails.application.config.session_options[:key]
+#    @forgery_token = request_forgery_protection_token
+#    {
+#      @session_key   => cookies[@session_key],
+#      @forgery_token => form_authenticity_token
+#    }
+#  end
 end

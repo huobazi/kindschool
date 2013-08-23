@@ -1,5 +1,6 @@
 /*
  *= require jquery.ui.all
+ *= require uploadify
 */
 body{
     background-color: #f0ebe2;
@@ -7,6 +8,10 @@ body{
     padding: 0;
     position: relative;
 }
+/* 除IE6浏览器的通用方法 */
+.ie6fixedTL{position:fixed;left:0;top:0}
+.ie6fixedBR{position:fixed;right:0;bottom:0}
+/* IE6浏览器的特有方法 */
 #kind_name{
     color: violet;
     vertical-align: middle;
@@ -776,12 +781,13 @@ a{
 }
 /*===========表单==============*/
 .work_form{
-    padding: 20px 20px 20px 35px;
+    padding: 20px 15px 20px 25px;
 }
 .work_form .form_div{
     border: 1px solid #e3e3e3;
     background-color: #FBFBFB;
-    padding: 20px;
+    padding: 10px;
+    padding-top: 20px;
 }
 .work_form .big_form_div{
     border: 1px solid #e3e3e3;
