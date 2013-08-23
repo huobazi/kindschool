@@ -73,3 +73,4 @@ gem 'uploadify-rails',"3.1.1.1"
 
 
 #https://github.com/jhjguxin/sitemap_generator  #TODO:需要研究 SEO的网站地图
+
