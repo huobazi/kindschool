@@ -1,6 +1,5 @@
 # encoding: utf-8
 include UploadifyRailsHelper
-
 module ApplicationHelper
   def sys_admin_menus(t=nil)
     current_menus = MENUS

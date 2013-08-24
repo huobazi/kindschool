@@ -1,6 +1,8 @@
 <%#= render :partial => "/modules/colorful/official_website_about_us" %>
-<div class="contact_us">
+<div class="contact_us" style="padding: 20px; background-color: white;">
 	<div class="contact_us_content">
-
+<% if(about_me = @kind.page_contents.find_by_number("contact_us")) && (entry = about_me.content_entries.first) %>
+  <%= raw entry.content %>
+<% end %>
 	</div>
 </div>

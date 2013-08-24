@@ -5,24 +5,33 @@
 </div>
 </div>
 <div class="control-group">
- 	<%=f.label :title, '相片标题:' ,:class=>"control-label"%>
 <div class="controls">
-     <%= f.text_field(:title , :validate => true) %>
+     <p>批量上传后，您可以点击返回进行编辑图片描述</p>
 </div>
- </div>
- <div class="control-group">
- 	<%=f.label nil, '相片文件:' ,:class=>"control-label"%>
+</div>
+<div class="control-group">
+  <%#=f.label nil, '批量上传照片:' ,:class=>"control-label"%>
   <div class="controls">
-    <%= file_field_tag "uploaded_data" %>
+    <div id="upload_notice">
+            <input type="text" name="uploaded_data" id="uploadify"/>
+            <div id="uploadify_queue_div">
+            </div>
+    </div>
+ </div>
+</div>
+<!--  <div class="control-group">
+ 	<%#=f.label nil, '相片文件:' ,:class=>"control-label"%>
+  <div class="controls">
+    <%#= file_field_tag "uploaded_data" %>
   </div>
   <div class="controls img_border" style="margin-top: 10px;">
     <img src="/t/colorful/user_logo.png" alt="照片" id="photo" class="img-polaroid"/>
   </div>
 
- </div>
+ </div> -->
   <div class="control-group">
    <div class="controls">
-    <%= f.submit('创建',:class=>"btn") %>
+    <%#= f.submit('创建',:class=>"btn") %>
    </div>
   </div>
 
