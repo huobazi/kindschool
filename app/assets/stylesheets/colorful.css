@@ -1628,7 +1628,8 @@ ul.feature_list li{
 }
 .official_home_img{
     float: left;
-    height: 370px;
+    min-height: 370px;
+    _height: 370px;
     margin: 10px;
     max-width: 931px;
     overflow: hidden;

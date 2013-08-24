@@ -3,7 +3,7 @@
   jQuery(function() {
     $('#growth_record_start_at').datepicker({
       language: "zh-CN",
-      format:"yyyy-mm-dd",
+      format: "yyyy-mm-dd"
     }).on("changeDate", function() {
       $(this).datepicker('hide')
     });
@@ -61,16 +61,16 @@
   <%#= f.input :siesta, :validate => true, :input_html => { class: "span5"} %>
     <%#= f.input :dine, :validate => true, input_html: {class: "span5"} %>
       <div class="control-group">
-        <%= f.label :reward, class: "control-label" %>
+        <%= f.label :reward, :class=> "control-label" %>
           <div class="controls">
             <div id="reward">
             </div>
           </div>
         </div>
         <% if action_name == "new" %>
-          <%= f.input :reward, as: :hidden, input_html: {value: 1} %>
+          <%= f.input :reward, :as=> :hidden, :input_html=> {:value=> 1} %>
         <% else %>
-          <%= f.input :reward, as: :hidden, input_html: {value: f.object.reward} %>
+          <%= f.input :reward, :as=> :hidden, :input_html=> {:value=> f.object.reward} %>
         <% end %>
       <% end %>
 
@@ -109,7 +109,7 @@
 
       <div class="control-group">
         <div class="controls">
-          <%= f.button :submit, disable_with: "正在提交..." %>
+          <%= f.button :submit, :disable_with=> "正在提交..." %>
         </div>
       </div>
 
@@ -146,7 +146,7 @@
               flag.push(true);
             }
 
-            for( i in flag ) {
+            for(var i in flag ) {
               if(flag[i] == true) {
                 flag.length = 0;
                 return false;
