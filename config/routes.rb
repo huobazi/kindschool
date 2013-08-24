@@ -125,7 +125,6 @@ School::Application.routes.draw do
     end
     resources :squads do
       collection do
-        delete :destroy_multiple
         post :add_strategy
       end
       member do
