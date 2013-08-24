@@ -32,12 +32,10 @@
           <%end%>
         <% end %>
         <li>
-          <a href="<%=url_for(:controller=>"/my_school/albums",:action=>:index)%>" title="返回">
-            <div class="work_action_return">
+          <%=link_to "<div class='work_action_return'>
             </div>
-            <div class="work_action_return_move">
-            </div>
-          </a>
+            <div class='work_action_return_move'>
+            </div>".html_safe ,my_school_album_path(@album)%>
         </li>
       </ul>
     </div>

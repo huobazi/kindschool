@@ -1,3 +1,7 @@
-<% if(about_me = @kind.page_contents.find_by_number("about_me")) && (entry = about_me.content_entries.first) %>
-  <%= raw entry.content %>
-<% end %>
+<div class="contact_us" style="padding: 20px; background-color: white;">
+  <div class="contact_us_content">
+    <% if(about_me = @kind.page_contents.find_by_number("about_me")) && (entry = about_me.content_entries.first) %>
+      <%= raw entry.content %>
+    <% end %>
+  </div>
+</div>

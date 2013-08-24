@@ -81,23 +81,17 @@ class MySchool::AlbumsController  < MySchool::ManageController
   def add_entry_imgs
     if @album = @kind.albums.find(params[:id])
       if current_user.get_users_ranges[:tp] == :student
-        puts "============1"
         render :text=>"没有权限"
         return
       end
       @album_entry = @album.album_entries.new(params[:album_entry])
       if params[:Filedata].blank?
-        puts "============2"
         render :text=>"没有上传文件."
       else
-        puts "============3"
-        asset_img = AssetImg.new
-#        file_url =  params[:Filedata]
-#        uploaded_data =  fixture_file_upload file_url, 'image/png' # (file_url, 'image/jpeg', false)
-        asset_img = AssetImg.new(:uploaded_data=>params[:Filedata])
-#        asset_img.swf_uploaded_data= params[:Filedata]
+      asset_img = AssetImg.new
+       asset_img.swf_uploaded_data= params[:Filedata]
         @album_entry.asset_img = asset_img
-        if @album_entry.save! && @album_entry.asset_img.save!
+        if @album_entry.save!
           @album_entry.asset_img_id = @album_entry.asset_img.id
           @album_entry.save
           render :json => { :result => 'success', :asset => @album_entry.id }

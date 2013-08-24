@@ -56,7 +56,7 @@ class MySchool::AlbumEntriesController < MySchool::ManageController
     @album_entry = @album.album_entries.find(params[:id])
     @album_entry.destroy
     respond_to do |format|
-      format.html { redirect_to my_school_album_path(@album) }
+      format.html { redirect_to entry_index_my_school_album_path(@album) }
       format.json { head :no_content }
     end
   end
