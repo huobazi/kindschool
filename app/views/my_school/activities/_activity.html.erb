@@ -1,5 +1,5 @@
 <div class="topic topic_line pull-left">
-  <div class="iCheck_checkbox pull-left"><input type="checkbox" class="check" /></div>
+  <div class="iCheck_checkbox pull-left"><input type="checkbox" class="check" name="activity[]" id="activity_<%= activity.id %>" value="<%= activity.id %>" /></div>
   <div class="avatar pull-left"><img src="<%= activity.creater.try(:asset_logo) ? activity.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
   </div>
   <div class="right_info">
@@ -20,6 +20,15 @@
       <% else %>
         <% if choose_operate_show("my_school/interest_activities/edit") %>
           <a href="<%= edit_my_school_interest_activity_path(activity) %>" title="编辑<%= activity.title %>" alt="编辑<%= activity.title %>"><i class="icon-edit"></i></a>
+        <% end %>
+      <% end %>
+      <% if controller_name == "activities" %>
+        <% if choose_operate_show("my_school/activities/destroy") %>
+          <a href="<%= my_school_activity_path(activity) %>" data-method="delete" data-confirm="您确定要删除该活动吗" title="删除<%= activity.title %>" alt="删除<%= activity.title %>"><i class="icon-remove-sign"></i></a>
+        <% end %>
+      <% else %>
+        <% if choose_operate_show("my_school/interest_activities/destroy") %>
+          <a href="<%= my_school_interest_activity_path(activity) %>" data-method="delete" data-confirm="您确定要删除该活动吗" title="删除<%= activity.title %>" alt="删除<%= activity.title %>"><i class="icon-remove-sign"></i></a>
         <% end %>
       <% end %>
       <% if activity.activity_entries.any? %>

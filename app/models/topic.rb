@@ -20,6 +20,8 @@ class Topic < ActiveRecord::Base
   include ResourceApproveStatusStart
   before_save :news_approve_status_start
 
+  before_destroy :ensure_not_topic_entries
+
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end
@@ -40,6 +42,15 @@ class Topic < ActiveRecord::Base
 
   def squad_label
     self.squad ? self.squad.name : "没有班级信息"
+  end
+
+  def ensure_not_topic_entries
+    unless self.topic_entries.blank?
+      self.topic_entries.each do |topic_entry|
+        topic_entry.is_show = false
+        topic_entry.save
+      end
+    end
   end
 
 end

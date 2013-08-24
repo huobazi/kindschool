@@ -25,7 +25,7 @@
           <%=link_to "<div class='work_action_return'>
             </div>
             <div class='work_action_return_move'>
-            </div>".html_safe ,my_school_album_path(@album)%>
+            </div>".html_safe ,entry_index_my_school_album_path(@album)%>
           </li>
       </ul>
     </div>
@@ -36,13 +36,8 @@
           <%= render 'form', :f=>f %>
         <%end%>
         <hr/>
-        <%= uploadify_rails_options %>
-          <div>
-            <input type="text" name="uploaded_data" id="uploadify"/>
-            <div id="uploadify_queue_div">
-
-            </div>
-          </div>
+        <%#= uploadify_rails_options %>
+          
       </div>
     </div>
   </div>
@@ -56,4 +51,3 @@ console.info(option);
 $('input#uploadify').uploadify(option);
 });
 </script>
-
