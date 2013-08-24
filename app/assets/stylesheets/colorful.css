@@ -1338,6 +1338,11 @@ a.album_a .album_img{
     width: 204px;
     z-index: 1;
 }
+a.album_a .album_img img{
+    height: 300px;
+    vertical-align: middle;
+    width: 304px;
+}
 #records {
     width: 100%;
 }
