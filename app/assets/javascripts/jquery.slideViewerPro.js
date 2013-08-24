@@ -99,7 +99,7 @@ jQuery.fn.slideViewerPro = function(settings) {
             jQuery(this).next().after("<a href='#' class='left' id='left" + j + "'><span>"+settings.leftButtonInner+"</span><\/a><a href='#' class='right' id='right" + j + "'><span>"+settings.rightButtonInner+"<\/span><\/a>");
 
             jQuery(this).find("li").each(function(n) {
-                jQuery("div#thumbSlider" + j + " ul").append("<li><a title='" + jQuery(this).find("img").attr("alt") + "' href='#'><div class='thumbSlider_img' style='width:"+ thumbsWidth +"px; height:"+ thumbsHeight +"px;'><img width='"+ thumbsWidth +"' height='"+ thumbsHeight +"' src='" + jQuery(this).find("img").attr("src") + "' /></div><p class='tmbrdr'>&nbsp;<\/p><\/a><\/li>");
+                jQuery("div#thumbSlider" + j + " ul").append("<li><a title='" + jQuery(this).find("img").attr("alt") + "' href='#'><div class='thumbSlider_img' style='width:"+ thumbsWidth +"px; height:"+ thumbsHeight +"px;'><img style='width" + thumbsWidth +":px;height:"+ thumbsHeight +"px' width='"+ thumbsWidth +"' height='"+ thumbsHeight +"' src='" + jQuery(this).find("img").attr("src") + "' /></div><p class='tmbrdr'>&nbsp;<\/p><\/a><\/li>");
             });
 
             jQuery("div#thumbSlider" + j + " a").each(function(z) {

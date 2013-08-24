@@ -30,7 +30,7 @@
             <a href="<%= my_school_album_path(album)%>" class="album_a ">
               <div class="album_window"></div>
               <div class="album_img">
-                <img src="<%= album.show_main_img ? album.show_main_img.public_filename(:middle) : '/t/colorful/login_img10.png' %>"  alt="<%=album.title%>"/>
+                <img src="<%= album.show_main_img ? album.show_main_img.public_filename(:thumb) : '/t/colorful/login_img10.png' %>"  alt="<%=album.title%>"/>
               </div>
             </a>
             <div class="title">
