@@ -72,7 +72,7 @@
   <%= render :partial=>"/my_school/approves/load_approves_log" ,:locals=>{:record_id=>@new.approve_record.try(:id),:approve_status=>@new.approve_status} %>
             </div>
             <div class="content">
-              <%= @new.content %>
+              <%=raw @new.content %>
             </div>
           </div>
         </div>
