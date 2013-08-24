@@ -91,10 +91,10 @@
               <tr>
                 <td><input id="student_<%= student.id %>" class="check" name="student[]" type="checkbox" value="<%= student.id %>" /></td>
                 <td><%= link_to student.user.name, my_school_student_info_path(student) %></td>
-                <td><%= student.user.login %></td>
-                <td><%= student.squad.name %></td>
-                <td><%= student.user.phone %></td>
-                <td><%= student.user.gender == "M" ?  "女" : "男" %></td>
+                <td><%= student.user.try(:login) %></td>
+                <td><%= student.squad.try(:name) %></td>
+                <td><%= student.user.try(:phone) %></td>
+                <td><%= student.user.try(:gender) == "M" ?  "女" : "男" %></td>
                 <td>
                   <div class="index_a">
                     <% if choose_operate_show("my_school/student_infos/show") %>
