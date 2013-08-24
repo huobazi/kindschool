@@ -80,7 +80,7 @@
     </div>
     <div class="control-group">
       <div class="controls">
-        <a id="comment_submit" class="btn" href="javascript: void(0)" data-disable-with="正在提交...">评论</a>
+        <a id="comment_submit" class="btn" href="javascript: void(0)" data-disable-with="正在提交...">评论</a>Ctrl+Enter
       </div>
     </div>
   </form>
@@ -118,6 +118,11 @@
           });
         });
       })
+      $("textarea#comment").keydown(function(e) {
+        if (e.ctrlKey && e.keyCode == 13) {
+          $("a#comment_submit").click();
+        }
+      });
 
     });
   </script>
