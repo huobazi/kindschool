@@ -52,7 +52,7 @@
           <b>账号：</b>
           <%= text_field :student_info,:user_login_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:user_login_like] if params[:student_info] }"  %>
           <b>班级：</b>
-          <%#= text_field :student_info,:squad_name_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:squad_name_like] if params[:student_info] }"  %>
+    <%#= text_field :student_info,:squad_name_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:squad_name_like] if params[:student_info] }"  %>
           <%= select_tag("student_info[squad_name_like]", options_for_select(@kind.squads.collect{|x|x.name}+[""],(params[:student_info].blank? ? "" : params[:student_info][:squad_name_like])),:style=>"width:100px;") %>
           <b>手机号：</b>
           <%= text_field :student_info,:user_phone_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:user_phone_like] if params[:student_info] }"  %>
@@ -61,17 +61,33 @@
           <%= submit_tag "搜索"  , :class => "btn search_btn"%>
         <%end%>
         <%if choose_operate_show("my_school/student_infos/download_student_infos")%>
-        <p>
-         表格下载:
-          <%= link_to "深圳市教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "shenzhen",student_info: params[:student_info]) ,:class=>"btn" %>
-          <%= link_to "广东省教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "guangzhou",student_info: params[:student_info]) ,:class=>"btn" %>
-      </p>
-      <%= form_tag import_my_school_student_infos_path, multipart: true do %>
-      <%= file_field_tag :file %>
-      <%= submit_tag "批量导入",:class=>"btn" %>
-      <a class="blue" title="批量表格下载" href="/doc/Children.xls">批量表格下载</a>
-      <% end %>
-      <% end %>
+          <p>
+            表格下载:
+            <%= link_to "深圳市教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "shenzhen",student_info: params[:student_info]) ,:class=>"btn" %>
+            <%= link_to "广东省教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "guangzhou",student_info: params[:student_info]) ,:class=>"btn" %>
+          </p>
+          <% if choose_operate_show("my_school/student_infos/new") %>
+            <a href="###"  id="add_student_info">进行批量导入</a>
+            <div id="add_student_info_div" <%= raw(params[:importing] ? 'style="display:block;"' : "") %>>
+              <%= form_tag import_my_school_student_infos_path, multipart: true,:id=>"import_form" do %>
+                <% if @kind.aliases_url.blank?
+                  web_address = "http://#{@kind.number}.#{WEBSITE_CONFIG["web_host"]}"
+                else
+                  web_address = kind.aliases_url
+                end
+              %>
+                <div class="import_div"><div class="import_label">导入后短信提示：</div><div class="import_text import_tip">您已经成功注册了<%= @kind.name %>微壹校讯通平台,您的登录名:???,密码:***,登录地址:<%= web_address %> </div></div>
+                <div class="import_div"><div class="import_label">短信追加描述：</div><div class="import_text import_tip"><%= @kind.login_note.blank? ? "无" : @kind.login_note %>
+                    <span class="help-block">如需修改，请在"系统设置"->"幼儿园设置"中修改"注册短信追加内容"</span>
+                  </div>
+                </div>
+                <%= file_field_tag :file %>
+                <%= submit_tag "批量导入",:class=>"btn" %>
+                <a class="blue" title="批量表格下载" href="/doc/Children.xls">批量表格下载</a>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     <% end %>
     <div class="work_list">
@@ -79,7 +95,7 @@
         <%= form_tag my_school_student_info_path(@student_infos), method: :delete, :id => "destroy_multi_form" do %>
           <table class="table table-striped table-hover">
             <tr>
-              <th><input type="checkbox" name="" value="" alt="全选" id="check_all">&nbsp;<label style="display: inline;font-size: 13px;" for="check_all"></label></th>
+              <th><input type="checkbox" name="" value="" alt="全选" id="check_all"/>&nbsp;<label style="display: inline;font-size: 13px;" for="check_all"></label></th>
               <th>名称</th>
               <th>账号</th>
               <th>班级</th>
@@ -110,9 +126,9 @@
                       <%= link_to (student.user.is_receive ? "取消收短信" : "设为可收短信"), set_gather_sms_my_school_user_path(student.user) %>
                     <% end %>
                     <% if choose_operate_show("my_school/users/reset_password") %>
-                    <%=link_to '重置密码',reset_password_my_school_user_path(student.user),:title=>"最后重置时间:#{
-                    student.user.ret_password_records.first ? 
-                    student.user.ret_password_records.try(:first).try(:created_at).try(:to_long_datetime) :  '无' }", method: :post,data: { confirm: '确定要重置密码?' } %>
+                      <%=link_to '重置密码',reset_password_my_school_user_path(student.user),:title=>"最后重置时间:#{
+                      student.user.ret_password_records.first ?
+                      student.user.ret_password_records.try(:first).try(:created_at).try(:to_long_datetime) :  '无' }", method: :post,data: { confirm: '确定要重置密码?' } %>
                     <%end%>
                   </div>
                 </td>
@@ -137,5 +153,8 @@
         return false;
       }
     });
+    $("#add_student_info").click(function(){
+      $("#add_student_info_div").slideToggle();
+    })
   });
 </script>

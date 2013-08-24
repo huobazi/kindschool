@@ -74,7 +74,7 @@ ActiveAdmin.register Kindergarten do
       f.input :begin_allsms
       f.input :open_allsms
       f.input :allsms_count
-
+      f.input :login_note
       f.input :note
     end
 
@@ -108,8 +108,8 @@ ActiveAdmin.register Kindergarten do
       row :begin_allsms
       row :open_allsms
       row :allsms_count
+      row :login_note
       row :note
-
       row :asset_img do |obj|
         if obj.asset_img.blank?
           raw "图片不存在"

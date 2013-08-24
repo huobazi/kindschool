@@ -2409,7 +2409,34 @@ fieldset.staff_squad ol li {
     height: 2em;
     line-height: 2em;
 }
-
+.import_tip{
+    color: #1c7fdb;
+}
+#add_student_info{
+    color: blue;
+}
+#add_student_info_div{
+    display: none;
+}
+.import_div{
+    width: 100%;
+    float: left;
+}
+.import_label{
+    width: 130px;
+    float: left;
+}
+.import_text{
+    width: 450px;
+    float: left;
+}
+.import_text span{
+    vertical-align: top;
+}
+.import_node{
+    float: left;
+    width: 70px;
+}
 .tab-style {
     position: relative;
     margin: 15px 0;

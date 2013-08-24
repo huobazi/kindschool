@@ -15,6 +15,7 @@ class MySchool::MyKindergartenController < MySchool::ManageController
     @kind.latlng = params[:latlng]
     @kind.address = params[:address]
     @kind.telephone = params[:telephone]
+    @kind.login_note = params[:login_note]
     if params[:asset_logo]
       if @kind.asset_img
         @kind.asset_img.update_attribute(:uploaded_data, params[:asset_logo])
