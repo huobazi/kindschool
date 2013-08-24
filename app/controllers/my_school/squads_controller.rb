@@ -38,7 +38,6 @@ class  MySchool::SquadsController < MySchool::ManageController
       @squads = @kind.messages.where(:id=>params[:squad])
     else
       @squads = @kind.messages.where(:id=>params[:id])
-      puts @squads.inspect
     end
 
   Squad.transaction do
