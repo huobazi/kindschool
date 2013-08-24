@@ -51,7 +51,7 @@
          <label class="show_label">
            <%= file_field_tag 'home_publicity_img', :class => 'profile_input required' %>
          </label>
-         <span> 建议高度970像素,宽度为370像素</span>
+         <span>建议宽度930像素,高度为370像素</span>
          <img src="<%=@entry.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry.page_img.public_filename %>" alt="" width="400" />
       <%= hidden_field_tag "entry_id",@entry.id %>
         </div>
