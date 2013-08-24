@@ -50,7 +50,7 @@
                   <img src="<%= page_content.logo_url %>" alt="效果图" width="300px" class="page_content_img" />
                 </a>
               </td>
-              <td><%= page_content.note %></td>
+              <td><%= raw page_content.note %></td>
               <td>
                 <%= link_to '设置', my_school_page_content_path(page_content) %>
               </td>
