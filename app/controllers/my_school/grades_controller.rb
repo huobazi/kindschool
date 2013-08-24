@@ -19,13 +19,23 @@ class  MySchool::GradesController < MySchool::ManageController
   end
 
   def destroy
-    @grade = Grade.find_by_id_and_kindergarten_id(params[:id],@kind.id)
-    @grade.destroy
-
+    unless params[:grade].blank? 
+      @grades = @kind.grades.where(:id=>params[:grade])
+    else
+      @grades = @kind.grades.where(:id=>params[:id])
+    end
+    if @grades.blank?
+      flash[:error] = "请选择年级"
+      redirect_to :action => :index
+      return
+    end
+    @grades.each do |grade|
+      grade.destroy
+    end
     respond_to do |format|
-      flash[:notice] = '删除年级成功.'
-      format.html { redirect_to(:action=>:index) }
-      format.xml  { head :ok }
+      flash[:success] = "删除年级成功"
+      format.html { redirect_to my_school_grades_path }
+      format.json { head :no_content }
     end
   end
 

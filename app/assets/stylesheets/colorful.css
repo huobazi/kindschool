@@ -1338,6 +1338,11 @@ a.album_a .album_img{
     width: 204px;
     z-index: 1;
 }
+a.album_a .album_img img{
+    height: 300px;
+    vertical-align: middle;
+    width: 304px;
+}
 #records {
     width: 100%;
 }
@@ -1623,7 +1628,8 @@ ul.feature_list li{
 }
 .official_home_img{
     float: left;
-    height: 370px;
+    min-height: 370px;
+    _height: 370px;
     margin: 10px;
     max-width: 931px;
     overflow: hidden;
@@ -2403,7 +2409,34 @@ fieldset.staff_squad ol li {
     height: 2em;
     line-height: 2em;
 }
-
+.import_tip{
+    color: #1c7fdb;
+}
+#add_student_info{
+    color: blue;
+}
+#add_student_info_div{
+    display: none;
+}
+.import_div{
+    width: 100%;
+    float: left;
+}
+.import_label{
+    width: 130px;
+    float: left;
+}
+.import_text{
+    width: 450px;
+    float: left;
+}
+.import_text span{
+    vertical-align: top;
+}
+.import_node{
+    float: left;
+    width: 70px;
+}
 .tab-style {
     position: relative;
     margin: 15px 0;

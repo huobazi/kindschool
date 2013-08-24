@@ -2,7 +2,7 @@
 #幼儿园
 class Kindergarten < ActiveRecord::Base
   attr_accessible :logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token,:latlng,:address,
-    :aliases_url,:sms_count,:sms_user_count,:telephone,:allsms_count,:open_allsms,:begin_allsms
+    :aliases_url,:sms_count,:sms_user_count,:telephone,:allsms_count,:open_allsms,:begin_allsms,:login_note
 
   validates :name,:presence => true, :uniqueness => true, :length => { :maximum => 100}
   validates :number,:presence => true, :uniqueness => true, :length => { :maximum => 100},:exclusion => { :in => %w(www) }
@@ -74,6 +74,8 @@ class Kindergarten < ActiveRecord::Base
   has_one :shrink_record
 
   has_many :teaching_plans
+
+  validates :login_note, :length=>{:maximum=>120 }
 
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img

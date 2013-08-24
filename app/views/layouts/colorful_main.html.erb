@@ -11,6 +11,7 @@
     <meta name="keywords" content="<%=@keywords%>" />
     <meta charset="utf-8"/>
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "application","colorful" %>
     <%= csrf_meta_tags %>
     <%= javascript_include_tag "DD_belatedPNG_0.0.8a","jquery.lettering" %>
     <!--[if lte IE 6]>
@@ -31,6 +32,26 @@
         <% if @kind %>
           <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" width="100" height="79" alt="Logo" class="logo_vertical"/>
           <span id="kind_name"><%= @kind.name %></span>
+          <a href="###" id="user_show_dialog" style="float:right;" class="blue">
+            <img src="/star_imgs/help.gif" alt="用户指南" /></a>
+          <script type="text/javascript">
+  $(function() {
+    $("#dialog_users_guide" ).dialog({
+      dialogClass: "no-close",
+      autoOpen: false,
+      height:500,
+      width:700,
+      buttons: {
+        "确定": function () {
+          $(this).dialog("close");
+        }
+      }
+    });
+    $( "#user_show_dialog" ).click(function() {
+      $( "#dialog_users_guide" ).dialog("open");
+    });
+  });
+</script>
           <script type="text/javascript">
             $(function(){
               $("#kind_name").lettering();
@@ -80,6 +101,9 @@
       </div>
       <div class="main_work">
         <%= yield %>
+      </div>
+      <div id="dialog_users_guide"  title="用户登录指南">
+      <%= render :partial => "/modules/colorful/users_guide" %>
       </div>
       <%= render :partial => "/modules/colorful/foot" %>
     </div>

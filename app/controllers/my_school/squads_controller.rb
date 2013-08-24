@@ -32,14 +32,33 @@ class  MySchool::SquadsController < MySchool::ManageController
   end
 
   def destroy
-    @squad = Squad.find_by_id_and_kindergarten_id(params[:id],@kind.id)
-    @squad.destroy
-
-    respond_to do |format|
-      flash[:notice] = '删除班级成功.'
-      format.html { redirect_to(:action=>:index) }
-      format.xml  { head :ok }
+    puts "11111111111\n\n\n"
+    puts params[:squad].inspect
+    unless params[:squad].blank?
+      @squads = @kind.messages.where(:id=>params[:squad])
+    else
+      @squads = @kind.messages.where(:id=>params[:id])
     end
+
+  Squad.transaction do
+    begin
+      @squads.each do |squad|
+        student_infos = squad.student_infos
+         unless student_infos.blank?
+          puts "1111111111\n\n\n\n"
+          raise "该班级有学员" 
+          else
+          puts "222222222\n\n\n\n"
+           squad.destroy 
+         end
+      end
+    end
+  end
+    # respond_to do |format|
+    #   flash[:notice] = '删除班级成功.'
+    #   format.html { redirect_to(:action=>:index) }
+    #   format.xml  { head :ok }
+    # end
   end
 
   def show
