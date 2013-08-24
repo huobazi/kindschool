@@ -48,6 +48,7 @@ class StudentInfo < ActiveRecord::Base
   def self.import(file,kind_id)
     spreadsheet = open_spreadsheet(file)
     user_password = []
+    
     header = spreadsheet.row(1)
       StudentInfo.transaction do
        (2..spreadsheet.last_row).each do |i|
@@ -83,6 +84,9 @@ class StudentInfo < ActiveRecord::Base
             user_password << {:user=>user,:password=>password}
           end
       end
+      if kind =Kindergarten.find_by_id(kind_id)
+        login_note = kind.login_note
+      end
       user_password.each do |u_password|
         user = u_password[:user]
         password = u_password[:password]
@@ -93,11 +97,12 @@ class StudentInfo < ActiveRecord::Base
         else
          web_address = kind.aliases_url
         end
-        content = "您的登录名:#{user.login},密码:#{password},登录地址:#{web_address}"
-        user.send_system_message!(title,content,3)
+        content = "您的登录名:#{user.login},密码:#{password},登录地址:#{web_address} "
+        user.send_system_message!("系统消息","#{title},#{content} #{login_note}",3)
       end
       # raise ""
   end
+
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
