@@ -14,6 +14,9 @@ window.ClientSideValidations.callbacks.element.fail = function(element, message,
     if ( element.parent().find('p.help-block').length > 0 ) {
       element.parent().find('p.help-block').remove();
     }
+    if( element.parent().parent().find("i.validate_icon").length > 0 ) {
+      element.parent().parent().find("i.validate_icon").remove();
+    }
     $("<i class='validate_icon validate_error_icon'></i>").insertAfter(element)
   }
 }
