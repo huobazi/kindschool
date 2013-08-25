@@ -32,33 +32,37 @@ class  MySchool::SquadsController < MySchool::ManageController
   end
 
   def destroy
-    puts "11111111111\n\n\n"
-    puts params[:squad].inspect
     unless params[:squad].blank?
-      @squads = @kind.messages.where(:id=>params[:squad])
+      @squads = @kind.squads.where(:id=>params[:squad])
     else
-      @squads = @kind.messages.where(:id=>params[:id])
+      @squads = @kind.squads.where(:id=>params[:id])
     end
-
+    if @squads.blank?
+      flash[:notice] = '没有选择班级.'
+      redirect_to(:action=>:index)
+      return
+    end
   Squad.transaction do
     begin
       @squads.each do |squad|
-        student_infos = squad.student_infos
-         unless student_infos.blank?
-          puts "1111111111\n\n\n\n"
-          raise "该班级有学员" 
+       if stu_infos = squad.student_infos
+         unless stu_infos.blank?
+          raise "该班级有学员，不能进行删除" 
           else
-          puts "222222222\n\n\n\n"
            squad.destroy 
          end
+        end
       end
     end
   end
-    # respond_to do |format|
-    #   flash[:notice] = '删除班级成功.'
-    #   format.html { redirect_to(:action=>:index) }
-    #   format.xml  { head :ok }
-    # end
+    respond_to do |format|
+      flash[:notice] = '删除班级成功.'
+      format.html { redirect_to(:action=>:index) }
+      format.xml  { head :ok }
+    end
+    rescue Exception =>ex
+      flash[:error] = ex.message
+      redirect_to my_school_squads_path #, :notice=> "该班级有学员，不能进行删除."
   end
 
   def show

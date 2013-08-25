@@ -9,10 +9,10 @@
     });;
   });
 </script>
-<%= f.input :title, :validate => true, :required => true,:input_html=>{:class=>"span5"}%>
-<%= f.input :send_date, :validate => true, :required => true,:as=>:string ,:class=>"input-mediun time_datepicker"%>
-<%= f.input :send_range,:as=>:select,:collection=>Notice::SEND_RANGE_DATA.invert %>
-<%= f.input :content, :validate => true, :required => true ,:input_html=>{:class=>"span5"}%>
+<%= f.input :title, :validate => true, :required => true,:input_html=>{:class=>"span5"}, placeholder: "请输入通知的标题信息", hint: "长度必须控制在2个到100个字符之间"%>
+<%= f.input :send_date, :validate => true, :required => true,:as=>:string, placeholder: "单击此处选择发送时间", :class=>"input-mediun time_datepicker"%>
+<%= f.input :send_range,:as=>:select,:collection=>Notice::SEND_RANGE_DATA.invert, :include_blank => false %>
+<%= f.input :content, :validate => true, :required => true ,:input_html=>{:class=>"span5"}, placeholder: "请输入通知的内容", hint: "长度必须控制在800个字以内" %>
 
 <div class="control-group">
   <div class="controls">

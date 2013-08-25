@@ -29,38 +29,40 @@
   // $("#grade").change();
 </script>
 <div class="control-group">
- 	<%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
+ 	<%=f.label :kindergarten_id, '所属幼儿园' ,:class=>"control-label"%>
 <div class="controls">
      <%= text_field_tag(:kindergarten,@kind.name, disabled: true) %>
 </div>
 </div>
  <div class="control-group">
- 	<%=f.label :name, '疫苗名称:' ,:class=>"control-label"%>
+   <%=f.label :name, raw('<abbr title="required">*</abbr> 疫苗名称:') ,:class=>"control-label required"%>
 <div class="controls">
-  <%= f.text_field :name, :validate => true %>
+  <%= f.text_field :name, :validate => true, placeholder: "请输入疫苗的名称" %>
+  <p class="help-block">长度必须控制在2个到100个字符之间</p>
 </div>
  </div>
  <div class="control-group">
- 	<%=f.label :note, '描述: ' ,:class=>"control-label"%>
+ 	<%=f.label :note, '描述: ' ,:class=>"control-label" %>
 <div class="controls">
-  <%= f.text_area(:note, :validate => true, size: "30x5",:class=>"span4") %>
+  <%= f.text_area(:note, :validate => true, rows: 3, :class=>"span5", placeholder: "请输入疫苗的描述") %>
+  <p class="help-block">可以为空或长度必须控制在200个字符以内</p>
 </div>
 </div>
 <div class="control-group">
-	<%=f.label :shot_at, '注射时间: ' ,:class=>"control-label"%>
+  <%=f.label :shot_at, raw('<abbr title="required">*</abbr> 注射时间: ') ,:class=>"control-label required" %>
 <div class="controls">
   <% if action_name == "new" %>
-    <%= f.text_field(:shot_at, :validate => true, :class => "time_datepicker") %>
+    <%= f.text_field(:shot_at, :validate => true, :class => "time_datepicker", placeholder: "单击此处选择疫苗的注射时间") %>
   <% else %>
     <%= f.text_field(:shot_at, :validate => true, :class => "time_datepicker", :value => @seedling.shot_at.to_short_datetime) %>
   <% end %>
 </div>
 </div>
 <div class="control-group">
-	<%=f.label :expire_at, '过期时间: ' ,:class=>"control-label"%>
+  <%=f.label :expire_at, raw('<abbr title="required">*</abbr> 过期时间: ') ,:class=>"control-label required"%>
   <div class="controls">
     <% if action_name == "new" %>
-      <%= f.text_field(:expire_at, :validate => true, :class => "time_datepicker") %>
+      <%= f.text_field(:expire_at, :validate => true, :class => "time_datepicker", placeholder: "单击此处选择疫苗的过期时间") %>
     <% else %>
       <%= f.text_field(:expire_at, :validate => true, :class => "time_datepicker", :value => @seedling.expire_at.to_short_datetime) %>
     <% end %>
@@ -68,7 +70,7 @@
 </div>
 <% if action_name == "new" %>
   <div class="control-group">
-    <%=f.label :student_info_id, '学生: ' ,:class=>"control-label"%>
+    <%=f.label :student_info_id, raw('<abbr title="required">*</abbr> 学生: ') ,:class=>"control-label required"%>
     <div class="controls">
         <span>年级&nbsp;<%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]})%></span>
         <br />

@@ -16,6 +16,7 @@
 //= require twitter/bootstrap
 //= require kindeditor
 //= require uploadify
+
 $(function(){
     $("div.head div.center_menu").hover(function(){
         $(this).find(".show_menu").show();

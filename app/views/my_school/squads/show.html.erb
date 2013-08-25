@@ -47,12 +47,21 @@
         </li>
         <li>
           <% if choose_operate_show("my_school/squads/destroy") %>
+          <%if @squad.student_infos.count >0%>
+          <%= link_to("###",:confirm => "该班级有学员不能进行删除!") do %>
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+             <% end %>
+          <%else%>
             <%= link_to(url_for(:controller=>"/my_school/squads",:action=>:destroy,:id=>@squad.id),:method=>:delete, :confirm => "您确定删除该班级吗?") do %>
               <div class="work_action_delete">
               </div>
               <div class="work_action_delete_move">
               </div>
-            <% end %>
+             <% end %>
+            <%end%>
           <% end %>
         </li>
         <li>

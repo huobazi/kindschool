@@ -21,20 +21,20 @@
 </div>
 </div>
  <div class="control-group">
- 	<%=f.label :start_at, '开始时间:' ,:class=>"control-label"%>
+ 	<%=f.label :start_at, '开始时间:' ,:class=>"control-label" %>
 <div class="controls">
   <% if action_name == "new" %>
-    <%= f.text_field(:start_at , :validate => true, :class => "time_datepicker") %>
+    <%= f.text_field(:start_at , :validate => true, :class => "time_datepicker", placeholder: "单击此处选择菜谱的开始时间") %>
   <% else %>
     <%= f.text_field(:start_at , :validate => true, :class => "time_datepicker", :value => @cook_book.start_at.to_short_datetime) %>
   <% end %>
 </div>
  </div>
 <div class="control-group">
-	<%=f.label :end_at, '结束时间: ' ,:class=>"control-label"%>
+	<%=f.label :end_at, '结束时间: ' ,:class=>"control-label" %>
 <div class="controls">
   <% if action_name == "new" %>
-    <%= f.text_field(:end_at , :validate => true, :class => "time_datepicker") %>
+    <%= f.text_field(:end_at , :validate => true, :class => "time_datepicker", placeholder: "单击此处选择菜谱的结束时间") %>
   <% else %>
     <%= f.text_field(:end_at , :validate => true, :class => "time_datepicker", :value => @cook_book.end_at.to_short_datetime) %>
   <% end %>
