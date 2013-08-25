@@ -1,6 +1,33 @@
 #encoding:utf-8
 ActiveAdmin.register User do
   menu :parent => "幼儿园管理", :priority => 2
+
+  member_action :reset_password, :method => :get do
+    @user = User.find(params[:id])
+    @user.ret_password_records << RetPasswordRecord.new
+    password = Standard.rand_password
+    @user.password = password
+    @kind = @user.kindergarten
+    if @kind && @user.save
+      title = "您已经成功重置#{@kind.name}微壹校讯通平台密码."
+      if @kind.aliases_url.blank?
+        web_address = "http://#{@kind.number}.#{WEBSITE_CONFIG["web_host"]}"
+      else
+        web_address = @kind.aliases_url
+      end
+      content = "您的登录名:#{@user.login},密码:#{password},登录地址:#{web_address}"
+      @user.send_system_message!("系统消息","#{title} #{content}",3)
+      flash[:notice]="短信发送成功"
+    else
+      flash[:error] ="重置密码失敗."
+    end
+    redirect_to(:controller=>"/admin/users", :action=>:show,:id=>params[:id])
+  end
+
+  action_item :only => :show do
+    link_to('重置密码', reset_password_admin_user_path(user))
+  end
+
   controller do
     def new
       if params[:id]
@@ -66,7 +93,7 @@ ActiveAdmin.register User do
       f.input :name, :required => true
       f.input :phone, :required => true
       f.input :role, :as=>:select,:collection=>Hash[f.object.kindergarten.roles.collect{|role| [role.name,role.id]}]
-#      f.input :role, :as => :string, :input_html => { :disabled => true }
+      #      f.input :role, :as => :string, :input_html => { :disabled => true }
       f.input :gender,:as=>:radio,:collection=>{"女"=>"M","男"=>"G"}, :required => true
       f.input :weixin_code
       f.input :weiyi_code
@@ -98,6 +125,16 @@ ActiveAdmin.register User do
       row :updated_at
       row :is_send
       row :is_receive
+      div do
+        br
+        panel "最后重置密码时间" do
+          if password_record = user.ret_password_records.last
+            password_record.created_at.to_all_datetime
+          else
+            "未重置过密码"
+          end
+        end
+      end
       div do
         br
         if user.tp == 0
