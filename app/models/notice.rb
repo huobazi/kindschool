@@ -8,13 +8,13 @@ class Notice < ActiveRecord::Base
   validates :title,:content,:presence => true
 
   validates :content, :length => { :minimum => 5 }
-  
+
   has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
 
 
   STATUS = { 0=>"审核通过",1=> "待审核", 2=>"审核不通过"}
 
-  
+
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end
@@ -27,7 +27,7 @@ class Notice < ActiveRecord::Base
   def change_arry_approve_record
      [:content,:title,:send_date,:send_range,:send_range_ids] 
   end
-  
+
   include ResourceApproveStatusStart
   before_save :news_approve_status_start
 

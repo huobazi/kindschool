@@ -5,8 +5,8 @@ class SeedlingRecord < ActiveRecord::Base
   just_define_datetime_picker :shot_at, :add_to_attr_accessible => true
   just_define_datetime_picker :expire_at, :add_to_attr_accessible => true
 
-  validates :name, :presence => true, :uniqueness => { :scope => :kindergarten_id}
-  validates :note, :length => { :minimum => 5 }, :presence => true
+  validates :name, :presence => true, length: { :minimum => 2, :maximum => 100 }
+  validates :note, :length => { :maximum => 200 }, :allow_blank => true
   validates :shot_at, :expire_at, :creater_id, :presence => true
 
   belongs_to :student_info

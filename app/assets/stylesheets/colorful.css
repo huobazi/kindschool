@@ -95,6 +95,7 @@ a{
     padding-bottom: 15px;
     padding-top: 5px;
     text-align: center;
+    position: relative;
 }
 #main .menu_center{
     background-color: #008FDC;
@@ -114,6 +115,9 @@ a{
     border: none;
 }
 .main_work{
+    width: 951px;
+    overflow: hidden;
+    position: relative;
     /*background-color: #EAEAEA;*/
     /*min-height: 1000px;*/
 }
@@ -361,10 +365,12 @@ a{
     padding: 20px 5px 5px;
     background-color: white;
     float: left;
+    overflow: hidden;
 }
 .note_title{
     color: #a5c600;
     font-size: 28px;
+    line-height: 30px;
 }
 .note_logo{
     width: 150px;
@@ -419,9 +425,11 @@ a{
 
 /*---------------首页活动----------*/
 .activity{
-    padding: 20px;
     width: 100%;
     float: left;
+}
+.activity_div{
+    padding: 20px;
 }
 .activity_list{
     width:30%;
@@ -921,8 +929,25 @@ table.attributes td {
     word-wrap: break-word;
 }
 /*=======分页样式========*/
+.pagination ul li a, .pagination ul li span{
+    background-color: #FFFFFF;
+    border-color: #DDDDDD;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    float: left;
+    line-height: 20px;
+    padding: 4px 12px;
+    text-decoration: none;
+}
 .pagination ul a {
     color: #9B9B9B;
+}
+.pagination ul li a:hover, .pagination ul li a:focus, .pagination ul .active a, .pagination ul .active span{
+    background-color: #C4C4C4;
+}
+.pagination ul li{
+    float: left;
 }
 /*=======登录===========*/
 .login{
@@ -1282,7 +1307,7 @@ table.attributes td {
     padding-top: 20px;
     padding-left: 50px;
 }
-#topic_category_tabs li{
+ul.nav-tabs li{
     background-color: #FFFFFF;
     margin-bottom:0px;
     float: left;
@@ -1294,7 +1319,7 @@ table.attributes td {
 .tabs_style a {
     color: #333333;
 }
-#topic_category_tabs a {
+ul.nav-tabs a {
     color: #333333;
     line-height: 20px;
     margin-right: 2px;
@@ -1303,7 +1328,7 @@ table.attributes td {
     padding-bottom: 8px;
     padding-top: 8px;
 }
-#topic_category_tabs li.active a {
+ul.nav-tabs li.active a {
     border-left: 1px solid #DDDDDD;
     border-top: 1px solid #DDDDDD;
     border-left: 1px solid #DDDDDD;
@@ -1437,7 +1462,7 @@ legend label{
     background-color: #FBFBFB;
     position: relative;
     border: 1px solid #E3E3E3;
-    margin-top: 42px;
+    margin-top: 48px;
 }
 ul.feature_list li{
     padding: 30px 2px;
@@ -1476,6 +1501,7 @@ ul.feature_list li{
 }
 .contact_us_content{
     margin: 50px;
+    overflow: hidden;
 }
 .show_center{
     width: 100%;
@@ -1953,6 +1979,12 @@ span.help-inline {
     min-height: 100px;
     overflow-y: hidden;
 }
+
+.show .content .growth_record_time {
+  height: 30px;
+  line-height: 30px;
+}
+
 .show .spra {
     display: inline-block;
     padding-bottom: 5px;

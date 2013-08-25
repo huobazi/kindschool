@@ -234,14 +234,14 @@ class MySchool::UsersController < MySchool::ManageController
         password = Standard.rand_password
         user.password = password
         if user.save!
-          title = "您已经成功重置#{@kind.name}微壹校讯通平台密码"
+          title = "您已经成功重置#{@kind.name}微壹校讯通平台密码."
           if @kind.aliases_url.blank?
             web_address = "http://#{@kind.number}.#{WEBSITE_CONFIG["web_host"]}"
           else
             web_address = @kind.aliases_url
           end
           content = "您的登录名:#{user.login},密码:#{password},登录地址:#{web_address}"
-          user.send_system_message!(title,content,3)
+          user.send_system_message!("系统消息","#{title} #{content}",3)
           flash[:notice]="短信发送成功"
         end
       end
