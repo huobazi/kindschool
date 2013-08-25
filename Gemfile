@@ -74,3 +74,7 @@ gem 'uploadify-rails',"3.1.1.1"
 
 #https://github.com/jhjguxin/sitemap_generator  #TODO:需要研究 SEO的网站地图
 
+
+#https://github.com/michelson/lazy_high_charts/wiki
+#https://github.com/michelson/lazy_high_charts/wiki/Combination-Chart
+gem 'lazy_high_charts',"1.4.3"
