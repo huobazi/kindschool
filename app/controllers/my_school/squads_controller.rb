@@ -62,7 +62,7 @@ class  MySchool::SquadsController < MySchool::ManageController
     end
     rescue Exception =>ex
       flash[:error] = ex.message
-      redirect_to my_school_squads_path , :notice=> "该班级有学员，不能进行删除."
+      redirect_to my_school_squads_path #, :notice=> "该班级有学员，不能进行删除."
   end
 
   def show

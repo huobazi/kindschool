@@ -44,11 +44,20 @@
         </li>
         <li>
           <% if choose_operate_show("my_school/grades/destroy") %>
+           <%if @grade.squads.count >0%>
+             <%= link_to("###", :confirm => "该年级有班级，不能进行删除") do %>
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+             <% end %>
+           <%else%>
             <%= link_to(url_for(:controller=>"/my_school/grades",:action=>:destroy,:id=>@grade.id),:method=>:delete, :confirm => "您确定删除该通知吗?") do %>
               <div class="work_action_delete">
               </div>
               <div class="work_action_delete_move">
               </div>
+             <% end %>
             <% end %>
           <% end %>
         </li>
