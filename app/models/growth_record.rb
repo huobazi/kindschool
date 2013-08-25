@@ -53,9 +53,9 @@ class GrowthRecord < ActiveRecord::Base
     else
       str += "类型:宝宝在园"
     end
-    str += "开始时间#{self.start_at.try(:to_short_datetime)} <br />"
-    str += "结束时间#{self.end_at.try(:to_short_datetime)} <br />"
-    str += "#{self.content} <br/> "
+    str += "<div class='growth_record_time'>开始时间:<i>#{self.start_at.try(:to_short_datetime)}</i></div>"
+    str += "<div class='growth_record_time'>结束时间:<i>#{self.end_at.try(:to_short_datetime)}</i></div>"
+    str += "<div class='growth_record_content'>#{self.content}</div>"
     str += "<div class='spra'>";
 
     unless self.asset_imgs.blank?

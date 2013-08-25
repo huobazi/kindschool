@@ -1980,6 +1980,12 @@ span.help-inline {
     min-height: 100px;
     overflow-y: hidden;
 }
+
+.show .content .growth_record_time {
+  height: 30px;
+  line-height: 30px;
+}
+
 .show .spra {
     display: inline-block;
     padding-bottom: 5px;
