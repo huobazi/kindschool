@@ -929,8 +929,25 @@ table.attributes td {
     word-wrap: break-word;
 }
 /*=======分页样式========*/
+.pagination ul li a, .pagination ul li span{
+    background-color: #FFFFFF;
+    border-color: #DDDDDD;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    float: left;
+    line-height: 20px;
+    padding: 4px 12px;
+    text-decoration: none;
+}
 .pagination ul a {
     color: #9B9B9B;
+}
+.pagination ul li a:hover, .pagination ul li a:focus, .pagination ul .active a, .pagination ul .active span{
+    background-color: #C4C4C4;
+}
+.pagination ul li{
+    float: left;
 }
 /*=======登录===========*/
 .login{
