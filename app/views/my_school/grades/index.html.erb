@@ -78,7 +78,11 @@
                       <%= link_to "编辑", edit_my_school_grade_path(grade) %>
                     <% end %>
                     <% if choose_operate_show("my_school/grades/destroy") %>
-                      <%= link_to "删除", my_school_grade_path(grade), :method => :delete, :confirm => "您确定删除该年级吗" %>
+                    <%if grade.squads.count > 0%>
+                      <%= link_to "删除","###", confirm: "该年级有班级不能进行删除!" %>
+                      <%else%>
+                      <%= link_to "删除", my_school_grade_path(grade), :method => :delete, :confirm => "您确定删除该年级吗?" %>
+                      <%end%>
                     <% end %>
                   </div>
                 </td>

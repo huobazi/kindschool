@@ -29,14 +29,28 @@ class  MySchool::GradesController < MySchool::ManageController
       redirect_to :action => :index
       return
     end
-    @grades.each do |grade|
-      grade.destroy
+    Grade.transaction do
+     begin
+      @grades.each do |grade|
+       if squads = grade.squads
+         unless squads.blank?
+           raise "年级有班级，不能进行删除!" 
+         else
+            grade.destroy
+         end
+       end
+      end
+     end
     end
     respond_to do |format|
       flash[:success] = "删除年级成功"
       format.html { redirect_to my_school_grades_path }
       format.json { head :no_content }
     end
+    rescue Exception =>ex
+      flash[:error] = ex.message
+      redirect_to my_school_grades_path #, :notice=> "该班级有学员，不能进行删除."
+
   end
 
   def update
