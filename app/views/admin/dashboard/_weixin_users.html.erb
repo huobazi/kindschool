@@ -1,0 +1,38 @@
+<% @user_info = User.get_weixin_bind_info %>
+<%@chart = LazyHighCharts::HighChart.new('graph') do |f|
+  f.title({ :text=>"用户情况"})
+  #f.options[:xAxis][:categories] = ['Apples', 'Oranges', 'Pears', 'Bananas', 'Plums']
+  #f.labels(:items=>[:html=>"Total fruit consumption", :style=>{:left=>"40px", :top=>"8px", :color=>"black"} ])
+  #f.series(:type=> 'column',:name=> 'Jane',:data=> [3, 2, 1, 3, 4])
+  #f.series(:type=> 'column',:name=> 'John',:data=> [2, 3, 5, 7, 6])
+  #f.series(:type=> 'column', :name=> 'Joe',:data=> [4, 3, 3, 9, 0])
+  #f.series(:type=> 'column', :name=> 'Joe',:data=> [4, 3, 3, 9, 0])
+  #f.series(:type=> 'spline',:name=> 'Average', :data=> [3, 2.67, 3, 6.33, 3.33])
+  f.series(:type=> 'pie',:name=> "全部用户",
+    :data=> [
+      {:name=> '全部用户', :y=> @user_info[:user_all], :color=> 'red'},
+    ],
+    :center=> [100, 80], :size=> 100, :showInLegend=> false)
+  f.series(:type=> 'pie',:name=> '学生和老师数量',
+    :data=> [
+      {:name=> '学生', :y=> @user_info[:student], :color=> 'red'},
+      {:name=> '老师', :y=> @user_info[:teacher], :color=> 'green'}
+    ],
+    :center=> [300, 80], :size=> 100, :showInLegend=> false)
+  f.series(:type=> 'pie',:name=> '性别',
+    :data=> [
+      {:name=> '女', :y=> @user_info[:woman], :color=> 'red'},
+      {:name=> '男', :y=> @user_info[:man], :color=> 'green'}
+    ],
+    :center=> [500, 80], :size=> 100, :showInLegend=> false)
+  f.series(:type=> 'pie',:name=> '绑定微信用户',
+    :data=> [
+      {:name=> '完全绑定', :y=> @user_info[:bind_ok], :color=> 'red'},
+      {:name=> '只绑定幼儿园', :y=> @user_info[:bind_weiyi_no],:color=> 'green'},
+      {:name=> '只绑定平台', :y=> @user_info[:bind_weixin_no],:color=> '#8bbc21'},
+      {:name=> '未绑定', :y=> @user_info[:bind_null],:color=> 'blue'}
+    ],
+    :center=> [700, 80], :size=> 100, :showInLegend=> false)
+end
+%>
+<%=high_chart("weixin_users", @chart)%>
