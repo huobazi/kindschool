@@ -51,10 +51,10 @@
 <% end %>
 <br />
 <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
-<%= f.input :title, :validate => true, :required => true, :input_html => {:class => "span5 normal_link profile_input required"} %>
+<%= f.input :title, :validate => true, placeholder: "请输入标题", hint: "长度不少于3个字符", :required => true, :input_html => {:class => "span5 normal_link profile_input required"} %>
 <% if action_name == "new" %>
-  <%= f.input :start_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun span5 time_datepicker"} %>
-  <%= f.input :end_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun span5 time_datepicker"} %>
+  <%= f.input :start_at, :validate => true, :required => true, :as => :string, placeholder: "单击此处选择活动的开始时间", :input_html => {:class => "input-mediun span5 time_datepicker"} %>
+  <%= f.input :end_at, :validate => true, :required => true, :as => :string, placeholder: "单击此处选择活动的结束时间", :input_html => {:class => "input-mediun span5 time_datepicker"} %>
 <% else %>
   <%= f.input :start_at, :required => true, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.start_at.to_short_datetime}"} %>
   <%= f.input :end_at, :required => true, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.end_at.to_short_datetime}"} %>
@@ -63,6 +63,7 @@
 <label class="control-label">*主题活动</label>
 <div class="control-group">
   <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'activity_content',:allowFileManager => false,:allowUpload=>false%>
+  <p class="help-block">长度不得少于5个字符</p>
 </div>
 
 <%= f.simple_fields_for :asset_img_attributes do |p| %>
