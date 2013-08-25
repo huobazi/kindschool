@@ -7,8 +7,9 @@ class Notice < ActiveRecord::Base
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
   validates :title,:content,:presence => true
 
-  validates :content, :length => { :minimum => 5 }
+  validate :content, :length => {maximum: 800}
 
+  validates :title, :length => {minimum: 3, maximum: 100}
   has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
 
 
