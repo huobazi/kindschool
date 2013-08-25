@@ -85,7 +85,7 @@
                     <% end %>
                     <% if choose_operate_show("my_school/squads/destroy") %>
                     <%if squad.student_infos.count > 0%>
-                      <%= link_to "删除","###", confirm: "该班级有学员不能进行删除" %>
+                      <%= link_to "删除","###", confirm: "该班级有学员不能进行删除!" %>
                       <%else%>
                       <%= link_to "删除", my_school_squad_path(squad), :method => "delete", confirm: "您确定删除#{squad.name}吗" %>
                       <%end%>
@@ -108,7 +108,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $("#destroy_multiple").click(function(){
-      if (confirm('您确定删除选中的学员吗')) {
+      if (confirm('您确定删除选中的班级吗?')) {
         $("#destroy_multi_form").submit();
       } else {
         return false;
