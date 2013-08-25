@@ -46,8 +46,7 @@
 <script type='text/javascript'>
 $(document).ready(function() {
 var option = <%= uploadify_rails_options %>;
-option["uploader"] = "<%= url_for(:controller=>"/my_school/albums",:action=>"add_entry_imgs",:id=>@album.id) %>";
-console.info(option);
+option["uploader"] = "<%= url_for(:controller=>"/my_school/albums",:action=>"add_entry_imgs",:id=>@album.id,:t=>Time.now.to_i) %>";
 $('input#uploadify').uploadify(option);
 });
 </script>

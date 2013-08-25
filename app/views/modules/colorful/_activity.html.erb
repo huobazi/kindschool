@@ -1,42 +1,44 @@
 <div class="activity">
-  <div class="activity_list">
-    <div class="activity_title">
-      活动通知
+  <div class="activity_div">
+    <div class="activity_list">
+      <div class="activity_title">
+        活动通知
+      </div>
+      <div class="activity_list_info">
+        <ul>
+          <% @activities.each do |activity| %>
+            <li>
+              <%= link_to activity.title, my_school_activity_path(activity) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <% if @activities.count == 8 %>
+        <div class="activity_more">
+          <%= link_to "查看更多","/" %>
+        </div>
+      <% end %>
     </div>
-    <div class="activity_list_info">
+    <div class="activity_content">
       <ul>
-        <% @activities.each do |activity| %>
+        <% @recent_activities.each do |recent_activity| %>
           <li>
-            <%= link_to activity.title, my_school_activity_path(activity) %>
+            <div class="activity_content_logo">
+              <% if recent_activity.asset_img.blank? %>
+                <img src="/t/colorful/activity_logo1.jpg" alt="" />
+              <% else %>
+                <a href="<%= recent_activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
+                  <img src="<%= recent_activity.asset_img.public_filename(:middle) %>" />
+                </a>
+              <% end %>
+            </div>
+            <div class="activity_content_info">
+              <div class="activity_content_title"><%= recent_activity.title %></div>
+              <div class="activity_content_text"><%= simple_format recent_activity.content %></div>
+            </div>
           </li>
         <% end %>
       </ul>
     </div>
-    <% if @activities.count == 8 %>
-      <div class="activity_more">
-        <%= link_to "查看更多","/" %>
-      </div>
-    <% end %>
-  </div>
-  <div class="activity_content">
-    <ul>
-      <% @recent_activities.each do |recent_activity| %>
-        <li>
-          <div class="activity_content_logo">
-            <% if recent_activity.asset_img.blank? %>
-              <img src="/t/colorful/activity_logo1.jpg" alt="" />
-            <% else %>
-              <a href="<%= recent_activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
-                <img src="<%= recent_activity.asset_img.public_filename(:middle) %>" />
-              </a>
-            <% end %>
-          </div>
-          <div class="activity_content_info">
-            <div class="activity_content_title"><%= recent_activity.title %></div>
-            <div class="activity_content_text"><%= simple_format recent_activity.content %></div>
-          </div>
-        </li>
-      <% end %>
-    </ul>
   </div>
 </div>
