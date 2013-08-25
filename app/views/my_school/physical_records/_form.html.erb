@@ -36,7 +36,7 @@
   <%=f.label :send_date, '体检时间: ' ,:class=>"control-label"%>
   <div class="controls">
     <% if action_name == "new" %>
-      <%= f.text_field(:send_date, :validate => true, :class => "time_datepicker") %>
+      <%= f.text_field(:send_date, :validate => true, :class => "time_datepicker", placeholder: "单击此处选择体验时间") %>
     <% else %>
       <%= f.text_field(:send_date, :validate => true, :class => "time_datepicker", :value => @physical_record.send_date.to_short_datetime) %>
     <% end %>

@@ -3,7 +3,7 @@ class Topic < ActiveRecord::Base
   attr_accessible :approve_status, :approver_id, :content, :creater_id, :is_show, :is_top, :kindergarten_id, :show_count, :status, :title, :tp, :topic_category_id, :squad_id
   attr_accessible :appurtenance_upload_limit
   validates :kindergarten_id, :creater_id, :topic_category_id, :title, :content, :presence => true
-  validates :title, :length => { :minimum => 3 }
+  validates :title, :length => { :minimum => 3, :maximum => 200 }
   validates :content, :length => { :minimum => 3 }
 
   belongs_to :kindergarten
