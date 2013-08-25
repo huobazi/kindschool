@@ -49,8 +49,8 @@
 <br />
 
 <% if action_name == "new" %>
-  <%= f.input :start_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun time_datepicker"} %>
-  <%= f.input :end_at, :validate => true, :required => true, :as => :string, :input_html => {:class => "input-mediun time_datepicker"} %>
+  <%= f.input :start_at, :validate => true, :required => true, :as => :string, placeholder: "单击此处选择成长记录的开始时间", :input_html => {:class => "input-mediun time_datepicker"} %>
+  <%= f.input :end_at, :validate => true, :required => true, :as => :string, placeholder: "单击此处选择成长记录的结束时间", :input_html => {:class => "input-mediun time_datepicker"} %>
 <% else %>
   <%= f.input :start_at, :required => true, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.start_at.to_short_datetime}"} %>
   <%= f.input :end_at, :required => true, :as => :string, :input_html => {:class => "input-mediun", :value => "#{f.object.end_at.to_short_datetime}"} %>
@@ -74,7 +74,7 @@
         <% end %>
       <% end %>
 
-      <%= f.input :content, :required => true, :input_html => {:rows => "10", :class => "span5"}%>
+      <%= f.input :content, :required => true, placeholder: "请输入孩子的表现", hint: "长度不少于5个字符", :input_html => {:rows => "10", :class => "span5"}%>
       <div class="control-group">
         <label class="control-label">照片</label>&nbsp;&nbsp;
         <% f.object.asset_imgs.each do |img| %>
