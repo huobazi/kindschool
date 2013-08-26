@@ -1000,7 +1000,7 @@ topic_categories_edit:
   action: "edit"
   protocol: ""
   <<: *DEFAULTS
-topic_categories_edit:
+topic_categories_destroy:
   id: 5311
   parent_id: 6
   name: "论坛分类删除"
@@ -1009,6 +1009,17 @@ topic_categories_edit:
   note: "论坛分类删除"
   controller: "my_school/topic_categories"
   action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
+topic_categories_show:
+  id: 5411
+  parent_id: 6
+  name: "查看论坛分类"
+  level: 2
+  sequence: 0
+  note: "查看论坛分类"
+  controller: "my_school/topic_categories"
+  action: "show"
   protocol: ""
   <<: *DEFAULTS
 career_strategy_career_class_validate:
