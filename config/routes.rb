@@ -126,6 +126,7 @@ School::Application.routes.draw do
     resources :squads do
       collection do
         post :add_strategy
+        get :name_uniqueness_validator
       end
       member do
         get :add_strategy_view

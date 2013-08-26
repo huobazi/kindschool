@@ -3,7 +3,7 @@
 class Squad < ActiveRecord::Base
   attr_accessible :grade_id, :kindergarten_id, :name, :note, :sequence,:historyreview,:graduate,:tp
 
-  validates :name,:presence => true, :length => { :maximum => 20, :minimum => 2 }
+  validates :name,:presence => true, :length => { :maximum => 20 }
 
   before_create :create_validate_name
   before_update :update_validate_name
@@ -11,7 +11,6 @@ class Squad < ActiveRecord::Base
   #  validates :name, :uniqueness => {:scope => :kindergarten_id , :conditions=>lambda { |table| table[:graduate] ==0 }}
 
   validates :kindergarten,:presence => true
-  validates :note, :length => { :minimum => 5 }, :allow_blank => true
 
   belongs_to :kindergarten  #幼儿园
   belongs_to :grade  #年级

@@ -39,8 +39,8 @@
       <%= p.input :kindergarten_label, :as => :string, :input_html => { :disabled => true } %>
       <%= p.input :gender, :as => :radio, :collection => {"女" => "M", "男" => "G"}, :required => true %>
       <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
-      <%= p.input :name, :validate => true, :required => true %>
-      <%= p.input :phone, :validate => true %>
+      <%= p.input :name, :validate => true, :required => true, placeholder: "请输入学员的名称", hint: "长度必须控制在20个字符以内" %>
+      <%= p.input :phone, :validate => true, placeholder: "请输入学员的手机号", :hint => "格式为11位手机号,例如+86-15014006125 或 15014006125" %>
     </div>
     <div class="right_table">
       <% if action_name == "new" %>
