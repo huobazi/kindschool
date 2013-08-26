@@ -48,8 +48,8 @@
     </div>
     <div class="work_list">
       <% unless @grades.blank? %>
-        <table class="table table-striped table-hover">
-          <%= form_tag my_school_grade_path(@grades), method: :delete, :id => "destroy_multi_form" do %>
+        <%= form_tag my_school_grade_path(@grades), method: :delete, :id => "destroy_multi_form" do %>
+          <table class="table table-striped table-hover">
             <tr>
               <th><input type="checkbox" name="" value="" alt="全选" id="check_all">&nbsp;<label style="display: inline;font-size: 13px;" for="check_all"></label></th>
               <th>名称</th>
@@ -78,18 +78,18 @@
                       <%= link_to "编辑", edit_my_school_grade_path(grade) %>
                     <% end %>
                     <% if choose_operate_show("my_school/grades/destroy") %>
-                    <%if grade.squads.count > 0%>
-                      <%= link_to "删除","###", confirm: "该年级有班级不能进行删除!" %>
-                      <%else%>
-                      <%= link_to "删除", my_school_grade_path(grade), :method => :delete, :confirm => "您确定删除该年级吗?" %>
-                      <%end%>
+                      <% if grade.squads.count > 0%>
+                        <%= link_to "删除","###", confirm: "该年级有班级不能进行删除!" %>
+                      <% else %>
+                        <%= link_to "删除", my_school_grade_path(grade), :method => :delete, :confirm => "您确定删除该年级吗?" %>
+                      <% end %>
                     <% end %>
                   </div>
                 </td>
               </tr>
             <% end %>
-          <% end %>
-        </table>
+          </table>
+        <% end %>
         <%= paginate @grades %>
       <% else %>
         没有年级
@@ -105,11 +105,11 @@ $(document).ready(function(){
     $(".check").attr("checked",this.checked);
   })
   $("#destroy_multiple").click(function(){
-      if (confirm('您确定删除选中的年级吗')) {
-        $("#destroy_multi_form").submit();
-      } else {
-        return false;
-      }
-    });
+    if (confirm('您确定删除选中的年级吗')) {
+      $("#destroy_multi_form").submit();
+    } else {
+      return false;
+    }
+  });
 });
 </script>

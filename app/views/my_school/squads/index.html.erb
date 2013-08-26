@@ -50,8 +50,8 @@
     </div>
     <div class="work_list">
       <% unless @squads.blank? %>
-        <table class="table table-striped table-hover">
-          <%= form_tag my_school_squad_path(@squads), method: :delete, :id => "destroy_multi_form" do %>
+        <%= form_tag my_school_squad_path(@squads), method: :delete, :id => "destroy_multi_form" do %>
+          <table class="table table-striped table-hover">
             <tr>
               <th><input type="checkbox" name="" value="" alt="全选" id="check_all">&nbsp;<label style="display: inline; font-size: 13px;" for="check_all"></label></th>
               <th>名称</th>
@@ -94,8 +94,8 @@
                 </td>
               </tr>
             <% end %>
-          <% end %>
-        </table>
+          </table>
+        <% end %>
         <%= paginate @squads %>
       <% else %>
         没有班级

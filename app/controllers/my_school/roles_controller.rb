@@ -60,7 +60,7 @@ class MySchool::RolesController < MySchool::ManageController
      ids = params[:operate] || []
       if ids.blank?
         @role.option_operates.each do |operate|
-          operate.destroy   
+          operate.destroy
         end
       else
         @role.option_operates.each do |option|

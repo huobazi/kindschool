@@ -16,6 +16,9 @@
 //= require twitter/bootstrap
 //= require kindeditor
 //= require uploadify
+//= require highcharts/highcharts
+//= require highcharts/highcharts-more
+
 
 $(function(){
     $("div.head div.center_menu").hover(function(){
@@ -101,11 +104,11 @@ jQuery.cookie = function(name, value, options) {
 
 $(document).ready(function() {
     var dt = new Date();
-    var currentDate = new Date()
-    var day = currentDate.getDate()
-    var month = currentDate.getMonth() + 1
-    var year = currentDate.getFullYear()
-    var now = year + "-" + month + "-" + day
+    var currentDate = new Date();
+    var day = currentDate.getDate();
+    var month = currentDate.getMonth() + 1;
+    var year = currentDate.getFullYear();
+    var now = year + "-" + month + "-" + day;
 
     $(".time_datepicker").one("click", function() {
         $(this).val(now);
