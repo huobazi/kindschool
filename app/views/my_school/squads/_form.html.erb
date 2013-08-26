@@ -1,5 +1,7 @@
 <% f = form %>
-
+<% if action_name == "edit" or action_name == "update" %>
+  <span id="squad_id" style="display: none;"><%= @squad.id %></span>
+<% end %>
 <%= f.input :name, :validate => true, :required => true, placeholder: "请输入班级的名称", hint: "长度控制在20个字符之内", :input_html => {:class => "span5"} %>
 <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
 <%= f.input :grade, :as => :select, :collection => Hash[f.object.kindergarten.grades.map{|grade| ["#{grade.name}", grade.id]}], :selected => "#{f.object.try(:grade).try(:id)}", :input_html=>{:name=>"squad[grade_id]"} %>
@@ -19,3 +21,25 @@
     <%= f.button :submit, disable_with: "正在提交..." %>
   </div>
 </div>
+
+<script type="text/javascript">
+$("#squad_name").blur(function() {
+  $.ajax({
+    url: "/my_school/squads/name_uniqueness_validator",
+    data: {
+      name: $(this).val(),
+      element: $(this).attr("id"),
+      id: $("#squad_id").text()
+    },
+    method: "get",
+    beforeSend: function() {
+    },
+    success: function() {
+
+    },
+    error: function() {
+
+    }
+  })
+})
+</script>
