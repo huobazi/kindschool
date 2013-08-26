@@ -55,6 +55,16 @@ class Squad < ActiveRecord::Base
     end
   end
 
+  #用户信息
+  def get_users_info
+    user_all = self.users.count()
+    woman = self.users.where("gender='M'").count()
+    bind_ok = self.users.where("weiyi_code IS NOT NULL AND weixin_code IS NOT NULL").count()
+    bind_null = self.users.where("weiyi_code IS NULL AND weixin_code IS NULL").count()
+    bind_weiyi_no = self.users.where("weiyi_code IS NULL AND weixin_code IS NOT NULL").count()
+    return {:user_all=>user_all,:woman=>woman,:man=>(user_all - woman),:bind_ok=>bind_ok,:bind_null=>bind_null,:bind_weiyi_no=>bind_weiyi_no,:bind_weixin_no=>(user_all - bind_ok - bind_null - bind_weiyi_no)}
+  end
+
   GRADUATE_DATA = {"true"=>"已毕业","false"=>"在读"}
 
   private
