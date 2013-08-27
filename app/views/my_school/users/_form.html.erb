@@ -37,6 +37,9 @@ $("#user_password_confirmation").blur(function() {
     $("#user_password").parent().find("i.validate_error_icon").remove();
     $("#user_password").parent().find("span").remove();
     $("<i class='validate_icon validate_error_icon'></i><span>两次密码不相同</span>").insertAfter("#user_password");
+  } else {
+    $("#user_password").parent().find("i.validate_error_icon").remove();
+    $("#user_password").parent().find("span").remove();
   }
 })
 $("#user_password").blur(function() {
@@ -45,6 +48,10 @@ $("#user_password").blur(function() {
     $("#user_password").parent().find("i.validate_error_icon").remove();
     $("#user_password").parent().find("span").remove();
     $("<i class='validate_icon validate_error_icon'></i><span>长度必须最少为6个字符</span>").insertAfter("#user_password");
+  } else {
+    $("#user_password").parent().find("i.validate_error_icon").remove();
+    $("#user_password").parent().find("span").remove();
   }
 })
+
 </script>
