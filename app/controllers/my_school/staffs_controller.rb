@@ -99,6 +99,8 @@ class  MySchool::StaffsController < MySchool::ManageController
       phones = User.pluck(:phone)
       if phones.include?(params[:phone])
         @message = "手机号被占用"
+      end
+      if params[:element].present?
         @element = params[:element]
       end
       render "phone_uniqueness_validator.js.erb", :layout => false
@@ -110,6 +112,8 @@ class  MySchool::StaffsController < MySchool::ManageController
       logins = User.pluck(:login)
       if logins.include?(params[:login])
         @message = "用户名被占用"
+      end
+      if params[:element].present?
         @element = params[:element]
       end
       render "login_uniqueness_validator.js.erb", :layout => false
