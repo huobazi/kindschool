@@ -30,4 +30,3 @@ window.ClientSideValidations.callbacks.element.pass = function(element, callback
   */
   $("<i class='validate_icon validate_success_icon'></i>").insertAfter(element);
 }
-

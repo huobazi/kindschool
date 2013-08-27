@@ -3,8 +3,8 @@
 
 <%= f.input :old_password, validate: true, :required => true, :input_html => {:class => "span5",:name=>"old_password"} %>
 
-<%= f.input :password, validate: true, :required => true, :input_html => {:class => "span5"} %>
-<%= f.input :password_confirmation, validate: true, :required => true, :input_html => {:class => "span5"} %>
+<%= f.input :password, :required => true, :input_html => {:class => "span5"} %>
+<%= f.input :password_confirmation, :required => true, :input_html => {:class => "span5"} %>
 
 <div class="control-group">
   <div class="controls">
@@ -30,5 +30,21 @@ $("#user_old_password").blur(function() {
 
     }
   })
+})
+$("#user_password_confirmation").blur(function() {
+  if ( $(this).val() != $("#user_password").val() ) {
+    $("#user_password").parent().find("i.validate_success_icon").remove();
+    $("#user_password").parent().find("i.validate_error_icon").remove();
+    $("#user_password").parent().find("span").remove();
+    $("<i class='validate_icon validate_error_icon'></i><span>两次密码不相同</span>").insertAfter("#user_password");
+  }
+})
+$("#user_password").blur(function() {
+  if ( $(this).val().length < 6 ) {
+    $("#user_password").parent().find("i.validate_success_icon").remove();
+    $("#user_password").parent().find("i.validate_error_icon").remove();
+    $("#user_password").parent().find("span").remove();
+    $("<i class='validate_icon validate_error_icon'></i><span>长度必须最少为6个字符</span>").insertAfter("#user_password");
+  }
 })
 </script>
