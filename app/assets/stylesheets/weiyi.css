@@ -1,6 +1,23 @@
 body,ul,li{
     margin: 0px;
     padding: 0px;
+    position: relative;
+}
+.head_bg_left{
+    position: absolute;
+    width: 50%;
+    height: 73px;
+    top: 430px;
+    left: 0px;
+    background-image: url("/weiyi/head_left.png");
+}
+.head_bg_right{
+    position: absolute;
+    width: 50%;
+    height: 73px;
+    top: 430px;
+    right: 0px;
+    background-image: url("/weiyi/head_food.png");
 }
 .weiyi{
     width: 1152px;
@@ -88,7 +105,7 @@ body,ul,li{
     line-height: 36px;
 }
 .weiyi .weiyi_menu li.activate{
-    background-color: #c4c4c4;
+/*    background-color: #c4c4c4;*/
 }
 .weiyi .weiyi_menu_label{
     bottom: 20px;
@@ -98,10 +115,12 @@ body,ul,li{
     padding-left: 190px;
     position: absolute;
     line-height: 30px;
+    text-shadow:black 0px 2px 1px;
+    filter:Shadow(black,180);
 }
 .food{
     background-color: #404040;
-    padding-bottom: 15px;
+    padding-bottom: 5px;
     padding-top: 15px;
     width: 100%;
 }

@@ -17,12 +17,18 @@
     <meta charset="utf-8"/>
   </head>
   <body>
+    <div class="head_bg_left">
+      
+    </div>
+    <div class="head_bg_right">
+
+    </div>
     <div class="weiyi">
       <%= render :partial=>"head" %>
       <div class="weiyi_center">
         <%= yield %>
       </div>
-      <%= render :partial=>"food" %>
     </div>
+    <%= render :partial=>"food" %>
   </body>
 </html>
