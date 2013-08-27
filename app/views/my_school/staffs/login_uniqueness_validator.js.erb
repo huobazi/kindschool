@@ -10,5 +10,10 @@
     $("#<%= @element %>").parent().find("i.validate_icon").remove();
   }
   $("<i class='validate_icon validate_error_icon'></i><span class='help-inline'><%= @message %></span>").appendTo($("#<%= @element %>").parent());
+<% else %>
+  if ( $("#<%= @element %>").parent().find("i.validate_success_icon").length > 0 ) {
+    $("#<%= @element %>").parent().find("i.validate_error_icon").remove();
+    $("#<%= @element %>").parent().find("span.help-inline").remove();
+  }
 <% end %>
 
