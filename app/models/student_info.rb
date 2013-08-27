@@ -128,7 +128,7 @@ class StudentInfo < ActiveRecord::Base
   LIVE_FAMILY_DATA = {"0"=>"幼儿随父母居住","1"=>"幼儿随亲戚居住","2"=>"幼儿随其他人员居住"}
 
   def name
-    self.user.name
+    self.user ? self.user.name : ""
   end
 
   def full_name
