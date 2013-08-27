@@ -128,8 +128,10 @@ class MySchool::UsersController < MySchool::ManageController
     if params[:old_password].present?
       unless current_user.authenticated?(params[:old_password])
         @message = "原来密码输入错误"
-        @element = params[:element]
       end
+    end
+    if params[:element].present?
+      @element = params[:element]
     end
     render "my_school/staffs/phone_uniqueness_validator.js.erb", :layout => false
   end
