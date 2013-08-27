@@ -67,6 +67,7 @@ class Weixin::BaseController < ApplicationController
       if Digest::SHA1.hexdigest(get_validate_data) == params[:signature]
         unless is_www?
           if xml_data = params[:xml]
+#            session[:FromUserName] = xml_data[:FromUserName]
             if self.current_user = User.find_by_weixin_code_and_kindergarten_id(xml_data[:FromUserName],@kind.id)
             else
               session[:user] = nil

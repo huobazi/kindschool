@@ -31,46 +31,46 @@ class Weixin::MainController < Weixin::BaseController
     #4、不存在时，绑定的动作post的请求，绑定到code的字段里去，需要验证用户名密码
     #5、User 的authenticate取另外一个名字，验证密码时不加幼儿园id
     if @required_type == :www
-      if session[:weiyi_code].blank? && params[:code].blank?
-        flash[:error] = "微信信息不正确"
-        redirect_to :action => :weiyi_error_messages,:layout=>"colorful_weixin_weiyi"
-        return
-      else
-        user = User.find_by_weiyi_code(session[:weiyi_code] || params[:code])
+      if request.get?
+        if params[:code].blank?
+          flash[:error] = "数据不准确，请返回微信，点击“账号绑定”重新操作."
+          redirect_to :action => :weiyi_error_messages
+          return
+        end
+        user = User.find_by_weiyi_code(params[:code])
         unless user.blank?
           # render :text=> "该微信账号已绑定微壹平台微信公共帐号，通过幼儿园的公共账号访问."
           flash[:error] = "该微信账号已绑定微壹平台微信公共帐号，通过幼儿园的公共账号访问."
           redirect_to :action => :weiyi_error_messages
           return
         end
-        unless request.post?
-          unless params[:code].blank?
-            session[:weiyi_code] = params[:code]
-          end
-          session[:weiyi_code] ||= params[:code]
-          
-          render :layout=>"colorful_weixin_weiyi"
-          return 
-        end
+        session[:weiyi_code] = params[:code]
+        render :layout=>"colorful_weixin_weiyi"
+        return
+      else
         begin
+          if session[:weiyi_code].blank?
+            flash[:error] = "数据不准确，请返回微信，点击“账号绑定”重新操作."
+            redirect_to :action => :weiyi_error_messages
+            return
+          end
           user = User.authenticate_weiyi(params[:login], params[:password])
-          if !user.weiyi_code.blank? && user.weiyi_code != params[:code]
+          if !user.weiyi_code.blank? && user.weiyi_code != session[:weiyi_code]
             flash[:error] = "该账户已绑定了另一个微信账号"
             redirect_to :action => :weiyi_error_messages
             return
           end
-          user.update_attribute(:weiyi_code,(session[:weiyi_code] || params[:code]))
+          user.update_attribute(:weiyi_code,(session[:weiyi_code]))
           # render :text=> "该微信账号已绑定，通过幼儿园的公共账号访问."
           flash[:success] = "该微信账户绑定成功，请通过幼儿园的公共账号访问."
           redirect_to :action => :weiyi_error_messages
         rescue StandardError => error
           @user_errors = error
           render :layout=>"colorful_weixin_weiyi"
-          return 
+          return
         end
       end
     else
-      # render :text=> "您需要关注\"微壹平台\"微信公共帐号."
       flash[:error] = "您需要关注\"微一园讯通\"微信公共帐户."
       redirect_to :action => :weiyi_error_messages
     end
