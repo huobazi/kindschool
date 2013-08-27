@@ -10,4 +10,6 @@
     $("#<%= @element %>").parent().find("i.validate_icon").remove();
   }
   $("<i class='validate_icon validate_error_icon'></i><span class='help-inline'><%= @message %></span>").appendTo($("#<%= @element %>").parent());
+<% else %>
+  console.log("dddd")
 <% end %>

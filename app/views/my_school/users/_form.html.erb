@@ -1,13 +1,34 @@
 <% f = form %>
 
 
-<%= f.input :old_password, :required => true, :input_html => {:class => "span5",:name=>"old_password"} %>
+<%= f.input :old_password, validate: true, :required => true, :input_html => {:class => "span5",:name=>"old_password"} %>
 
-<%= f.input :password, :required => true, :input_html => {:class => "span5"} %>
-<%= f.input :password_confirmation, :required => true, :input_html => {:class => "span5"} %>
+<%= f.input :password, validate: true, :required => true, :input_html => {:class => "span5"} %>
+<%= f.input :password_confirmation, validate: true, :required => true, :input_html => {:class => "span5"} %>
 
 <div class="control-group">
   <div class="controls">
     <%= f.button :submit, disable_with: "正在提交..." %>
   </div>
 </div>
+
+<script type="text/javascript">
+$("#user_old_password").blur(function() {
+  $.ajax({
+    url: "/my_school/users/old_password_validator",
+    data: {
+      old_password: $(this).val(),
+      element: $(this).attr("id"),
+    },
+    method: "get",
+    beforeSend: function() {
+    },
+    success: function() {
+
+    },
+    error: function() {
+
+    }
+  })
+})
+</script>

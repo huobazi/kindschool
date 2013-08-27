@@ -110,7 +110,7 @@ School::Application.routes.draw do
     end
     resources :users do
       collection do
-        get :login,:logout,:error_notice,:show,:change_password_view
+        get :login,:logout,:error_notice,:show,:change_password_view, :old_password_validator
         post :login,:change_password
       end
       member do
