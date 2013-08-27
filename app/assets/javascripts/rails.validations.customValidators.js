@@ -22,7 +22,12 @@ window.ClientSideValidations.callbacks.element.fail = function(element, message,
 }
 
 window.ClientSideValidations.callbacks.element.pass = function(element, callback) {
-  element.parent().find("i.validate_icon").hide(callback);
+  element.parent().find("i.validate_success_icon").hide(callback);
+  /*
+  if( element.parent().find("span.help-inline").length > 0 ) {
+    element.parent().find("span.help-inline").remove();
+  }
+  */
   $("<i class='validate_icon validate_success_icon'></i>").insertAfter(element);
 }
 

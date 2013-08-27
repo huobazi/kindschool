@@ -28,8 +28,9 @@ class MySchool::MessagesController < MySchool::ManageController
 
   def edit
     if @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
-      entry = @message.message_entries.where(:receiver_id=>current_user.id)
-      if entry.blank?
+       # entry = @message.message_entries.where(:receiver_id=>current_user.id)
+       # if entry.blank?
+       if @message.sender != current_user
         flash[:error] = '您无法修改该消息.'
         redirect_to(:action=>:index)
         return

@@ -74,7 +74,9 @@
     <div class="work_list">
       <div class="topics">
         <% unless @activities.blank? %>
-          <div class="input_select_all"><input type="checkbox" id="check_all" />全选</div>
+          <% if choose_operate_show("my_school/activities/destroy") or choose_operate_show("my_school/interest_activities/destroy") %>
+            <div class="input_select_all"><input type="checkbox" id="check_all" />全选</div>
+          <% end %>
           <% if controller_name == "activities" %>
             <%= form_tag my_school_activity_path(@activities), method: :delete, :id => "destroy_multi_form" do %>
               <%= render partial: "/my_school/activities/activity", collection: @activities %>

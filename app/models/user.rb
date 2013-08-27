@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
   before_create :automatically_generate_account, :unless => :role_student?
 
 
+  validates :name, :length => { maximum: 20 }
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
   validates :phone,:presence => true, :format=> {:with=> /^(\+\d+-)?[1-9]{1}[0-9]{10}$/, :message=> "手机格式不正确"}#{ :scope => :kindergarten_id}
   validates :name, :kindergarten_id,:presence => true
@@ -159,6 +160,8 @@ class User < ActiveRecord::Base
     if role = self.role
       smarties = role.smarties
     end
+    puts "5555#{self.role.inspect}555555555555"
+    puts smarties.inspect
     smarties
   end
 

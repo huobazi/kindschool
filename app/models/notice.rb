@@ -7,6 +7,8 @@ class Notice < ActiveRecord::Base
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
   validates :title,:content,:presence => true
 
+  validates :send_date, :presence => true
+
   validate :content, :length => {maximum: 800}
 
   validates :title, :length => {minimum: 3, maximum: 100}
