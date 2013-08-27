@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>School</title>
+    <title>微一资讯</title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application","DD_belatedPNG_0.0.8a" %>
     <%= csrf_meta_tags %>
@@ -12,14 +12,23 @@
         }catch(err){}
     </script>
 <![endif]-->
+    <meta name="description" content="微一资讯,微服务，从事移动互联网的校讯通服务。" />
+    <meta name="keywords" content="校讯通,深圳校讯通,微一资讯,微壹资讯,微壹资讯科技" />
+    <meta charset="utf-8"/>
   </head>
   <body>
+    <div class="head_bg_left">
+      
+    </div>
+    <div class="head_bg_right">
+
+    </div>
     <div class="weiyi">
       <%= render :partial=>"head" %>
       <div class="weiyi_center">
         <%= yield %>
       </div>
-      <%= render :partial=>"food" %>
     </div>
+    <%= render :partial=>"food" %>
   </body>
 </html>

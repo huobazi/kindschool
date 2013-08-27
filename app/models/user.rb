@@ -160,8 +160,6 @@ class User < ActiveRecord::Base
     if role = self.role
       smarties = role.smarties
     end
-    puts "5555#{self.role.inspect}555555555555"
-    puts smarties.inspect
     smarties
   end
 
