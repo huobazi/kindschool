@@ -24,11 +24,10 @@ class MySchool::VirtualSquadsController < MySchool::ManageController
      	@virtual_squad.user_squads << user_squad
     end
     if @virtual_squad.save!
-      redirect_to my_school_virtual_squad_path(@virtual_squad.id), :success => "操作成功"
-    else
-      flash[:error] = "操作失败"
-      redirect_to my_school_virtual_squads_path
+      format.html {redirect_to my_school_virtual_squad_path(@virtual_squad.id), :success => "操作成功"}
     end
+    rescue
+    render :action=>'new'
   end
 
   def show

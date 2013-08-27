@@ -1,8 +1,8 @@
 <% f = form %>
 
-<%= f.input :name, :validate => true, :required => true, :input_html => {:class => "span5 profile_input required"} %>
+<%= f.input :name, :validate => true, :required => true, placeholder: "请输入年级的名称", hint: "长度控制20个字符之内", :input_html => {:class => "span5 profile_input required"} %>
 <%= f.input :kindergarten_label, :required => true, :as => :string, :input_html => { :disabled => true } %>
-<%= f.input :note, :validate => true, :input_html => {:rows => "10", :class => "span5"}%>
+<%= f.input :note, :validate => true, placeholder: "请输入年级的描述", :input_html => {:rows => "10", :class => "span5"}%>
 
 <div class="control-group">
   <div class="controls">

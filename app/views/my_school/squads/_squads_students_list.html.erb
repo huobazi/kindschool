@@ -1,24 +1,48 @@
 <fieldset class="people_manage">
-      <legend><label>该班级的学员</label></legend>
-      <div class="work_list">
-        <% unless @squad.student_infos.blank? %>
-            <table class="table table-striped table-hover">
-              <tr>
-                <th>姓名</th>
-                <th>账号</th>
-                <th>男</th>
-                <th>出生日期</th>
-              </tr>
-              <% @squad.student_infos.each do |student| %>
-                <tr>
-                  <td><%= student.user.name %></td>
-                  <td><%= student.user.login %></td>
-                  <td><%= student.user.gender == "M" ? "女" : "男"  %></td>
-                  <td><%= student.birthday ? student.birthday.to_short_datetime : "" %></td>
-                </tr>
-              <% end %>
-            </table>
-        <% else %>
+  <% @user_info = @squad.get_users_info %>
+  <legend><label>该班级的学员(共<%= @user_info[:user_all] %>人)</label></legend>
+  <div class="work_list">
+    <%@chart = LazyHighCharts::HighChart.new('graph',:html_options=>{:width=>300}) do |f|
+      f.title({ :text=>"学员情况"})
+      f.series(:type=> 'pie',:name=> '性别',
+        :data=> [
+          {:name=> "女（#{@user_info[:woman]}人）", :y=> @user_info[:woman], :color=> 'red'},
+          {:name=> "男（#{@user_info[:man]}人）", :y=> @user_info[:man], :color=> 'green'}
+        ],
+        :center=> [200, 80], :size=> 100, :showInLegend=> false)
+      f.series(:type=> 'pie',:name=> '绑定微信用户',
+        :data=> [
+          {:name=> "完全绑定（#{@user_info[:bind_ok]}人）", :y=> @user_info[:bind_ok], :color=> 'red'},
+          {:name=> "只绑定幼儿园（#{@user_info[:bind_weiyi_no]}人）", :y=> @user_info[:bind_weiyi_no],:color=> 'green'},
+          {:name=> "只绑定平台（#{@user_info[:bind_weixin_no]}人）", :y=> @user_info[:bind_weixin_no],:color=> '#8bbc21'},
+          {:name=> "未绑定（#{@user_info[:bind_null]}人）", :y=> @user_info[:bind_null],:color=> 'blue'}
+        ],
+        :center=> [400, 80], :size=> 100, :showInLegend=> false)
+    end
+  %>
+    <%=high_chart("weixin_users", @chart)%>
+    <% unless @squad.student_infos.blank? %>
+      <table class="table table-striped table-hover">
+        <tr>
+          <th>姓名</th>
+          <th>账号</th>
+          <th>性别</th>
+          <th>出生日期</th>
+          <th>微壹公共账号</th>
+          <th>幼儿园公共账号</th>
+        </tr>
+        <% @squad.student_infos.each do |student| %>
+          <tr>
+            <td><%= student.user.name %></td>
+            <td><%= student.user.login %></td>
+            <td><%= student.user.gender == "M" ? "女" : "男"  %></td>
+            <td><%= student.birthday ? student.birthday.to_short_datetime : "" %></td>
+            <td><%= student.user.weiyi_code.blank? ? "未绑定" : "已绑定" %></td>
+            <td><%= student.user.weixin_code.blank? ? "未绑定" : "已绑定" %></td>
+          </tr>
         <% end %>
-      </div>
-    </fieldset>
+      </table>
+    <% else %>
+    <% end %>
+  </div>
+</fieldset>

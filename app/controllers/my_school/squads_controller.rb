@@ -118,5 +118,20 @@ class  MySchool::SquadsController < MySchool::ManageController
   redirect_to :action =>:show, :id => params[:id]
   end
 
+  def name_uniqueness_validator
+    if params[:name].present? and params[:element].present?
+      if params[:id].present?
+        names = @kind.squads.where("graduate = 0 and id != ?", params[:id]).select(:name).collect(&:name)
+      else
+        names = @kind.squads.where(:graduate => 0).select(:name).collect(&:name)
+      end
+      if names.include?(params[:name])
+        @message = "名字已经被使用"
+        @element = params[:element]
+      end
+      render "my_school/staffs/phone_uniqueness_validator.js.erb", :layout => false
+    end
+  end
+
 end
 

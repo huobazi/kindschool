@@ -89,23 +89,28 @@
           </div>
         </div>
         <div><p class="muted text-center" style="font-size: 17px;">该角色的所有权限</p></div>
-        <% @options.each do |k, v| %>
-          <li class='check_boxes'>
-            <%if k != 'root' && !k.blank? %>
-              <fieldset class="role">
-                <legend class="label" style="font-size: 15px;line-height: 20px;"><%= k %></legend>
-                <ol>
-                  <% v.each do |operate| %>
-                    <li>
-                      <label style="font-size: 14px;">
-                        <%= operate.operate.name %>
-                      </label>
-                    </li>
-                  <% end %>
-                </ol>
-              </fieldset>
-            <%end%>
-          </li>
+
+        <% unless @options.blank? %>
+          <% @options.each do |k, v| %>
+            <li class='check_boxes'>
+              <%if k != 'root' && !k.blank? %>
+                <fieldset class="role">
+                  <legend class="label" style="font-size: 15px;line-height: 20px;"><%= k %></legend>
+                  <ol>
+                    <% v.each do |operate| %>
+                      <li>
+                        <label style="font-size: 14px;">
+                          <%= operate.operate.name %>
+                        </label>
+                      </li>
+                    <% end %>
+                  </ol>
+                </fieldset>
+              <%end%>
+            </li>
+          <% end %>
+        <% else %>
+          <p style="text-align: center;">没有权限</p>
         <% end %>
 
       </div>

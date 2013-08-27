@@ -1,7 +1,7 @@
 <% f = form %>
 
 
-<%= f.input :old_password, :required => true, :input_html => {:class => "span5",:name=>"old_password"} %>
+<%= f.input :old_password, validate: true, :required => true, :input_html => {:class => "span5",:name=>"old_password"} %>
 
 <%= f.input :password, :required => true, :input_html => {:class => "span5"} %>
 <%= f.input :password_confirmation, :required => true, :input_html => {:class => "span5"} %>
@@ -11,3 +11,47 @@
     <%= f.button :submit, disable_with: "正在提交..." %>
   </div>
 </div>
+
+<script type="text/javascript">
+$("#user_old_password").blur(function() {
+  $.ajax({
+    url: "/my_school/users/old_password_validator",
+    data: {
+      old_password: $(this).val(),
+      element: $(this).attr("id"),
+    },
+    method: "get",
+    beforeSend: function() {
+    },
+    success: function() {
+
+    },
+    error: function() {
+
+    }
+  })
+})
+$("#user_password_confirmation").blur(function() {
+  if ( $(this).val() != $("#user_password").val() ) {
+    $("#user_password").parent().find("i.validate_success_icon").remove();
+    $("#user_password").parent().find("i.validate_error_icon").remove();
+    $("#user_password").parent().find("span").remove();
+    $("<i class='validate_icon validate_error_icon'></i><span>两次密码不相同</span>").insertAfter("#user_password");
+  } else {
+    $("#user_password").parent().find("i.validate_error_icon").remove();
+    $("#user_password").parent().find("span").remove();
+  }
+})
+$("#user_password").blur(function() {
+  if ( $(this).val().length < 6 ) {
+    $("#user_password").parent().find("i.validate_success_icon").remove();
+    $("#user_password").parent().find("i.validate_error_icon").remove();
+    $("#user_password").parent().find("span").remove();
+    $("<i class='validate_icon validate_error_icon'></i><span>长度必须最少为6个字符</span>").insertAfter("#user_password");
+  } else {
+    $("#user_password").parent().find("i.validate_error_icon").remove();
+    $("#user_password").parent().find("span").remove();
+  }
+})
+
+</script>

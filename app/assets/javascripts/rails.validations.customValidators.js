@@ -14,12 +14,19 @@ window.ClientSideValidations.callbacks.element.fail = function(element, message,
     if ( element.parent().find('p.help-block').length > 0 ) {
       element.parent().find('p.help-block').remove();
     }
+    if( element.parent().parent().find("i.validate_icon").length > 0 ) {
+      element.parent().parent().find("i.validate_icon").remove();
+    }
     $("<i class='validate_icon validate_error_icon'></i>").insertAfter(element)
   }
 }
 
 window.ClientSideValidations.callbacks.element.pass = function(element, callback) {
-  element.parent().find("i.validate_icon").hide(callback);
+  element.parent().find("i.validate_success_icon").hide(callback);
+  /*
+  if( element.parent().find("span.help-inline").length > 0 ) {
+    element.parent().find("span.help-inline").remove();
+  }
+  */
   $("<i class='validate_icon validate_success_icon'></i>").insertAfter(element);
 }
-

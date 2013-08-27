@@ -1,0 +1,31 @@
+<div class="head">
+  <div class="head_left">
+    <div class="weiyi_menu_label">
+      <%= WEIYI_MENU[action_name] %>
+    </div>
+    <div class="weiyi_logo">
+    </div>
+    <div class="weiyi_menu">
+      <ul>
+        <li class="<%= action_name == "index" ? "activate" : "" %>"><%= link_to "关于我们" ,"/"%></li>
+        <li class="<%= action_name == "weiyi_solution" ? "activate" : "" %>"><%= link_to "解决方案" ,"/main/weiyi_solution"%></li>
+        <li class="<%= action_name == "weiyi_interact" ? "activate" : "" %>"><%= link_to "家园互动" ,"/main/weiyi_interact"%></li>
+        <li class="<%= action_name == "weiyi_contact" ? "activate" : "" %>"><%= link_to "联系我们" ,"/main/weiyi_contact"%></li>
+      </ul>
+    </div>
+  </div>
+  <div class="head_bg">
+  </div>
+  <div class="head_food">
+  </div>
+  <% if action_name == "index" %>
+    <div class="head_phone">
+    </div>
+  <% elsif action_name == "weiyi_solution" %>
+    <div class="head_bind">
+    </div>
+  <% else %>
+    <div class="head_weixin">
+    </div>
+  <% end %>
+</div>

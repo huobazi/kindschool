@@ -1,6 +1,6 @@
 physical_record:
   number: 'physical_record'
-  content: '<p>physical_record</p>'
+  content: "physical_record"
   name: '体检表格'
 
 cook_book:

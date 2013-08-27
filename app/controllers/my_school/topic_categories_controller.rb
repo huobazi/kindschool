@@ -45,18 +45,26 @@ class  MySchool::TopicCategoriesController < MySchool::ManageController
     end
   end
 
-  def destroy_multiple
-    if params[:topic_category].nil?
-      flash[:notice] = "必须选择论坛分类"
-    else
-      params[:topic_category].each do |topic_category|
-        @kind.topic_categories.destroy(topic_category)
-      end
+  def destroy
+
+    if @topic_category = @kind.topic_categories.find_by_id(params[:id])
     end
+
+    if @topic_category.nil?
+      flash[:error] = "请选择论坛分类"
+      redirect_to :action => :index
+      return
+    end
+
+    @topic_category.destroy
+
     respond_to do |format|
+      flash[:success] = "删除论坛分类成功"
       format.html { redirect_to my_school_topic_categories_path }
       format.json { head :no_content }
     end
+
   end
+
 end
 

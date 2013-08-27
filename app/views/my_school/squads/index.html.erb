@@ -50,10 +50,12 @@
     </div>
     <div class="work_list">
       <% unless @squads.blank? %>
-        <table class="table table-striped table-hover">
-          <%= form_tag my_school_squad_path(@squads), method: :delete, :id => "destroy_multi_form" do %>
+        <%= form_tag my_school_squad_path(@squads), method: :delete, :id => "destroy_multi_form" do %>
+          <table class="table table-striped table-hover">
             <tr>
-              <th><input type="checkbox" name="" value="" alt="全选" id="check_all">&nbsp;<label style="display: inline; font-size: 13px;" for="check_all"></label></th>
+              <% if choose_operate_show("my_school/squads/destroy") %>
+                <th><input type="checkbox" name="" value="" alt="全选" id="check_all">&nbsp;<label style="display: inline; font-size: 13px;" for="check_all"></label></th>
+              <% end %>
               <th>名称</th>
               <th>年级</th>
               <th>届</th>
@@ -63,7 +65,9 @@
             </tr>
             <% @squads.each do |squad| %>
               <tr>
-                <td><input id="squad_<%= squad.id %>" class="check" name="squad[]" type="checkbox" value="<%= squad.id %>" /></td>
+                <% if choose_operate_show("my_school/squads/destroy") %>
+                  <td><input id="squad_<%= squad.id %>" class="check" name="squad[]" type="checkbox" value="<%= squad.id %>" /></td>
+                <% end %>
                 <td>
                   <% if choose_operate_show("my_school/squads/show") %>
                     <%= link_to squad.name, my_school_squad_path(squad) %>
@@ -94,8 +98,8 @@
                 </td>
               </tr>
             <% end %>
-          <% end %>
-        </table>
+          </table>
+        <% end %>
         <%= paginate @squads %>
       <% else %>
         没有班级

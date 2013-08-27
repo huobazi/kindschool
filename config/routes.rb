@@ -110,7 +110,7 @@ School::Application.routes.draw do
     end
     resources :users do
       collection do
-        get :login,:logout,:error_notice,:show,:change_password_view
+        get :login,:logout,:error_notice,:show,:change_password_view, :old_password_validator
         post :login,:change_password
       end
       member do
@@ -126,6 +126,7 @@ School::Application.routes.draw do
     resources :squads do
       collection do
         post :add_strategy
+        get :name_uniqueness_validator
       end
       member do
         get :add_strategy_view
@@ -391,6 +392,11 @@ School::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+  resources :main do
+    collection do
+      get :weiyi_solution,:weiyi_interact,:weiyi_contact
+    end
+  end
   root :to => 'main#index'
 
   # See how all your routes lay out with "rake routes"

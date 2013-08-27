@@ -24,10 +24,11 @@
 </div>
 <div class="control-group">
   <% if action_name == "edit_content" %>
-    <%= text_field_tag :content,"#{@entry.content}", :class => 'profile_input required'%>
+    <%#= text_field_tag :content,"#{@entry.content}", :class => 'profile_input required'%>
+    <%= kindeditor_tag :content, "#{@entry.content}", :allowFileManager => false %>
     <%= hidden_field_tag "entry_id",@entry.id %>
   <% else %>
-    <%= text_field_tag :content,"", :class => 'profile_input '%>
+     <%= kindeditor_tag :content, '', :allowFileManager => false %>
   <% end %>
 </div>
 <div class="control-group">

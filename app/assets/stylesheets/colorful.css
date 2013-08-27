@@ -2612,3 +2612,7 @@ fieldset.staff_squad ol li {
 .validate_error_icon {
     background-position: center -32px;
 }
+#weixin_users{
+    display:inline;
+    height: 300px;
+}

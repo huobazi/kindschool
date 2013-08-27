@@ -5,21 +5,21 @@
 </div>
 </div>
 <div class="control-group">
- 	<%=f.label :title, '标题:' ,:class=>"control-label"%>
+  <%=f.label :title, raw('<abbr title="required">*</abbr> 标题:') ,:class=>"control-label"%>
 <div class="controls">
-  <%= f.text_field(:title , :validate => true) %>
-
-  <p class="help-block">长度不能小于3。</p>
+  <%= f.text_field(:title , :validate => true, placeholder: "请输入教学计划的标题") %>
+  <p class="help-block">长度必须控制在20个字符以内</p>
 </div>
  </div>
  <div class="control-group">
- 	<%=f.label :squad_id, '班级:' ,:class=>"control-label"%>
+   <%=f.label :squad_id, '班级:' ,:class=>"control-label"%>
   <%=render :partial=>"/my_school/squads/squads_select"%>
  </div>
  
 <div class="control-group">
- <%=f.label :content, '内容: ' ,:class=>"control-label"%>
+  <%=f.label :content, raw('<abbr title="required">*</abbr> 内容: ') ,:class=>"control-label"%>
  <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :simple_mode => true%>
+ <p class="help-block">最少为3个字符</p>
 </div>
 
 <%=render :partial => "/my_school/topics/appurtenance",:locals=>{:record=>@teaching_plan} %>
@@ -28,3 +28,27 @@
     <%= f.button "提交教学计划",disable_with: "正在提交" %>
   </div>
 </div>
+
+<script type="text/javascript">
+  var flag = []
+  $("button[type='submit']").click(function(){
+    if (topic_content.html().length < 3 || topic_content.isEmpty()) {
+      if ( $("#teaching_plan_content").next("span.help-inline").length == 0 ) {
+        $("<span class='help-inline'>长度不够(不得少于3个字符)<span>").insertAfter("#teaching_plan_content")
+      }
+      flag.push(true)
+    } else {
+      if ( $("#teaching_plan_content").next("span.help-inline").length > 0 ) {
+        $("#teaching_plan_content").next("span.help-inline").remove()
+      }
+      flag.push(false)
+    }
+
+    for( i in flag ) {
+      if(flag[i] == true) {
+        flag.length = 0;
+        return false;
+      }
+    }
+  })
+</script>
