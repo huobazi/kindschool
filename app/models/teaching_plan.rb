@@ -7,6 +7,8 @@ class TeachingPlan < ActiveRecord::Base
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
   belongs_to :squad
   has_many :appurtenances, :class_name => "Appurtenance", :as => :resource, :dependent => :destroy
-  
+
+  validates :content, :presence => true, length: {minimum: 3}
+  validates :title, :presence => true, length: {maximum: 20}
 
 end

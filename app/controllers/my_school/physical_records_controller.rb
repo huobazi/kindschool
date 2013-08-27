@@ -28,7 +28,7 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
       #  @physical_records += stu_info.physical_records
       # end
       # @physical_records = PhysicalRecord.where(["student_infos.squad_id in (?)",squads]).joins("LEFT JOIN student_infos on (student_infos.id = seedling_records.student_info_id)").page(params[:page] || 1).per(10).order("created_at DESC")
-      search = PhysicalRecord.where(["student_infos.squad_id in (?)",squads]).joins("LEFT JOIN student_infos on (student_infos.id = seedling_records.student_info_id)").search(params[:physical_record] || {})
+      search = PhysicalRecord.where(["student_infos.squad_id in (?)",squads]).joins("inner JOIN student_infos on (student_infos.id = physical_records.student_info_id)").search(params[:physical_record] || {})
       @physical_records =  search.page(params[:page] || 1).per(10).order("created_at DESC")
     elsif userrole[:tp] == :student
       search = current_user.student_info.physical_records.search(params[:physical_record] || {})
