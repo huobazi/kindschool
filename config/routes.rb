@@ -392,6 +392,11 @@ School::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+  resources :main do
+    collection do
+      get :weiyi_solution,:weiyi_interact,:weiyi_contact
+    end
+  end
   root :to => 'main#index'
 
   # See how all your routes lay out with "rake routes"

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>School</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application","DD_belatedPNG_0.0.8a" %>
+    <%= csrf_meta_tags %>
+    <!--[if lte IE 6]>
+    <script type="text/javascript">
+      try{
+        DD_belatedPNG.fix('div, ul, img, li, input , a');
+        }catch(err){}
+    </script>
+<![endif]-->
+  </head>
+  <body>
+    <div class="weiyi">
+      <%= render :partial=>"head" %>
+      <div class="weiyi_center">
+        <%= yield %>
+      </div>
+      <%= render :partial=>"food" %>
+    </div>
+  </body>
+</html>

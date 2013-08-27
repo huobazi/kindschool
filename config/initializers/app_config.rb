@@ -1,3 +1,4 @@
+#encoding:utf-8
 # 创建短信配置文件
 SMS_CONFIG = YAML.load_file("config/sms.yml")[::Rails.env]
 # 创建平台配置文件
@@ -5,7 +6,7 @@ WEBSITE_CONFIG = YAML.load_file("config/site_config/website.yml")[::Rails.env]
 
 #学生前缀名
 PRE_STUDENT = "wys"
-
+WEIYI_MENU = {"index"=>"关于我们","weiyi_solution"=>"解决方案","weiyi_interact"=>"家园互动","weiyi_contact"=>"联系我们"}
 #模板信息
 PAGE_CONTENTS = YAML.load_file("config/site_config/page_contents.yml")
 #默认action，可以快速使用，配置菜单功能
