@@ -14,4 +14,15 @@ class MainController < ApplicationController
       end
     end
   end
+
+  
+  def weiyi_solution
+    render :layout=>"weiyi"
+  end
+  def weiyi_interact
+    render :layout=>"weiyi"
+  end
+  def weiyi_contact
+    render :layout=>"weiyi"
+  end
 end
