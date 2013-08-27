@@ -21,7 +21,7 @@
     <div id="my-folio-of-works" class="svwp">
       <ul>
         <% @album_entries.each do |a_e| %>
-          <li><img src="<%=a_e.asset_img.public_filename%>" alt="创建时间<%= a_e.created_at.try(:to_long_datetime) %>--<%=a_e.title%>"/></li>
+          <li><img src="<%=a_e.asset_img.public_filename(:thumb)%>" alt="创建时间<%= a_e.created_at.try(:to_long_datetime) %>--<%=a_e.title%>"/></li>
         <% end %>
       </ul>
     </div>
