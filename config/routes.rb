@@ -189,6 +189,7 @@ School::Application.routes.draw do
         post :virtual_squad_choose
         post :import
         get :delete
+        get :phone_uniqueness_validator
       end
     end
     resources :templates do

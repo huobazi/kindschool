@@ -28,7 +28,7 @@
         <div class="content_right">
           <% if comment.is_show %>
             <p class="info"><span><%= level %>楼&nbsp;</span><span class="author"><%= comment.user.try(:name) %></span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(comment.try(:created_at)) %></span></p>
-            <div class="content"><%= comment.comment %></div>
+            <div class="content"><%= simple_format comment.comment %></div>
           <% else %>
             <p class="info"><span><%= level %>楼</span></p>
             <del class="delete">该楼的回复已被删除</del>

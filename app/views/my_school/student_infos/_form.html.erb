@@ -40,6 +40,9 @@
       <%= p.input :gender, :as => :radio, :collection => {"女" => "M", "男" => "G"}, :required => true %>
       <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
       <%= p.input :name, :validate => true, :required => true, placeholder: "请输入学员的名称", hint: "长度必须控制在20个字符以内" %>
+      <% if action_name == "edit" or action_name == "update" %>
+        <span id="student_info_id" style="display: none;"><%= @student_info.user.id %></span>
+      <% end %>
       <%= p.input :phone, :validate => true, placeholder: "请输入学员的手机号", :hint => "格式为11位手机号,例如+86-15014006125 或 15014006125" %>
     </div>
     <div class="right_table">
@@ -240,10 +243,11 @@ $("#grade").change(function() {
 <script type="text/javascript">
   $("#student_info_user_attributes_phone").blur(function() {
     $.ajax({
-      url: "/my_school/staffs/phone_uniqueness_validator",
+      url: "/my_school/student_infos/phone_uniqueness_validator",
       data: {
         phone: $(this).val(),
-        element: $(this).attr("id")
+        element: $(this).attr("id"),
+        student_info_id: $("#student_info_id").text()
       },
       method: "get",
       beforeSend: function() {
