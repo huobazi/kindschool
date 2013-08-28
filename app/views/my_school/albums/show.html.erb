@@ -1,6 +1,10 @@
-<div class="show_publicity">
-  <img src="/t/colorful/small_publicity.jpg" alt="展示图"/>
-</div>
+<%= javascript_include_tag "jquery.lazyload" %>
+<script type="text/javascript">
+jQuery(document).ready(
+function($){
+$("img.lazy").lazyload();
+});
+</script>
 <div class="show_work">
   <%= render :partial => "/modules/colorful/work_menu" %>
   <div class="work">

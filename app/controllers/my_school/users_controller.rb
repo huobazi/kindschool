@@ -189,9 +189,11 @@ class MySchool::UsersController < MySchool::ManageController
       if can_count > 0
         if user.is_send
           user.update_attributes(:is_send=> false,:chain_delete=>true)
+          can_count += 1
         else
           chain_code = @kind.get_chain_code
           user.update_attributes(:is_send=> true,:chain_delete=>false,:chain_code=>chain_code)
+          can_count -= 1
           #如果已经存在的编号，将去掉
           chain_users = @kind.users.where(:chain_delete=>true,:chain_code=>chain_code)
           unless chain_users.blank?
@@ -200,7 +202,7 @@ class MySchool::UsersController < MySchool::ManageController
             end
           end
         end
-        flash[:success] = "设置成功，您还可以设置#{can_count - 1}个用户"
+        flash[:success] = "设置成功，您还可以设置#{can_count}个用户"
       else
         flash[:error] = "设置失败，超过可设置的用户数量。"
       end
