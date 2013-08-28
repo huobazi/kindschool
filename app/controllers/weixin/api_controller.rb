@@ -121,12 +121,12 @@ class Weixin::ApiController < Weixin::BaseController
                 personal.resource = text
                 current_user.personal_sets << personal
                 if current_user.save
-                  url_garden = current_user.tp == 0 ? "http://#{request.host_with_port}/weixin/growth_records/new?personal_set_id=#{personal.id}" : "http://#{request.host_with_port}/weixin/garden_growth_records/new?personal_set_id=#{personal.id}"
+                  url_garden = (current_user.get_users_ranges[:tp] == :student) ? "http://#{request.host_with_port}/weixin/growth_records/new?personal_set_id=#{personal.id}" : "http://#{request.host_with_port}/weixin/garden_growth_records/new?personal_set_id=#{personal.id}"
                   x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
                       :FromUserName=>xml_data[:ToUserName],
                       :CreateTime=>Time.now.to_i,
                       :MsgType=>"text",
-                      :Content=>"#{current_user.name}您好!\n\r文字记录上传成功，您可以在照片集锦的个人集锦中查看。\n\r点击链接分享到成长记录:\n\r <a href='#{url_garden}'>添加到成长记录</a>",
+                      :Content=>"#{current_user.name}您好!\n\r文字记录上传成功，您可以在照片集锦的个人集锦中查看。\n\r点击链接分享到成长记录:\n\r <a href=\"#{url_garden}\">添加到成长记录</a>",
                       :FuncFlag=>0
                     })
                 end
@@ -149,12 +149,12 @@ class Weixin::ApiController < Weixin::BaseController
             personal.resource = photo
             current_user.personal_sets << personal
             if current_user.save
-              url_garden = current_user.tp == 0 ? "http://#{request.host_with_port}/weixin/growth_records/new?personal_set_id=#{personal.id}" : "http://#{request.host_with_port}/weixin/garden_growth_records/new?personal_set_id=#{personal.id}"
+              url_garden = (current_user.get_users_ranges[:tp] == :student) ? "http://#{request.host_with_port}/weixin/growth_records/new?personal_set_id=#{personal.id}" : "http://#{request.host_with_port}/weixin/garden_growth_records/new?personal_set_id=#{personal.id}"
               x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
                   :FromUserName=>xml_data[:ToUserName],
                   :CreateTime=>Time.now.to_i,
                   :MsgType=>"text",
-                  :Content=>"#{current_user.name}您好!\n\r照片上传成功，您可以在照片集锦的个人集锦中查看。点击链接分享到成长记录:\n\r<a href='#{url_garden}'>添加到成长记录</a>",
+                  :Content=>"#{current_user.name}您好!\n\r照片上传成功，您可以在照片集锦的个人集锦中查看。点击链接分享到成长记录:\n\r<a href=\"#{url_garden}\">添加到成长记录</a>",
                   :FuncFlag=>0
                 })
             end
