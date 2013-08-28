@@ -18,8 +18,10 @@
         $(this).text("正在提交...");
         $(this).addClass("disabled");
         $.post("<%= url_for(:controller=>"/my_school/comments",:action=>:send_comment,:resource_type=>resource_type,:resource_id=>resource_id) %>",
-        {comment:comment_data},
-        load_last_comments())
+        {comment:comment_data}
+        ).done(function() {
+          load_last_comments();
+        })
       }
     }
     jQuery(function() {
