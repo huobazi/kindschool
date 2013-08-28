@@ -41,7 +41,7 @@ input.search_btn{
         0 20px 20px rgba(0,0,0,.15);
 }
 #kind_name span{
-    display: inline-block;
+    display: inline;
     padding-bottom: 10px;
     padding-left: 3px;
     padding-top: 10px;
@@ -99,8 +99,8 @@ a{
 }
 /*=======首页样式======================begin*/
 .main_logo{
-    padding-bottom: 15px;
-    padding-top: 5px;
+    padding-bottom: 25px;
+    padding-top: 15px;
     text-align: center;
     position: relative;
 }
