@@ -22,8 +22,8 @@
       <ul>
         <% @album_entries.each do |a_e| %>
           <li>
-            <a href="<%= a_e.asset_img.public_filename %>" class="fancybox"  title="">
-            <img src="<%=a_e.asset_img.public_filename(:thumb)%>" alt="创建时间<%= a_e.created_at.try(:to_long_datetime) %>--<%=a_e.title%>"/>
+            <a href="" class="fancybox"  title="">
+            <img class="lazy" src="<%=a_e.asset_img.public_filename(:thumb)%>" alt="创建时间<%= a_e.created_at.try(:to_long_datetime) %>--<%=a_e.title%>" width="640" height="480" data-original=""/> 
             </a>
           </li>
         <% end %>

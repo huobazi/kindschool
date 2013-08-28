@@ -38,7 +38,7 @@
       <span id="staff_id" style="display: none;"><%= @staff.user.id %></span>
     <% end %>
     <%= p.input :phone, :validate => true, placeholder: "请输入教职工的手机号码", hint: "格式为11位手机号,例如+86-15014006125 或 15014006125" %>
-    <% if action_name == "new" %>
+    <% if action_name == "new" ||  action_name == "create" %>
       <%= p.input :login, :validate => true, placeholder: "请输入教职工的账号", :hint => "帐号只允许使用5到20位字符的英文、数字和下划线组合，保存之后不能改变" %>
     <% else %>
       <div class="control-group">
@@ -49,7 +49,7 @@
         </div>
       </div>
     <% end %>
-    <% if action_name == "new" %>
+    <% if action_name == "new" ||  action_name == "create" %>
       <%= p.input :password, :required => true, :validate => true %>
       <%= p.input :password_confirmation, :validate => true %>
     <% end %>
@@ -88,6 +88,11 @@
 </div>
 
 <script type="text/javascript">
+    // $("#staff_user_attributes_phone").change(function() {
+    //   var phone_num ="";
+    //   phone_num = $(this).val().replace(/\s*$/,'') ;
+    //   $(this).val(phone_num);
+    //  });
   $("#staff_user_attributes_phone").blur(function() {
     $.ajax({
       url: "/my_school/staffs/phone_uniqueness_validator",

@@ -41,7 +41,14 @@ input.search_btn{
         0 20px 20px rgba(0,0,0,.15);
 }
 #kind_name span{
+    display: inline;
+    padding-bottom: 10px;
     padding-left: 3px;
+    padding-top: 10px;
+}
+#longin_form_head #kind_name span{
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 div.ui-dialog{
     /*    position: fixed;*/
@@ -92,8 +99,8 @@ a{
 }
 /*=======首页样式======================begin*/
 .main_logo{
-    padding-bottom: 15px;
-    padding-top: 5px;
+    padding-bottom: 25px;
+    padding-top: 15px;
     text-align: center;
     position: relative;
 }
@@ -2235,6 +2242,18 @@ fieldset.staff_squad ol li {
 }
 .content a{
     color: blue;
+}
+#load_read_users{
+    display: inline;
+}
+.show_read_users{
+    padding-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+}
+.show_read_users li{
+    float: left;
+    width: 25%;
 }
 
 /* ==== ajax prompt ==== */

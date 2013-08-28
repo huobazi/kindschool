@@ -184,6 +184,11 @@
   </div>
 </div>
 <script type="text/javascript">
+$("#student_info_user_attributes_phone").change(function() {
+      var phone_num ="";
+      phone_num = $(this).val().replace(/\s*$/,'') ;
+      $(this).val(phone_num);
+     });
   if ($("#has_default_squad").length > 0) {
     var has_default_squad = $("#has_default_squad").attr("for")
   }
