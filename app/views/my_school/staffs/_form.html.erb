@@ -85,11 +85,16 @@
 </div>
 
 <script type="text/javascript">
+    $("#staff_user_attributes_phone").change(function() {
+      var phone_num ="";
+      phone_num = $(this).val().replace(/\s*$/,'') ;
+      $(this).val(phone_num);
+     });
   $("#staff_user_attributes_phone").blur(function() {
     $.ajax({
       url: "/my_school/staffs/phone_uniqueness_validator",
       data: {
-        phone: $(this).val(),
+        phone:  $(this).val(),
         element: $(this).attr("id")
       },
       method: "get",
