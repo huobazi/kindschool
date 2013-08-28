@@ -7,7 +7,9 @@
   </div>
   <div class="message_list">
     <% unless current_user.get_users_ranges[:tp] == :student %>
-      <%= link_to "创建活动", new_weixin_activity_path, :class => "btn btn-warning btn-large has-btn-new" %>
+      <div style="text-align: center;padding-top: 5px;">
+        <%= link_to "创建活动", new_weixin_activity_path, :class => "btn btn-warning btn-large has-btn-new" %>
+      </div>
     <% end %>
     <ul class="data_list">
       <% if @activities.blank? %>

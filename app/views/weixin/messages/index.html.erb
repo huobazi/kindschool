@@ -14,7 +14,9 @@
     <%end%>
   </div>
   <div class="message_list">
-    <%= link_to "发消息", new_weixin_message_path, :class => "btn btn-warning btn-large has-btn-new" %>
+    <div style="text-align: center;padding-top: 5px;">
+      <%= link_to "发消息", new_weixin_message_path, :class => "btn btn-warning btn-large has-btn-new" %>
+    </div>
     <ul class="data_list" style="clear: both;">
       <% if @messages.blank? %>
         <li><div class="message_content">您还没有收到信息。</div></li>

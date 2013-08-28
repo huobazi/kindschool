@@ -16,6 +16,7 @@ class  MySchool::StaffsController < MySchool::ManageController
 
   def create
     @staff = Staff.new(params[:staff])
+    params[:staff][:user_attributes][:phone].gsub!(/\s*$/, '')  if params[:staff] && params[:staff][:user_attributes]
     if params[:role] && params[:role][:id]
       role = @kind.roles.find(params[:role][:id])
       unless role.blank?
@@ -52,6 +53,7 @@ class  MySchool::StaffsController < MySchool::ManageController
         @staff.user.role = role
       end
     end
+    params[:staff][:user_attributes][:phone].gsub!(/\s*$/, '')  if params[:staff] && params[:staff][:user_attributes]
     begin
      if  @staff.update_attributes!(params[:staff]) && @staff.save!
       if params[:asset_logo] && (user = @staff.user)
@@ -96,7 +98,11 @@ class  MySchool::StaffsController < MySchool::ManageController
 
   def phone_uniqueness_validator
     if params[:phone].present? and params[:element].present?
-      phones = User.pluck(:phone)
+      if params[:staff_id].present?
+        phones = User.where("id != ?", params[:staff_id]).select(:phone).collect(&:phone)
+      else
+        phones = User.pluck(:phone)
+      end
       if phones.include?(params[:phone])
         @message = "手机号被占用"
       end

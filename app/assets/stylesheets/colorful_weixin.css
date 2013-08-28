@@ -464,8 +464,7 @@ body {
 }
 .has-btn-new {
   color: #fff;
-  width: 84%;
-  margin:10px;
+  width: 75%;
 }
 .ui-dialog-title{
     font-size: 20px;
@@ -994,7 +993,25 @@ li.replies_count {
 .show_entry .content {
     word_wrap: break-word;
 }
-
+#load_read_users{
+    display: inline;
+}
+#load_read_users .total{
+    padding: 6px;
+}
+.show_read_users{
+    padding-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+}
+.show_read_users li{
+    float: left;
+    width: 50%;
+    padding-bottom: 6px;
+}
+.show_read_users li span{
+    padding-left: 6px;
+}
 /*=======成长记录==============*/
 
 .message_div .message_list .data_list ul.rater-star li {

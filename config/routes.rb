@@ -5,6 +5,11 @@ School::Application.routes.draw do
   match 'code/recode' => 'code#recode'
   match 'my_school' => 'my_school/main#index'
   namespace :my_school do
+    resources :read_users do
+      collection do
+        get :load_read_users
+      end
+    end
     resources :teaching_plans
     resources :personal_sets
     resources :approve_modules do
@@ -189,6 +194,7 @@ School::Application.routes.draw do
         post :virtual_squad_choose
         post :import
         get :delete
+        get :phone_uniqueness_validator
       end
     end
     resources :templates do

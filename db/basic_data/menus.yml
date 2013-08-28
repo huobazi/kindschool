@@ -235,7 +235,7 @@
     url: "/my_school/notices/new"
     title: "发通知"
     height_level: "b"
-    sequence: 614
+    sequence: 602
     operate_id: 2001
   - id: 62003
     name: "通知信息"

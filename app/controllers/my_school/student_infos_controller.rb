@@ -105,6 +105,7 @@ class  MySchool::StudentInfosController < MySchool::ManageController
 
   def create
     @student_info = StudentInfo.new(params[:student_info])
+    params[:student_info][:user_attributes][:phone].gsub!(/\s*$/, '')  if params[:student_info] && params[:student_info][:user_attributes]
     @student_info.kindergarten_id = @kind.id
     begin
       if @student_info.save!
@@ -158,6 +159,7 @@ class  MySchool::StudentInfosController < MySchool::ManageController
 
   def update
     @student_info = StudentInfo.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    params[:student_info][:user_attributes][:phone].gsub!(/\s*$/, '')  if params[:student_info] && params[:student_info][:user_attributes]
     if current_user.get_users_ranges[:tp] == :student
       if current_user.student_info.id != params[:id].to_i
         flash[:notice] = "不能编辑他人的信息"
@@ -230,5 +232,22 @@ class  MySchool::StudentInfosController < MySchool::ManageController
     @user = @student_info.user
     exel = render_to_string(:layout=>'print')
     send_data exel, :content_type => "application/excel", :filename => "#{@user.name}_信息下载.xls"
+  end
+
+  def phone_uniqueness_validator
+    if params[:phone].present? and params[:element].present?
+      if params[:student_info_id].present?
+        phones = User.where("id != ?", params[:student_info_id]).select(:phone).collect(&:phone)
+      else
+        phones = User.pluck(:phone)
+      end
+      if phones.include?(params[:phone])
+        @message = "手机号被占用"
+      end
+      if params[:element].present?
+        @element = params[:element]
+      end
+      render "phone_uniqueness_validator.js.erb", :layout => false
+    end
   end
 end

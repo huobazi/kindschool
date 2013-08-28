@@ -31,8 +31,8 @@ class StudentInfo < ActiveRecord::Base
       if row["手机号码"].blank? || row["班级名称"].blank?
         number = i 
       end
-        phone << row["手机号码"].to_i
-        if user = User.find_by_phone(row["手机号码"].to_i)
+        phone << row["手机号码"].gsub!(/\s*$/, '')
+        if user = User.find_by_phone(row["手机号码"].gsub!(/\s*$/, ''))
           exist_phone << user.phone
         end
         unless squads = Squad.find_by_name_and_kindergarten_id(row["班级名称"],kind_id)
