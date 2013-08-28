@@ -82,7 +82,7 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
     @topic_entry = TopicEntry.where(is_show: true).find_by_id(params[:id])
     if @topic_entry.nil?
       flash[:error] = "回复不存在或没有权限"
-      redirect_to :back
+      redirect_to my_school_topics_path
       return
     end
     unless @topic_entry.creater_id == current_user.id
