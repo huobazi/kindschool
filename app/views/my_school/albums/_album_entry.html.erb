@@ -16,14 +16,6 @@
     });
   }
 </script>
-<%= javascript_include_tag "jquery.lazyload" %>
-<script type="text/javascript">
-jQuery(document).ready(
-function($){
-  alert("11111");
-$("img.lazy").lazyload();
-});
-</script>
 <div id="records">
   <% unless @album_entries.blank? %>
     <div id="my-folio-of-works" class="svwp">

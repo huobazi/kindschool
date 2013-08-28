@@ -105,6 +105,7 @@ class  MySchool::StudentInfosController < MySchool::ManageController
 
   def create
     @student_info = StudentInfo.new(params[:student_info])
+    params[:student_info][:user_attributes][:phone].gsub!(/\s*$/, '')  if params[:student_info] && params[:student_info][:user_attributes]
     @student_info.kindergarten_id = @kind.id
     begin
       if @student_info.save!
@@ -158,6 +159,7 @@ class  MySchool::StudentInfosController < MySchool::ManageController
 
   def update
     @student_info = StudentInfo.find_by_id_and_kindergarten_id(params[:id], @kind.id)
+    params[:student_info][:user_attributes][:phone].gsub!(/\s*$/, '')  if params[:student_info] && params[:student_info][:user_attributes]
     if current_user.get_users_ranges[:tp] == :student
       if current_user.student_info.id != params[:id].to_i
         flash[:notice] = "不能编辑他人的信息"
