@@ -41,7 +41,14 @@ input.search_btn{
         0 20px 20px rgba(0,0,0,.15);
 }
 #kind_name span{
+    display: inline-block;
+    padding-bottom: 10px;
     padding-left: 3px;
+    padding-top: 10px;
+}
+#longin_form_head #kind_name span{
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 div.ui-dialog{
     /*    position: fixed;*/

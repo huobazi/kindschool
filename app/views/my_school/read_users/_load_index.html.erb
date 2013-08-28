@@ -5,7 +5,7 @@
   <hr/>
 <% else %>
   <div class="show_read_users">
-    <div class="total"><b>共人<%= @read_users.total_count %>预览过</b></div>
+    <div class="total"><b>共人<%= @read_users.total_count %>浏览过</b></div>
     <ul>
       <% @read_users.each do |read_user| %>
         <li><span><%= read_user.user_name %></span></li>
