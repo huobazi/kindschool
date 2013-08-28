@@ -24,10 +24,11 @@ class MySchool::VirtualSquadsController < MySchool::ManageController
      	@virtual_squad.user_squads << user_squad
     end
     if @virtual_squad.save!
-      format.html {redirect_to my_school_virtual_squad_path(@virtual_squad.id), :success => "操作成功"}
+      redirect_to my_school_virtual_squad_path(@virtual_squad.id), :success => "操作成功"
     end
-    rescue
-    render :action=>'new'
+    rescue Exception =>ex
+    flash[:error] = ex.message
+    redirect_to(:action=>:new)
   end
 
   def show
@@ -70,7 +71,7 @@ class MySchool::VirtualSquadsController < MySchool::ManageController
       end
     end
     respond_to do |format|
-      if @virtual_squad.save && @virtual_squad.update_attributes(params[:squad])
+      if @virtual_squad.save! && @virtual_squad.update_attributes!(params[:squad])
         flash[:notice] = '更新成功.'
         format.html { redirect_to(:action=>:show,:id=>@virtual_squad.id) }
         format.xml  { head :ok }
@@ -79,6 +80,9 @@ class MySchool::VirtualSquadsController < MySchool::ManageController
         format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
       end
     end
+    rescue Exception =>ex
+    flash[:error] = ex.message
+    redirect_to(:action=>:edit,:id=>@virtual_squad.id)
   end
 
   def destroy 
