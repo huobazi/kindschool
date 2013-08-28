@@ -1,10 +1,4 @@
-<%= javascript_include_tag "jquery.lazyload" %>
-<script type="text/javascript">
-jQuery(document).ready(
-function($){
-$("img.lazy").lazyload();
-});
-</script>
+ 
 <div class="show_work">
   <%= render :partial => "/modules/colorful/work_menu" %>
   <div class="work">
@@ -65,7 +59,6 @@ $("img.lazy").lazyload();
         </div>
       </div>
       <%= render :partial=>"/my_school/comments/load_comments" ,:locals=>{:resource_type=>@album.class.to_s,:resource_id=>@album.id} %>
-      <%= render :partial=>"/my_school/read_users/load_read_users" ,:locals=>{:resource_type=>@album.class.to_s,:resource_id=>@album.id} %>
     </div>
   </div>
 </div>
