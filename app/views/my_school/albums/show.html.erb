@@ -58,6 +58,7 @@
         </div>
       </div>
       <%= render :partial=>"/my_school/comments/load_comments" ,:locals=>{:resource_type=>@album.class.to_s,:resource_id=>@album.id} %>
+      <%= render :partial=>"/my_school/read_users/load_read_users" ,:locals=>{:resource_type=>@album.class.to_s,:resource_id=>@album.id} %>
     </div>
   </div>
 </div>

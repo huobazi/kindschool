@@ -34,6 +34,9 @@
     <%= p.input :gender, :as => :radio, :collection => {"男" => "G", "女" => "M"}, :required => true %>
     <%= p.input :tp_label, :as => :string, :input_html => { :disabled => true } %>
     <%= p.input :name, :validate => true, placeholder: "请输入教职工的名字", hint: "长度必须在20个字符以内" %>
+    <% if action_name == "edit" or action_name == "update" %>
+      <span id="staff_id" style="display: none;"><%= @staff.user.id %></span>
+    <% end %>
     <%= p.input :phone, :validate => true, placeholder: "请输入教职工的手机号码", hint: "格式为11位手机号,例如+86-15014006125 或 15014006125" %>
     <% if action_name == "new" ||  action_name == "create" %>
       <%= p.input :login, :validate => true, placeholder: "请输入教职工的账号", :hint => "帐号只允许使用5到20位字符的英文、数字和下划线组合，保存之后不能改变" %>
@@ -94,8 +97,9 @@
     $.ajax({
       url: "/my_school/staffs/phone_uniqueness_validator",
       data: {
-        phone:  $(this).val(),
-        element: $(this).attr("id")
+        phone: $(this).val(),
+        element: $(this).attr("id"),
+        staff_id: $("#staff_id").text()
       },
       method: "get",
       beforeSend: function() {

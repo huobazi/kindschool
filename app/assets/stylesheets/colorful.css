@@ -41,7 +41,14 @@ input.search_btn{
         0 20px 20px rgba(0,0,0,.15);
 }
 #kind_name span{
+    display: inline;
+    padding-bottom: 10px;
     padding-left: 3px;
+    padding-top: 10px;
+}
+#longin_form_head #kind_name span{
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 div.ui-dialog{
     /*    position: fixed;*/
@@ -92,8 +99,8 @@ a{
 }
 /*=======首页样式======================begin*/
 .main_logo{
-    padding-bottom: 15px;
-    padding-top: 5px;
+    padding-bottom: 25px;
+    padding-top: 15px;
     text-align: center;
     position: relative;
 }
@@ -387,7 +394,8 @@ a{
 .showcase{
     float: left;
     width: 100%;
-    height: 177px;
+    height: 197px;
+    overflow: hidden;
     padding-bottom: 60px;
     border-bottom: 3px #a5c600 solid;
 }
@@ -1857,10 +1865,10 @@ ul.teacher_list{
     width: 50%;
 }
 .teacher_title h3{
-    width:90%;
+    width:95%;
     border-bottom: 2px solid #fdb968;
     color: #fdb968;
-    font-size: 20px;
+    font-size: 18px;
 }
 ul.teacher_list li{
     height: 150px;
