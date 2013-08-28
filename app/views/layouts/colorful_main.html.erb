@@ -35,23 +35,23 @@
           <a href="###" id="user_show_dialog" style="position: absolute;right: 0;" class="blue">
             <img src="/star_imgs/help.gif" alt="用户指南" /></a>
           <script type="text/javascript">
-  $(function() {
-    $("#dialog_users_guide" ).dialog({
-      dialogClass: "no-close",
-      autoOpen: false,
-      height:500,
-      width:700,
-      buttons: {
-        "关闭": function () {
-          $(this).dialog("close");
-        }
-      }
-    });
-    $( "#user_show_dialog" ).click(function() {
-      $( "#dialog_users_guide" ).dialog("open");
-    });
-  });
-</script>
+            $(function() {
+              $("#dialog_users_guide" ).dialog({
+                dialogClass: "no-close",
+                autoOpen: false,
+                height:500,
+                width:700,
+                buttons: {
+                  "关闭": function () {
+                    $(this).dialog("close");
+                  }
+                }
+              });
+              $( "#user_show_dialog" ).click(function() {
+                $( "#dialog_users_guide" ).dialog("open");
+              });
+            });
+          </script>
           <script type="text/javascript">
             $(function(){
               $("#kind_name").lettering();
@@ -103,11 +103,16 @@
         <%= yield %>
       </div>
       <div id="dialog_users_guide"  title="用户登录指南">
-      <%= render :partial => "/modules/colorful/users_guide" %>
+        <%= render :partial => "/modules/colorful/users_guide" %>
       </div>
       <%= render :partial => "/modules/colorful/foot" %>
     </div>
     <div style="display: none;">
+      <script type="text/javascript">
+        try{
+          var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cdiv id='cnzz_stat_icon_1000041998'%3E%3C/div%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000041998%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+        }catch(ex){}
+      </script>
     </div>
   </body>
 </html>
