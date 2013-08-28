@@ -233,4 +233,21 @@ class  MySchool::StudentInfosController < MySchool::ManageController
     exel = render_to_string(:layout=>'print')
     send_data exel, :content_type => "application/excel", :filename => "#{@user.name}_信息下载.xls"
   end
+
+  def phone_uniqueness_validator
+    if params[:phone].present? and params[:element].present?
+      if params[:student_info_id].present?
+        phones = User.where("id != ?", params[:student_info_id]).select(:phone).collect(&:phone)
+      else
+        phones = User.pluck(:phone)
+      end
+      if phones.include?(params[:phone])
+        @message = "手机号被占用"
+      end
+      if params[:element].present?
+        @element = params[:element]
+      end
+      render "phone_uniqueness_validator.js.erb", :layout => false
+    end
+  end
 end

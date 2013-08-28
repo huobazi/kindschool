@@ -98,7 +98,11 @@ class  MySchool::StaffsController < MySchool::ManageController
 
   def phone_uniqueness_validator
     if params[:phone].present? and params[:element].present?
-      phones = User.pluck(:phone)
+      if params[:staff_id].present?
+        phones = User.where("id != ?", params[:staff_id]).select(:phone).collect(&:phone)
+      else
+        phones = User.pluck(:phone)
+      end
       if phones.include?(params[:phone])
         @message = "手机号被占用"
       end
