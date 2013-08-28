@@ -1,0 +1,15 @@
+<% if resource_type && resource_id %>
+  <hr />
+  <div id="load_read_users">
+  </div>
+  <script type="text/javascript">
+    function load_read_users(){
+      $("#load_read_users").load("<%= url_for(:controller=>"/my_school/read_users",:action=>:index,:resource_type=>resource_type,:resource_id=>resource_id) %>")
+    }
+    jQuery(function() {
+      $(window).load(function(){
+        load_read_users();
+      })
+    });
+  </script>
+<% end %>

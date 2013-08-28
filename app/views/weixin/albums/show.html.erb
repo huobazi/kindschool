@@ -23,7 +23,7 @@
           <li>
             <a href="<%=entry.asset_img.public_filename%>" class="fancybox"  title="<%=entry.title%>">
               <div class="album_entry_img">
-                <img src="<%= entry.asset_img.public_filename(:middle) %>" width="226px" height="226px" alt="<%=entry.title%>"/>
+                <img src="<%= entry.asset_img.public_filename(:thumb) %>" width="226px" height="226px" alt="<%=entry.title%>"/>
               </div>
             </a>
           </li>
@@ -35,6 +35,7 @@
     <% end %>
     <br/>
     <%= render :partial=>"/my_school/comments/load_comments" ,:locals=>{:resource_type=>@album.class.to_s,:resource_id=>@album.id} %>
+    <%= render :partial=>"/my_school/read_users/load_read_users" ,:locals=>{:resource_type=>@album.class.to_s,:resource_id=>@album.id} %>
   </div>
 </div>
 <%= render :partial => "/modules/colorful/weixin_menu_navbar"%>

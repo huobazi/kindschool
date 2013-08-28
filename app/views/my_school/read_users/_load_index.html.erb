@@ -1,0 +1,18 @@
+<% if @read_users.blank? %>
+  <label>
+    没有人预览过。
+  </label>
+  <hr/>
+<% else %>
+  <div class="show_read_users">
+    <div class="total"><b>共人<%= @read_users.total_count %>预览过</b></div>
+    <ul>
+      <% @read_users.each do |read_user| %>
+        <li><span><%= read_user.user_name %></span></li>
+      <% end %>
+    </ul>
+  </div>
+  <div id="paginator">
+    <%= paginate @read_users, :remote => true,:params=>{:resource_type=>params[:resource_type],:resource_id=>params[:resource_id]} %>
+  </div>
+<% end %>

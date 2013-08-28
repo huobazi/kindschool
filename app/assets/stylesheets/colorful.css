@@ -2236,6 +2236,18 @@ fieldset.staff_squad ol li {
 .content a{
     color: blue;
 }
+#load_read_users{
+    display: inline;
+}
+.show_read_users{
+    padding-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+}
+.show_read_users li{
+    float: left;
+    width: 25%;
+}
 
 /* ==== ajax prompt ==== */
 

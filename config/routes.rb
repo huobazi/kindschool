@@ -5,6 +5,11 @@ School::Application.routes.draw do
   match 'code/recode' => 'code#recode'
   match 'my_school' => 'my_school/main#index'
   namespace :my_school do
+    resources :read_users do
+      collection do
+        get :load_read_users
+      end
+    end
     resources :teaching_plans
     resources :personal_sets
     resources :approve_modules do
