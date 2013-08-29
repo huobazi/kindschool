@@ -67,7 +67,7 @@
     <% if action_name == "new" %>
       <%= f.text_field :start_at, :required => true, :class => "text-content" %>
     <% else %>
-      <%= f.text_field :start_at, :required => true, :class => "text-content", :value => @growth_record.start_at.to_short_datetime  %>
+      <%= f.text_field :start_at, :required => true, :class => "text-content", :value => @growth_record.start_at.try(:to_short_datetime)  %>
     <% end %>
   </div>
   <div id="end_at_container">
@@ -75,7 +75,7 @@
     <% if action_name == "new" %>
       <%= f.text_field :end_at, :required => true, :class => "text-content" %>
     <% else %>
-      <%= f.text_field :end_at, :required => true, :class => "text-content", :value => @growth_record.end_at.to_short_datetime %>
+      <%= f.text_field :end_at, :required => true, :class => "text-content", :value => @growth_record.end_at.try(:to_short_datetime) %>
     <% end %>
   </div>
 </div>
@@ -128,7 +128,7 @@
 </div>
 <div class="field" id="content_field">
   <label class="field_prompt" for="growth_record_content">内容:</label>
-  <%= f.text_area :content, class: "text-area" %>
+  <%= f.text_area :content, validate: true, class: "text-area" %>
 </div>
 
 <%= f.button :submit, :class => "btn" %>

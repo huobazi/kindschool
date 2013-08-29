@@ -113,7 +113,7 @@
 </div>
 <div class="field" id="content_field">
   <label class="field_prompt" for="growth_record_content">内容:</label>
-  <%= f.text_area :content, :class => "text-area" %>
+  <%= f.text_area :content, validate: true, :class => "text-area" %>
 </div>
 
 <% if current_user.get_users_ranges[:tp] == :student %>
