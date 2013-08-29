@@ -4,7 +4,7 @@
       <ul class="nav weixin_menu">
         <li class="menu_li"><a href="###" class="notice" for="#message_div"><div class="show_div"></div><img src="/t/colorful/notice_img.png" alt="宝宝成长" /><label>通知公告</label></a>
           <div id="message_div" class="hide menu_second">
-            <ul>
+            <ul class="list_menu_li">
               <li ><a href="/weixin/messages/new"><div class="s_arrow"></div><label>发消息</label></a></li>
               <% message_count =current_user.get_read_new_count %>
               <li><a href="/weixin/messages"><div class="s_arrow"></div><label>收件箱(<%= message_count > 99 ? "99" : message_count %>未读)</label></a></li>
@@ -17,7 +17,7 @@
         </li>
         <li class="menu_li"><a href="###" class="activity" for="#activity_div"><div class="show_div"></div><img src="/t/colorful/activity_img.png" alt="活动信息" /><label>活动信息</label></a>
           <div id="activity_div" class="hide menu_second">
-            <ul>
+            <ul class="list_menu_li">
               <li><a href="/weixin/activities"><div class="s_arrow"></div><label>主题活动</label></a></li>
               <li ><a href="/weixin/interest_activities"><div class="s_arrow"></div><label>兴趣讨论</label></a></li>
             </ul>
@@ -27,7 +27,7 @@
 
         <li class="menu_li"><a href="###" class="topic" for="#topic_div"><div class="show_div"></div><img src="/t/colorful/topic_img.png" alt="信息论坛" /><label>信息论坛</label></a>
           <div id="topic_div" class="hide menu_second">
-            <ul>
+            <ul class="list_menu_li">
               <% @topic_categories.each do |category| %>
                 <li><a href="<%= url_for(:controller => "/weixin/topics", :action => :index, :category_id => category.id) %>"><div class="s_arrow"></div><label><%= category.name %></label></a></li>
               <% end %>
@@ -37,7 +37,7 @@
         <li class="menu_li">
           <a href="###" class="phone" for="#phone_div"><div class="show_div"></div><img src="/t/colorful/phone_img.png" alt="照片集锦" /><label>照片集锦</label></a>
           <div id="phone_div" class="hide menu_second">
-            <ul>
+            <ul class="list_menu_li">
               <li><a href="/weixin/albums"><div class="s_arrow"></div><label>相册集锦</label></a></li>
               <li ><a href="/weixin/personal_sets"><div class="s_arrow"></div><label>个人集锦</label></a></li>
             </ul>
