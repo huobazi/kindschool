@@ -155,15 +155,23 @@
           })
 
           $("#grade").change(function() {
-            $.get(
-            "/my_school/growth_records/grade_squad_partial",
+            if ( $("#unfinished").is(":checked") )
             {
-              grade: $("#grade").val()
-            },
-            function(result) {
-              $("#grade_squad_partial").html(result);
+              var unfinished = true || false
             }
-          )
+            $.ajax({
+              url: "/my_school/growth_records/grade_squad_partial",
+              data: {
+                grade: $("#grade").val(),
+                unfinished: unfinished
+              },
+              beforeSend: function() {
+                $("#grade_squad_partial").html('<img style="margin-left: 250px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
+              },
+              success: function(result) {
+                $("#grade_squad_partial").html(result);
+              }
+            })
           }).trigger('change');
           if ( $("#squad_for_teacher").length > 0 ) {
             $("#squad").change(function() {

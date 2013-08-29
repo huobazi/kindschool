@@ -10,14 +10,23 @@
 
 <script type="text/javascript">
   $("#squad").change(function() {
-    $.get(
-      "/my_school/growth_records/squad_student_partial",
-      {
-        grade: $("#grade").val(), squad: $("#squad").val()
+    if ( $("#unfinished").is(":checked") )
+    {
+      var unfinished = true || false
+    }
+    $.ajax({
+      url: "/my_school/growth_records/squad_student_partial",
+      data: {
+        grade: $("#grade").val(), squad: $("#squad").val(),
+        unfinished: unfinished
       },
-      function(result) {
+      beforeSend: function() {
+        $("#squad_student_partial").html('<img style="margin-left: 250px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
+
+      },
+      success: function(result) {
         $("#squad_student_partial").html(result)
       }
-    )
+    })
   }).trigger("change");
 </script>

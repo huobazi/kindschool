@@ -216,7 +216,12 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
   def squad_student_partial
     if grade=@kind.grades.where(:id=>params[:grade].to_i).first
       if squad = grade.squads.where(:id=>params[:squad].to_i).first
-        @student_infos = squad.student_infos
+        if params[:unfinished].presence == "true"
+          @unfinished = true
+          @student_infos = squad.student_infos.select { |student| student.growth_records.week_stat(Time.now.beginning_of_week, Time.now.end_of_week).where(tp: 0).empty? }
+        else
+          @student_infos = squad.student_infos
+        end
       end
     elsif squad = Squad.where(:id => params[:squad].to_i).first
       if params[:unfinished].presence == "true"
