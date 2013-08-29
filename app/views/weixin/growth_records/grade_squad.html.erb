@@ -10,15 +10,25 @@
 
 <script type="text/javascript">
   $("#squad").change(function() {
-    $.get(
-      "/weixin/growth_records/squad_student",
-      {
-        grade: $("#grade").val(), squad: $("#squad").val()
+    if ( $("#unfinished").is(":checked") )
+    {
+      var unfinished = true || false
+    }
+    $.ajax({
+      url: "/weixin/growth_records/squad_student",
+      data: {
+        grade: $("#grade").val(),
+        squad: $("#squad").val(),
+        unfinished: unfinished
       },
-      function(result) {
+      beforeSend: function() {
+        $("#squad_student_partial").html('<img style="margin-left: 10px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
+      },
+      success: function(result) {
+        $("#squad_student_partial").children(".loading_img").hide()
         $("#squad_student_partial").html(result)
       }
-    )
-  });
+    })
+  }).trigger('change')
 </script>
 

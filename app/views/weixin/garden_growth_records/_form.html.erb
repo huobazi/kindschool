@@ -6,13 +6,13 @@
       format:"yyyy-mm-dd"
     }).on("changeDate", function() {
       $(this).datepicker('hide')
-    });;
+    });
     $('#growth_record_end_at').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
     }).on("changeDate", function() {
       $(this).datepicker('hide')
-    });;
+    });
 
   });
 </script>
@@ -136,36 +136,43 @@
 <script type="text/javascript">
 $(document).ready(function() {
   $("#grade").change(function() {
-    $.get(
-      "/weixin/growth_records/grade_squad",
-      {
+    $.ajax({
+      url: "/weixin/growth_records/grade_squad",
+      data: {
         grade: $("#grade").val()
       },
-      function(result) {
-        $("#grade_squad_partial").html(result);
-      }
-    )
-  });
-  $("#squad").change(function() {
-    if ( $("#unfinished").is(":checked") )
-    {
-      var unfinished = true || false
-    }
-    $.ajax({
-      url: "/weixin/growth_records/squad_student",
-      data: {
-        squad: $("#squad").val(),
-        unfinished: unfinished
-      },
       beforeSend: function() {
-        $("#squad_student_partial").html('<img style="margin-left: 10px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
+        $("#grade_squad_partial").html('<img style="margin-left: 10px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
       },
       success: function(result) {
-        $("#squad_student_partial").children(".loading_img").hide()
-        $("#squad_student_partial").html(result)
+        $("#grade_squad_partial").html(result);
       }
     })
-  }).trigger('change')
+  }).trigger("change");
+
+  if ( $("#squad_for_teacher").length > 0 ) {
+    $("#squad").change(function() {
+      if ( $("#unfinished").is(":checked") )
+      {
+        var unfinished = true || false
+      }
+      $.ajax({
+        url: "/weixin/growth_records/squad_student",
+        data: {
+          grade: $("#grade").val(),
+          squad: $("#squad").val(),
+          unfinished: unfinished
+        },
+        beforeSend: function() {
+          $("#squad_student_partial").html('<img style="margin-left: 10px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
+        },
+        success: function(result) {
+          $("#squad_student_partial").children(".loading_img").hide()
+          $("#squad_student_partial").html(result)
+        }
+      })
+    }).trigger('change')   
+  }
   var flag = []
   var time_re = /\d{4}-\d{2}-\d{2}/;
   $("input[name='commit']").click(function(){
