@@ -463,8 +463,8 @@ body {
     padding-left: 5px;
 }
 .has-btn-new {
-  color: #fff;
-  width: 75%;
+    color: #fff;
+    width: 75%;
 }
 .ui-dialog-title{
     font-size: 20px;
@@ -660,15 +660,18 @@ ul, li {
 }
 .message_title a.weixin_return{
     background-image: url("/t/colorful/weixin_back.png");
-    color: white;
+    background-repeat: no-repeat;
+    color: #FFFFFF;
     float: left;
     font-size: 16px;
     height: 31px;
     line-height: 28px;
-    margin-top: -3px;
+    margin-top: -6px;
+    padding-left: 5px;
+    padding-top: 2px;
     text-align: center;
     text-decoration: none;
-    width: 52px;
+    width: 60px;
 }
 .show_title .user_list{
     padding: 5px 5px 5px 10px;
@@ -1015,13 +1018,13 @@ li.replies_count {
 /*=======成长记录==============*/
 
 .message_div .message_list .data_list ul.rater-star li {
-  border: none;
-  padding: 0;
-  margin: 0;
+    border: none;
+    padding: 0;
+    margin: 0;
 }
 
 table.attributes {
-  width: 100%;
+    width: 100%;
 }
 
 table.attributes th {
@@ -1031,8 +1034,8 @@ table.attributes th {
     border-bottom: 1px dotted #948A8A;
 }
 table.attributes tr {
-  height: 30px;
-  line-height: 30px;
+    height: 30px;
+    line-height: 30px;
 }
 
 table.attributes td {
@@ -1049,12 +1052,12 @@ table.attributes td {
 /* ====================== ajax loading ===================== */
 
 #remote-loader {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  margin-left: -40px;
-  width: 80px;
-  text-align: center;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -40px;
+    width: 80px;
+    text-align: center;
 
 }
 
