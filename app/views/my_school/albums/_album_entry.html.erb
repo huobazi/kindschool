@@ -1,41 +1,98 @@
-<script type="text/javascript">
-  //$(document).ready(
-   window.onload = function() {
-    $("div#my-folio-of-works").slideViewerPro({
-      thumbs: 6,
-      autoslide: true,
-      asTimer: 999999,
-      typo: true,
-      galBorderWidth: 0,
-      thumbsBorderOpacity: 0,
-      buttonsTextColor: "#707070",
-      buttonsWidth: 40,
-      thumbsActiveBorderOpacity: 0.8,
-      thumbsActiveBorderColor: "aqua",
-      shuffle: false
-    });
-  }
-</script>
-<div id="records">
-  <% unless @album_entries.blank? %>
-    <div id="my-folio-of-works" class="svwp">
-      <ul>
-        <% @album_entries.each do |a_e| %>
-          <li>
-            <a href="" class="fancybox"  title="">
-            <img class="lazy" src="<%=a_e.asset_img.public_filename(:thumb)%>" alt="创建时间<%= a_e.created_at.try(:to_long_datetime) %>--<%=a_e.title%>" width="640" height="480" data-original=""/> 
-            </a>
-          </li>
-        <% end %>
-      </ul>
+<% unless @album_entries.blank? %>
+  <script type="text/javascript">
+    document.write('<style>.noscript { display: none; }</style>');
+  </script>
+  <div id="page">
+    <div id="container">
+      <!-- Start Advanced Gallery Html Containers -->
+      <div id="gallery" class="content">
+        <div id="controls" class="controls"></div>
+        <div class="slideshow-container">
+          <div id="loading" class="loader"></div>
+          <div id="slideshow" class="slideshow"></div>
+        </div>
+        <div id="caption" class="caption-container"></div>
+      </div>
+      <div id="thumbs" class="navigation">
+        <ul class="thumbs noscript">
+          <% @album_entries.each do |a_e| %>
+            <li>
+              <a class="thumb" href="<%=a_e.asset_img.public_filename(:thumb)%>" title="<%=a_e.title%>">
+                <img src="<%=a_e.asset_img.public_filename(:middle)%>" alt="<%=a_e.title%>" />
+              </a>
+              <div class="caption">
+                <div class="download">
+                  <a href="<%=a_e.asset_img.public_filename%>" target="_blank">浏览原图</a>
+                </div>
+                <div class="image-title"><%=a_e.title%></div>
+                <div class="image-desc">创建时间<%= a_e.created_at.try(:to_long_datetime) %></div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div style="clear: both;"></div>
     </div>
-    <script type="text/javascript">
-    $(function() {
-      $(".fancybox").fancybox();
+  </div>
+
+
+  <script type="text/javascript">
+    jQuery(document).ready(function($) {
+      // We only want these styles applied when javascript is enabled
+      $('div.navigation').css({'width' : '215px', 'float' : 'left'});
+      $('div.content').css('display', 'block');
+
+      // Initially set opacity on thumbs and add
+      // additional styling for hover effect on thumbs
+      var onMouseOutOpacity = 0.67;
+      $('#thumbs ul.thumbs li').opacityrollover({
+        mouseOutOpacity:   onMouseOutOpacity,
+        mouseOverOpacity:  1.0,
+        fadeSpeed:         'fast',
+        exemptionSelector: '.selected'
+      });
+
+      // Initialize Advanced Galleriffic Gallery
+      var gallery = $('#thumbs').galleriffic({
+        delay:                     2500,
+        numThumbs:                 10,
+        preloadAhead:              10,
+        enableTopPager:            true,
+        enableBottomPager:         true,
+        maxPagesToShow:            4,
+        imageContainerSel:         '#slideshow',
+        controlsContainerSel:      '#controls',
+        captionContainerSel:       '#caption',
+        loadingContainerSel:       '#loading',
+        renderSSControls:          true,
+        renderNavControls:         true,
+        playLinkText:              '播放',
+        pauseLinkText:             '暂停',
+        prevLinkText:              '&lsaquo; 上一张',
+        nextLinkText:              '下一张 &rsaquo;',
+        nextPageLinkText:          '下一页 &rsaquo;',
+        prevPageLinkText:          '&lsaquo; 上一页',
+        enableHistory:             false,
+        autoStart:                 false,
+        syncTransitions:           true,
+        defaultTransitionDuration: 900,
+        onSlideChange:             function(prevIndex, nextIndex) {
+          // 'this' refers to the gallery, which is an extension of $('#thumbs')
+          this.find('ul.thumbs').children()
+          .eq(prevIndex).fadeTo('fast', onMouseOutOpacity).end()
+          .eq(nextIndex).fadeTo('fast', 1.0);
+        },
+        onPageTransitionOut:       function(callback) {
+          this.fadeTo('fast', 0.0, callback);
+        },
+        onPageTransitionIn:        function() {
+          this.fadeTo('fast', 1.0);
+        }
+      });
     });
   </script>
-  <% else %>
+<% else %>
+  <div id="records" class="center_align">
     没有上传图片
-  <% end %>
-</div>
-
+  </div>
+<% end %>
