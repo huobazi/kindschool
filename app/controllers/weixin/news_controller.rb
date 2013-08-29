@@ -2,7 +2,7 @@
 #微信查看新闻
 class Weixin::NewsController < Weixin::ManageController
   def index
-   @news = News.where("kindergarten_id = ? and approve_status = 0 or create_id=?",@kind.id,current_user.id).page(params[:page] || 1).per(10)
+   @news = News.where("kindergarten_id = ? and approve_status = 0",@kind.id).page(params[:page] || 1).per(10)
   end
   def show
   	@new = @kind.news.find(params[:id])
