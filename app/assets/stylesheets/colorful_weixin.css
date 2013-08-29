@@ -660,7 +660,7 @@ ul, li {
     border-bottom: 2px #8ED2FC solid;
 }
 .message_title a.weixin_return{
-    background-image: url("/t/colorful/weixin_back.png");
+    background-image: url("/t/colorful/weixin_back.png?333");
     background-repeat: no-repeat;
     color: #FFFFFF;
     float: left;
