@@ -35,7 +35,7 @@
     <%= f.text_area(:content,:rows=>10, :class=>"input-xlarge span5", placeholder: "请输入照片集锦的描述") %>
   </div>
 </div>
-<% if action_name == "new" &&  action_name == "create" %>
+<% if action_name == "new" ||  action_name == "create" %>
   <% if current_user.get_users_ranges[:tp] == :teachers %>
     <div class="control-group">
       <% unless @squads.empty? %>
@@ -49,6 +49,7 @@
       </div>
     <% else %>
       <div class="controls">
+
         <span>年级&nbsp;<%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}.unshift(["全部",0]),(@grade.id unless @grade.blank?) ) %></span>
         <div id="class_number_partial">
           <%unless @squads.blank? %>

@@ -201,7 +201,7 @@ body {
     padding: 5px;
     list-style-type: none;
 }
-#activity_div label,#message_div label{
+#activity_div label,#message_div label,#phone_div label{
     color: #494542;
 }
 #topic_div ul{
@@ -660,7 +660,7 @@ ul, li {
     border-bottom: 2px #8ED2FC solid;
 }
 .message_title a.weixin_return{
-    background-image: url("/t/colorful/weixin_back.png");
+    background-image: url("/t/colorful/weixin_back.png?333");
     background-repeat: no-repeat;
     color: #FFFFFF;
     float: left;
@@ -1063,4 +1063,12 @@ table.attributes td {
 
 #remote-loader .label.important {
     cursor: pointer;
+}
+.list_menu_li{
+    margin: 0px;
+}
+ul.list_menu_li li{
+     border-bottom: 1px dashed #B2AEA6;
+    line-height: 45px;
+    list-style-type: none;
 }
