@@ -15,6 +15,9 @@
     <div class="limit_title">
       <label>时 间:<%=@new.created_at.try(:to_long_datetime)%></label>
     </div>
+    <div class="title">
+      <label>浏览次数: <%= @new.show_count %></label>
+    </div>
   </div>
   <div class="message_list">
     <label class="message_content"><%=raw @new.content %></label>
