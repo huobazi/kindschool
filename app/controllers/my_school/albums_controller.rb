@@ -11,7 +11,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
       else
         @albums = @kind.albums.where("is_show = 1 and (squad_id = ? or squad_id is null)", current_user.student_info.squad_id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
       end
-    elsif current_user.get_users_ranges[:tp] == :teachers
+    elsif current_user.get_users_ranges[:tp] == :teachers  
       if (session[:operates] || []).include?('my_school/albums/new')
         @albums = @kind.albums.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
       else
@@ -55,11 +55,20 @@ class MySchool::AlbumsController  < MySchool::ManageController
             redirect_to :action => :index
             return
           end
+           squad = Squad.find(params[:album][:squad_id].to_i)
+           params[:album][:squad_name] = squad.name
         end
       else
-        params[:album].delete :squad_id
+        if (session[:operates] || []).include?('my_school/albums/new')
+           params[:album].delete :squad_id
+        else
+           flash[:error] = "非法操作"
+           redirect_to :action => :index
+           return
+        end
       end
     end
+
     @album = @kind.albums.new(params[:album])
     unless params[:class_number].blank?
       if squad = Squad.find(params[:class_number].to_i)#where(:id=>params[:class_number].to_i).first

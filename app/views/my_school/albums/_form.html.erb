@@ -41,7 +41,7 @@
       <% unless @squads.empty? %>
         <%= f.label :squad, class: "control-label" %>
           <div class="controls">
-            <%= select_tag "album[squad_id]", options_for_select((@squads.collect{|s|[s.name,s.id]}.unshift(["全部", "NULL"]) || [])), :class => "select" %>
+            <%= select_tag "album[squad_id]", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
           </div>
         <% else %>
           <label>没有负责的班级,请先分配负责的班级才能继续操作</label>
