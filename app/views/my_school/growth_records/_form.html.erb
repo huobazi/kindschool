@@ -155,10 +155,15 @@
           })
 
           $("#grade").change(function() {
+            if ( $("#unfinished").is(":checked") )
+            {
+              var unfinished = true || false
+            }
             $.get(
             "/my_school/growth_records/grade_squad_partial",
             {
-              grade: $("#grade").val()
+              grade: $("#grade").val(),
+              unfinished: unfinished
             },
             function(result) {
               $("#grade_squad_partial").html(result);

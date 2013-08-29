@@ -10,10 +10,15 @@
 
 <script type="text/javascript">
   $("#squad").change(function() {
+    if ( $("#unfinished").is(":checked") )
+    {
+      var unfinished = true || false
+    }
     $.get(
       "/my_school/growth_records/squad_student_partial",
       {
-        grade: $("#grade").val(), squad: $("#squad").val()
+        grade: $("#grade").val(), squad: $("#squad").val(),
+        unfinished: unfinished
       },
       function(result) {
         $("#squad_student_partial").html(result)
