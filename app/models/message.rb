@@ -79,7 +79,20 @@ class Message < ActiveRecord::Base
       return false
     end
   end
-
+  #获取发信人名字
+  def get_sender_name
+    if [2,3,4].include?(self.tp)
+      return "系统消息"
+    else
+      if self.sender
+        return self.sender.name
+      elsif self.sender_id
+        if user = User.find_by_id_and_kindergarten_id(self.sender_id,self.kindergarten_id)
+          return user.name
+        end
+      end
+    end
+  end
   private
   #创建是加载
   def load_user_info
@@ -97,6 +110,8 @@ class Message < ActiveRecord::Base
       end
     end
   end
+
+
   
   #创建和更新时加载
   def load_sms_records
@@ -112,7 +127,7 @@ class Message < ActiveRecord::Base
             role = self.sender.role if self.sender && self.sender.role
             if self.approve_status == 0 && entry.sms_record.blank?
               entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
-                :sender_name=>self.sender_name,:content=>"#{self.content} #{role ? (role.name + '-') : ''}#{self.sender_name}",:receiver_id=>entry.receiver.id,
+                :sender_name=>self.sender_name,:content=>"#{self.content} #{role ? (role.name + '-') : ''}#{self.get_sender_name}",:receiver_id=>entry.receiver.id,
                 :receiver_name=>entry.receiver.name,:receiver_phone=>entry.receiver.phone,:kindergarten_id=>self.kindergarten_id)
             end
           end
