@@ -149,6 +149,30 @@ $(document).ready(function() {
       }
     })
   }).trigger("change");
+
+  if ( $("#squad_for_teacher").length > 0 ) {
+    $("#squad").change(function() {
+      if ( $("#unfinished").is(":checked") )
+      {
+        var unfinished = true || false
+      }
+      $.ajax({
+        url: "/weixin/growth_records/squad_student",
+        data: {
+          grade: $("#grade").val(),
+          squad: $("#squad").val(),
+          unfinished: unfinished
+        },
+        beforeSend: function() {
+          $("#squad_student_partial").html('<img style="margin-left: 10px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
+        },
+        success: function(result) {
+          $("#squad_student_partial").children(".loading_img").hide()
+          $("#squad_student_partial").html(result)
+        }
+      })
+    }).trigger('change')   
+  }
   var flag = []
   var time_re = /\d{4}-\d{2}-\d{2}/;
   $("input[name='commit']").click(function(){
