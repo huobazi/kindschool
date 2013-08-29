@@ -2,20 +2,35 @@ body,section,button,h1,p,.layer,.downall_btn,.introduce,.playlist,.recom_picbox{
 /* for 1200 px width screen */
 @media only screen and (min-device-width:980px),only screen and (min-width:980px){
     body,section,button,h1,label,p,.layer,.downall_btn,.introduce,.playlist,.recom_picbox{font-size:28px;line-height: 38px;}
+    .message_div .message_title a.weixin_return{
+        margin-top: 3px;
+}
 }
 /* for 979 px width screen */
 @media only screen and (max-device-width:979px),only screen and (max-width:979px){
     body,section,button,h1,label,p,.layer,.downall_btn,.introduce,.playlist,.recom_picbox{font-size:28px;line-height: 38px;}
+    .message_div .message_title a.weixin_return{
+        margin-top: 3px;
+}
 }
 /* for 767 px width screen */
 @media only screen and (max-device-width:767px),only screen and (max-width:767px){
     body,section,button,h1,label,p,.layer,.downall_btn,.introduce,.playlist,.recom_picbox{font-size:26px;line-height: 32px;}
+    .message_div .message_title a.weixin_return{
+        margin-top: 1px;
+}
 }
 /* for 480px px px width screen */
 @media only screen and (max-device-width:480px),only screen and (max-width:480px){
     body,section,button,h1,label,p,.layer,.downall_btn,.introduce,.playlist,.recom_picbox{font-size:20px;line-height: 30px;}
+    .message_div .message_title a.weixin_return{
+        margin-top: -2px;
+}
 }
 /* for 320 px px width screen*/
 @media only screen and (max-device-width:320px),only screen and (max-width:320px){
     body,section,button,h1,label,p,.layer,.downall_btn,.introduce,.playlist,.recom_picbox{font-size:18px;line-height: 28px;}
+    .message_div .message_title a.weixin_return{
+        margin-top: -2px;
+}
 }
