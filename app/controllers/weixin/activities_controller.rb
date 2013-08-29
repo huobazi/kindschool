@@ -94,7 +94,7 @@ class Weixin::ActivitiesController < Weixin::ManageController
     @activity.kindergarten_id = @kind.id
     @activity.tp = 0
 
-    if @activity.save!
+    if @activity.save
       flash[:success] = "创建活动成功"
       redirect_to weixin_activity_path(@activity)
     else

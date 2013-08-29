@@ -94,7 +94,7 @@ class Weixin::InterestActivitiesController < Weixin::ManageController
     @activity.kindergarten_id = @kind.id
     @activity.tp = 1
 
-    if @activity.save!
+    if @activity.save
       flash[:success] = "创建兴趣讨论成功"
       redirect_to weixin_activity_path(@activity)
     else

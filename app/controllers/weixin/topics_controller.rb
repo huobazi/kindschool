@@ -82,7 +82,7 @@ class Weixin::TopicsController < Weixin::ManageController
       @topic.squad_id = current_user.student_info.squad_id
     end
 
-    if @topic.save!
+    if @topic.save
       flash[:success] = "贴子创建成功"
       redirect_to weixin_topic_path(@topic)
     else
