@@ -124,27 +124,20 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $("#grade").change(function() {
-      $.get(
-      "/weixin/growth_records/grade_squad",
-      {
-        grade: $("#grade").val()
-      },
-      function(result) {
-        $("#grade_squad_partial").html(result);
-      }
-    )
-    });
-    $("#squad").change(function() {
-      $.get(
-      "/weixin/growth_records/squad_student",
-      {
-        grade: $("#grade").val(), squad: $("#squad").val()
-      },
-      function(result) {
-        $("#squad_student_partial").html(result)
-      }
-    )
-    });
+      $.ajax({
+        url: "/weixin/growth_records/grade_squad",
+        data: {
+          grade: $("#grade").val()
+        },
+        beforeSend: function() {
+          $("#grade_squad_partial").html('<img style="margin-left: 10px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
+
+        },
+        success: function(result) {
+          $("#grade_squad_partial").html(result);
+        }
+      })
+    }).trigger("change");
     var flag = []
     var time_re = /\d{4}-\d{2}-\d{2}/;
     $("input[name='commit']").click(function(){
