@@ -1,2 +1,0 @@
-module Weixin::NewsHelper
-end
