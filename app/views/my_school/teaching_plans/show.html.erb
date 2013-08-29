@@ -42,7 +42,7 @@
         <%end%>
         <%if choose_operate_show('my_school/teaching_plans/destroy')%>
         <li>
-          <%= link_to(url_for(:controller=>"/my_school/teaching_plans",:action=>:destroy,:id=>@teaching_plan.id),:method=>:delete, :confirm => "您确定删除该新闻吗?") do %>
+          <%= link_to(url_for(:controller=>"/my_school/teaching_plans",:action=>:destroy,:id=>@teaching_plan.id),:method=>:delete, :confirm => "您确定删除该教学计划吗?") do %>
             <div class="work_action_delete">
             </div>
             <div class="work_action_delete_move">
@@ -73,6 +73,7 @@
            <%(@teaching_plan.appurtenances || []).each do |app|%>
            <p><%=link_to app.file_name,app.avatar_url,:class=>"blue"%></p>
            <%end%>
+           <p>班级:<%=@teaching_plan.squad.try(:name)%></p>
           </div>
             </div>
             <div class="content">

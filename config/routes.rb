@@ -343,6 +343,7 @@ School::Application.routes.draw do
     end
     resources :notices
     resources :weixin_share_users
+    resources :news
   end
 
   namespace :weixin do

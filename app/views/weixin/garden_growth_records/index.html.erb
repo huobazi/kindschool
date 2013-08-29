@@ -3,13 +3,14 @@
 </div>
 <div class="message_div">
   <div class="message_title">
+    <a href="<%= weixin_path %>" title="返回" class="weixin_return">返回</a>
     <span>宝宝成长</span><span>></span><span>宝宝在园</span>
   </div>
   <div class="message_list">
     <% unless current_user.get_users_ranges[:tp] == :student %>
       <div style="text-align: center;padding-top: 5px;">
       <%= link_to "添加成长记录", new_weixin_garden_growth_record_path, :class => "btn btn-warning btn-large has-btn-new" %>
-    </div>
+      </div>
     <% end %>
     <ul class="data_list">
       <% if @growth_records.blank? %>
