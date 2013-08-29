@@ -6,10 +6,12 @@
           <div id="message_div" class="hide menu_second">
             <ul>
               <li ><a href="/weixin/messages/new"><div class="s_arrow"></div><label>发消息</label></a></li>
-              <li><a href="/weixin/messages"><div class="s_arrow"></div><label>收件箱</label></a></li>
+              <% message_count =current_user.get_read_new_count %>
+              <li><a href="/weixin/messages"><div class="s_arrow"></div><label>收件箱(<%= message_count > 99 ? "99" : message_count %>未读)</label></a></li>
               <li ><a href="/weixin/messages/outbox"><div class="s_arrow"></div><label>发件箱</label></a></li>
               <li ><a href="/weixin/messages/draft_box"><div class="s_arrow"></div><label>草稿箱</label></a></li>
-              <li ><a href="/weixin/notices"><div class="s_arrow"></div><label>通知消息</label></a></li>
+              <!-- <li ><a href="/weixin/notices"><div class="s_arrow"></div><label>通知消息</label></a></li> -->
+              <li ><a href="/weixin/news"><div class="s_arrow"></div><label>新闻</label></a></li>
             </ul>
           </div>
         </li>

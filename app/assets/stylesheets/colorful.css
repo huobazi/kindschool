@@ -97,6 +97,10 @@ a{
 .logo_vertical{
     vertical-align: middle;
 }
+.center_align{
+    text-align: center;
+}
+
 /*=======首页样式======================begin*/
 .main_logo{
     padding-bottom: 25px;

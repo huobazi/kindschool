@@ -1,0 +1,38 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>教学计划管理</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li><%= link_to "教学计划管理", my_school_teaching_plans_path %></li>
+            <li>/</li>
+            <li>教学计划编辑</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+            <a href="<%=url_for(:controller=>"/my_school/teaching_plans",:action=>:index)%>" title="返回">
+              <div class="work_action_return">
+              </div>
+              <div class="work_action_return_move">
+              </div>
+            </a>
+        </li>
+      </ul>
+    </div>
+    <div class="work_form">
+      <div class="form_div">
+        <%= form_for(@teaching_plan,:method=>'put' , :validate => true, :url=>{:controller=>'my_school/teaching_plans',:action=>'update',:id=>@teaching_plan}, :html =>{:class=>"form-horizontal",:multipart => true}) do |f| %>
+          <%= render 'form', :f=>f %>
+       <% end %>
+      </div>
+    </div>
+  </div>
+</div>

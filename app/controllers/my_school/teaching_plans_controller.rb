@@ -69,4 +69,35 @@ end
   def show
     @teaching_plan = @kind.teaching_plans.find(params[:id])
   end
+
+  def edit
+    @teaching_plan = @kind.teaching_plans.find(params[:id])
+    @squad = @teaching_plan.squad
+     if @grades = @kind.grades
+        if @squads = @grades.first.squads
+        end
+    end
+   end
+
+   def update
+    @teaching_plan = @kind.teaching_plans.find(params[:id])
+
+    unless params[:appurtenance].blank?
+      (params[:appurtenance] || []).each do |p_appurtenance|
+       appurtenance=Appurtenance.new(p_appurtenance)
+       appurtenance.file_name = p_appurtenance[:avatar].original_filename if p_appurtenance[:avatar]
+       if @teaching_plan.appurtenances.size < 6
+         @teaching_plan.appurtenances << appurtenance
+       end
+      end
+    end
+
+    respond_to do |format|
+      if @teaching_plan.update_attributes(params[:teaching_plan])
+        format.html { redirect_to my_school_teaching_plans_path, notice: '教学计划更新成功.' }
+      else
+        format.html { render action: "edit" }
+      end
+    end
+   end
 end
