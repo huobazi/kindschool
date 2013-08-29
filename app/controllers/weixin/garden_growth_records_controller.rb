@@ -158,22 +158,6 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
     end
   end
 
-  def grade_squad
-    if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
-      @squads = grade.squads
-    end
-    render "grade_squad", :layout => false
-  end
-
-  def squad_student
-    if grade=@kind.grades.where(:id=>params[:grade].to_i).first
-      if squad = grade.squads.where(:id=>params[:squad].to_i).first
-        @student_infos = squad.student_infos
-      end
-    end
-    render "squad_student", :layout => false
-  end
-
   def destroy
     @growth_record = @kind.growth_records.find_by_id(params[:id])
     @growth_record.destroy
