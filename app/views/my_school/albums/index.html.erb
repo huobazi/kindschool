@@ -55,7 +55,7 @@
                 <%end%>
               </div>
             <% end %>
-            <div id="actions_<%= album.id %>_info">
+            <div id="actions_info">
               <span><%= album.album_entries.count %>张</span>
             </div>
           </li>
@@ -75,10 +75,8 @@ $(document).ready(function() {
     flag = "#" + $(this).attr("for")
     info = flag + "_info"
     $(flag).show()
-    $(info).hide()
   }).mouseout(function() {
     $(flag).hide()
-    $(info).show()
   })
 })
 </script>

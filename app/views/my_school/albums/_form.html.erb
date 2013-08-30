@@ -35,13 +35,13 @@
     <%= f.text_area(:content,:rows=>10, :class=>"input-xlarge span5", placeholder: "请输入照片集锦的描述") %>
   </div>
 </div>
-<% if action_name == "new" ||  action_name == "create" %>
+<% unless current_user.get_users_ranges[:tp] == :student %>
   <% if current_user.get_users_ranges[:tp] == :teachers %>
     <div class="control-group">
       <% unless @squads.empty? %>
         <%= f.label :squad, class: "control-label" %>
           <div class="controls">
-            <%= select_tag "album[squad_id]", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+            <%= select_tag "class_number", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
           </div>
         <% else %>
           <label>没有负责的班级,请先分配负责的班级才能继续操作</label>
@@ -51,6 +51,8 @@
       <div class="controls">
 
         <span>年级&nbsp;<%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}.unshift(["全部",0]),(@grade.id unless @grade.blank?) ) %></span>
+        <br />
+        <br />
         <div id="class_number_partial">
           <%unless @squads.blank? %>
             <span>班级<%= select_tag "class_number", options_for_select((@squads.collect{|s|[s.name,s.id]} || []),(@squad.id unless @squad.blank?)) %></span>
@@ -58,18 +60,18 @@
         </div>
       </div>
     <% end %>
-  <% else %>
-    <div class="control-group">
-      <%= f.label :squad, class: "control-label" %>
-        <div class="controls">
-          <%= f.text_field :squad_label, disabled: true %>
-        </div>
-      </div>
-    <% end %>
+<% else %>
+  <div class="control-group">
+    <%= f.label :squad, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :squad_label, disabled: true %>
+    </div>
+  </div>
+<% end %>
     <br />
     <div class="control-group">
       <div class="controls">
-        <%= f.submit("保存",:class=>"btn") %>
+        <%= f.submit("保存",:class=>"btn", disable_with: "正在提交...") %>
       </div>
     </div>
     <script type="text/javascript">
