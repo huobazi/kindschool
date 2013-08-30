@@ -37,13 +37,14 @@
     <div class="work_list">
       <% unless @news.empty? %>
         <div class="topics">
-          <div class="input_select_all"><input type="checkbox" id="check_all" /
+          <div class="input_select_all"><input type="checkbox" id="check_all">全选</div>
           <%= render partial: "news", collection: @news %>
         </div>
         <%= paginate @news  %>
       <% else %>
         暂无新闻
       <% end %>
+    </div>
   </div>
 </div>
 <script type="text/javascript">
