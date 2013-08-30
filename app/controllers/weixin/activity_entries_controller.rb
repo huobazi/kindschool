@@ -6,7 +6,7 @@ class Weixin::ActivityEntriesController < Weixin::ManageController
     end
     @activity_entry = ActivityEntry.new(params[:activity_entry])
 
-    if @activity_entry.save!
+    if @activity_entry.save
       flash[:success] = "添加回复成功"
       redirect_to weixin_activity_path(@activity_entry.activity_id, :anchor => "activity_entry_#{@activity_entry.id}", :page => @activity_entry.activity.last_page)
     else

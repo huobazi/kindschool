@@ -22,6 +22,9 @@
       "bootstrap-datepicker.zh-CN",
       "jquery.lettering"
   %>
+    <%= javascript_include_tag "rails.validations" %>
+    <%= javascript_include_tag "rails.validations.simple_form" %>
+    <%= javascript_include_tag "rails.validations.customValidators" %>
     <%= csrf_meta_tags %>
     <!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
   </head>

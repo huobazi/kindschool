@@ -137,7 +137,7 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
         @growth_record.asset_imgs << AssetImg.new(:uploaded_data=>v)
       end
     end
-    if @growth_record.save!
+    if @growth_record.save
       flash[:success] = "创建宝宝在家成长记录成功"
       redirect_to :action => :show, :id => @growth_record.id
     else

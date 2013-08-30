@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag    "css/style_v.css" %> 
 <%= javascript_include_tag "js/jquery.timelinr-0.9.53.js" %>
-<script>
+  <script>
     $(function(){
       $().timelinr({
         orientation:  'vertical',
@@ -30,7 +30,7 @@
   })
 
 </script>
-<div class="show_work">
+  <div class="show_work">
   <%= render :partial => "/modules/colorful/work_menu" %>
   <div class="work">
     <div class="headline">
@@ -41,6 +41,8 @@
           <a href="/my_school/home" title="返回首页">
             <div class="icon_home"></div>
           </a>
+          <ul>
+          </ul>
         </div>
       </div>
       <ul class="work_action">
@@ -90,8 +92,8 @@
         <%=link_to "添加到成长记录" , new_my_school_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
         <%else%>
         <%=link_to "添加到成长记录" ,new_my_school_garden_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
-        <%= link_to '删除', my_school_personal_set_path(set), :method=> :delete, :data=> { :confirm=> '你确定删除该信息吗' },:class=> "destroy" ,:class=>"personal_set_delete btn"%>
         <%end%>
+        <%= link_to '删除', my_school_personal_set_path(set), :method=> :delete, :data=> { :confirm=> '你确定删除该信息吗' },:class=> "destroy" ,:class=>"personal_set_delete btn"%>
       </li>
       <% end %>
     </ul>

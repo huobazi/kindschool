@@ -1,79 +1,47 @@
-<%= stylesheet_link_tag    "css/style_v.css" %> 
-<%= javascript_include_tag "js/jquery.timelinr-0.9.53.js" %>
-  <script>
-    $(function(){
-      $().timelinr({
-        orientation:  'vertical',
-        issuesSpeed:  300,
-        datesSpeed:   100,
-        arrowKeys:    'true',
-        startAt:    3
-      })
-    });
-  </script>
-  <script type="text/javascript">
-  jQuery(function() {
-    $('#personal_set_created_at_greater_than').datepicker({
-      language: "zh-CN",
-      format:"yyyy-mm-dd"
-    }).on("changeDate", function() {
-      $(this).datepicker('hide')
-    });
-    $('#personal_set_created_at_less_than').datepicker({
-      language: "zh-CN",
-      format:"yyyy-mm-dd"
-    }).on("changeDate", function() {
-      $(this).datepicker('hide')
-    });
-
-
-  })
-</script>
 <div class="container">
   <%= render :partial => "/modules/colorful/weixin_head" %>
 </div>
 <div class="message_div">
 <div class="message_title">
-    <a href="<%= weixin_path %>" title="返回" class="weixin_return">返回</a>新闻列表
+    <a href="<%= weixin_path %>" title="返回" class="weixin_return">返回</a>个人集锦
   </div>
   <div class="message_filter">
   </div>
-<div class="work_list" >
-  <div id="timeline">
-    <ul id="dates">
-      <% (@sets || []).each do |set| %>
-      <li>
-        <a href="#<%=set.created_at.try(:to_long_datetime)%>" class="selected"><%=set.created_at.try(:to_long_datetime)%>
-        </a>
-      </li>
+   <div class="message_list">
+    <% unless @sets.blank? %>
+      <ul class="data_list">
+        <% (@sets || []).each do |set| %>
+          <li>
+            <%if set.resource_type=="PhotoGallery"%>
+            <a href="<%= set.resource.try(:public_filename) %>" class="fancybox"  title="<%=set.created_at.try(:to_long_datetime)%>">
+              <div class="album_entry_img">
+                <img src="<%= set.resource.public_filename(:thumb) %>" width="226px" height="226px" alt="<%=set.created_at.try(:to_long_datetime)%>"/>
+              </div>
+            </a>
+            <%else%>
+                <h1><%=set.resource.try(:content)%></h1>
+            <%end%>
+            <%if @flag=="student"%>
+               <%=link_to "添加到成长记录" , new_weixin_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
+            <%else%>
+               <%=link_to "添加到成长记录" ,new_weixin_garden_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn btn-warning"%>
+            <%end%>
+              <%= link_to '删除', weixin_personal_set_path(set), :method=> :delete, :data=> { :confirm=> '你确定删除该信息吗' },:class=> "destroy" ,:class=>"personal_set_delete btn btn-danger" ,:style=>"float:right;"%>
+          </li>
+        <% end %>
+      </ul>
+      <div class="paginate_div">
+        <%= paginate  @sets, :window => 1%>
+      </div>
+      <%else%>
+       <p>您没有上传个人集锦</p>
       <%end%>
-    </ul>
-    <ul id="issues">
-      <% (@sets || []).each do |set| %>
-      <li id="<%=set.created_at.try(:to_long_datetime)%>" class="selected">
-        <%if set.resource_type=="PhotoGallery"%>
-          <img src="<%= set.resource.try(:public_filename) %>" width="256px" height="256px"  class="img-rounded" />
-          <%else%>
-          <h1><%=set.resource.try(:content)%></h1>
-        <%end%>
-        <%if @flag=="student"%>
-        <%=link_to "添加到成长记录" , new_weixin_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
-        <%else%>
-        <%=link_to "添加到成长记录" ,new_weixin_garden_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
-        <%= link_to '删除', weixin_personal_set_path(set), :method=> :delete, :data=> { :confirm=> '你确定删除该信息吗' },:class=> "destroy" ,:class=>"personal_set_delete btn"%>
-        <%end%>
-      </li>
-      <% end %>
-    </ul>
-    <div id="grad_top"></div>
-    <div id="grad_bottom"></div>
-    <a href="#" id="next">+</a>
-    <a href="#" id="prev">-</a>
   </div>
-  <div class="paginate_div">
-     <%= paginate @sets  %>
-     </div>
-</div>
 </div>
 <%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
 <%= render :partial => "/modules/colorful/weixin_menu_one"%>
+<script type="text/javascript">
+  $(function(){
+    $(".fancybox").fancybox();
+  })
+</script>
