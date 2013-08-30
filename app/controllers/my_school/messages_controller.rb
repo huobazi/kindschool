@@ -28,9 +28,9 @@ class MySchool::MessagesController < MySchool::ManageController
 
   def edit
     if @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
-       # entry = @message.message_entries.where(:receiver_id=>current_user.id)
-       # if entry.blank?
-       if @message.sender != current_user
+      # entry = @message.message_entries.where(:receiver_id=>current_user.id)
+      # if entry.blank?
+      if @message.sender != current_user
         flash[:error] = '您无法修改该消息.'
         redirect_to(:action=>:index)
         return
@@ -116,6 +116,8 @@ class MySchool::MessagesController < MySchool::ManageController
     if params[:message]
       tp_data = params[:message].delete(:tp)
       params[:message][:tp] = tp_data.blank? ? 0 : 1
+      send_me = params[:message].delete(:send_me)
+      params[:message][:send_me] = send_me.blank? ? false : true
     end
     @message = Message.new(params[:message])
     @message.kindergarten = @kind
@@ -134,6 +136,9 @@ class MySchool::MessagesController < MySchool::ManageController
       if user = User.find_by_id_and_kindergarten_id(user_id,@kind.id)
         @message.message_entries << MessageEntry.new(:receiver_id=>user.id,:receiver_name=>user.name,:phone=>user.phone,:sms=>(user.is_receive ? 1 : 0))
       end
+    end
+    if @message.send_me && !sender_ids.include?(current_user.id)
+      @message.message_entries << MessageEntry.new(:receiver_id=>current_user.id,:receiver_name=>current_user.name,:phone=>current_user.phone,:sms=>(current_user.is_receive ? 1 : 0))
     end
     if params[:draft]
       @message.status = 0
@@ -166,6 +171,8 @@ class MySchool::MessagesController < MySchool::ManageController
       if params[:message]
         tp_data = params[:message].delete(:tp)
         params[:message][:tp] = tp_data.blank? ? 0 : 1
+        send_me = params[:message].delete(:send_me)
+        params[:message][:send_me] = send_me.blank? ? false : true
       end
       if @message.update_attributes(params[:message])
         flash[:notice] = '更新消息成功.'
@@ -480,6 +487,9 @@ LEFT JOIN squads ON(squads.id = user_squads.squad_id)")
         @message.message_entries << MessageEntry.new(:receiver_id=>user.id,:receiver_name=>user.name,:phone=>user.phone,:sms=>(user.is_receive ? 1 : 0))
       end
     end
+    if @message.send_me && !sender_ids.include?(current_user.id)
+      @message.message_entries << MessageEntry.new(:receiver_id=>current_user.id,:receiver_name=>current_user.name,:phone=>current_user.phone,:sms=>(current_user.is_receive ? 1 : 0))
+    end
     if params[:send]
       params[:message].merge(:send_date => Time.now.utc)
     end
@@ -487,6 +497,8 @@ LEFT JOIN squads ON(squads.id = user_squads.squad_id)")
       if params[:message]
         tp_data = params[:message].delete(:tp)
         params[:message][:tp] = tp_data.blank? ? 0 : 1
+        send_me = params[:message].delete(:send_me)
+        params[:message][:send_me] = send_me.blank? ? false : true
       end
       if @message.save && @message.update_attributes(params[:message])
         flash[:notice] = '更新消息成功.'

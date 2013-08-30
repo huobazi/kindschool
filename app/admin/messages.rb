@@ -43,11 +43,17 @@ ActiveAdmin.register Message do
       row :content
       row :kindergarten
       row :sender_name
+      row :sender_id
+      row :send_date
       row :status
       row :approve_status
       row :approver_id
       row :parent_id
       row :entry_id
+      row :chain_code
+      row :tp
+      row :send_me
+      row :allsms
     end
   end
 end

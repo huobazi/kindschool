@@ -1,7 +1,7 @@
 #encoding:utf-8
 class Message < ActiveRecord::Base
   acts_as_paranoid
-  attr_accessible :approve_status, :approver_id, :chain_code, :content, :entry_id,
+  attr_accessible :approve_status, :approver_id, :chain_code, :content, :entry_id,:send_me,
     :kindergarten_id, :parent_id, :send_date, :sender_id, :sender_name, :status, :title, :tp,:allsms
   belongs_to :kindergarten
   belongs_to :sender, :class_name => "User",:foreign_key=>:sender_id
@@ -93,6 +93,16 @@ class Message < ActiveRecord::Base
       end
     end
   end
+  #获取幼儿园名字
+  def get_kindergarten_name
+    if self.kindergarten
+      return self.kindergarten.name
+    elsif self.kindergarten_id
+      if kindergarten = Kindergarten.find_by_id(self.kindergarten_id)
+        return kindergarten.name
+      end
+    end
+  end
   private
   #创建是加载
   def load_user_info
@@ -123,11 +133,11 @@ class Message < ActiveRecord::Base
           message_entries_data =  self.message_entries
         end
         message_entries_data.each do |entry|
-          if([1,2].include?(self.tp) && (self.allsms || entry.receiver.is_receive)) || self.tp == 3
+          if([1,2].include?(self.tp) && (self.allsms || entry.receiver.is_receive || ( self.send_me && entry.receiver.id == self.sender.id))) || self.tp == 3
             role = self.sender.role if self.sender && self.sender.role
             if self.approve_status == 0 && entry.sms_record.blank?
               entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
-                :sender_name=>self.sender_name,:content=>"#{self.content} #{role ? (role.name + '-') : ''}#{self.get_sender_name}",:receiver_id=>entry.receiver.id,
+                :sender_name=>self.sender_name,:content=>"#{self.content} #{self.get_kindergarten_name} #{role ? (role.name + '-') : ''}#{self.get_sender_name}",:receiver_id=>entry.receiver.id,
                 :receiver_name=>entry.receiver.name,:receiver_phone=>entry.receiver.phone,:kindergarten_id=>self.kindergarten_id)
             end
           end
