@@ -162,7 +162,6 @@ class MySchool::AlbumsController  < MySchool::ManageController
   end
 
   def update
-    binding.pry
     if current_user.get_users_ranges[:tp] == :student
       flash[:error] = "没有权限"
       redirect_to :action=> :index
