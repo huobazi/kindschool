@@ -54,6 +54,15 @@
         <em><%= activity.creater.try(:name) %></em>
         <em>创建于</em><abbr><%= activity.created_at.try(:to_long_datetime) %></abbr>
       </div>
+      <div class="info">
+        <span class="label">
+          <% if activity.squad.present? %>
+            <%= activity.squad.try(:name) %>
+          <% else %>
+            全园可见
+          <% end %>
+        </span>
+      </div>
     </div>
   </div>
 </div>

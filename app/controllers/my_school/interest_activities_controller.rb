@@ -119,12 +119,20 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
       @activity = @kind.activities.find_by_id_and_tp(params[:id], 1)
     end
 
+    if current_user.get_users_ranges[:tp] == :teachers
+      @squads = current_user.get_users_ranges[:squads]
+    elsif current_user.get_users_ranges[:tp] == :all
+      @grades = @kind.grades
+    end
+
     if @activity.nil?
       flash[:error] = "兴趣讨论不存在或没有权限"
       redirect_to :action => :index
+      return
     else
       render "my_school/activities/edit"
     end
+
   end
 
   def update
@@ -137,7 +145,7 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
     else
       @activity = @kind.activities.find_by_id_and_tp(params[:id], 1)
     end
-    if @activity.update_attributes(params[:activity].except(:squad_id))
+    if @activity.update_attributes(params[:activity])
       flash[:success] = "修改兴趣讨论成功"
       redirect_to my_school_interest_activity_path(@activity)
     else
