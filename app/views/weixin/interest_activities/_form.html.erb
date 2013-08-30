@@ -107,22 +107,25 @@
 <script type="text/javascript">
 $(document).ready(function() {
   $("#grade").change(function() {
-      $.get(
-        "/weixin/activities/grade_squad_partial",
-        {
+      $.ajax({
+        url: "/weixin/activities/grade_squad_partial",
+        data: {
           grade: $("#grade").val()
         },
-        function(result) {
+        beforeSend: function() {
+          $("#grade_squad_partial").html('<img style="margin-left: 10px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
+        },
+        success: function(result) {
           $("#grade_squad_partial").html(result);
         }
-      )
-
-  }).trigger("change")
+      })
+  })
   $("input[type='radio']").change(function() {
     if ( $(this).val() == "squad" ) {
-      $("#select_squad").show()
+      $("#select_squad").show();
+      $("#grade").trigger("change");
     } else {
-      $("#select_squad").hide()
+      $("#select_squad").hide();
     }
   })
   var flag = []
