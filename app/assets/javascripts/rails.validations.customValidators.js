@@ -22,8 +22,8 @@ window.ClientSideValidations.callbacks.element.fail = function(element, message,
 }
 
 window.ClientSideValidations.callbacks.element.pass = function(element, callback) {
-  if ( element.parent().find("i.validate_success_icon").next("i.validate_error_icon").length > 0 ) {
-    element.parent().find("i.validate_success_icon").next("i.validate_error_icon").remove();
+  if ( element.parent().find("i.validate_error_icon").length > 0 ) {
+    element.parent().find("i.validate_error_icon").remove();
   }
   element.parent().find("i.validate_success_icon").hide(callback);
   /*

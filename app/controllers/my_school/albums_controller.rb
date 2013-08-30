@@ -77,6 +77,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
       end
     end
     @album.send_date = Time.now
+    @album.creater_id = current_user.id
     respond_to do |format|
       if @album.save
         format.html { redirect_to my_school_albums_path, :notice=> '相册锦集创建成功.' }
@@ -133,20 +134,35 @@ class MySchool::AlbumsController  < MySchool::ManageController
       redirect_to :action=> "index"
       return
     end
+    # if @grades = @kind.grades
+    #   if @squads = @grades.first.squads
+    #   end
+    # end
+    # if @squad = @album.squad
+    #   @grade = @squad.grade
+    # else
+    #   @squads  = []
+    # end
     if @grades = @kind.grades
-      if @squads = @grades.first.squads
+      if current_user.get_users_ranges[:tp] == :all
+        if @squads = @grades.first.squads
+        end
+      elsif current_user.get_users_ranges[:tp] == :teachers
+        @squads = current_user.get_users_ranges[:squads]
       end
     end
     if @squad = @album.squad
       @grade = @squad.grade
     else
-      @squads  = []
+      if current_user.get_users_ranges[:tp] == :all
+        @squads  = []
+      end
     end
 
   end
 
   def update
-
+    binding.pry
     if current_user.get_users_ranges[:tp] == :student
       flash[:error] = "没有权限"
       redirect_to :action=> :index
