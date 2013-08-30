@@ -18,23 +18,23 @@
 </script>
 <div class="field" id="title_field">
   <label class="field_prompt" for="activity_title">标题</label>
-  <%= f.text_area :title, validate: false, :class => "text-content" %>
+  <%= f.text_field :title, validate: false, :class => "text-content" %>
 </div>
 <div class="field">
   <div id="start_at_container">
     <label class="field_prompt" for="activity_start_at">开始时间:</label>
     <% if action_name == "new" %>
-      <%= f.text_field :start_at, :required => true, :class => "text-content" %>
+      <%= f.text_field :start_at, validate: false, :required => true, :class => "text-content" %>
     <% else %>
-      <%= f.text_field :start_at, :required => true, :class => "text-content", :value => @activity.start_at.to_short_datetime  %>
+      <%= f.text_field :start_at, validate: false, :required => true, :class => "text-content", :value => @activity.start_at.to_short_datetime  %>
     <% end %>
   </div>
   <div id="end_at_container">
     <label class="field_prompt" for="activity_end_at">结束时间:</label>
     <% if action_name == "new" %>
-      <%= f.text_field :end_at, :required => true, :class => "text-content" %>
+      <%= f.text_field :end_at, validate: false, :required => true, :class => "text-content" %>
     <% else %>
-      <%= f.text_field :end_at, :required => true, :class => "text-content", :value => @activity.end_at.to_short_datetime %>
+      <%= f.text_field :end_at, validate: false, :required => true, :class => "text-content", :value => @activity.end_at.to_short_datetime %>
     <% end %>
   </div>
 </div>

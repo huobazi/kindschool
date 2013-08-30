@@ -63,7 +63,12 @@
       </div>
       <ul>
         <li class="reply">
-          <%= simple_form_for(@activity_entry, :validate => true, :url => weixin_activity_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
+          <% if controller_name == "activities" %>
+            <% activities_controller = true %>
+          <% else %>
+            <% activities_controller = false %>
+          <% end %>
+          <%= simple_form_for(@activity_entry, :validate => true, :url => weixin_activity_entries_path(flag: activities_controller), :html => {:class => "form-horizontal"}) do |f| %>
             <div class="field">
               <p>回复</p>
               <%= f.kindeditor :note, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :allowFlashUpload => false, :simple_mode => true %>
