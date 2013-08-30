@@ -65,6 +65,9 @@ class Weixin::MessagesController < Weixin::ManageController
         @message.message_entries << MessageEntry.new(:receiver_id=>user.id,:receiver_name=>user.name,:phone=>user.phone,:sms=>(user.is_receive ? 1 : 0))
       end
     end
+    if @message.send_me && !sender_ids.include?(current_user.id)
+      @message.message_entries << MessageEntry.new(:receiver_id=>current_user.id,:receiver_name=>current_user.name,:phone=>current_user.phone,:sms=>(current_user.is_receive ? 1 : 0))
+    end
     if params[:send]
       params[:message].merge(:send_date => Time.now.utc)
     end
@@ -72,6 +75,8 @@ class Weixin::MessagesController < Weixin::ManageController
       if params[:message]
         tp_data = params[:message].delete(:tp)
         params[:message][:tp] = tp_data.blank? ? 0 : 1
+        send_me = params[:message].delete(:send_me)
+        params[:message][:send_me] = send_me.blank? ? false : true
       end
       if @message.save && @message.update_attributes(params[:message])
         flash[:notice] = '更新消息成功.'
@@ -153,6 +158,8 @@ class Weixin::MessagesController < Weixin::ManageController
     if params[:message]
       tp_data = params[:message].delete(:tp)
       params[:message][:tp] = tp_data.blank? ? 0 : 1
+      send_me = params[:message].delete(:send_me)
+      params[:message][:send_me] = send_me.blank? ? false : true
     end
     @message = Message.new(params[:message])
     @message.kindergarten = @kind
@@ -171,6 +178,9 @@ class Weixin::MessagesController < Weixin::ManageController
       if user = User.find_by_id_and_kindergarten_id(user_id,@kind.id)
         @message.message_entries << MessageEntry.new(:receiver_id=>user.id,:receiver_name=>user.name,:phone=>user.phone,:sms=>(user.is_receive ? 1 : 0))
       end
+    end
+    if @message.send_me && !sender_ids.include?(current_user.id)
+      @message.message_entries << MessageEntry.new(:receiver_id=>current_user.id,:receiver_name=>current_user.name,:phone=>current_user.phone,:sms=>(current_user.is_receive ? 1 : 0))
     end
     if params[:draft]
       @message.status = 0
@@ -200,6 +210,8 @@ class Weixin::MessagesController < Weixin::ManageController
       if params[:message]
         tp_data = params[:message].delete(:tp)
         params[:message][:tp] = tp_data.blank? ? 0 : 1
+        send_me = params[:message].delete(:send_me)
+        params[:message][:send_me] = send_me.blank? ? false : true
       end
       if @message.update_attributes(params[:message])
         flash[:notice] = '更新消息成功.'
