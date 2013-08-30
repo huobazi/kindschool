@@ -67,6 +67,21 @@
       </div>
     </div>
   </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">短信发给自己</label>
+    <div class="controls">
+      <%  if action_name == "new" %>
+        <%= check_box_tag('message[send_me]',"1",true)%>
+      <% else %>
+        <%= check_box_tag('message[send_me]',"1",@message.send_me)%>
+      <% end %>
+      <div class="count_div">
+        <div>
+          发短信才会生效
+        </div>
+      </div>
+    </div>
+  </div>
   <% if @kind.begin_allsms && choose_operate_show("my_school/messages/allsms") %>
     <div class="control-group">
       <label class="control-label" for="inputPassword">短信发给所有人</label>

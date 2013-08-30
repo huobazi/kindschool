@@ -47,8 +47,7 @@
           <% end %>
         </li>
         <li>
-
-          <a href="<%=url_for(:controller=>"/my_school/messages",:action=>@message.status ? :outbox : :draft_show)%>" title="返回">
+          <a href="<%=url_for(:controller=>"/my_school/messages",:action=>(@message.status ? :outbox : :draft_box))%>" title="返回">
             <div class="work_action_return">
             </div>
             <div class="work_action_return_move">
@@ -119,18 +118,28 @@
               </label>
             </div>
           </div>
-          <div class="control-group">
-            <label class="control-label" >短信发给所有人:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @message.allsms ? "是" : "否" %>
-              </label>
+          <% if @message.tp == 1 %>
+            <div class="control-group">
+              <label class="control-label" >短信发给自己:</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @message.send_me ? "是" : "否" %>
+                </label>
+              </div>
             </div>
-          </div>
+            <div class="control-group">
+              <label class="control-label" >短信发给所有人:</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @message.allsms ? "是" : "否" %>
+                </label>
+              </div>
+            </div>
+          <% end %>
           <%if @message.approve_status != 0%>
-          <div class="control-group">
-            <%= render :partial=>"/my_school/approves/load_approves_log" ,:locals=>{:record_id=>@message.approve_record.try(:id),:approve_status=>@message.approve_status} %>
-          </div>
+            <div class="control-group">
+              <%= render :partial=>"/my_school/approves/load_approves_log" ,:locals=>{:record_id=>@message.approve_record.try(:id),:approve_status=>@message.approve_status} %>
+            </div>
           <%end%>
           <% if action_name=="outbox_show" %>
             <div class="control-group">

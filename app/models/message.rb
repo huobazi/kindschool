@@ -1,7 +1,7 @@
 #encoding:utf-8
 class Message < ActiveRecord::Base
   acts_as_paranoid
-  attr_accessible :approve_status, :approver_id, :chain_code, :content, :entry_id,
+  attr_accessible :approve_status, :approver_id, :chain_code, :content, :entry_id,:send_me,
     :kindergarten_id, :parent_id, :send_date, :sender_id, :sender_name, :status, :title, :tp,:allsms
   belongs_to :kindergarten
   belongs_to :sender, :class_name => "User",:foreign_key=>:sender_id

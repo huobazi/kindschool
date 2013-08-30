@@ -28,9 +28,9 @@ class MySchool::MessagesController < MySchool::ManageController
 
   def edit
     if @message = Message.find_by_id_and_kindergarten_id(params[:id],@kind.id)
-       # entry = @message.message_entries.where(:receiver_id=>current_user.id)
-       # if entry.blank?
-       if @message.sender != current_user
+      # entry = @message.message_entries.where(:receiver_id=>current_user.id)
+      # if entry.blank?
+      if @message.sender != current_user
         flash[:error] = '您无法修改该消息.'
         redirect_to(:action=>:index)
         return
@@ -116,6 +116,8 @@ class MySchool::MessagesController < MySchool::ManageController
     if params[:message]
       tp_data = params[:message].delete(:tp)
       params[:message][:tp] = tp_data.blank? ? 0 : 1
+      send_me = params[:message].delete(:send_me)
+      params[:message][:send_me] = send_me.blank? ? false : true
     end
     @message = Message.new(params[:message])
     @message.kindergarten = @kind
@@ -166,6 +168,8 @@ class MySchool::MessagesController < MySchool::ManageController
       if params[:message]
         tp_data = params[:message].delete(:tp)
         params[:message][:tp] = tp_data.blank? ? 0 : 1
+        send_me = params[:message].delete(:send_me)
+        params[:message][:send_me] = send_me.blank? ? false : true
       end
       if @message.update_attributes(params[:message])
         flash[:notice] = '更新消息成功.'
@@ -487,6 +491,8 @@ LEFT JOIN squads ON(squads.id = user_squads.squad_id)")
       if params[:message]
         tp_data = params[:message].delete(:tp)
         params[:message][:tp] = tp_data.blank? ? 0 : 1
+        send_me = params[:message].delete(:send_me)
+        params[:message][:send_me] = send_me.blank? ? false : true
       end
       if @message.save && @message.update_attributes(params[:message])
         flash[:notice] = '更新消息成功.'

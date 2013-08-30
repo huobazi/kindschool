@@ -47,9 +47,14 @@
     <div class="limit_title">
       <label>发送类型:<%= @message.tp == 1 ? "短信加站内信" : "站内信" %></label>
     </div>
+    <% if @message.tp == 1 %>
+    <div class="limit_title">
+      <label>短信发给自己:<%= @message.send_me ? "是" : "否" %></label>
+    </div>
     <div class="limit_title">
       <label>短信发给所有人:<%= @message.allsms ? "是" : "否" %></label>
     </div>
+    <% end %>
     <div class="limit_title">
       <label>审核状态:<%= Message::STATUS[@message.approve_status]%></label>
     </div>
@@ -66,8 +71,8 @@
         $(function(){
           $("#show_message_entry").click(function(){
             if($("#show_entry_div").text() == ""){
-                $("#show_entry_div").load("<%=url_for(:controller=>"/my_school/messages",:action=>:get_entry_status,:id=>@message.id)%>")
-                $("#show_entry_div").show();
+              $("#show_entry_div").load("<%=url_for(:controller=>"/my_school/messages",:action=>:get_entry_status,:id=>@message.id)%>")
+              $("#show_entry_div").show();
             }else{
               if($("#show_entry_div").css("display") == "none"){
                 $("#show_entry_div").show();

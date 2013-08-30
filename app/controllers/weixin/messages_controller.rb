@@ -72,6 +72,8 @@ class Weixin::MessagesController < Weixin::ManageController
       if params[:message]
         tp_data = params[:message].delete(:tp)
         params[:message][:tp] = tp_data.blank? ? 0 : 1
+        send_me = params[:message].delete(:send_me)
+        params[:message][:send_me] = send_me.blank? ? false : true
       end
       if @message.save && @message.update_attributes(params[:message])
         flash[:notice] = '更新消息成功.'
@@ -153,6 +155,8 @@ class Weixin::MessagesController < Weixin::ManageController
     if params[:message]
       tp_data = params[:message].delete(:tp)
       params[:message][:tp] = tp_data.blank? ? 0 : 1
+      send_me = params[:message].delete(:send_me)
+      params[:message][:send_me] = send_me.blank? ? false : true
     end
     @message = Message.new(params[:message])
     @message.kindergarten = @kind
@@ -200,6 +204,8 @@ class Weixin::MessagesController < Weixin::ManageController
       if params[:message]
         tp_data = params[:message].delete(:tp)
         params[:message][:tp] = tp_data.blank? ? 0 : 1
+        send_me = params[:message].delete(:send_me)
+        params[:message][:send_me] = send_me.blank? ? false : true
       end
       if @message.update_attributes(params[:message])
         flash[:notice] = '更新消息成功.'

@@ -382,6 +382,10 @@ body {
 }
 
 /*=======消息模块===============*/
+.count_div{
+    display: inline-block;
+    vertical-align: middle;
+}
 #message_inputs{
     mix-width: 180px;
     width: 80%;
