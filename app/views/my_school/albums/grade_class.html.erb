@@ -1,5 +1,4 @@
 <%unless @squads.blank? %>
-  <br />
 <span>班级&nbsp;<%= select_tag "class_number", 
 options_for_select(@squads.collect{|s|[s.name,s.id]} )  %></span>
 <%end%>

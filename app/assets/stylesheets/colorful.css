@@ -1407,7 +1407,10 @@ a.album_a .album_img img{
     word-wrap: break-word;
 }
 .photo_style .actions {
-    padding-left: 185px;
+    display: inline-block;
+    text-align: right;
+    width: 100px;
+    float: right;
 }
 .photo_style .image_actions {
     padding-left: 15px;
