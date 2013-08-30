@@ -65,7 +65,7 @@
   <div id="start_at_container">
     <label class="field_prompt" for="growth_record_start_at">开始时间:</label>
     <% if action_name == "new" %>
-      <%= f.text_field :start_at, :required => true, :class => "text-content" %>
+      <%= f.text_field :start_at, validate: false, :required => true, :class => "text-content" %>
     <% else %>
       <%= f.text_field :start_at, :required => true, :class => "text-content", :value => @growth_record.start_at.try(:to_short_datetime)  %>
     <% end %>
@@ -73,7 +73,7 @@
   <div id="end_at_container">
     <label class="field_prompt" for="growth_record_end_at">结束时间:</label>
     <% if action_name == "new" %>
-      <%= f.text_field :end_at, :required => true, :class => "text-content" %>
+      <%= f.text_field :end_at, validate: false, :required => true, :class => "text-content" %>
     <% else %>
       <%= f.text_field :end_at, :required => true, :class => "text-content", :value => @growth_record.end_at.try(:to_short_datetime) %>
     <% end %>
@@ -118,7 +118,7 @@
       <div class="img_div">
         <%= file_field_tag "asset_imgs[#{i}]",:for=>"img#{i}" %>
         <br />
-        <div class="img_border">
+        <div class="img_border" style="margin-top: 5px; margin-left: -15px;">
           &nbsp;&nbsp; <img src="/t/colorful/user_logo.png" alt="照片" id="img<%= i %>" class="img-polaroid"/>
         </div>
         <br />
@@ -177,19 +177,19 @@ $(document).ready(function() {
   var time_re = /\d{4}-\d{2}-\d{2}/;
   $("input[name='commit']").click(function(){
     if( !time_re.test($("#growth_record_start_at").val()) || $("#growth_record_start_at").val().length == 0 ) {
-      if( $("#start_at_container").children("span.help").length == 0 ) {
-        $("<span class='help'>时间格式不对或为空</span>").insertBefore($("#growth_record_start_at"))
+      if( $("#start_at_container").children("span.help-inline").length == 0 ) {
+        $("<span class='help-inline'>时间格式不对或为空</span>").insertAfter($("#growth_record_start_at"))
       }
       flag.push(true);
     } else {
-      if($("#start_at_container").children("span.help").length > 0) {
-        $("#start_at_container span.help").remove()
+      if($("#start_at_container").children("span.help-inline").length > 0) {
+        $("#start_at_container span.help-inline").remove()
       }
       flag.push(false);
     }
     if( !time_re.test($("#growth_record_end_at").val()) || $("#growth_record_end_at").val().length == 0 ) {
       if( $("#end_at_container").children("span.help").length == 0 ) {
-        $("<span class='help'>时间格式不对或为空</span>").insertBefore($("#growth_record_end_at"))
+        $("<span class='help'>时间格式不对或为空</span>").insertAfter($("#growth_record_end_at"))
       }
       flag.push(true);
     } else {
@@ -200,27 +200,16 @@ $(document).ready(function() {
     }
     if ( $("#growth_record_start_at").val().length > 0 && $("#growth_record_end_at").val().length > 0 && time_re.test($("#growth_record_start_at").val()) && time_re.test($("#growth_record_end_at").val()) ) {
       if( Date.parse($("#growth_record_end_at").val()) < Date.parse($("#growth_record_start_at").val()) ) {
-        if( $("#end_at_container").children("span.help").length == 0 ) {
-          $("<span class='help'>结束时间必须大于开始时间</span>").insertBefore($("#growth_record_end_at"))
+        if( $("#end_at_container").children("span.help-inline").length == 0 ) {
+          $("<span class='help-inline'>结束时间必须大于开始时间</span>").insertAfter($("#growth_record_end_at"))
         }
         flag.push(true);
       } else {
-        if($("#end_at_container").children("span.help").length > 0) {
-          $("#end_at_container span.help").remove()
+        if($("#end_at_container").children("span.help-inline").length > 0) {
+          $("#end_at_container span.help-inline").remove()
         }
         flag.push(false);
       }
-    }
-    if (topic_content.html().length < 5 || topic_content.isEmpty()) {
-      if ( $("#growth_record_content").next("span.help-inline").length == 0 ) {
-        $("<span class='help-inline'>长度不够(必须超过5个字符)").insertAfter("#growth_record_content")
-      }
-      flag.push(true)
-    } else {
-      if ( $("#growth_record_content").next("span.help-inline").length > 0 ) {
-        $("#growth_record_content").next("span.help-inline").remove()
-      }
-      flag.push(false)
     }
     for( i in flag ) {
       if(flag[i] == true) {
