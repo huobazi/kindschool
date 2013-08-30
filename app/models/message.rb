@@ -133,7 +133,7 @@ class Message < ActiveRecord::Base
           message_entries_data =  self.message_entries
         end
         message_entries_data.each do |entry|
-          if([1,2].include?(self.tp) && (self.allsms || entry.receiver.is_receive || ( self.send_me && entry.receiver.id == self.sender.id))) || self.tp == 3
+          if([1,2].include?(self.tp) && (self.allsms || entry.receiver.is_receive || ( self.send_me && entry.receiver_id == self.sender_id))) || self.tp == 3
             role = self.sender.role if self.sender && self.sender.role
             if self.approve_status == 0 && entry.sms_record.blank?
               entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
