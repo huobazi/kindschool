@@ -1,0 +1,47 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+<div class="message_title">
+    <a href="<%= weixin_path %>" title="返回" class="weixin_return">返回</a>个人集锦
+  </div>
+  <div class="message_filter">
+  </div>
+   <div class="message_list">
+    <% unless @sets.blank? %>
+      <ul class="data_list">
+        <% (@sets || []).each do |set| %>
+          <li>
+            <%if set.resource_type=="PhotoGallery"%>
+            <a href="<%= set.resource.try(:public_filename) %>" class="fancybox"  title="<%=set.created_at.try(:to_long_datetime)%>">
+              <div class="album_entry_img">
+                <img src="<%= set.resource.public_filename(:thumb) %>" width="226px" height="226px" alt="<%=set.created_at.try(:to_long_datetime)%>"/>
+              </div>
+            </a>
+            <%else%>
+                <h1><%=set.resource.try(:content)%></h1>
+            <%end%>
+            <%if @flag=="student"%>
+               <%=link_to "添加到成长记录" , new_weixin_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
+            <%else%>
+               <%=link_to "添加到成长记录" ,new_weixin_garden_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn btn-warning"%>
+            <%end%>
+              <%= link_to '删除', weixin_personal_set_path(set), :method=> :delete, :data=> { :confirm=> '你确定删除该信息吗' },:class=> "destroy" ,:class=>"personal_set_delete btn btn-danger" ,:style=>"float:right;"%>
+          </li>
+        <% end %>
+      </ul>
+      <div class="paginate_div">
+        <%= paginate  @sets, :window => 1%>
+      </div>
+      <%else%>
+       <p>您没有上传个人集锦</p>
+      <%end%>
+  </div>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
+<script type="text/javascript">
+  $(function(){
+    $(".fancybox").fancybox();
+  })
+</script>

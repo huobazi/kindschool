@@ -68,7 +68,7 @@
           </div>
         </div>
         <% if action_name == "new" %>
-          <%= f.input :reward, :as=> :hidden, :input_html=> {:value=> 1} %>
+          <%= f.input :reward, :as=> :hidden, :input_html=> {:value=> 4} %>
         <% else %>
           <%= f.input :reward, :as=> :hidden, :input_html=> {:value=> f.object.reward} %>
         <% end %>
