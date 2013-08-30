@@ -16,10 +16,11 @@
         <li><div class="message_content">没有新闻。</div></li>
       <% else %>
         <% @news.each do |record| %>
-          <li class="<%= record.id.blank? ? "" : "return_li"%>">
+          <li class="<%= record.id.blank? ? "" : "show"%>">
             <a href="<%= url_for(:action=>:show,:id=>record.id) %>" title="查看通知信息">
-              <div><label class="message_user">发布人:<%=record.creater.try(:name)%></label><label class="message_time"><%=record.created_at.try(:to_long_datetime)%></label></div>
-              <div class="message_content">标题:<%= record.title %></div>
+              <p class="title">标题:<%= record.title %></p>
+              <p class="info"><span>发布人:<%=record.creater.try(:name)%></span></p>
+              <p class="info"><span><%= record.created_at.try(:to_long_datetime) %></span></p>
             </a>
           </li>
         <% end %>
