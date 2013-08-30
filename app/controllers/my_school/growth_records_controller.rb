@@ -85,12 +85,8 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     @growth_record.kindergarten_id = @kind.id
     @growth_record.creater_id = current_user.id
     @growth_record.tp = 1
-    puts"111111#{params.inspect}1111111111111"
-
     unless params[:personal_set_id].blank?
-      puts"1111111111111111111"
        set = current_user.personal_sets.find_by_id(params[:personal_set_id])
-        puts "22222222222222222222"
        if  !set.blank? && set.resource
          if set.resource_type == "PhotoGallery"
            asset_img = AssetImg.new()
@@ -101,7 +97,6 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
          end
        end
       end
-      puts "33333333#{@growth_record.asset_imgs.inspect}33333333333333333333"
     unless params[:asset_imgs].blank?
       params[:asset_imgs].each do |k,v|
         @growth_record.asset_imgs << AssetImg.new(:uploaded_data=>v)

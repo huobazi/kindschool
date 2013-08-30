@@ -19,7 +19,7 @@ class MySchool::TeachingPlansController < MySchool::ManageController
      if @grades = @kind.grades
         if @squads = @grades.first.squads
         end
-    end
+     end
   end    
 end
 
