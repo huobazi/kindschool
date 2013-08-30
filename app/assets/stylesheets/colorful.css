@@ -2101,6 +2101,9 @@ span.help-inline {
     padding-right: 74px;
 }
 
+.topics .topic .infos .title a:hover {
+  text-decoration: underline;
+}
 .topics .topic .title {
     font-size: 14px;
     margin-top: 2px;
