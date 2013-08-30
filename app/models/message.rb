@@ -93,6 +93,16 @@ class Message < ActiveRecord::Base
       end
     end
   end
+  #获取幼儿园名字
+  def get_kindergarten_name
+    if self.kindergarten
+      return self.kindergarten.name
+    elsif self.kindergarten_id
+      if kindergarten = Kindergarten.find_by_id(self.kindergarten_id)
+        return kindergarten.name
+      end
+    end
+  end
   private
   #创建是加载
   def load_user_info
@@ -127,7 +137,7 @@ class Message < ActiveRecord::Base
             role = self.sender.role if self.sender && self.sender.role
             if self.approve_status == 0 && entry.sms_record.blank?
               entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
-                :sender_name=>self.sender_name,:content=>"#{self.content} #{role ? (role.name + '-') : ''}#{self.get_sender_name}",:receiver_id=>entry.receiver.id,
+                :sender_name=>self.sender_name,:content=>"#{self.content} #{self.get_kindergarten_name} #{role ? (role.name + '-') : ''}#{self.get_sender_name}",:receiver_id=>entry.receiver.id,
                 :receiver_name=>entry.receiver.name,:receiver_phone=>entry.receiver.phone,:kindergarten_id=>self.kindergarten_id)
             end
           end
