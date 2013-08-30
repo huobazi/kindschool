@@ -96,7 +96,7 @@ class Weixin::InterestActivitiesController < Weixin::ManageController
 
     if @activity.save
       flash[:success] = "创建兴趣讨论成功"
-      redirect_to weixin_activity_path(@activity)
+      redirect_to weixin_interest_activity_path(@activity)
     else
       flash[:error] = "提交兴趣讨论失败"
       render :new
@@ -129,7 +129,7 @@ class Weixin::InterestActivitiesController < Weixin::ManageController
 
     if @activity.update_attributes(params[:activity].except(:squad_id))
       flash[:success] = "修改兴趣讨论成功"
-      redirect_to weixin_activity_path(@activity)
+      redirect_to weixin_interest_activity_path(@activity)
     else
       flash[:error] = "修改兴趣讨论失败"
       render :edit

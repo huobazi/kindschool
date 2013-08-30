@@ -1,7 +1,7 @@
 <% f = form %>
 <div class="field" id="select_field">
   <% if action_name == "new" %>
-    <%= f.select :topic_category_id,options_for_select(@kind.topic_categories.collect {|p| [ p.name, p.id ] }), {:prompt=>"选择类别"}, :class => "select" %>
+    <%= f.select :topic_category_id, options_for_select(@kind.topic_categories.collect {|p| [ p.name, p.id ] }), {:prompt=>"选择类别"}, :class => "select", validate: false %>
   <% else %>
     <%= f.select :topic_category_id,options_for_select(@kind.topic_categories.collect {|p| [ p.name, p.id ] }), {:prompt=>"选择类别"}, :class => "select", :disabled => true %>
   <% end %>
@@ -9,7 +9,7 @@
 
 <div class="field" id="title_field">
 <label class="field_prompt" for="title">标题:</label>
-<%= f.text_field :title, validate: true, :class => "text-content" %>
+<%= f.text_field :title, validate: false, :class => "text-content" %>
 </div>
 
 <div class="field" id="content_field">
@@ -81,20 +81,24 @@
 
 <script type="text/javascript">
   $("#grade").change(function() {
-      $.get(
-        "/weixin/topics/grade_squad_partial",
-        {
+      $.ajax({
+        url: "/weixin/topics/grade_squad_partial",
+        data: {
           grade: $("#grade").val()
         },
-        function(result) {
+        beforeSend: function() {
+          $("#grade_squad_partial").html('<img style="margin-left: 10px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
+
+        },
+        success: function(result) {
           $("#grade_squad_partial").html(result);
         }
-      )
-
+      })
   })
   $("input[type='radio']").change(function() {
     if ( $(this).val() == "squad" ) {
       $("#select_squad").show()
+      $("#grade").trigger("change");
     } else {
       $("#select_squad").hide()
     }
@@ -113,13 +117,13 @@ $(":submit").click(function() {
     flag.push(false)
   }
   if($("#topic_title").val().length < 3) {
-    if($("#title_field").children("span.help").length == 0) {
-      $("<span class='help'>长度太短必须3个字符以上</span>").insertBefore($("#topic_title"))
+    if($("#title_field").children("span.help-inline").length == 0) {
+      $("<span class='help-inline'>长度太短必须3个字符以上</span>").insertBefore($("#topic_title"))
     }
     flag.push(true)
   } else {
-    if($("#title_field").children("span.help").length > 0) {
-      $("#title_field span.help").remove()
+    if($("#title_field").children("span.help-inline").length > 0) {
+      $("#title_field span.help-inline").remove()
     }
     flag.push(false)
   }
