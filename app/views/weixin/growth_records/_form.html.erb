@@ -143,7 +143,7 @@
     $("input[name='commit']").click(function(){
       if( !time_re.test($("#growth_record_start_at").val()) || $("#growth_record_start_at").val().length == 0 ) {
         if( $("#start_at_container").children("span.help-inline").length == 0 ) {
-          $("<span class='help-inline'>时间格式不对或为空</span>").insertAfter($("#growth_record_start_at"))
+          $("<span class='help-inline'>时间格式不对或为空</span>").insertBefore($("#growth_record_start_at"))
         }
         flag.push(true);
       } else {
@@ -154,7 +154,7 @@
       }
       if( !time_re.test($("#growth_record_end_at").val()) || $("#growth_record_end_at").val().length == 0 ) {
         if( $("#end_at_container").children("span.help-inline").length == 0 ) {
-          $("<span class='help-inline'>时间格式不对或为空</span>").insertAfter($("#growth_record_end_at"))
+          $("<span class='help-inline'>时间格式不对或为空</span>").insertBefore($("#growth_record_end_at"))
         }
         flag.push(true);
       } else {

@@ -67,7 +67,7 @@
     <% if action_name == "new" %>
       <%= f.text_field :start_at, validate: false, :required => true, :class => "text-content" %>
     <% else %>
-      <%= f.text_field :start_at, :required => true, :class => "text-content", :value => @growth_record.start_at.try(:to_short_datetime)  %>
+      <%= f.text_field :start_at, validate: false, :required => true, :class => "text-content", :value => @growth_record.start_at.try(:to_short_datetime)  %>
     <% end %>
   </div>
   <div id="end_at_container">
@@ -75,7 +75,7 @@
     <% if action_name == "new" %>
       <%= f.text_field :end_at, validate: false, :required => true, :class => "text-content" %>
     <% else %>
-      <%= f.text_field :end_at, :required => true, :class => "text-content", :value => @growth_record.end_at.try(:to_short_datetime) %>
+      <%= f.text_field :end_at, validate: false, :required => true, :class => "text-content", :value => @growth_record.end_at.try(:to_short_datetime) %>
     <% end %>
   </div>
 </div>
@@ -178,7 +178,7 @@ $(document).ready(function() {
   $("input[name='commit']").click(function(){
     if( !time_re.test($("#growth_record_start_at").val()) || $("#growth_record_start_at").val().length == 0 ) {
       if( $("#start_at_container").children("span.help-inline").length == 0 ) {
-        $("<span class='help-inline'>时间格式不对或为空</span>").insertAfter($("#growth_record_start_at"))
+        $("<span class='help-inline'>时间格式不对或为空</span>").insertBefore($("#growth_record_start_at"))
       }
       flag.push(true);
     } else {
@@ -188,13 +188,13 @@ $(document).ready(function() {
       flag.push(false);
     }
     if( !time_re.test($("#growth_record_end_at").val()) || $("#growth_record_end_at").val().length == 0 ) {
-      if( $("#end_at_container").children("span.help").length == 0 ) {
-        $("<span class='help'>时间格式不对或为空</span>").insertAfter($("#growth_record_end_at"))
+      if( $("#end_at_container").children("span.help-inline").length == 0 ) {
+        $("<span class='help-inline'>时间格式不对或为空</span>").insertBefore($("#growth_record_end_at"))
       }
       flag.push(true);
     } else {
-      if($("#end_at_container").children("span.help").length > 0) {
-        $("#end_at_container span.help").remove()
+      if($("#end_at_container").children("span.help-inline").length > 0) {
+        $("#end_at_container span.help-inline").remove()
       }
       flag.push(false);
     }
