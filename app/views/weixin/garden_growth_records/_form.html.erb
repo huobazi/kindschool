@@ -94,7 +94,7 @@
   <label class="field_prompt">评价星数:</label>
   <div id="reward"></div>
   <% if action_name == "new" %>
-    <%= f.input :reward, as: :hidden, input_html: {value: 1} %>
+    <%= f.input :reward, as: :hidden, input_html: {value: 4} %>
   <% else %>
     <%= f.input :reward, as: :hidden, input_html: {value: f.object.reward} %>
   <% end %>
@@ -220,7 +220,7 @@ $(document).ready(function() {
 })
 
 
-  var count = $("#growth_record_reward").val() || 0;
+  var count = $("#growth_record_reward").val() || 4;
   var options = {
     value: count,
     max: 5,
@@ -231,12 +231,6 @@ $(document).ready(function() {
   $('#reward').rater(options);
 
 })
-</script>
-
-<script type="text/javascript">
-  if ($("#squad_for_teacher").length > 0) {
-    
-  }
 </script>
 
 <script  type="text/javascript">
