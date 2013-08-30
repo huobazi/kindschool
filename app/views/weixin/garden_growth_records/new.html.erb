@@ -8,7 +8,7 @@
   <div class="message_list">
     <ul class="data_list">
       <li class="topic">
-        <%= simple_form_for(@growth_record, :url => weixin_garden_growth_records_path, :html => {:class => "form", :multipart=>true}) do |f| %>
+        <%= simple_form_for(@growth_record, :url => weixin_garden_growth_records_path(:personal_set_id=>@set.try(:id)), :html => {:class => "form", :multipart=>true}) do |f| %>
           <%= render :partial => "form", :object => f %>
         <% end %>
       </li>
