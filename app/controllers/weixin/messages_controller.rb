@@ -65,6 +65,9 @@ class Weixin::MessagesController < Weixin::ManageController
         @message.message_entries << MessageEntry.new(:receiver_id=>user.id,:receiver_name=>user.name,:phone=>user.phone,:sms=>(user.is_receive ? 1 : 0))
       end
     end
+    if @message.send_me && !sender_ids.include?(current_user.id)
+      @message.message_entries << MessageEntry.new(:receiver_id=>current_user.id,:receiver_name=>current_user.name,:phone=>current_user.phone,:sms=>(current_user.is_receive ? 1 : 0))
+    end
     if params[:send]
       params[:message].merge(:send_date => Time.now.utc)
     end
@@ -175,6 +178,9 @@ class Weixin::MessagesController < Weixin::ManageController
       if user = User.find_by_id_and_kindergarten_id(user_id,@kind.id)
         @message.message_entries << MessageEntry.new(:receiver_id=>user.id,:receiver_name=>user.name,:phone=>user.phone,:sms=>(user.is_receive ? 1 : 0))
       end
+    end
+    if @message.send_me && !sender_ids.include?(current_user.id)
+      @message.message_entries << MessageEntry.new(:receiver_id=>current_user.id,:receiver_name=>current_user.name,:phone=>current_user.phone,:sms=>(current_user.is_receive ? 1 : 0))
     end
     if params[:draft]
       @message.status = 0
