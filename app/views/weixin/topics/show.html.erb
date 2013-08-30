@@ -16,10 +16,13 @@
         <div class="content"><%= simple_format @topic.content %></div>
       </li>
 
+    </ul>
+
+    <div class="reply_box">
       <% unless @replies.blank? %>
-        <li id="replies_count" class="replies_count">
-          <p>共收到<%= @topic.topic_entries.any? ? @topic.topic_entries.count : 0 %>条回复</p>
-        </li>
+        <p id="replies_count" class="replies_count">
+          <i>共收到<%= @topic.topic_entries.any? ? @topic.topic_entries.count : 0 %>条回复</i>
+        </p>
         <ul class="topic_replies">
           <% @replies.each do |reply| %>
             <li class="show" id="topic_entry_<%= reply.id %>">
@@ -33,10 +36,10 @@
         暂无回复
       <% end %>
 
-      <li class="reply">
+      <div class="reply">
         <%= simple_form_for(@topic_entry, :validate => true, :url => weixin_topic_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
           <div class="field">
-            <label class="field_prompt">回复</label>
+            <p>回复</p>
             <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :allowFlashUpload => false, :simple_mode => true %>
             <br />
             <%= f.button :submit, :class => "btn" %>
@@ -44,8 +47,9 @@
           <%= f.input :topic_id, :as => :hidden %>
           <%= f.input :creater_id, :as => :hidden %>
         <% end %>
-      </li>
-    </ul>
+      </div>
+
+    </div>
 
 
   </div>

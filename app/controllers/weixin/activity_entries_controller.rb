@@ -8,7 +8,11 @@ class Weixin::ActivityEntriesController < Weixin::ManageController
 
     if @activity_entry.save
       flash[:success] = "添加回复成功"
-      redirect_to weixin_activity_path(@activity_entry.activity_id, :anchor => "activity_entry_#{@activity_entry.id}", :page => @activity_entry.activity.last_page)
+      if params[:flag].presence == "true"
+        redirect_to weixin_activity_path(@activity_entry.activity_id, :anchor => "activity_entry_#{@activity_entry.id}", :page => @activity_entry.activity.last_page)
+      else
+        redirect_to weixin_interest_activity_path(@activity_entry.activity_id, :anchor => "activity_entry_#{@activity_entry.id}", :page => @activity_entry.activity.last_page)
+      end
     else
       flash[:error] = "操作失败"
       redirect_to :back
