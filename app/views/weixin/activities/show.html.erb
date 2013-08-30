@@ -29,7 +29,10 @@
           <%= simple_format @activity.content %>
         </div>
       </li>
-      <ul class="nav nav-tabs">
+    </ul>
+
+    <div class="reply_box">
+      <ul class="nav nav-tabs" style="font-size: 13px; margin-top: 15px;">
         <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/weixin/activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
         <li class="<%= params[:activity_entry_tp].present? && 0 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
           <%= link_to "主信息", weixin_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
@@ -38,11 +41,11 @@
           <%= link_to "交互信息", weixin_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
         </li>
       </ul>
-      <div id="topic_entries">
+      <div id="topic_entries" style="margin-top: 20px;">
         <% unless @activity_entries.blank? %>
-          <li id="replies_count" class="replies_count">
-            <p>共收到<%= @activity_entries.any? ? @activity_entries.count : 0 %>条回复</p>
-          </li>
+          <p id="replies_count" class="replies_count">
+            <i>共收到<%= @activity_entries.any? ? @activity_entries.count : 0 %>条回复</i>
+          </p>
           <ul class="topic_replies">
             <% @activity_entries.each do |reply| %>
               <li class="show" id="activity_entry_<%= reply.id %>">
@@ -55,24 +58,27 @@
           </ul>
           <%= paginate @activity_entries %>
         <% else %>
-          暂无回复
+          <p>暂无回复</p>
         <% end %>
       </div>
-      <li class="reply">
-        <%= simple_form_for(@activity_entry, :validate => true, :url => weixin_activity_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
-          <div class="field">
-            <label class="field_prompt">回复</label>
-            <%= f.kindeditor :note, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :allowFlashUpload => false, :simple_mode => true %>
-            <br />
-            <%= f.button :submit, :class => "btn" %>
-          </div>
-          <%= f.input :creater_id, :as => :hidden %>
-          <%= f.input :activity_id, :as => :hidden %>
-          <%= f.input :tp, :as => :hidden %>
-        <% end %>
-      </li>
-    </ul>
-    <br/>
+      <ul>
+        <li class="reply">
+          <%= simple_form_for(@activity_entry, :validate => true, :url => weixin_activity_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
+            <div class="field">
+              <p>回复</p>
+              <%= f.kindeditor :note, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :allowFlashUpload => false, :simple_mode => true %>
+              <br />
+              <%= f.button :submit, :class => "btn" %>
+            </div>
+            <%= f.input :creater_id, :as => :hidden %>
+            <%= f.input :activity_id, :as => :hidden %>
+            <%= f.input :tp, :as => :hidden %>
+          <% end %>
+        </li>
+      </ul>
+      <br/>
+    </div>
+    <!-- end reply_box -->
   </div>
 </div>
 <%= render :partial => "/modules/colorful/weixin_menu_navbar"%>

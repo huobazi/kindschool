@@ -779,17 +779,6 @@ ul, li {
     background: #A4C400;
     position: relative;
 }
-.message_div .message_list .data_list ul.topic_replies {
-    padding: 10px 12px 12px 12px;
-    background-color: #DBEEFD;
-}
-.message_div .message_list .data_list ul.topic_replies li {
-    background-color: white;
-    border-radius: 5px 5px 5px 5px;
-    border: 1px #008fdc solid;
-    padding: 20px;
-    width: 80%;
-}
 
 .field_prompt {
     color: #008fdc;
@@ -798,6 +787,7 @@ ul, li {
 
 .field {
     margin-bottom: 20px;
+    padding-top: 10px;
 }
 
 .form {
@@ -876,6 +866,11 @@ span.help-inline {
     padding: 10px;
     margin-top: 20px;
     cursor: pointer;
+    border: 1px solid #CBCBCB;
+    border-radius: 5px 5px 5px 5px;
+}
+.show:hover {
+    border: 1px solid #80C2DB;
 }
 .relative {
     position: relative;
@@ -883,8 +878,9 @@ span.help-inline {
 .absolute {
     position: absolute;
 }
-li.replies_count {
+p.replies_count {
     color: #000;
+    margin-top: 10px;
 }
 .reply_count {
     right: 10px;
@@ -902,6 +898,10 @@ li.replies_count {
     word-wrap: break-word;
 }
 
+.reply_box {
+  margin: 0 10px;
+}
+
 .show .info .author {
     color: #008fdc;
 }
@@ -917,7 +917,9 @@ li.replies_count {
 }
 
 .show .content {
-    padding-top: 15px;
+    /*
+     * padding-top: 15px;
+     */
     text-indent: 20px;
     line-height: 20px;
     word-break:break-all;
