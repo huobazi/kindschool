@@ -910,6 +910,12 @@ p.replies_count {
   margin: 0 10px;
 }
 
+.reply_box .no_reply {
+  border: 1px dashed #008fdc;
+  padding: 10px;
+  margin-top: 15px;
+}
+
 .show .info .author {
     color: #008fdc;
 }

@@ -11,7 +11,16 @@
     <ul class="data_list">
       <li class="show">
         <p class="title"><span class="name"><%= @growth_record.student_info_label %></span></p>
-        <p class="info">班级:<%= @growth_record.squad_name %></p>
+        <p class="info">
+        <table class="attributes">
+            <tr>
+              <th>班级</th>
+              <td style="text-align: center;">
+                <%= @growth_record.try(:squad_name) %>
+              </td>
+            </tr>
+        </table>
+        </p>
         <p class="info"><span><%= @growth_record.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span><%= @growth_record.end_at.try(:to_short_datetime) %></span></p>
         <p class="info">由<span class="author"><%= @growth_record.creater.try(:name) %></span>创建于&nbsp;<%= @growth_record.created_at.try(:to_long_datetime) %></p>
         <div class="content">
