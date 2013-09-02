@@ -2134,10 +2134,7 @@ span.help-inline {
     color: #2c64d7;
     text-decoration: none;
     font-size: 15px;
-}
-
-.topics .topic .title a:link .pink-color {
-  color: @pink;
+    letter-spacing: 1px;
 }
 
 .topics .topic .info {
