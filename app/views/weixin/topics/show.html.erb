@@ -11,7 +11,18 @@
     <ul class="data_list">
       <li class="show">
         <p class="title"><span class="name"><%= @topic.title %></span></p>
-        <p class="info">班级:<%= @topic.squad.try(:name) %></p>
+        <p class="info">
+          <% if @topic.squad.present? %>
+            <table class="attributes">
+              <tr>
+                <th>班级</th>
+                <td style="text-align: center;"><%= @topic.squad.try(:name) %></td>
+              </tr>
+            </table>
+          <% else %>
+            <span class="label">全园可见</span>
+          <% end %>
+        </p>
         <p class="info"><span class="author"><%= @topic.creater.try(:name) %></span>&nbsp;发表于&nbsp;<span><%= @topic.created_at.to_long_datetime %></span></p>
         <div class="content"><%= simple_format @topic.content %></div>
       </li>
@@ -33,7 +44,7 @@
         </ul>
         <%= paginate @replies %>
       <% else %>
-        暂无回复
+        <p class="no_reply">暂无回复</p>
       <% end %>
 
       <div class="reply">
