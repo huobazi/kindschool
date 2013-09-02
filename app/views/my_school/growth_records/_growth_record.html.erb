@@ -35,7 +35,7 @@
     <div class="infos">
       <div class="title">
         <% if controller_name == "growth_records" %>
-          <%= link_to "#{growth_record.student_info_label}的成长记录", my_school_growth_record_path(growth_record) %>
+          <%= link_to raw("<span style='font-size: 18px;'>#{growth_record.student_info_label}</span><span style='color: #333;'>的成长记录</span>"), my_school_growth_record_path(growth_record) %>
         <% else %>
           <%= link_to "#{growth_record.student_info_label}的成长记录", my_school_garden_growth_record_path(growth_record) %>
         <% end %>
