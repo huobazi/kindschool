@@ -198,15 +198,17 @@
         <!-- end reply -->
 
 
-        <% if (!@activity_entries.blank? and @activity_entries.last_page?) || @activity_entries.blank? %>
-          <%= simple_form_for(@activity_entry, :validate => true, :url => my_school_activity_entries_path, :html => {:class => "form-horizontal"}, remote: true) do |f| %>
-            <% if controller_name == "activities" %>
-              <%= render :partial => "activity_form", :object => f %>
-            <% else %>
-              <%= render :partial => "my_school/activities/activity_form", :object => f %>
+        <div class="reply">
+          <% if (!@activity_entries.blank? and @activity_entries.last_page?) || @activity_entries.blank? %>
+            <%= simple_form_for(@activity_entry, :validate => true, :url => my_school_activity_entries_path, :html => {:class => "form-horizontal"}, remote: true) do |f| %>
+              <% if controller_name == "activities" %>
+                <%= render :partial => "activity_form", :object => f %>
+              <% else %>
+                <%= render :partial => "my_school/activities/activity_form", :object => f %>
+              <% end %>
             <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
