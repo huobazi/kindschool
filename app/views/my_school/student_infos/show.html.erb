@@ -148,10 +148,18 @@
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label" >绑定微信</label>
+              <label class="control-label" >绑定幼儿园微信</label>
               <div class="controls">
                 <label class="show_label">
-                  <%= @student_info.user.weixin_code.blank? ? "已绑定" : "未绑定" %>
+                  <%= @student_info.try(:user).try(:weixin_code).blank? ? "未绑定" : "已绑定" %>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" >绑定微壹微信</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.try(:user).try(:weiyi_code).blank? ? "未绑定" : "已绑定" %>
                 </label>
               </div>
             </div>
