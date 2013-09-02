@@ -49,17 +49,17 @@
         <% end %>
       </div>
       <div class="info">
-        <em><%= activity.creater.try(:name) %></em>
-        <em>创建于</em><abbr><%= activity.created_at.try(:to_long_datetime) %></abbr>
-      </div>
-      <div class="info">
-        <span class="label">
+        <span class="label label-info">
           <% if activity.squad.present? %>
             <%= activity.squad.try(:name) %>
           <% else %>
             全园可见
           <% end %>
         </span>
+      </div>
+      <div class="info">
+        <em><%= activity.creater.try(:name) %></em>
+        <em>创建于</em><abbr><%= activity.created_at.try(:to_long_datetime) %></abbr>
       </div>
     </div>
   </div>
