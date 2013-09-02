@@ -12,7 +12,18 @@
     <ul class="data_list">
       <li class="show">
         <p class="title"><span class="name"><%= @activity.title %></span></p>
-        <p class="info">班级:<%= @activity.squad.try(:name) %></p>
+        <p class="info">
+          <% if @activity.squad.present? %>
+            <table class="attributes">
+                <tr>
+                  <th>班级</th>
+                  <td style="text-align: center;"><%= @activity.squad.try(:name) %></td>
+                </tr>
+              </table>
+          <% else %>
+            <span class="label">全园可见</span>
+          <% end %>
+        </p>
         <p class="info"><span class="time"><%= @activity.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span><%= @activity.end_at.try(:to_short_datetime) %></span></p>
         <p class="info">由&nbsp;<span class="author"><%= @activity.creater.try(:name) %></span>&nbsp;创建于&nbsp;<span><%= @activity.created_at.try(:to_long_datetime) %></span></p>
         <div class="ctivity_content_logo">
@@ -58,7 +69,7 @@
             </ul>
             <%= paginate @activity_entries %>
           <% else %>
-            <p>暂无回复</p>
+            <p class="no_reply">暂无回复</p>
           <% end %>
         </div>
         <ul>
