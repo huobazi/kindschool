@@ -105,11 +105,11 @@ class Kindergarten < ActiveRecord::Base
     #创建所需要的审核模块
     approve_modules = YAML.load_file("#{Rails.root}/db/basic_data/approve_modules.yml")
     approve_modules.each do |k,approve_module|
-     if self.approve_modules.blank? && self.approve_modules.find_by_number(approve_module[:number]).blank?
-       @approve_module = ApproveModule.new(approve_module)
-       @approve_module.kindergarten =self
-       @approve_module.save
-     end
+      if self.approve_modules.blank? && self.approve_modules.find_by_number(approve_module[:number]).blank?
+        @approve_module = ApproveModule.new(approve_module)
+        @approve_module.kindergarten =self
+        @approve_module.save
+      end
     end
     content_entries = YAML.load_file("#{Rails.root}/db/basic_data/content_entries.yml")
     content_entries.each do |k,content_entry|
@@ -311,5 +311,16 @@ class Kindergarten < ActiveRecord::Base
   def get_allsms_count
     time = Time.now.strftime("%Y-%m-01")
     self.messages.with_deleted.where("status=1 AND approve_status=0 AND allsms=1 AND created_at > ?",time).count
+  end
+
+
+  #用户信息
+  def get_users_info
+    user_all = self.users.count()
+    woman = self.users.where("gender='M'").count()
+    bind_ok = self.users.where("weiyi_code IS NOT NULL AND weixin_code IS NOT NULL").count()
+    bind_null = self.users.where("weiyi_code IS NULL AND weixin_code IS NULL").count()
+    bind_weiyi_no = self.users.where("weiyi_code IS NULL AND weixin_code IS NOT NULL").count()
+    return {:user_all=>user_all,:woman=>woman,:man=>(user_all - woman),:bind_ok=>bind_ok,:bind_null=>bind_null,:bind_weiyi_no=>bind_weiyi_no,:bind_weixin_no=>(user_all - bind_ok - bind_null - bind_weiyi_no)}
   end
 end
