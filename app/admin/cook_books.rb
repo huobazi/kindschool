@@ -45,7 +45,9 @@ ActiveAdmin.register CookBook do
       row :kindergarten
       row :start_at
       row :end_at
-      row :content
+      row :content do |t|
+        raw t.content
+      end
       row :range_tp do |t|
         CookBook::RANGE_TP_DATA["#{t.range_tp}"]
       end

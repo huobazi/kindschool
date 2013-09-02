@@ -9,7 +9,7 @@
           {:name=> "女（#{@user_info[:woman]}人）", :y=> @user_info[:woman], :color=> 'red'},
           {:name=> "男（#{@user_info[:man]}人）", :y=> @user_info[:man], :color=> 'green'}
         ],
-        :center=> [200, 80], :size=> 100, :showInLegend=> false)
+        :center=> [150, 80], :size=> 100, :showInLegend=> false)
       f.series(:type=> 'pie',:name=> '绑定微信用户',
         :data=> [
           {:name=> "完全绑定（#{@user_info[:bind_ok]}人）", :y=> @user_info[:bind_ok], :color=> 'red'},
@@ -17,7 +17,7 @@
           {:name=> "只绑定平台（#{@user_info[:bind_weixin_no]}人）", :y=> @user_info[:bind_weixin_no],:color=> '#8bbc21'},
           {:name=> "未绑定（#{@user_info[:bind_null]}人）", :y=> @user_info[:bind_null],:color=> 'blue'}
         ],
-        :center=> [400, 80], :size=> 100, :showInLegend=> false)
+        :center=> [450, 80], :size=> 100, :showInLegend=> false)
     end
   %>
     <%=high_chart("weixin_users", @chart)%>
