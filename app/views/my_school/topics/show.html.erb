@@ -63,10 +63,14 @@
             </p>
             <table class="attributes">
               <tr>
-                <th>班级</th>
-                <td style="width: 30%; text-align: center;"><%= @topic.squad.try(:name) %></td>
                 <th>分类</th>
                 <td style="text-align: center;"><%= @topic.topic_category.name %></td>
+                <% if @topic.squad.present? %>
+                  <th>班级</th>
+                  <td style="width: 30%; text-align: center;"><%= @topic.squad.try(:name) %></td>
+                <% else %>
+                  <th colspan="2" style="text-align: center;">全园可见</th>
+                <% end %>
               </tr>
             </table>
             <p class="info">

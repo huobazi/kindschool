@@ -753,6 +753,7 @@ ul, li {
     color: white;
     height: 50px;
     width: 60px;
+    vertical-align: top;
 }
 .paginate_div{
     text-align: center;

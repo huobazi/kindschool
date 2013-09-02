@@ -15,7 +15,7 @@
     });
   });
 </script>
-<% if action_name == "new" %>
+<% unless current_user.get_users_ranges[:tp] == :student %>
   <div class="field controls">
     <%= radio_button_tag 'visible', 'all', :checked => true %><label style="display:inline;" class="field_prompt" for="visible_all">全园可见</label>
     <%= radio_button_tag 'visible', 'squad' %><label style="display:inline;" id="visible_squad" class="field_prompt" for="visible_squad">选择班级</label>

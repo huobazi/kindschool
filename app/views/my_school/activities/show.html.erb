@@ -131,7 +131,16 @@
           <div class="content_up">
             <p class="title"><%= @activity.title %></p>
             <%= render :partial=>"/my_school/approves/load_approves_log" ,:locals=>{:record_id=>@activity.approve_record.try(:id),:approve_status=>@activity.approve_status} %>
-            <p><span class="squad_name">班级:<%= @activity.squad.try(:name) %></span></p>
+            <% if @activity.squad.present? %>
+              <table class="attributes">
+                <tr>
+                  <th>班级</th>
+                  <td style="width: 70%; text-align: center;"><%= @activity.squad.try(:name) %></td>
+                </tr>
+              </table>
+            <% else %>
+              <p><span class="label">全园可见</span></p>
+            <% end %>
             <p class="info"><span class="time"><%= @activity.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @activity.end_at.try(:to_short_datetime) %></span>&nbsp;由&nbsp;
             <span class="normal_link">
               <%= @activity.creater.try(:name) %>
