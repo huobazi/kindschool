@@ -160,40 +160,42 @@
           </div>
         </div>
 
-        <hr />
 
-        <div id="topic_entries">
-          <div class="tabs_style" style="clear: left;">
-            <ul class="nav nav-tabs">
-              <% if controller_name == "activities" %>
-                <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/my_school/activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
-                <li class="<%= params[:activity_entry_tp].present? && 0 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-                  <%= link_to "活动主信息", my_school_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
-                </li>
-                <li class="<%= params[:activity_entry_tp].present? && 1 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-                  <%= link_to "交互信息", my_school_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
-                </li>
-              <% else %>
-                <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/my_school/interest_activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
-                <li class="<%= params[:activity_entry_tp].present? && 0 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-                  <%= link_to "活动主信息", my_school_interest_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
-                </li>
-                <li class="<%= params[:activity_entry_tp].present? && 1 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-                  <%= link_to "交互信息", my_school_interest_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-          <% unless @activity_entries.blank? %>
-            <div class="total">
-              <b>共收到<span id="total"><%= @activity_entries.total_count %></span>条回复</b>
+        <div class="reply">
+          <div id="topic_entries">
+            <div class="tabs_style" style="clear: left;">
+              <ul class="nav nav-tabs">
+                <% if controller_name == "activities" %>
+                  <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/my_school/activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
+                  <li class="<%= params[:activity_entry_tp].present? && 0 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
+                    <%= link_to "活动主信息", my_school_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
+                  </li>
+                  <li class="<%= params[:activity_entry_tp].present? && 1 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
+                    <%= link_to "交互信息", my_school_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
+                  </li>
+                <% else %>
+                  <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/my_school/interest_activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
+                  <li class="<%= params[:activity_entry_tp].present? && 0 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
+                    <%= link_to "活动主信息", my_school_interest_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
+                  </li>
+                  <li class="<%= params[:activity_entry_tp].present? && 1 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
+                    <%= link_to "交互信息", my_school_interest_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
+                  </li>
+                <% end %>
+              </ul>
             </div>
-            <%= render partial: "my_school/activity_entries/activity_entry", collection: @activity_entries %>
-            <%= paginate @activity_entries, params: {anchor: "topic_entries"} %>
-          <% else %>
-            暂无回复
-          <% end %>
+            <% unless @activity_entries.blank? %>
+              <div class="total">
+                <b>共收到<span id="total"><%= @activity_entries.total_count %></span>条回复</b>
+              </div>
+              <%= render partial: "my_school/activity_entries/activity_entry", collection: @activity_entries %>
+              <%= paginate @activity_entries, params: {anchor: "topic_entries"} %>
+            <% else %>
+              <p class="no_reply">暂无回复</p>
+            <% end %>
+          </div>
         </div>
+        <!-- end reply -->
 
 
         <% if (!@activity_entries.blank? and @activity_entries.last_page?) || @activity_entries.blank? %>

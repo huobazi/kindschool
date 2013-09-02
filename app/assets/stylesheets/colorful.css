@@ -1954,7 +1954,7 @@ span.help-inline {
     vertical-align: middle;
 }
 .show {
-    padding: 30px;
+    padding: 15px;
 }
 .show .title {
     font-size: 18px;
@@ -2011,6 +2011,15 @@ span.help-inline {
     padding-left: 0
 }
 
+.no_reply {
+    text-align: center;
+    border: 1px dashed #008fdc;
+    padding: 10px;
+    margin-top: 15px;
+}
+.reply {
+    padding: 15px;
+}
 .show_entry {
     margin-bottom: 20px;
     float: left;
