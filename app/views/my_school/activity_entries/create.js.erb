@@ -1,4 +1,7 @@
 (function() {
+  if ( $(".no_reply").length > 0 ) {
+    $(".no_reply").remove();
+  }
   if( $("#topic_entries div").length > 0 ) {
     if ($("nav.pagination").length > 0) {
       $('<%= escape_javascript(render "activity_entry", :activity_entry => @activity_entry, :activity_entry_counter => @activity.activity_entries.count - 1) %>').hide().insertBefore($("#topic_entries").children().last()).fadeIn('fast');
