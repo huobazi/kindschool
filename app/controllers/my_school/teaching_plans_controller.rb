@@ -102,6 +102,12 @@ end
    end
 
    def destroy
-     @teaching_plan = @kind.teaching_plans.find(:id=>params[:id]) 
+     @teaching_plan = @kind.teaching_plans.find(params[:id])
+      @teaching_plan.destroy
+       flash[:notice] = '删除成功.'
+       respond_to do |format|
+         format.html { redirect_to my_school_teaching_plans_path }
+         format.json { head :no_content }
+       end 
    end
 end
