@@ -16,6 +16,7 @@ class GrowthRecord < ActiveRecord::Base
   validates :reward, :numericality=> true
 
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
+  has_many :comments, :as => :resource
   has_many :asset_imgs, :class_name => "AssetImg", :as => :resource, :dependent => :destroy
 
   just_define_datetime_picker :start_at, :add_to_attr_accessible => true

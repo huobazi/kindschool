@@ -18,9 +18,7 @@
       <% if choose_operate_show("my_school/topics/destroy") %>
         <a href="<%= my_school_topic_path(topic) %>" data-confirm="您确定删除该贴子吗" data-method="delete" title="删除<%= topic.title %>" alt="删除<%= topic.title %>"><i class="icon-remove-sign"></i></a>
       <% end %>
-      <% if topic.topic_entries.any? %>
-        <%= link_to topic.topic_entries.count, my_school_topic_path(topic, anchor: "topic_entries"), class: "count", style: "margin: 0" %>
-      <% end %>
+      <%= link_to topic.topic_entries.count, my_school_topic_path(topic, anchor: "topic_entries"), class: "count" %>
     </div>
     <div class="infos">
       <div class="title">
