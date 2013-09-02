@@ -753,6 +753,7 @@ ul, li {
     color: white;
     height: 50px;
     width: 60px;
+    vertical-align: top;
 }
 .paginate_div{
     text-align: center;
@@ -801,10 +802,13 @@ ul, li {
     height: 50px;
     padding-top: 10px;
     font-size: 22px;
-    width: 70%;
+    width: 90%;
 }
-#topic_search .select {
-    width: 70%;
+.topic_search {
+  margin-bottom: 0;
+}
+.topic_search .select {
+    width: 90%;
     margin-top: 20px;
 }
 .form .field .text-content {
@@ -904,6 +908,12 @@ p.replies_count {
 
 .reply_box {
   margin: 0 10px;
+}
+
+.reply_box .no_reply {
+  border: 1px dashed #008fdc;
+  padding: 10px;
+  margin-top: 15px;
 }
 
 .show .info .author {

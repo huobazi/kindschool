@@ -254,7 +254,7 @@ class MySchool::UsersController < MySchool::ManageController
           else
             web_address = @kind.aliases_url
           end
-          content = "您的登录名:#{user.login},密码:#{password},登录地址:#{web_address}"
+          content = "您的登录名：#{user.login},密码：#{password},登录地址：#{web_address}"
           user.send_system_message!("系统消息","#{title} #{content}",3)
           flash[:notice]="短信发送成功"
         end

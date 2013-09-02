@@ -1543,7 +1543,7 @@ teaching_plan_destory:
   sequence: 0
   note: "删除教学计划"
   controller: "my_school/teaching_plans"
-  action: "destory"
+  action: "destroy"
   protocol: ""
   <<: *DEFAULTS
 

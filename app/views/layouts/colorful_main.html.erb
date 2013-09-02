@@ -103,7 +103,9 @@
         <%= yield %>
       </div>
       <div id="dialog_users_guide"  title="用户登录指南">
+        <%if @kind%>
         <%= render :partial => "/modules/colorful/users_guide" %>
+        <%end%>
       </div>
       <%= render :partial => "/modules/colorful/foot" %>
     </div>

@@ -34,12 +34,10 @@
           <a href="<%= my_school_interest_activity_path(activity) %>" data-method="delete" data-confirm="您确定要删除该活动吗" title="删除<%= activity.title %>" alt="删除<%= activity.title %>"><i class="icon-remove-sign"></i></a>
         <% end %>
       <% end %>
-      <% if activity.activity_entries.any? %>
-        <% if controller_name == "activities" %>
-          <%= link_to activity.activity_entries.count, my_school_activity_path(activity, anchor: "activity_entry_1"), class: "count", style: "margin: 0;" %>
-        <% else %>
-          <%= link_to activity.activity_entries.count, my_school_interest_activity_path(activity, anchor: "activity_entry_1"), class: "count", style: "margin: 0;" %>
-        <% end %>
+      <% if controller_name == "activities" %>
+        <%= link_to activity.activity_entries.count, my_school_activity_path(activity, anchor: "activity_entry_1"), class: "count" %>
+      <% else %>
+        <%= link_to activity.activity_entries.count, my_school_interest_activity_path(activity, anchor: "activity_entry_1"), class: "count" %>
       <% end %>
     </div>
     <div class="infos">
@@ -49,6 +47,15 @@
         <% else %>
           <%= link_to activity.title, my_school_interest_activity_path(activity) %>
         <% end %>
+      </div>
+      <div class="info">
+        <span class="label label-info">
+          <% if activity.squad.present? %>
+            <%= activity.squad.try(:name) %>
+          <% else %>
+            全园可见
+          <% end %>
+        </span>
       </div>
       <div class="info">
         <em><%= activity.creater.try(:name) %></em>

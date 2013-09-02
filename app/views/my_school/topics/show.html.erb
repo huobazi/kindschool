@@ -63,10 +63,14 @@
             </p>
             <table class="attributes">
               <tr>
-                <th>班级</th>
-                <td style="width: 30%; text-align: center;"><%= @topic.squad.try(:name) %></td>
                 <th>分类</th>
                 <td style="text-align: center;"><%= @topic.topic_category.name %></td>
+                <% if @topic.squad.present? %>
+                  <th>班级</th>
+                  <td style="width: 30%; text-align: center;"><%= @topic.squad.try(:name) %></td>
+                <% else %>
+                  <th colspan="2" style="text-align: center;">全园可见</th>
+                <% end %>
               </tr>
             </table>
             <p class="info">
@@ -87,21 +91,23 @@
           <% end %>
         </div>
 
-
-        <div id="topic_entries">
-          <% unless @topic_entries.blank? %>
-            <div class="total"><b>共收到<span id="total"><%= @topic_entries.total_count %></span>条回复</b></div>
-            <%= render :partial => "my_school/topic_entries/topic_entry", :collection => @topic_entries %>
-            <%= paginate @topic_entries, params: {anchor: "topic_entries"} %>
-          <% else %>
-            暂无回复
+        <div class="reply">
+          <div id="topic_entries">
+            <% unless @topic_entries.blank? %>
+              <div class="total"><b>共收到<span id="total"><%= @topic_entries.total_count %></span>条回复</b></div>
+              <%= render :partial => "my_school/topic_entries/topic_entry", :collection => @topic_entries %>
+              <%= paginate @topic_entries, params: {anchor: "topic_entries"} %>
+            <% else %>
+              <p class="no_reply">暂无回复</p>
+            <% end %>
+          </div>
+          <% if (!@topic_entries.blank? and @topic_entries.last_page?) || @topic_entries.blank? %>
+            <%= simple_form_for(@topic_entry, :validate => true, :url => my_school_topic_entries_path, :html => {:class => "form-horizontal"}, remote: true) do |f| %>
+              <%= render :partial => "topic_form", :object => f %>
+            <% end %>
           <% end %>
         </div>
-        <% if (!@topic_entries.blank? and @topic_entries.last_page?) || @topic_entries.blank? %>
-          <%= simple_form_for(@topic_entry, :validate => true, :url => my_school_topic_entries_path, :html => {:class => "form-horizontal"}, remote: true) do |f| %>
-            <%= render :partial => "topic_form", :object => f %>
-          <% end %>
-        <% end %>
+
       </div>
     </div>
   </div>

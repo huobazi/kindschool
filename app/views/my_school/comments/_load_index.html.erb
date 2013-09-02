@@ -30,11 +30,15 @@
             <p class="info">
               <span><%= level %>楼&nbsp;</span>
               <span class="author">
-                <%= comment.user.try(:name) %>
-                <% unless current_user.get_users_ranges[:tp] == :student %>
-                  <% if current_user.role.present? %>
-                    (<%= current_user.role.try(:name) %>)
+                <% if comment.user.present? %>
+                  <%= comment.user.name %>
+                  <% unless comment.user.get_users_ranges[:tp] == :student %>
+                    <% if comment.user.role.present? %>
+                      (<%= comment.user.role.try(:name) %>)
+                    <% end %>
                   <% end %>
+                <% else %>
+                  该用户不存在或已删除
                 <% end %>
               </span>
               &nbsp;回复于&nbsp;

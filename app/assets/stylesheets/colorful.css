@@ -1316,7 +1316,7 @@ table.attributes td {
 }
 
 #topic_category_tabs {
-    padding-top: 20px;
+    padding-top: 45px;
     padding-left: 50px;
 }
 ul.nav-tabs li{
@@ -1954,7 +1954,7 @@ span.help-inline {
     vertical-align: middle;
 }
 .show {
-    padding: 30px;
+    padding: 15px;
 }
 .show .title {
     font-size: 18px;
@@ -2011,6 +2011,15 @@ span.help-inline {
     padding-left: 0
 }
 
+.no_reply {
+    text-align: center;
+    border: 1px dashed #008fdc;
+    padding: 10px;
+    margin-top: 15px;
+}
+.reply {
+    padding: 15px;
+}
 .show_entry {
     margin-bottom: 20px;
     float: left;
@@ -2101,6 +2110,9 @@ span.help-inline {
     padding-right: 74px;
 }
 
+.topics .topic .infos .title a:hover {
+  text-decoration: underline;
+}
 .topics .topic .title {
     font-size: 14px;
     margin-top: 2px;
@@ -2156,6 +2168,10 @@ span.help-inline {
     vertical-align: middle;
 }
 
+.topics .reward {
+  padding-top: 14px;
+}
+
 .topics .topic .replies a.count, .topics .topic .replies a.count:visited {
     line-height: 12px;
     font-weight: bold;
@@ -2166,7 +2182,7 @@ span.help-inline {
     -moz-border-radius: 80px;
     -webkit-border-radius: 80px;
     border-radius: 80px;
-    margin: 18px 12px 0px 0px;
+    margin: 18px 12px 0px 20px;
     text-decoration: none;
 }
 

@@ -25,7 +25,9 @@ ActiveAdmin.register PhysicalRecord do
       row :student_info
       row :creater_id
       row :send_date
-      row :content
+      row :content do |t|
+        raw t.content
+      end
     end
   end
 end
