@@ -100,4 +100,8 @@ end
       end
     end
    end
+
+   def destroy
+     @teaching_plan = @kind.teaching_plans.find(:id=>params[:id]) 
+   end
 end
