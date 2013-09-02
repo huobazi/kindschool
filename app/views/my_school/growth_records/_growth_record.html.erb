@@ -7,7 +7,7 @@
       <div class="reward pull-right">
       </div>
     <% end %>
-    <div class="pull-right">
+    <div class="pull-right replies">
       <% if controller_name == "growth_records" %>
         <% if choose_operate_show("my_school/growth_records/show") %>
           <a title="查看<%= growth_record.student_info_label %>的成长记录" alt="要看<%= growth_record.student_info_label %>的成长记录" href="<%= my_school_growth_record_path(growth_record) %>"><i class="icon-eye-open"></i></a>
@@ -25,6 +25,11 @@
         <% if choose_operate_show("my_school/garden_growth_records/edit") %>
           <a title="编辑<%= growth_record.student_info_label %>的成长记录" alt="编辑<%= growth_record.student_info_label %>的成长记录" href="<%= edit_my_school_garden_growth_record_path(growth_record) %>"><i class="icon-edit"></i></a>
         <% end %>
+      <% end %>
+      <% if controller_name == "growth_records" %>
+        <%= link_to growth_record.comments.count, my_school_growth_record_path(growth_record, anchor: "load_comments"), class: "count" %>
+      <% else %>
+        <%= link_to growth_record.comments.count, my_school_garden_growth_record_path(growth_record, anchor: "load_comments"), class: "count" %>
       <% end %>
     </div>
     <div class="infos">

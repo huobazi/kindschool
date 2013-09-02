@@ -2159,6 +2159,10 @@ span.help-inline {
     vertical-align: middle;
 }
 
+.topics .reward {
+  padding-top: 14px;
+}
+
 .topics .topic .replies a.count, .topics .topic .replies a.count:visited {
     line-height: 12px;
     font-weight: bold;
@@ -2169,7 +2173,7 @@ span.help-inline {
     -moz-border-radius: 80px;
     -webkit-border-radius: 80px;
     border-radius: 80px;
-    margin: 18px 12px 0px 0px;
+    margin: 18px 12px 0px 20px;
     text-decoration: none;
 }
 

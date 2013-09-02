@@ -802,10 +802,13 @@ ul, li {
     height: 50px;
     padding-top: 10px;
     font-size: 22px;
-    width: 70%;
+    width: 90%;
 }
-#topic_search .select {
-    width: 70%;
+.topic_search {
+  margin-bottom: 0;
+}
+.topic_search .select {
+    width: 90%;
     margin-top: 20px;
 }
 .form .field .text-content {
