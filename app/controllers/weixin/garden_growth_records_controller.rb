@@ -102,6 +102,12 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
       @growth_record.kindergarten_id = @kind.id
       @growth_record.creater_id = current_user.id
       @growth_record.tp = 0
+      if student = @kind.student_infos.find_by_id(params[:growth_record][:student_info_id])
+        @growth_record.squad_name = student.squad.try(:name)
+      else
+        flash[:error] = "操作失败"
+        redirect_to :action => :index
+      end
       unless params[:personal_set_id].blank?
         set = current_user.personal_sets.find_by_id(params[:personal_set_id])
         if  !set.blank? && set.resource
