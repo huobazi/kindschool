@@ -181,26 +181,6 @@ ActiveAdmin.register Kindergarten do
         end
       end
 
-      div do
-        br
-        panel "功能信息" do
-          unless kind.operates.blank?
-            ul(:class=>"operate_ul") do
-              kind.operates.each do |item|
-                li do
-                  item.name
-                end
-              end
-            end
-          end
-        end
-
-        ul do
-          li do
-            link_to "添加功能", :controller=>"/admin/option_operates", :kindergarten_id=>kind.id, :action=>:add_functional_to_kind, :id=>nil
-          end
-        end
-      end
 
       div do
         br
@@ -284,13 +264,13 @@ ActiveAdmin.register Kindergarten do
 
       div do
         br
-        panel "消息信息" do
+        panel "最新消息信息" do
           unless kind.messages.blank?
-            table_for(kind.messages) do |t|
+            table_for(kind.messages.limit(10).order("id DESC")) do |t|
               t.column("标题") {|item| item.title}
-              t.column("发送人") {|item| item.sender_id}
+              t.column("发送人") {|item| item.sender.try(:name)}
               t.column("状态") {|item| item.status}
-              t.column("发送时间") {|item| item.send_date}
+              t.column("发送时间") {|item| item.send_date.try(:to_short_datetime)}
               tr :class => "odd" do
                 td ""
                 td "消息总数", :style => "text-align :right;"
@@ -299,15 +279,19 @@ ActiveAdmin.register Kindergarten do
               end
             end
           else
-            "未创建通知"
+            "未创建消息"
+          end
+          ul do
+            li do
+              link_to "创建消息", :controller => "/admin/messages", :action => :new, :kindergarten_id => kind.id
+            end
+            li do
+              link_to "查看消息列表", :controller => "/admin/messages", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+            end
           end
         end
 
-        ul do
-          li do
-            link_to "创建通知", :controller => "/admin/messages", :action => :new, :kindergarten_id => kind.id
-          end
-        end
+
       end
 
       div do
@@ -410,7 +394,26 @@ ActiveAdmin.register Kindergarten do
         end
       end
 
+      div do
+        br
+        panel "功能信息" do
+          unless kind.operates.blank?
+            ul(:class=>"operate_ul") do
+              kind.operates.each do |item|
+                li do
+                  item.name
+                end
+              end
+            end
+          end
+        end
 
+        ul do
+          li do
+            link_to "添加功能", :controller=>"/admin/option_operates", :kindergarten_id=>kind.id, :action=>:add_functional_to_kind, :id=>nil
+          end
+        end
+      end
 
     end
   end
