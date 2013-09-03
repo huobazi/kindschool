@@ -173,34 +173,21 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
   end
 
   def destroy
-    if current_user.get_users_ranges[:tp] == :student
-      @growth_record = @kind.growth_records.where("tp = ? and (creater_id = ? or student_info_id = ?)", 1, current_user.id, current_user.student_info.id).find_by_id(params[:id])
-    elsif current_user.get_users_ranges[:tp] == :teachers
-      flash[:notice] = "没有权限或非法操作"
-      redirect_to :controller => "/my_school/growth_records", :action => :home
+    unless params[:growth_record].blank? 
+      @growth_records = @kind.growth_records.where(:id=>params[:growth_record])
     else
-      @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 1)
+      @growth_records = @kind.growth_records.where(:id=>params[:id])
     end
-    if @growth_record.nil?
-      flash[:error] = "没有权限或该宝宝在家成长记录不存在"
-      redirect_to :action => :home
+    if @growth_records.blank?
+      flash[:error] = "请选择成长记录"
+      redirect_to :action => :index
+      return
     end
-    @growth_record.destroy
-
-    respond_to do |format|
-      flash[:success] = "删除宝宝在家成长记录成功"
-      format.html { redirect_to(:action => :index) }
-      format.xml { head :ok }
-    end
-  end
-
-  def destroy_multiple
-    if params[:growth].nil?
-      flash[:notice] = "必须选择宝宝在家成长记录"
-    else
-      GrowthRecord.destroy(params[:growth])
+    @growth_records.each do |growth_record|
+      growth_record.destroy
     end
     respond_to do |format|
+      flash[:success] = "删除成长记录成功"
       format.html { redirect_to home_my_school_growth_records_path }
       format.json { head :no_content }
     end

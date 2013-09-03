@@ -135,11 +135,11 @@
               <table class="attributes">
                 <tr>
                   <th>班级</th>
-                  <td style="width: 70%; text-align: center;"><%= @activity.squad.try(:name) %></td>
+                  <td style="width: 70%;" class="text-center"><%= @activity.squad.try(:name) %></td>
                 </tr>
               </table>
             <% else %>
-              <p><span class="label">全园可见</span></p>
+              <p><span class="label label-info">全园可见</span></p>
             <% end %>
             <p class="info"><span class="time"><%= @activity.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @activity.end_at.try(:to_short_datetime) %></span>&nbsp;由&nbsp;
             <span class="normal_link">
@@ -163,27 +163,7 @@
 
         <div class="reply">
           <div id="topic_entries">
-            <div class="tabs_style" style="clear: left;">
-              <ul class="nav nav-tabs">
-                <% if controller_name == "activities" %>
-                  <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/my_school/activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
-                  <li class="<%= params[:activity_entry_tp].present? && 0 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-                    <%= link_to "活动主信息", my_school_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
-                  </li>
-                  <li class="<%= params[:activity_entry_tp].present? && 1 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-                    <%= link_to "交互信息", my_school_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
-                  </li>
-                <% else %>
-                  <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/my_school/interest_activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
-                  <li class="<%= params[:activity_entry_tp].present? && 0 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-                    <%= link_to "活动主信息", my_school_interest_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
-                  </li>
-                  <li class="<%= params[:activity_entry_tp].present? && 1 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-                    <%= link_to "交互信息", my_school_interest_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
-                  </li>
-                <% end %>
-              </ul>
-            </div>
+            <%= render "/my_school/activities/tab_activity" %>
             <% unless @activity_entries.blank? %>
               <div class="total">
                 <b>共收到<span id="total"><%= @activity_entries.total_count %></span>条回复</b>

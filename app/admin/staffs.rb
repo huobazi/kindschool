@@ -1,6 +1,6 @@
 #encoding:utf-8
 ActiveAdmin.register Staff do
-  menu :parent => "幼儿园管理", :priority => 6
+  menu :parent => "用户管理", :priority => 6
 
   controller do
     def new

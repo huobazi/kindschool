@@ -1,5 +1,7 @@
 <div class="topic topic_line pull-left">
-  <div class="iCheck_checkbox pull-left"><input type="checkbox" class="check" /></div>
+  <% if choose_operate_show("my_school/growth_records/destroy") %>
+    <div class="pull-left"><input type="checkbox" class="check" name="growth_record[]" id="growth_record_<%= growth_record.id %>" value="<%= growth_record.id %>" /></div>
+  <% end %>
   <div class="avatar pull-left"><img src="<%= growth_record.student_info.try(:user).try(:asset_logo) ? growth_record.student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
   </div>
   <div class="right_info">
@@ -27,9 +29,9 @@
         <% end %>
       <% end %>
       <% if controller_name == "growth_records" %>
-        <%= link_to growth_record.comments.count, my_school_growth_record_path(growth_record, anchor: "load_comments"), class: "count" %>
+        <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{growth_record.comments.count}</span>"), my_school_growth_record_path(growth_record, anchor: "load_comments"), class: "count" %>
       <% else %>
-        <%= link_to growth_record.comments.count, my_school_garden_growth_record_path(growth_record, anchor: "load_comments"), class: "count" %>
+        <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{growth_record.comments.count}</span>"), my_school_garden_growth_record_path(growth_record, anchor: "load_comments"), class: "count" %>
       <% end %>
     </div>
     <div class="infos">

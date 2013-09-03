@@ -64,12 +64,12 @@
             <table class="attributes">
               <tr>
                 <th>分类</th>
-                <td style="text-align: center;"><%= @topic.topic_category.name %></td>
+                <td class="text-center"><%= @topic.topic_category.name %></td>
                 <% if @topic.squad.present? %>
                   <th>班级</th>
-                  <td style="width: 30%; text-align: center;"><%= @topic.squad.try(:name) %></td>
+                  <td style="width: 30%;" class="text-center"><%= @topic.squad.try(:name) %></td>
                 <% else %>
-                  <th colspan="2" style="text-align: center;">全园可见</th>
+                  <th colspan="2" class="text-center">全园可见</th>
                 <% end %>
               </tr>
             </table>

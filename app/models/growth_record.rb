@@ -22,6 +22,16 @@ class GrowthRecord < ActiveRecord::Base
   just_define_datetime_picker :start_at, :add_to_attr_accessible => true
   just_define_datetime_picker :end_at, :add_to_attr_accessible => true
   after_create :load_messages
+  before_destroy :ensure_not_comments
+
+  def ensure_not_comments
+    unless self.comments.blank?
+      self.comments.each do |comment|
+        comment.visible = false
+        comment.save
+      end
+    end
+  end
 
   TP_DATA = {"0"=>"宝宝在园", "1"=>"宝宝在家"}
 
@@ -70,13 +80,6 @@ class GrowthRecord < ActiveRecord::Base
 
   end
 
-  def self.squad_student_info_count(squad_id)
-    where("student_infos.squad_id = ?", squad_id).joins(:student_info).count
-  end
-
-  def self.student_info_growth_record_count(student_info_id)
-    where("student_info_id = ?", student_info_id).count
-  end
   private
   #发送消息
   def load_messages

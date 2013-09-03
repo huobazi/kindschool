@@ -1,6 +1,7 @@
 #encoding:utf-8
 ActiveAdmin.register Grade do
-  menu :parent => "幼儿园管理", :priority => 3
+#  menu :parent => "幼儿园管理", :priority => 3
+  menu false
   controller do
     def new
       @grade = Grade.new()

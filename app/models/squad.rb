@@ -64,8 +64,17 @@ class Squad < ActiveRecord::Base
     bind_weiyi_no = self.users.where("weiyi_code IS NULL AND weixin_code IS NOT NULL").count()
     return {:user_all=>user_all,:woman=>woman,:man=>(user_all - woman),:bind_ok=>bind_ok,:bind_null=>bind_null,:bind_weiyi_no=>bind_weiyi_no,:bind_weixin_no=>(user_all - bind_ok - bind_null - bind_weiyi_no)}
   end
+  
+  #班级学生得到延时班学生
+  def get_sqiads_virtual_squads
+     users =  self.users
+     user_squads = UserSquad.where(:user_id => users)
+     
+  end
+
 
   GRADUATE_DATA = {"true"=>"已毕业","false"=>"在读"}
+  TP_DATA = {"0"=>"普通班","1"=>"延时班"}
 
   private
 
