@@ -13,7 +13,7 @@ input {
     width:expression(this.type=="checkbox" ?"auto":"Default");
 }
 input.search_btn{
-    width: 45px;
+    width: 55px;
 }
 /* 除IE6浏览器的通用方法 */
 .ie6fixedTL{position:fixed;left:0;top:0}

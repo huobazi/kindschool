@@ -1,0 +1,21 @@
+<fieldset class="people_manage">
+ <% @user_info = @squad.get_sqiads_virtual_squads %>
+  <legend><label>班级学员延时班</label></legend>
+  <div class="work_list">
+    <% unless @user_info.blank? %>
+      <table class="table table-striped table-hover">
+        <tr>
+          <th>姓名</th>
+          <th>延时班</th>
+        </tr>
+        <% @user_info.each do |user_squad| %>
+          <tr>
+            <td><%= user_squad.user.name %></td>
+            <td><%= user_squad.squad.name %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+    <% end %>
+  </div>
+</fieldset>
