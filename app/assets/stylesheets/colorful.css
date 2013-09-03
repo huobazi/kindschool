@@ -2664,3 +2664,12 @@ fieldset.staff_squad ol li {
     display:inline;
     height: 300px;
 }
+
+input[type="radio"], input[type="checkbox"] {
+    margin-top: 0;
+    line-height: normal;
+}
+
+.checkbox input[type="checkbox"] {
+    margin-top: 4px;
+}

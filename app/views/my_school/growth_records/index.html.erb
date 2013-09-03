@@ -95,7 +95,9 @@
     <div class="work_list">
       <div class="topics">
         <% unless @growth_records.blank? %>
-          <div class="input_select_all"><input type="checkbox" id="check_all" />全选</div>
+          <% if choose_operate_show("my_school/growth_records/destroy") %>
+            <div class="input_select_all"><input type="checkbox" id="check_all" />全选</div>
+          <% end %>
           <%= form_tag my_school_growth_record_path(@growth_records), method: :delete, :id => "destroy_multi_form" do %>
             <%= render partial: "/my_school/growth_records/growth_record", collection: @growth_records %>
           <% end %>

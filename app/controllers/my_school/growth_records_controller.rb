@@ -188,7 +188,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     end
     respond_to do |format|
       flash[:success] = "删除成长记录成功"
-      format.html { redirect_to my_school_growth_records_path }
+      format.html { redirect_to home_my_school_growth_records_path }
       format.json { head :no_content }
     end
   end
