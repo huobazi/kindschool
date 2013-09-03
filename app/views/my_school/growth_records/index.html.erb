@@ -67,13 +67,24 @@
           <% end %>
         </li>
         <li>
-          <% if choose_operate_show("my_school/growth_records/destroy") %>
-            <a href="javascript: void(0)" title="删除" id="destroy_multiple">
-              <div class="work_action_delete">
-              </div>
-              <div class="work_action_delete_move">
-              </div>
-            </a>
+          <% if controller_name == "growth_records" %>
+            <% if choose_operate_show("my_school/growth_records/destroy") %>
+              <a href="javascript: void(0)" title="删除" id="destroy_multiple">
+                <div class="work_action_delete">
+                </div>
+                <div class="work_action_delete_move">
+                </div>
+              </a>
+            <% end %>
+          <% else %>
+            <% if choose_operate_show("my_school/garden_growth_records/destroy") %>
+              <a href="javascript: void(0)" title="删除" id="destroy_multiple">
+                <div class="work_action_delete">
+                </div>
+                <div class="work_action_delete_move">
+                </div>
+              </a>
+            <% end %>
           <% end %>
         </li>
       </ul>
@@ -95,11 +106,23 @@
     <div class="work_list">
       <div class="topics">
         <% unless @growth_records.blank? %>
-          <% if choose_operate_show("my_school/growth_records/destroy") %>
-            <div class="input_select_all"><input type="checkbox" id="check_all" />全选</div>
+          <% if controller_name == "growth_records" %>
+            <% if choose_operate_show("my_school/garden_growth_records/destroy") %>
+              <div class="input_select_all"><input type="checkbox" id="check_all" />全选</div>
+            <% end %>
+          <% else %>
+            <% if choose_operate_show("my_school/garden_growth_records/destroy") %>
+              <div class="input_select_all"><input type="checkbox" id="check_all" />全选</div>
+            <% end %>
           <% end %>
-          <%= form_tag my_school_growth_record_path(@growth_records), method: :delete, :id => "destroy_multi_form" do %>
-            <%= render partial: "/my_school/growth_records/growth_record", collection: @growth_records %>
+          <% if controller_name == "growth_records" %>
+            <%= form_tag my_school_growth_record_path(@growth_records), method: :delete, :id => "destroy_multi_form" do %>
+              <%= render partial: "/my_school/growth_records/growth_record", collection: @growth_records %>
+            <% end %>
+          <% else %>
+            <%= form_tag my_school_garden_growth_record_path(@growth_records), method: :delete, :id => "destroy_multi_form" do %>
+              <%= render partial: "/my_school/growth_records/growth_record", collection: @growth_records %>
+            <% end %>
           <% end %>
           <%= paginate @growth_records %>
         <%else%>
@@ -118,7 +141,7 @@
     })
   });
   $("#destroy_multiple").click(function(){
-    if (confirm('您确定删除选中的贴子吗')) {
+    if (confirm('您确定删除选中的成长记录吗')) {
       $("#destroy_multi_form").submit();
     }
   });

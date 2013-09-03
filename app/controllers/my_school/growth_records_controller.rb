@@ -179,7 +179,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
       @growth_records = @kind.growth_records.where(:id=>params[:id])
     end
     if @growth_records.blank?
-      flash[:error] = "请选择贴子"
+      flash[:error] = "请选择成长记录"
       redirect_to :action => :index
       return
     end
