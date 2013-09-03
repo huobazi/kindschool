@@ -1,7 +1,7 @@
 #encoding:utf-8
 ActiveAdmin.register Squad do
-  menu :parent => "幼儿园管理", :priority => 4
-
+#  menu :parent => "幼儿园管理", :priority => 4
+  menu false
   controller do
     def new
       @squad = Squad.new()
@@ -29,8 +29,9 @@ ActiveAdmin.register Squad do
     column :graduate
     column :sequence
     column :note
-    column :created_at
-    column :updated_at
+    column :tp do |squad|
+      Squad::TP_DATA[squad.tp.to_s]
+    end
     default_actions
   end
 
@@ -45,6 +46,7 @@ ActiveAdmin.register Squad do
       f.input :grade,:as=>:select,:collection=>Hash[f.object.kindergarten.grades.map{|grade| ["#{grade.name}",grade.id]}]
       f.input :graduate
       f.input :sequence, :required => true,:as=>:number,:number=>:integer
+      f.input :tp,:as=>:radio,:collection=>{"延时班"=>"1","普通班"=>"0"}, :required => true
       f.input :note
       f.input :kindergarten_id,:as=>:hidden
     end
@@ -58,6 +60,9 @@ ActiveAdmin.register Squad do
       row :grade
       row :graduate
       row :sequence
+      row :tp do
+       Squad::TP_DATA[squad.tp.to_s]
+      end
       row :note
       row :created_at
       row :updated_at

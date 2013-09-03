@@ -1438,8 +1438,8 @@ a.album_a .album_img img{
     padding: 20px 20px 20px 35px;
 }
 
-.search_form input[type="submit"] {
-    margin-top: -10px;
+.search_form input[type="text"] {
+    margin-bottom: 0;
 }
 .control-group .controls .show_receiver_entry{
     float: left;
@@ -2032,7 +2032,6 @@ span.help-inline {
 .show_entry .delete {
     display: block;
     text-align: center;
-    color: #DB2C2C;
 }
 .normal_link {
     color: #B6B6B6;
@@ -2105,11 +2104,8 @@ span.help-inline {
     margin-right: 10px;
 }
 
-.topics .topic .right_info {
-    /*padding-left: 100px;*/
-}
 .topics .topic .infos {
-    padding-right: 74px;
+    width: 80%;
 }
 
 .topics .topic .infos .title a:hover {
@@ -2118,8 +2114,12 @@ span.help-inline {
 
 .topics .topic .title {
     font-size: 14px;
-    margin-top: 2px;
     padding-left: 10px;
+}
+
+.topic .infos .content {
+    padding-top: 10px;
+    padding-left: 13px;
 }
 
 .topics .topic .title abbr {
@@ -2150,10 +2150,6 @@ span.help-inline {
     font-style: normal;
 }
 
-.topic .iCheck_checkbox {
-    padding-top: 22px;
-}
-
 .topics .topic .info abbr {
     color: #999;
     font-size: 14px;
@@ -2163,31 +2159,6 @@ span.help-inline {
 .form_div .activity_title {
     color: #333333;
     font-size: 14px;
-}
-
-.topics .topic .replies {
-    width: 120px;
-    margin-right: 10px;
-    text-align: right;
-    vertical-align: middle;
-}
-
-.topics .reward {
-  padding-top: 14px;
-}
-
-.topics .topic .replies a.count, .topics .topic .replies a.count:visited {
-    line-height: 12px;
-    font-weight: bold;
-    color: white;
-    background-color: #1c7fdb;
-    display: inline-block;
-    padding: 2px 10px 2px 10px;
-    -moz-border-radius: 80px;
-    -webkit-border-radius: 80px;
-    border-radius: 80px;
-    margin: 18px 12px 0px 20px;
-    text-decoration: none;
 }
 
 #cook_books.topics .topic .right_info {
@@ -2668,4 +2639,18 @@ fieldset.staff_squad ol li {
 #weixin_users{
     display:inline;
     height: 300px;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin-top: 0;
+    line-height: normal;
+}
+
+.checkbox input[type="checkbox"] {
+    margin-top: 4px;
+}
+
+.badge-info-margin {
+  margin-left: 10px;
+  margin-right: 10px;
 }

@@ -351,6 +351,7 @@ zh-CN:
         grade: "年级"
         name: "名称"
         note: "描述"
+        tp: "类型"
         sequence: "排序"
         graduate: "是否已毕业"
         created_at: "创建时间"

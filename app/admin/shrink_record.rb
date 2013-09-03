@@ -1,7 +1,7 @@
 #encoding:utf-8
 #SEO搜素关键字记录表
 ActiveAdmin.register ShrinkRecord do
-  menu :parent => "幼儿园管理", :priority => 28
+  menu :parent => "微壹平台管理", :priority => 28
 
   controller do
     def new
