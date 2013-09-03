@@ -135,11 +135,11 @@
               <table class="attributes">
                 <tr>
                   <th>班级</th>
-                  <td style="width: 70%; text-align: center;"><%= @activity.squad.try(:name) %></td>
+                  <td style="width: 70%;" class="text-center"><%= @activity.squad.try(:name) %></td>
                 </tr>
               </table>
             <% else %>
-              <p><span class="label">全园可见</span></p>
+              <p><span class="label label-info">全园可见</span></p>
             <% end %>
             <p class="info"><span class="time"><%= @activity.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @activity.end_at.try(:to_short_datetime) %></span>&nbsp;由&nbsp;
             <span class="normal_link">

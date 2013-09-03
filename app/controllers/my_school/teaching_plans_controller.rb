@@ -3,7 +3,15 @@
 class MySchool::TeachingPlansController < MySchool::ManageController
   
   def index
-  	@teaching_plans = TeachingPlan.page(params[:page] || 1).per(10)
+    if current_user.get_users_ranges[:tp] == :student
+      @teaching_plans = TeachingPlan.where("squad_id = ? or squad_id is null", current_user.student_info.squad_id).page(params[:page] || 1).per(10)
+    elsif current_user.get_users_ranges[:tp] == :teachers  
+      @teaching_plans = TeachingPlan.where("squad_id in (select squad_id from teachers where staff_id = ?) or squad_id is NULL", current_user.staff.id).page(params[:page] || 1).per(10)
+    else
+      if (session[:operates] || []).include?('my_school/teaching_plans/new')
+        @teaching_plans = TeachingPlan.page(params[:page] || 1).per(10)
+      end
+    end
   end
 
   def new
@@ -20,7 +28,7 @@ class MySchool::TeachingPlansController < MySchool::ManageController
         if @squads = @grades.first.squads
         end
      end
-  end    
+   end    
 end
 
   def create
@@ -67,21 +75,61 @@ end
 
   end
   def show
-    @teaching_plan = @kind.teaching_plans.find(params[:id])
+     if current_user.get_users_ranges[:tp] == :student
+      @teaching_plan = @kind.teaching_plans.where("squad_id = ? or squad_id is null", current_user.student_info.squad_id).find_by_id(params[:id])
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @teaching_plan = @kind.teaching_plans.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
+    else
+      @teaching_plan = @kind.teaching_plans.find_by_id(params[:id])
+    end
+    if @teaching_plan.nil?
+      flash[:error] = "没有权限查看该教学计划"
+      redirect_to :action=> :index
+      return
+    end
   end
 
   def edit
-    @teaching_plan = @kind.teaching_plans.find(params[:id])
+    if current_user.get_users_ranges[:tp] == :student
+      @teaching_plan = @kind.teaching_plans.where("squad_id = ? or squad_id is null", current_user.student_info.squad_id).find_by_id(params[:id])
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @teaching_plan = @kind.teaching_plans.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
+    else
+      @teaching_plan = @kind.teaching_plans.find_by_id(params[:id])
+    end
+    if @teaching_plan.nil?
+      flash[:error] = "没有权限查看该教学计划"
+      redirect_to :action=> :index
+      return
+    end
     @squad = @teaching_plan.squad
-     if @grades = @kind.grades
+     if current_user.get_users_ranges[:tp] == :student
+      flash[:error] = "没有权限"
+      redirect_to action: :index
+      return
+     elsif current_user.get_users_ranges[:tp] == :teachers
+      @squads = current_user.get_users_ranges[:squads]
+     else
+      if @grades = @kind.grades
         if @squads = @grades.first.squads
         end
-    end
+      end
+     end 
    end
 
    def update
-    @teaching_plan = @kind.teaching_plans.find(params[:id])
-
+    if current_user.get_users_ranges[:tp] == :student
+      @teaching_plan = @kind.teaching_plans.where("squad_id = ? or squad_id is null", current_user.student_info.squad_id).find_by_id(params[:id])
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @teaching_plan = @kind.teaching_plans.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
+    else
+      @teaching_plan = @kind.teaching_plans.find_by_id(params[:id])
+    end
+    if @teaching_plan.nil?
+      flash[:error] = "没有权限更改该教学计划"
+      redirect_to :action=> :index
+      return
+    end
     unless params[:appurtenance].blank?
       (params[:appurtenance] || []).each do |p_appurtenance|
        appurtenance=Appurtenance.new(p_appurtenance)

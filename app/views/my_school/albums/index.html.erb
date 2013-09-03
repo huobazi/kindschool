@@ -40,9 +40,9 @@
                   <span><img src="/t/colorful/is_top.gif" alt="置顶" /></span>
                 <% end %>
                 <% if album.squad.present? %>
-                  <span class="label" style="margin-left: 10px;"><%= album.try(:squad_name) %></span>
+                  <span class="label label-info" style="margin-left: 10px;"><%= album.try(:squad_name) %></span>
                 <% else %>
-                  <span class="label" style="margin-left: 10px;">全园可见</span>
+                  <span class="label label-info" style="margin-left: 10px;">全园可见</span>
                 <% end %>
             </div>
             <% unless current_user.get_users_ranges[:tp] == :student %>

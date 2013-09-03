@@ -176,21 +176,31 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
     end
   end
 
-  def destroy_multiple
-    if params[:growth].nil?
-      flash[:notice] = "必须选择宝宝在园成长记录"
+  def destroy
+    unless params[:growth_record].blank? 
+      @growth_records = @kind.growth_records.where(:id=>params[:growth_record])
     else
-      GrowthRecord.destroy(params[:growth])
+      @growth_records = @kind.growth_records.where(:id=>params[:id])
+    end
+    if @growth_records.blank?
+      flash[:error] = "请选择成长记录"
+      redirect_to :action => :index
+      return
+    end
+    @growth_records.each do |growth_record|
+      growth_record.destroy
     end
     respond_to do |format|
+      flash[:success] = "删除成长记录成功"
       format.html { redirect_to garden_my_school_garden_growth_records_path }
       format.json { head :no_content }
     end
   end
+
   private
    def fixture_file_upload(path, mime_type = nil, binary = false)
       fixture_path = self.class.fixture_path if self.class.respond_to?(:fixture_path)
       Rack::Test::UploadedFile.new("#{fixture_path}#{path}", mime_type, binary)
-    end
+   end
 
 end
