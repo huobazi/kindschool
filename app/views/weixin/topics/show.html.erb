@@ -20,7 +20,7 @@
               </tr>
             </table>
           <% else %>
-            <span class="label">全园可见</span>
+            <span class="label label-info">全园可见</span>
           <% end %>
         </p>
         <p class="info"><span class="author"><%= @topic.creater.try(:name) %></span>&nbsp;发表于&nbsp;<span><%= @topic.created_at.to_long_datetime %></span></p>

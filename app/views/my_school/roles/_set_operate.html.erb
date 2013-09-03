@@ -3,6 +3,7 @@
   <%= simple_format raw( @role.note ), :class => "muted", style: "text-indent: 20px;" %>
 </div>
 <input type="checkbox" id="check_all_roles" name="" value="" alt="全部角色" class="check_all_roles" /><label style="display: inline; font-size: 15px;" for="check_all_roles">选择全部权限</label>
+<a class="btn btn-link pull-right" id="recovery">恢复默认</a>
 <br />
 <br />
 <% n = 0 %>
@@ -11,12 +12,12 @@
   <li class='check_boxes'>
     <%if k != 'root' && !k.blank? %>
     <fieldset class="role" style="padding-bottom: 10px;">
-      <legend class="label" style="padding: 5px 0 5px 5px;background: #CDDFEB; color: #000;"><input  id="<%= "flag_" + n.to_s %>" type="checkbox" name="" value="" alt="全选" class="flag_check_all" /><label style="display: inline; padding-left: 0" for="<%= "flag_" + n.to_s %>"><%= k %></label></legend>
-      <ol>
+      <legend class="fs-legend"><input  id="<%= "flag_" + n.to_s %>" type="checkbox" name="" value="" alt="全选" class="flag_check_all" /><label style="display: inline; padding-left: 0" for="<%= "flag_" + n.to_s %>"><%= k %></label></legend>
+      <ol class="clearfix">
         <% v.each do |operate| %>
           <li>
           <label for="operate_<%= operate.id %>">
-          <input class="flag_<%= n.to_s %>_value" id="operate_<%= operate.id %>" name="operate[]" type="checkbox" value="<%= operate.id %>" <%= @role.option_operates.include?(operate) ? "checked=true" : nil %> /> <%= operate.operate.name %>    </label>
+          <input class="flag_<%= n.to_s %>_value" id="operate_<%= operate.id %>" name="operate[]" type="checkbox" value="<%= operate.id %>" <%= @role.option_operates.include?(operate) ? "checked=true default=true" : nil %> /> <%= operate.operate.name %>    </label>
           </li>
         <% end %>
       </ol>
@@ -60,6 +61,16 @@ $(".flag_check_all").each(function() {
 })
 $(".check_all_roles").click(function() {
   $("input[class^='flag']").attr("checked", this.checked)
+})
+
+$("#recovery").click(function() {
+    $("input").each(function() {
+      if ( $(this).attr("default") == "true" ) {
+        $(this).attr("checked", true);
+      } else {
+        $(this).attr("checked", false);
+      }
+    })
 })
 
 </script>

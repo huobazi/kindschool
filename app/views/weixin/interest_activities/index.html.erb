@@ -20,7 +20,7 @@
           <li class="show" data-id="<%= activity.id %>">
             <p class="title"><span><%= activity.title %><span></p>
             <p class="info">
-                <span class="label">
+                <span class="label label-info">
                   <% if activity.squad.present? %>
                     <%= activity.squad.try(:name) %>
                   <% else %>
