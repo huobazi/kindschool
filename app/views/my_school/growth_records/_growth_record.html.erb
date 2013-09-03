@@ -29,9 +29,9 @@
         <% end %>
       <% end %>
       <% if controller_name == "growth_records" %>
-        <%= link_to growth_record.comments.count, my_school_growth_record_path(growth_record, anchor: "load_comments"), class: "count" %>
+        <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{growth_record.comments.count}</span>"), my_school_growth_record_path(growth_record, anchor: "load_comments"), class: "count" %>
       <% else %>
-        <%= link_to growth_record.comments.count, my_school_garden_growth_record_path(growth_record, anchor: "load_comments"), class: "count" %>
+        <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{growth_record.comments.count}</span>"), my_school_garden_growth_record_path(growth_record, anchor: "load_comments"), class: "count" %>
       <% end %>
     </div>
     <div class="infos">

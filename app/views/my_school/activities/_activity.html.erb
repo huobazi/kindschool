@@ -35,9 +35,9 @@
         <% end %>
       <% end %>
       <% if controller_name == "activities" %>
-        <%= link_to activity.activity_entries.count, my_school_activity_path(activity, anchor: "activity_entry_1"), class: "count" %>
+        <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{activity.activity_entries.count}</span>"), my_school_activity_path(activity, anchor: "activity_entry_1"), class: "count" %>
       <% else %>
-        <%= link_to activity.activity_entries.count, my_school_interest_activity_path(activity, anchor: "activity_entry_1"), class: "count" %>
+        <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{activity.activity_entries.count}</span>"), my_school_interest_activity_path(activity, anchor: "activity_entry_1"), class: "count" %>
       <% end %>
     </div>
     <div class="infos">
