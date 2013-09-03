@@ -17,11 +17,11 @@
             <table class="attributes">
                 <tr>
                   <th>班级</th>
-                  <td style="text-align: center;"><%= @activity.squad.try(:name) %></td>
+                  <td class="text-center"><%= @activity.squad.try(:name) %></td>
                 </tr>
               </table>
           <% else %>
-            <span class="label">全园可见</span>
+            <span class="label label-info">全园可见</span>
           <% end %>
         </p>
         <p class="info"><span class="time"><%= @activity.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span><%= @activity.end_at.try(:to_short_datetime) %></span></p>
