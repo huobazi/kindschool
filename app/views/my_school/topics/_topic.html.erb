@@ -4,10 +4,11 @@
   <% end %>
   <div class="avatar pull-left"><img src="<%= topic.creater.try(:asset_logo) ? topic.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
   </div>
-  <div class="right_info">
+
+  <div class="clearfix">
     <div class="replies pull-right">
       <%if topic.approve_status != 0 %>
-      <span>审核状态: <%= News::STATUS[topic.approve_status] %></span>
+        <span>审核状态: <%= News::STATUS[topic.approve_status] %></span>
       <%end%>
       <% if choose_operate_show("my_school/topics/show") %>
         <a href="<%= my_school_topic_path(topic) %>" title="查看<%= topic.title %>" alt="查看<%= topic.title %>"><i class="icon-eye-open"></i></a>
@@ -18,9 +19,9 @@
       <% if choose_operate_show("my_school/topics/destroy") %>
         <a href="<%= my_school_topic_path(topic) %>" data-confirm="您确定删除该贴子吗" data-method="delete" title="删除<%= topic.title %>" alt="删除<%= topic.title %>"><i class="icon-remove-sign"></i></a>
       <% end %>
-      <%= link_to topic.topic_entries.count, my_school_topic_path(topic, anchor: "topic_entries"), class: "count" %>
+      <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{topic.topic_entries.count}</span>"), my_school_topic_path(topic, anchor: "topic_entries") %>
     </div>
-    <div class="infos">
+    <div class="infos clearfix">
       <div class="title">
         <% if topic.is_top == true %>
           <a href="<%= my_school_topic_path(topic) %>" alt="[置顶]<%= topic.title %>" title="[置顶]<%= topic.title %>"><%= topic.title %></a>
@@ -44,4 +45,5 @@
       </div>
     </div>
   </div>
+  <!-- end right info -->
 </div>
