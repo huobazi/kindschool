@@ -12,8 +12,8 @@
   <li class='check_boxes'>
     <%if k != 'root' && !k.blank? %>
     <fieldset class="role" style="padding-bottom: 10px;">
-      <legend class="label" style="padding: 5px 0 5px 5px;background: #CDDFEB; color: #000;"><input  id="<%= "flag_" + n.to_s %>" type="checkbox" name="" value="" alt="全选" class="flag_check_all" /><label style="display: inline; padding-left: 0" for="<%= "flag_" + n.to_s %>"><%= k %></label></legend>
-      <ol>
+      <legend class="fs-legend"><input  id="<%= "flag_" + n.to_s %>" type="checkbox" name="" value="" alt="全选" class="flag_check_all" /><label style="display: inline; padding-left: 0" for="<%= "flag_" + n.to_s %>"><%= k %></label></legend>
+      <ol class="clearfix">
         <% v.each do |operate| %>
           <li>
           <label for="operate_<%= operate.id %>">
