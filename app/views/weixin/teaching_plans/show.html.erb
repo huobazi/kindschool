@@ -1,0 +1,33 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    <a href="<%= url_for(:action=>:index) %>" title="返回" class="weixin_return">返回</a>教学计划详情
+  </div>
+  <div class="show_title">
+    <div class="title">
+      <label>标 题:<%= @teaching_plan.title %></label>
+    </div>
+    <div class="title">
+      <label>发布人:<%= @teaching_plan.creater.try(:name)%></label>
+    </div>
+    <div class="limit_title">
+      <label>时 间:<%=@teaching_plan.created_at.try(:to_long_datetime)%></label>
+    </div>
+    <div class="title">
+      <label>发布班级:<%=@teaching_plan.squad.try(:name)%></label>
+    </div>
+    
+  </div>
+  <div class="message_list">
+    <label class="message_content"><%=raw @teaching_plan.content %></label>
+    <br/>
+    <span>已上传附件:</span>
+           <%(@teaching_plan.appurtenances || []).each do |app|%>
+           <p><%=link_to app.file_name,app.avatar_url,:class=>"blue"%></p>
+           <%end%>
+  </div>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
