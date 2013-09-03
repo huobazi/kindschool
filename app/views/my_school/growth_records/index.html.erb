@@ -67,8 +67,8 @@
           <% end %>
         </li>
         <li>
-          <% if choose_operate_show("my_school/growth_records/destroy_multi_form") %>
-            <a href="/" title="删除" id="destroy_multiple">
+          <% if choose_operate_show("my_school/growth_records/destroy") %>
+            <a href="javascript: void(0)" title="删除" id="destroy_multiple">
               <div class="work_action_delete">
               </div>
               <div class="work_action_delete_move">
@@ -96,7 +96,9 @@
       <div class="topics">
         <% unless @growth_records.blank? %>
           <div class="input_select_all"><input type="checkbox" id="check_all" />全选</div>
-          <%= render partial: "/my_school/growth_records/growth_record", collection: @growth_records %>
+          <%= form_tag my_school_growth_record_path(@growth_records), method: :delete, :id => "destroy_multi_form" do %>
+            <%= render partial: "/my_school/growth_records/growth_record", collection: @growth_records %>
+          <% end %>
           <%= paginate @growth_records %>
         <%else%>
           没有成长记录
@@ -114,7 +116,8 @@
     })
   });
   $("#destroy_multiple").click(function(){
-    $("#destroy_multi_form").submit();
-    return false;
+    if (confirm('您确定删除选中的贴子吗')) {
+      $("#destroy_multi_form").submit();
+    }
   });
 </script>

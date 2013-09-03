@@ -2032,7 +2032,6 @@ span.help-inline {
 .show_entry .delete {
     display: block;
     text-align: center;
-    color: #DB2C2C;
 }
 .normal_link {
     color: #B6B6B6;
@@ -2148,10 +2147,6 @@ span.help-inline {
 .topics .topic .info em {
     font-size: 14px;
     font-style: normal;
-}
-
-.topic .iCheck_checkbox {
-    padding-top: 22px;
 }
 
 .topics .topic .info abbr {
