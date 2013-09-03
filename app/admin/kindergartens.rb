@@ -144,10 +144,13 @@ ActiveAdmin.register Kindergarten do
               end
             end
           end
-        end
-        ul do
-          li do
-            link_to "添加班级",:controller=>"/admin/squads",:kindergarten_id=>kind.id,:action=>:new,:id=>nil
+          ul do
+            li do
+              link_to "添加班级",:controller=>"/admin/squads",:kindergarten_id=>kind.id,:action=>:new,:id=>nil
+            end
+            li do
+              link_to "查看班级列表",:controller=>"/admin/squads",:action=>:index,:id=>nil,"q[kindergarten_id_eq]"=>kind.id
+            end
           end
         end
       end
@@ -169,13 +172,11 @@ ActiveAdmin.register Kindergarten do
                 end
               }
             end
-
           end
-        end
-
-        ul do
-          li do
-            link_to "添加教职工", :controller=>"/admin/staffs", :kindergarten_id=>kind.id, :action=>:new, :id=>nil
+          ul do
+            li do
+              link_to "添加教职工", :controller=>"/admin/staffs", :kindergarten_id=>kind.id, :action=>:new, :id=>nil
+            end
           end
         end
       end
@@ -185,11 +186,11 @@ ActiveAdmin.register Kindergarten do
         panel "功能信息" do
           unless kind.operates.blank?
             ul(:class=>"operate_ul") do
-            kind.operates.each do |item|
-              li do
-                item.name
+              kind.operates.each do |item|
+                li do
+                  item.name
+                end
               end
-            end
             end
           end
         end
@@ -429,6 +430,9 @@ ActiveAdmin.register Kindergarten do
     ul do
       li do
         link_to "添加年级",:controller=>"/admin/grades",:kindergarten_id=>kind.id,:action=>:new,:id=>nil
+      end
+      li do
+        link_to "查看年级列表",:controller=>"/admin/grades",:action=>:index,:id=>nil,"q[kindergarten_id_eq]"=>kind.id
       end
     end
   end

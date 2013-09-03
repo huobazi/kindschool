@@ -1,6 +1,6 @@
 #encoding:utf-8
 ActiveAdmin.register User do
-  menu :parent => "幼儿园管理", :priority => 2
+  menu :parent => "用户管理", :priority => 2
 
   member_action :reset_password, :method => :get do
     @user = User.find(params[:id])

@@ -1,6 +1,6 @@
 #encoding:utf-8
 ActiveAdmin.register StudentInfo do
-  menu :parent => "幼儿园管理", :priority => 5
+  menu :parent => "用户管理", :priority => 5
 
 
   controller do

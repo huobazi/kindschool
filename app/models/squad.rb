@@ -66,6 +66,7 @@ class Squad < ActiveRecord::Base
   end
 
   GRADUATE_DATA = {"true"=>"已毕业","false"=>"在读"}
+  TP_DATA = {"0"=>"普通班","1"=>"延时班"}
 
   private
 
