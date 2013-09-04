@@ -68,7 +68,9 @@
             <div class="content_up">
               <p class="title"><span><%= @new.title %></span></p>
               <p class="info"> <span class="link">总共被浏览了<%= @new.show_count %>次</span></p>
-              <p class="info"><span class="link"><%= @new.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @new.try(:created_at).try(:to_long_datetime) %></span></p>
+              <p class="info"><span class="link"><%= @new.try(:creater).try(:name) %></span>&nbsp;<em>新闻发布于</em><abbr><span class="time"><%= @new.start_data.try(:to_short_datetime) %></span></abbr>
+                </p>
+                <p style="color:#c4c4c4">&nbsp;创建于&nbsp;<span style="font-size: 10px;"><%= @new.try(:created_at).try(:to_long_datetime) %></span></p>
   <%= render :partial=>"/my_school/approves/load_approves_log" ,:locals=>{:record_id=>@new.approve_record.try(:id),:approve_status=>@new.approve_status} %>
             </div>
             <div class="content">
