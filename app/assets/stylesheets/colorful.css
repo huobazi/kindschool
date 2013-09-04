@@ -1313,6 +1313,11 @@ table.attributes td {
 .blue{
     color: blue;
 }
+
+.is-hidden {
+    display: none;
+}
+
 .table a.red{
     color: red;
 }
