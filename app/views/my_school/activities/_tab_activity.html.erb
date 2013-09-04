@@ -1,21 +1,41 @@
 <div class="tabs_style" style="clear: left;">
+  <var class="is-hidden" id="activity_id"><%= params[:id] %></var>
+  <% if controller_name == "activities" %>
+    <var class="is-hidden" id="controller">activities</var>
+  <% else %>
+    <var class="is-hidden" id="controller">interest_activities</var>
+  <% end %>
   <ul class="nav nav-tabs">
-    <% if controller_name == "activities" %>
-      <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/my_school/activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
-      <li class="<%= params[:activity_entry_tp].present? && 0 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-        <%= link_to "活动主信息", my_school_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
-      </li>
-      <li class="<%= params[:activity_entry_tp].present? && 1 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-        <%= link_to "交互信息", my_school_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
-      </li>
-    <% else %>
-      <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/my_school/interest_activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
-      <li class="<%= params[:activity_entry_tp].present? && 0 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-        <%= link_to "活动主信息", my_school_interest_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
-      </li>
-      <li class="<%= params[:activity_entry_tp].present? && 1 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-        <%= link_to "交互信息", my_school_interest_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
-      </li>
-    <% end %>
+    <li><a class="tab-activity" href="javascript:void(0)">全部回复</a></li>
+    <li>
+      <a class="tab-activity" href="javascript:void(0)">活动主信息</a>
+      <var class="is-hidden">0</var>
+    </li>
+    <li>
+      <a class="tab-activity" href="javascript:void(0)">交互信息</a>
+      <var class="is-hidden">1</var>
+    </li>
   </ul>
 </div>
+
+<script type="text/javascript">
+  var controller = $("#controller").text();
+  var id = $("#activity_id").text();
+  var url = "/my_school/" + controller + "/" + id ;
+  $(".tab-activity").click(function(event) {
+    event.preventDefault();
+    $(this).parent().siblings().removeClass('active');
+    $(this).parent().addClass('active');
+    var activity_entry_tp = $(this).next("var").text()
+    $.ajax({
+      url: url,
+      data: {
+        activity_entry_tp: activity_entry_tp,
+        id: id
+      },
+      beforeSend: function() {
+        $("#tab_activity_entries").html('<img style="margin-left: 250px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
+      }
+    })
+  })
+</script>
