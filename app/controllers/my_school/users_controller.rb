@@ -38,12 +38,14 @@ class MySchool::UsersController < MySchool::ManageController
         return render :layout=>"colorful_login"
       end
       user = User.authenticate(params[:login], params[:password],@kind.id)
-      if WEBSITE_CONFIG["weixin_blind"]
-        if user.weiyi_code.blank?
-          raise "您需要绑定\"微一园讯通\"微信公共帐号<br/>第一次使用本系统，请点击'<a href=\"#login_course\" id=\"link_course\">激活账号指南</a>'"
-        end
-        if user.weixin_code.blank?
-          raise "您需要绑定幼儿园的公共账号后才能访问<br/>第一次使用本系统，请点击'<a href=\"#login_course\" id=\"link_course\">激活账号指南</a>'"
+      unless user.is_receive
+        if WEBSITE_CONFIG["weixin_blind"]
+          if user.weiyi_code.blank?
+            raise "您需要绑定\"微一园讯通\"微信公共帐号<br/>第一次使用本系统，请点击'<a href=\"#login_course\" id=\"link_course\">激活账号指南</a>'"
+          end
+          if user.weixin_code.blank?
+            raise "您需要绑定幼儿园的公共账号后才能访问<br/>第一次使用本系统，请点击'<a href=\"#login_course\" id=\"link_course\">激活账号指南</a>'"
+          end
         end
       end
       self.current_user = user
