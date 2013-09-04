@@ -40,18 +40,7 @@
         </li>
       </ul>
     </div>
-    <div id="topic_category_tabs">
-      <ul class="nav nav-tabs">
-        <li class="<%= params[:topic_category_id] ? "" : "active" %>"><a href="<%= url_for(:controller => "/my_school/topics", :action => :index) %>">全部贴子</a></li>
-        <% unless @topic_categories.blank? %>
-          <% @topic_categories.each do |topic_category| %>
-            <li class="<%= params[:topic_category_id].to_i == topic_category.id ? "active" : "" %>">
-            <a href="<%= url_for(:controller => '/my_school/topics', :action => :index, :topic_category_id => topic_category.id) %>" ><%= topic_category.name %></a>
-            </li>
-          <% end %>
-        <% end %>
-      </ul>
-    </div>
+    <%= render "tab_topic" %>
     <div class="search_form">
      <%= form_tag '/my_school/topics' , :method=>"get" do %>
       <b>标题：</b>
@@ -59,22 +48,12 @@
       <b>内容：</b>
       <%= text_field :topic,:content_like,:style=>"width:100px;" ,:value=>"#{params[:topic][:content_like] if params[:topic] }"  %>
 
-      <%= submit_tag "搜索"  , :class => "btn search_btn"%>
+      <%= submit_tag "搜索", :class => "btn search_btn" %>
       <%end%>
     </div>
     <div class="work_list">
-      <div class="topics">
-        <% unless @topics.empty? %>
-          <% if choose_operate_show("my_school/topics/destroy") %>
-            <div class="input_select_all"><input type="checkbox" id="check_all" />全选</div>
-          <% end %>
-          <%= form_tag my_school_topic_path(@topics), method: :delete, :id => "destroy_multi_form" do %>
-            <%= render partial: "topic", collection: @topics %>
-          <% end %>
-          <%= paginate @topics %>
-        <% else %>
-          没有贴子
-        <% end %>
+      <div class="topics" id="topics">
+        <%= render "tab_topics" %>
       </div>
     </div>
   </div>
@@ -83,9 +62,9 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-  $("#topic_all").click(function(){
-    $(".topic_check").attr("checked",this.checked);
-  });
+  $("#check_all").live('click', function() {
+    $(".check").attr("checked",this.checked);
+  })
 
   $("#destroy_multiple").click(function(){
     if (confirm('您确定删除选中的贴子吗')) {

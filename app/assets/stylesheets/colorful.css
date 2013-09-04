@@ -838,7 +838,7 @@ a{
 }
 /*===========表格==============*/
 .work_list{
-    padding: 20px 20px 20px 35px;
+    padding: 20px 20px 20px 45px;
 }
 .work table.list{
     width: 100%;
@@ -1313,14 +1313,20 @@ table.attributes td {
 .blue{
     color: blue;
 }
+
+.is-hidden {
+    display: none;
+}
+
 .table a.red{
     color: red;
 }
 
 #topic_category_tabs {
     padding-top: 45px;
-    padding-left: 50px;
+    padding-left: 35px;
 }
+
 ul.nav-tabs li{
     background-color: #FFFFFF;
     margin-bottom:0px;
@@ -1435,7 +1441,8 @@ a.album_a .album_img img{
     float: left;
 }
 .search_form{
-    padding: 20px 20px 20px 35px;
+    padding: 20px;
+    padding-left: 35px;
 }
 
 .search_form input[type="text"] {
@@ -2616,6 +2623,11 @@ fieldset.staff_squad ol li {
 
 .input_select_all {
     margin-left: -10px;
+    margin-bottom: 20px;
+}
+
+.topics .checkbox.inline {
+    margin-bottom: 20px;
 }
 
 .validate_icon {

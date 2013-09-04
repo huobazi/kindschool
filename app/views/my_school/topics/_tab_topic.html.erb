@@ -1,0 +1,39 @@
+<div id="topic_category_tabs">
+  <ul class="nav nav-tabs">
+    <li class="active"><a class="tp_tab_link" href="javascript:void(0)">全部贴子</a>
+    </li>
+    <% unless @topic_categories.blank? %>
+      <% @topic_categories.each do |topic_category| %>
+        <li>
+          <a class="tp_tab_link" href="javascript:void(0)"><%= topic_category.name %></a>
+          <var class="is-hidden"><%= topic_category.id %></var>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+
+<script type="text/javascript">
+  $(".tp_tab_link").each(function() {
+    $(this).click(function(event) {
+      event.preventDefault();
+      $(this).parent().siblings().removeClass('active');
+      $(this).parent().addClass('active');
+      $.ajax({
+        url: "/my_school/topics",
+        data: {
+          topic_category_id: $(this).next("var").text()
+        },
+        beforeSend: function() {
+          $("#topics").html('<img style="margin-left: 250px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
+        },
+        error: function() {
+
+        },
+        success: function() {
+
+        }
+      })
+    })
+  })
+</script>
