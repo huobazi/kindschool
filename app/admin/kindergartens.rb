@@ -184,11 +184,12 @@ ActiveAdmin.register Kindergarten do
 
       div do
         br
-        panel "贴子列表" do
+        panel "最新贴子信息" do
           unless kind.topics.blank?
-            table_for(kind.topics) do |t|
+            table_for(kind.topics.limit(10).order("id DESC")) do |t|
               t.column("标题") {|item| item.title}
-              t.column("发贴人") {|item| item.creater_id}
+              t.column("发贴人") {|item| item.creater.try(:name)}
+              t.column("内容") {|item| raw item.content}
               tr :class => "odd" do
                 td ""
                 td "贴子总数", :style => "text-align: right;"
@@ -199,11 +200,10 @@ ActiveAdmin.register Kindergarten do
           else
             "未有贴子"
           end
-        end
-
-        ul do
-          li do
-            link_to "发表贴子", :controller => "/admin/topics", :action => :new, :kindergarten_id => kind.id
+          ul do
+            li do
+              link_to "查看贴子列表", :controller => "/admin/topics", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+            end
           end
         end
       end
@@ -360,15 +360,16 @@ ActiveAdmin.register Kindergarten do
           else
             "还没有论坛分类"
           end
-        end
-
-        ul do
-          li do
-            link_to "创建论坛分类", :controller => "/admin/topic_categories", :action => :new, :kindergarten_id => kind.id
+          ul do
+            li do
+              link_to "创建论坛分类", :controller => "/admin/topic_categories", :action => :new, :kindergarten_id => kind.id
+            end
+            li do
+              link_to "查看论坛分类列表", :controller => "/admin/topic_categories", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+            end
           end
         end
       end
-
 
       div do
         br
@@ -382,14 +383,21 @@ ActiveAdmin.register Kindergarten do
                 kind.shrink_record.description
               end
             end
+            ul do
+              li do
+                link_to "查看seo关键字列表", :controller => "/admin/shrink_records", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+              end
+            end
           else
             "还没有seo关键字优化"
-          end
-        end
-
-        ul do
-          li do
-            link_to "创建seo关键字优化", :controller => "/admin/shrink_records", :action => :new, :kindergarten_id => kind.id
+            ul do
+              li do
+                link_to "创建seo关键字优化", :controller => "/admin/shrink_records", :action => :new, :kindergarten_id => kind.id
+              end
+              li do
+                link_to "查看seo关键字列表", :controller => "/admin/shrink_records", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+              end
+            end
           end
         end
       end

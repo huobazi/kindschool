@@ -18,6 +18,7 @@ ActiveAdmin.register ShrinkRecord do
   end
 
   index do
+    column :url
     column :description
     column :keywords
     column :kindergarten
@@ -27,6 +28,7 @@ ActiveAdmin.register ShrinkRecord do
   form do |f|
     f.inputs "SEO搜索配置" do
       f.input :kindergarten_label, :required => true, :input_html => { :disabled => true }
+      f.input :url
       f.input :keywords
       f.input :description
       f.input :kindergarten_id, :as => :hidden
@@ -36,6 +38,7 @@ ActiveAdmin.register ShrinkRecord do
 
   show do |menu|
     attributes_table do
+      row :url
       row :keywords
       row :description
       row :kindergarten

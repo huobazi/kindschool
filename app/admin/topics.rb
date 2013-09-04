@@ -20,7 +20,7 @@ ActiveAdmin.register Topic do
     column :title do |topic|
       link_to topic.title, :controller => "/admin/topics", :action => :show, :id => topic.id
     end
-    column :creater_id
+    column :creater
     column :kindergarten
     column :status
     column :show_count
