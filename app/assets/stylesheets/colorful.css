@@ -1322,6 +1322,12 @@ table.attributes td {
     color: red;
 }
 
+#tab_activity_entries {
+  min-height: 400px;
+  height: auto !important;
+  _height: 400px;
+}
+
 #topic_category_tabs {
     padding-top: 45px;
     padding-left: 35px;
