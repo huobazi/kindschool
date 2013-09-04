@@ -53,7 +53,7 @@
                     <div class="cell">
                       <div class="first">
                         <div class="block">
-                          <img src="<%= message.sender.asset_logo ? message.sender.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="48" alt="<%= message.sender_name %>" title="<%= message.sender_name %>"/>
+                          <img src="<%= message.try(:sender).try(:asset_logo) ? message.try(:sender).try(:asset_logo).public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="48" alt="<%= message.try(:sender_name) %>" title="<%= message.sender_name %>"/>
                         </div>
                         <div class="message_wrap">
                           <%= message.title %>
