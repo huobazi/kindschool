@@ -1,6 +1,8 @@
 <% unless @topics.empty? %>
   <% if choose_operate_show("my_school/topics/destroy") %>
-    <div class="input_select_all"><input type="checkbox" id="check_all" />全选</div>
+<label class="input_select_all checkbox inline ">
+  <input type="checkbox" id="check_all" /> 全选
+</label>
   <% end %>
   <%= form_tag my_school_topic_path(@topics), method: :delete, :id => "destroy_multi_form" do %>
     <%= render partial: "topic", collection: @topics %>
