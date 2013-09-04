@@ -44,6 +44,12 @@
   }
 
 </script>
+<script>
+z=new Date().getMonth();
+alert(z+1);
+z=((z==0)?(12):(z));
+alert(z);
+</script>
 <div class="show_work">
   <%= render :partial => "/modules/colorful/work_menu" %>
   <div class="work">
@@ -75,20 +81,20 @@
       <div class="topics">
 
         <%= form_tag '/my_school/statistics/growth_record' , :method=>"get", :id => "stat_growth_record" do %>
-        <%= hidden_field_tag "start_at" %>
-        <%= hidden_field_tag "end_at" %>
-        <p>
-        <% if params[:start_at].present? or params[:end_at].present? %>
-          <input type="text" style="margin-top: 10px;"  id="val" value="<%= params[:start_at] %>~<%= params[:end_at] %>" />
-        <% else %>
-          <input type="text" style="margin-top: 10px;" id="val" value="<%= @cur_begginning_of_week %>~<%= @cur_end_of_week %>"  />
-        <% end %>
-        <a class="normal_link btn" href="javascript:void(0);"  onclick="backDate();">上一周</a>
-        <a class="normal_link btn" href="javascript:void(0);" onclick="curDate();" >本周</a>
-        <a class="normal_link btn" href="javascript:void(0);" onclick="nextDate();" >下一周</a>
-        </p>
-        <a class="btn" data-toggle="button" id="stat-failure" href="javascript:void(0);" >查看成长记录未完成的学员</a>
-        <a class="btn" data-toggle="button" id="stat-success" href="javascript:void(0);" >查看成长记录已完成的学员</a>
+          <%= hidden_field_tag "start_at" %>
+          <%= hidden_field_tag "end_at" %>
+          <p>
+            <% if params[:start_at].present? or params[:end_at].present? %>
+              <input type="text" style="margin-top: 10px;"  id="val" value="<%= params[:start_at] %>~<%= params[:end_at] %>" />
+            <% else %>
+              <input type="text" style="margin-top: 10px;" id="val" value="<%= @cur_begginning_of_week %>~<%= @cur_end_of_week %>"  />
+            <% end %>
+            <a class="normal_link btn" href="javascript:void(0);"  onclick="backDate();">上一周</a>
+            <a class="normal_link btn" href="javascript:void(0);" onclick="curDate();" >本周</a>
+            <a class="normal_link btn" href="javascript:void(0);" onclick="nextDate();" >下一周</a>
+          </p>
+          <a class="btn" id="stat-failure" href="javascript:void(0);" >查看成长记录未完成的学员</a>
+          <a class="btn" id="stat-success" href="javascript:void(0);" >查看成长记录已完成的学员</a>
         <% end %>
 
 
@@ -111,6 +117,19 @@ $(document).ready(function() {
       $("#stat_growth_record").submit();
     })
   })
-})
+  var growth_record_scroll;
+  $('a.btn').each(function () {
+    $(this).click(function() {
+      $(this).addClass('disabled');
+      $(this).siblings().removeClass('disabled');
+      if ( parent.location.hash == '' ) {
+        parent.location.hash = "home_growth_records";
+        growth_record_scroll = $(window).scrollTop();
+      } else {
+        $(window).scrollTop(growth_record_scroll);
+      }
 
+    })
+  });
+})
 </script>

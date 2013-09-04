@@ -8,6 +8,11 @@ class  Weixin::ManageController < Weixin::BaseController
 
   def load_config
     @role =current_user.role
+    if current_user.weiyi_code.blank?
+      flash[:error] = "您还未绑定\"微一园讯通\"平台公共账号,请关注微信公共账号\"微一园讯通\",并进行绑定。"
+      redirect_to :action => :error_messages,:controller=>"/weixin/main"
+      return
+    end
   end
   private
   #设置模板

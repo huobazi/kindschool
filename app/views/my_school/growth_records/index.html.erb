@@ -106,15 +106,11 @@
     <div class="work_list">
       <div class="topics">
         <% unless @growth_records.blank? %>
-          <% if controller_name == "growth_records" %>
-            <% if choose_operate_show("my_school/garden_growth_records/destroy") %>
-              <div class="input_select_all"><input type="checkbox" id="check_all" />全选</div>
+            <% if choose_operate_show("my_school/garden_growth_records/destroy") or choose_operate_show("my_school/growth_records/destroy") %>
+              <label class="input_select_all checkbox inline ">
+                <input type="checkbox" id="check_all" /> 全选
+              </label>
             <% end %>
-          <% else %>
-            <% if choose_operate_show("my_school/garden_growth_records/destroy") %>
-              <div class="input_select_all"><input type="checkbox" id="check_all" />全选</div>
-            <% end %>
-          <% end %>
           <% if controller_name == "growth_records" %>
             <%= form_tag my_school_growth_record_path(@growth_records), method: :delete, :id => "destroy_multi_form" do %>
               <%= render partial: "/my_school/growth_records/growth_record", collection: @growth_records %>
@@ -135,11 +131,6 @@
 </div>
 
 <script type="text/javascript">
-  $(document).ready(function(){
-    $("#growth_record_all").click(function(){
-      $(".growth_check").attr("checked",this.checked);
-    })
-  });
   $("#destroy_multiple").click(function(){
     if (confirm('您确定删除选中的成长记录吗')) {
       $("#destroy_multi_form").submit();

@@ -184,11 +184,12 @@ ActiveAdmin.register Kindergarten do
 
       div do
         br
-        panel "贴子列表" do
+        panel "最新贴子信息" do
           unless kind.topics.blank?
-            table_for(kind.topics) do |t|
+            table_for(kind.topics.limit(10).order("id DESC")) do |t|
               t.column("标题") {|item| item.title}
-              t.column("发贴人") {|item| item.creater_id}
+              t.column("发贴人") {|item| item.creater.try(:name)}
+              t.column("内容") {|item| raw item.content}
               tr :class => "odd" do
                 td ""
                 td "贴子总数", :style => "text-align: right;"
@@ -199,11 +200,10 @@ ActiveAdmin.register Kindergarten do
           else
             "未有贴子"
           end
-        end
-
-        ul do
-          li do
-            link_to "发表贴子", :controller => "/admin/topics", :action => :new, :kindergarten_id => kind.id
+          ul do
+            li do
+              link_to "查看贴子列表", :controller => "/admin/topics", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+            end
           end
         end
       end
@@ -213,24 +213,22 @@ ActiveAdmin.register Kindergarten do
         br
         panel "菜谱信息" do
           unless kind.cook_books.blank?
-            table_for(kind.cook_books) do |t|
+            table_for(kind.cook_books.limit(10).order("id DESC")) do |t|
               t.column("开始时间") {|item| item.start_at.to_short_datetime unless item.start_at.nil?}
               t.column("结束时间") {|item| item.end_at.to_short_datetime unless item.end_at.nil?}
-              t.column("类型") {|item| item.range_tp}
+              #              t.column("类型") {|item| item.range_tp}
               tr :class => "odd" do
-                td ""
                 td "菜谱总数", :style => "text-align: right;"
                 td "#{kind.cook_books.count}"
-                td ""
               end
             end
           else
             "未创建菜谱"
           end
-        end
-        ul do
-          li do
-            link_to "创建菜谱", :controller => "/admin/cook_books", :action => :new, :kindergarten_id => kind.id
+          ul do
+            li do
+              link_to "创建菜谱", :controller => "/admin/cook_books", :action => :new, :kindergarten_id => kind.id
+            end
           end
         end
       end
@@ -239,7 +237,7 @@ ActiveAdmin.register Kindergarten do
         br
         panel "通知信息" do
           unless kind.notices.blank?
-            table_for(kind.notices) do |t|
+            table_for(kind.notices.limit(10).order("id DESC")) do |t|
               t.column("标题") {|item| item.title}
               t.column("创建人") {|item| item.creater_id}
               t.column("状态") {|item| item.status}
@@ -253,11 +251,10 @@ ActiveAdmin.register Kindergarten do
           else
             "未创建通知"
           end
-        end
-
-        ul do
-          li do
-            link_to "创建通知", :controller => "/admin/notices", :action => :new, :kindergarten_id => kind.id
+          ul do
+            li do
+              link_to "创建通知", :controller => "/admin/notices", :action => :new, :kindergarten_id => kind.id
+            end
           end
         end
       end
@@ -266,7 +263,7 @@ ActiveAdmin.register Kindergarten do
         br
         panel "最新消息信息" do
           unless kind.messages.blank?
-            table_for(kind.messages.limit(10).order("id DESC")) do |t|
+            table_for(kind.messages.where("tp=1 or tp=2").limit(10).order("id DESC")) do |t|
               t.column("标题") {|item| item.title}
               t.column("发送人") {|item| item.sender.try(:name)}
               t.column("状态") {|item| item.status}
@@ -290,15 +287,13 @@ ActiveAdmin.register Kindergarten do
             end
           end
         end
-
-
       end
 
       div do
         br
         panel "活动信息" do
           unless kind.activities.blank?
-            table_for(kind.activities) do |t|
+            table_for(kind.activities.limit(10).order("id DESC")) do |t|
               t.column("标题") {|item| item.title}
               t.column("创建人") {|item| item.creater_id}
               t.column("活动类型") {|item| item.tp == 0 ? "活动" : "兴趣讨论"}
@@ -360,15 +355,16 @@ ActiveAdmin.register Kindergarten do
           else
             "还没有论坛分类"
           end
-        end
-
-        ul do
-          li do
-            link_to "创建论坛分类", :controller => "/admin/topic_categories", :action => :new, :kindergarten_id => kind.id
+          ul do
+            li do
+              link_to "创建论坛分类", :controller => "/admin/topic_categories", :action => :new, :kindergarten_id => kind.id
+            end
+            li do
+              link_to "查看论坛分类列表", :controller => "/admin/topic_categories", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+            end
           end
         end
       end
-
 
       div do
         br
@@ -382,14 +378,21 @@ ActiveAdmin.register Kindergarten do
                 kind.shrink_record.description
               end
             end
+            ul do
+              li do
+                link_to "查看seo关键字列表", :controller => "/admin/shrink_records", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+              end
+            end
           else
             "还没有seo关键字优化"
-          end
-        end
-
-        ul do
-          li do
-            link_to "创建seo关键字优化", :controller => "/admin/shrink_records", :action => :new, :kindergarten_id => kind.id
+            ul do
+              li do
+                link_to "创建seo关键字优化", :controller => "/admin/shrink_records", :action => :new, :kindergarten_id => kind.id
+              end
+              li do
+                link_to "查看seo关键字列表", :controller => "/admin/shrink_records", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+              end
+            end
           end
         end
       end

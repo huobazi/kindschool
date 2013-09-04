@@ -144,7 +144,7 @@
         </form>
         <% @user_info = @kind.get_users_info %>
         <%@chart = LazyHighCharts::HighChart.new('graph') do |f|
-          f.title({ :text=>"学员情况"})
+          f.title({ :text=>"人员情况"})
           f.series(:type=> 'pie',:name=> '性别',
             :data=> [
               {:name=> "女（#{@user_info[:woman]}人）", :y=> @user_info[:woman], :color=> 'red'},

@@ -1,3 +1,13 @@
+<script type="text/javascript">
+  jQuery(function() {
+    $('#news_start_data').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });;
+  });
+</script>
 <div class="control-group">
  	<%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
 <div class="controls">
@@ -10,6 +20,12 @@
   <%= f.text_field(:title , :validate => true, placeholder: "请输入新闻的标题") %>
 
   <p class="help-block">长度不能小于3。</p>
+</div>
+ </div>
+ <div class="control-group">
+  <%=f.label :start_data, '发布时间:' ,:class=>"control-label" %>
+<div class="controls">
+    <%= f.text_field(:start_data , :validate => true, :class => "time_datepicker",:value => @new.start_data.try(:to_short_datetime), placeholder: "单击此处选择新闻发布时间") %>
 </div>
  </div>
 <div class="control-group">
