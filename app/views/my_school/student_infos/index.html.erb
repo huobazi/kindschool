@@ -54,6 +54,7 @@
           <b>班级：</b>
     <%#= text_field :student_info,:squad_name_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:squad_name_like] if params[:student_info] }"  %>
           <%= select_tag("student_info[squad_name_like]", options_for_select(@kind.squads.collect{|x|x.name}+[""],(params[:student_info].blank? ? "" : params[:student_info][:squad_name_like])),:style=>"width:100px;") %>
+          <br/>
           <b>手机号：</b>
           <%= text_field :student_info,:user_phone_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:user_phone_like] if params[:student_info] }"  %>
           <b>收短信：</b>

@@ -63,5 +63,11 @@ class  MySchool::StatisticsController < MySchool::ManageController
 
   end
 
+  #短信进行统计
+  def sms_statistics
+     @sms_records = SmsRecord.where(:kindergarten_id=>@kind.id,:status=>1
+
+  end
+
 end
 

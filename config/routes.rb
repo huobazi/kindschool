@@ -111,7 +111,7 @@ School::Application.routes.draw do
     end
 
     resources :statistics do
-      get :virtual_squad, :message, :growth_record, :kind_stat, :on => :collection
+      get :sms_statistics,:virtual_squad, :message, :growth_record, :kind_stat, :on => :collection
     end
     resources :users do
       collection do

@@ -15,8 +15,7 @@ class SmsRecord < ActiveRecord::Base
   before_create :load_user_name
   after_create :send_sms
   
-  STATUS_DATA = {"0" => "周菜谱"}#, "1" => "日菜谱"}
-
+ 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end
