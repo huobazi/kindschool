@@ -42,13 +42,13 @@
     </div>
     <%= render "tab_topic" %>
     <div class="search_form">
-     <%= form_tag '/my_school/topics' , :method=>"get" do %>
-      <b>标题：</b>
-      <%= text_field :topic,:title_like,:style=>"width:100px;" ,:value=>"#{params[:topic][:title_like] if params[:topic] }"  %>
-      <b>内容：</b>
-      <%= text_field :topic,:content_like,:style=>"width:100px;" ,:value=>"#{params[:topic][:content_like] if params[:topic] }"  %>
+      <%= form_tag '/my_school/topics' , :method=>"get", :remote => true do %>
+        <b>标题：</b>
+        <%= text_field :topic,:title_like,:style=>"width:100px;" ,:value=>"#{params[:topic][:title_like] if params[:topic] }"  %>
+        <b>内容：</b>
+        <%= text_field :topic,:content_like,:style=>"width:100px;" ,:value=>"#{params[:topic][:content_like] if params[:topic] }"  %>
 
-      <%= submit_tag "搜索", :class => "btn search_btn" %>
+        <%= submit_tag "搜索", :class => "btn search_btn" %>
       <%end%>
     </div>
     <div class="work_list">
@@ -62,10 +62,6 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-  $("#check_all").live('click', function() {
-    $(".check").attr("checked",this.checked);
-  })
-
   $("#destroy_multiple").click(function(){
     if (confirm('您确定删除选中的贴子吗')) {
       $("#destroy_multi_form").submit();
