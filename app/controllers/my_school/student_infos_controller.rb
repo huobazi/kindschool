@@ -5,6 +5,13 @@ class  MySchool::StudentInfosController < MySchool::ManageController
     if current_user.get_users_ranges[:tp] == :student
       @student_infos = @kind.student_infos.where(:id=>current_user.student_info.id).page(params[:page] || 1).per(10)
     elsif current_user.get_users_ranges[:tp] == :teachers
+      unless params[:weixin_bland].blank? 
+         if params[:weixin_bland]=="1"
+            str = "weixin_code is not null and weiyicode is not null "
+          elsif params[:weixin_bland]=="2"
+
+         end
+      end
       @student_infos = @kind.student_infos.where("squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?)",current_user.staff.id).search(params[:student_info] || {}).page(params[:page] || 1).per(10).order("student_infos.created_at DESC")
     else
       @student_infos = @kind.student_infos.search(params[:student_info] || {}).page(params[:page] || 1).per(10)
