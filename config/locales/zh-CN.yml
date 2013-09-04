@@ -483,6 +483,7 @@ zh-CN:
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"
         creater_id: "发贴人"
+        creater: "发帖人"
         title: "标题"
         content: "内容"
         tp: "类型"

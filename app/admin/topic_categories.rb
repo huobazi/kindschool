@@ -1,6 +1,7 @@
 #encoding:utf-8
 ActiveAdmin.register TopicCategory do
-  menu :parent => "幼儿园管理", :priority => 27
+#  menu :parent => "幼儿园管理", :priority => 27
+  menu false
 
   controller do
     def new
@@ -19,7 +20,7 @@ ActiveAdmin.register TopicCategory do
 
   index do
     column :name
-    column :kindergarten_label
+    column :kindergarten
     default_actions
   end
 
@@ -35,7 +36,7 @@ ActiveAdmin.register TopicCategory do
   show do |f|
     attributes_table do
       row :name
-      row :kindergarten_label
+      row :kindergarten
     end
   end
 end

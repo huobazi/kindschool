@@ -3,7 +3,7 @@ class  MySchool::TopicsController < MySchool::ManageController
   def index
     @topic_categories = @kind.topic_categories
 
-    if params[:topic_category_id]
+    unless params[:topic_category_id].blank?
       if topic_category = @kind.topic_categories.find_by_id(params[:topic_category_id])
         if current_user.get_users_ranges[:tp] == :student
           @topics = @kind.topics.where("topic_category_id = ? and approve_status = 0  and (creater_id = ? or squad_id = ? or squad_id is null)", topic_category.id, current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top DESC").("created_at DESC")
@@ -24,6 +24,12 @@ class  MySchool::TopicsController < MySchool::ManageController
       else
         @topics = @kind.topics.search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top DESC").order("created_at DESC")
       end
+    end
+
+    if request.xhr?
+      render "index.js.erb"
+    else
+      render "index"
     end
 
   end
