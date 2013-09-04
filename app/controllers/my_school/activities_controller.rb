@@ -65,6 +65,12 @@ class MySchool::ActivitiesController < MySchool::ManageController
       @activity_entry.tp = 1
     end
 
+    if request.xhr?
+      render "show.js.erb"
+    else
+      render "show"
+    end
+
   end
 
   def new
