@@ -2,19 +2,24 @@
 class  MySchool::StudentInfosController < MySchool::ManageController
 
   def index
-    if current_user.get_users_ranges[:tp] == :student
-      @student_infos = @kind.student_infos.where(:id=>current_user.student_info.id).page(params[:page] || 1).per(10)
-    elsif current_user.get_users_ranges[:tp] == :teachers
-      unless params[:weixin_bland].blank? 
+    str = ""
+    unless params[:weixin_bland].blank? 
          if params[:weixin_bland]=="1"
-            str = "weixin_code is not null and weiyicode is not null "
+            str = "weixin_code is not null and weiyi_code is not null "
           elsif params[:weixin_bland]=="2"
-
+            str = "weixin_code is null and weiyi_code is null "
+          elsif params[:weixin_bland]=="3"
+            str = "weixin_code is not null and weiyi_code is null "
+          elsif params[:weixin_bland]=="4"
+            str = "weixin_code is  null and weiyi_code is not null " 
          end
       end
-      @student_infos = @kind.student_infos.where("squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?)",current_user.staff.id).search(params[:student_info] || {}).page(params[:page] || 1).per(10).order("student_infos.created_at DESC")
+    if current_user.get_users_ranges[:tp] == :student
+      @student_infos = @kind.student_infos.where(:id=>current_user.student_info.id).page(params[:page] || 1).per(10)
+    elsif current_user.get_users_ranges[:tp] == :teachers  
+      @student_infos = @kind.student_infos.where("#{str}").where("squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?)",current_user.staff.id).search(params[:student_info] || {}).page(params[:page] || 1).per(10).order("student_infos.created_at DESC")
     else
-      @student_infos = @kind.student_infos.search(params[:student_info] || {}).page(params[:page] || 1).per(10)
+      @student_infos = @kind.student_infos.where("#{str}").search(params[:student_info] || {}).page(params[:page] || 1).per(10)
     end
     respond_to do |format|
       format.html

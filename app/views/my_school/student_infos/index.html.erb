@@ -60,7 +60,7 @@
           <b>收短信：</b>
           <%= select_tag("student_info[user_is_receive_equals]", options_for_select([["全部",""],["可收短信",1],["不可收短信",0]],(params[:student_info].blank? ? "" : params[:student_info][:user_is_receive_equals])),:style=>"width:100px;") %>
           <b>是否完全绑定</b>
-          <%= select_tag("weixin_bland", options_for_select([["",""],["完全绑定",1],["完全未绑定",2],["只绑定幼儿园",3],["只绑定微壹平台",4]],(params[:weixin_bland].blank? ? "" : params[:weixin_bland])),:style=>"width:100px;") %>
+          <%= select_tag("weixin_bland", options_for_select([["",""],["完全绑定",1],["完全未绑定",2],["只绑定幼儿园",3],["只绑定微壹平台",4]],(params[:weixin_bland].blank? ? "" : params[:weixin_bland])),:style=>"width:150px;") %>
           <%= submit_tag "搜索"  , :class => "btn search_btn"%>
         <%end%>
         <%if choose_operate_show("my_school/student_infos/download_student_infos")%>
