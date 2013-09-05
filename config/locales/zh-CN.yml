@@ -553,6 +553,7 @@ zh-CN:
         end_at: "结束时间"
         content: "表现"
         creater_id: "创建人"
+        creater: "创建人"
         squad_name: "班级名"
         student_info: "学员"
         student_info_id: "学员"
