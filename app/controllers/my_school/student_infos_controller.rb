@@ -5,13 +5,13 @@ class  MySchool::StudentInfosController < MySchool::ManageController
     str = ""
     unless params[:weixin_bland].blank? 
          if params[:weixin_bland]=="1"
-            str = "weixin_code is not null and weiyi_code is not null "
+            str = "weixin_code is not null and weixin_code!=''  and weiyi_code is not null and weiyi_code!=''"
           elsif params[:weixin_bland]=="2"
-            str = "weixin_code is null and weiyi_code is null "
+            str = "(weixin_code is null or weixin_code='')  and (weiyi_code is null or weiyi_code='')"
           elsif params[:weixin_bland]=="3"
-            str = "weixin_code is not null and weiyi_code is null "
+            str = "weixin_code is not null and weixin_code!='' and (weiyi_code is null or weiyi_code='')"
           elsif params[:weixin_bland]=="4"
-            str = "weixin_code is  null and weiyi_code is not null " 
+            str = "(weixin_code is  null or weixin_code='') and weiyi_code is not null and weiyi_code!=''" 
          end
       end
     if current_user.get_users_ranges[:tp] == :student
