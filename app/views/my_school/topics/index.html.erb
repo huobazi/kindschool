@@ -42,11 +42,12 @@
     </div>
     <%= render "tab_topic" %>
     <div class="search_form">
-      <%= form_tag '/my_school/topics' , :method=>"get", :remote => true do %>
+      <%= form_tag '/my_school/topics', :method=>"get", :remote => true do %>
         <b>标题：</b>
         <%= text_field :topic,:title_like,:style=>"width:100px;" ,:value=>"#{params[:topic][:title_like] if params[:topic] }"  %>
         <b>内容：</b>
         <%= text_field :topic,:content_like,:style=>"width:100px;" ,:value=>"#{params[:topic][:content_like] if params[:topic] }"  %>
+        <%= hidden_field_tag "topic_category_id" %>
 
         <%= submit_tag "搜索", :class => "btn search_btn" %>
       <%end%>
