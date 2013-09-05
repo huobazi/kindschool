@@ -1318,6 +1318,16 @@ table.attributes td {
     display: none;
 }
 
+.is-show {
+    display: block;
+}
+
+.loadding_pt {
+    left: 50%;
+    position: absolute;
+    top: 100%; 
+}
+
 .table a.red{
     color: red;
 }

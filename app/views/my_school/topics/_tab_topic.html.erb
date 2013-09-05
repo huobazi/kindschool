@@ -25,7 +25,7 @@
           topic_category_id: $(this).next("var").text()
         },
         beforeSend: function() {
-          $("#topics").html('<img style="margin-left: 250px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />');
+          $('<img class="loading_img loadding_pt" src="/t/colorful/gif_preloader.gif" alt="" />').appendTo("#topics");
         },
         error: function() {
 
