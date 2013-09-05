@@ -33,7 +33,7 @@ class GrowthRecord < ActiveRecord::Base
     end
   end
 
-  TP_DATA = {"0"=>"宝宝在园", "1"=>"宝宝在家"}
+  TP_DATA = {"false"=>"宝宝在园", "true"=>"宝宝在家"}
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
