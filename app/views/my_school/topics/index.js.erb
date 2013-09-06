@@ -1,3 +1,8 @@
 (function() {
   $("#topics").html('<%= escape_javascript(render "tab_topics") %>');
+  <% if @topic_category_id.present? %>
+    $("#topic_category_id").val(<%= @topic_category_id %>);
+  <% else %>
+    $("#topic_category_id").val("");
+  <% end %>
 })()

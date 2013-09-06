@@ -6,7 +6,7 @@
     <var class="is-hidden" id="controller">interest_activities</var>
   <% end %>
   <ul class="nav nav-tabs">
-    <li><a class="tab-activity" href="javascript:void(0)">全部回复</a></li>
+    <li class="active"><a class="tab-activity" href="javascript:void(0)">全部回复</a></li>
     <li>
       <a class="tab-activity" href="javascript:void(0)">活动主信息</a>
       <var class="is-hidden">0</var>
@@ -34,7 +34,7 @@
         id: id
       },
       beforeSend: function() {
-        $("#tab_activity_entries").html('<img style="margin-left: 250px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
+        $('<img class="loading_img loadding_pt" src="/t/colorful/gif_preloader.gif" alt="" />').appendTo("#tab_activity_entries");
       }
     })
   })

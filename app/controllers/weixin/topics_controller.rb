@@ -1,8 +1,8 @@
 #encoding:utf-8
 class Weixin::TopicsController < Weixin::ManageController
   def index
-    unless params[:category_id].blank?
-      if topic_category = @kind.topic_categories.find_by_id(params[:category_id])
+    unless params[:topic_category_id].blank?
+      if topic_category = @kind.topic_categories.find_by_id(params[:topic_category_id])
         if current_user.get_users_ranges[:tp] == :student
           @topics = @kind.topics.where("topic_category_id = ? and (creater_id = ? or squad_id = ? or squad_id is null)", topic_category.id, current_user.id, current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
         elsif current_user.get_users_ranges[:tp] == :teachers
@@ -10,6 +10,7 @@ class Weixin::TopicsController < Weixin::ManageController
         else
           @topics = @kind.topics.where(:topic_category_id => topic_category.id).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
         end
+        @topic_category_id = params[:topic_category_id]
       else
         flash[:error] = "没有权限或没有该论坛分类"
         redirect_to weixin_topics_path
@@ -95,9 +96,11 @@ class Weixin::TopicsController < Weixin::ManageController
     if current_user.get_users_ranges[:tp] == :student
       @topic = @kind.topics.where(:creater_id => current_user.id).find_by_id(params[:id])
     elsif current_user.get_users_ranges[:tp] == :teachers
-      @topic = @kind.topics.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
+      @topic = @kind.topics.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? ", current_user.staff.id, current_user.id).find_by_id(params[:id])
+      @squads = current_user.get_users_ranges[:squads]
     else
       @topic = @kind.topics.find_by_id(params[:id])
+      @grades = @kind.grades
     end
 
     if @topic.nil?
@@ -113,15 +116,19 @@ class Weixin::TopicsController < Weixin::ManageController
         params[:topic][:squad_id] = current_user.student_info.squad_id
       end
     end
+
+    if params[:visible].presence == "all"
+      params[:topic][:squad_id] = "NULL"
+    end
     if current_user.get_users_ranges[:tp] == :student
       @topic = @kind.topics.find_by_id_and_creater_id(params[:id], current_user.id)
     elsif current_user.get_users_ranges[:tp] == :teachers
-      @topic = @kind.topics.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
+      @topic = @kind.topics.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? ", current_user.staff.id, current_user.id).find_by_id(params[:id])
     else
       @topic = @kind.topics.find_by_id(params[:id])
     end
 
-    if @topic.update_attributes(params[:topic])
+    if @topic.update_attributes(params[:topic].except(:topic_category_id))
       flash[:success] = "更新贴子成功"
       redirect_to weixin_topic_path(@topic)
     else
@@ -138,6 +145,9 @@ class Weixin::TopicsController < Weixin::ManageController
   def grade_squad_partial
     if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
       @squads = grade.squads
+      if params[:default_squad].present?
+        @default_squad = params[:default_squad]
+      end
     end
     render "grade_squad", :layout => false
   end

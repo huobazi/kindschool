@@ -23,8 +23,7 @@
       "jquery.timers",
       "jquery.galleriffic",
       "jquery.opacityrollover",
-      "jquery.lettering",
-      "DD_belatedPNG_0.0.8a"
+      "jquery.lettering"
   %>
     <%= javascript_include_tag(:uploadify,"uploadify-rails") %>
     <%= javascript_include_tag "jquery.rater" %>
@@ -35,15 +34,26 @@
     <meta charset="utf-8"/>
     <%= csrf_meta_tags %>
 
-    <!--[if lte IE 6]>
-    <script type="text/javascript">
-             try{
-        DD_belatedPNG.fix('div, ul, img, li, input , a');
-        }catch(err){}
-    </script>
+   <%#*<script language='javascript' type="text/javascript">%>
+      <%#*function ResumeError() {%>
+        <%#*return true;%>
+      <%#*}%>
+      <%#*window.onerror = ResumeError;%>
+    <%#*</script>%>
+    <!--[if IE 6]>
+    <%= javascript_include_tag "DD_belatedPNG" %>
+<script type="text/javascript">
+  /* EXAMPLE */
+  DD_belatedPNG.fix('div, ul, img, li, input , a');
+
+  /* string argument can be any CSS selector */
+  /* .png_bg example is unnecessary */
+  /* change it to what suits you! */
+</script>
 <![endif]-->
+    <%#*onload="ResumeError()"%>
   </head>
-  <body>
+  <body >
     <div class="wrapper">
       <%= render :partial => "/modules/colorful/head" %>
       <%= yield %>

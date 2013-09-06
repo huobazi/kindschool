@@ -21,7 +21,7 @@
 </div>
 <% if current_user.get_users_ranges[:tp] == :all %>
   <div class="control-group">
-    <%= f.label :is_top, :class => "control-label" %>
+    <%= f.label :is_top,"是否置顶:", :class => "control-label" %>
     <div class="controls">
       <%= radio_button(:album, :is_top, "true") %>是
       <%= radio_button(:album, :is_top, "false") %>否
@@ -29,12 +29,6 @@
   </div>
 <% end %>
 
-<div class="control-group">
-  <%=f.label :content, '内容: ' ,:class=>"control-label"%>
-  <div class="controls">
-    <%= f.text_area(:content,:rows=>10, :class=>"input-xlarge span5", placeholder: "请输入照片集锦的描述") %>
-  </div>
-</div>
 <% unless current_user.get_users_ranges[:tp] == :student %>
   <% if current_user.get_users_ranges[:tp] == :teachers %>
     <div class="control-group">
@@ -48,6 +42,8 @@
         <% end %>
       </div>
     <% else %>
+    <div class="control-group">
+      <label class="control-label" >选择班级:</label>
       <div class="controls">
 
         <span>年级&nbsp;<%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}.unshift(["全部",0]),(@grade.id unless @grade.blank?) ) %></span>
@@ -59,6 +55,7 @@
           <%end%>
         </div>
       </div>
+    </div>
     <% end %>
 <% else %>
   <div class="control-group">
@@ -68,10 +65,16 @@
     </div>
   </div>
 <% end %>
+<div class="control-group">
+  <label class="control-label">内容</label>
+</div>
+<div class="control">
+    <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content', placeholder: "请输入照片集锦的描述",:items=>ITEMKE%>
+</div>
     <br />
     <div class="control-group">
       <div class="controls">
-        <%= f.submit("保存",:class=>"btn", disable_with: "正在提交...") %>
+        <%= f.submit("保存",:class=>"btn btn-large btn-primary", disable_with: "正在提交...") %>
       </div>
     </div>
     <script type="text/javascript">

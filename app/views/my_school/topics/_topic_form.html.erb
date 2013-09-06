@@ -7,11 +7,9 @@
 <%= f.input :topic_id, :as => :hidden %>
 
 
-<div class="control-group">
-  <div class="controls">
-    <%= f.button :submit, :value => "回复", disable_with: "正在提交..." %>
+  <div class="text-center">
+    <%= f.button :submit, :value => "回复", class: "btn-primary btn-large" , disable_with: "正在提交..."%>
   </div>
-</div>
 
 <script type="text/javascript">
   $("input[type='submit']").click(function(){

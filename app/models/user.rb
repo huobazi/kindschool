@@ -308,9 +308,9 @@ class User < ActiveRecord::Base
   #获取微信绑定情况
   def self.get_weixin_bind_info
     user_all = User.all.count
-    bind_ok = User.where("weiyi_code IS NOT NULL AND weixin_code IS NOT NULL").count()
-    bind_null = User.where("weiyi_code IS NULL AND weixin_code IS NULL").count()
-    bind_weiyi_no = User.where("weiyi_code IS NULL AND weixin_code IS NOT NULL").count()
+    bind_ok = User.where("weixin_code is not null and weixin_code!=''  and weiyi_code is not null and weiyi_code!=''").count()
+    bind_null = User.where("(weixin_code is null or weixin_code='')  and (weiyi_code is null or weiyi_code='')").count()
+    bind_weiyi_no = User.where("weixin_code is not null and weixin_code!='' and (weiyi_code is null or weiyi_code='')").count()
     student = User.where("tp=0").count()
     woman = User.where("gender='M'").count()
     return {:man=>(user_all - woman),:woman=>woman,:teacher=>(user_all - student),:student=>student,:user_all => user_all,:bind_ok=>bind_ok,:bind_null=>bind_null,:bind_weiyi_no=>bind_weiyi_no,:bind_weixin_no=>(user_all - bind_ok - bind_null - bind_weiyi_no) }

@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<html xmlns=" http://www.w3.org/1999/xhtml">
   <head>
     <title>School</title>
 <%#= stylesheet_link_tag    "application", :media => "all" %>
@@ -7,24 +7,36 @@
     <%= stylesheet_link_tag    "fancybox/jquery.fancybox",
       "fancybox/jquery.fancybox-buttons",
       "fancybox/jquery.fancybox-thumbs",:media => "all" %>
-    <%= javascript_include_tag "application",
-      "fancybox/jquery.mousewhee",
-      "fancybox/jquery.fancybox",
-      "fancybox/jquery.fancybox-buttons",
-      "fancybox/jquery.fancybox-thumbs",
-      "jquery.lettering",
-      "fancybox/jquery.fancybox-media" %>
+
+    <%= javascript_include_tag "application"#,
+    #"fancybox/jquery.mousewhee",
+    #"fancybox/jquery.fancybox",
+    #"fancybox/jquery.fancybox-buttons",
+    #"fancybox/jquery.fancybox-thumbs",
+    #"fancybox/jquery.fancybox-media",
+    #"jquery.lettering"
+
+  %>
     <%= csrf_meta_tags %>
-    <%= javascript_include_tag "DD_belatedPNG_0.0.8a" %>
-    <!--[if lte IE 6]>
-        <script type="text/javascript">
-                  try{
-            DD_belatedPNG.fix('div, ul, img, li, input , a');
-            }catch(err){}
-        </script>
-    <![endif]-->
+    <script language='javascript' type="text/javascript">
+      function ResumeError() {
+        return true;
+      }
+      window.onerror = ResumeError;
+    </script> 
+    <!--[if IE 6]>
+    <%= javascript_include_tag "DD_belatedPNG" %>
+<script type="text/javascript">
+  /* EXAMPLE */
+  DD_belatedPNG.fix('div, ul, img, li, input , a');
+
+  /* string argument can be any CSS selector */
+  /* .png_bg example is unnecessary */
+  /* change it to what suits you! */
+</script>
+<![endif]--> 
   </head>
-  <body>
+  <body onload="ResumeError()">
 
     <div class="wrapper_all">
       <%= yield %>

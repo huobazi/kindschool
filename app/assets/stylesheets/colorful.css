@@ -571,7 +571,7 @@ a{
 .work_menu a{
     color: #9B9B9B;
     font-size: 18px;
-    z-index: 2;
+    z-index: 3;
     position: relative;
 }
 
@@ -1318,14 +1318,18 @@ table.attributes td {
     display: none;
 }
 
-.table a.red{
-    color: red;
+.is-show {
+    display: block;
 }
 
-#tab_activity_entries {
-  min-height: 400px;
-  height: auto !important;
-  _height: 400px;
+.loadding_pt {
+    left: 50%;
+    position: absolute;
+    top: 70%; 
+}
+
+.table a.red{
+    color: red;
 }
 
 #topic_category_tabs {
@@ -1884,13 +1888,14 @@ ul.teacher_list{
 .teacher_info{
     float: right;
     margin-top: -20px;
+    margin-right: 5px;
     width: 50%;
 }
 .teacher_title h3{
     width:95%;
     border-bottom: 2px solid #fdb968;
     color: #fdb968;
-    font-size: 18px;
+    font-size: 16px;
 }
 ul.teacher_list li{
     height: 150px;
@@ -2106,11 +2111,13 @@ span.help-inline {
 .topics .topic_line {
     border-bottom: 1px solid #ddd;
     padding: 10px 0;
-    margin: 0 -10px;
+    margin: 0 0px;
     vertical-align: top;
     width: 100%;
 }
-
+.topics #check_all {
+    margin-left: -10px;
+}
 .topics .topic .avatar {
     width: 70px;
     margin-left: 10px;
@@ -2317,7 +2324,7 @@ fieldset.staff_squad ol li {
 }
 
 .stat-box .squad_list {
-    padding-left: 15px;
+    padding-left: 5px;
     padding-right: 15px;
 }
 .stat-box .title {
@@ -2343,7 +2350,8 @@ fieldset.staff_squad ol li {
     width: 100%;
     float: left;
     clear: both;
-    padding: 15px;
+    padding: 15px 0;
+    margin: 0px;
 }
 
 .stat-box .student_list .student_item {
@@ -2353,7 +2361,24 @@ fieldset.staff_squad ol li {
     margin-left: 10px;
     position: relative;
 }
-
+.replies a{
+    vertical-align: top;
+}
+i.img-icon{
+    background-image: url("/assets/twitter/glyphicons-halflings.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 14px;
+    line-height: 14px;
+    margin-top: 1px;
+    vertical-align: text-top;
+    width: 14px;
+}
+.replies a i{
+    padding-left: 2px;
+    _zoom:1;
+    *display:inline;
+}
 .add {
     background: url("/t/colorful/add.png") no-repeat;
     width: 30px;
@@ -2659,7 +2684,7 @@ fieldset.staff_squad ol li {
     height: 300px;
 }
 
-input[type="radio"], input[type="checkbox"] {
+.form_div input[type="radio"], .form_div input[type="checkbox"] {
     margin-top: 0;
     line-height: normal;
 }
@@ -2669,6 +2694,10 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .badge-info-margin {
-  margin-left: 10px;
-  margin-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.label {
+    padding: 5px;
 }

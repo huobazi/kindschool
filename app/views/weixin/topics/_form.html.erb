@@ -1,9 +1,10 @@
 <% f = form %>
 <div class="field" id="select_field">
   <% if action_name == "new" %>
-    <%= f.select :topic_category_id, options_for_select(@kind.topic_categories.collect {|p| [ p.name, p.id ] }), {:prompt=>"选择类别"}, :class => "select", validate: false %>
+    <%= f.select :topic_category_id, options_for_select(@kind.topic_categories.collect {|p| [ p.name, p.id ] }, params[:topic_category_id]), { include_blank: false }, {:class => "select"} %>
   <% else %>
-    <%= f.select :topic_category_id,options_for_select(@kind.topic_categories.collect {|p| [ p.name, p.id ] }), {:prompt=>"选择类别"}, :class => "select", :disabled => true %>
+    <label class="field_prompt" for="topic_category_label">论坛分类:</label>
+    <%= f.text_field :topic_category_label, :required => true, :as => :string, :disabled => true, :value => @topic.try(:topic_category_label), :class => "text-content" %>
   <% end %>
 </div>
 
@@ -16,62 +17,49 @@
 <label class="field_prompt" for="content">内容:</label>
 <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :allowFlashUpload => false, :simple_mode => true %>
 </div>
-<% if action_name == "new" %>
-  <% if current_user.get_users_ranges[:tp] == :student %>
-    <div class="field">
-      <label class="field_prompt" for="topic_squad_label">班级:</label>
-      <%= f.text_field :squad_label, :required => true, :as => :string, :disabled => true, :value => current_user.student_info.squad.name, :class => "text-content" %>
-    </div>
-  <% elsif current_user.get_users_ranges[:tp] == :teachers %>
-    <div class="field">
-      <%= radio_button_tag 'visible', 'all', :checked => true %><span class="field_prompt" for="visible_all">全园可见</span>
-      <%= radio_button_tag 'visible', 'squad' %><span class="field_prompt" for="visible_squad">选择班级</span>
 
-    </div>
-    <div class="select_field" id="select_squad" style="display:none;">
-      <% unless @squads.blank? %>
-        <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
-        <%= select_tag "topic[squad_id]", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
-      <% else %>
-        <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
-        <div class="controls">
-          <label>还未有负责的班级</label>
-        </div>
-      <% end %>
-    </div>
-  <% else %>
-    <div class="field">
-      <%= radio_button_tag 'visible', 'all', :checked => true %><span class="field_prompt" for="visible_all">全园可见</span>
-      <%= radio_button_tag 'visible', 'squad' %><span class="field_prompt" for="visible_squad">选择班级</span>
 
-    </div>
-
-    <div class="select_field" id="select_squad" style="display: none">
-      <label class="field_prompt" for="grade">年级:</label>
-      <% unless @grades.blank? %>
-        <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
-      <% else %>
-        <div class="controls">
-          <label>没有年级,请先创建年级,才能继续操作</label>
-        </div>
-      <% end %>
-      <div id="grade_squad_partial">
-      </div>
-      <div id="squad_student_partial">
-      </div>
-    </div>
-  <% end %>
-<% else %>
+<% if current_user.get_users_ranges[:tp] == :student %>
   <div class="field">
-    <% if @topic.squad_id.blank? %>
-      <label class="field_prompt" for="activity_content">所属幼儿园</label>
-      <%= f.text_field :kindergarten_label, :disabled => true %>
+    <label class="field_prompt" for="topic_squad_label">班级:</label>
+    <%= f.text_field :squad_label, :required => true, :as => :string, :disabled => true, :value => current_user.student_info.squad.name, :class => "text-content" %>
+  </div>
+<% elsif current_user.get_users_ranges[:tp] == :teachers %>
+  <div class="select_field" id="select_squad">
+    <% unless @squads.blank? %>
+      <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
+      <%= select_tag "topic[squad_id]", options_for_select((@squads.collect{|s|[s.name,s.id]} || []), @topic.try(:squad_id)), :class => "select" %>
     <% else %>
-      <label class="field_prompt" for="activity_content">所属班级</label>
-      <%= f.text_field :squad_label, :disabled => true %>
+      <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
+      <div class="controls">
+        <label>还未有负责的班级</label>
+      </div>
     <% end %>
   </div>
+<% else %>
+  <div class="field">
+    <%= radio_button_tag 'visible', 'all', :checked => true %><span class="field_prompt" for="visible_all">全园可见</span>
+    <%= radio_button_tag 'visible', 'squad' %><span class="field_prompt" for="visible_squad">选择班级</span>
+
+  </div>
+
+  <div class="select_field" id="select_squad" style="display: none">
+    <label class="field_prompt" for="grade">年级:</label>
+    <% unless @grades.blank? %>
+      <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}, @topic.try(:squad).try(:grade_id)), :class => "select" %>
+    <% else %>
+      <div class="controls">
+        <label>没有年级,请先创建年级,才能继续操作</label>
+      </div>
+    <% end %>
+    <div id="grade_squad_partial">
+    </div>
+    <div id="squad_student_partial">
+    </div>
+  </div>
 <% end %>
+
+
 <% if current_user.get_users_ranges[:tp] == :student %>
   <%= f.input :squad_id, :as => :hidden %>
 <% end %>
@@ -84,7 +72,10 @@
       $.ajax({
         url: "/weixin/topics/grade_squad_partial",
         data: {
-          grade: $("#grade").val()
+          grade: $("#grade").val(),
+          <% if current_user.get_users_ranges[:tp]  == :all and (action_name == "edit" or action_name == "update") and @topic.squad.present? %>
+            default_squad: <%= @topic.try(:squad_id) %>
+          <% end %>
         },
         beforeSend: function() {
           $("#grade_squad_partial").html('<img style="margin-left: 10px" class="loading_img" src="/t/colorful/gif_preloader.gif" alt="" />')
@@ -94,7 +85,7 @@
           $("#grade_squad_partial").html(result);
         }
       })
-  })
+  }).trigger('change');
   $("input[type='radio']").change(function() {
     if ( $(this).val() == "squad" ) {
       $("#select_squad").show()
@@ -161,4 +152,11 @@ $(":submit").click(function() {
   }
 })
 
+<% if current_user.get_users_ranges[:tp]  == :all and (action_name == "edit" or action_name == "update") and @topic.squad.present? %>
+  $("#visible_squad").prop("checked", true);
+<% end %>
+
+if( $("#visible_squad").is(":checked") ) {
+  $("#select_squad").show();
+}
 </script>

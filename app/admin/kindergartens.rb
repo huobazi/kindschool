@@ -194,7 +194,6 @@ ActiveAdmin.register Kindergarten do
                 td ""
                 td "贴子总数", :style => "text-align: right;"
                 td "#{kind.topics.count}"
-                td ""
               end
             end
           else
@@ -279,11 +278,39 @@ ActiveAdmin.register Kindergarten do
             "未创建消息"
           end
           ul do
-            li do
-              link_to "创建消息", :controller => "/admin/messages", :action => :new, :kindergarten_id => kind.id
-            end
+            #            li do
+            #              link_to "创建消息", :controller => "/admin/messages", :action => :new, :kindergarten_id => kind.id
+            #            end
             li do
               link_to "查看消息列表", :controller => "/admin/messages", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+            end
+          end
+        end
+      end
+      div do
+        br
+        panel "最新成长记录" do
+          unless kind.growth_records.blank?
+            table_for(kind.growth_records.limit(10).order("id DESC")) do |t|
+              t.column("创建人") {|item| item.creater.try(:name)}
+              t.column("内容") {|item| item.content}
+              t.column("所属学员") {|item| item.student_info.try(:name)}
+              t.column("类型") {|item| GrowthRecord::TP_DATA[item.tp.to_s]}
+              t.column("创建时间") {|item| item.created_at.try(:to_short_datetime)}
+              tr :class => "odd" do
+                td ""
+                td "成长记录总数", :style => "text-align :right;"
+                td "#{kind.growth_records.count}"
+                td ""
+                td ""
+              end
+            end
+          else
+            "没有成长记录消息"
+          end
+          ul do
+            li do
+              link_to "查看成长记录列表", :controller => "/admin/growth_records", :action => :index,"q[kindergarten_id_eq]"=>kind.id
             end
           end
         end
@@ -303,6 +330,7 @@ ActiveAdmin.register Kindergarten do
                 td ""
                 td "活动总数", :style => "text-align :right;"
                 td "#{kind.activities.count}"
+                td ""
                 td ""
               end
             end
@@ -324,7 +352,6 @@ ActiveAdmin.register Kindergarten do
                 td ""
                 td "页面内容总数", :style => "text-align :right;"
                 td "#{kind.page_contents.count}"
-                td ""
               end
             end
           else
@@ -346,10 +373,7 @@ ActiveAdmin.register Kindergarten do
             table_for(kind.topic_categories) do |t|
               t.column("名称") {|item| item.name}
               tr :class => "odd" do
-                td ""
-                td "论坛分类总数", :style => "text-align: right;"
-                td "#{kind.topic_categories.count}"
-                td ""
+                td "论坛分类总数#{kind.topic_categories.count}", :style => "text-align: right;"
               end
             end
           else

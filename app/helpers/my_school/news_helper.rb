@@ -1,2 +1,0 @@
-module MySchool::NewsHelper
-end

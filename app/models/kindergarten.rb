@@ -88,6 +88,9 @@ class Kindergarten < ActiveRecord::Base
     Template.find_by_is_default(true).id
   end
 
+  def kinder_teaching_plan
+     self.option_operates.where(:operate_id=>8200).first
+  end
 
   def loading!
     PAGE_CONTENTS.each do |k,v|
@@ -318,9 +321,9 @@ class Kindergarten < ActiveRecord::Base
   def get_users_info
     user_all = self.users.count()
     woman = self.users.where("gender='M'").count()
-    bind_ok = self.users.where("weiyi_code IS NOT NULL AND weixin_code IS NOT NULL").count()
-    bind_null = self.users.where("weiyi_code IS NULL AND weixin_code IS NULL").count()
-    bind_weiyi_no = self.users.where("weiyi_code IS NULL AND weixin_code IS NOT NULL").count()
+    bind_ok = self.users.where("weixin_code is not null and weixin_code!=''  and weiyi_code is not null and weiyi_code!=''").count()
+    bind_null = self.users.where("(weixin_code is null or weixin_code='')  and (weiyi_code is null or weiyi_code='')").count()
+    bind_weiyi_no = self.users.where("weixin_code is not null and weixin_code!='' and (weiyi_code is null or weiyi_code='')").count()
     return {:user_all=>user_all,:woman=>woman,:man=>(user_all - woman),:bind_ok=>bind_ok,:bind_null=>bind_null,:bind_weiyi_no=>bind_weiyi_no,:bind_weixin_no=>(user_all - bind_ok - bind_null - bind_weiyi_no)}
   end
 end
