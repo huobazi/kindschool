@@ -3,7 +3,6 @@
     <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" alt="Logo" class="logo_vertical png_bg"/>
     <% if @kind %>
       <span id="kind_name"><%= @kind.name %></span>
-      <!--
       <script type="text/javascript">
         $(function(){
           $("#kind_name").lettering();
@@ -17,7 +16,6 @@
           load_color();
         })
       </script>
-      -->
     <% end %>
   </div>
   <div class="login_window">
@@ -171,7 +169,7 @@
         $("#auth_loading").hide();
       })
     })
-    <%#*$(".fancybox").fancybox();%>
+    $(".fancybox").fancybox();
     $("#link_course").click(function(){
       $("#login_course").show();
     })
