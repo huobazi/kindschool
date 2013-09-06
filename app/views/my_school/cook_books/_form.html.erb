@@ -54,11 +54,7 @@
 <%= hidden_field @cook_book, :creater_id %>
  <div class="control-group">
 <div class="controls">
-  <% if action_name == "new" %>
-    <%= f.submit('创建',:class=>"btn", "data-disable-with" => "正在提交") %>
-  <% else %>
-    <%= f.submit('更新',:class=>"btn", "data-disable-with" => "正在提交") %>
-  <% end %>
+    <%= f.submit('保存',:class=>"btn btn-large btn-primary", "data-disable-with" => "正在提交") %>
 </div>
 </div>
 <script type="text/javascript">

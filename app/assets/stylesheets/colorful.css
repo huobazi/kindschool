@@ -2663,7 +2663,7 @@ fieldset.staff_squad ol li {
     height: 300px;
 }
 
-input[type="radio"], input[type="checkbox"] {
+.form_div input[type="radio"], .form_div input[type="checkbox"] {
     margin-top: 0;
     line-height: normal;
 }
