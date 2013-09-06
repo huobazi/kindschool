@@ -88,6 +88,9 @@ class Kindergarten < ActiveRecord::Base
     Template.find_by_is_default(true).id
   end
 
+  def kinder_teaching_plan
+     self.option_operates.where(:operate_id=>8200).first
+  end
 
   def loading!
     PAGE_CONTENTS.each do |k,v|
