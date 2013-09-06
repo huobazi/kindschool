@@ -2324,7 +2324,7 @@ fieldset.staff_squad ol li {
 }
 
 .stat-box .squad_list {
-    padding-left: 15px;
+    padding-left: 5px;
     padding-right: 15px;
 }
 .stat-box .title {
@@ -2350,7 +2350,8 @@ fieldset.staff_squad ol li {
     width: 100%;
     float: left;
     clear: both;
-    padding: 15px;
+    padding: 15px 0;
+    margin: 0px;
 }
 
 .stat-box .student_list .student_item {
@@ -2360,7 +2361,24 @@ fieldset.staff_squad ol li {
     margin-left: 10px;
     position: relative;
 }
-
+.replies a{
+    vertical-align: top;
+}
+i.img-icon{
+    background-image: url("/assets/twitter/glyphicons-halflings.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 14px;
+    line-height: 14px;
+    margin-top: 1px;
+    vertical-align: text-top;
+    width: 14px;
+}
+.replies a i{
+    padding-left: 2px;
+    _zoom:1;
+    *display:inline;
+}
 .add {
     background: url("/t/colorful/add.png") no-repeat;
     width: 30px;
