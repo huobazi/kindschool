@@ -2111,11 +2111,13 @@ span.help-inline {
 .topics .topic_line {
     border-bottom: 1px solid #ddd;
     padding: 10px 0;
-    margin: 0 -10px;
+    margin: 0 0px;
     vertical-align: top;
     width: 100%;
 }
-
+.topics #check_all {
+    margin-left: -10px;
+}
 .topics .topic .avatar {
     width: 70px;
     margin-left: 10px;
