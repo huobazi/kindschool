@@ -131,13 +131,17 @@ var flag = []
       $.get(
         "/my_school/topics/grade_squad_partial",
         {
-          grade: $("#grade").val()
+          grade: $("#grade").val(),
+          <% if current_user.get_users_ranges[:tp]  == :all and (action_name == "edit" or action_name == "update") and @topic.squad.present? %>
+            default_squad: <%= @topic.try(:squad_id) %>
+          <% end %>
+
         },
         function(result) {
           $("#grade_squad_partial").html(result);
         }
       )
-  }).trigger("change")
+  }).trigger("change");
   $("input[type='radio']").change(function() {
     if ( $(this).val() == "squad" ) {
       $("#select_squad").show()
@@ -146,12 +150,12 @@ var flag = []
     }
   })
 
-<% if current_user.get_users_ranges[:tp]  == :all and (action_name == "edit" or action_name == "update") %>
-  $("#visible_squad").prop("checked", true);
-<% end %>
+  <% if current_user.get_users_ranges[:tp]  == :all and (action_name == "edit" or action_name == "update") and @topic.squad.present? %>
+    $("#visible_squad").prop("checked", true);
+  <% end %>
 
-if( $("#visible_squad").is(":checked") ) {
-  $("#select_squad").show();
-}
+  if( $("#visible_squad").is(":checked") ) {
+    $("#select_squad").show();
+  }
 
 </script>

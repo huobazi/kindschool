@@ -264,6 +264,9 @@ class  MySchool::TopicsController < MySchool::ManageController
   def grade_squad_partial
     if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
       @squads = grade.squads
+      if params[:default_squad].present?
+        @default_squad = params[:default_squad]
+      end
     end
     render "grade_squad", :layout => false
   end
