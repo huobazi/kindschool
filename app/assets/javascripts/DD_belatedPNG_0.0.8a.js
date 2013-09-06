@@ -24,6 +24,7 @@ var DD_belatedPNG = {
 		screenStyleSheet = document.createElement('style');
 		screenStyleSheet.setAttribute('media', 'screen');
 		document.documentElement.firstChild.insertBefore(screenStyleSheet, document.documentElement.firstChild.firstChild);
+                try{
 		if (screenStyleSheet.styleSheet) {
 			screenStyleSheet = screenStyleSheet.styleSheet;
 			screenStyleSheet.addRule(this.ns + '\\:*', '{behavior:url(#default#VML)}');
@@ -40,6 +41,7 @@ var DD_belatedPNG = {
 			printStyleSheet.addRule(this.ns + '\\:*', '{display: none !important;}');
 			printStyleSheet.addRule('img.' + this.ns + '_sizeFinder', '{display: none !important;}');
 		}
+                }catch(err){}
 	},
 	readPropertyChange: function () {
 		var el, display, v;

@@ -12,6 +12,7 @@ class  MySchool::TopicsController < MySchool::ManageController
         else
           @topics = @kind.topics.where(:topic_category_id => topic_category.id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
         end
+        @topic_category_id = params[:topic_category_id]
       else
         flash[:notice] = "没有权限或没有该论坛分类"
         redirect_to my_school_topic_categories_path

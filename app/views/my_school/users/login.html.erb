@@ -1,6 +1,6 @@
 <div class="login" id="longin_form_head">
   <div class="logo" >
-    <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>"  height="44px" alt="Logo" class="logo_vertical"/>
+    <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" alt="Logo" class="logo_vertical"/>
     <% if @kind %>
       <span id="kind_name"><%= @kind.name %></span>
       <script type="text/javascript">
