@@ -1,2 +1,132 @@
 <p>nihao</p>
 <%=@sms_records.size%>
+<%=@sms_records.inspect%>
+<script type="text/javascript">
+
+  var curD = new Date();
+  var firstD  =  new Date();
+  var lastD = new Date();
+  var dayTime = 24*60*60*1000 ;
+  function initDate(){
+    curD.setHours(12,12,12,0);
+    var dateLong = curD.getTime();
+
+
+    if ( curD.getDay()== 0 ){
+      dateLong = dateLong - (6*dayTime);
+    }else {
+      dateLong = dateLong - (curD.getDay()-1)*dayTime;
+    }
+
+    curD.setTime(dateLong);
+
+    firstD = curD;
+    lastD.setTime(firstD.getTime()+6*dayTime);
+    var ss = firstD.getFullYear()+'-'+(firstD.getMonth()+1)+'-'+firstD.getDate()+'~'+lastD.getFullYear()+'-'+(lastD.getMonth()+1)+'-'+lastD.getDate();
+    document.getElementById('val').setAttribute('value',ss);
+
+
+  }
+
+  function backDate(){
+    var dateLong = curD.getTime();
+    curD.setTime(dateLong - (6*dayTime));
+    initDate();
+  }
+
+  function curDate() {
+    var dateLong = curD.getTime();
+    curD.setTime(dateLong);
+    initDate();
+  }
+
+  function nextDate(){
+    var dateLong = curD.getTime();
+    curD.setTime(dateLong + (7*dayTime));
+    initDate();
+  }
+
+</script>
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>
+          短信统计
+        </label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li>
+              统计
+            </li>
+            <li>/</li>
+            <li>短信统计</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+      </ul>
+    </div>
+
+
+    <div class="work_list">
+      <div class="topics">
+
+        <%= form_tag '/my_school/statistics/sms_statistics' , :method=>"get", :id => "stat_growth_record" do %>
+          <%= hidden_field_tag "start_at" %>
+          <%= hidden_field_tag "end_at" %>
+          <p>
+            <% if params[:start_at].present? or params[:end_at].present? %>
+              <input type="text" style="margin-top: 10px;"  id="val" value="<%= params[:start_at] %>~<%= params[:end_at] %>" />
+            <% else %>
+              <input type="text" style="margin-top: 10px;" id="val" value="<%= @cur_begginning_of_week %>~<%= @cur_end_of_week %>"  />
+            <% end %>
+            <a class="normal_link btn" href="javascript:void(0);"  onclick="backDate();">上一周</a>
+            <a class="normal_link btn" href="javascript:void(0);" onclick="curDate();" >本周</a>
+            <a class="normal_link btn" href="javascript:void(0);" onclick="nextDate();" >下一周</a>
+          </p>
+          <a class="btn" id="stat-failure" href="javascript:void(0);" >查看成长记录未完成的学员</a>
+          <a class="btn" id="stat-success" href="javascript:void(0);" >查看成长记录已完成的学员</a>
+        <% end %>
+
+
+        <div id="growth_record_stats">
+          <%#= render "sms_record_list" %>
+        </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".normal_link").each(function() {
+    $(this).click(function() {
+      $("#start_at").val($("#val").val().split("~")[0]);
+      $("#end_at").val($("#val").val().split("~")[1])
+      $("#stat_growth_record").submit();
+    })
+  })
+  var growth_record_scroll;
+  $('a.btn').each(function () {
+    $(this).click(function() {
+      $(this).addClass('disabled');
+      $(this).siblings().removeClass('disabled');
+      if ( parent.location.hash == '' ) {
+        parent.location.hash = "home_growth_records";
+        growth_record_scroll = $(window).scrollTop();
+      } else {
+        $(window).scrollTop(growth_record_scroll);
+      }
+
+    })
+  });
+})
+</script>
