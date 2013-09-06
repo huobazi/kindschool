@@ -13,7 +13,7 @@
       <% if choose_operate_show("my_school/topics/show") %>
         <a href="<%= my_school_topic_path(topic) %>" title="查看<%= topic.title %>" alt="查看<%= topic.title %>"><i class="img-icon icon-eye-open"></i></a>
       <% end %>
-      <% if choose_operate_show("my_school/topics/edit") and topic.creater_id == current_user.id %>
+      <% if choose_operate_show("my_school/topics/edit") and edit_topic?(topic) %>
         <a href="<%= edit_my_school_topic_path(topic) %>" title="编辑<%= topic.title %>" alt="编辑<%= topic.title %>"><i class="img-icon icon-edit"></i></a>
       <% end %>
       <% if choose_operate_show("my_school/topics/destroy") %>

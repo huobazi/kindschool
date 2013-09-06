@@ -96,6 +96,25 @@ module ApplicationHelper
     end
   end
 
+  def edit_topic?(topic)
+    if current_user.get_users_ranges[:tp] == :student
+      if current_user.id == topic.creater_id
+        true
+      else
+        false
+      end
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @squads = current_user.get_users_ranges[:squads]
+      if current_user.get_users_ranges[:squads].collect(&:id).include?(topic.try(:squad_id)) or current_user.id == topic.creater_id
+        true
+      else
+        false
+      end
+    else
+      true
+    end
+  end
+
   def growth_record_controller
     if controller_name == "growth_records"
       destroy_multiple_my_school_growth_records_path
