@@ -5,12 +5,7 @@
   <% if current_user.get_users_ranges[:tp] == :student %>
     <%= f.input :squad_label, :required => true, :as => :string, :input_html => { :disabled => true, :value => current_user.student_info.squad.name } %>
   <% elsif current_user.get_users_ranges[:tp] == :teachers %>
-    <div class="field controls">
-      <%= radio_button_tag 'visible', 'all', :checked => true %><span class="field_prompt" for="visible_all">全园可见</span>
-      <%= radio_button_tag 'visible', 'squad' %><span class="field_prompt" for="visible_squad">选择班级</span>
-
-    </div>
-    <div class="select_field" id="select_squad" style="display:none;">
+    <div class="select_field" id="select_squad">
       <% unless @squads.blank? %>
         <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
         <%= select_tag "topic[squad_id]", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
