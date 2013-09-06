@@ -7,21 +7,24 @@
     <%= stylesheet_link_tag    "fancybox/jquery.fancybox",
       "fancybox/jquery.fancybox-buttons",
       "fancybox/jquery.fancybox-thumbs",:media => "all" %>
-    <%= javascript_include_tag "application",
-      "fancybox/jquery.mousewhee",
-      "fancybox/jquery.fancybox",
-      "fancybox/jquery.fancybox-buttons",
-      "fancybox/jquery.fancybox-thumbs",
-      "jquery.lettering",
-      "fancybox/jquery.fancybox-media" %>
+
+    <%= javascript_include_tag "application"#,
+    #"fancybox/jquery.mousewhee",
+    #"fancybox/jquery.fancybox",
+    #"fancybox/jquery.fancybox-buttons",
+    #"fancybox/jquery.fancybox-thumbs",
+    #"fancybox/jquery.fancybox-media",
+    #"jquery.lettering"
+
+  %>
     <%= csrf_meta_tags %>
-    <%= javascript_include_tag "DD_belatedPNG_0.0.8a" %>
+    <%= javascript_include_tag "pngFix" %>
     <!--[if lte IE 6]>
-        <script type="text/javascript">
-                  try{
-            DD_belatedPNG.fix('div, ul, img, li, input , a');
-            }catch(err){}
-        </script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $(document).pngFix();
+      });
+    </script>
     <![endif]-->
   </head>
   <body>

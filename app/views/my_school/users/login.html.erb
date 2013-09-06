@@ -1,8 +1,9 @@
 <div class="login" id="longin_form_head">
   <div class="logo" >
-    <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" alt="Logo" class="logo_vertical"/>
+    <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" alt="Logo" class="logo_vertical png_bg"/>
     <% if @kind %>
       <span id="kind_name"><%= @kind.name %></span>
+      <!--
       <script type="text/javascript">
         $(function(){
           $("#kind_name").lettering();
@@ -16,11 +17,12 @@
           load_color();
         })
       </script>
+      -->
     <% end %>
   </div>
   <div class="login_window">
-    <div class="login_head"></div>
-    <div class="login_span">
+    <div class="login_head png_bg"></div>
+    <div class="login_span png_bg">
       <div class="login_imgs">
         <div class="login_img_left">
           <div class="login_img_small">
@@ -169,25 +171,9 @@
         $("#auth_loading").hide();
       })
     })
-    $(".fancybox").fancybox();
+    <%#*$(".fancybox").fancybox();%>
     $("#link_course").click(function(){
       $("#login_course").show();
     })
   })
-<%#*$(document).ready(function() {%>
-<%#*$('a[href*=#]').click(function() {%>
-<%#*if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {%>
-<%#*var $target = $(this.hash);%>
-<%#*$target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']');%>
-<%#*if ($target.length) {%>
-<%#*var targetOffset = $target.offset().top;%>
-<%#*$('html,body').animate({%>
-<%#*scrollTop: targetOffset%>
-<%#*},%>
-<%#*1000);%>
-<%#*return false;%>
-<%#*}%>
-<%#*}%>
-<%#*});%>
-<%#*});%>
 </script>

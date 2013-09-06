@@ -13,17 +13,14 @@
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "application","colorful","colorful_main" %>
     <%= csrf_meta_tags %>
-    <%= javascript_include_tag "DD_belatedPNG_0.0.8a","jquery.lettering" %>
+    <%= javascript_include_tag "pngFix","jquery.lettering" %>
     <!--[if lte IE 6]>
-        <script type="text/javascript">
-          try{
-            DD_belatedPNG.fix('div, ul, img, li, input , a');
-            }catch(err){}
-        </script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $(document).pngFix();
+      });
+    </script>
     <![endif]-->
-    <style type="text/css" media="screen">
-
-    </style>
   </head>
   <body style="background-color: #d9edfa">
     <div  class="wrapper">

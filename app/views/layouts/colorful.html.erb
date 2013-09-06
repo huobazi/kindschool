@@ -24,7 +24,7 @@
       "jquery.galleriffic",
       "jquery.opacityrollover",
       "jquery.lettering",
-      "DD_belatedPNG_0.0.8a"
+      "pngFix"
   %>
     <%= javascript_include_tag(:uploadify,"uploadify-rails") %>
     <%= javascript_include_tag "jquery.rater" %>
@@ -37,9 +37,9 @@
 
     <!--[if lte IE 6]>
     <script type="text/javascript">
-             try{
-        DD_belatedPNG.fix('div, ul, img, li, input , a');
-        }catch(err){}
+      $(document).ready(function(){
+        $(document).pngFix();
+      });
     </script>
 <![endif]-->
   </head>
