@@ -1888,13 +1888,14 @@ ul.teacher_list{
 .teacher_info{
     float: right;
     margin-top: -20px;
+    margin-right: 5px;
     width: 50%;
 }
 .teacher_title h3{
     width:95%;
     border-bottom: 2px solid #fdb968;
     color: #fdb968;
-    font-size: 18px;
+    font-size: 16px;
 }
 ul.teacher_list li{
     height: 150px;
