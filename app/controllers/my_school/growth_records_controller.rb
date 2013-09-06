@@ -50,6 +50,8 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     @growth_record.kindergarten_id = @kind.id
     @growth_record.creater_id = current_user.id
     @growth_record.tp = 1
+    @growth_record.start_at = Time.now.beginning_of_week.to_short_datetime
+    @growth_record.end_at = Time.now.end_of_week.to_short_datetime
     unless params[:personal_set_id].blank?
        @set = current_user.personal_sets.find_by_id(params[:personal_set_id])
       if  !@set.blank? && @set.resource
