@@ -2323,7 +2323,7 @@ fieldset.staff_squad ol li {
 }
 
 .stat-box .squad_list {
-    padding-left: 15px;
+    padding-left: 5px;
     padding-right: 15px;
 }
 .stat-box .title {
@@ -2349,7 +2349,8 @@ fieldset.staff_squad ol li {
     width: 100%;
     float: left;
     clear: both;
-    padding: 15px;
+    padding: 15px 0;
+    margin: 0px;
 }
 
 .stat-box .student_list .student_item {
@@ -2359,7 +2360,11 @@ fieldset.staff_squad ol li {
     margin-left: 10px;
     position: relative;
 }
-
+.replies a{
+    vertical-align: top;
+    _zoom:1;
+    *display:inline;
+}
 .add {
     background: url("/t/colorful/add.png") no-repeat;
     width: 30px;
