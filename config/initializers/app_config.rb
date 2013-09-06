@@ -28,7 +28,7 @@ MENUS ={"home"=>{
   "my_school/messages"=>['index',"show","create"]
 },
   "61002"=>{
-  "my_school/notices"=>['new']
+  "my_school/notices"=>['new', 'edit']
 },
   "62003"=>{
   "my_school/notices"=>["index","show"]
