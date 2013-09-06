@@ -11,7 +11,7 @@
     <meta name="keywords" content="<%=@keywords%>" />
     <meta charset="utf-8"/>
     <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "application","colorful" %>
+    <%= javascript_include_tag "application","colorful","colorful_main" %>
     <%= csrf_meta_tags %>
     <%= javascript_include_tag "DD_belatedPNG_0.0.8a","jquery.lettering" %>
     <!--[if lte IE 6]>
@@ -26,69 +26,6 @@
     </style>
   </head>
   <body style="background-color: #d9edfa">
-    <div id="helpDivLogo" style="Z-INDEX: 100; LEFT: 2px; WIDTH: 59px; POSITION: absolute; TOP: 43px; HEIGHT: 61px;visibility: visible;">
-<%#*style="position: absolute;right: 0;"%>
-      <a href="###" id="user_show_dialog"  class="blue">
-        <img src="/star_imgs/help.gif" alt="用户指南" /></a>
-    </div>
-    <script type="text/javascript">
-      var xPos = 300;
-      var yPos = 200;
-      var step = 1;
-      var delay = 30;
-      var height = 0;
-      var Hoffset = 0;
-      var Woffset = 0;
-      var yon = 0;
-      var xon = 0;
-      var pause = true;
-      var interval;
-      helpDivLogo.style.top = yPos;
-      function changePos()
-      {
-        width = document.body.clientWidth;
-        height = document.body.clientHeight;
-        Hoffset = helpDivLogo.offsetHeight;
-        Woffset = helpDivLogo.offsetWidth;
-        helpDivLogo.style.left = xPos + document.body.scrollLeft;
-        helpDivLogo.style.top = yPos + document.body.scrollTop;
-        if (yon)
-        {yPos = yPos + step;}
-        else
-        {yPos = yPos - step;}
-        if (yPos < 0)
-        {yon = 1;yPos = 0;}
-        if (yPos >= (height - Hoffset))
-        {yon = 0;yPos = (height - Hoffset);}
-        if (xon)
-        {xPos = xPos + step;}
-        else
-        {xPos = xPos - step;}
-        if (xPos < 0)
-        {xon = 1;xPos = 0;}
-        if (xPos >= (width - Woffset))
-        {xon = 0;xPos = (width - Woffset);   }
-      }
-
-      function start()
-      {
-        helpDivLogo.visibility = "visible";
-        interval = setInterval('changePos()', delay);
-      }
-      function pause_resume()
-      {
-        if(pause)
-        {
-          clearInterval(interval);
-          pause = false;}
-        else
-        {
-          interval = setInterval('changePos()',delay);
-          pause = true;
-        }
-      }
-      start();
-    </script>
     <div  class="wrapper">
       <div class="main_logo">
         <% if @kind %>
@@ -106,9 +43,6 @@
                     $(this).dialog("close");
                   }
                 }
-              });
-              $( "#user_show_dialog" ).click(function() {
-                $( "#dialog_users_guide" ).dialog("open");
               });
             });
           </script>
@@ -176,5 +110,41 @@
         }catch(ex){}
       </script>
     </div>
+    <script type="text/javascript">
+      $(function(){
+        $.floatingAd({
+          //频率
+          delay: 60,
+          //超链接后是否关闭漂浮
+          isLinkClosed: false,
+          'click': function(){
+            $( "#dialog_users_guide" ).dialog("open");
+          },
+          //漂浮内容
+          ad:	[{
+              //关闭区域背景透明度(0.1-1)
+              headFilter: 0.3,
+              //图片
+              'img': '/star_imgs/help.gif',
+              //图片高度
+              //'imgHeight': 220,
+              //图片宽度
+              //'imgWidth': 100,
+              'divWidth': 103,
+              //图片链接
+              'linkUrl': '###',
+              'linkWindow':"",
+              //浮动层级别
+              'z-index': 100,
+              //标题
+              'title': '用户指南'
+              
+            }],
+          //关闭事件
+          onClose: function(elem){
+          }
+        });
+      });
+    </script>
   </body>
 </html>
