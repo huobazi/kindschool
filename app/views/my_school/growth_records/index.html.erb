@@ -46,25 +46,27 @@
       </div>
       <ul class="work_action">
         <li>
-          <% if controller_name == "growth_records" %>
-            <% if choose_operate_show("my_school/growth_records/new") %>
-              <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new)%>" title="添加">
-                <div class="work_action_add">
-                </div>
-                <div class="work_action_add_move">
-                </div>
-              </a>
+            <% if controller_name == "growth_records" %>
+              <% unless current_user.get_users_ranges[:tp] == :teachers %>
+                <% if choose_operate_show("my_school/growth_records/new") %>
+                  <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new)%>" title="添加">
+                    <div class="work_action_add">
+                    </div>
+                    <div class="work_action_add_move">
+                    </div>
+                  </a>
+                <% end %>
+              <% end %>
+            <% else %>
+              <% if choose_operate_show("my_school/garden_growth_records/new") %>
+                <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new)%>" title="添加">
+                  <div class="work_action_add">
+                  </div>
+                  <div class="work_action_add_move">
+                  </div>
+                </a>
+              <% end %>
             <% end %>
-          <% else %>
-            <% if choose_operate_show("my_school/garden_growth_records/new") %>
-              <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new)%>" title="添加">
-                <div class="work_action_add">
-                </div>
-                <div class="work_action_add_move">
-                </div>
-              </a>
-            <% end %>
-          <% end %>
         </li>
         <li>
           <% if controller_name == "growth_records" %>
