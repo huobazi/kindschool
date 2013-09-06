@@ -11,13 +11,13 @@
         <span>审核状态: <%= News::STATUS[topic.approve_status] %></span>
       <%end%>
       <% if choose_operate_show("my_school/topics/show") %>
-        <a href="<%= my_school_topic_path(topic) %>" title="查看<%= topic.title %>" alt="查看<%= topic.title %>"><i class="icon-eye-open"></i></a>
+        <a href="<%= my_school_topic_path(topic) %>" title="查看<%= topic.title %>" alt="查看<%= topic.title %>"><i class="img-icon icon-eye-open"></i></a>
       <% end %>
       <% if choose_operate_show("my_school/topics/edit") and topic.creater_id == current_user.id %>
-        <a href="<%= edit_my_school_topic_path(topic) %>" title="编辑<%= topic.title %>" alt="编辑<%= topic.title %>"><i class="icon-edit"></i></a>
+        <a href="<%= edit_my_school_topic_path(topic) %>" title="编辑<%= topic.title %>" alt="编辑<%= topic.title %>"><i class="img-icon icon-edit"></i></a>
       <% end %>
       <% if choose_operate_show("my_school/topics/destroy") %>
-        <a href="<%= my_school_topic_path(topic) %>" data-confirm="您确定删除该贴子吗" data-method="delete" title="删除<%= topic.title %>" alt="删除<%= topic.title %>"><i class="icon-remove-sign"></i></a>
+        <a href="<%= my_school_topic_path(topic) %>" data-confirm="您确定删除该贴子吗" data-method="delete" title="删除<%= topic.title %>" alt="删除<%= topic.title %>"><i class="img-icon icon-remove-sign"></i></a>
       <% end %>
       <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{topic.topic_entries.count}</span>"), my_school_topic_path(topic, anchor: "topic_entries") %>
     </div>
