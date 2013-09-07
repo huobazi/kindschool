@@ -53,12 +53,15 @@ class MySchool::ActivityEntriesController < MySchool::ManageController
     if params[:page]
       @page = params[:page]
     end
+    if params[:flag].present?
+      @flag = params[:flag]
+    end
   end
 
   def update
     @activity_entry = ActivityEntry.find(params[:id])
 
-    if params[:flag].presence == true
+    if params[:flag].presence == "true"
       redirect_to_controller = "activities"
     else
       redirect_to_controller = "interest_activities"
