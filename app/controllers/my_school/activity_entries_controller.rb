@@ -22,15 +22,15 @@ class MySchool::ActivityEntriesController < MySchool::ManageController
     if @activity_entry.save!
       flash[:success] = "添加回复成功"
       if params[:mark] == "interest_activities"
-        # redirect_to my_school_interest_activity_path(@activity_entry.activity_id, :anchor => "activity_entry_#{@activity_entry.id}", :page => @activity_entry.activity.last_page)
-        respond_to do |format|
-          format.js { render :layout => false }
-        end
+        redirect_to my_school_interest_activity_path(@activity_entry.activity_id, :anchor => "activity_entry_#{@activity_entry.id}", :page => @activity_entry.activity.last_page)
+        # respond_to do |format|
+        #   format.js { render :layout => false }
+        # end
       elsif params[:mark] == "activities"
-        # redirect_to my_school_activity_path(@activity_entry.activity_id, :anchor => "activity_entry_#{@activity_entry.id}", :page => @activity_entry.activity.last_page)
-        respond_to do |format|
-          format.js { render :layout => false }
-        end
+        redirect_to my_school_activity_path(@activity_entry.activity_id, :anchor => "activity_entry_#{@activity_entry.id}", :page => @activity_entry.activity.last_page)
+        # respond_to do |format|
+        #   format.js { render :layout => false }
+        # end
       end
     else
       flash[:error] = "操作失败"
