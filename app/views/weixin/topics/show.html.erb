@@ -56,8 +56,9 @@
           <div class="field">
             <p>回复</p>
             <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :allowFlashUpload => false, :simple_mode => true %>
-            <br />
-            <%= f.button :submit, :class => "btn" %>
+            <div class="form-actions text-center">
+              <%= f.button :submit, :class => "btn btn-large btn-primary", value: "保存", disable_with: "正在提交..." %>
+            </div>
           </div>
           <%= f.input :topic_id, :as => :hidden %>
           <%= f.input :creater_id, :as => :hidden %>

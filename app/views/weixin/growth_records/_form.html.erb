@@ -119,7 +119,9 @@
 <% if current_user.get_users_ranges[:tp] == :student %>
   <%= f.input :student_info_id, :as => :hidden %>
 <% end %>
-<%= f.button :submit, :class => "btn" %>
+<div class="text-center form-actions">
+  <%= f.button :submit, :class => "btn btn-primary btn-large", value: "保存", disable_with: "正在提交" %>
+</div>
 
 <script type="text/javascript">
   $(document).ready(function() {
