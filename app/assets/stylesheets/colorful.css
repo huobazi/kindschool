@@ -1362,7 +1362,7 @@ ul.nav-tabs li.active a {
     border-left: 1px solid #DDDDDD;
     border-top: 1px solid #DDDDDD;
     border-left: 1px solid #DDDDDD;
-    background-color: #eee;
+    background-color: #C4C4C4;
 }
 .float_left {
     float: left;
@@ -2723,10 +2723,6 @@ i.img-icon{
 }
 
 .badge-info-margin {
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.label {
-    padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
