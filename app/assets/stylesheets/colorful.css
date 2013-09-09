@@ -1323,9 +1323,12 @@ table.attributes td {
 }
 
 .loadding_pt {
+    position: fixed;
     left: 50%;
-    position: absolute;
-    top: 70%; 
+    top: 100px;
+    margin-left: -40px;
+    width: 80px;
+    text-align: center;
 }
 
 .table a.red{
