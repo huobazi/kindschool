@@ -86,7 +86,6 @@ class MySchool::ActivitiesController < MySchool::ManageController
   end
 
   def create
-    binding.pry
     if params[:visible].presence == "all"
       params[:activity].delete :squad_id
     else
@@ -105,7 +104,7 @@ class MySchool::ActivitiesController < MySchool::ManageController
     @activity.creater_id = current_user.id
     @activity.tp = 0
 
-    if @activity.save!
+    if @activity.save
       flash[:success] = "创建活动成功"
       redirect_to my_school_activity_path(@activity)
     else
