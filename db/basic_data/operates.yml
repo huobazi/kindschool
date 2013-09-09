@@ -176,10 +176,10 @@ notice_destroy_multi:
 message_send:
   id: 2006
   parent_id: 2
-  name: "发信息"
+  name: "发消息"
   level: 2
   sequence: 0
-  note: "发信息"
+  note: "发消息"
   controller: "my_school/messages"
   action: "new"
   params: ""
