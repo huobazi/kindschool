@@ -182,6 +182,11 @@ class MySchool::AlbumsController  < MySchool::ManageController
         @album.squad =  squad
         @album.squad_name = squad.name
       end
+    else
+      if params[:grade] == "0"
+        @album.squad =  nil
+        @album.squad_name = nil
+      end
     end
     @album.save
     respond_to do |format|

@@ -9,6 +9,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     else
       @growth_records = @kind.growth_records.search(params[:growth_record] || {}).where(:tp => 1).page(params[:page] || 1).per(10).order("created_at DESC")
     end
+    store_search_location
     render :index
   end
   def delete_img

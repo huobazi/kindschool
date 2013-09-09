@@ -8,10 +8,12 @@ class MainController < ApplicationController
         return
       else
         @no_kind = true
+        @web_weiyi_about = WeiyiConfig.find_by_number("web_weiyi_about")
         render :layout=>"weiyi"
       end
     else
       if @subdomain.blank? || @subdomain == "www"
+        @web_weiyi_about = WeiyiConfig.find_by_number("web_weiyi_about")
         render :layout=>"weiyi"
       else
         if Kindergarten.find_by_number(@subdomain)
@@ -19,6 +21,7 @@ class MainController < ApplicationController
           return
         else
           @no_kind = true
+          @web_weiyi_about = WeiyiConfig.find_by_number("web_weiyi_about")
           render :layout=>"weiyi"
         end
       end
@@ -30,9 +33,11 @@ class MainController < ApplicationController
     render :layout=>"weiyi"
   end
   def weiyi_interact
+    @web_weiyi_interact = WeiyiConfig.find_by_number("web_weiyi_interact")
     render :layout=>"weiyi"
   end
   def weiyi_contact
+    @web_weiyi_contact = WeiyiConfig.find_by_number("web_weiyi_contact")
     render :layout=>"weiyi"
   end
 end

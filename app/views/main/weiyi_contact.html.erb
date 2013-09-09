@@ -1,11 +1,5 @@
 <div class="weiyi_left">
-  <div class="weiyi_title">
-    行业首创微信教育平台，<label class="big_label">5</label>大亮点&nbsp; <label class="big_label">10</label>大模块，率先体验移动互联时代<br/>
-    <label class="weiyi_title_e">
-      The "weiyiyuanxuntong",5 hightlights 10 major modules
-    </label>
-    <hr/>
-  </div>
+  <%= @web_weiyi_contact.blank? ? "" : raw(@web_weiyi_contact.content)  %>
 </div>
 <div class="weiyi_right">
   <div class="right_div">

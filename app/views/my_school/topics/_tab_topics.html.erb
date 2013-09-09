@@ -7,7 +7,9 @@
   <%= form_tag my_school_topic_path(@topics), method: :delete, :id => "destroy_multi_form" do %>
     <%= render partial: "topic", collection: @topics %>
   <% end %>
-  <%= paginate @topics %>
+  <div class="paginate_div">
+    <%= paginate @topics %>
+  </div>
 <% else %>
   没有贴子
 <% end %>

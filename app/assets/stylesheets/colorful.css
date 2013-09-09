@@ -158,7 +158,7 @@ a{
 }
 /*=======首页样式======================end*/
 .small_menu{
-    height: 20px;
+    height: 28px;
     width: 100%;
     color: white;
 }
@@ -958,7 +958,7 @@ table.attributes td {
     color: #9B9B9B;
 }
 .pagination ul li a:hover, .pagination ul li a:focus, .pagination ul .active a, .pagination ul .active span{
-    background-color: #C4C4C4;
+    background-color: #E6E6E6;
 }
 .pagination ul li{
     float: left;
@@ -1323,9 +1323,11 @@ table.attributes td {
 }
 
 .loadding_pt {
+    position: fixed;
     left: 50%;
-    position: absolute;
-    top: 70%; 
+    top: 100px;
+    margin-left: -40px;
+    text-align: center;
 }
 
 .table a.red{
@@ -1362,7 +1364,9 @@ ul.nav-tabs li.active a {
     border-left: 1px solid #DDDDDD;
     border-top: 1px solid #DDDDDD;
     border-left: 1px solid #DDDDDD;
-    background-color: #eee;
+    /*
+     * background-color: #C4C4C4;
+     */
 }
 .float_left {
     float: left;
@@ -2723,10 +2727,6 @@ i.img-icon{
 }
 
 .badge-info-margin {
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.label {
-    padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
 }

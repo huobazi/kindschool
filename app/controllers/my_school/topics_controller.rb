@@ -1,7 +1,7 @@
 #encoding:utf-8
 class  MySchool::TopicsController < MySchool::ManageController
   def index
-    @topic_categories = @kind.topic_categories
+    @topic_categories = @kind.topic_categories.order("sequence DESC")
 
     unless params[:topic_category_id].blank?
       if topic_category = @kind.topic_categories.find_by_id(params[:topic_category_id])
@@ -26,6 +26,8 @@ class  MySchool::TopicsController < MySchool::ManageController
         @topics = @kind.topics.search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top DESC").order("created_at DESC")
       end
     end
+
+    store_search_location
 
     if request.xhr?
       render "index.js.erb"

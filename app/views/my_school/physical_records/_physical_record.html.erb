@@ -5,10 +5,10 @@
   <div class="right_info">
     <div class="pull-right">
       <% if choose_operate_show("my_school/physical_records/show") %>
-        <a href="<%= my_school_physical_record_path(physical_record) %>" title="查看<%= physical_record.student_info_label %>的体检记录" alt="要看<%= physical_record.student_info_label %>的体检记录"><i class="icon-eye-open"></i></a>
+        <a href="<%= my_school_physical_record_path(physical_record) %>" title="查看<%= physical_record.student_info_label %>的体检记录" alt="要看<%= physical_record.student_info_label %>的体检记录"><i class="img-icon icon-eye-open"></i></a>
       <% end %>
       <% if choose_operate_show("my_school/physical_records/edit") %>
-        <a href="<%= edit_my_school_physical_record_path(physical_record) %>" title="编辑<%= physical_record.student_info_label %>的体检记录" alt="编辑<%= physical_record.student_info_label %>的体检记录"><i class="icon-edit"></i></a>
+        <a href="<%= edit_my_school_physical_record_path(physical_record) %>" title="编辑<%= physical_record.student_info_label %>的体检记录" alt="编辑<%= physical_record.student_info_label %>的体检记录"><i class="img-icon icon-edit"></i></a>
       <% end %>
     </div>
     <div class="infos">

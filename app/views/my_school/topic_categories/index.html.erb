@@ -40,7 +40,8 @@
       <% unless @topic_categories.blank? %>
           <table class="table table-striped table-hover">
             <tr>
-              <th style="width: 10%;">名称</th>
+              <th style="width: 30%;">名称</th>
+              <th style="width: 10%;">排序</th>
               <th style="width: 10%;">贴子数量</th>
               <th>操作</th>
             </tr>
@@ -53,6 +54,7 @@
                     <%= topic_category.name %>
                   <% end %>
                 </td>
+                <td><%= topic_category.try(:sequence) %></td>
                 <td><%= topic_category.topics.try(:count) %></td>
                 <td>
                   <div class="index_a">

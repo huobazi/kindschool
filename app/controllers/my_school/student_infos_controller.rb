@@ -21,6 +21,7 @@ class  MySchool::StudentInfosController < MySchool::ManageController
     else
       @student_infos = @kind.student_infos.where("#{str}").search(params[:student_info] || {}).page(params[:page] || 1).per(10)
     end
+    store_search_location
     respond_to do |format|
       format.html
       # format.xls # { send_data @products.to_csv(col_sep: "\t") }
