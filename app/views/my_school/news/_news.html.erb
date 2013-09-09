@@ -2,9 +2,9 @@
   <div class="pull-left"><input type="checkbox" class="check" /></div>
   <div class="right_info" style="padding-left: 10px;">
     <div class="pull-right">
-      <a title="查看<%= news.title %>" alt="要看<%= news.title %>" href="<%= my_school_news_path(news) %>"><i class="icon-eye-open"></i></a>
+      <a title="查看<%= news.title %>" alt="要看<%= news.title %>" href="<%= my_school_news_path(news) %>"><i class="img-icon icon-eye-open"></i></a>
       <% if choose_operate_show("my_school/news/edit") %>
-        <a title="编辑<%= news.title %>" alt="编辑<%= news.title %>" href="<%= edit_my_school_news_path(news) %>"><i class="icon-edit"></i></a>
+        <a title="编辑<%= news.title %>" alt="编辑<%= news.title %>" href="<%= edit_my_school_news_path(news) %>"><i class="img-icon icon-edit"></i></a>
       <% end %>
     </div>
     <div class="infos">
@@ -15,7 +15,7 @@
       </div>
       <div class="info">
         <em><%= news.creater.try(:name) %></em>
-        <em>新闻发布于</em><abbr><%= news.start_data.try(:to_short_datetime) %></abbr>
+        <em>新闻发布于</em><abbr><%= news.try(:start_data).try(:to_short_datetime) %></abbr>
       </div>
     </div>
   </div>

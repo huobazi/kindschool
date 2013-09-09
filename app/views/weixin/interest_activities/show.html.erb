@@ -43,15 +43,6 @@
       </ul>
 
       <div class="reply_box">
-        <ul class="nav nav-tabs" style="font-size: 13px; margin-top: 15px;">
-          <li class="<%= params[:activity_entry_tp].nil? ? "active" : "" %>"><a href="<%= url_for(:controller => "/weixin/interest_activities", :action => :show, :id => @activity, :anchor => "topic_entries") %>">全部回复</a></li>
-          <li class="<%= params[:activity_entry_tp].present? && 0 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-            <%= link_to "主信息", weixin_activity_path(@activity, :activity_entry_tp => 0, :anchor => "topic_entries") %>
-          </li>
-          <li class="<%= params[:activity_entry_tp].present? && 1 == params[:activity_entry_tp].to_i ? "active" : "" %>" >
-            <%= link_to "交互信息", weixin_activity_path(@activity, :activity_entry_tp => 1, :anchor => "topic_entries") %>
-          </li>
-        </ul>
         <div id="topic_entries" style="margin-top: 20px;">
           <% unless @activity_entries.blank? %>
             <p id="replies_count" class="replies_count">
