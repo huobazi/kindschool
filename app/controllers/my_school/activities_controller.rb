@@ -86,6 +86,7 @@ class MySchool::ActivitiesController < MySchool::ManageController
   end
 
   def create
+    binding.pry
     if params[:visible].presence == "all"
       params[:activity].delete :squad_id
     else
