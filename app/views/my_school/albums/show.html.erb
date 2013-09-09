@@ -54,7 +54,7 @@
         <%=render 'album_entry'%>
         <hr/>
         <div class="albums_title">
-          <%= @album.content %>
+          <%=raw @album.content %>
         </div>
       </div>
       <%= render :partial=>"/my_school/comments/load_comments" ,:locals=>{:resource_type=>@album.class.to_s,:resource_id=>@album.id} %>
