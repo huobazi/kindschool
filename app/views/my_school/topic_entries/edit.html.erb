@@ -43,10 +43,8 @@
           <div class="control-group">
             <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false%>
           </div>
-          <div class="control-group">
-            <div class="controls">
-              <%= f.button :submit, disable_with: "正在提交..."   %>
-            </div>
+          <div class="text-center">
+            <%= f.button :submit, disable_with: "正在提交...", value: "保存", class: "btn btn-primary btn-large"   %>
           </div>
         <% end %>
       </div>

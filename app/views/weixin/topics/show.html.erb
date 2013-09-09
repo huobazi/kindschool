@@ -4,8 +4,12 @@
 <div class="message_div">
   <div class="message_title">
     <a href="<%= url_for(:action=>:index, :category_id => @topic.topic_category_id) %>" class="weixin_return" title="返回">返回</a>信息论坛
-    <%= link_to("删除",url_for(:controller=>"/weixin/topics",:action=>:destroy,:id=>@topic.id),:method=>:delete, :confirm => "您确定删除该活动吗?", :class => "new_message btn btn-danger")%>
-    <%= link_to "修改", edit_weixin_topic_path(@topic), :class => "new_message btn btn-warning" %>
+    <% if delete_topic?(@topic)  %>
+      <%= link_to("删除",url_for(:controller=>"/weixin/topics",:action=>:destroy,:id=>@topic.id),:method=>:delete, :confirm => "您确定删除该活动吗?", :class => "new_message btn btn-danger") %>
+    <% end %>
+    <% if edit_topic?(@topic)  %>
+      <%= link_to "修改", edit_weixin_topic_path(@topic), :class => "new_message btn btn-warning" %>
+    <% end %>
   </div>
   <div class="message_list">
     <ul class="data_list">
@@ -52,8 +56,9 @@
           <div class="field">
             <p>回复</p>
             <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :allowFlashUpload => false, :simple_mode => true %>
-            <br />
-            <%= f.button :submit, :class => "btn" %>
+            <div class="form-actions text-center">
+              <%= f.button :submit, :class => "btn btn-large btn-primary", value: "保存", disable_with: "正在提交..." %>
+            </div>
           </div>
           <%= f.input :topic_id, :as => :hidden %>
           <%= f.input :creater_id, :as => :hidden %>

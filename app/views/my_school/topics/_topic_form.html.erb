@@ -8,7 +8,7 @@
 
 
   <div class="text-center">
-    <%= f.button :submit, :value => "回复", disable_with: "正在提交...", class: "btn-primary btn-large" %>
+    <%= f.button :submit, :value => "回复", class: "btn-primary btn-large" , disable_with: "正在提交..."%>
   </div>
 
 <script type="text/javascript">
@@ -22,7 +22,6 @@
       if ( $("#topic_entry_content").next("span.help-inline").length > 0 ) {
         $("#topic_entry_content").next("span.help-inline").remove()
       }
-      return true;
     }
   })
 </script>

@@ -178,10 +178,8 @@
   </div>
 </fieldset>
 
-<div class="control-group">
-  <div class="controls">
-    <%= f.button :submit, disable_with: "正在提交..." %>
-  </div>
+<div class="offset2">
+  <%= f.button :submit, disable_with: "正在提交...", value: "保存", class: "btn btn-large btn-primary" %>
 </div>
 <script type="text/javascript">
 $("#student_info_user_attributes_phone").change(function() {

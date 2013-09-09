@@ -9,29 +9,29 @@
     <div class="replies pull-right">
       <% if controller_name == "activities" %>
         <% if choose_operate_show("my_school/activities/show") %>
-          <a href="<%= my_school_activity_path(activity) %>" title="查看<%= activity.title %>" alt="查看<%= activity.title %>"><i class="icon-eye-open"></i></a>
+          <a href="<%= my_school_activity_path(activity) %>" title="查看<%= activity.title %>" alt="查看<%= activity.title %>"><i class="img-icon icon-eye-open"></i></a>
         <% end %>
       <% else %>
         <% if choose_operate_show("my_school/interest_activities/show") %>
-          <a href="<%= my_school_interest_activity_path(activity) %>" title="查看<%= activity.title %>" alt="查看<%= activity.title %>"><i class="icon-eye-open"></i></a>
+          <a href="<%= my_school_interest_activity_path(activity) %>" title="查看<%= activity.title %>" alt="查看<%= activity.title %>"><i class="img-icon icon-eye-open"></i></a>
         <% end %>
       <% end %>
       <% if controller_name == "activities" %>
         <% if choose_operate_show("my_school/activities/edit") %>
-          <a href="<%= edit_my_school_activity_path(activity) %>" title="编辑<%= activity.title %>" alt="编辑<%= activity.title %>"><i class="icon-edit"></i></a>
+          <a href="<%= edit_my_school_activity_path(activity) %>" title="编辑<%= activity.title %>" alt="编辑<%= activity.title %>"><i class="img-icon icon-edit"></i></a>
         <% end %>
       <% else %>
         <% if choose_operate_show("my_school/interest_activities/edit") %>
-          <a href="<%= edit_my_school_interest_activity_path(activity) %>" title="编辑<%= activity.title %>" alt="编辑<%= activity.title %>"><i class="icon-edit"></i></a>
+          <a href="<%= edit_my_school_interest_activity_path(activity) %>" title="编辑<%= activity.title %>" alt="编辑<%= activity.title %>"><i class="img-icon icon-edit"></i></a>
         <% end %>
       <% end %>
       <% if controller_name == "activities" %>
         <% if choose_operate_show("my_school/activities/destroy") %>
-          <a href="<%= my_school_activity_path(activity) %>" data-method="delete" data-confirm="您确定要删除该活动吗" title="删除<%= activity.title %>" alt="删除<%= activity.title %>"><i class="icon-remove-sign"></i></a>
+          <a href="<%= my_school_activity_path(activity) %>" data-method="delete" data-confirm="您确定要删除该活动吗" title="删除<%= activity.title %>" alt="删除<%= activity.title %>"><i class="img-icon icon-remove-sign"></i></a>
         <% end %>
       <% else %>
         <% if choose_operate_show("my_school/interest_activities/destroy") %>
-          <a href="<%= my_school_interest_activity_path(activity) %>" data-method="delete" data-confirm="您确定要删除该活动吗" title="删除<%= activity.title %>" alt="删除<%= activity.title %>"><i class="icon-remove-sign"></i></a>
+          <a href="<%= my_school_interest_activity_path(activity) %>" data-method="delete" data-confirm="您确定要删除该活动吗" title="删除<%= activity.title %>" alt="删除<%= activity.title %>"><i class="img-icon icon-remove-sign"></i></a>
         <% end %>
       <% end %>
       <% if controller_name == "activities" %>

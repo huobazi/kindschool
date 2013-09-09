@@ -5,8 +5,8 @@
 <%= f.input :note, :validate => true, placeholder: "请输入年级的描述", :input_html => {:rows => "10", :class => "span5"}%>
 
 <div class="control-group">
-  <div class="controls">
-    <%= f.button :submit, disable_with: "正在提交..." %>
+  <div class="form-actions">
+    <%= f.button :submit, disable_with: "正在提交...", value: "保存", class: "btn btn-large btn-primary" %>
   </div>
 </div>
 

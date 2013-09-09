@@ -102,7 +102,9 @@
 <%= f.input :creater_id, :as => :hidden %>
 <%= f.input :tp, :as => :hidden %>
 <%= f.input :kindergarten_id, :as => :hidden %>
-<%= f.button :submit, :class => "btn" %>
+<div class="form-actions text-center">
+  <%= f.button :submit, value: "保存", class: "btn btn-primary btn-large", disable_with: "正在提交" %>
+</div>
 
 <script type="text/javascript">
 $(document).ready(function() {

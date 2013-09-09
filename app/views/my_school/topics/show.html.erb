@@ -101,10 +101,8 @@
               <p class="no_reply">暂无回复</p>
             <% end %>
           </div>
-          <% if (!@topic_entries.blank? and @topic_entries.last_page?) || @topic_entries.blank? %>
-            <%= simple_form_for(@topic_entry, :validate => true, :url => my_school_topic_entries_path, :html => {:class => "form-horizontal"}, remote: true) do |f| %>
-              <%= render :partial => "topic_form", :object => f %>
-            <% end %>
+          <%= simple_form_for(@topic_entry, :validate => true, :url => my_school_topic_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
+            <%= render :partial => "topic_form", :object => f %>
           <% end %>
         </div>
 

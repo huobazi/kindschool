@@ -11,21 +11,27 @@
     <meta name="keywords" content="<%=@keywords%>" />
     <meta charset="utf-8"/>
     <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "application","colorful","colorful_main" %>
+    <%= javascript_include_tag "application","colorful","colorful_main","jquery.lettering" %>
     <%= csrf_meta_tags %>
-    <%= javascript_include_tag "DD_belatedPNG_0.0.8a","jquery.lettering" %>
-    <!--[if lte IE 6]>
-        <script type="text/javascript">
-          try{
-            DD_belatedPNG.fix('div, ul, img, li, input , a');
-            }catch(err){}
-        </script>
-    <![endif]-->
-    <style type="text/css" media="screen">
+    <script language='javascript' type="text/javascript">
+      function ResumeError() {
+        return true;
+      }
+      window.onerror = ResumeError;
+    </script>
+    <!--[if IE 6]>
+    <%= javascript_include_tag "DD_belatedPNG" %>
+<script type="text/javascript">
+  /* EXAMPLE */
+  DD_belatedPNG.fix('div, ul, img, li, input , a');
 
-    </style>
+  /* string argument can be any CSS selector */
+  /* .png_bg example is unnecessary */
+  /* change it to what suits you! */
+</script>
+<![endif]-->
   </head>
-  <body style="background-color: #d9edfa">
+  <body style="background-color: #d9edfa" onload="ResumeError()">
     <div  class="wrapper">
       <div class="main_logo">
         <% if @kind %>
