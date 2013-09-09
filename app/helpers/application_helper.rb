@@ -134,6 +134,10 @@ module ApplicationHelper
     end
   end
 
+  def store_search_location
+    session[:return_to] = request.query_parameters
+  end
+
   def growth_record_controller
     if controller_name == "growth_records"
       destroy_multiple_my_school_growth_records_path

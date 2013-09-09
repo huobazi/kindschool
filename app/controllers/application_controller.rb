@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :school_install?
   # check_authorization
+  include ApplicationHelper
 
   private
   def school_install?

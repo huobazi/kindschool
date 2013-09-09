@@ -100,7 +100,7 @@
         <%= text_field :growth_record,:start_at_equals,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:start_at_equals] if params[:growth_record] }"  %>
         <b>结束时间：</b>
         <%= text_field :growth_record,:end_at_equals,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:end_at_equals] if params[:growth_record] }"  %>
-        <%= submit_tag "搜索" , :class => "btn search_btn" %>
+        <%= submit_tag "搜索" , :class => "btn search_btn btn-primary" %>
       <%end%>
     </div>
 
