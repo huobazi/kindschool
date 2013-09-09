@@ -106,8 +106,10 @@ class Weixin::InterestActivitiesController < Weixin::ManageController
   def edit
     if current_user.get_users_ranges[:tp] == :teachers
       @activity = @kind.activities.where("tp = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", 1, current_user.staff.id, current_user.id).find_by_id(params[:id].to_i)
+      @squads = current_user.get_users_ranges[:squads]
     else
       @activity = @kind.activities.find_by_id_and_tp(params[:id], 1)
+      @grades = @kind.grades
     end
 
     if @activity.nil?
@@ -118,6 +120,19 @@ class Weixin::InterestActivitiesController < Weixin::ManageController
 
   def update
     if params[:activity].present?
+      if params[:visible].presence == "all"
+        params[:activity][:squad_id] = "NULL"
+      else
+        if params[:activity][:squad_id].present?
+          if current_user.get_users_ranges[:tp] == :teachers
+            unless current_user.get_users_ranges[:squads].collect(&:id).include?(params[:activity][:squad_id].to_i)
+              flash[:error] = "非法操作"
+              redirect_to :action => :index
+              return
+            end
+          end
+        end
+      end
       params[:activity][:kindergarten_id] = @kind.id
       params[:activity][:tp] = 1
     end
@@ -127,7 +142,7 @@ class Weixin::InterestActivitiesController < Weixin::ManageController
       @activity = @kind.activities.find_by_id_and_tp(params[:id], 1)
     end
 
-    if @activity.update_attributes(params[:activity].except(:squad_id))
+    if @activity.update_attributes(params[:activity])
       flash[:success] = "修改兴趣讨论成功"
       redirect_to weixin_interest_activity_path(@activity)
     else
@@ -139,6 +154,9 @@ class Weixin::InterestActivitiesController < Weixin::ManageController
   def grade_squad_partial
     if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
       @squads = grade.squads
+      if params[:default_squad].present?
+        @default_squad = params[:default_squad]
+      end
     end
     render "grade_squad", :layout => false
   end

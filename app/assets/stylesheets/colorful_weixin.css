@@ -812,9 +812,9 @@ ul, li {
     margin-top: 20px;
 }
 .form .field .text-content {
-    height: 40px;
-    line-height: 40px;
-    width: 80%;
+    height: 35px;
+    line-height: 35px;
+    width: 100%;
     font-size: 20px;
 }
 

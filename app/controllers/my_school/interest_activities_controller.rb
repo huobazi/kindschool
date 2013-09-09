@@ -139,6 +139,17 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
     if params[:activity].present?
       params[:activity][:kindergarten_id] = @kind.id
       params[:activity][:tp] = 1
+      if params[:visible].presence == "all"
+        params[:activity][:squad_id] = "NULL"
+      else
+        if current_user.get_users_ranges[:tp] == :teachers
+          unless current_user.get_users_ranges[:squads].collect(&:id).include?(params[:activity][:squad_id].to_i)
+            flash[:error] = "非法操作"
+            redirect_to :action => :index
+            return
+          end
+        end
+      end
     end
     if current_user.get_users_ranges[:tp] == :teachers
       @activity = @kind.activities.where("tp = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", 1, current_user.staff.id, current_user.id).find_by_id(params[:id].to_i)

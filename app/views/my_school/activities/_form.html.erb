@@ -16,15 +16,11 @@
   });
 </script>
 <% unless current_user.get_users_ranges[:tp] == :student %>
-  <div class="field controls">
-    <%= radio_button_tag 'visible', 'all', :checked => true %><label style="display:inline;" class="field_prompt" for="visible_all">全园可见</label>
-    <%= radio_button_tag 'visible', 'squad' %><label style="display:inline;" id="visible_squad" class="field_prompt" for="visible_squad">选择班级</label>
-  </div>
   <% if current_user.get_users_ranges[:tp] == :teachers %>
-    <div class="select_field" id="select_squad" style="display:none;">
+    <div class="select_field" id="select_squad">
       <% unless @squads.blank? %>
         <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
-        <%= select_tag "activity[squad_id]", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+        <%= select_tag "activity[squad_id]", options_for_select((@squads.collect{|s|[s.name,s.id]} || []), @activity.try(:squad_id)), :class => "select" %>
       <% else %>
         <label class="field_prompt" for="squad" id="squad_for_teacher">班级:</label>
         <div class="controls">
@@ -33,10 +29,14 @@
       <% end %>
     </div>
   <% else %>
+    <div class="field controls">
+      <%= radio_button_tag 'visible', 'all', :checked => true %><label style="display:inline;" class="field_prompt" for="visible_all">全园可见</label>
+      <%= radio_button_tag 'visible', 'squad' %><label style="display:inline;" id="visible_squad" class="field_prompt" for="visible_squad">选择班级</label>
+    </div>
     <div class="select_field" id="select_squad" style="display:none;">
       <label class="field_prompt" for="grade">年级:</label>
       <% unless @grades.blank? %>
-        <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}), :class => "select" %>
+        <%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}, @activity.try(:squad).try(:grade_id)), :class => "select" %>
       <% else %>
         <div class="controls">
           <label>没有年级,请先创建年级,才能继续操作</label>
@@ -129,7 +129,10 @@
       $.get(
       "/my_school/activities/grade_squad_partial",
       {
-        grade: $("#grade").val()
+        grade: $("#grade").val(),
+        <% if current_user.get_users_ranges[:tp]  == :all and (action_name == "edit" or action_name == "update") and @activity.squad.present? %>
+          default_squad: <%= @activity.try(:squad_id) %>
+        <% end %>
       },
       function(result) {
         $("#grade_squad_partial").html(result);
@@ -143,6 +146,14 @@
         $("#select_squad").hide()
       }
     })
+
+  <% if current_user.get_users_ranges[:tp]  == :all and (action_name == "edit" or action_name == "update") and @activity.squad.present? %>
+    $("#visible_squad").prop("checked", true);
+  <% end %>
+
+  if( $("#visible_squad").is(":checked") ) {
+    $("#select_squad").show();
+  }
   </script>
 
   <script type="text/javascript">

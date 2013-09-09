@@ -104,7 +104,7 @@ class MySchool::ActivitiesController < MySchool::ManageController
     @activity.creater_id = current_user.id
     @activity.tp = 0
 
-    if @activity.save!
+    if @activity.save
       flash[:success] = "创建活动成功"
       redirect_to my_school_activity_path(@activity)
     else
@@ -138,7 +138,21 @@ class MySchool::ActivitiesController < MySchool::ManageController
     if params[:activity].present?
       params[:activity][:kindergarten_id] = @kind.id
       params[:activity][:tp] = 0
+      if params[:visible].presence == "all"
+        params[:activity][:squad_id] = "NULL"
+      else
+        if params[:activity][:squad_id].present?
+          if current_user.get_users_ranges[:tp] == :teachers
+            unless current_user.get_users_ranges[:squads].collect(&:id).include?(params[:activity][:squad_id].to_i)
+              flash[:error] = "非法操作"
+              redirect_to :action => :index
+              return
+            end
+          end
+        end
+      end
     end
+    
     if current_user.get_users_ranges[:tp] == :teachers
       @activity = @kind.activities.where("tp = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", 0, current_user.staff.id, current_user.id).find_by_id(params[:id].to_i)
     else
@@ -178,6 +192,9 @@ class MySchool::ActivitiesController < MySchool::ManageController
   def grade_squad_partial
     if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
       @squads = grade.squads
+      if params[:default_squad].present?
+        @default_squad = params[:default_squad]
+      end
     end
     render "grade_squad", :layout => false
   end
