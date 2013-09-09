@@ -11,13 +11,10 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
       return
     end
 
-    respond_to do |format|
-      if @topic_entry.save!
-        format.js { render :layout => false }
-      else
-        format.html { render :action => "new" }
-        format.js { render :layout => false }
-      end
+    if @topic_entry.save
+      redirect_to my_school_topic_path(@topic_entry.topic_id, page: @topic.last_page, anchor: "topic_entry_#{@topic_entry.id}")
+    else
+      render :action => "new"
     end
   end
 

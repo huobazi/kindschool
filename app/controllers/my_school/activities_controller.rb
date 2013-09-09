@@ -104,7 +104,7 @@ class MySchool::ActivitiesController < MySchool::ManageController
     @activity.creater_id = current_user.id
     @activity.tp = 0
 
-    if @activity.save!
+    if @activity.save
       flash[:success] = "创建活动成功"
       redirect_to my_school_activity_path(@activity)
     else

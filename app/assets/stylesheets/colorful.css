@@ -1362,7 +1362,7 @@ ul.nav-tabs li.active a {
     border-left: 1px solid #DDDDDD;
     border-top: 1px solid #DDDDDD;
     border-left: 1px solid #DDDDDD;
-    background-color: #C4C4C4;
+    background-color: #eee;
 }
 .float_left {
     float: left;
@@ -1636,7 +1636,14 @@ ul.feature_list li{
 }
 .offical_home{
     background-image: url("/t/colorful/official_home.png");
-    background-position: -45px -25px;
+    background-position: -45px -143px;
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 80px;
+}
+.offical_home_selected{
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -45px -28px;
     background-repeat: no-repeat;
     height: 80px;
     width: 80px;
@@ -1648,6 +1655,14 @@ ul.feature_list li{
     height: 80px;
     width: 90px;
 }
+.offical_about_us_selected{
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -164px -30px;
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 90px;
+}
+
 .offical_feature{
     background-image: url("/t/colorful/official_home.png");
     background-position: -295px -143px;
@@ -1655,9 +1670,23 @@ ul.feature_list li{
     height: 80px;
     width: 80px;
 }
+.offical_feature_selected{
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -295px -28px;
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 80px;
+}
 .offical_admiss_infor{
     background-image: url("/t/colorful/official_home.png");
     background-position: -435px -142px;
+    background-repeat: no-repeat;
+    height: 80px;
+    width: 80px;
+}
+.offical_admiss_infor_selected{
+    background-image: url("/t/colorful/official_home.png");
+    background-position: -435px -27px;
     background-repeat: no-repeat;
     height: 80px;
     width: 80px;

@@ -65,7 +65,9 @@
 <% end %>
 <%= f.input :kindergarten_id, :as => :hidden %>
 <%= f.input :creater_id, :as => :hidden %>
-<%= f.button :submit, :class => "btn" %>
+<div class="form-actions text-center">
+  <%= f.button :submit, :class => "btn btn-large btn-primary", disable_with: "正在提交...", value: "保存" %>
+</div>
 
 <script type="text/javascript">
   $("#grade").change(function() {
