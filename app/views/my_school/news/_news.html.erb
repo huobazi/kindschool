@@ -15,7 +15,7 @@
       </div>
       <div class="info">
         <em><%= news.creater.try(:name) %></em>
-        <em>新闻发布于</em><abbr><%= news.start_data.try(:to_short_datetime) %></abbr>
+        <em>新闻发布于</em><abbr><%= news.try(:start_data).try(:to_short_datetime) %></abbr>
       </div>
     </div>
   </div>
