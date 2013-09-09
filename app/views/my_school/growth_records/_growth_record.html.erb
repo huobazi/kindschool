@@ -12,20 +12,20 @@
     <div class="pull-right replies">
       <% if controller_name == "growth_records" %>
         <% if choose_operate_show("my_school/growth_records/show") %>
-          <a title="查看<%= growth_record.student_info_label %>的成长记录" alt="要看<%= growth_record.student_info_label %>的成长记录" href="<%= my_school_growth_record_path(growth_record) %>"><i class="icon-eye-open"></i></a>
+          <a title="查看<%= growth_record.student_info_label %>的成长记录" alt="要看<%= growth_record.student_info_label %>的成长记录" href="<%= my_school_growth_record_path(growth_record) %>"><i class="img-icon icon-eye-open"></i></a>
         <% end %>
       <% else %>
         <% if choose_operate_show("my_school/garden_growth_records/show") %>
-          <a title="查看<%= growth_record.student_info_label %>的成长记录" alt="要看<%= growth_record.student_info_label %>的成长记录" href="<%= my_school_garden_growth_record_path(growth_record) %>"><i class="icon-eye-open"></i></a>
+          <a title="查看<%= growth_record.student_info_label %>的成长记录" alt="要看<%= growth_record.student_info_label %>的成长记录" href="<%= my_school_garden_growth_record_path(growth_record) %>"><i class="img-icon icon-eye-open"></i></a>
         <% end %>
       <% end %>
       <% if controller_name == "growth_records" %>
         <% if choose_operate_show("my_school/growth_records/edit") %>
-          <a title="编辑<%= growth_record.student_info_label %>的成长记录" alt="编辑<%= growth_record.student_info_label %>的成长记录" href="<%= edit_my_school_growth_record_path(growth_record) %>"><i class="icon-edit"></i></a>
+          <a title="编辑<%= growth_record.student_info_label %>的成长记录" alt="编辑<%= growth_record.student_info_label %>的成长记录" href="<%= edit_my_school_growth_record_path(growth_record) %>"><i class="img-icon icon-edit"></i></a>
         <% end %>
       <% else %>
         <% if choose_operate_show("my_school/garden_growth_records/edit") %>
-          <a title="编辑<%= growth_record.student_info_label %>的成长记录" alt="编辑<%= growth_record.student_info_label %>的成长记录" href="<%= edit_my_school_garden_growth_record_path(growth_record) %>"><i class="icon-edit"></i></a>
+          <a title="编辑<%= growth_record.student_info_label %>的成长记录" alt="编辑<%= growth_record.student_info_label %>的成长记录" href="<%= edit_my_school_garden_growth_record_path(growth_record) %>"><i class="img-icon icon-edit"></i></a>
         <% end %>
       <% end %>
       <% if controller_name == "growth_records" %>
