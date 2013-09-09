@@ -129,7 +129,10 @@
       $.get(
       "/my_school/activities/grade_squad_partial",
       {
-        grade: $("#grade").val()
+        grade: $("#grade").val(),
+        <% if current_user.get_users_ranges[:tp]  == :all and (action_name == "edit" or action_name == "update") and @activity.squad.present? %>
+          default_squad: <%= @activity.try(:squad_id) %>
+        <% end %>
       },
       function(result) {
         $("#grade_squad_partial").html(result);
@@ -143,6 +146,14 @@
         $("#select_squad").hide()
       }
     })
+
+  <% if current_user.get_users_ranges[:tp]  == :all and (action_name == "edit" or action_name == "update") and @activity.squad.present? %>
+    $("#visible_squad").prop("checked", true);
+  <% end %>
+
+  if( $("#visible_squad").is(":checked") ) {
+    $("#select_squad").show();
+  }
   </script>
 
   <script type="text/javascript">
