@@ -68,7 +68,7 @@
         </li>
         <li>
           <% if choose_operate_show("my_school/staffs/index") %>
-            <a href="<%=url_for(:controller=>"/my_school/staffs",:action=>:index)%>" title="返回">
+            <a href="<%=url_for(:controller=>"/my_school/staffs",:action=>:index, params: session[:return_to])%>" title="返回">
               <div class="work_action_return">
               </div>
               <div class="work_action_return_move">

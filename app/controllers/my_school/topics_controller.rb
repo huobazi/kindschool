@@ -27,6 +27,8 @@ class  MySchool::TopicsController < MySchool::ManageController
       end
     end
 
+    store_search_location
+
     if request.xhr?
       render "index.js.erb"
     else
