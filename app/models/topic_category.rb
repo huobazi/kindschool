@@ -1,6 +1,6 @@
 #encoding:utf-8
 class TopicCategory < ActiveRecord::Base
-  attr_accessible :kindergarten_id, :name
+  attr_accessible :kindergarten_id, :name, :sequence
 
   validates :name, :presence => true, :uniqueness => { :scope => :kindergarten_id }
   validates :kindergarten_id, :presence => true

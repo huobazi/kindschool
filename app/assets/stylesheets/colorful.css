@@ -958,7 +958,7 @@ table.attributes td {
     color: #9B9B9B;
 }
 .pagination ul li a:hover, .pagination ul li a:focus, .pagination ul .active a, .pagination ul .active span{
-    background-color: #C4C4C4;
+    background-color: #E6E6E6;
 }
 .pagination ul li{
     float: left;
@@ -1365,7 +1365,9 @@ ul.nav-tabs li.active a {
     border-left: 1px solid #DDDDDD;
     border-top: 1px solid #DDDDDD;
     border-left: 1px solid #DDDDDD;
-    background-color: #C4C4C4;
+    /*
+     * background-color: #C4C4C4;
+     */
 }
 .float_left {
     float: left;

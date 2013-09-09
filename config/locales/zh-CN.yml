@@ -649,6 +649,7 @@ zh-CN:
         name: "名称"
         kindergarten_label: "所属幼儿园"
         kindergarten: "幼儿园"
+        sequence: "排序"
       user_squad:
         user_id: "延时班级的用户"
         squad_id: "延时班级"
