@@ -7,8 +7,6 @@
 <br />
 <br />
 <% n = 0 %>
-<%= @role.option_operates.collect(&:id).join(",") %><br/>
-<%= @role.option_operates.collect(&:id).include?(22) %><br/>
 <% @option_operates.each do |k, v| %>
   <% n = n + 1 %>
   <li class='check_boxes'>
