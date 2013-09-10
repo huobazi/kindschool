@@ -7,6 +7,8 @@
 <br />
 <br />
 <% n = 0 %>
+<%= @role.option_operates.collect(&:id).join(",") %><br/>
+<%= @role.option_operates.collect(&:id).include?(22) %><br/>
 <% @option_operates.each do |k, v| %>
   <% n = n + 1 %>
   <li class='check_boxes'>
@@ -17,7 +19,7 @@
         <% v.each do |operate| %>
           <li>
           <label for="operate_<%= operate.id %>">
-          <input class="flag_<%= n.to_s %>_value" id="operate_<%= operate.id %>" name="operate[]" type="checkbox" value="<%= operate.id %>" <%= @role.option_operates.include?(operate) ? "checked=true default=true" : nil %> /> <%= operate.operate.name %>    </label>
+          <input class="flag_<%= n.to_s %>_value" id="operate_<%= operate.id %>" name="operate[]" type="checkbox" value="<%= operate.id %>" <%= @role.option_operates.collect(&:id).include?(operate.id) ? "checked=true default=true" : nil %> /> <%= operate.operate.name %>    </label>
           </li>
         <% end %>
       </ol>
