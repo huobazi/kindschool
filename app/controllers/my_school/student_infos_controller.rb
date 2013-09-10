@@ -188,12 +188,8 @@ class  MySchool::StudentInfosController < MySchool::ManageController
     begin
       if @student_info.update_attributes!(params[:student_info])
         if params[:asset_logo] && (user = @student_info.user)
-          if user.asset_logo
-            user.asset_logo.update_attribute(:uploaded_data, params[:asset_logo])
-          else
-            user.asset_logo = AssetLogo.new(:uploaded_data=> params[:asset_logo])
-            user.save!
-          end
+          user.asset_logo = AssetLogo.new(:uploaded_data=> params[:asset_logo])
+          user.save
         end
         flash[:notice] = '更新学员成功.'
         redirect_to :action => :show, :id => @student_info.id
