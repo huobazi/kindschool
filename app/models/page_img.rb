@@ -1,3 +1,4 @@
+#encoding:utf-8
 class PageImg < ActiveRecord::Base
   attr_accessible :alt, :content_entry_id, :content_type, :created_at, :filename, :height, :kindergarten_id, :parent_id, :resource_id, :resource_type, :size, :thumbnail, :width, :uploaded_data
 

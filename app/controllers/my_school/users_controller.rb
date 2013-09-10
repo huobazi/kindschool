@@ -103,12 +103,8 @@ class MySchool::UsersController < MySchool::ManageController
     @user = User.find_by_id(params[:id])
     if @user.update_attributes(params[:user])
       if params[:asset_logo]
-        if @user.asset_logo
-          @user.asset_logo.update_attribute(:uploaded_data, params[:asset_logo])
-        else
-          @user.asset_logo = AssetLogo.new(:uploaded_data=> params[:asset_logo])
-          @user.save
-        end
+        @user.asset_logo = AssetLogo.new(:uploaded_data=> params[:asset_logo])
+        @user.save
       end
       flash[:success] = "修改用户个人信息成功"
       redirect_to my_school_user_path(@user)
