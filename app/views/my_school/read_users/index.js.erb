@@ -1,2 +1,2 @@
 $('#load_read_users').html('<%= escape_javascript render :partial =>'/my_school/read_users/load_index',:locals=>{:resource_type=>params[:resource_type],:resource_id=>params[:resource_id]} %>');
-$('#paginator').html('<%= escape_javascript(paginate(@read_users, :remote => true).to_s) %>');
+$('#read_users_paginator').html('<%= escape_javascript(paginate(@read_users, :remote => true,:param_name=>"read_users_page").to_s) %>');

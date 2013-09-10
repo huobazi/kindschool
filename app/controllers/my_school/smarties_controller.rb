@@ -28,6 +28,7 @@ def index
        end
       end
     end
+    @role_operates.uniq!
 end
 
 def create

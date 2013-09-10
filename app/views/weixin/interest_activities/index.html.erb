@@ -30,9 +30,7 @@
             </p>
             <p class="info"><span>创建人:</span><span class="author"><%= activity.creater ? activity.creater.name : "" %></span></p>
             <div class="ctivity_content_logo">
-              <% if activity.asset_img.blank? %>
-                <img src="/t/colorful/activity_logo1.jpg" alt="" />
-              <% else %>
+              <% unless activity.asset_img.blank? %>
                 <a href="<%= activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
                   <img src="<%= activity.asset_img.public_filename(:middle) %>" />
                 </a>

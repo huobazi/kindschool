@@ -139,7 +139,7 @@ class Weixin::MainController < Weixin::BaseController
   end
   #班级信息，动态加载
   def get_user_all_squads
-    @squads = current_user.get_users_squads
+    @squads = current_user.get_users_ranges[:squads]
     render :partial=>"modules/colorful/weixin_menu_one_squads",:layout=>false
   end
   

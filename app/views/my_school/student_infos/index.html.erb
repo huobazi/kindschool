@@ -113,7 +113,7 @@
                 <% if choose_operate_show("my_school/student_infos/destroy") %>
                   <td><input id="student_<%= student.id %>" class="check" name="student[]" type="checkbox" value="<%= student.id %>" /></td>
                 <% end %>
-                <td><%= link_to student.user.name, my_school_student_info_path(student) %></td>
+                <td><%= link_to student.try(:user).try(:name), my_school_student_info_path(student) %></td>
                 <td><%= student.user.try(:login) %></td>
                 <td><%= student.squad.try(:name) %></td>
                 <td><%= student.user.try(:phone) %></td>

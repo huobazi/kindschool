@@ -56,18 +56,14 @@ class  MySchool::StaffsController < MySchool::ManageController
     end
     params[:staff][:user_attributes][:phone].gsub!(/\s*$/, '')  if params[:staff] && params[:staff][:user_attributes]
     begin
-     if  @staff.update_attributes!(params[:staff]) && @staff.save!
-      if params[:asset_logo] && (user = @staff.user)
-        if user.asset_logo
-          user.asset_logo.update_attribute(:uploaded_data, params[:asset_logo])
-        else
+      if  @staff.update_attributes!(params[:staff]) && @staff.save!
+        if params[:asset_logo] && (user = @staff.user)
           user.asset_logo = AssetLogo.new(:uploaded_data=> params[:asset_logo])
           user.save
         end
+        flash[:notice] = '修改教职工成功.'
+        redirect_to(:action=>:show,:id=>@staff.id)
       end
-      flash[:notice] = '修改教职工成功.'
-      redirect_to(:action=>:show,:id=>@staff.id)
-     end
     rescue Exception =>ex
       flash[:error] = ex.message
       render :action => :edit

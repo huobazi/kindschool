@@ -27,9 +27,7 @@
         <p class="info"><span class="time"><%= @activity.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span><%= @activity.end_at.try(:to_short_datetime) %></span></p>
         <p class="info">由&nbsp;<span class="author"><%= @activity.creater.try(:name) %></span>&nbsp;创建于&nbsp;<span><%= @activity.created_at.try(:to_long_datetime) %></span></p>
         <div class="ctivity_content_logo">
-          <% if @activity.asset_img.blank? %>
-            <img src="/t/colorful/activity_logo1.jpg" alt="" />
-          <% else %>
+          <% unless @activity.asset_img.blank? %>
             <a href="<%= @activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
               <img src="<%= @activity.asset_img.public_filename(:middle) %>" />
             </a>
