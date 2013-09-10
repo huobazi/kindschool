@@ -55,38 +55,35 @@ class MySchool::RolesController < MySchool::ManageController
      @option_operates = @kind.option_operates.group_by{|option_operate| option_operate.operate && option_operate.operate.parent ? option_operate.operate.parent.name : ""}
    end
 
-   def save_operate_to_role_111
-   	 if  @role = @kind.roles.where(:id=>params[:id]).first
-     ids = params[:operate] || []
-             @role.option_operates.each do |operate|
-          operate.destroy
-        end
-        
-      if ids.blank?
-
+   def save_operate_to_role
+     if @role = @kind.roles.where(:id=>params[:id]).first
+       ids = params[:operate] || []
+       if ids.blank?
+         @role.option_operates.each do |operate|
+         operate.destroy
+         end
+       else
+         delete_ids = []
+         @role.option_operates.each do |option|
+           unless ids.include?(option.id.to_s)
+             delete_ids << option
+           end
+         end
+         @role.option_operates.destroy(delete_ids) unless delete_ids.blank?
+       end
+       ids.each do |option_operate_id|
+         if option = OptionOperate.find_by_id_and_kindergarten_id(option_operate_id,@role.kindergarten_id)
+           @role.option_operates << option unless @role.option_operates.include?(option)
+         end
+       end
+       @role.save!
+       @success = '角色设置权限成功.' 
       else
-        puts "==ids==#{ids.inspect}====================="
-        @role.option_operates.each do |option|
-          puts "==option.id=====#{option.id}================"
-          unless ids.include?(option.id.to_s)
-            @role.option_operates.destroy(option)
-          end
-        end
+       @success = '角色不存在,没有设置权限.'
       end
-      # raise "error"
-      ids.each do |option_operate_id|
-        if option = OptionOperate.find_by_id_and_kindergarten_id(option_operate_id,@role.kindergarten_id)
-          @role.option_operates << option unless @role.option_operates.include?(option)
-        end
+      respond_to do |format|
+        format.html { redirect_to my_school_role_path(@role), success:@success }
+        format.json { head :no_content }
       end
-      @role.save!
-      @success = '角色设置权限成功.' 
-  else
-      @success = '角色不存在,没有设置权限.'
-  end
-    respond_to do |format|
-      format.html { redirect_to my_school_role_path(@role), success:@success }
-      format.json { head :no_content }
     end
-   end
 end
