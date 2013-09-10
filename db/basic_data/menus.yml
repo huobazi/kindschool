@@ -218,7 +218,7 @@
     operate_id: 2006
     number: 61000
     url: "/my_school/messages/new"
-    title: "发信息"
+    title: "发消息"
     height_level: "b"
     sequence: 610
   - id: 61001

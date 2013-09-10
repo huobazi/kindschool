@@ -122,7 +122,9 @@
               <%= render partial: "/my_school/growth_records/growth_record", collection: @growth_records %>
             <% end %>
           <% end %>
-          <%= paginate @growth_records %>
+          <div class="paginate_div">
+            <%= paginate @growth_records %>
+          </div>
         <%else%>
           没有成长记录
         <% end %>
