@@ -19,6 +19,7 @@
       <div class="user_entry">
         <table class="table table-bordered">
           <% if student_info = current_user.student_info %>
+            <tr><td><b>账号</b></td><td><%= student_info.try(:user).login %> </td></tr>
             <% if squad = student_info.squad %>
               <% if squad.graduate %>
                 <tr><td><b>年级</b></td><td>已毕业</td></tr>
@@ -60,6 +61,7 @@
       </div>
       <div class="user_entry">
         <table class="table table-bordered">
+          <tr><td><b>账号</b></td><td><%= current_user.login %> </td></tr>
           <tr><td><b>电话号码</b></td><td><%= current_user.phone %> </td></tr>
           <% if staff = current_user.staff %>
             <tr><td><b>出生日期</b></td><td><%= staff.birthday ? staff.birthday.to_short_datetime : "" %> </td></tr>
@@ -69,10 +71,12 @@
       </div>
     </div>
   </div>
-  <div class="menu_one">
-    <a href="###" class="menu_one_a" for="#squads_infos" id="get_user_all_squads"><div class="w_arrow"></div><label>班级的信息</label></a>
-    <div id="squads_infos"></div>
-  </div>
+  <% unless current_user.get_users_ranges[:tp] == :all %>
+    <div class="menu_one">
+      <a href="###" class="menu_one_a" for="#squads_infos" id="get_user_all_squads"><div class="w_arrow"></div><label>班级的信息</label></a>
+      <div id="squads_infos"></div>
+    </div>
+  <% end %>
 <% end %>
 <script type="text/javascript">
   $(function() {

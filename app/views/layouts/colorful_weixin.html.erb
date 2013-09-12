@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8"/>
-    <title>School</title>
+    <title><%= @kind ? @kind.name : "School" %></title>
     <link rel="stylesheet" media="all" href=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <%= stylesheet_link_tag    "app_bootstrap", :media => "all" %>

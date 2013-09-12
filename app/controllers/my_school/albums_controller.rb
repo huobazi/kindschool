@@ -24,6 +24,8 @@ class MySchool::AlbumsController  < MySchool::ManageController
         @albums = @kind.albums.where(:is_show=> 1).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
       end
     end
+
+    store_search_location
   end
 
   def new

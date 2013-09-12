@@ -12,7 +12,7 @@
       <% end %>
     </ul>
   </div>
-  <div id="paginator">
-    <%= paginate @read_users, :remote => true,:params=>{:resource_type=>params[:resource_type],:resource_id=>params[:resource_id]} %>
+  <div id="read_users_paginator">
+    <%= paginate @read_users, :remote => true,:params=>{:resource_type=>params[:resource_type],:resource_id=>params[:resource_id]} ,:param_name=>"read_users_page"%>
   </div>
 <% end %>

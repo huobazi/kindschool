@@ -15,7 +15,7 @@ class MySchool::ReadUsersController < MySchool::ManageController
     end
     @read_users = ReadUser.where(:kindergarten_id=>@kind.id,
       :resource_id=>params[:resource_id],
-      :resource_type=>params[:resource_type]).page(params[:page] || 1).order("created_at").per(20)
+      :resource_type=>params[:resource_type]).page(params[:read_users_page] || 1).order("created_at").per(20)
     render :layout=>false
   end
 
