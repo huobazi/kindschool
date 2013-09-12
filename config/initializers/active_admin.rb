@@ -214,6 +214,18 @@ ActiveAdmin.setup do |config|
   # You can enable or disable them for all resources here.
   #
   # config.filters = true
+  config.authorization_adapter = ActiveAdmin::CanCanAdapter
+  config.cancan_ability_class = "AdminAbility"
+  config.authentication_method = :authenticate_admin_user!
+  config.current_user_method = :current_admin_user
+  config.on_unauthorized_access = :access_denied
+  config.before_filter :current_ability
+end
 
+ActiveAdmin::ResourceController.class_eval do
+  protected
 
+  def current_ability
+    @current_ability ||= AdminAbility.new(current_admin_user)
+  end
 end

@@ -6,6 +6,7 @@ class Album < ActiveRecord::Base
   belongs_to :squad
   belongs_to :grade
   has_many :album_entries , :dependent => :destroy
+  has_many :comments , :as => :resource, :dependent => :destroy
 
   validates :title, :presence => true, :length => {:minimum=> 3, :maximum=> 20}
 

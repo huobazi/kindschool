@@ -35,6 +35,18 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
     end
     redirect_to my_school_topic_path(@topic_entry.topic_id)
   end
+  
+  #管理精品回帖
+  def goodback
+    if @topic_entry = TopicEntry.find(params[:id])
+      @topic_entry.set_goodback(params[:tp])
+      flash[:success] = "设置成功"
+      redirect_to my_school_topic_path(@topic_entry.topic_id)
+    else
+      flash[:error] = "贴子不存在或非法操作"
+      redirect_to my_school_topics_path
+    end
+  end
 
   def virtual_delete
     @topic_entry = TopicEntry.find_by_id(params[:id])

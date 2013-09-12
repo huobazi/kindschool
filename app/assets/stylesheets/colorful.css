@@ -924,7 +924,7 @@ table.attributes tr {
 table.attributes td {
     /*
      * text-align: left;
-     */
+    */
     text-indent: 10px;
     background-color: #F5F5F5;
     border-bottom: 1px dotted #DBDBDB;
@@ -1366,7 +1366,7 @@ ul.nav-tabs li.active a {
     border-left: 1px solid #DDDDDD;
     /*
      * background-color: #C4C4C4;
-     */
+    */
 }
 .float_left {
     float: left;
@@ -2049,8 +2049,8 @@ span.help-inline {
 }
 
 .show .content .growth_record_time {
-  height: 30px;
-  line-height: 30px;
+    height: 30px;
+    line-height: 30px;
 }
 
 .show .spra {
@@ -2099,8 +2099,18 @@ span.help-inline {
 }
 .show_entry .content_right {
     float :left;
-    width: 85%;
+    /*    width: 85%;*/
+    width: 83%;
     padding-left: 10px;
+}
+.border_wei{
+    border: 1px solid #c4c4c4;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.border_wei hr{
+    margin: 0px;
+    padding: 0px;
 }
 .show_entry .user_head_logo {
     width: 48px;
@@ -2162,7 +2172,7 @@ span.help-inline {
 }
 
 .topics .topic .infos .title a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .topics .topic .title {
@@ -2727,6 +2737,6 @@ i.img-icon{
 }
 
 .badge-info-margin {
-  margin-left: 10px;
-  margin-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }

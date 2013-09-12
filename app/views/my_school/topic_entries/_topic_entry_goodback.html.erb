@@ -1,7 +1,4 @@
-<% unless @level.present? %>
-  <% params[:page] ? (page_index = params[:page].to_i) : (page_index = 1) %>
-  <%  level = (page_index-1)*10 + topic_entry_counter + 1 %>
-<% end %>
+<% topic_entry = topic_entry_goodback %>
 <div id="topic_entry_<%= topic_entry.id %>" class="show_entry">
   <div class="content_left">
     <% if topic_entry.is_show %>
@@ -10,16 +7,16 @@
   </div>
   <div class="content_right">
     <% if topic_entry.is_show == true %>
-      <p class="info"><span><%= level %>楼&nbsp;</span><span class="author"><%= topic_entry.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(topic_entry.try(:created_at)) %></span></p>
+      <p class="info"><span>&nbsp;</span><span class="author"><%= topic_entry.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span class="time"><%= time_ago_in_words(topic_entry.try(:created_at)) %></span></p>
       <div class="content"><%= raw topic_entry.content %></div>
     <% else %>
-      <p class="info"><span><%= level %>楼</span></p>
+      <p class="info"><span>&nbsp;</span></p>
       <del class="delete">该楼已被删除</del>
     <% end %>
   </div>
   <div class="actions">
     <% if choose_operate_show("my_school/topic_entries/goodback") %>
-      <% if topic_entry.is_show %>
+      <% if topic_entry.is_show || topic_entry.goodback %>
         <% if topic_entry.goodback %>
           <a href="<%= url_for(goodback_my_school_topic_entry_path(topic_entry, :page=> params[:page])) %>"  title="取消精品回复"><i class="icon-star-empty"></i></a>
         <% else %>
@@ -34,7 +31,7 @@
     <% end %>
     <% if destroy_topic_entry?(topic_entry) or choose_operate_show("my_school/topic_entries/virtual_delete") %>
       <% unless topic_entry.is_show == false %>
-        <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "topic_entries", :action=>:virtual_delete,:id=>topic_entry.id, level: level), :method => :get, confirm: "你确定删除该贴子回复吗", remote: true %>
+        <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "topic_entries", :action=>:virtual_delete,:id=>topic_entry.id,:level=>0), :method => :get, confirm: "你确定删除该贴子回复吗", remote: true %>
       <% end %>
     <% end %>
   </div>

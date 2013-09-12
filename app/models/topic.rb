@@ -14,6 +14,7 @@ class Topic < ActiveRecord::Base
   has_many :appurtenances, :class_name => "Appurtenance", :as => :resource, :dependent => :destroy
 
   has_many :topic_entries
+  has_many :goodbacks, :class_name => "TopicEntry", :foreign_key => "topic_id",:order=>"id",:conditions=>"goodback=1"
 
   has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
 
