@@ -72,6 +72,16 @@ class  MySchool::SquadsController < MySchool::ManageController
       flash[:error] = "没有权限或非法操作"
       redirect_to :action => :index
     end
+    @flag =false
+    if current_user.get_users_ranges[:tp] == :teachers  
+       if squads = current_user.get_users_ranges[:squads]
+         if squads.include?(@squad)
+           @flag =true
+         end
+       end
+    elsif current_user.get_users_ranges[:tp] == :all
+      @flag =true
+    end
   end
 
   def update

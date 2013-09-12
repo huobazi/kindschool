@@ -56,34 +56,34 @@ class MySchool::RolesController < MySchool::ManageController
    end
 
    def save_operate_to_role
-   	 if  @role = @kind.roles.where(:id=>params[:id]).first
-     ids = params[:operate] || []
-      if ids.blank?
-        @role.option_operates.each do |operate|
-          operate.destroy
-        end
+     if @role = @kind.roles.where(:id=>params[:id]).first
+       ids = params[:operate] || []
+       if ids.blank?
+         @role.option_operates.each do |operate|
+         operate.destroy
+         end
+       else
+         delete_ids = []
+         @role.option_operates.each do |option|
+           unless ids.include?(option.id.to_s)
+             delete_ids << option
+           end
+         end
+         @role.option_operates.destroy(delete_ids) unless delete_ids.blank?
+       end
+       ids.each do |option_operate_id|
+         if option = OptionOperate.find_by_id_and_kindergarten_id(option_operate_id,@role.kindergarten_id)
+           @role.option_operates << option unless @role.option_operates.include?(option)
+         end
+       end
+       @role.save!
+       @success = '角色设置权限成功.' 
       else
-        delete_ids = []
-        @role.option_operates.each do |option|
-          unless ids.include?(option.id.to_s)
-            delete_ids << option
-          end
-        end
-        @role.option_operates.destroy(delete_ids) unless delete_ids.blank?
+       @success = '角色不存在,没有设置权限.'
       end
-      ids.each do |option_operate_id|
-        if option = OptionOperate.find_by_id_and_kindergarten_id(option_operate_id,@role.kindergarten_id)
-          @role.option_operates << option unless @role.option_operates.include?(option)
-        end
+      respond_to do |format|
+        format.html { redirect_to my_school_role_path(@role), success:@success }
+        format.json { head :no_content }
       end
-      @role.save!
-      @success = '角色设置权限成功.' 
-  else
-      @success = '角色不存在,没有设置权限.'
-  end
-    respond_to do |format|
-      format.html { redirect_to my_school_role_path(@role), success:@success }
-      format.json { head :no_content }
     end
-   end
 end

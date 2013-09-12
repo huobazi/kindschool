@@ -17,6 +17,7 @@ class  MySchool::TopicsController < MySchool::ManageController
         flash[:notice] = "没有权限或没有该论坛分类"
         redirect_to my_school_topic_categories_path
       end
+      @topic_category_id = params[:topic_category_id]
     else
       if current_user.get_users_ranges[:tp] == :student
         @topics = @kind.topics.where("creater_id = ? or squad_id = ? or squad_id is null", current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")

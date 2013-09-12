@@ -408,7 +408,7 @@ zh-CN:
         living_time: "父母在深连续居住时间"
         family_marital: "婚姻状况"
         education: "学历"
-        safe_box: "社会保险箱"
+        safe_box: "社保电脑号"
         head_url: "头像"
         created_at: "创建时间"
         updated_at: "更新时间"

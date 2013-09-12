@@ -38,6 +38,11 @@
             全园可见
           <% end %>
         </span>
+          <% if @topic_category_id.present? %>
+            <span class="label label-success">
+                <%= topic.topic_category.try(:name) %>
+            </span>
+          <% end %>
       </div>
       <div class="info">
         <em><%= topic.topic_category.try(:name) %></em><em>&nbsp;*&nbsp;</em><em><%= topic.creater.try(:name) %></em>

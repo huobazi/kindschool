@@ -78,6 +78,7 @@
           <%= f.input :creater_id, :as => :hidden %>
         <% end %>
       </div>
+      <%= render :partial=>"/my_school/read_users/load_read_users" ,:locals=>{:resource_type=>@topic.class.to_s,:resource_id=>@topic.id} %>
 
     </div>
 
