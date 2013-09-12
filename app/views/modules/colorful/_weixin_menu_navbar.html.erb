@@ -28,6 +28,7 @@
         <li class="menu_li"><a href="###" class="topic" for="#topic_div"><div class="show_div"></div><img src="/t/colorful/topic_img.png" alt="信息论坛" /><label>信息论坛</label></a>
           <div id="topic_div" class="hide menu_second">
             <ul class="list_menu_li">
+              <li><a href="<%= url_for(:controller => "/weixin/topics", :action => :index) %>"><div class="s_arrow"></div><label>全部贴子</label></a></li>
               <% @topic_categories.each do |category| %>
                 <li><a href="<%= url_for(:controller => "/weixin/topics", :action => :index, :topic_category_id => category.id) %>"><div class="s_arrow"></div><label><%= category.name %></label></a></li>
               <% end %>
