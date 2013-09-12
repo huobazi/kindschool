@@ -24,8 +24,11 @@ ActiveAdmin.register User do
     redirect_to(:controller=>"/admin/users", :action=>:show,:id=>params[:id])
   end
 
+  
   action_item :only => :show do
-    link_to('重置密码', reset_password_admin_user_path(user))
+    if can?(:reset_password, resource)
+      link_to('重置密码', reset_password_admin_user_path(user))
+    end
   end
 
   controller do

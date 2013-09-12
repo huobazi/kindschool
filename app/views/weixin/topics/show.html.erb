@@ -17,15 +17,15 @@
         <p class="title"><span class="name"><%= @topic.title %></span></p>
         <p class="info">
           <% if @topic.squad.present? %>
-            <table class="attributes">
-              <tr>
-                <th>班级</th>
-                <td style="text-align: center;"><%= @topic.squad.try(:name) %></td>
-              </tr>
-            </table>
-          <% else %>
-            <span class="label label-info">全园可见</span>
-          <% end %>
+          <table class="attributes">
+            <tr>
+              <th>班级</th>
+              <td style="text-align: center;"><%= @topic.squad.try(:name) %></td>
+            </tr>
+          </table>
+        <% else %>
+          <span class="label label-info">全园可见</span>
+        <% end %>
         </p>
         <p class="info"><span class="author"><%= @topic.creater.try(:name) %></span>&nbsp;发表于&nbsp;<span><%= @topic.created_at.to_long_datetime %></span></p>
         <div class="content"><%= simple_format @topic.content %></div>
@@ -38,6 +38,20 @@
         <p id="replies_count" class="replies_count">
           <i>共收到<%= @topic.topic_entries.any? ? @topic.topic_entries.count : 0 %>条回复</i>
         </p>
+        <% if(params[:page].blank? || params[:page] == 1) && !@goodbacks.blank? %>
+          <fieldset class="border_wei">
+            <h4>&nbsp;精品回复</h4>
+            <hr/>
+            <ul class="topic_replies">
+              <% @goodbacks.each do |reply| %>
+                <li class="show" id="topic_entry_<%= reply.id %>">
+                  <p class="info"><span class="author"><%= reply.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span><%= reply.created_at.try(:to_long_datetime) %></span> </p>
+                  <div class="content"><%= simple_format reply.content %></div>
+                </li>
+              <% end %>
+            </ul>
+          </fieldset>
+        <% end %>
         <ul class="topic_replies">
           <% @replies.each do |reply| %>
             <li class="show" id="topic_entry_<%= reply.id %>">
@@ -74,24 +88,24 @@
 <%= render :partial => "/modules/colorful/weixin_menu_one"%>
 
 <script type="text/javascript">
-$(":submit").click(function() {
-  var flag = [];
-  if (topic_content.html().length < 3 || topic_content.isEmpty()) {
-    if ( $("#topic_entry_content").next("span.help-inline").length == 0 ) {
-      $("<span class='help-inline'>长度不够(必须超过3个字符)</span>").insertAfter("#topic_entry_content")
+  $(":submit").click(function() {
+    var flag = [];
+    if (topic_content.html().length < 3 || topic_content.isEmpty()) {
+      if ( $("#topic_entry_content").next("span.help-inline").length == 0 ) {
+        $("<span class='help-inline'>长度不够(必须超过3个字符)</span>").insertAfter("#topic_entry_content")
+      }
+      flag.push(true)
+    } else {
+      if ( $("#topic_entry_content").next("span.help-inline").length > 0 ) {
+        $("#topic_entry_content").next("span.help-inline").remove()
+      }
+      flag.push(false)
     }
-    flag.push(true)
-  } else {
-    if ( $("#topic_entry_content").next("span.help-inline").length > 0 ) {
-      $("#topic_entry_content").next("span.help-inline").remove()
+    for( i in flag ) {
+      if(flag[i] == true) {
+        flag.length = 0;
+        return false;
+      }
     }
-    flag.push(false)
-  }
-  for( i in flag ) {
-    if(flag[i] == true) {
-      flag.length = 0;
-      return false;
-    }
-  }
-})
+  })
 </script>

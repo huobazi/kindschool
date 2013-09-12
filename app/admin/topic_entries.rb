@@ -7,6 +7,7 @@ ActiveAdmin.register TopicEntry do
     column :creater_id
     column :status
     column :topic
+    column :goodback
     default_actions
   end
 
@@ -14,6 +15,7 @@ ActiveAdmin.register TopicEntry do
     f.inputs "发贴子" do
       f.input :content, :required => true
       f.input :topic, :input_html => { :disabled => true }
+      f.input :goodback
     end
     f.actions
   end
@@ -22,6 +24,7 @@ ActiveAdmin.register TopicEntry do
     attributes_table do
       row :content
       row :topic
+      row :goodback
       row :creater_id
       row :status
     end

@@ -95,6 +95,13 @@
           <div id="topic_entries">
             <% unless @topic_entries.blank? %>
               <div class="total"><b>共收到<span id="total"><%= @topic_entries.total_count %></span>条回复</b></div>
+              <% if(params[:page].blank? || params[:page] == 1) && !@goodbacks.blank?%>
+              <fieldset class="border_wei">
+                <h4>&nbsp;精品回复</h4>
+                <hr/>
+              <%= render :partial => "my_school/topic_entries/topic_entry_goodback", :collection => @goodbacks %>
+                </fieldset>
+              <% end %>
               <%= render :partial => "my_school/topic_entries/topic_entry", :collection => @topic_entries %>
               <%= paginate @topic_entries, params: {anchor: "topic_entries"} %>
             <% else %>

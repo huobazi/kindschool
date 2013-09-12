@@ -784,7 +784,15 @@ ul, li {
     background: #A4C400;
     position: relative;
 }
-
+.border_wei{
+    background-color: #FFFFF1;
+    border: 1px solid #C4C4C4;
+    padding: 5px;
+}
+.border_wei hr{
+    margin: 0px;
+    padding: 0px;
+}
 .field_prompt {
     color: #008fdc;
     font-size: 20px;

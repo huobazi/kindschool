@@ -2099,8 +2099,16 @@ span.help-inline {
 }
 .show_entry .content_right {
     float :left;
-    width: 85%;
+/*    width: 85%;*/
+    width: 83%;
     padding-left: 10px;
+}
+.border_wei{
+    border: 1px solid #c4c4c4;
+}
+.border_wei hr{
+    margin: 0px;
+    padding: 0px;
 }
 .show_entry .user_head_logo {
     width: 48px;

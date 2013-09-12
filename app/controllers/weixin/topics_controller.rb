@@ -41,6 +41,8 @@ class Weixin::TopicsController < Weixin::ManageController
       return
     end
     @replies = @topic.topic_entries.page(params[:page] || 1).per(10)
+    @goodbacks = @topic.goodbacks
+    
     @topic_entry = TopicEntry.new
     @topic_entry.topic_id = @topic.id
     @topic_entry.creater_id = current_user.id
