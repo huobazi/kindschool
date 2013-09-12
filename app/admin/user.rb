@@ -269,7 +269,7 @@ ActiveAdmin.register User do
                 tr :class => "odd" do
                   td "学历:",:class=>"tdColumn"
                   td student.education
-                  td "社会保险箱:",:class=>"tdColumn"
+                  td "社保电脑号:",:class=>"tdColumn"
                   td student.safe_box
                 end
               end

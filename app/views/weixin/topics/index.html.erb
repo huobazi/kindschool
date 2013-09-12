@@ -22,11 +22,16 @@
         <% @topics.each do |topic| %>
           <li class="show relative" data-id="<%= topic.id %>">
             <p class="title"><span class="name"><%= topic.title %><span></p>
-            <% if topic.squad.present? %>
-              <p class="info"><span class="label label-info"><%= topic.squad.try(:name) %><span></p>
-            <% else %>
-              <p class="info"><span class="label label-info">全园可见</span></p>
-            <% end %>
+            <p class="info">
+              <% if topic.squad.present? %>
+                <span class="label label-info"><%= topic.squad.try(:name) %></span>
+              <% else %>
+                <span class="label label-info">全园可见</span>
+              <% end %>
+              <% unless params[:topic_category_id].present? %>
+                <span class="label label-success"><%= topic.topic_category.try(:name) %></span>
+              <% end %>
+            </p>
             <p class="info">由<span class="author"><%= topic.creater.try(:name) %></span>发表于&nbsp;<span><%= topic.created_at.try(:to_long_datetime) %></span></p>
             <span class="reply_count absolute"><%= topic.topic_entries.any? ? topic.topic_entries.count : "" %><span>
           </li>

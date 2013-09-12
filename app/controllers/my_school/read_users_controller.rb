@@ -37,6 +37,8 @@ class MySchool::ReadUsersController < MySchool::ManageController
       @record = @kind.cook_books.find_by_id(params[:resource_id])
     elsif params[:resource_type] == "Album"
       @record = @kind.albums.find_by_id(params[:resource_id])
+    elsif params[:resource_type] == "Topic"
+      @record = @kind.topics.find_by_id(params[:resource_id])
     end
   end
 end
