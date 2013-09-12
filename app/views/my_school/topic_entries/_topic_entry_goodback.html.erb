@@ -16,7 +16,7 @@
   </div>
   <div class="actions">
     <% if choose_operate_show("my_school/topic_entries/goodback") %>
-      <% if topic_entry.is_show %>
+      <% if topic_entry.is_show || topic_entry.goodback %>
         <% if topic_entry.goodback %>
           <a href="<%= url_for(goodback_my_school_topic_entry_path(topic_entry, :page=> params[:page])) %>"  title="取消精品回复"><i class="icon-star-empty"></i></a>
         <% else %>
@@ -31,7 +31,7 @@
     <% end %>
     <% if destroy_topic_entry?(topic_entry) or choose_operate_show("my_school/topic_entries/virtual_delete") %>
       <% unless topic_entry.is_show == false %>
-        <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "topic_entries", :action=>:virtual_delete,:id=>topic_entry.id), :method => :get, confirm: "你确定删除该贴子回复吗", remote: true %>
+        <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "topic_entries", :action=>:virtual_delete,:id=>topic_entry.id,:level=>0), :method => :get, confirm: "你确定删除该贴子回复吗", remote: true %>
       <% end %>
     <% end %>
   </div>
