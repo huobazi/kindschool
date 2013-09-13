@@ -153,5 +153,13 @@ $(document).ready(function() {
     event.preventDefault();
     $(this).parent().hide();
   })
+
+  $("body").delegate('div.topic', 'mouseover', function() {
+    $(this).addClass('is-topic-mouseover');
+  })
+
+  $("body").delegate('div.topic', 'mouseout', function() {
+    $(this).removeClass('is-topic-mouseover');
+  })
 })
 

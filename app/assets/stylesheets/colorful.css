@@ -1345,6 +1345,10 @@ ul.nav-tabs li{
     float: left;
     line-height: 20px;
 }
+ul.nav-tabs li a:hover {
+    background: #FB9801;
+    color: #fff;
+}
 .tabs_style {
     padding-top: 20px;
 }
@@ -1367,6 +1371,8 @@ ul.nav-tabs li.active a {
     /*
      * background-color: #C4C4C4;
     */
+    background: #FB9801;
+    color: #ffffff;
 }
 .float_left {
     float: left;
@@ -2777,4 +2783,9 @@ i.img-icon{
 
 .select_all_wrap .checkbox.inline {
     margin-bottom: 5px;
+}
+
+.is-topic-mouseover {
+    background: #FFFF99;
+    cursor: pointer;
 }
