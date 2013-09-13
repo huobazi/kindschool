@@ -2759,3 +2759,7 @@ i.img-icon{
     vertical-align: text-top;
     width: 14px;
 }
+
+.label-info {
+    padding: 5px;
+}
