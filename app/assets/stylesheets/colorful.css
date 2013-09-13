@@ -2738,6 +2738,10 @@ i.img-icon{
     line-height: normal;
 }
 
+.topic input[type="radio"], .topic input[type="checkbox"] {
+    margin-top: 0;
+}
+
 .checkbox input[type="checkbox"] {
     margin-top: 4px;
 }

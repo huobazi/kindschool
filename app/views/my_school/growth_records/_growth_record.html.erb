@@ -46,12 +46,11 @@
           <%= link_to raw("<span style='font-size: 18px;'>#{growth_record.student_info_label}</span><span style='color: #333;font-size: 14px;'>的成长记录</span>"), my_school_garden_growth_record_path(growth_record) %>
         <% end %>
       </div>
-      <div class="title">
-        <em>从</em><abbr><%= growth_record.start_at.try(:to_short_datetime) %></abbr><em>&nbsp;到&nbsp;</em><abbr><%= growth_record.end_at.try(:to_short_datetime) %></abbr>
+      <div class="info">
+        <abbr>从<%= growth_record.start_at.try(:to_short_datetime) %>&nbsp;到&nbsp;<%= growth_record.end_at.try(:to_short_datetime) %></abbr>
       </div>
       <div class="info">
-        <em><%= growth_record.creater.try(:name) %></em>
-        <em>创建于</em><abbr><%= growth_record.created_at.try(:to_long_datetime) %></abbr>
+        <abbr><%= growth_record.creater.try(:name) %>创建于<%= growth_record.created_at.try(:to_long_datetime) %></abbr>
       </div>
     </div>
   </div>
