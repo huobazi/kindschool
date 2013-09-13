@@ -819,8 +819,8 @@ ul, li {
   margin-bottom: 0;
 }
 .topic_search .select {
-    width: 90%;
-    margin-top: 20px;
+    width: 100%;
+    display: block;
 }
 .form .field .text-content {
     height: 35px;
