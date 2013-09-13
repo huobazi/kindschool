@@ -1325,7 +1325,7 @@ table.attributes td {
 .loadding_pt {
     position: fixed;
     left: 50%;
-    top: 100px;
+    top: 200px;
     margin-left: -40px;
     text-align: center;
 }
@@ -2739,4 +2739,23 @@ i.img-icon{
 .badge-info-margin {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.place {
+    text-indent: -9999px;
+    content: '.';
+    visibility: hidden;
+}
+.place-input-position {
+    width: 13px;
+    height: 13px;
+}
+
+.place-icon-position {
+    display: inline-block;
+    height: 14px;
+    line-height: 14px;
+    margin-top: 1px;
+    vertical-align: text-top;
+    width: 14px;
 }
