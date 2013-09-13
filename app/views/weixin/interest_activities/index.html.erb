@@ -8,8 +8,8 @@
   </div>
   <div class="message_list">
     <% unless current_user.get_users_ranges[:tp] == :student %>
-      <div style="text-align: center;padding-top: 5px;">
-        <%= link_to "创建兴趣讨论", new_weixin_interest_activity_path, :class => "btn btn-warning btn-large has-btn-new" %>
+      <div class="btn-new-wrap">
+        <%= link_to "创建兴趣讨论", new_weixin_interest_activity_path, :class => "btn btn-warning btn-large btn-block" %>
       </div>
     <% end %>
     <ul class="data_list">

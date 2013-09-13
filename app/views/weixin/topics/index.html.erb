@@ -12,8 +12,8 @@
         <%= select_tag "topic_category_id",options_for_select(@kind.topic_categories.collect {|p| [ p.name, p.id ] }, params[:topic_category_id]), :prompt => "全部", :class => "select" %>
       </div>
     <% end %>
-    <div style="text-align: center;padding-top: 5px; margin-bottom: 10px;">
-      <%= link_to "发贴子", new_weixin_topic_path(topic_category_id: @topic_category_id), :class => "btn btn-warning btn-large has-btn-new" %>
+    <div class="btn-new-wrap">
+      <%= link_to "发贴子", new_weixin_topic_path(topic_category_id: @topic_category_id), :class => "btn btn-warning btn-large btn-block" %>
     </div>
     <ul class="data_list">
       <% if @topics.blank? %>
