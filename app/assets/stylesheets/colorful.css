@@ -2776,6 +2776,7 @@ i.img-icon{
     width: auto !important;
     width: 50px;
     _width: 50px;
+    zoom: 1;
 }
 
 .badge-wrap-reply {
