@@ -167,5 +167,9 @@ $(document).ready(function() {
     event.stopPropagation();
     $(".select_all_wrap").show();
   })
+
+  $(".topic").delegate('a', 'click', function(event) {
+    event.stopPropagation();
+  })
 })
 
