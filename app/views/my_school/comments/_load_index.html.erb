@@ -53,6 +53,8 @@
         <div class="actions">
           <% if can_edit_comment?(comment) %>
             <a style="cursor: pointer" type="button" data-toggle="modal" data-target="#edit_comment"><i class="icon-edit"></i></a>
+          <% else %>
+            <a class="place place-icon-position"></a>
           <% end %>
           <% if comment.is_show %>
             <% if can_destroy_comment?(comment) %>

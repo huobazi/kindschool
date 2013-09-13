@@ -6,8 +6,8 @@
     <a href="<%= weixin_path %>" title="返回" class="weixin_return">返回</a>
     消息列表
   </div>
-  
-  
+
+
   <div class="message_filter">
     <%= form_tag '/weixin/messages' , :method=>"get",:id=>"message_search" do %>
       <%= select_tag "send_date",options_for_select(@send_date,(params[:send_date]).to_s) %>
@@ -15,8 +15,8 @@
     <%end%>
   </div>
   <div class="message_list">
-    <div style="text-align: center;padding-top: 5px;">
-      <%= link_to "发消息", new_weixin_message_path, :class => "btn btn-warning btn-large has-btn-new" %>
+    <div class="btn-new-wrap">
+      <%= link_to "发消息", new_weixin_message_path, :class => "btn btn-warning btn-large btn-block" %>
     </div>
     <ul class="data_list" style="clear: both;">
       <% if @messages.blank? %>

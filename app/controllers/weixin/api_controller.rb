@@ -121,7 +121,7 @@ class Weixin::ApiController < Weixin::BaseController
                 personal.resource = text
                 current_user.personal_sets << personal
                 if current_user.save
-                  url_garden = (current_user.get_users_ranges[:tp] == :student) ? "http://#{request.host_with_port}/weixin/growth_records/new?personal_set_id=#{personal.id}" : "http://#{request.host_with_port}/weixin/garden_growth_records/new?personal_set_id=#{personal.id}"
+                  url_garden = (current_user.get_users_ranges[:tp] == :student) ? "http://#{request.host_with_port}/weixin/growth_records/new?#{get_validate_string}personal_set_id=#{personal.id}" : "http://#{request.host_with_port}/weixin/garden_growth_records/new?#{get_validate_string}personal_set_id=#{personal.id}"
                   x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
                       :FromUserName=>xml_data[:ToUserName],
                       :CreateTime=>Time.now.to_i,
@@ -149,7 +149,7 @@ class Weixin::ApiController < Weixin::BaseController
             personal.resource = photo
             personal.user_id = current_user.id
             if personal.save
-              url_garden = (current_user.get_users_ranges[:tp] == :student) ? "http://#{request.host_with_port}/weixin/growth_records/new?personal_set_id=#{personal.id}" : "http://#{request.host_with_port}/weixin/garden_growth_records/new?personal_set_id=#{personal.id}"
+              url_garden = (current_user.get_users_ranges[:tp] == :student) ? "http://#{request.host_with_port}/weixin/growth_records/new?#{get_validate_string}personal_set_id=#{personal.id}" : "http://#{request.host_with_port}/weixin/garden_growth_records/new?#{get_validate_string}personal_set_id=#{personal.id}"
               x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
                   :FromUserName=>xml_data[:ToUserName],
                   :CreateTime=>Time.now.to_i,
@@ -200,7 +200,6 @@ class Weixin::ApiController < Weixin::BaseController
         end
       end
     end
-    Rails.logger.info("========x_data===+#{x_data.inspect}")
     render :text=>x_data
   end
 

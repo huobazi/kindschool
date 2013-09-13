@@ -2,7 +2,7 @@
 ActiveAdmin.register OptionOperate do
   menu :parent => "系统配置", :priority => 5
 
-  collection_action :add_functional_to_kind, :method => :get, :title => "为班级分配权限" do
+  collection_action :add_functional_to_kind, :method => :get, :title => "为幼儿园分配权限" do
     @kind = Kindergarten.find_by_id(params[:kindergarten_id])
     @option_operate = OptionOperate.new
     @operate_root = Operate.find_by_name("root")
@@ -35,7 +35,7 @@ ActiveAdmin.register OptionOperate do
       flash[:success] = "操作成功"
       redirect_to :action => :show, :controller => "/admin/kindergartens", :id => @kind.id
     else
-      flash[:error] = "班级不存在"
+      flash[:error] = "幼儿园不存在"
       redirect_to :action => :index, :controller => "/admin/kindergartens"
     end
   end

@@ -1,5 +1,6 @@
 #encoding:utf-8
 class  MySchool::TopicsController < MySchool::ManageController
+  include TopicsHelper
   def index
     @topic_categories = @kind.topic_categories.order("sequence DESC")
 
@@ -58,7 +59,7 @@ class  MySchool::TopicsController < MySchool::ManageController
     @topic_entry.topic_id = @topic.id
     @topic_entry.creater_id = current_user.id
     @topic_entries = @topic.topic_entries.page(params[:page] || 0).per(10)
-
+    @goodbacks = @topic.goodbacks
     @topic.show_count += 1
     @topic.save
   end

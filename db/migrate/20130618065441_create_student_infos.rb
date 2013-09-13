@@ -47,7 +47,7 @@ class CreateStudentInfos < ActiveRecord::Migration
       t.string :living_time        #父母在深连续居住时间
       t.string :family_marital     #婚姻状况
       t.string :education          #学历
-      t.string :safe_box           #社会保险箱
+      t.string :safe_box           #社保电脑号
       t.string :head_url           #头像
       t.timestamp :deleted_at
       t.timestamps

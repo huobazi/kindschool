@@ -924,7 +924,7 @@ table.attributes tr {
 table.attributes td {
     /*
      * text-align: left;
-     */
+    */
     text-indent: 10px;
     background-color: #F5F5F5;
     border-bottom: 1px dotted #DBDBDB;
@@ -1325,7 +1325,7 @@ table.attributes td {
 .loadding_pt {
     position: fixed;
     left: 50%;
-    top: 100px;
+    top: 200px;
     margin-left: -40px;
     text-align: center;
 }
@@ -1344,6 +1344,10 @@ ul.nav-tabs li{
     margin-bottom:0px;
     float: left;
     line-height: 20px;
+}
+ul.nav-tabs li a:hover {
+    background: #FB9801;
+    color: #fff;
 }
 .tabs_style {
     padding-top: 20px;
@@ -1366,7 +1370,9 @@ ul.nav-tabs li.active a {
     border-left: 1px solid #DDDDDD;
     /*
      * background-color: #C4C4C4;
-     */
+    */
+    background: #FB9801;
+    color: #ffffff;
 }
 .float_left {
     float: left;
@@ -2049,8 +2055,8 @@ span.help-inline {
 }
 
 .show .content .growth_record_time {
-  height: 30px;
-  line-height: 30px;
+    height: 30px;
+    line-height: 30px;
 }
 
 .show .spra {
@@ -2099,8 +2105,18 @@ span.help-inline {
 }
 .show_entry .content_right {
     float :left;
-    width: 85%;
+    /*    width: 85%;*/
+    width: 83%;
     padding-left: 10px;
+}
+.border_wei{
+    border: 1px solid #c4c4c4;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.border_wei hr{
+    margin: 0px;
+    padding: 0px;
 }
 .show_entry .user_head_logo {
     width: 48px;
@@ -2162,7 +2178,7 @@ span.help-inline {
 }
 
 .topics .topic .infos .title a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .topics .topic .title {
@@ -2727,6 +2743,58 @@ i.img-icon{
 }
 
 .badge-info-margin {
-  margin-left: 10px;
-  margin-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.place {
+    text-indent: -9999px;
+    content: '.';
+    visibility: hidden;
+}
+.place-input-position {
+    width: 13px;
+    height: 13px;
+}
+
+.place-icon-position {
+    display: inline-block;
+    height: 14px;
+    line-height: 14px;
+    margin-top: 1px;
+    vertical-align: text-top;
+    width: 14px;
+}
+
+.label-info, .label-success {
+    padding: 5px;
+}
+
+.label-info-squad {
+    min-width: 50px;
+    text-align: center;
+    width: auto !important;
+    width: 50px;
+    _width: 50px;
+}
+
+.badge-wrap-reply {
+    display: inline-block;
+    min-width: 60px;
+    text-align: center;
+    margin-top: 1px;
+}
+
+.select_all_wrap {
+    border: 1px dashed #008FDC;
+    margin-bottom: 10px;
+}
+
+.select_all_wrap .checkbox.inline {
+    margin-bottom: 5px;
+}
+
+.is-topic-mouseover {
+    background: #FFFF99;
+    cursor: pointer;
 }

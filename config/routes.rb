@@ -252,7 +252,7 @@ School::Application.routes.draw do
     end
     resources :topic_entries do
       member do
-        get :virtual_delete
+        get :virtual_delete,:goodback
       end
     end
     resources :activities do

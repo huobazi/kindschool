@@ -278,6 +278,8 @@ zh-CN:
         sign_in_count: "登录次数"
         password: "密码"
         password_confirmation: "确认密码"
+        role_name: "所属角色"
+        role_name_label: "所属角色"
       asset_img:
         resource_id: "选题"
         vote_entry: "选题"
@@ -406,7 +408,7 @@ zh-CN:
         living_time: "父母在深连续居住时间"
         family_marital: "婚姻状况"
         education: "学历"
-        safe_box: "社会保险箱"
+        safe_box: "社保电脑号"
         head_url: "头像"
         created_at: "创建时间"
         updated_at: "更新时间"
@@ -503,6 +505,7 @@ zh-CN:
         content: "内容"
         creater_id: "回贴人"
         status: "状态"
+        goodback: "精品回复"
       cook_book:
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"
@@ -708,3 +711,5 @@ zh-CN:
       labels:
         luck: "中奖用户"
         lose: "未中奖"
+    access_denied:
+      message: "你未被授权执行该动作。"

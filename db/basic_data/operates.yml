@@ -404,6 +404,18 @@ topic_entry_delete:
   params: ""
   protocol: ""
   <<: *DEFAULTS
+topic_entry_goodback:
+  id: 3013
+  parent_id: 3
+  name: "管理精品回帖"
+  level: 2
+  sequence: 0
+  note: "管理精品回帖"
+  controller: "my_school/topic_entries"
+  action: "goodback"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
 #||||||||||||||||||||||||||人员管理功能
 squad_manage:
   id: 4001

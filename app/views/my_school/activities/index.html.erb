@@ -75,9 +75,12 @@
       <div class="topics">
         <% unless @activities.blank? %>
           <% if choose_operate_show("my_school/activities/destroy") or choose_operate_show("my_school/interest_activities/destroy") %>
-            <label class="input_select_all checkbox inline ">
-              <input type="checkbox" id="check_all" /> 全选
-            </label>
+            <div class="select_all_wrap clearfix" style="display: none;">
+              <label class="input_select_all checkbox inline">
+                <input type="checkbox" id="check_all" /> 全选
+              </label>
+              <a class="hidden-wrap" href="javascript: void(0)" rel="nofollow"><i class="icon-remove-circle pull-right"></i></a>
+            </div>
           <% end %>
           <% if controller_name == "activities" %>
             <%= form_tag my_school_activity_path(@activities), method: :delete, :id => "destroy_multi_form" do %>

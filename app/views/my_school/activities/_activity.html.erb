@@ -1,7 +1,9 @@
 <div class="topic topic_line pull-left">
 
-  <% if choose_operate_show("my_school/activities/destroy") or choose_operate_show("my_school/interest_activities/destroy") %>
+   <% if ( choose_operate_show("my_school/activities/destroy") or choose_operate_show("my_school/interest_activities/destroy") ) and delete_activity?(activity) %>
     <div class="pull-left"><input type="checkbox" class="check" name="activity[]" id="activity_<%= activity.id %>" value="<%= activity.id %>" /></div>
+  <% else %>
+    <div class="pull-left place place-input-position"></div>
   <% end %>
   <div class="avatar pull-left"><img src="<%= activity.creater.try(:asset_logo) ? activity.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
   </div>
@@ -10,34 +12,46 @@
       <% if controller_name == "activities" %>
         <% if choose_operate_show("my_school/activities/show") %>
           <a href="<%= my_school_activity_path(activity) %>" title="查看<%= activity.title %>" alt="查看<%= activity.title %>"><i class="img-icon icon-eye-open"></i></a>
+        <% else %>
+          <a class="place place-icon-position"></a>
         <% end %>
       <% else %>
         <% if choose_operate_show("my_school/interest_activities/show") %>
           <a href="<%= my_school_interest_activity_path(activity) %>" title="查看<%= activity.title %>" alt="查看<%= activity.title %>"><i class="img-icon icon-eye-open"></i></a>
+        <% else %>
+          <a class="place place-icon-position"></a>
         <% end %>
       <% end %>
       <% if controller_name == "activities" %>
-        <% if choose_operate_show("my_school/activities/edit") %>
+        <% if choose_operate_show("my_school/activities/edit") and edit_activity?(activity) %>
           <a href="<%= edit_my_school_activity_path(activity) %>" title="编辑<%= activity.title %>" alt="编辑<%= activity.title %>"><i class="img-icon icon-edit"></i></a>
+        <% else %>
+          <a class="place place-icon-position"></a>
         <% end %>
       <% else %>
-        <% if choose_operate_show("my_school/interest_activities/edit") %>
+        <% if choose_operate_show("my_school/interest_activities/edit") and edit_activity?(activity) %>
           <a href="<%= edit_my_school_interest_activity_path(activity) %>" title="编辑<%= activity.title %>" alt="编辑<%= activity.title %>"><i class="img-icon icon-edit"></i></a>
+        <% else %>
+          <a class="place place-icon-position"></a>
         <% end %>
       <% end %>
       <% if controller_name == "activities" %>
-        <% if choose_operate_show("my_school/activities/destroy") %>
+        <% if choose_operate_show("my_school/activities/destroy") and delete_activity?(activity) %>
           <a href="<%= my_school_activity_path(activity) %>" data-method="delete" data-confirm="您确定要删除该活动吗" title="删除<%= activity.title %>" alt="删除<%= activity.title %>"><i class="img-icon icon-remove-sign"></i></a>
+        <% else %>
+          <a class="place place-icon-position"></a>
         <% end %>
       <% else %>
-        <% if choose_operate_show("my_school/interest_activities/destroy") %>
+        <% if choose_operate_show("my_school/interest_activities/destroy") and delete_activity?(activity) %>
           <a href="<%= my_school_interest_activity_path(activity) %>" data-method="delete" data-confirm="您确定要删除该活动吗" title="删除<%= activity.title %>" alt="删除<%= activity.title %>"><i class="img-icon icon-remove-sign"></i></a>
+        <% else %>
+          <a class="place place-icon-position"></a>
         <% end %>
       <% end %>
       <% if controller_name == "activities" %>
-        <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{activity.activity_entries.count}</span>"), my_school_activity_path(activity, anchor: "activity_entry_1"), class: "count" %>
+        <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{activity.activity_entries.count}</span>"), my_school_activity_path(activity, anchor: "activity_entry_1"), class: "count badge-wrap-reply" %>
       <% else %>
-        <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{activity.activity_entries.count}</span>"), my_school_interest_activity_path(activity, anchor: "activity_entry_1"), class: "count" %>
+        <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{activity.activity_entries.count}</span>"), my_school_interest_activity_path(activity, anchor: "activity_entry_1"), class: "count badge-wrap-reply" %>
       <% end %>
     </div>
     <div class="infos">
@@ -49,7 +63,7 @@
         <% end %>
       </div>
       <div class="info">
-        <span class="label label-info">
+        <span class="label label-info label-info-squad">
           <% if activity.squad.present? %>
             <%= activity.squad.try(:name) %>
           <% else %>

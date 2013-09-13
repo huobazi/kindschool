@@ -10,7 +10,9 @@ ActiveAdmin.register Kindergarten do
   end
 
   action_item :only => :show do
-    link_to('初始化数据', loading_admin_kindergarten_path(kindergarten))
+    if can?(:loading, resource)
+      link_to('初始化数据', loading_admin_kindergarten_path(kindergarten))
+    end
   end
 
   index do

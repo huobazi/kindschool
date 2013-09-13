@@ -145,5 +145,27 @@ $(document).ready(function() {
     $(".check").attr("checked",this.checked);
   })
 
+  $(".check").live('click', function() {
+    $(".select_all_wrap").show();
+  })
+
+  $(".hidden-wrap").live('click', function(event) {
+    event.preventDefault();
+    $(this).parent().hide();
+  })
+
+  $("body").delegate('div.topic', 'mouseover', function() {
+    $(this).addClass('is-topic-mouseover');
+  })
+
+  $("body").delegate('div.topic', 'mouseout', function() {
+    $(this).removeClass('is-topic-mouseover');
+  })
+
+  $("body").delegate('div.topic', 'click', function() {
+    var check = $(this).find(".check");
+    check.prop("checked", !check.attr("checked"));
+    $(".select_all_wrap").show();
+  })
 })
 
