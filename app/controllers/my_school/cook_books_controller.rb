@@ -66,18 +66,4 @@ class MySchool::CookBooksController < MySchool::ManageController
     @cook_book = @kind.cook_books.find(params[:id])
   end
 
-  def destroy_multiple
-    if params[:cook_book].nil?
-      flash[:notice] = "必须先选择菜谱"
-    else
-      params[:cook_book].each do |cook_book|
-        @kind.cook_books.destroy(cook_book)
-      end
-    end
-    respond_to do |format|
-      format.html { redirect_to my_school_cook_books_path }
-      format.json { head :no_content }
-    end
-  end
-
 end

@@ -145,10 +145,6 @@ $(document).ready(function() {
     $(".check").attr("checked",this.checked);
   })
 
-  $(".check").live('click', function() {
-    $(".select_all_wrap").show();
-  })
-
   $(".hidden-wrap").live('click', function(event) {
     event.preventDefault();
     $(this).parent().hide();
@@ -165,6 +161,11 @@ $(document).ready(function() {
   $("body").delegate('div.topic', 'click', function() {
     var check = $(this).find(".check");
     check.prop("checked", !check.attr("checked"));
+    $(".select_all_wrap").show();
+  })
+
+  $(".topic").delegate('.check', 'click', function(event) {
+    event.stopPropagation();
     $(".select_all_wrap").show();
   })
 })

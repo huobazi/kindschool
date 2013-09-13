@@ -58,9 +58,12 @@
     <div class="work_list">
       <% unless @cook_books.blank? %>
         <div class="topics" id="cook_books">
-          <label class="input_select_all checkbox inline ">
-            <input type="checkbox" id="check_all" /> 全选
-          </label>
+          <div class="select_all_wrap clearfix">
+            <label class="input_select_all checkbox inline ">
+              <input type="checkbox" id="check_all" /> 全选
+            </label>
+            <a class="hidden-wrap" href="javascript: void(0)" rel="nofollow"><i class="icon-remove-circle pull-right"></i></a>
+          </div>
           <%= render partial: "cook_book", collection: @cook_books %>
         </div>
       <%= paginate @cook_books  %>
