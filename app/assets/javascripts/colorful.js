@@ -163,12 +163,12 @@ $(document).ready(function() {
     check.trigger('click');
   })
 
-  $(".topic").delegate('.check', 'click', function(event) {
+  $("body").delegate('.check', 'click', function(event) {
     event.stopPropagation();
     $(".select_all_wrap").show();
   })
 
-  $(".topic").delegate('a', 'click', function(event) {
+  $("body").delegate('.topic a', 'click', function(event) {
     event.stopPropagation();
   })
 })
