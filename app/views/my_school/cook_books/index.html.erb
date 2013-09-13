@@ -1,12 +1,12 @@
 <script type="text/javascript">
   jQuery(function() {
-    $('#cook_book_start_at_equals').datepicker({
+    $('#cook_book_start_at_greater_than_or_equal_to').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
     }).on("changeDate", function() {
       $(this).datepicker('hide')
     });;
-    $('#cook_book_end_at_equals').datepicker({
+    $('#cook_book_end_at_less_than_or_equal_to').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
     }).on("changeDate", function() {
@@ -48,9 +48,9 @@
     <div class="search_form">
      <%= form_tag '/my_school/cook_books' , :method=>"get" do %>
       <b>开始时间：</b>
-      <%= text_field :cook_book,:start_at_equals,:style=>"width:100px;" ,:value=>"#{params[:cook_book][:start_at_equals] if params[:cook_book] }"  %>
+      <%= text_field :cook_book,:start_at_greater_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:cook_book][:start_at_greater_than_or_equal_to] if params[:cook_book] }"  %>
       <b>结束时间：</b>
-      <%= text_field :cook_book,:end_at_equals,:style=>"width:100px;" ,:value=>"#{params[:cook_book][:end_at_equals] if params[:cook_book] }"  %>
+      <%= text_field :cook_book,:end_at_less_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:cook_book][:end_at_less_than_or_equal_to] if params[:cook_book] }"  %>
       <%= submit_tag "搜索" , :class => "btn search_btn"%>
       <%end%>
     </div>

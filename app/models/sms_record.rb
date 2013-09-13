@@ -44,6 +44,6 @@ class SmsRecord < ActiveRecord::Base
       self.receiver_name = self.receiver.name
       self.receiver_phone = self.receiver.phone
     end
-    self.sms_count =  (self.content || "").size / 70
+    self.sms_count = 1 + (self.content || "").size / 70
   end
 end

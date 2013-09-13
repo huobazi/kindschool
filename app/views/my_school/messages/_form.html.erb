@@ -77,7 +77,7 @@
       <% end %>
       <div class="count_div">
         <div>
-          发短信才会生效
+          选中是否发送短信才会生效
         </div>
       </div>
     </div>
@@ -91,6 +91,11 @@
         <% else %>
           <%= check_box_tag('message[allsms]',"1",@message.allsms)%>
         <% end %>
+        <div class="count_div">
+         <div>
+            选中是否发送短信才会生效
+         </div>
+        </div>
       </div>
     </div>
   <% end %>

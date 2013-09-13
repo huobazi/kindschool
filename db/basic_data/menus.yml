@@ -188,6 +188,14 @@
     title: "延时班统计"
     height_level: "a"
     sequence: 92
+  - id: 45000
+    name: "短信统计"
+    operate_id: 14400
+    url: "/my_school/statistics/sms_statistics"
+    number: 45000
+    title: "短信统计"
+    height_level: "a"
+    sequence: 92
 
 - id: 50000
   number: "home"

@@ -2,7 +2,7 @@
 #学员菜谱
 class MySchool::CookBooksController < MySchool::ManageController
   def index
-    @cook_books = @kind.cook_books.page(params[:page] || 1).per(10).order("created_at DESC")
+    @cook_books = @kind.cook_books.search(params[:cook_book]).page(params[:page] || 1).per(10).order("created_at DESC")
     all_roles = ['admin','principal','vice_principal','assistant_principal','park_hospital']
 
     userrole = current_user.get_users_ranges

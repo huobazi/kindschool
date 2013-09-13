@@ -136,6 +136,9 @@ MENUS ={"home"=>{
       },
       "44000" => {
         "my_school/statistics" => ["virtual_squad"]
+      },
+      "45000" => {
+        "my_school/statistics" => ["sms_statistics","sms_all_statistics"]
       }
     },
     "120000" => {
