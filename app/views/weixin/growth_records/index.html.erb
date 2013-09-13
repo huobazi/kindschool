@@ -8,8 +8,8 @@
   </div>
   <div class="message_list">
     <% unless current_user.get_users_ranges[:tp] == :teachers %>
-      <div style="text-align: center;padding-top: 5px;">
-        <%= link_to "添加成长记录", new_weixin_growth_record_path, :class => "btn btn-warning btn-large has-btn-new" %>
+      <div class="btn-new-wrap">
+        <%= link_to "添加成长记录", new_weixin_growth_record_path, :class => "btn btn-warning btn-large btn-block" %>
       </div>
     <% end %>
     <ul class="data_list clearfix">

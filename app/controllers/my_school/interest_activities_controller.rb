@@ -1,6 +1,7 @@
 #encoding:utf-8
 class MySchool::InterestActivitiesController < MySchool::ManageController
   # 兴趣活动
+  include ActivitiesHelper
 
   before_filter :is_student?, :only => [:edit, :create, :new, :update, :destroy]
 

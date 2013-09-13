@@ -1,5 +1,6 @@
 #encoding:utf-8
 class Weixin::TopicsController < Weixin::ManageController
+  include TopicsHelper
   def index
     unless params[:topic_category_id].blank?
       if topic_category = @kind.topic_categories.find_by_id(params[:topic_category_id])

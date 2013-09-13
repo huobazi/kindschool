@@ -1,5 +1,6 @@
 #encoding:utf-8
 class Weixin::InterestActivitiesController < Weixin::ManageController
+  include ActivitiesHelper
 
   before_filter :is_student?, :only => [:new, :create, :update, :edit, :destroy]
   def index
