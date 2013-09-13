@@ -2774,6 +2774,7 @@ i.img-icon{
     min-width: 50px;
     text-align: center;
     width: auto !important;
+    width: 50px;
     _width: 50px;
 }
 
