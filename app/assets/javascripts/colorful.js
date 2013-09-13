@@ -160,8 +160,7 @@ $(document).ready(function() {
 
   $("body").delegate('div.topic', 'click', function() {
     var check = $(this).find(".check");
-    check.prop("checked", !check.attr("checked"));
-    $(".select_all_wrap").show();
+    check.trigger('click');
   })
 
   $(".topic").delegate('.check', 'click', function(event) {
