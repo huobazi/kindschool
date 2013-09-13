@@ -11,7 +11,7 @@
     </div>
     <div class="infos">
       <div class="title">
-        <a href="<%= url_for(my_school_cook_book_path(cook_book)) %>"><span>从</span><span><%= cook_book.start_at.try(:to_short_datetime) %></span><span>&nbsp;到&nbsp;</span><span><%= cook_book.end_at.try(:to_short_datetime) %></span></a>
+        <a href="<%= url_for(my_school_cook_book_path(cook_book)) %>">从<%= cook_book.start_at.try(:to_short_datetime) %>&nbsp;到&nbsp;<%= cook_book.end_at.try(:to_short_datetime) %></a>
       </div>
       <div class="info">
         <abbr><%= CookBook::RANGE_TP_DATA[cook_book.range_tp.to_s] %>&nbsp;*&nbsp;<%= cook_book.creater.try(:name) %>&nbsp;创建于&nbsp;<%= cook_book.created_at.try(:to_long_datetime) %></abbr>
