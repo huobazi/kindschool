@@ -161,5 +161,11 @@ $(document).ready(function() {
   $("body").delegate('div.topic', 'mouseout', function() {
     $(this).removeClass('is-topic-mouseover');
   })
+
+  $("body").delegate('div.topic', 'click', function() {
+    var check = $(this).find(".check");
+    check.prop("checked", !check.attr("checked"));
+    $(".select_all_wrap").show();
+  })
 })
 
