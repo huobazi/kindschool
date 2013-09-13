@@ -2773,6 +2773,8 @@ i.img-icon{
 .label-info-squad {
     min-width: 50px;
     text-align: center;
+    width: auto !important;
+    _width: 50px 
 }
 
 .badge-wrap-reply {
