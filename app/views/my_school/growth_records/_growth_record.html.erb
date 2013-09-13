@@ -50,7 +50,7 @@
         <abbr>从<%= growth_record.start_at.try(:to_short_datetime) %>&nbsp;到&nbsp;<%= growth_record.end_at.try(:to_short_datetime) %></abbr>
       </div>
       <div class="info">
-        <abbr><%= growth_record.creater.try(:name) %>创建于<%= growth_record.created_at.try(:to_long_datetime) %></abbr>
+        <abbr><%= growth_record.student_info.try(:squad).try(:name) %>&nbsp;*&nbsp;<%= growth_record.creater.try(:name) %>创建于<%= growth_record.created_at.try(:to_long_datetime) %></abbr>
       </div>
     </div>
   </div>
