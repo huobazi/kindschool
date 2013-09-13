@@ -2799,3 +2799,7 @@ i.img-icon{
     background: #FFFF99;
     cursor: pointer;
 }
+
+.topic input.input-margin-fix {
+    margin-top: 4px;
+}
