@@ -27,7 +27,7 @@
       <% else %>
         <a class="place place-icon-position"></a>
       <% end %>
-      <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{topic.topic_entries.count}</span>"), my_school_topic_path(topic, anchor: "topic_entries") %>
+      <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{topic.topic_entries.count}</span>"), my_school_topic_path(topic, anchor: "topic_entries"), class: "badge-wrap-reply" %>
     </div>
     <div class="infos clearfix">
       <div class="title">

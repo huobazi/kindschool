@@ -2763,3 +2763,10 @@ i.img-icon{
 .label-info {
     padding: 5px;
 }
+
+.badge-wrap-reply {
+    display: inline-block;
+    min-width: 60px;
+    text-align: center;
+    margin-top: 1px;
+}
