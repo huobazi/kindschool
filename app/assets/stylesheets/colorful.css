@@ -2770,6 +2770,11 @@ i.img-icon{
     padding: 5px;
 }
 
+.label-info-squad {
+    min-width: 50px;
+    text-align: center;
+}
+
 .badge-wrap-reply {
     display: inline-block;
     min-width: 60px;
