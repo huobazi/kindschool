@@ -1,5 +1,6 @@
 #encoding:utf-8
 class  MySchool::TopicsController < MySchool::ManageController
+  include TopicsHelper
   def index
     @topic_categories = @kind.topic_categories.order("sequence DESC")
 

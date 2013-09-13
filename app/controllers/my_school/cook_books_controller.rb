@@ -2,7 +2,7 @@
 #学员菜谱
 class MySchool::CookBooksController < MySchool::ManageController
   def index
-    @cook_books = @kind.cook_books.page(params[:page] || 1).per(10).order("created_at DESC")
+    @cook_books = @kind.cook_books.search(params[:cook_book]).page(params[:page] || 1).per(10).order("created_at DESC")
     all_roles = ['admin','principal','vice_principal','assistant_principal','park_hospital']
 
     userrole = current_user.get_users_ranges
@@ -64,20 +64,6 @@ class MySchool::CookBooksController < MySchool::ManageController
 
   def show
     @cook_book = @kind.cook_books.find(params[:id])
-  end
-
-  def destroy_multiple
-    if params[:cook_book].nil?
-      flash[:notice] = "必须先选择菜谱"
-    else
-      params[:cook_book].each do |cook_book|
-        @kind.cook_books.destroy(cook_book)
-      end
-    end
-    respond_to do |format|
-      format.html { redirect_to my_school_cook_books_path }
-      format.json { head :no_content }
-    end
   end
 
 end

@@ -49,7 +49,7 @@
         <%= text_field :topic,:content_like,:style=>"width:100px;" ,:value=>"#{params[:topic][:content_like] if params[:topic] }"  %>
         <%= hidden_field_tag "topic_category_id" %>
 
-        <%= submit_tag "搜索", :class => "btn btn-primary search_btn" %>
+        <%= submit_tag "搜索", :class => "btn btn-primary" %>
       <%end%>
     </div>
     <div class="work_list">
@@ -68,5 +68,17 @@ $(document).ready(function(){
       $("#destroy_multi_form").submit();
     }
   });
+
+  $('.search_form form').submit(function() {
+   var valuesToSubmit = $(this).serialize();
+   $.ajax({
+        url: $(this).attr('action'),
+        data: valuesToSubmit,
+        beforeSend: function() {
+          $('<img class="loading_img loadding_pt" src="/t/colorful/gif_preloader.gif" alt="" />').appendTo("#topics");
+        }
+   })
+   return false;
+  })
 });
 </script>

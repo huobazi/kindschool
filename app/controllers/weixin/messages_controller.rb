@@ -65,7 +65,7 @@ class Weixin::MessagesController < Weixin::ManageController
         @message.message_entries << MessageEntry.new(:receiver_id=>user.id,:receiver_name=>user.name,:phone=>user.phone,:sms=>(user.is_receive ? 1 : 0))
       end
     end
-    if @message.send_me && !sender_ids.include?(current_user.id)
+    if @message.send_me && !sender_ids.include?(current_user.id.to_s)
       @message.message_entries << MessageEntry.new(:receiver_id=>current_user.id,:receiver_name=>current_user.name,:phone=>current_user.phone,:sms=>(current_user.is_receive ? 1 : 0))
     end
     if params[:send]
@@ -179,7 +179,7 @@ class Weixin::MessagesController < Weixin::ManageController
         @message.message_entries << MessageEntry.new(:receiver_id=>user.id,:receiver_name=>user.name,:phone=>user.phone,:sms=>(user.is_receive ? 1 : 0))
       end
     end
-    if @message.send_me && !sender_ids.include?(current_user.id)
+    if @message.send_me && !sender_ids.include?(current_user.id.to_s)
       @message.message_entries << MessageEntry.new(:receiver_id=>current_user.id,:receiver_name=>current_user.name,:phone=>current_user.phone,:sms=>(current_user.is_receive ? 1 : 0))
     end
     if params[:draft]

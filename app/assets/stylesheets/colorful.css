@@ -12,9 +12,7 @@ input {
     width:expression(this.type=="radio" ?"auto":"Default");
     width:expression(this.type=="checkbox" ?"auto":"Default");
 }
-input.search_btn{
-    width: 55px;
-}
+
 /* 除IE6浏览器的通用方法 */
 .ie6fixedTL{position:fixed;left:0;top:0}
 .ie6fixedBR{position:fixed;right:0;bottom:0}
@@ -1325,7 +1323,7 @@ table.attributes td {
 .loadding_pt {
     position: fixed;
     left: 50%;
-    top: 100px;
+    top: 200px;
     margin-left: -40px;
     text-align: center;
 }
@@ -1344,6 +1342,10 @@ ul.nav-tabs li{
     margin-bottom:0px;
     float: left;
     line-height: 20px;
+}
+ul.nav-tabs li a:hover {
+    background: #FB9801;
+    color: #fff;
 }
 .tabs_style {
     padding-top: 20px;
@@ -1367,6 +1369,8 @@ ul.nav-tabs li.active a {
     /*
      * background-color: #C4C4C4;
     */
+    background: #FB9801;
+    color: #ffffff;
 }
 .float_left {
     float: left;
@@ -2732,6 +2736,10 @@ i.img-icon{
     line-height: normal;
 }
 
+.topic input[type="radio"], .topic input[type="checkbox"] {
+    margin-top: 0;
+}
+
 .checkbox input[type="checkbox"] {
     margin-top: 4px;
 }
@@ -2739,4 +2747,57 @@ i.img-icon{
 .badge-info-margin {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.place {
+    text-indent: -9999px;
+    content: '.';
+    visibility: hidden;
+}
+.place-input-position {
+    width: 13px;
+    height: 13px;
+}
+
+.place-icon-position {
+    display: inline-block;
+    height: 14px;
+    line-height: 14px;
+    margin-top: 1px;
+    vertical-align: text-top;
+    width: 14px;
+}
+
+.label-info, .label-success {
+    padding: 5px;
+}
+
+.label-info-squad {
+    min-width: 50px;
+    text-align: center;
+}
+
+.badge-wrap-reply {
+    display: inline-block;
+    min-width: 60px;
+    text-align: center;
+    margin-top: 1px;
+}
+
+.select_all_wrap {
+    background: #CCFFCC;
+    margin-bottom: 10px;
+}
+
+.select_all_wrap .checkbox.inline {
+    margin-bottom: 5px;
+}
+
+.is-topic-mouseover {
+    background: #FFFF99;
+    cursor: pointer;
+}
+
+.topic input.input-margin-fix {
+    margin-top: 4px;
 }

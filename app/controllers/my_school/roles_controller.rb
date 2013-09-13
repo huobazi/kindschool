@@ -77,7 +77,7 @@ class MySchool::RolesController < MySchool::ManageController
          end
        end
        @role.save!
-       @success = '角色设置权限成功.' 
+       @success = '角色设置权限成功.为让权限生效,请让拥有该角色的用户重新登录'
       else
        @success = '角色不存在,没有设置权限.'
       end

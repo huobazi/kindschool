@@ -151,9 +151,11 @@ class User < ActiveRecord::Base
       operates.each do |operate|
         if operate.controller==controller_name && operate.view.include?(view_name)
           flag =true
+          break;
         end
       end
     end
+    return flag
   end
   #常用功能菜单
   def smarty_menu

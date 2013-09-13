@@ -15,12 +15,12 @@
       <div class="title">
         <%= link_to "#{physical_record.student_info_label}的体检记录", my_school_physical_record_path(physical_record) %>
       </div>
-      <div class="title">
-        <em>体检时间:</em><abbr><%= physical_record.send_date.try(:to_short_datetime) %></abbr>
+      <div class="info">
+        <abbr>体检时间:<%= physical_record.send_date.try(:to_short_datetime) %></abbr>
       </div>
       <div class="info">
-        <em><%= physical_record.creater.try(:name) %></em>
-        <em>创建于</em><abbr><%= physical_record.created_at.try(:to_long_datetime) %></abbr>
+        <abbr><%= physical_record.student_info.try(:squad).try(:name) %>&nbsp;*&nbsp;<%= physical_record.creater.try(:name) %>
+        创建于<%= physical_record.created_at.try(:to_long_datetime) %></abbr>
       </div>
     </div>
   </div>

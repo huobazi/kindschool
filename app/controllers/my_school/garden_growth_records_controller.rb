@@ -12,6 +12,7 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
     else
       @growth_records = @kind.growth_records.search(params[:growth_record] || {}).where(:tp => 0).page(params[:page] || 1).per(10).order("created_at DESC")
     end
+    store_search_location
     render "my_school/growth_records/index"
   end
 

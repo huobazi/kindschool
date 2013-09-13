@@ -65,8 +65,27 @@ class  MySchool::StatisticsController < MySchool::ManageController
 
   #短信进行统计
   def sms_statistics
-     @sms_records = SmsRecord.where(:kindergarten_id=>@kind.id,:status=>1)
-
+     # @sms_records = SmsRecord.search(params[:sms_records]).where(:kindergarten_id=>@kind.id,:status=>1).page(params[:page] || 1).per(10).order("created_at DESC")
+     #统计短信的全部的数量
+     @sms_records = SmsRecord.search(params[:sms_records]).select('sms_records.*, sum(sms_records.sms_count) as sum_count').joins("LEFT JOIN  message_entries ON(message_entries.id = sms_records.message_entry_id)").group('message_entries.message_id').where(:kindergarten_id=>@kind.id,:status=>1).page(params[:page] || 1).per(10).order("created_at DESC")
+     @records = SmsRecord.search(params[:sms_records]).select('sms_records.*, sum(sms_records.sms_count) as sum_count').where(:kindergarten_id=>@kind.id,:status=>1).order("created_at DESC")
+     @sms_records_count = @records.first.sum_count.to_i unless @records.blank?
+     month = Time.now.strftime("%Y-%m")
+     @day="#{month}-01 00:00:00"
+     @end_time = Time.now.strftime("%Y-%m-%d %H:%M:%S")
+     # joins("INNER JOIN  message_entries ON(message_entries.id = sms_records.message_entry_id)").
+     # joins("LEFT JOIN  message_entries ON(message_entries.id = sms_records.message_entry_id)")
+    # .select('sms_records.* , count(sms_records.id) as sum_count')
+     #本月的短信总条数
+     # @month_sms_records = SmsRecord.select('sms_records.*, sum(sms_records.sms_count) as sum_count').joins("LEFT JOIN  message_entries ON(message_entries.id = sms_records.message_entry_id)").group('message_entries.message_id').where(:kindergarten_id=>@kind.id,:status=>1).where(" sms_records.created_at between ? and ? ",@day,@end_time).page(params[:page] || 1).per(10).order("created_at DESC")
+     @month_records = @records.where(" sms_records.created_at between ? and ? ",@day,@end_time)
+     @month_sms_records = @sms_records.where(" sms_records.created_at between ? and ? ",@day,@end_time)
+     @month_sms_records_count = @month_records.first.sum_count.to_i unless @month_records.blank?
+  end
+  def sms_all_statistics
+    @sms_records = SmsRecord.search(params[:sms_record]).select('sms_records.*, sum(sms_records.sms_count) as sum_count').joins("LEFT JOIN  message_entries ON(message_entries.id = sms_records.message_entry_id)").group('message_entries.message_id').where(:kindergarten_id=>@kind.id,:status=>1).page(params[:page] || 1).per(10).order("created_at DESC")
+    @records = SmsRecord.search(params[:sms_record]).select('sms_records.*, sum(sms_records.sms_count) as sum_count').where(:kindergarten_id=>@kind.id,:status=>1).order("created_at DESC")
+    @sms_records_count = @records.first.sum_count.to_i
   end
 
 end

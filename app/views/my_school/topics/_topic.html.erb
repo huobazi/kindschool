@@ -1,6 +1,8 @@
 <div class="topic topic_line pull-left">
-  <% if choose_operate_show("my_school/topics/destroy") %>
+  <% if choose_operate_show("my_school/topics/destroy") and delete_topic?(topic) %>
     <div class="pull-left"><input type="checkbox" class="check" name="topic[]" id="topic_<%= topic.id %>" value="<%= topic.id %>" /></div>
+  <% else %>
+    <div class="pull-left place place-input-position"></div>
   <% end %>
   <div class="avatar pull-left"><img src="<%= topic.creater.try(:asset_logo) ? topic.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
   </div>
@@ -12,14 +14,20 @@
       <%end%>
       <% if choose_operate_show("my_school/topics/show") %>
         <a href="<%= my_school_topic_path(topic) %>" title="查看<%= topic.title %>" alt="查看<%= topic.title %>"><i class="img-icon icon-eye-open"></i></a>
+      <% else %>
+        <a class="place place-icon-position"></a>
       <% end %>
       <% if choose_operate_show("my_school/topics/edit") and edit_topic?(topic) %>
         <a href="<%= edit_my_school_topic_path(topic) %>" title="编辑<%= topic.title %>" alt="编辑<%= topic.title %>"><i class="img-icon icon-edit"></i></a>
+      <% else %>
+        <a class="place place-icon-position"></a>
       <% end %>
       <% if choose_operate_show("my_school/topics/destroy") and delete_topic?(topic) %>
         <a href="<%= my_school_topic_path(topic) %>" data-confirm="您确定删除该贴子吗" data-method="delete" title="删除<%= topic.title %>" alt="删除<%= topic.title %>"><i class="img-icon icon-remove-sign"></i></a>
+      <% else %>
+        <a class="place place-icon-position"></a>
       <% end %>
-      <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{topic.topic_entries.count}</span>"), my_school_topic_path(topic, anchor: "topic_entries") %>
+      <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{topic.topic_entries.count}</span>"), my_school_topic_path(topic, anchor: "topic_entries"), class: "badge-wrap-reply" %>
     </div>
     <div class="infos clearfix">
       <div class="title">
@@ -31,22 +39,21 @@
         <% end %>
       </div>
       <div class="info">
-        <span class="label label-info">
+        <span class="label label-info label-info-squad">
           <% if topic.squad.present? %>
             <%= topic.squad.try(:name) %>
           <% else %>
             全园可见
           <% end %>
         </span>
-          <% if @topic_category_id.present? %>
+          <% unless @topic_category_id.present? %>
             <span class="label label-success">
                 <%= topic.topic_category.try(:name) %>
             </span>
           <% end %>
       </div>
       <div class="info">
-        <em><%= topic.topic_category.try(:name) %></em><em>&nbsp;*&nbsp;</em><em><%= topic.creater.try(:name) %></em>
-        <em>发表于</em><abbr><%= topic.created_at.try(:to_long_datetime) %></abbr>
+        <abbr><%= topic.creater.try(:name) %>&nbsp;发表于&nbsp;<%= topic.created_at.try(:to_long_datetime) %></abbr>
       </div>
     </div>
   </div>

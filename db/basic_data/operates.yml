@@ -1970,3 +1970,14 @@ statistics_virtual_squad:
   action: "virtual_squad"
   protocol: ""
   <<: *DEFAULTS
+statistics_sms_statistics:
+  id: 14400
+  parent_id: 11
+  name: "短信统计"
+  level: 2
+  sequence: 4
+  note: "短信统计"
+  controller: "my_school/statistics"
+  action: "sms_statistics"
+  protocol: ""
+  <<: *DEFAULTS

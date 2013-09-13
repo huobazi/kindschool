@@ -8,8 +8,8 @@
   </div>
   <div class="message_list">
     <% unless current_user.get_users_ranges[:tp] == :student %>
-      <div style="text-align: center;padding-top: 5px;">
-        <%= link_to "创建活动", new_weixin_activity_path, :class => "btn btn-warning btn-large has-btn-new" %>
+      <div class="btn-new-wrap">
+        <%= link_to "创建活动", new_weixin_activity_path, :class => "btn btn-warning btn-large btn-block" %>
       </div>
     <% end %>
     <ul class="data_list">
@@ -20,13 +20,14 @@
           <li class="show" data-id="<%= activity.id %>">
             <p class="title"><span><%= activity.title %><span></p>
             <p class="info">
-                <span class="label label-info">
-                  <% if activity.squad.present? %>
-                    <%= activity.squad.try(:name) %>
-                  <% else %>
-                    全园可见
-                  <% end %>
-                </span>
+              <span class="label label-info">
+                <% if activity.squad.present? %>
+                  <%= activity.squad.try(:name) %>
+                <% else %>
+                  全园可见
+                <% end %>
+              </span>
+              <span class="label label-warning"><%= activity.activity_entries.any? ? activity.activity_entries.count : "" %></span>
             </p>
             <p class="info"><span>创建人:</span><span class="author"><%= activity.creater ? activity.creater.name : "" %></span></p>
             <div class="ctivity_content_logo">
