@@ -72,8 +72,8 @@
         </span>
       </div>
       <div class="info">
-        <em><%= activity.creater.try(:name) %></em>
-        <em>创建于</em><abbr><%= activity.created_at.try(:to_long_datetime) %></abbr>
+        <abbr><%= activity.creater.try(:name) %>
+        创建于<%= activity.created_at.try(:to_long_datetime) %></abbr>
       </div>
     </div>
   </div>
