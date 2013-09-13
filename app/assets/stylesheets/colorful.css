@@ -12,9 +12,7 @@ input {
     width:expression(this.type=="radio" ?"auto":"Default");
     width:expression(this.type=="checkbox" ?"auto":"Default");
 }
-input.search_btn{
-    width: 55px;
-}
+
 /* 除IE6浏览器的通用方法 */
 .ie6fixedTL{position:fixed;left:0;top:0}
 .ie6fixedBR{position:fixed;right:0;bottom:0}
