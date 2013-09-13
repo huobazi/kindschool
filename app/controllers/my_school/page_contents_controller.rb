@@ -8,6 +8,8 @@ class  MySchool::PageContentsController < MySchool::ManageController
     @page_content = PageContent.find_by_id_and_kindergarten_id(params[:id],@kind.id)
     @content_entries = @page_content.content_entries
     @flag = false
+
+    store_search_location
   end
 
   def delete_content
