@@ -46,7 +46,7 @@
             全园可见
           <% end %>
         </span>
-          <% if @topic_category_id.present? %>
+          <% unless @topic_category_id.present? %>
             <span class="label label-success">
                 <%= topic.topic_category.try(:name) %>
             </span>

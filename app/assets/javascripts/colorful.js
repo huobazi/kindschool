@@ -145,5 +145,13 @@ $(document).ready(function() {
     $(".check").attr("checked",this.checked);
   })
 
+  $(".check").live('click', function() {
+    $(".select_all_wrap").show();
+  })
+
+  $(".hidden-wrap").live('click', function(event) {
+    event.preventDefault();
+    $(this).parent().hide();
+  })
 })
 

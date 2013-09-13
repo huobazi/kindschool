@@ -70,13 +70,15 @@
         </li>
         <li>
           <% if controller_name == "growth_records" %>
-            <% if choose_operate_show("my_school/growth_records/destroy") %>
-              <a href="javascript: void(0)" title="删除" id="destroy_multiple">
-                <div class="work_action_delete">
-                </div>
-                <div class="work_action_delete_move">
-                </div>
-              </a>
+            <% unless current_user.get_users_ranges[:tp] == :teachers %>
+              <% if choose_operate_show("my_school/growth_records/destroy") %>
+                <a href="javascript: void(0)" title="删除" id="destroy_multiple">
+                  <div class="work_action_delete">
+                  </div>
+                  <div class="work_action_delete_move">
+                  </div>
+                </a>
+              <% end %>
             <% end %>
           <% else %>
             <% if choose_operate_show("my_school/garden_growth_records/destroy") %>
@@ -108,11 +110,16 @@
     <div class="work_list">
       <div class="topics">
         <% unless @growth_records.blank? %>
+          <% unless current_user.get_users_ranges[:tp] == :teachers and controller_name == "growth_records" %>
             <% if choose_operate_show("my_school/garden_growth_records/destroy") or choose_operate_show("my_school/growth_records/destroy") %>
-              <label class="input_select_all checkbox inline ">
-                <input type="checkbox" id="check_all" /> 全选
-              </label>
+              <div class="select_all_wrap clearfix">
+                <label class="input_select_all checkbox inline ">
+                  <input type="checkbox" id="check_all" /> 全选
+                </label>
+                <a class="hidden-wrap" href="javascript: void(0)" rel="nofollow"><i class="icon-remove-circle pull-right"></i></a>
+              </div>
             <% end %>
+          <% end %>
           <% if controller_name == "growth_records" %>
             <%= form_tag my_school_growth_record_path(@growth_records), method: :delete, :id => "destroy_multi_form" do %>
               <%= render partial: "/my_school/growth_records/growth_record", collection: @growth_records %>

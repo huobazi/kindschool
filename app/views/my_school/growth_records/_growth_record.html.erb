@@ -1,6 +1,10 @@
 <div class="topic topic_line pull-left">
-  <% if choose_operate_show("my_school/growth_records/destroy") or choose_operate_show("my_school/garden_growth_records/destroy") %>
-    <div class="pull-left"><input type="checkbox" class="check" name="growth_record[]" id="growth_record_<%= growth_record.id %>" value="<%= growth_record.id %>" /></div>
+  <% unless current_user.get_users_ranges[:tp] == :teachers and controller_name == "growth_records" %>
+    <% if choose_operate_show("my_school/growth_records/destroy") or choose_operate_show("my_school/garden_growth_records/destroy") %>
+      <div class="pull-left"><input type="checkbox" class="check" name="growth_record[]" id="growth_record_<%= growth_record.id %>" value="<%= growth_record.id %>" /></div>
+    <% else %>
+      <div class="pull-left place place-input-position"></div>
+    <% end %>
   <% end %>
   <div class="avatar pull-left"><img src="<%= growth_record.student_info.try(:user).try(:asset_logo) ? growth_record.student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
   </div>
