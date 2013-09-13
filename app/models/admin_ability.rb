@@ -15,9 +15,17 @@ class AdminAbility
           can :manage, :all
         when "operation"
           then
-          can [:create,:read, :update, :destroy], WeiyiConfig
+          can [:create,:read, :update, :destroy], [WeiyiConfig,Category,CommentDatabank,WeixinDatabank,WeixinShare]
           can [:read, :update], ShrinkRecord
-          can [:read,:reset_password], User
+          can [:create,:read, :update], [Kindergarten,User,StudentInfo,Staff,OptionOperate]
+          can [:read], [Teacher,CareerStrategy,Message,MessageEntry,Role,Smarty,AdminUser,TopicCategory,
+            Topic,TopicEntry,GrowthRecord,SeedlingRecord,Operate,Menu,Template,Grade,Squad,
+            PhysicalRecord,Album,AlbumEntry,ContentPattern,StudentResource,Activity,ActivityEntry,PageContent,ContentEntry]
+          can [:read,:destroy], [AssetImg,CookBook,Notice]
+          can :reset_password, User
+          can :share_users, WeixinDatabank
+          can [:add_functional_to_kind,:update_functional], OptionOperate
+          can :loading, Kindergarten
           #        cannot :reset_password, User
         when "bazaar"
           then
