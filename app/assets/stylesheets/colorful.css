@@ -2801,3 +2801,7 @@ i.img-icon{
 .topic input.input-margin-fix {
     margin-top: 4px;
 }
+
+.table-hover tbody tr:hover > td {
+    background: #FFFF99;
+}

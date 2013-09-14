@@ -172,20 +172,33 @@ $(document).ready(function() {
     event.stopPropagation();
   })
 
+  $("body").delegate(".table-hover tr", 'click', function() {
+    var check = $(this).find(".check");
+    check.trigger('click');
+  })
+
+  $("body").delegate('.table-hover tr a', 'click', function(event) {
+    event.stopPropagation();
+  })
+
 
   $('.search_form form').submit(function() {
     var valuesToSubmit = $(this).serialize();
+    if ( $(".topics").length > 0 ) {
+      var record_wrap = ".topics"
+    } else {
+      var record_wrap = ".work_list"
+    }
     $.ajax({
       url: $(this).attr('action'),
       data: valuesToSubmit,
       beforeSend: function() {
-        $('<img class="loading_img loadding_pt" src="/t/colorful/gif_preloader.gif" alt="" />').appendTo(".topics");
+        $('<img class="loading_img loadding_pt" src="/t/colorful/gif_preloader.gif" alt="" />').appendTo(record_wrap);
       },
       success: function() {
-        $(".topics").find("img.loadding_pt").hide();
+        $(record_wrap).find("img.loadding_pt").hide();
       }
     })
     return false;
   })
 })
-

@@ -1,4 +1,9 @@
 (function() {
-  $(".topics").html('<%= escape_javascript(render "my_school/#{@search_record}/tab_#{@search_record}") %>');
-  $("<p class='text-info'>找到了<strong><%= @search_record_count %></strong>条记录</p>").prependTo(".topics");
+  if ( $(".topics").length > 0 ) {
+    var record_wrap = ".topics"
+  } else {
+    var record_wrap = ".work_list"
+  }
+  $(record_wrap).html('<%= escape_javascript(render "my_school/#{@search_record}/tab_#{@search_record}") %>');
+  $("<p class='text-info'>找到了<strong><%= @search_record_count %></strong>条记录</p>").prependTo(record_wrap);
 })();
