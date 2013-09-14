@@ -4,6 +4,13 @@ class  MySchool::TopicCategoriesController < MySchool::ManageController
 
   def index
     @topic_categories = @kind.topic_categories.search(params[:topic_category] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+  if request.xhr?
+    @search_record = "topic_categories"
+    @search_record_count = @topic_categories.count
+    render "my_school/commons/_search_index.js.erb"
+  else
+    render "index"
+  end
   end
 
   def show

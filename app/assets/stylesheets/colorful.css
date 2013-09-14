@@ -2805,3 +2805,7 @@ i.img-icon{
 .table-hover tbody tr:hover > td {
     background: #FFFF99;
 }
+.list tbody tr:hover > td {
+    background: #FFFF99;
+    cursor: pointer;
+}

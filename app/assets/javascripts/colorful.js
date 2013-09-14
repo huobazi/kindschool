@@ -181,6 +181,14 @@ $(document).ready(function() {
     event.stopPropagation();
   })
 
+  $("body").delegate(".list tr", 'click', function() {
+    var check = $(this).find(".check");
+    check.trigger('click');
+  })
+
+  $("body").delegate('.list tr a', 'click', function(event) {
+    event.stopPropagation();
+  })
 
   $('.search_form form').submit(function() {
     var valuesToSubmit = $(this).serialize();
@@ -202,10 +210,6 @@ $(document).ready(function() {
     return false;
   })
 
-  $("#destroy_multiple").click(function(){
-    if (confirm('您确定删除选中的贴子吗')) {
-      $("#destroy_multi_form").submit();
-    }
-  });
+  
 
 })

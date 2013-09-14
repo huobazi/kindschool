@@ -60,3 +60,11 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+   $("#destroy_multiple").click(function(){
+    if (confirm('您确定删除选中的贴子吗')) {
+      $("#destroy_multi_form").submit();
+    }
+  });
+</script>
