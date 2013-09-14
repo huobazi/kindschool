@@ -12,6 +12,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     store_search_location
     if request.xhr?
       @search_record = "growth_records"
+      @search_record_count = @growth_records.count
       render "my_school/commons/_search_index.js.erb"
     else
       render "index"

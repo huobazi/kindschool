@@ -13,6 +13,7 @@ class MySchool::CookBooksController < MySchool::ManageController
 
     if request.xhr?
       @search_record = "cook_books"
+      @search_record_count = @cook_books.count
       render "my_school/commons/_search_index.js.erb"
     else
       render "index"

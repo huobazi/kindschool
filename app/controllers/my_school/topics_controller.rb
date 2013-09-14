@@ -32,6 +32,9 @@ class  MySchool::TopicsController < MySchool::ManageController
     store_search_location
 
     if request.xhr?
+      if params[:topic].present?
+        @search_record_count = @topics.count
+      end
       render "index.js.erb"
     else
       render "index"
