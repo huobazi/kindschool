@@ -48,24 +48,13 @@
       <b>体检记录：</b><%= text_field :physical_record,:content_like,:style=>"width:100px;" ,:class=>"control-label",:value=>"#{params[:physical_record][:content_like] if params[:physical_record] }" %>
       <b>体检时间：</b>
       <%= text_field :physical_record,:send_date_equals,:style=>"width:100px;" ,:value=>"#{params[:physical_record][:send_date_equals] if params[:physical_record] }"  %>
-      <%= submit_tag "搜索"  , :class => "btn search_btn"%>
+      <%= submit_tag "搜索"  , :class => "btn btn-primary"%>
       <%end%>
     </div>
     <div class="work_list">
-      <% unless @physical_records.blank? %>
-        <div class="topics">
-          <div class="select_all_wrap clearfix" style="display: none;">
-            <label class="input_select_all checkbox inline ">
-              <input type="checkbox" id="check_all" /> 全选
-            </label>
-            <a class="hidden-wrap" href="javascript: void(0)" rel="nofollow"><i class="img-icon icon-remove-circle pull-right"></i></a>
-          </div>
-          <%= render partial: "physical_record", collection: @physical_records %>
-        </div>
-        <%= paginate @physical_records %>
-      <% else %>
-        暂无体检记录
-      <% end %>
+      <div class="topics">
+        <%= render "tab_physical_records" %>
+      </div>
     </div>
   </div>
 

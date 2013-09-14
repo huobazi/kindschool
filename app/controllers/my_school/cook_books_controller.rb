@@ -10,6 +10,13 @@ class MySchool::CookBooksController < MySchool::ManageController
     if userrole[:tp] == :all
       @flag= true
     end
+
+    if request.xhr?
+      @search_record = "cook_books"
+      render "my_school/commons/_search_index.js.erb"
+    else
+      render "index"
+    end
   end
 
   def new
