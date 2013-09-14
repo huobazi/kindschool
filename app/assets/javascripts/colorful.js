@@ -171,5 +171,18 @@ $(document).ready(function() {
   $("body").delegate('.topic a', 'click', function(event) {
     event.stopPropagation();
   })
+
+
+  $('.search_form form').submit(function() {
+    var valuesToSubmit = $(this).serialize();
+    $.ajax({
+         url: $(this).attr('action'),
+         data: valuesToSubmit,
+         beforeSend: function() {
+           $('<img class="loading_img loadding_pt" src="/t/colorful/gif_preloader.gif" alt="" />').appendTo(".topics");
+         }
+    })
+    return false;
+  })
 })
 

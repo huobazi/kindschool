@@ -10,7 +10,12 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
       @growth_records = @kind.growth_records.search(params[:growth_record] || {}).where(:tp => 1).page(params[:page] || 1).per(10).order("created_at DESC")
     end
     store_search_location
-    render :index
+    if request.xhr?
+      @search_record = "growth_records"
+      render "my_school/commons/_search_index.js.erb"
+    else
+      render "index"
+    end
   end
   def delete_img
     if current_user.get_users_ranges[:tp] == :student

@@ -1,0 +1,26 @@
+<% unless @growth_records.blank? %>
+  <% unless current_user.get_users_ranges[:tp] == :teachers and controller_name == "growth_records" %>
+    <% if choose_operate_show("my_school/garden_growth_records/destroy") or choose_operate_show("my_school/growth_records/destroy") %>
+      <div class="select_all_wrap clearfix" style="display: none;">
+        <label class="input_select_all checkbox inline">
+          <input type="checkbox" id="check_all" /> 全选
+        </label>
+        <a class="hidden-wrap" href="javascript: void(0)" rel="nofollow"><i class="img-icon icon-remove-circle pull-right"></i></a>
+      </div>
+    <% end %>
+  <% end %>
+  <% if controller_name == "growth_records" %>
+    <%= form_tag my_school_growth_record_path(@growth_records), method: :delete, :id => "destroy_multi_form" do %>
+      <%= render partial: "/my_school/growth_records/growth_record", collection: @growth_records %>
+    <% end %>
+  <% else %>
+    <%= form_tag my_school_garden_growth_record_path(@growth_records), method: :delete, :id => "destroy_multi_form" do %>
+      <%= render partial: "/my_school/growth_records/growth_record", collection: @growth_records %>
+    <% end %>
+  <% end %>
+  <div class="paginate_div">
+    <%= paginate @growth_records %>
+  </div>
+<%else%>
+  没有成长记录
+<% end %>
