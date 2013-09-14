@@ -176,11 +176,14 @@ $(document).ready(function() {
   $('.search_form form').submit(function() {
     var valuesToSubmit = $(this).serialize();
     $.ajax({
-         url: $(this).attr('action'),
-         data: valuesToSubmit,
-         beforeSend: function() {
-           $('<img class="loading_img loadding_pt" src="/t/colorful/gif_preloader.gif" alt="" />').appendTo(".topics");
-         }
+      url: $(this).attr('action'),
+      data: valuesToSubmit,
+      beforeSend: function() {
+        $('<img class="loading_img loadding_pt" src="/t/colorful/gif_preloader.gif" alt="" />').appendTo(".topics");
+      },
+      success: function() {
+        $(".topics").find("img.loadding_pt").hide();
+      }
     })
     return false;
   })
