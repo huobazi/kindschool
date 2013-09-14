@@ -201,4 +201,11 @@ $(document).ready(function() {
     })
     return false;
   })
+
+  $("#destroy_multiple").click(function(){
+    if (confirm('您确定删除选中的贴子吗')) {
+      $("#destroy_multi_form").submit();
+    }
+  });
+
 })

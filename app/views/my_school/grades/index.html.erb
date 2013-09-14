@@ -52,18 +52,3 @@
   </div>
 
 </div>
-
-<script type="text/javascript">
-$(document).ready(function(){
-  $("#check_all").click(function(){
-    $(".check").attr("checked",this.checked);
-  })
-  $("#destroy_multiple").click(function(){
-    if (confirm('您确定删除选中的年级吗')) {
-      $("#destroy_multi_form").submit();
-    } else {
-      return false;
-    }
-  });
-});
-</script>
