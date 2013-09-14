@@ -13,7 +13,12 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
       @growth_records = @kind.growth_records.search(params[:growth_record] || {}).where(:tp => 0).page(params[:page] || 1).per(10).order("created_at DESC")
     end
     store_search_location
-    render "my_school/growth_records/index"
+    if request.xhr?
+      @search_record = "growth_records"
+      render "my_school/commons/_search_index.js.erb"
+    else
+      render "my_school/growth_records/index"
+    end
   end
 
   def delete_img
