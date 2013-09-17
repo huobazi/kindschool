@@ -13,7 +13,16 @@ DEFULT_ACTION = ['index','show','edit','new','update','create','destroy']
 #富文本框的item选择
 ITEMKE=['justifyleft', 'justifycenter', 'justifyright','justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', '|','formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
         'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat'] 
-
+ITEMS=[
+        'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+        'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+        'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+        'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+        'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+        'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+        'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+        'anchor', 'link', 'unlink', '|', 'about'
+]
 
 MENUS ={"home"=>{
   "home"=>{
@@ -143,11 +152,11 @@ MENUS ={"home"=>{
     },
     "120000" => {
       "121000" => {
-        "my_school/activities" => ["index", "new", "edit", "show"],
+        "my_school/activities" => ["index", "new", "edit", "show", "create"],
         "my_school/activity_entries" => ["edit"]
       },
       "122000"=>{
-        "my_school/interest_activities" => ["index", "new", "edit", "show"]
+        "my_school/interest_activities" => ["index", "new", "edit", "show", "create"]
       }
     },
     "130000"=>{

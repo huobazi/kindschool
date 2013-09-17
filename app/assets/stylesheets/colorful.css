@@ -2786,7 +2786,7 @@ i.img-icon{
     width: 14px;
 }
 
-.label-info, .label-success {
+.label-info, .label-success, .label-important {
     padding: 5px;
 }
 

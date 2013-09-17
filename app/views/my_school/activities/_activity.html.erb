@@ -70,6 +70,13 @@
             全园可见
           <% end %>
         </span>
+        <% if controller_name == "interest_activities" %>
+          <% if interest_activity_expired?(activity.end_at) %>
+            <span class="label label-important label-info-squad">
+              已结束
+            </span>
+          <% end %>
+        <% end %>
       </div>
       <div class="info">
         <abbr><%= activity.creater.try(:name) %>

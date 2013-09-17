@@ -38,4 +38,11 @@
   </div>
 
 </div>
+<script type='text/javascript'>
+$(document).ready(function() {
+var option = <%= uploadify_rails_options %>;
+option["uploader"] = "<%= url_for(:controller=>"/my_school/news",:action=>"add_new_imgs",:id=>@new.id,:t=>Time.now.to_i) %>";
+$('input#uploadify').uploadify(option);
+});
+</script>
 
