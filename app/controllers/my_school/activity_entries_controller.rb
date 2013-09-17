@@ -25,10 +25,6 @@ class MySchool::ActivityEntriesController < MySchool::ManageController
         flash[:error] = "该兴趣讨论已经结束,不能回复"
         redirect_to my_school_interest_activity_path(@activity_entry.activity_id)
         return
-      elsif Time.now.utc < @activity.start_at
-        flash[:error] = "该兴趣讨论还没开始,不能回复"
-        redirect_to my_school_interest_activity_path(@activity_entry.activity_id)
-        return
       end
 
     end

@@ -57,7 +57,7 @@ class Activity < ActiveRecord::Base
   validate :end_at_cannot_be_in_the_past, if: Proc.new { |c| c.tp }
 
   def end_at_cannot_be_in_the_past
-    if end_at.present? && end_at < Date.today
+    if end_at.present? && end_at.tomorrow < Time.now
       errors.add(:end_at, "结束时间不能小于当前时间")
     end
   end
