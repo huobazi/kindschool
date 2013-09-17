@@ -2849,3 +2849,7 @@ i.img-icon{
 .ke-dialog input{
     width: auto;
 }
+.ke-dialog .ke-upload-area{
+    display: inline-block;
+    height: 35px;
+}
