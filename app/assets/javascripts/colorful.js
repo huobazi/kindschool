@@ -170,6 +170,15 @@ $(document).ready(function() {
 
   $("body").delegate('.topic a', 'click', function(event) {
     event.stopPropagation();
+    var link = $(this);
+    if( link.data('confirm') ) {
+      if($.rails.allowAction(link)) {
+        $.rails.handleMethod($(this));
+        return false;
+      } else {
+        return false;
+      }
+    }
   })
 
   $("body").delegate(".table-hover tr", 'click', function() {
@@ -209,7 +218,5 @@ $(document).ready(function() {
     })
     return false;
   })
-
-  
 
 })
