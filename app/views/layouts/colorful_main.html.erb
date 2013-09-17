@@ -4,14 +4,20 @@
     <title><%= @kind ? @kind.name : "School" %></title>
 
     <%= stylesheet_link_tag    "app_bootstrap", :media => "all" %>
-    <%= stylesheet_link_tag    "colorful", :media => "all" %>
+    <%= stylesheet_link_tag    "colorful","fancybox/jquery.fancybox",
+      "fancybox/jquery.fancybox-buttons",
+      "fancybox/jquery.fancybox-thumbs", :media => "all" %>
     <%= stylesheet_link_tag    "colorful_main" , :media => "all"%>
 
     <meta name="description" content="<%=@description%>" />
     <meta name="keywords" content="<%=@keywords%>" />
     <meta charset="utf-8"/>
     <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "application","colorful","colorful_main","jquery.lettering" %>
+    <%= javascript_include_tag "application","colorful","colorful_main","jquery.lettering","fancybox/jquery.mousewhee",
+      "fancybox/jquery.fancybox",
+      "fancybox/jquery.fancybox-buttons",
+      "fancybox/jquery.fancybox-thumbs",
+      "fancybox/jquery.fancybox-media","jquery.jcarouselLite" %>
     <%= csrf_meta_tags %>
     <script language='javascript' type="text/javascript">
       function ResumeError() {

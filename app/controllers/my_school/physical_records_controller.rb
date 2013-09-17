@@ -34,8 +34,17 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
       search = current_user.student_info.physical_records.search(params[:physical_record] || {})
       @physical_records =  search.page(params[:page] || 1).per(10).order("created_at DESC")
     end
+
+    if request.xhr?
+      @search_record = "physical_records"
+      @search_record_count = @physical_records.count
+      render "my_school/commons/_search_index.js.erb"
+    else
+      render "index"
+    end
+
   end
-   
+
   def new
     if content_pattern = @kind.content_patterns.where(:number=>'physical_record').first
       @physical_record = @kind.physical_records.new(:content=>content_pattern.content)

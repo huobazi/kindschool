@@ -1,3 +1,8 @@
+<script type="text/javascript">
+  $(function() {
+    $(".fancybox").fancybox();
+  })
+</script>
 <div class="show_work">
   <%= render :partial => "/modules/colorful/work_menu" %>
   <div class="work">
@@ -45,7 +50,9 @@
             <label class="control-label">效果图</label>
             <div class="controls">
               <label class="show_label">
-                <img src="<%= @page_content.logo_url %>" alt="效果图" width="300px;" />
+                <a href="<%= @page_content.logo_url %>" class="fancybox"  title="效果图">
+                <img src="<%= @page_content.logo_url %>" alt="效果图" width="300px" class="page_content_img" />
+                </a>
               </label>
             </div>
           </div>

@@ -13,6 +13,14 @@ class MySchool::ActivitiesController < MySchool::ManageController
     else
       @activities = @kind.activities.search(params[:activity] || {}).where(:tp => 0).page(params[:page] || 1).per(10).order("created_at DESC")
     end
+
+    if request.xhr?
+      @search_record = "activities"
+      @search_record_count = @activities.count
+      render "my_school/commons/_search_index.js.erb"
+    else
+      render "my_school/activities/index"
+    end
   end
 
   def show

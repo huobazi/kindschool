@@ -51,25 +51,14 @@
       <%= text_field :cook_book,:start_at_greater_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:cook_book][:start_at_greater_than_or_equal_to] if params[:cook_book] }"  %>
       <b>结束时间：</b>
       <%= text_field :cook_book,:end_at_less_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:cook_book][:end_at_less_than_or_equal_to] if params[:cook_book] }"  %>
-      <%= submit_tag "搜索" , :class => "btn search_btn"%>
+      <%= submit_tag "搜索" , :class => "btn btn-primary"%>
       <%end%>
     </div>
 
     <div class="work_list">
-      <% unless @cook_books.blank? %>
-        <div class="topics" id="cook_books">
-          <div class="select_all_wrap clearfix" style="display: none;">
-            <label class="input_select_all checkbox inline ">
-              <input type="checkbox" id="check_all" /> 全选
-            </label>
-            <a class="hidden-wrap" href="javascript: void(0)" rel="nofollow"><i class="img-icon icon-remove-circle pull-right"></i></a>
-          </div>
-          <%= render partial: "cook_book", collection: @cook_books %>
-        </div>
-      <%= paginate @cook_books  %>
-      <% else %>
-        暂无菜谱
-      <% end %>
+      <div class="topics" id="cook_books">
+        <%= render "tab_cook_books" %>
+      </div>
     </div>
   </div>
 

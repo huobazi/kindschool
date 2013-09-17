@@ -1417,7 +1417,7 @@ a.album_a .album_img img{
 #album_wall li{
     display: inherit;
     float: left;
-    height: 300px;
+    height: 310px;
     margin-bottom: 5px;
     margin-left: 25px;
     position: relative;
@@ -2344,6 +2344,24 @@ fieldset.staff_squad ol li {
 }
 .page_content_img{
     width: 300px;
+    position: relative;
+}
+.page_website_img{
+    width: 400px;
+    position: relative;
+}
+.page_website_about_img{
+    width: 500px;
+    height: 300px;
+    position: relative;
+}
+.page_website_about_img{
+    width: 500px;
+    height: 300px;
+}
+.page_website_lito{
+    width:250px;
+    height: 150px;
 }
 
 /* =====统计=========*/
@@ -2768,7 +2786,7 @@ i.img-icon{
     width: 14px;
 }
 
-.label-info, .label-success {
+.label-info, .label-success, .label-important {
     padding: 5px;
 }
 
@@ -2800,4 +2818,38 @@ i.img-icon{
 
 .topic input.input-margin-fix {
     margin-top: 4px;
+}
+
+.table-hover tbody tr:hover > td {
+    background: #FFFF99;
+}
+.list tbody tr:hover > td {
+    background: #FFFF99;
+    cursor: pointer;
+}
+
+
+
+.ke-upload-area {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    display: inline;
+
+}
+.ke-dialog-row {
+    margin-bottom: 10px;
+    position: relative;
+}
+.ke-dialog .ke-input-number {
+    width: 50px;
+    display: inline-block;
+}
+.ke-dialog input{
+    width: auto;
+}
+.ke-dialog .ke-upload-area{
+    display: inline-block;
+    height: 35px;
 }

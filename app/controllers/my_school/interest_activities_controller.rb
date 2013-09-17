@@ -14,7 +14,13 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
       @activities = @kind.activities.search(params[:activity] || {}).where(:tp => 1).page(params[:page] || 1).per(10).order("created_at DESC")
     end
 
-    render "my_school/activities/index"
+    if request.xhr?
+      @search_record = "activities"
+      @search_record_count = @activities.count
+      render "my_school/commons/_search_index.js.erb"
+    else
+      render "my_school/activities/index"
+    end
   end
 
   def show
@@ -104,7 +110,7 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
     @activity.creater_id = current_user.id
     @activity.tp = 1
 
-    if @activity.save!
+    if @activity.save
       flash[:success] = "创建兴趣讨论成功"
       redirect_to my_school_interest_activity_path(@activity)
     else

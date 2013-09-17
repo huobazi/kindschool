@@ -1,5 +1,8 @@
 (function() {
   $("#topics").html('<%= escape_javascript(render "tab_topics") %>');
+  <% if @search_record_count.present? %>
+    $("<p class='text-info'>找到了<strong><%= @search_record_count %></strong>条记录</p>").prependTo("#topics");
+  <% end %>
   <% if @topic_category_id.present? %>
     $("#topic_category_id").val(<%= @topic_category_id %>);
   <% else %>

@@ -37,13 +37,13 @@
       <% end %>
       <% if controller_name == "activities" %>
         <% if choose_operate_show("my_school/activities/destroy") and delete_activity?(activity) %>
-          <a href="<%= my_school_activity_path(activity) %>" data-method="delete" data-confirm="您确定要删除该活动吗" title="删除<%= activity.title %>" alt="删除<%= activity.title %>"><i class="img-icon icon-remove-sign"></i></a>
+          <a href="<%= my_school_activity_path(activity) %>" data-method="delete" data-confirm="您确定要删除该活动吗" title="删除<%= activity.title %>" alt="删除<%= activity.title %>" rel="nofollow"><i class="img-icon icon-remove-sign"></i></a>
         <% else %>
           <a class="place place-icon-position"></a>
         <% end %>
       <% else %>
         <% if choose_operate_show("my_school/interest_activities/destroy") and delete_activity?(activity) %>
-          <a href="<%= my_school_interest_activity_path(activity) %>" data-method="delete" data-confirm="您确定要删除该活动吗" title="删除<%= activity.title %>" alt="删除<%= activity.title %>"><i class="img-icon icon-remove-sign"></i></a>
+          <a href="<%= my_school_interest_activity_path(activity) %>" data-method="delete" data-confirm="您确定要删除该活动吗" title="删除<%= activity.title %>" alt="删除<%= activity.title %>" rel="nofollow"><i class="img-icon icon-remove-sign"></i></a>
         <% else %>
           <a class="place place-icon-position"></a>
         <% end %>
@@ -70,6 +70,13 @@
             全园可见
           <% end %>
         </span>
+        <% if controller_name == "interest_activities" %>
+          <% if interest_activity_expired?(activity.end_at) %>
+            <span class="label label-important label-info-squad">
+              已结束
+            </span>
+          <% end %>
+        <% end %>
       </div>
       <div class="info">
         <abbr><%= activity.creater.try(:name) %>

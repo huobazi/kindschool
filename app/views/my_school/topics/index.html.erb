@@ -62,23 +62,9 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready(function(){
-  $("#destroy_multiple").click(function(){
+   $("#destroy_multiple").click(function(){
     if (confirm('您确定删除选中的贴子吗')) {
       $("#destroy_multi_form").submit();
     }
   });
-
-  $('.search_form form').submit(function() {
-   var valuesToSubmit = $(this).serialize();
-   $.ajax({
-        url: $(this).attr('action'),
-        data: valuesToSubmit,
-        beforeSend: function() {
-          $('<img class="loading_img loadding_pt" src="/t/colorful/gif_preloader.gif" alt="" />').appendTo("#topics");
-        }
-   })
-   return false;
-  })
-});
 </script>

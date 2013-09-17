@@ -57,42 +57,12 @@
       <%= text_field :notice,:title_like,:style=>"width:100px;" ,:value=>"#{params[:notice][:title_like] if params[:notice] }"  %>
       <b>发布时间：</b>
       <%= text_field :notice,:send_date_equals,:style=>"width:100px;" ,:value=>"#{params[:notice][:send_date_equals] if params[:notice] }"  %>
-      <%= submit_tag "搜索"  , :class => "btn search_btn"%>
+      <%= submit_tag "搜索"  , :class => "btn btn-primary"%>
       <%end%>
     </div>
 
     <div class="work_list">
-      <% unless @notices.blank? %>
-        <table class="list">
-          <%= form_tag destroy_multiple_my_school_notices_path, method: :delete, :id => "destroy_multi_form" do %>
-            <tr>
-              <th><input type="checkbox" name="" value="" alt="全选" id="check_all">&nbsp;<label style="display: inline;font-size: 13px;" for="check_all"></label></th>
-              <th>发布人</th>
-              <th>标题</th>
-              <th>发布时间</th>
-              <th>通知范围</th>
-              <th></th>
-            </tr>
-            <% @notices.each do |notice| %>
-            <tr>
-              <td><input id="notice_<%= notice.id %>" class="check" name="notice[]" type="checkbox" value="<%= notice.id %>" /></td>
-              <td><%= notice.creater ? notice.creater.name : ""%></td>
-              <td><%= link_to notice.title,:action=>:show,:id=>notice.id %></td>
-              <td><%= notice.send_date ? notice.send_date.to_short_datetime : "" %></td>
-              <td class="option"><%= notice.send_range_label  %></td>
-              <td><%if notice.approve_status==2%>
-                审核不通过
-                <%elsif notice.approve_status==1%>
-                待审核
-                <%end%></td>
-            </tr>
-            <% end %>
-          <% end %>
-        </table>
-        <%= paginate @notices %>
-      <% else %>
-        没有通知
-      <% end %>
+      <%= render "tab_notices.html.erb" %>
     </div>
   </div>
 

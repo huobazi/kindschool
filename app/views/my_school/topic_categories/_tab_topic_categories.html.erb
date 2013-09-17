@@ -1,0 +1,43 @@
+<% unless @topic_categories.blank? %>
+  <table class="table table-striped table-hover">
+    <tr>
+      <th style="width: 30%;">名称</th>
+      <th style="width: 10%;">排序</th>
+      <th style="width: 10%;">贴子数量</th>
+      <th>操作</th>
+    </tr>
+    <% @topic_categories.each do |topic_category| %>
+      <tr>
+        <td>
+          <% if choose_operate_show("my_school/topic_categories/show") %>
+            <%= link_to topic_category.name, my_school_topic_category_path(topic_category) %>
+          <% else %>
+            <%= topic_category.name %>
+          <% end %>
+        </td>
+        <td><%= topic_category.try(:sequence) %></td>
+        <td><%= topic_category.topics.try(:count) %></td>
+        <td>
+          <div class="index_a">
+            <% if choose_operate_show("my_school/topic_categories/show") %>
+              <%= link_to "查看", my_school_topic_category_path(topic_category) %>
+            <% end %>
+            <% if choose_operate_show("my_school/topic_categories/edit") %>
+              <%= link_to "编辑", edit_my_school_topic_category_path(topic_category) %>
+            <% end %>
+            <% if choose_operate_show("my_school/topic_categories/destroy") %>
+              <% if topic_category.topics.blank? %>
+                <%= link_to "删除", my_school_topic_category_path(topic_category), :method => "delete", :confirm => "您确定要删除该论坛分类吗?" %>
+              <% else %>
+                <%= link_to "删除", my_school_topic_category_path(topic_category), :method => "delete", confirm: "该论坛分类有贴子,点击ok,将连同它包含的贴子也全部删除或者将贴子移动到其他分类再删除!" %>
+              <% end %>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<%= paginate @topic_categories %>
+<% else %>
+没有论坛分类
+<% end %>

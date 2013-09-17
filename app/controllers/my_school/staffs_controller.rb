@@ -3,6 +3,13 @@ class  MySchool::StaffsController < MySchool::ManageController
   def index
     @staffs = @kind.staffs.search(params[:staff] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
     store_search_location
+    if request.xhr?
+      @search_record = "staffs"
+      @search_record_count = @staffs.count
+      render "my_school/commons/_search_index.js.erb"
+    else
+      render "index"
+    end
   end
 
   def show

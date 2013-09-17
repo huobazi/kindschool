@@ -54,5 +54,13 @@ module ActivitiesHelper
     end
   end
 
+  def interest_activity_expired?(end_at)
+    if Time.now > end_at.tomorrow
+      true
+    else
+      false
+    end
+  end
+
 end
 

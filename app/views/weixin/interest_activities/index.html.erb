@@ -27,6 +27,11 @@
                   全园可见
                 <% end %>
               </span>
+              <% if interest_activity_expired?(activity.end_at) %>
+                <span class="label label-important label-info-squad">
+                  已结束
+                </span>
+              <% end %>
               <span class="label label-warning"><%= activity.activity_entries.any? ? activity.activity_entries.count : "" %></span>
             </p>
             <p class="info"><span>创建人:</span><span class="author"><%= activity.creater ? activity.creater.name : "" %></span></p>

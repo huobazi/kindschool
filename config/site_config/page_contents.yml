@@ -1,32 +1,32 @@
 root_showcase:
   name: "首页滑动窗"
-  logo_url: "/t/colorful/showcase.png"
+  logo_url: "/t/colorful/showcase.jpg"
   note: "首页滑动窗,可以添加多张图片展示幼儿园的环境。推荐尺寸是宽717像素，高是531像素。<span style='color:red;'>数量达到3张才能够展示效果。</span>"
 about_me:
   name: "关于我们"
-  logo_url: "/t/colorful/about_me.png"
+  logo_url: "/t/colorful/about_me.jpg"
   note: "填写关于幼儿园的介绍信息。"
 contact_us:
   name: "联系我们"
-  logo_url: "/t/colorful/contact_us.png"
+  logo_url: "/t/colorful/contact_us.jpg"
   note: "填写联系幼儿园的信息。"
 official_website_home:
   name: "校园官网_首页"
-  logo_url: "/t/colorful/official_website_home.png"
+  logo_url: "/t/colorful/official_website_home.jpg"
   note: "填写幼儿园的校园官网首页的信息。"
   tp: 1
 official_website_about_us:
   name: "校园官网_关于幼儿园"
-  logo_url: "/t/colorful/official_website_about_us.png"
+  logo_url: "/t/colorful/official_website_about_us.jpg"
   note: "填写幼儿园的校园官网关于幼儿园的信息。"
   tp: 1
 official_website_feature:
   name: "官网_园所特点"
-  logo_url: "/t/colorful/official_website_feature.png"
+  logo_url: "/t/colorful/official_website_feature.jpg"
   note: "填写幼儿园的官网园所特点的信息。"
   tp: 1
 official_website_admissions_information:
   name: "官网_招生信息"
-  logo_url: "/t/colorful/official_website_admissions_information.png"
+  logo_url: "/t/colorful/official_website_admissions_information.jpg"
   note: "填写幼儿园的官网招生信息的信息。"
   tp: 1

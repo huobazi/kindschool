@@ -83,3 +83,13 @@ gem 'uploadify-rails',"3.1.1.1"
 gem 'lazy_high_charts',"1.4.3"
 gem 'cancan',"1.6.10"
 #gem 'activeadmin-cancan',"0.1.4"
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+end
+
+group :development, :test do
+  gem 'guard-livereload'
+end

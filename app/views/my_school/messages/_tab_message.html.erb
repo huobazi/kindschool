@@ -1,0 +1,38 @@
+<% unless @message.blank? %>
+  <table class="list">
+    <%= form_tag my_school_message_path(@message,:tp=>"receiver"), :method=> :delete, :id => "destroy_multi_form" do %>
+      <tr>
+        <th><input type="checkbox" name="" value="" alt="全选" id="check_all">&nbsp;<label style="display: inline;font-size: 13px;" for="check_all"></label></th>
+        <th>发送人</th>
+        <th>标题</th>
+        <th>发布时间</th>
+        <th>阅读状态</th>
+        <th>回复状态</th>
+        <th>操作</th>
+        <th></th>
+      </tr>
+      <% @message.each do |message| %>
+        <tr>
+          <td><input id="message_<%= message.id %>" class="check" name="message[]" type="checkbox" value="<%= message.id %>" /></td>
+          <td><%= message.sender_name %></td>
+          <td><%= link_to "#{message.title}",:action=>:show,:id=>message.id %></td>
+          <td><%= message.send_date ? message.send_date.to_all_datetime : "" %></td>
+          <td><%= message.read_status == 1 ? "已读" : "未读" %></td>
+          <td><%=message.is_retrun?(current_user.id) ? "已回复" : "未回复" %></td>
+          <td class="option">
+            <%if action_name=="index"%>
+            <%= link_to "查看",:action=>:show,:id=>message.id %>
+            <%else%>
+            <%= link_to "查看",:action=>:draft_show,:id=>message.id %>
+            <%end%>
+            </td>
+            <td>
+              </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+  <%= paginate @message %>
+<% else %>
+  没有消息
+<% end %>
