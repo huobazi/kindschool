@@ -2346,6 +2346,23 @@ fieldset.staff_squad ol li {
     width: 300px;
     position: relative;
 }
+.page_website_img{
+    width: 400px;
+    position: relative;
+}
+.page_website_about_img{
+    width: 500px;
+    height: 300px;
+    position: relative;
+}
+.page_website_about_img{
+    width: 500px;
+    height: 300px;
+}
+.page_website_lito{
+    width:250px;
+    height: 150px;
+}
 
 /* =====统计=========*/
 .stat-list .content {
@@ -2814,20 +2831,20 @@ i.img-icon{
 
 
 .ke-upload-area {
-	position: relative;
-	overflow: hidden;
-	margin: 0;
-	padding: 0;
-        display: inline;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    display: inline;
 
 }
 .ke-dialog-row {
-	margin-bottom: 10px;
-        position: relative;
+    margin-bottom: 10px;
+    position: relative;
 }
 .ke-dialog .ke-input-number {
-	width: 50px;
-        display: inline-block;
+    width: 50px;
+    display: inline-block;
 }
 .ke-dialog input{
     width: auto;
