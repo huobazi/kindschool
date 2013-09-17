@@ -31,10 +31,11 @@
 <div class="control-group">
 	<%=f.label :content, '新闻内容: ' ,:class=>"control-label"%>
 <div class="controls">
-  <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false%>
+  <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:items=>ITEMS-['multiimage'],:allowFileManager => false,:allowUpload=>false%>
   <span class="help-block">长度不能小于3</span>
 </div>
 </div>
+<%if  action_name=="edit" || action_name=="update" %>
 <div class="control-group">
   <%#=f.label nil, '批量上传照片:' ,:class=>"control-label"%>
   <div class="controls">
@@ -45,6 +46,7 @@
     </div>
  </div>
 </div>
+<%end%>
 <div class="control-group">
 <div class="controls">
 <%= f.submit('保存',:class=>"btn btn-large btn-primary", disable_with: "正在提交") %>

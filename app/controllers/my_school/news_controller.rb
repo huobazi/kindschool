@@ -37,8 +37,8 @@ class MySchool::NewsController <  MySchool::ManageController
       else
       page_img = PageImg.new
        page_img.swf_uploaded_data= params[:Filedata]
-        @new.page_img = page_img
-        if @new.save!
+        page_img.resource = @new 
+        if page_img.save!
           render :json => { :result => 'success', :asset => @new.id }
         else
           render :json => { :result => 'error', :error => @new.errors.full_messages.to_sentence }
