@@ -28,6 +28,15 @@ class MySchool::SeedlingsController < MySchool::ManageController
      elsif userrole[:tp] == :student
      	  @seedlings =  current_user.student_info.seedling_records.search(params[:seedling] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
    	 end
+
+    if request.xhr?
+      @search_record = "seedlings"
+      @search_record_count = @seedlings.count
+      render "my_school/commons/_search_index.js.erb"
+    else
+      render "index"
+    end
+
    end
 
    def new

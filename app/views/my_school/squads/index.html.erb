@@ -45,78 +45,20 @@
       <%= text_field :squad,:name_like,:style=>"width:100px;" ,:value=>"#{params[:squad][:name_like] if params[:squad] }"  %>
       <b>年级：</b>
       <%= text_field :squad,:grade_name_like,:style=>"width:100px;" ,:value=>"#{params[:squad][:grade_name_like] if params[:squad] }"  %>
-      <%= submit_tag "搜索"  , :class => "btn search_btn"%>
+      <%= submit_tag "搜索"  , :class => "btn btn-primary"%>
       <%end%>
     </div>
     <div class="work_list">
-      <% unless @squads.blank? %>
-        <%= form_tag my_school_squad_path(@squads), method: :delete, :id => "destroy_multi_form" do %>
-          <table class="table table-striped table-hover">
-            <tr>
-              <% if choose_operate_show("my_school/squads/destroy") %>
-                <th><input type="checkbox" name="" value="" alt="全选" id="check_all">&nbsp;<label style="display: inline; font-size: 13px;" for="check_all"></label></th>
-              <% end %>
-              <th>名称</th>
-              <th>年级</th>
-              <th>届</th>
-              <th>是否毕业</th>
-              <th>学员数量</th>
-              <th>操作</th>
-            </tr>
-            <% @squads.each do |squad| %>
-              <tr>
-                <% if choose_operate_show("my_school/squads/destroy") %>
-                  <td><input id="squad_<%= squad.id %>" class="check" name="squad[]" type="checkbox" value="<%= squad.id %>" /></td>
-                <% end %>
-                <td>
-                  <% if choose_operate_show("my_school/squads/show") %>
-                    <%= link_to squad.name, my_school_squad_path(squad) %>
-                  <% else %>
-                    <%= squad.name %>
-                  <% end %>
-                </td>
-                <td><%= squad.grade_label %></td>
-                <td><%= squad.historyreview %></td>
-                <td><%= Squad::GRADUATE_DATA[squad.graduate.to_s] %></td>
-                <td><%= squad.student_infos.count %></td>
-                <td>
-                  <div class="index_a">
-                    <% if choose_operate_show("my_school/squads/show") %>
-                      <%= link_to "查看", my_school_squad_path(squad) %>
-                    <% end %>
-                    <% if choose_operate_show("my_school/squads/edit") %>
-                      <%= link_to "编辑", edit_my_school_squad_path(squad) %>
-                    <% end %>
-                    <% if choose_operate_show("my_school/squads/destroy") %>
-                    <%if squad.student_infos.count > 0%>
-                      <%= link_to "删除","###", confirm: "该班级有学员不能进行删除!" %>
-                      <%else%>
-                      <%= link_to "删除", my_school_squad_path(squad), :method => "delete", confirm: "您确定删除#{squad.name}吗" %>
-                      <%end%>
-                    <% end %>
-                  </div>
-                </td>
-              </tr>
-            <% end %>
-          </table>
-        <% end %>
-        <%= paginate @squads %>
-      <% else %>
-        没有班级
-      <% end %>
+      <%= render "tab_squads" %>
     </div>
   </div>
 
 </div>
 
 <script type="text/javascript">
-  $(document).ready(function(){
-    $("#destroy_multiple").click(function(){
-      if (confirm('您确定删除选中的班级吗?')) {
-        $("#destroy_multi_form").submit();
-      } else {
-        return false;
-      }
-    });
+  $("#destroy_multiple").click(function(){
+    if (confirm('您确定删除选中的班级吗')) {
+      $("#destroy_multi_form").submit();
+    }
   });
 </script>

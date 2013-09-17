@@ -35,17 +35,20 @@
       </ul>
     </div>
     <div class="work_list">
-      <% unless @news.empty? %>
-        <div class="topics">
-          <label class="input_select_all checkbox inline ">
-            <input type="checkbox" id="check_all" /> 全选
-          </label>
-          <%= render partial: "news", collection: @news %>
-        </div>
-        <%= paginate @news  %>
-      <% else %>
-        暂无新闻
+        <div class="topics" style="margin-top: 20px;">
+          <% unless @news.empty? %>
+            <div class="select_all_wrap clearfix" style="display: none;">
+              <label class="input_select_all checkbox inline ">
+                <input type="checkbox" id="check_all" /> 全选
+              </label>
+              <a class="hidden-wrap" href="javascript: void(0)" rel="nofollow"><i class="img-icon icon-remove-circle pull-right"></i></a>
+            </div>
+            <%= render partial: "news", collection: @news %>
+          <%= paginate @news  %>
+        <% else %>
+          暂无新闻
       <% end %>
+      </div>
     </div>
   </div>
 </div>
