@@ -75,7 +75,7 @@ class  MySchool::StatisticsController < MySchool::ManageController
      @end_time = Time.now.strftime("%Y-%m-%d %H:%M:%S")
      # joins("INNER JOIN  message_entries ON(message_entries.id = sms_records.message_entry_id)").
      # joins("LEFT JOIN  message_entries ON(message_entries.id = sms_records.message_entry_id)")
-    # .select('sms_records.* , count(sms_records.id) as sum_count')
+     # .select('sms_records.* , count(sms_records.id) as sum_count')
      #本月的短信总条数
      # @month_sms_records = SmsRecord.select('sms_records.*, sum(sms_records.sms_count) as sum_count').joins("LEFT JOIN  message_entries ON(message_entries.id = sms_records.message_entry_id)").group('message_entries.message_id').where(:kindergarten_id=>@kind.id,:status=>1).where(" sms_records.created_at between ? and ? ",@day,@end_time).page(params[:page] || 1).per(10).order("created_at DESC")
      @month_records = @records.where(" sms_records.created_at between ? and ? ",@day,@end_time)
