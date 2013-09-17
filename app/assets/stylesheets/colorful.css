@@ -2344,6 +2344,7 @@ fieldset.staff_squad ol li {
 }
 .page_content_img{
     width: 300px;
+    position: relative;
 }
 
 /* =====统计=========*/
