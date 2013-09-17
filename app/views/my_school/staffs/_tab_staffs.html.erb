@@ -1,0 +1,65 @@
+<% unless @staffs.blank? %>
+  <%= form_tag my_school_staff_path(@staffs), method: :delete, :id => "destroy_multi_form" do %>
+    <table class="table table-striped table-hover">
+      <tr>
+        <% if choose_operate_show("my_school/staffs/destroy") %>
+          <th><input type="checkbox" name="" value="" alt="全选" id="check_all">&nbsp;<label style="display: inline;font-size: 13px;" for="check_all"></label></th>
+        <% end %>
+        <th style="width: 120px;">名称</th>
+        <th style="width: 100px;">账号</th>
+        <th style="width: 50px;">性别</th>
+        <th>微信绑定</th>
+        <th style="width: 30%">操作</th>
+      </tr>
+      <% (@staffs || []).each do |staff| %>
+        <tr>
+          <% if choose_operate_show("my_school/staffs/destroy") %>
+            <td><input id="staff_<%= staff.id %>" class="check" name="staff[]" type="checkbox" value="<%= staff.id %>" /></td>
+          <% end %>
+          <td>
+            <% if choose_operate_show("my_school/staffs/show") %>
+              <%= link_to staff.user.name, my_school_staff_path(staff) %>
+            <% else %>
+              <%= staff.user.name %>
+            <% end %>
+          </td>
+          <td><%= staff.user.login %></td>
+          <td><%= staff.user.gender == "M" ? "女" : "男" %></td>
+          <td><%= staff.user.weixin_code.blank? ? "未绑定" : "已绑定" %></td>
+          <td>
+            <div class="index_a">
+              <% if choose_operate_show("my_school/staffs/show") %>
+                <%= link_to "查看", my_school_staff_path(staff) %>
+              <% end %>
+              <% if choose_operate_show("my_school/staffs/edit") %>
+                <%= link_to "编辑", edit_my_school_staff_path(staff) %>
+              <% end %>
+              <% if choose_operate_show("my_school/staffs/destroy") %>
+                <%= link_to "删除", my_school_staff_path(staff), :method => "delete", confirm: "您确定要删除#{staff.user.try(:name)}?" %>
+              <% end %>
+              <% if staff.user %>
+                <% if choose_operate_show("my_school/users/set_send_sms") %>
+                  <br/>
+                  <%= link_to (staff.user.is_send ? "取消发短信" : "设为可发短信"), set_send_sms_my_school_user_path(staff.user) %>
+                <% end %>
+                <% if choose_operate_show("my_school/users/set_gather_sms") %>
+                  <br/>
+                  <%= link_to (staff.user.is_receive ? "取消收短信" : "设为可收短信"), set_gather_sms_my_school_user_path(staff.user) %>
+                <% end %>
+                <% if choose_operate_show("my_school/users/reset_password") %>
+                  <br/>
+                  <%=link_to '重置密码',reset_password_my_school_user_path(staff.user),:title=>"最后重置时间:#{
+                  staff.user.ret_password_records.first ?
+                  staff.user.ret_password_records.try(:first).try(:created_at).try(:to_long_datetime) :  '无' }", method: :post,data: { confirm: '确定要重置密码?' } %>
+                <%end%>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+  <%= paginate @staffs %>
+<% else %>
+  没有教职工
+<% end %>

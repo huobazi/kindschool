@@ -49,7 +49,7 @@
         <%= text_field :topic,:content_like,:style=>"width:100px;" ,:value=>"#{params[:topic][:content_like] if params[:topic] }"  %>
         <%= hidden_field_tag "topic_category_id" %>
 
-        <%= submit_tag "搜索", :class => "btn btn-primary search_btn" %>
+        <%= submit_tag "搜索", :class => "btn btn-primary" %>
       <%end%>
     </div>
     <div class="work_list">
@@ -62,11 +62,9 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready(function(){
-  $("#destroy_multiple").click(function(){
+   $("#destroy_multiple").click(function(){
     if (confirm('您确定删除选中的贴子吗')) {
       $("#destroy_multi_form").submit();
     }
   });
-});
 </script>

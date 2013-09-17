@@ -10,6 +10,14 @@ class MySchool::CookBooksController < MySchool::ManageController
     if userrole[:tp] == :all
       @flag= true
     end
+
+    if request.xhr?
+      @search_record = "cook_books"
+      @search_record_count = @cook_books.count
+      render "my_school/commons/_search_index.js.erb"
+    else
+      render "index"
+    end
   end
 
   def new
@@ -64,20 +72,6 @@ class MySchool::CookBooksController < MySchool::ManageController
 
   def show
     @cook_book = @kind.cook_books.find(params[:id])
-  end
-
-  def destroy_multiple
-    if params[:cook_book].nil?
-      flash[:notice] = "必须先选择菜谱"
-    else
-      params[:cook_book].each do |cook_book|
-        @kind.cook_books.destroy(cook_book)
-      end
-    end
-    respond_to do |format|
-      format.html { redirect_to my_school_cook_books_path }
-      format.json { head :no_content }
-    end
   end
 
 end

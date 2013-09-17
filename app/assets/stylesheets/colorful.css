@@ -12,9 +12,7 @@ input {
     width:expression(this.type=="radio" ?"auto":"Default");
     width:expression(this.type=="checkbox" ?"auto":"Default");
 }
-input.search_btn{
-    width: 55px;
-}
+
 /* 除IE6浏览器的通用方法 */
 .ie6fixedTL{position:fixed;left:0;top:0}
 .ie6fixedBR{position:fixed;right:0;bottom:0}
@@ -1419,7 +1417,7 @@ a.album_a .album_img img{
 #album_wall li{
     display: inherit;
     float: left;
-    height: 300px;
+    height: 310px;
     margin-bottom: 5px;
     margin-left: 25px;
     position: relative;
@@ -2738,6 +2736,10 @@ i.img-icon{
     line-height: normal;
 }
 
+.topic input[type="radio"], .topic input[type="checkbox"] {
+    margin-top: 0;
+}
+
 .checkbox input[type="checkbox"] {
     margin-top: 4px;
 }
@@ -2773,9 +2775,6 @@ i.img-icon{
 .label-info-squad {
     min-width: 50px;
     text-align: center;
-    width: auto !important;
-    width: 50px;
-    _width: 50px;
 }
 
 .badge-wrap-reply {
@@ -2786,7 +2785,7 @@ i.img-icon{
 }
 
 .select_all_wrap {
-    border: 1px dashed #008FDC;
+    background: #CCFFCC;
     margin-bottom: 10px;
 }
 
@@ -2797,4 +2796,38 @@ i.img-icon{
 .is-topic-mouseover {
     background: #FFFF99;
     cursor: pointer;
+}
+
+.topic input.input-margin-fix {
+    margin-top: 4px;
+}
+
+.table-hover tbody tr:hover > td {
+    background: #FFFF99;
+}
+.list tbody tr:hover > td {
+    background: #FFFF99;
+    cursor: pointer;
+}
+
+
+
+.ke-upload-area {
+	position: relative;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+        display: inline;
+
+}
+.ke-dialog-row {
+	margin-bottom: 10px;
+        position: relative;
+}
+.ke-dialog .ke-input-number {
+	width: 50px;
+        display: inline-block;
+}
+.ke-dialog input{
+    width: auto;
 }

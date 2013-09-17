@@ -2,6 +2,14 @@
 class  MySchool::SquadsController < MySchool::ManageController
   def index
     @squads = @kind.squads.where(tp: 0).search(params[:squad] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+
+    if request.xhr?
+      @search_record = "squads"
+      @search_record_count = @squads.count
+      render "my_school/commons/_search_index.js.erb"
+    else
+      render "index"
+    end
   end
 
   def new

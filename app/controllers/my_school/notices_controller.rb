@@ -2,20 +2,29 @@
 class MySchool::NoticesController < MySchool::ManageController
   #列表界面
   def index
-     userrole = current_user.get_users_ranges
+    userrole = current_user.get_users_ranges
     unless userrole.blank?
-    if  userrole[:tp] == :all
-    send_range = [0,1,2]
-    @notices = @kind.notices.where(:send_range=>send_range).search(params[:notice] || {}).page(params[:page] || 1).per(10).order("send_date DESC")
-    elsif userrole[:tp] == :teachers
-     # 如果是老师能够查看到所有的全教职工和全园的信息
-    send_range = [0,1]
-    @notices = @kind.notices.where("approve_status = 0 and send_date < ? or creater_id= ?" ,Time.zone.now,current_user.id).where(:send_range=>send_range).search(params[:notice] || {}).page(params[:page] || 1).per(10).order("send_date DESC")
-    elsif userrole[:tp] == :student
-    send_range = [0,2]
-    @notices = @kind.notices.where("approve_status = 0 and send_date < ?" ,Time.zone.now).where(:send_range=>send_range).search(params[:notice] || {}).page(params[:page] || 1).per(10).order("send_date DESC")
+      if  userrole[:tp] == :all
+        send_range = [0,1,2]
+        @notices = @kind.notices.where(:send_range=>send_range).search(params[:notice] || {}).page(params[:page] || 1).per(10).order("send_date DESC")
+      elsif userrole[:tp] == :teachers
+        # 如果是老师能够查看到所有的全教职工和全园的信息
+        send_range = [0,1]
+        @notices = @kind.notices.where("approve_status = 0 and send_date < ? or creater_id= ?" ,Time.zone.now,current_user.id).where(:send_range=>send_range).search(params[:notice] || {}).page(params[:page] || 1).per(10).order("send_date DESC")
+      elsif userrole[:tp] == :student
+        send_range = [0,2]
+        @notices = @kind.notices.where("approve_status = 0 and send_date < ?" ,Time.zone.now).where(:send_range=>send_range).search(params[:notice] || {}).page(params[:page] || 1).per(10).order("send_date DESC")
+      end
     end
-   end
+
+    if request.xhr?
+      @search_record = "notices"
+      @search_record_count = @notices.count
+      render "my_school/commons/_search_index.js.erb"
+    else
+      render "index"
+    end
+
   end
 
   def new

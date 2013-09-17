@@ -145,10 +145,6 @@ $(document).ready(function() {
     $(".check").attr("checked",this.checked);
   })
 
-  $(".check").live('click', function() {
-    $(".select_all_wrap").show();
-  })
-
   $(".hidden-wrap").live('click', function(event) {
     event.preventDefault();
     $(this).parent().hide();
@@ -164,8 +160,63 @@ $(document).ready(function() {
 
   $("body").delegate('div.topic', 'click', function() {
     var check = $(this).find(".check");
-    check.prop("checked", !check.attr("checked"));
+    check.trigger('click');
+  })
+
+  $("body").delegate('.check', 'click', function(event) {
+    event.stopPropagation();
     $(".select_all_wrap").show();
   })
-})
 
+  $("body").delegate('.topic a', 'click', function(event) {
+    event.stopPropagation();
+    var link = $(this);
+    if( link.data('confirm') ) {
+      if($.rails.allowAction(link)) {
+        $.rails.handleMethod($(this));
+        return false;
+      } else {
+        return false;
+      }
+    }
+  })
+
+  $("body").delegate(".table-hover tr", 'click', function() {
+    var check = $(this).find(".check");
+    check.trigger('click');
+  })
+
+  $("body").delegate('.table-hover tr a', 'click', function(event) {
+    event.stopPropagation();
+  })
+
+  $("body").delegate(".list tr", 'click', function() {
+    var check = $(this).find(".check");
+    check.trigger('click');
+  })
+
+  $("body").delegate('.list tr a', 'click', function(event) {
+    event.stopPropagation();
+  })
+
+  $('.search_form form').submit(function() {
+    var valuesToSubmit = $(this).serialize();
+    if ( $(".topics").length > 0 ) {
+      var record_wrap = ".topics"
+    } else {
+      var record_wrap = ".work_list"
+    }
+    $.ajax({
+      url: $(this).attr('action'),
+      data: valuesToSubmit,
+      beforeSend: function() {
+        $('<img class="loading_img loadding_pt" src="/t/colorful/gif_preloader.gif" alt="" />').appendTo(record_wrap);
+      },
+      success: function() {
+        $(record_wrap).find("img.loadding_pt").hide();
+      }
+    })
+    return false;
+  })
+
+})

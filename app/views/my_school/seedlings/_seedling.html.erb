@@ -13,14 +13,13 @@
     </div>
     <div class="infos">
       <div class="title">
-        <%= link_to seedling.name, my_school_seedling_path(seedling) %>
-      </div>
-      <div class="title">
-        <em>注射时间</em><abbr><%= seedling.shot_at.try(:to_short_datetime) %></abbr><em>&nbsp;过期时间&nbsp;</em><abbr><%= seedling.expire_at.try(:to_short_datetime) %></abbr>
+        <%= link_to "#{seedling.student_info_label}-#{seedling.name}", my_school_seedling_path(seedling) %>
       </div>
       <div class="info">
-        <em><%= seedling.creater.try(:name) %></em>
-        <em>创建于</em><abbr><%= seedling.created_at.try(:to_long_datetime) %></abbr>
+        <abbr>注射时间:<%= seedling.shot_at.try(:to_short_datetime) %>&nbsp;过期时间:<%= seedling.expire_at.try(:to_short_datetime) %></abbr>
+      </div>
+      <div class="info">
+        <abbr><%= seedling.creater.try(:name) %>创建于<%= seedling.created_at.try(:to_long_datetime) %></abbr>
       </div>
     </div>
   </div>

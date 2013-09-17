@@ -6,6 +6,14 @@ class MySchool::MessagesController < MySchool::ManageController
     params[:messages][:message_entries_receiver_id_equals] = current_user.id
     @message = Message.search(params[:messages] || {}).where("messages.approve_status=0 AND messages.kindergarten_id=:kind_id and `message_entries`.receiver_id=:user_id AND `message_entries`.`deleted_at` IS NULL",
       {:kind_id=>@kind.id,:user_id=>current_user.id}).select("message_entries.read_status,messages.*").page(params[:page] || 1).per(10).order("messages.send_date DESC")
+
+    if request.xhr?
+      @search_record = "message"
+      @search_record_count = @message.count
+      render "my_school/commons/_search_index.js.erb"
+    else
+      render "index"
+    end
   end
   
   #发件箱

@@ -3,6 +3,14 @@ class  MySchool::GradesController < MySchool::ManageController
 
   def index
     @grades = @kind.grades.search(params[:grade] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+
+    if request.xhr?
+      @search_record = "grades"
+      @search_record_count = @grades.count
+      render "my_school/commons/_search_index.js.erb"
+    else
+      render "index"
+    end
   end
 
   def show

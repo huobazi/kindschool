@@ -3,6 +3,14 @@
 class MySchool::VirtualSquadsController < MySchool::ManageController
   def index
    	@virtual_squads = @kind.squads.search(params[:virtual_squad] || {}).where(:tp=>1).page(params[:page] || 1).per(10).order("created_at DESC")
+
+    if request.xhr?
+      @search_record = "virtual_squads"
+      @search_record_count = @virtual_squads.count
+      render "my_school/commons/_search_index.js.erb"
+    else
+      render "index"
+    end
   end
 
   def new

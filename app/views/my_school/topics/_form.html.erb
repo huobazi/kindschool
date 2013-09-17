@@ -73,8 +73,6 @@
     <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:allowFileManager => false,:allowUpload=>false, :simple_mode => true %>
     <p class="help-block">长度不得小于3个字符</p>
 </div>
-
-
 <%= f.input :kindergarten_id, :as => :hidden %>
 <%= f.input :creater_id, :as => :hidden %>
 <% if current_user.get_users_ranges[:tp] == :student %>
@@ -131,11 +129,12 @@ var flag = []
       $.get(
         "/my_school/topics/grade_squad_partial",
         {
+  <% if current_user.get_users_ranges[:tp]  == :all and (action_name == "edit" or action_name == "update") and @topic.squad.present? %>
           grade: $("#grade").val(),
-          <% if current_user.get_users_ranges[:tp]  == :all and (action_name == "edit" or action_name == "update") and @topic.squad.present? %>
-            default_squad: <%= @topic.try(:squad_id) %>
-          <% end %>
-
+          default_squad: <%= @topic.try(:squad_id) %>
+  <% else %>
+          grade: $("#grade").val()
+  <% end %>
         },
         function(result) {
           $("#grade_squad_partial").html(result);
