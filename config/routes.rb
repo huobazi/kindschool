@@ -42,7 +42,11 @@ School::Application.routes.draw do
         get :virtual_delete
       end
     end
-    resources :news 
+    resources :news  do 
+      collection do
+        post :add_new_imgs
+      end
+    end
     resources :my_kindergarten do
     end
     resources :main do

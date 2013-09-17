@@ -36,6 +36,16 @@
 </div>
 </div>
 <div class="control-group">
+  <%#=f.label nil, '批量上传照片:' ,:class=>"control-label"%>
+  <div class="controls">
+    <div id="upload_notice">
+            <input type="text" name="uploaded_data" id="uploadify"/>
+            <div id="uploadify_queue_div">
+            </div>
+    </div>
+ </div>
+</div>
+<div class="control-group">
 <div class="controls">
 <%= f.submit('保存',:class=>"btn btn-large btn-primary", disable_with: "正在提交") %>
 </div>

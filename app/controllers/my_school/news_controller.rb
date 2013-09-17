@@ -30,6 +30,21 @@ class MySchool::NewsController <  MySchool::ManageController
     end
 
    end
+   def add_new_imgs
+     @new = @kind.news.find(params[:id])
+      if params[:Filedata].blank?
+        render :text=>"没有上传文件."
+      else
+      page_img = PageImg.new
+       page_img.swf_uploaded_data= params[:Filedata]
+        @new.page_img = page_img
+        if @new.save!
+          render :json => { :result => 'success', :asset => @new.id }
+        else
+          render :json => { :result => 'error', :error => @new.errors.full_messages.to_sentence }
+        end
+      end
+   end
 
    def edit
     #shifoushi admin
