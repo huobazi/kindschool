@@ -19,6 +19,20 @@ class MySchool::ActivityEntriesController < MySchool::ManageController
       return
     end
 
+    if @activity.tp
+
+      if Time.now.utc > @activity.end_at
+        flash[:error] = "该兴趣讨论已经结束,不能回复"
+        redirect_to my_school_interest_activity_path(@activity_entry.activity_id)
+        return
+      elsif Time.now.utc < @activity.start_at
+        flash[:error] = "该兴趣讨论还没开始,不能回复"
+        redirect_to my_school_interest_activity_path(@activity_entry.activity_id)
+        return
+      end
+
+    end
+
     if @activity_entry.save!
       flash[:success] = "添加回复成功"
       if params[:mark] == "interest_activities"
