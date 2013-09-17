@@ -1419,7 +1419,7 @@ a.album_a .album_img img{
 #album_wall li{
     display: inherit;
     float: left;
-    height: 300px;
+    height: 310px;
     margin-bottom: 5px;
     margin-left: 25px;
     position: relative;
@@ -2798,4 +2798,26 @@ i.img-icon{
 .is-topic-mouseover {
     background: #FFFF99;
     cursor: pointer;
+}
+
+
+
+.ke-upload-area {
+	position: relative;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+        display: inline;
+
+}
+.ke-dialog-row {
+	margin-bottom: 10px;
+        position: relative;
+}
+.ke-dialog .ke-input-number {
+	width: 50px;
+        display: inline-block;
+}
+.ke-dialog input{
+    width: auto;
 }
