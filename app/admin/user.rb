@@ -59,7 +59,6 @@ ActiveAdmin.register User do
     column :login do |user|
       link_to user.login, admin_user_path(user),:class=>"member_link view_link"
     end
-    column :email
     column :kindergarten
     column :gender do |user|
       User::GENDER_DATA[user.gender]
@@ -68,9 +67,12 @@ ActiveAdmin.register User do
       User::TP_DATA[user.tp.to_s]
     end
     column :phone
-    column :weixin_code
-    column :created_at
-    column :updated_at
+    column :weixin_code do |user|
+      user.weixin_code.blank? ? "已绑定" : "未绑定"
+    end
+    column :weiyi_code do |user|
+      user.weiyi_code.blank? ? "已绑定" : "未绑定"
+    end
     column :is_send
     column :is_receive
     default_actions
