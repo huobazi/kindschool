@@ -37,6 +37,20 @@
 </div>
 <%if  action_name=="edit" || action_name=="update" %>
 <div class="control-group">
+  <%=f.label :start_data, '已上传图片:' ,:class=>"control-label" %>
+<div class="controls">
+    <ul>
+          <% (@new.page_imgs||[]).each do |page_img| %>
+              <li>
+                <a href="<%= page_img.public_filename(:thumb) %>" class="fancybox"  title="<%=@new.title%>">
+                  <img src="<%= page_img.public_filename(:middle) %>" alt="" width="239" height="177"/>
+                </a>
+              </li>
+          <% end %>
+        </ul>
+</div>
+ </div>
+<div class="control-group">
   <%#=f.label nil, '批量上传照片:' ,:class=>"control-label"%>
   <div class="controls">
     <div id="upload_notice">
