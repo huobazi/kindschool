@@ -44,7 +44,9 @@
               <li>
                 <a href="<%= page_img.public_filename(:thumb) %>" class="fancybox"  title="<%=@new.title%>">
                   <img src="<%= page_img.public_filename(:middle) %>" alt="" width="239" height="177"/>
+                  <%=link_to "删除",page_img_destroy_my_school_news_path(:id=>@new.id,:img_id=>page_img.id),:class=>"btn"%>
                 </a>
+
               </li>
           <% end %>
         </ul>
