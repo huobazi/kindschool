@@ -110,7 +110,7 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
     @activity.creater_id = current_user.id
     @activity.tp = 1
 
-    if @activity.save!
+    if @activity.save
       flash[:success] = "创建兴趣讨论成功"
       redirect_to my_school_interest_activity_path(@activity)
     else

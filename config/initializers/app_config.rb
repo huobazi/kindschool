@@ -152,11 +152,11 @@ MENUS ={"home"=>{
     },
     "120000" => {
       "121000" => {
-        "my_school/activities" => ["index", "new", "edit", "show"],
+        "my_school/activities" => ["index", "new", "edit", "show", "create"],
         "my_school/activity_entries" => ["edit"]
       },
       "122000"=>{
-        "my_school/interest_activities" => ["index", "new", "edit", "show"]
+        "my_school/interest_activities" => ["index", "new", "edit", "show", "create"]
       }
     },
     "130000"=>{

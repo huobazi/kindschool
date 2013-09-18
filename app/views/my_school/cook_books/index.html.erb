@@ -36,7 +36,7 @@
             </div>".html_safe ,new_my_school_cook_book_path) if  choose_operate_show("my_school/cook_books/new") %>
         </li>
         <li>
-          <a href="/" title="删除" id="destroy_multiple">
+          <a href="javascript: void(0)" rel="nofollow" title="删除" id="destroy_multiple">
             <div class="work_action_delete">
             </div>
             <div class="work_action_delete_move">
@@ -66,8 +66,9 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $("#destroy_multiple").click(function(){
+      if (confirm('您确定删除选中的菜谱吗')) {
         $("#destroy_multi_form").submit();
-        return false;
+      }
     });
   });
 </script>

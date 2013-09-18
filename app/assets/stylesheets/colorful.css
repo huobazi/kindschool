@@ -1458,7 +1458,7 @@ a.album_a .album_img img{
     display: inherit;
     float: left;
 }
-.search_form{
+.search_form, .search_form_s {
     padding: 20px;
     padding-left: 35px;
 }
@@ -2786,7 +2786,7 @@ i.img-icon{
     width: 14px;
 }
 
-.label-info, .label-success {
+.label-info, .label-success, .label-important {
     padding: 5px;
 }
 
@@ -2812,7 +2812,7 @@ i.img-icon{
 }
 
 .is-topic-mouseover {
-    background: #FFFF99;
+    background: #FFFFCC;
     cursor: pointer;
 }
 
@@ -2848,4 +2848,8 @@ i.img-icon{
 }
 .ke-dialog input{
     width: auto;
+}
+.ke-dialog .ke-upload-area{
+    display: inline-block;
+    height: 35px;
 }
