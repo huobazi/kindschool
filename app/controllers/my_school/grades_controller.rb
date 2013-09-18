@@ -6,7 +6,7 @@ class  MySchool::GradesController < MySchool::ManageController
 
     if request.xhr?
       @search_record = "grades"
-      @search_record_count = @grades.count
+      @search_record_count = @grades.total_count
       render "my_school/commons/_search_index.js.erb"
     else
       render "index"

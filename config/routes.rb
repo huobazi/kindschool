@@ -46,6 +46,9 @@ School::Application.routes.draw do
       collection do
         post :add_new_imgs
       end
+      member do
+        get :page_img_destroy
+      end
     end
     resources :my_kindergarten do
     end

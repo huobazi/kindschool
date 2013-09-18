@@ -37,7 +37,7 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
 
     if request.xhr?
       @search_record = "physical_records"
-      @search_record_count = @physical_records.count
+      @search_record_count = @physical_records.total_count
       render "my_school/commons/_search_index.js.erb"
     else
       render "index"
