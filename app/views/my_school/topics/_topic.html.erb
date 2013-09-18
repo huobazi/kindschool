@@ -46,11 +46,11 @@
             全园可见
           <% end %>
         </span>
-          <% unless @topic_category_id.present? %>
-            <span class="label label-success">
-                <%= topic.topic_category.try(:name) %>
-            </span>
-          <% end %>
+        <% unless @topic_category_id.present? %>
+          <span class="label label-success">
+              <%= topic.topic_category.try(:name) %>
+          </span>
+        <% end %>
       </div>
       <div class="info">
         <abbr><%= topic.creater.try(:name) %>&nbsp;发表于&nbsp;<%= topic.created_at.try(:to_long_datetime) %></abbr>
