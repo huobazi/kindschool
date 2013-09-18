@@ -33,7 +33,7 @@ class  MySchool::TopicsController < MySchool::ManageController
 
     if request.xhr?
       if params[:topic].present?
-        @search_record_count = @topics.count
+        @search_record_count = @topics.total_count
       end
       render "index.js.erb"
     else

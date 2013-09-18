@@ -5,7 +5,7 @@ class  MySchool::SquadsController < MySchool::ManageController
 
     if request.xhr?
       @search_record = "squads"
-      @search_record_count = @squads.count
+      @search_record_count = @squads.total_count
       render "my_school/commons/_search_index.js.erb"
     else
       render "index"
