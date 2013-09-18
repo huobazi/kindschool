@@ -59,12 +59,21 @@ class MySchool::CookBooksController < MySchool::ManageController
   end
 
   def destroy
-    @cook_books = @kind.cook_books.where(:id=>params[:id])
+    unless params[:cook_book].blank? 
+      @cook_books = @kind.cook_books.where(:id=>params[:cook_book])
+    else
+      @cook_books = @kind.cook_books.where(:id=>params[:id])
+    end
+    if @cook_books.blank?
+      flash[:error] = "请选择贴子"
+      redirect_to :action => :index
+      return
+    end
     @cook_books.each do |cook_book|
-     cook_book.destroy
-     end
-
+      cook_book.destroy
+    end
     respond_to do |format|
+      flash[:success] = "删除菜谱成功"
       format.html { redirect_to my_school_cook_books_path }
       format.json { head :no_content }
     end

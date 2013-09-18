@@ -45,7 +45,7 @@
       <% end %>
     </div>
     <% if current_user.tp != 0 %>
-      <div class="search_form">
+      <div class="search_form_s">
         <%= form_tag '/my_school/student_infos' , :method=>"get" do %>
           <b>名称：</b>
           <%= text_field :student_info,:user_name_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:user_name_like] if params[:student_info] }"  %>

@@ -44,10 +44,13 @@ ActiveAdmin.register StudentInfo do
       obj.squad && obj.squad.grade ? (auto_link obj.squad.grade) : "无年级"
     end
     column :squad
-    column :guardian
+    column "微信id" do |student|
+      student.try(:user).try(:weixin_code).blank? ? "已绑定" : "未绑定"
+    end
+    column "Weiyi Code" do |student|
+      student.try(:user).try(:weixin_code).blank? ? "已绑定" : "未绑定"
+    end
     column :come_in_at
-    column :created_at
-    column :updated_at
     default_actions
   end
 

@@ -1458,7 +1458,7 @@ a.album_a .album_img img{
     display: inherit;
     float: left;
 }
-.search_form{
+.search_form, .search_form_s {
     padding: 20px;
     padding-left: 35px;
 }
@@ -2812,7 +2812,7 @@ i.img-icon{
 }
 
 .is-topic-mouseover {
-    background: #FFFF99;
+    background: #FFFFCC;
     cursor: pointer;
 }
 
