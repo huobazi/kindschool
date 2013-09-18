@@ -5,7 +5,9 @@
     </label>
     <a class="hidden-wrap" href="javascript: void(0)" rel="nofollow"><i class="img-icon icon-remove-circle pull-right"></i></a>
   </div>
-  <%= render partial: "cook_book", collection: @cook_books %>
+  <%= form_tag my_school_cook_book_path(@cook_books), method: :delete, :id => "destroy_multi_form" do %>
+    <%= render partial: "cook_book", collection: @cook_books %>
+  <% end %>
   <%= paginate @cook_books  %>
 <% else %>
   暂无菜谱

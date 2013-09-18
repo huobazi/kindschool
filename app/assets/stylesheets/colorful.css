@@ -1458,7 +1458,7 @@ a.album_a .album_img img{
     display: inherit;
     float: left;
 }
-.search_form{
+.search_form, .search_form_s {
     padding: 20px;
     padding-left: 35px;
 }
