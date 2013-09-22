@@ -190,6 +190,19 @@ $(document).ready(function() {
     event.stopPropagation();
   })
 
+  $("body").delegate('.table-hover tr a', 'click', function(event) {
+    event.stopPropagation();
+    var link = $(this);
+    if( link.data('confirm') ) {
+      if($.rails.allowAction(link)) {
+        $.rails.handleMethod($(this));
+        return false;
+      } else {
+        return false;
+      }
+    }
+  })
+
   $("body").delegate(".list tr", 'click', function() {
     var check = $(this).find(".check");
     check.trigger('click');

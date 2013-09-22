@@ -11,7 +11,9 @@ ActiveAdmin.register Kindergarten do
 
   action_item :only => :show do
     if can?(:loading, resource)
-      link_to('初始化数据', loading_admin_kindergarten_path(kindergarten))
+      if kindergarten.init_status
+        link_to('初始化数据', loading_admin_kindergarten_path(kindergarten))
+      end
     end
   end
 
@@ -78,6 +80,7 @@ ActiveAdmin.register Kindergarten do
       f.input :allsms_count
       f.input :login_note
       f.input :note
+      f.input :init_status
     end
 
     f.inputs "LOGO", :for => [:asset_img, f.object.asset_img || AssetImg.new] do |img|
