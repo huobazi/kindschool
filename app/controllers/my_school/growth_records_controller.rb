@@ -204,7 +204,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
 
   def grade_squad_partial
     if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
-      @squads = grade.squads
+      @squads = grade.squads.where(:graduate=>false)
     end
     render "grade_squad", :layout => false
   end
