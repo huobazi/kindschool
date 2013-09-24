@@ -68,6 +68,8 @@
             表格下载:
             <%= link_to "深圳市教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "shenzhen",student_info: params[:student_info]) ,:class=>"btn" %>
             <%= link_to "广东省教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "guangzhou",student_info: params[:student_info]) ,:class=>"btn" %>
+            <%= link_to "南山教育系统",download_nanshan_my_school_student_infos_path(student_info: params[:student_info]),:class=>"btn"%>
+
           </p>
           <% if choose_operate_show("my_school/student_infos/new") %>
             <a href="###"  id="add_student_info">进行批量导入</a>
