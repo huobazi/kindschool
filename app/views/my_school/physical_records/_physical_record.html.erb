@@ -1,5 +1,9 @@
 <div class="topic topic_line pull-left">
-  <div class="pull-left"><input type="checkbox" class="check" name="physical_record[]" id="physical_record_<%= physical_record.id %>" value="<%= physical_record.id %>" /></div>
+  <% if choose_operate_show("my_school/physical_records/destroy") %>
+    <div class="pull-left"><input type="checkbox" class="check" name="physical_record[]" id="physical_record_<%= physical_record.id %>" value="<%= physical_record.id %>" /></div>
+  <% else %>
+    <div class="pull-left place place-input-position"></div>
+  <% end %>
   <div class="avatar pull-left"><img src="<%= physical_record.student_info.user.asset_logo ? physical_record.student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
   </div>
   <div class="right_info">
