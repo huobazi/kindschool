@@ -136,11 +136,13 @@
                 <tr>
                   <th>班级</th>
                   <td style="width: 70%;" class="text-center"><%= @activity.squad.try(:name) %></td>
-                  <th colspan="2">
-                    <span class="label label-important label-info-squad">
-                      已结束
-                    </span>
-                  </th>
+                  <% if controller_name == "interest_activities" %>
+                    <th colspan="2">
+                      <span class="label label-important label-info-squad">
+                        已结束
+                      </span>
+                    </th>
+                  <% end %>
                 </tr>
               </table>
             <% else %>
@@ -192,16 +194,16 @@
           <div class="reply">
             <% unless interest_activity_expired?(@activity.end_at) %>
               <%= simple_form_for(@activity_entry, :validate => true, :url => my_school_activity_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
-                <% if controller_name == "activities" %>
-                  <%= render :partial => "activity_form", :object => f %>
-                <% else %>
-                  <%= render :partial => "my_school/activities/activity_form", :object => f %>
-                <% end %>
+                <%= render :partial => "my_school/activities/activity_form", :object => f %>
               <% end %>
             <% else %>
               <p>兴趣讨论已结束,无法回复</p>
             <% end %>
           </div>
+        <% else %>
+          <%= simple_form_for(@activity_entry, :validate => true, :url => my_school_activity_entries_path, :html => {:class => "form-horizontal"}) do |f| %>
+            <%= render :partial => "my_school/activities/activity_form", :object => f %>
+          <% end %>
         <% end %>
       </div>
     </div>

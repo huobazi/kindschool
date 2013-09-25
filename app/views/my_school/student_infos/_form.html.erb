@@ -127,8 +127,8 @@
     <%= f.input :guardian %>
     <%= f.input :guardian_card_category, :as => :select,:collection=>StudentInfo::CARD_CATEGORY_DATA.invert %>
     <%= f.input :guardian_card_code %>
-    <%= f.input :nationality %>
-    <%= f.input :nation %>
+    <%= f.input :nationality,:as=>:select,:collection=>StudentInfo::NATIONALITY.invert %>
+    <%= f.input :nation,:as=>:select,:collection=>StudentInfo::NATION.invert %>
     <%= f.input :overseas_chinese,:as=>:select,:collection=>StudentInfo::OVERSEAS_CHINESE_DATA.invert %>
     <%= f.input :household,:as=>:select,:collection=>StudentInfo::HOUSEHOLD_DATA.invert %>
     <%= f.input :birthplace %>
@@ -149,7 +149,7 @@
     <%= f.input :housing,:as=>:select,:collection=>StudentInfo::HOUSING_DATA.invert %>
     <%= f.input :live_family,:as=>:select,:collection=>StudentInfo::LIVE_FAMILY_DATA.invert %>
     <%= f.input :brothers %>
-    <%= f.input :children_number %>
+    <%= f.input :children_number,:as=>:select,:collection=>StudentInfo::CHILDREN_NUMBER.invert %>
     <%= f.input :head_url %>
     <%= f.input :kindergarten_id,:as=>:hidden %>
   </div>
@@ -167,7 +167,7 @@
     <%= f.input :working %>
   </div>
   <div class="right_table">
-    <%= f.input :family_register %>
+    <%= f.input :family_register,:as=>:select,:collection=>StudentInfo::FAMILY_REGISTER.invert %>
     <%= f.input :family_phone %>
     <%= f.input :family_email %>
     <%= f.input :living_time %>

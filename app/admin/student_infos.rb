@@ -45,10 +45,10 @@ ActiveAdmin.register StudentInfo do
     end
     column :squad
     column "微信id" do |student|
-      student.try(:user).try(:weixin_code).blank? ? "已绑定" : "未绑定"
+      student.try(:user).try(:weixin_code).blank? ? "未绑定" : "已绑定"
     end
     column "Weiyi Code" do |student|
-      student.try(:user).try(:weixin_code).blank? ? "已绑定" : "未绑定"
+      student.try(:user).try(:weixin_code).blank? ? "未绑定" : "已绑定"
     end
     column :come_in_at
     default_actions

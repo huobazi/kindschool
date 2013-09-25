@@ -116,7 +116,15 @@ class MySchool::AlbumsController  < MySchool::ManageController
 
   def grade_class
     if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
-      @squads = grade.squads
+      if params[:graduate].present? and params[:graduate] == "true"
+        @squads = grade.squads
+      else
+        @squads = grade.squads.where(:graduate => false)
+      end
+
+      if params[:squad_id].present?
+        @squad_id = params[:squad_id]
+      end
     end
     render "grade_class", :layout => false
   end
@@ -147,7 +155,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
     # end
     if @grades = @kind.grades
       if current_user.get_users_ranges[:tp] == :all
-        if @squads = @grades.first.squads
+        if @squads = @grades.first.squads.where(:graduate => false)
         end
       elsif current_user.get_users_ranges[:tp] == :teachers
         @squads = current_user.get_users_ranges[:squads]

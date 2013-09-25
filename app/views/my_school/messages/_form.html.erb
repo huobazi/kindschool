@@ -49,7 +49,7 @@
 <div style="float:right;">
   <p  id="numtj"><var style="color:#C00">--</var>/<span id="numcalcu">800</span></p>
 </div>
-<%= f.input :content, :validate => true, :required => true ,:input_html=>{:class=>"span5",:rows=>8}%>
+<%= f.input :content, :validate => true, :required => true ,:input_html=>{:class=>"span5",:rows=>8, :maxlength => "264"}%>
 
 <%if current_user.is_send%>
   <div class="control-group">
@@ -94,6 +94,7 @@
         <div class="count_div">
          <div>
             选中是否发送短信才会生效
+            <p>您所在幼儿园当月群发的条数为:<span style="color:red"><%=@kind.get_surplu_allsms_count%></span></p>
          </div>
         </div>
       </div>
@@ -124,17 +125,41 @@
       $(".help-inline").hide();
     }
   })
+
+  $("#message_content").keyup(function(event) {
+      var text_range = $("#numcalcu").text()
+      if (event.target.value.length >= $("#numcalcu").text()) {
+        $(this).unbind("keyup");
+      }
+
+      /*
+      if($("#message_content").val().length > $("#numcalcu").text() ) {
+        alert("ddd");
+        $(this).siblings(".help-inline").hide();
+      }
+      */
+  })
+
+
 </script>
 <script type="text/javascript">
   $(function() {
     $("#message_tp").click(function() {               //checkBox点击事件
       if($("#message_tp").attr("checked"))              //判断是否选中
-      { $("#numcalcu").text(<%=calculated_figures%>);
+      {
+        $("#numcalcu").text(<%=calculated_figures%>);
+        $("#message_content").attr("maxlength", "264");
         load_length();
         $("#sms_count").show();
+        /*
+        if($("#message_content").val().length >= $("#numcalcu").text()) {
+          $("#message_content").after("<span class='help-inline'>字数不能超过264个字符</span>");
+        }
+        */
       }
       else{
         $("#numcalcu").text(800);
+        $("#message_content").attr("maxlength", "800");
         load_length();
         $("#sms_count").hide();
       }

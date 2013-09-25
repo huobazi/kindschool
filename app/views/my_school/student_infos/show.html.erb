@@ -257,7 +257,7 @@
               <label class="control-label" >国籍</label>
               <div class="controls">
                 <label class="show_label">
-                  <%= @student_info.nationality %>
+                  <%= StudentInfo::NATIONALITY[@student_info.nationality] %>
                 </label>
               </div>
             </div>
@@ -265,7 +265,7 @@
               <label class="control-label" >民族</label>
               <div class="controls">
                 <label class="show_label">
-                  <%= @student_info.nation %>
+                  <%= StudentInfo::NATION[@student_info.nation] %>
                 </label>
               </div>
             </div>
@@ -430,7 +430,7 @@
               <label class="control-label" >本人第几胎</label>
               <div class="controls">
                 <label class="show_label">
-                  <%= @student_info.children_number %>
+                  <%= StudentInfo::CHILDREN_NUMBER[@student_info.children_number] %>
                 </label>
               </div>
             </div>
@@ -495,7 +495,7 @@
               <label class="control-label" >户籍类型</label>
               <div class="controls">
                 <label class="show_label">
-                  <%= @student_info.family_register %>
+                  <%= StudentInfo::FAMILY_REGISTER[@student_info.family_register] %>
                 </label>
               </div>
             </div>
