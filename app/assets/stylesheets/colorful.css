@@ -1934,6 +1934,11 @@ ul.teacher_list{
     color: #fdb968;
     font-size: 16px;
 }
+.official_home_address_info h3{
+    width:95%;
+    border-bottom: 2px solid #fdb968;
+    font-size: 16px;
+}
 ul.teacher_list li{
     height: 150px;
 }
