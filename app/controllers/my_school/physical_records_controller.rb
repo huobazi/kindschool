@@ -59,7 +59,7 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
       end
     end
   end
-   
+
   def create
     @physical_record = @kind.physical_records.new(params[:physical_record])
     @physical_record.student_info_id = params[:seedling_record][:student_info_id] unless params[:seedling_record].blank?
@@ -95,12 +95,21 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
   end
 
   def destroy
-    @physical_records = @kind.physical_records.where(:id=>params[:id])
+    unless params[:physical_record].blank? 
+      @physical_records = @kind.physical_records.where(:id=>params[:physical_record])
+    else
+      @physical_records = @kind.physical_records.where(:id=>params[:id])
+    end
+    if @physical_records.blank?
+      flash[:error] = "请选择体检记录"
+      redirect_to :action => :index
+      return
+    end
     @physical_records.each do |physical_record|
       physical_record.destroy
     end
-
     respond_to do |format|
+      flash[:success] = "删除体检记录成功"
       format.html { redirect_to my_school_physical_records_path }
       format.json { head :no_content }
     end
@@ -110,33 +119,19 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
     @physical_record = @kind.physical_records.find(params[:id])
   end
 
-  def destroy_multiple
-    if params[:physical_record].nil?
-      flash[:notice] = "必须先选择体检记录"
-    else
-      params[:physical_record].each do |physical|
-        @kind.physical_records.destroy(physical)
-      end
-    end
-    respond_to do |format|
-      format.html { redirect_to my_school_physical_records_path }
-      format.json { head :no_content }
-    end
-  end
-
   def grade_class
     if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
       @squads = grade.squads
     end
-     render "grade_class", :layout => false
-   end
+    render "grade_class", :layout => false
+  end
 
-   def class_student
+  def class_student
     if grade=@kind.grades.where(:id=>params[:grade].to_i).first
       if squad = grade.squads.where(:id=>params[:class_number].to_i).first
          @student_infos = squad.student_infos
       end
     end
     render "class_student", :layout => false
-   end
+  end
 end
