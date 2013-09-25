@@ -946,7 +946,6 @@ role14:
   number: "student"
   admin: false
   operates:
-  - 8004
   - 2005
   - 2006
   - 2007
