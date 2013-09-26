@@ -9,7 +9,7 @@ class MySchool::MessagesController < MySchool::ManageController
 
     if request.xhr?
       @search_record = "message"
-      @search_record_count = @message.count
+      @search_record_count = @message.total_count
       render "my_school/commons/_search_index.js.erb"
     else
       render "index"
