@@ -5,7 +5,7 @@ class Weixin::InterestActivitiesController < Weixin::ManageController
   before_filter :is_student?, :only => [:new, :create, :update, :edit, :destroy]
   def index
     if current_user.get_users_ranges[:tp] == :student
-      @activities = @kind.activities.where(:tp => 1, :squad_id => current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
+      @activities = @kind.activities.where("tp = ? and (squad_id = ? or squad_id is null)", 1, current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
     elsif current_user.get_users_ranges[:tp] == :teachers
       @activities = @kind.activities.where("tp = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", 1, current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
     else
