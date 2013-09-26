@@ -65,7 +65,7 @@ class MySchool::CookBooksController < MySchool::ManageController
       @cook_books = @kind.cook_books.where(:id=>params[:id])
     end
     if @cook_books.blank?
-      flash[:error] = "请选择贴子"
+      flash[:error] = "请选择菜谱"
       redirect_to :action => :index
       return
     end

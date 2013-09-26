@@ -48,15 +48,15 @@
       <div class="search_form_s">
         <%= form_tag '/my_school/student_infos' , :method=>"get" do %>
           <b>名称：</b>
-          <%= text_field :student_info,:user_name_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:user_name_like] if params[:student_info] }"  %>
+          <%= text_field :student_info,:user_name_like,:style=>"width:100px; margin-top: 10px;" ,:value=>"#{params[:student_info][:user_name_like] if params[:student_info] }"  %>
           <b>账号：</b>
-          <%= text_field :student_info,:user_login_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:user_login_like] if params[:student_info] }"  %>
+          <%= text_field :student_info,:user_login_like,:style=>"width:100px; margin-top: 10px;" ,:value=>"#{params[:student_info][:user_login_like] if params[:student_info] }"  %>
           <b>班级：</b>
     <%#= text_field :student_info,:squad_name_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:squad_name_like] if params[:student_info] }"  %>
           <%= select_tag("student_info[squad_id_equals]", options_for_select(([["全部",""]]+@kind.squads.collect{|x|[x.name,x.id]}),(params[:student_info].blank? ?  "" : params[:student_info][:squad_id_equals])),:style=>"width:100px;margin-top: 10px;") %>
           <br/>
           <b>手机号：</b>
-          <%= text_field :student_info,:user_phone_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:user_phone_like] if params[:student_info] }"  %>
+          <%= text_field :student_info,:user_phone_like,:style=>"width:100px; margin-top: 10px;" ,:value=>"#{params[:student_info][:user_phone_like] if params[:student_info] }"  %>
           <b>收短信：</b>
           <%= select_tag("student_info[user_is_receive_equals]", options_for_select([["全部",""],["可收短信",1],["不可收短信",0]],(params[:student_info].blank? ? "" : params[:student_info][:user_is_receive_equals])),:style=>"width:100px; margin-top: 10px;") %>
           <b>是否完全绑定</b>

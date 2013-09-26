@@ -19,7 +19,7 @@ class MySchool::NoticesController < MySchool::ManageController
 
     if request.xhr?
       @search_record = "notices"
-      @search_record_count = @notices.count
+      @search_record_count = @notices.total_count
       render "my_school/commons/_search_index.js.erb"
     else
       render "index"
