@@ -11,7 +11,7 @@
           <% root_showcase.content_entries.each do |entry| %>
             <% if entry.page_img %>
               <li>
-                <a href="<%= entry.page_img.public_filename(:thumb) %>" class="fancybox"  title="<%= entry.title %>">
+                <a href="<%= entry.page_img.public_filename %>" class="fancybox"  title="<%= entry.title %>">
                   <img src="<%= entry.page_img.public_filename(:middle) %>" alt="" width="239" height="177"/>
                 </a>
               </li>
