@@ -8,7 +8,11 @@
         <ul>
           <% @activities.each do |activity| %>
             <li>
-              <%= link_to activity.title, my_school_activity_path(activity) %>
+              <% if activity.tp == 0 %>
+                <%= link_to activity.title, my_school_activity_path(activity) %>
+              <% else %>
+                <%= link_to activity.title, my_school_interest_activity_path(activity) %>
+              <% end %>
             </li>
           <% end %>
         </ul>

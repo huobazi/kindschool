@@ -18,10 +18,10 @@
     <div class="control-group">
             <div class="time_control">
               <div class="time_control_title">
-              <lable>创建时间</lable>
+              <lable>发布时间</lable>
             </div>
               <label class="">
-                <%= @new.created_at.try(:to_long_datetime)%>
+                <%= @new.start_data.try(:to_long_datetime)%>
               </label>
             </div>
             <div class="show_count_time">

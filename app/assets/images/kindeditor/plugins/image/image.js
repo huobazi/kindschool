@@ -74,7 +74,7 @@ KindEditor.plugin('image', function(K) {
 			//local upload - start
 			'<div class="tab2" style="display:none;">',
 			'<iframe name="' + target + '" style="display:none;"></iframe>',
-			'<form class="ke-upload-area ke-form" method="post" enctype="multipart/form-data" target="' + target + '" action="' + K.addParam(uploadJson, 'dir=image') + '">',
+			'<form class="ke-upload-area ke-form" method="post" enctype="multipart/form-data" target="' + target + '" action="' + K.addParam(uploadJson, 'dir=image') + "&" + encodeURIComponent($("[name='csrf-param']").attr("content")) + "=" + encodeURIComponent($("[name='csrf-token']").attr("content")) + '">',
 			//file
 			'<div class="ke-dialog-row">',
 			hiddenElements.join(''),

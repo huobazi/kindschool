@@ -25,7 +25,7 @@
                   <%= link_to truncate(n_ew.title || "",:length=>29), show_one_new_my_school_main_index_path(:new_id=>n_ew.id),:title=>n_ew.title %>
                 </div>
                 <div class="official_time">
-                  <%= n_ew.created_at.try(:to_long_datetime)%>
+                  <%= n_ew.start_data.try(:to_long_datetime)%>
                 </div>
               </li>
             <%end%>
