@@ -1,8 +1,11 @@
 <%#= render :partial => "/modules/colorful/show_official_home" %>
+<%= stylesheet_link_tag    "css/banner"%>
+<%= javascript_include_tag "js/banner.js"%>
 <div class="official_home_index">
   <div style="background-color: white; float: left; width: 100%;">
     <div class="official_home_img">
-      <img src="<%=@img.try(:first).try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @img.first.try(:page_img).public_filename %>" alt=""/>
+      <%=render "offocial_home_img"%>
+     <!--  <img src="<%#=@img.try(:first).try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @img.first.try(:page_img).public_filename %>" alt=""/> -->
     </div>
     <div class="official_foot">
       <div class="official_home_img_left">

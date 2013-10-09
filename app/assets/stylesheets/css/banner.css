@@ -1,0 +1,15 @@
+﻿@charset "utf-8";
+img { border: 0px; }
+#banner { padding: 0px; width: 950px; height: 370px; }
+.slides { margin: 0px auto; width: 950px; height: 370px; overflow: hidden; position: relative; }
+.slide-pic { height: 100%;margin: 0px; padding: 0px; width: 950px; overflow: hidden; list-style: none; }
+    .slide-pic img { height: 100%;}
+    .slide-pic li { display: none; height: 370px;}
+        .slide-pic li.cur { display: block; }
+.slide-li { margin: 0px; padding: 0px; left: 0px; bottom: 0px; position: absolute; }
+    .slide-li li { margin: 0px; padding: 0px; width: 190px; height: 10px; float: left; overflow: hidden; list-style: none; }
+    .slide-li a { width: 190px; height: 10px; color: #000; font-size: 12px; display: block; }
+        .slide-li a:hover { color: #F00; text-decoration: none; }
+.op li { background: #999999; filter: alpha(opacity=60); opacity: 0.6; }
+    .op li.cur { background: #666666; }
+.slide-txt span { display: none; }
