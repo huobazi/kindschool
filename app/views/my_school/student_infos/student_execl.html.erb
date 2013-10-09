@@ -63,7 +63,7 @@
 		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>国    籍</FONT></B></TD>
 		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT FACE="宋体" SIZE=2><%= @student_info.nationality %></FONT></TD>
 		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>民    族</FONT></B></TD>
-		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="LEFT" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= @student_info.nation %></FONT></TD>
+		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" ALIGN="LEFT" VALIGN=MIDDLE SDNUM="2052;0;@"><FONT SIZE=2><%= StudentInfo::NATION[@student_info.nation] %></FONT></TD>
 		</TR>
 	<TR>
 		<TD STYLE="border-top: 1px solid #3c3c3c; border-bottom: 1px solid #3c3c3c; border-left: 1px solid #3c3c3c; border-right: 1px solid #3c3c3c" HEIGHT="28" ALIGN="CENTER" VALIGN=MIDDLE SDNUM="2052;0;@"><B><FONT SIZE=2>港澳台侨</FONT></B></TD>

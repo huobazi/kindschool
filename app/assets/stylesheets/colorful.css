@@ -88,7 +88,7 @@ a{
     margin-top: 5px;
 }
 .logo{
-    width: 60%;
+    width: 95%;
     padding-left: 15px;
     padding-bottom: 20px;
 }
@@ -1932,6 +1932,11 @@ ul.teacher_list{
     width:95%;
     border-bottom: 2px solid #fdb968;
     color: #fdb968;
+    font-size: 16px;
+}
+.official_home_address_info h3{
+    width:95%;
+    border-bottom: 2px solid #fdb968;
     font-size: 16px;
 }
 ul.teacher_list li{

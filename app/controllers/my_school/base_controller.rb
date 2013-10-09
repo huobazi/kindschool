@@ -3,7 +3,6 @@ class MySchool::BaseController < ApplicationController
   before_filter :my_school, :except => :no_kindergarten
   layout proc{ |controller| get_layout }
 
-
   
   private
   def my_school

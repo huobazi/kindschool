@@ -24,7 +24,7 @@ class MySchool::SeedlingsController < MySchool::ManageController
           # studentinfos.each do |stu_info|
           #  @seedlings += stu_info.seedling_records
           # end 
-         @seedlings =SeedlingRecord.where(["student_infos.squad_id in(?)",squads]).joins("LEFT JOIN student_infos on (student_infos.id = seedling_records.student_info_id)").search(params[:seedling] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+         @seedlings =SeedlingRecord.search(params[:seedling] || {}).joins("LEFT JOIN student_infos as s on (s.id = seedling_records.student_info_id)").where(["s.squad_id in(?)",squads]).page(params[:page] || 1).per(10).order("created_at DESC")
      elsif userrole[:tp] == :student
      	  @seedlings =  current_user.student_info.seedling_records.search(params[:seedling] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
    	 end

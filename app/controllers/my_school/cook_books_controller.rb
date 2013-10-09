@@ -13,7 +13,7 @@ class MySchool::CookBooksController < MySchool::ManageController
 
     if request.xhr?
       @search_record = "cook_books"
-      @search_record_count = @cook_books.count
+      @search_record_count = @cook_books.total_count
       render "my_school/commons/_search_index.js.erb"
     else
       render "index"
@@ -65,7 +65,7 @@ class MySchool::CookBooksController < MySchool::ManageController
       @cook_books = @kind.cook_books.where(:id=>params[:id])
     end
     if @cook_books.blank?
-      flash[:error] = "请选择贴子"
+      flash[:error] = "请选择菜谱"
       redirect_to :action => :index
       return
     end

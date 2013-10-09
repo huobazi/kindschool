@@ -31,14 +31,16 @@
             </div><div class='work_action_add_move'>
             </div>".html_safe ,new_my_school_physical_record_path) if choose_operate_show("my_school/physical_records/new")  %>
         </li>
-        <li>
-          <a href="/" title="删除" id="destroy_multiple">
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
-          </a>
-        </li>
+        <% if choose_operate_show("my_school/physical_records/destroy") %>
+          <li>
+            <a href="javascript: void(0)" rel="nofollow" title="删除" id="destroy_multiple">
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+            </a>
+          </li>
+        <% end %>
       </ul>
     </div>
     <div class="search_form">
@@ -62,9 +64,12 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-  $("#destroy_multiple").click(function(){
-      $("#destroy_multi_form").submit();
-      return false;
+  $(document).ready(function(){
+    $("#destroy_multiple").click(function(){
+      if (confirm('您确定删除选中的体检记录吗')) {
+        $("#destroy_multi_form").submit();
+      }
+    });
   });
 });
 </script>

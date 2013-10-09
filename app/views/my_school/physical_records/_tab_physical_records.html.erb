@@ -5,7 +5,9 @@
     </label>
     <a class="hidden-wrap" href="javascript: void(0)" rel="nofollow"><i class="img-icon icon-remove-circle pull-right"></i></a>
   </div>
-  <%= render partial: "physical_record", collection: @physical_records %>
+  <%= form_tag my_school_physical_record_path(@physical_records), method: :delete, :id => "destroy_multi_form" do %>
+    <%= render partial: "physical_record", collection: @physical_records %>
+  <% end %>
   <%= paginate @physical_records %>
 <% else %>
   暂无体检记录

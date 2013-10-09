@@ -90,4 +90,10 @@ class MySchool::NewsController <  MySchool::ManageController
       format.json { head :no_content }
     end
    end
+   def page_img_destroy
+    @news = @kind.news.find(params[:id])
+    @page_img=@news.page_imgs.find(params[:img_id])
+    @page_img.destroy
+    redirect_to :action=>:edit,:id=>@news.id 
+   end
 end

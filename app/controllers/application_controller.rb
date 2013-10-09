@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :school_install?
+  before_filter :set_p3p
   # check_authorization
   include ApplicationHelper
 
@@ -13,6 +14,10 @@ class ApplicationController < ActionController::Base
   def access_denied(exception)
     redirect_to admin_dashboard_path, :alert => exception.message
   end
+  
+  def set_p3p
+     headers['P3P'] = "policyref=\"/w3c/p3p.xml\", CP=\"ALL DSP COR CURa ADMa DEVa TAIa OUR BUS IND UNI COM NAV INT\""
+  end 
 
   private
   def school_install?

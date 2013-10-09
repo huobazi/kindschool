@@ -1,4 +1,8 @@
 <%unless @squads.blank? %>
-<span>班级&nbsp;<%= select_tag "class_number", 
-options_for_select(@squads.collect{|s|[s.name,s.id]} )  %></span>
+  <span>班级&nbsp;
+    <% if @squad_id.present? %>
+      <%= select_tag "class_number", options_for_select(@squads.collect{|s|[s.name,s.id]}, @squad_id )  %></span>
+    <% else %>
+      <%= select_tag "class_number", options_for_select(@squads.collect{|s|[s.name,s.id]})  %></span>
+    <% end %>
 <%end%>

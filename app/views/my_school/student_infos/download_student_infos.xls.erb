@@ -8,7 +8,7 @@
     <Table>
       <%if params[:tp] == "shenzhen"%>
       <%=render "shenzhen"%>
-      <%else%>
+      <%elsif params[:tp] == "guangzhou" %>
       <%=render "guangzhou"%>  
       <%end%>
     </Table>

@@ -5,14 +5,14 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     if current_user.get_users_ranges[:tp] == :student
       @growth_records = GrowthRecord.search(params[:growth_record] || {}).where("tp = ? and (creater_id = ? or student_info_id = ?)", 1, current_user.id, current_user.student_info.id).page(params[:page] || 1).per(10).order("created_at DESC")
     elsif current_user.get_users_ranges[:tp] == :teachers
-      @growth_records = GrowthRecord.search(params[:growth_record] || {}).where("student_infos.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) and tp=1",current_user.staff.id).joins("INNER JOIN student_infos on(student_infos.id = growth_records.student_info_id)").page(params[:page] || 1).per(10).order("created_at DESC")
+      @growth_records = GrowthRecord.search(params[:growth_record] || {}).joins("INNER JOIN student_infos as s on(s.id = growth_records.student_info_id)").where("s.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) and growth_records.tp=1",current_user.staff.id).page(params[:page] || 1).per(10).order("created_at DESC")
     else
       @growth_records = @kind.growth_records.search(params[:growth_record] || {}).where(:tp => 1).page(params[:page] || 1).per(10).order("created_at DESC")
     end
     store_search_location
     if request.xhr?
       @search_record = "growth_records"
-      @search_record_count = @growth_records.count
+      @search_record_count = @growth_records.total_count
       render "my_school/commons/_search_index.js.erb"
     else
       render "index"
@@ -204,7 +204,7 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
 
   def grade_squad_partial
     if  grade=@kind.grades.where(:id=>params[:grade].to_i).first
-      @squads = grade.squads
+      @squads = grade.squads.where(:graduate=>false)
     end
     render "grade_squad", :layout => false
   end

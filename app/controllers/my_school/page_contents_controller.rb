@@ -123,12 +123,12 @@ class  MySchool::PageContentsController < MySchool::ManageController
         elsif params[:tp] == "official_website_home"
           content_entries = @page_content.content_entries
           unless params[:home_publicity_img].blank?
-            if content_entries.find_by_number('official_home_pub_img').blank?
+             if content_entries.where(:number=>'official_home_pub_img').size < 6
                entry = ContentEntry.new(:number=>"official_home_pub_img")
                img = PageImg.new(:uploaded_data=> params[:home_publicity_img])
                entry.page_img = img
                @page_content.content_entries<< entry
-            end 
+             end 
           end
           if !params[:teacher_title].blank? || !params[:teacher_content].blank? || !params[:img].blank?
           entry = ContentEntry.new(:number=>"official_home_teacher",:title=>params[:teacher_title],:content=>(params[:teacher_content]||""))  

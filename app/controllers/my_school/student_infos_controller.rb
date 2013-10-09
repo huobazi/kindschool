@@ -24,7 +24,7 @@ class  MySchool::StudentInfosController < MySchool::ManageController
     store_search_location
     if request.xhr?
       @search_record = "student_infos"
-      @search_record_count = @student_infos.count
+      @search_record_count = @student_infos.total_count
       render "my_school/commons/_search_index.js.erb"
     else
       render "index"
@@ -37,9 +37,13 @@ class  MySchool::StudentInfosController < MySchool::ManageController
       format.xls # { send_data @products.to_csv(col_sep: "\t") }
     end
   end
- 
-  
 
+  def download_nanshan
+    @student_infos = @kind.student_infos.search(params[:student_info] || {})#.page(params[:page] || 1).per(10)
+    exel = render_to_string(:layout=>'print')
+    send_data exel, :content_type => "application/excel", :filename => "nanshan_信息下载.xls"
+  end
+ 
   def import
     unless params[:file].blank?
       x,a,b,c=StudentInfo.verification_import(params[:file],@kind.id)
@@ -71,7 +75,7 @@ class  MySchool::StudentInfosController < MySchool::ManageController
       @student_info = @kind.student_infos.where("squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?)",current_user.staff.id).find_by_id(params[:id])
     else
       @student_info = StudentInfo.find_by_id_and_kindergarten_id(params[:id], @kind.id)
-      @user_squads = @student_info.user.user_squads
+      @user_squads = @student_info.user.user_squads 
       @virtual_squads = @kind.squads.where(:tp=>1)
     end
 

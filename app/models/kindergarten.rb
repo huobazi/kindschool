@@ -1,7 +1,7 @@
 #encoding:utf-8
 #幼儿园
 class Kindergarten < ActiveRecord::Base
-  attr_accessible :logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token,:latlng,:address,
+  attr_accessible :init_status,:logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token,:latlng,:address,
     :aliases_url,:sms_count,:sms_user_count,:telephone,:allsms_count,:open_allsms,:begin_allsms,:login_note
 
   validates :name,:presence => true, :uniqueness => true, :length => { :maximum => 100}
@@ -94,11 +94,14 @@ class Kindergarten < ActiveRecord::Base
   end
 
   def loading!
+    if self.init_status
     PAGE_CONTENTS.each do |k,v|
       unless self.page_contents.collect(&:number).include?(k)
         self.page_contents << PageContent.new((v || {}).merge(:number=>k))
       end
     end
+    #改变初始化的值,false不能在进行初始化
+    self.init_status = false
     #创建了幼儿园的SEO初始化
     shrink_record = ShrinkRecord.new()
     #幼儿园名字 幼儿园 幼儿园的number 幼儿园地址
@@ -182,6 +185,7 @@ class Kindergarten < ActiveRecord::Base
       end
     end
     self.save!
+   end
   end
 
   #升学验证

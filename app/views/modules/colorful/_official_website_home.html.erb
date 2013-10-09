@@ -18,7 +18,8 @@
       <td><span>首页宣传图片</span></td>
       <td><img src="<%=entry.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : entry.page_img.public_filename %>" alt="" width="400px" class="page_website_img" /></td>
       <td>
-        <%= link_to "编辑",:controller=>"/my_school/page_contents",:action=>:edit_content,:id=>page_content.id,:entry_id=>entry.id %>
+        <%= link_to "编辑",:controller=>"/my_school/page_contents",:action=>:edit_content,:id=>page_content.id,:entry_id=>entry.id %>|
+        <%= link_to "删除",:controller=>"/my_school/page_contents",:action=>:delete_content,:id=>page_content.id,:entry_id=>entry.id %>
       </td>    
     </tr>
     <%else%>
@@ -94,8 +95,8 @@
   <%end%>
 <%else%>
   <%if @content_entries%>
-   <%entry=@content_entries.find_by_number("official_home_pub_img")  %>
-    <%if entry.blank?%>
+   <%entry=@content_entries.where(:number=>"official_home_pub_img") %>
+    <%if entry.size<5%>
       <div class="control-group">
          <label class="control-label">首页宣传图片上传</label>
         <div class="controls">

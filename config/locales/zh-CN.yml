@@ -328,6 +328,7 @@ zh-CN:
         open_allsms: "开启限制数量群发"
         begin_allsms: "可使用短信群发"
         telephone: "联系电话"
+        init_status: "幼儿园初始化值"
       user:
         name: "姓名"
         login: "账号"
