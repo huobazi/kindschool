@@ -1,0 +1,32 @@
+<div id="banner">
+    <div class="slides">
+        <ul class="slide-pic">
+          <%if @img.blank?%>
+          <li class="cur">
+              <a href="###" target="_blank">
+                 <img src="/t/colorful/483-5552.jpg" alt=""/>
+               </a>
+             </li>
+          <%end%>
+          <%@img.each do |img|%>
+          <li class="cur">
+              <a href="###" target="_blank">
+                 <img src="<%=img.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : img.try(:page_img).public_filename %>" alt=""/>
+               </a>
+             </li>
+             <%end%>
+            </ul>
+            <ul class="slide-li op">
+                <li class="cur"></li>
+                <%for i in 1...@img.size%>
+                <li></li>
+                <%end%>
+            </ul>
+            <ul class="slide-li slide-txt">
+                <li class="cur"><a href="#"></a></li>
+                <%for i in 1...@img.size%>
+                <li><a href="#"></a></li>
+                <%end%>
+            </ul>
+        </div>
+    </div>
