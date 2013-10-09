@@ -1,3 +1,10 @@
+/*
+ *= require jquery.ui.all
+ *= require uploadify
+*/
+ul, li {
+    list-style-type: none;
+}
 body,ul,li{
     margin: 0px;
     padding: 0px;
@@ -119,11 +126,20 @@ body,ul,li{
     filter:Shadow(black,180);
 }
 .food{
+    background-color: #008fdc;
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+    padding-bottom: 40px;
+    color: white;
+}
+.food{
     background-color: #404040;
     padding-bottom: 5px;
     padding-top: 15px;
     width: 100%;
 }
+
 .food .food_div{
     width: 980px;
     margin: 0 auto;

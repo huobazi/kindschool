@@ -45,19 +45,18 @@ ActiveAdmin.register StudentInfo do
     end
     column :squad
     column "微信id" do |student|
-      student.try(:user).try(:weixin_code).blank? ? "已绑定" : "未绑定"
+      student.try(:user).try(:weixin_code).blank? ? "未绑定" : "已绑定"
     end
     column "Weiyi Code" do |student|
-      student.try(:user).try(:weixin_code).blank? ? "已绑定" : "未绑定"
+      student.try(:user).try(:weixin_code).blank? ? "未绑定" : "已绑定"
     end
     column :come_in_at
     default_actions
   end
-
+  filter :kindergarten
   filter :user_name,:as=>:string,:label=>"学生名字"
   filter :squad_name,:as=>:string,:label=>"班级名称"
   #  filter :kindergarten_name,:as=>:string,:label=>"幼儿园名字"
-  filter :kindergarten
 
   form do |f|
     f.inputs "账号信息", :for => [:user, f.object.user || User.new] do |user|

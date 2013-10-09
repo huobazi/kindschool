@@ -11,7 +11,7 @@ class MySchool::MainController < MySchool::BaseController
         @teacher_infos = root_showcase.content_entries.where(:number=>"official_home_teacher")
         @img= root_showcase.content_entries.where(:number=>'official_home_pub_img')     
       end
-    end 
+    end
   end
 
   #提示界面
@@ -74,6 +74,27 @@ class MySchool::MainController < MySchool::BaseController
   def show_new_list
     @news = @kind.news.where(:approve_status=>0).page(params[:page] || 1).per(10)
   end
+
+  #给院长发邮件
+  def dean_email
+    @dean_email = DeanEmail.new
+  end
+  #创建院长发邮件
+  def create_dean_email
+    @dean_email = DeanEmail.new(params[:dean_email])
+    @dean_email.kindergarten_id = @kind.id
+    if @dean_email.save
+      flash[:notice] = "邮件发送成功，请等待园长查收邮件后给您回复。"
+      redirect_to :action => "dean_email_list"
+    else
+      render :action=>:dean_email
+    end
+  end
+
+  def dean_email_list
+    @dean_emails = @kind.dean_emails.where(:visible=>1).page(params[:page] || 1).per(10)
+  end
+  
   private
   def find_shrink_record
     if @kind && @kind.shrink_record

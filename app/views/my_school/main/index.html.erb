@@ -49,6 +49,16 @@
             <div class="official_home_address_line">
             </div>
             <span><%=@kind.telephone.blank? ? "暂时没有填写" : @kind.telephone%></span>
+            <% if @kind.has_choose_operate?(11100) %>
+              <h3>园长信箱</h3>
+              <div class="official_home_address_line">
+              </div>
+              <span>
+                <a href="<%= url_for(:controller=>"/my_school/main",:action=>"dean_email_list") %>" >
+                  <img src="/star_imgs/dean_emails.png" alt="园长信箱" />
+                </a>
+              </span>
+            <% end %>
           </div>
           <div class="official_home_address_img">
             <!--  <img src="/t/colorful/483-5552.jpg" alt="" width="320" /> -->
@@ -66,7 +76,7 @@
           <%(@teacher_infos||[]).each do |info|%>
             <li>
               <div class="official_home_teacher_img">
-                <img src="<%=info.page_img.blank? ? '/t/colorful/activity_logo1.jpg' : info.page_img.public_filename %>" alt="" width="200"   >
+                <img src="<%=info.page_img.blank? ? '/t/colorful/activity_logo1.jpg' : info.page_img.public_filename %>" alt="" width="200px"   />
               </div>
               <div class="teacher_info">
                 <div class="teacher_title">

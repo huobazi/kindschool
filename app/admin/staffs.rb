@@ -42,10 +42,10 @@ ActiveAdmin.register Staff do
     column :user
     column :kindergarten_label
     column "微信id" do |staff|
-      staff.try(:user).try(:weixin_code).blank? ? "已绑定" : "未绑定"
+      staff.try(:user).try(:weixin_code).blank? ? "未绑定" : "已绑定"
     end
     column "Weiyi Code" do |staff|
-      staff.try(:user).try(:weixin_code).blank? ? "已绑定" : "未绑定"
+      staff.try(:user).try(:weixin_code).blank? ? "未绑定" : "已绑定"
     end
     column :created_at
     column :updated_at

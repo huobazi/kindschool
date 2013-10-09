@@ -68,17 +68,17 @@ ActiveAdmin.register User do
     end
     column :phone
     column :weixin_code do |user|
-      user.weixin_code.blank? ? "已绑定" : "未绑定"
+      user.weixin_code.blank? ? "未绑定" : "已绑定"
     end
     column :weiyi_code do |user|
-      user.weiyi_code.blank? ? "已绑定" : "未绑定"
+      user.weiyi_code.blank? ? "未绑定" : "已绑定"
     end
     column :is_send
     column :is_receive
     default_actions
   end
 
-
+  filter :kindergarten
   filter :email
   filter :name
   filter :login

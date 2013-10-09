@@ -1901,6 +1901,20 @@ news_destroy:
   protocol: ""
   <<: *DEFAULTS
 
+
+dean_emails_index:
+  id: 11100
+  parent_id: 2
+  name: "园长信箱"
+  level: 2
+  sequence: 1
+  note: "园长信箱"
+  controller: "my_school/dean_emails"
+  action: "index"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
 student_info_execl:
   id: 12000
   parent_id: 5

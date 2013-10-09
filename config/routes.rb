@@ -5,6 +5,7 @@ School::Application.routes.draw do
   match 'code/recode' => 'code#recode'
   match 'my_school' => 'my_school/main#index'
   namespace :my_school do
+    resources :dean_emails
     resources :read_users do
       collection do
         get :load_read_users
@@ -59,6 +60,10 @@ School::Application.routes.draw do
         get :admissions_information
         get :show_one_new
         get :show_new_list
+        get :dean_email
+        get :dean_email_list
+        post :dean_email
+        post :create_dean_email
       end
     end
     resources :virtual_squads  do 

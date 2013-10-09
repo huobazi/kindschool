@@ -277,6 +277,14 @@
     height_level: "b"
     sequence: 626
     operate_id: 11000
+  - id: 66000
+    name: "园长信箱"
+    number: 66000
+    url: "/my_school/dean_emails"
+    title: "园长信箱"
+    height_level: "b"
+    sequence: 626
+    operate_id: 11100
 
 - id: 80000
   number: 80000

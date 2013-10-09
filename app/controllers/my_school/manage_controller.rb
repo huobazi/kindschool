@@ -12,14 +12,14 @@ class  MySchool::ManageController < MySchool::BaseController
   end
   
   def check_operates
-     if  user =  current_user
+    if  user =  current_user
       if operate = Operate.where(:controller=>controller_path,:action=>action_name).first#(:conditions => ["controller = ? and action like ?", controller_path, "%[#{action_name}]%"])   
-       unless  user.operates.include?(operate)
-         flash[:notice] = "您没有权限访问"
-         redirect_to my_school_home_index_path
-       end
-     end
-     end
+        unless  user.operates.collect(&:id).include?(operate.id)
+          flash[:notice] = "您没有权限访问"
+          redirect_to my_school_home_index_path
+        end
+      end
+    end
   end
 
   def choose_role
