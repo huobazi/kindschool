@@ -28,7 +28,16 @@
         <% end %>
         </p>
         <p class="info"><span class="author"><%= @topic.creater.try(:name) %></span>&nbsp;发表于&nbsp;<span><%= @topic.created_at.to_long_datetime %></span></p>
-        <div class="content"><%= simple_format @topic.content %></div>
+        <div class="content"><%= simple_format @topic.content %>
+        <% unless @topic.appurtenances.blank? %>
+            <div >
+                <span>已上传附件:</span>
+               <%(@topic.appurtenances || []).each do |app|%>
+               <p><%=link_to app.file_name,app.avatar_url,:style=>"color:blue"%></p>
+               <%end%>
+            </div>
+          <% end %>
+        </div>
       </li>
 
     </ul>
