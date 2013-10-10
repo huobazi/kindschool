@@ -32,7 +32,7 @@ class MySchool::MainController < MySchool::BaseController
     if @kind 
       root_showcase = @kind.page_contents.find_by_number("official_website_feature") 
       if root_showcase && !root_showcase.content_entries.blank?
-       @content_entries = root_showcase.content_entries
+        @content_entries = root_showcase.content_entries
       end
     end
   end
@@ -42,13 +42,13 @@ class MySchool::MainController < MySchool::BaseController
     if @kind 
       root_showcase = @kind.page_contents.find_by_number("official_website_about_us") 
       if root_showcase && !root_showcase.content_entries.blank?
-       if content_entries = root_showcase.content_entries
-         @entry = content_entries.find_by_number("official_website_about_us_content")
-         @entry_title = content_entries.find_by_number("official_website_about_us_title")
-         @entry_img = content_entries.find_by_number("official_website_about_us_img")
-         @entry_top = content_entries.find_by_number("official_website_about_us_img_top")
-         @entry_bottom = content_entries.find_by_number("official_website_about_us_img_bottom")
-       end
+        if content_entries = root_showcase.content_entries
+          @entry = content_entries.find_by_number("official_website_about_us_content")
+          @entry_title = content_entries.find_by_number("official_website_about_us_title")
+          @entry_img = content_entries.find_by_number("official_website_about_us_img")
+          @entry_top = content_entries.find_by_number("official_website_about_us_img_top")
+          @entry_bottom = content_entries.find_by_number("official_website_about_us_img_bottom")
+        end
       end
     end
   end
@@ -79,15 +79,21 @@ class MySchool::MainController < MySchool::BaseController
   def dean_email
     @dean_email = DeanEmail.new
   end
+  
   #创建院长发邮件
   def create_dean_email
-    @dean_email = DeanEmail.new(params[:dean_email])
-    @dean_email.kindergarten_id = @kind.id
-    if @dean_email.save
-      flash[:notice] = "邮件发送成功，请等待园长查收邮件后给您回复。"
-      redirect_to :action => "dean_email_list"
+    if @kind.has_choose_operate?(11100)
+      @dean_email = DeanEmail.new(params[:dean_email])
+      @dean_email.kindergarten_id = @kind.id
+      if @dean_email.save
+        flash[:notice] = "邮件发送成功，请等待园长查收邮件后给您回复。"
+        redirect_to :action => "dean_email_list"
+      else
+        render :action=>:dean_email
+      end
     else
-      render :action=>:dean_email
+      flash[:error] = "园长信箱未启用。"
+      redirect_to :action => "index"
     end
   end
 
@@ -95,13 +101,17 @@ class MySchool::MainController < MySchool::BaseController
     @dean_emails = @kind.dean_emails.where(:visible=>1).page(params[:page] || 1).per(10)
   end
   
+  #查看邮件
+  def dean_email_show
+    @dean_email = @kind.dean_emails.find(params[:dean_email_id],:conditions=>"visible=1")
+  end
+
   private
   def find_shrink_record
     if @kind && @kind.shrink_record
-       @keywords = @kind.shrink_record.keywords
-       @description = @kind.shrink_record.description
+      @keywords = @kind.shrink_record.keywords
+      @description = @kind.shrink_record.description
     end 
-
   end
 
 end

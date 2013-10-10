@@ -65,6 +65,7 @@ School::Application.routes.draw do
         get :show_new_list
         get :dean_email
         get :dean_email_list
+        get :dean_email_show
         post :dean_email
         post :create_dean_email
       end

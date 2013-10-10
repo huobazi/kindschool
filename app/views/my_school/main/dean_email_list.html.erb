@@ -1,6 +1,10 @@
 <div class="admissions_information">
   <div class="admissions_info_title">
-    <h2>园长邮箱 <%= link_to '发送新邮件',url_for(:controller=>"/my_school/main",:action=>"dean_email"),:class=>"btn btn-large btn-primary",:style=>"float:right;" %></h2>
+    <h2>园长邮箱 
+      <% if @kind.has_choose_operate?(11100) %>
+        <%= link_to '发送新邮件',url_for(:controller=>"/my_school/main",:action=>"dean_email"),:class=>"btn btn-large btn-primary",:style=>"float:right;" %>
+      <% end %>
+    </h2>
     <% if flash.any? %>
       <div id="flash-messages">
         <% if flash[:notice] %>
@@ -37,7 +41,7 @@
     <% end %>
   </div>
   <div class="admissions_info_content">
-    <div class="work_list">
+    <div class="work_main_list">
       <% unless @dean_emails.blank? %>
         <table class="table table-striped table-hover">
           <tr>
@@ -48,11 +52,11 @@
           </tr>
           <% @dean_emails.each do |dean_email| %>
             <tr>
-              <td><%= dean_email.username%></td>
+              <td><%= dean_email.user_name%></td>
               <td><%=dean_email.title %></td>
               <td><%=dean_email.try(:created_at).try(:to_short_datetime) %></td>
               <td>
-                <%= link_to '查看',"###"%>
+                <%= link_to '查看',url_for(:action=>:dean_email_show,:dean_email_id=>dean_email.id),:class=>"main_link"%>
               </td>
             </tr>
           <% end %>

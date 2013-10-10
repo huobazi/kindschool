@@ -15,20 +15,28 @@
         </div>
       </div>
       <ul class="work_action">
+        <% if choose_operate_show("my_school/dean_emails/destroy") %>
         <li>
-          <a href="/" title="删除" id="destroy_multiple">
+          <a href="javascript: void(0);" title="删除" id="destroy_multiple">
             <div class="work_action_delete">
             </div>
             <div class="work_action_delete_move">
             </div>
           </a>
         </li>
+        <% end %>
       </ul>
     </div>
-    <div class="search_form">
-      <%= form_tag '/my_school/dean_emails' , :method=>"get" do %>
+    <div class="search_form_s">
+      <%= form_tag "/my_school/dean_emails", :method=>"get" do %>
         <b>状态：</b>
-        <%= select_tag("dean_emails[status_equals]", options_for_select([["全部",""],["已回复",1],["新建",0]],(params[:dean_emails].blank? ? "" : params[:dean_emails][:status_equals])),:style=>"width:100px;margin-top: 10px;") %>
+        <%= select_tag("dean_emails[status_equals]", options_for_select([["全部",""],["已回复",1],["未回复",0]],(params[:dean_emails].blank? ? "" : params[:dean_emails][:status_equals])),:style=>"width:100px;margin-top: 10px;") %>
+        <b>公布：</b>
+        <%= select_tag("dean_emails[visible_equals]", options_for_select([["全部",""],["已公布",1],["未公布",0]],(params[:dean_emails].blank? ? "" : params[:dean_emails][:visible_equals])),:style=>"width:100px;margin-top: 10px;") %>
+        <b>发信人：</b>
+        <%= text_field :dean_emails,:user_name_like,:style=>"width:100px;margin:0;" ,:value=>"#{params[:dean_emails][:user_name_like] if params[:dean_emails] }"  %>
+        <b>标题：</b>
+        <%= text_field :dean_emails,:title_like,:style=>"width:100px;margin:0;" ,:value=>"#{params[:dean_emails][:title_like] if params[:dean_emails] }"  %>
         <%= submit_tag "搜索", :class => "btn btn-primary"%>
       <%end%>
     </div>
@@ -38,28 +46,27 @@
           <%= form_tag my_school_dean_email_path(@dean_emails), :method=> :delete, :id => "destroy_multi_form" do %>
             <tr>
               <th><input type="checkbox" name="" value="" alt="全选" id="check_all"/>&nbsp;<label style="display: inline;font-size: 13px;" for="check_all" /></th>
-              <th>发送人</th>
+              <th>发信人</th>
               <th>标题</th>
               <th>发布时间</th>
-              <th>回复状态</th>
+              <th>状态</th>
+              <th>公布</th>
               <th>操作</th>
-              <th></th>
             </tr>
             <% @dean_emails.each do |dean_email| %>
               <tr>
-                <td><input id="dean_email_<%= dean_email.id %>" class="check" name="id[]" type="checkbox" value="<%= dean_email.id %>" /></td>
+                <td><input id="dean_email_<%= dean_email.id %>" class="check" name="dean_email[]" type="checkbox" value="<%= dean_email.id %>" /></td>
                 <td><%= dean_email.user_name %></td>
                 <td><%= link_to "#{dean_email.title}",:action=>:show,:id=>dean_email.id %></td>
                 <td><%= dean_email.created_at ? dean_email.created_at.to_short_datetime : "" %></td>
-                <td><%=dean_email.return_content.blank? ? "未回复" : "已回复" %></td>
+                <td><%=dean_email.status_label %></td>
+                <td><%=dean_email.visible_label %></td>
                 <td class="option">
                   <%if action_name=="index"%>
                     <%= link_to "查看",:action=>:show,:id=>dean_email.id %>
                   <%else%>
                     <%= link_to "查看",:action=>:draft_show,:id=>dean_email.id %>
                   <%end%>
-                </td>
-                <td>
                 </td>
               </tr>
             <% end %>
@@ -76,10 +83,10 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-
     $("#destroy_multiple").click(function(){
-      $("#destroy_multi_form").submit();
-      return false;
+      if (confirm('您确定删除选中的信件吗')) {
+        $("#destroy_multi_form").submit();
+      }
     });
   });
 </script>

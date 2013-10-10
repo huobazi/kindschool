@@ -11,4 +11,24 @@ class DeanEmail < ActiveRecord::Base
   validates :content, :presence => true, :length => {:maximum=> 400}
   validates :return_content, :length => {:maximum=> 400}
 
+  before_save :load_status
+
+  STATUS_DATA = {"0"=>"未回复","1"=>"已回复"}
+  VISIBLE_DATA = {"false"=>"未公布","true"=>"已公布"}
+
+  def status_label
+    DeanEmail::STATUS_DATA[self.status.to_s]
+  end
+  def visible_label
+    DeanEmail::VISIBLE_DATA[self.visible.to_s]
+  end
+
+  def load_status
+    if self.return_content.blank?
+      self.status = 0
+    else
+      self.status = 1
+    end
+  end
+
 end

@@ -24,26 +24,6 @@
         </div>
       </div>
       <ul class="work_action">
-        <% if choose_operate_show("my_school/dean_emails/update") %>
-        <li>
-          <a href="<%=url_for(:controller=>"/my_school/dean_emails",:action=>:edit,:id=>@dean_email.id)%>" title="编辑">
-            <div class="work_action_edit">
-            </div>
-            <div class="work_action_edit_move">
-            </div>
-          </a>
-        </li>
-        <% end %>
-        <% if choose_operate_show("my_school/dean_emails/destroy") %>
-        <li>
-          <%= link_to(url_for(:controller=>"/my_school/dean_emails",:action=>:destroy,:id=>@dean_email.id),:method=>:delete, :confirm => "您确定删除该信件吗?") do %>
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
-          <% end %>
-        </li>
-        <% end %>
         <li>
           <a href="<%=url_for(:controller=>"/my_school/dean_emails",:action=>:index, :params=> session[:return_to])%>" title="返回">
             <div class="work_action_return">
@@ -93,17 +73,24 @@
             <div class="control-group">
               <label class="control-label">时间：<%=@dean_email.try(:created_at).try(:to_short_datetime)%></label>
             </div>
-            <div class="control-group">
-              <label class="control-label">回复信件：</label>
-              <div class="controls">
-                <label class="show_label">
-                  <%=@dean_email.return_content.blank? ? "未回复" : @dean_email.return_content%>
-                </label>
+            <%= simple_form_for([:my_school,@dean_email], :validate => true) do |f| %>
+              <div class="control-group">
+                <label class="control-label">回复信件：</label>
+                <div class="controls">
+                  <label class="show_label">
+                    <%= f.text_area(:return_content,:size=>"20x5",:class => "span5") %>
+                  </label>
+                </div>
               </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">公布：<%= @dean_email.visible ? "已公布" : "未公布" %> </label>
-            </div>
+              <div class="control-group">
+                <label class="control-label">公布：<%= f.check_box :visible %></label>
+              </div>
+              <div class="control-group">
+                <div class="controls">
+                  <%= f.submit('保存',:class=>"btn btn-large btn-primary") %>
+                </div>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
