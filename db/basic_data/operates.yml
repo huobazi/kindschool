@@ -1901,6 +1901,59 @@ news_destroy:
   protocol: ""
   <<: *DEFAULTS
 
+
+dean_emails_index:
+  id: 11100
+  parent_id: 2
+  name: "园长信箱"
+  level: 2
+  sequence: 1
+  note: "园长信箱"
+  controller: "my_school/dean_emails"
+  action: "index"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
+dean_emails_update:
+  id: 11101
+  parent_id: 2
+  name: "园长信箱回复"
+  level: 2
+  sequence: 1
+  note: "园长信箱回复"
+  controller: "my_school/dean_emails"
+  action: "update"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+  
+dean_emails_show:
+  id: 11102
+  parent_id: 2
+  name: "园长信箱查看"
+  level: 2
+  sequence: 1
+  note: "园长信箱查看"
+  controller: "my_school/dean_emails"
+  action: "show"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+  
+dean_emails_destroy:
+  id: 11103
+  parent_id: 2
+  name: "园长信箱删除"
+  level: 2
+  sequence: 1
+  note: "园长信箱删除"
+  controller: "my_school/dean_emails"
+  action: "destroy"
+  params: ""
+  protocol: ""
+  <<: *DEFAULTS
+
 student_info_execl:
   id: 12000
   parent_id: 5

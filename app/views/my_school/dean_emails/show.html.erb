@@ -1,0 +1,112 @@
+<div class="show_publicity">
+  <img src="/t/colorful/small_publicity.jpg" alt="展示图"/>
+</div>
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>
+          园长信箱
+        </label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li>
+              <%= link_to "园长信箱", my_school_dean_emails_path %>
+            </li>
+            <li>/</li>
+            <li>查看信件</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <% if choose_operate_show("my_school/dean_emails/update") %>
+        <li>
+          <a href="<%=url_for(:controller=>"/my_school/dean_emails",:action=>:edit,:id=>@dean_email.id)%>" title="编辑">
+            <div class="work_action_edit">
+            </div>
+            <div class="work_action_edit_move">
+            </div>
+          </a>
+        </li>
+        <% end %>
+        <% if choose_operate_show("my_school/dean_emails/destroy") %>
+        <li>
+          <%= link_to(url_for(:controller=>"/my_school/dean_emails",:action=>:destroy,:id=>@dean_email.id),:method=>:delete, :confirm => "您确定删除该信件吗?") do %>
+            <div class="work_action_delete">
+            </div>
+            <div class="work_action_delete_move">
+            </div>
+          <% end %>
+        </li>
+        <% end %>
+        <li>
+          <a href="<%=url_for(:controller=>"/my_school/dean_emails",:action=>:index, :params=> session[:return_to])%>" title="返回">
+            <div class="work_action_return">
+            </div>
+            <div class="work_action_return_move">
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="work_form">
+      <div class="form_div">
+        <div class="show" id="growth_record">
+          <div class="content">
+            <div class="control-group">
+              <div class="left_table">
+                <div class="controls">
+                  <label class="show_label">
+                    发信人：<%=@dean_email.user_name%>
+                  </label>
+                </div>
+              </div>
+              <div class="right_table">
+                <div class="controls">
+                  <label class="show_label">
+                    Email：<%=@dean_email.user_email%>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">标题：</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%=@dean_email.title%>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">内容：</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%=@dean_email.content%>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">时间：<%=@dean_email.try(:created_at).try(:to_short_datetime)%></label>
+            </div>
+            <div class="control-group">
+              <label class="control-label">回复信件：</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%=@dean_email.return_content.blank? ? "未回复" : @dean_email.return_content%>
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">公布：<%= @dean_email.visible ? "已公布" : "未公布" %> </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

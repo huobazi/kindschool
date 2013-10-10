@@ -1,0 +1,55 @@
+<div class="admissions_information">
+  <div class="admissions_info_title">
+    <h2>园长邮箱</h2>
+  </div>
+  <div class="admissions_info_content">
+    <div class="control-group">
+      <div class="left_table">
+        <div class="controls">
+          <label class="show_label">
+            发信人：<%=@dean_email.user_name%>
+          </label>
+        </div>
+      </div>
+      <div class="right_table">
+        <div class="controls">
+          <label class="show_label">
+            时间：<%=@dean_email.try(:created_at).try(:to_short_datetime)%>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">标题：</label>
+      <div class="controls">
+        <label class="show_label">
+          <%=@dean_email.title%>
+        </label>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">内容：</label>
+      <div class="controls">
+        <label class="show_label">
+          <%=@dean_email.content%>
+        </label>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">园长回复：</label>
+      <div class="controls">
+        <label class="show_label">
+          <%=@dean_email.return_content.blank? ? "未回复" : @dean_email.return_content%>
+        </label>
+      </div>
+    </div>
+    <br/>
+    <div style="text-align: center;">
+      <% if @kind.has_choose_operate?(11100) %>
+        <%= link_to '发送新邮件',url_for(:controller=>"/my_school/main",:action=>"dean_email"),:class=>"btn btn-large btn-primary" %>
+      <% end %>
+      <%= link_to '返回',url_for(:controller=>"/my_school/main",:action=>"dean_email_list"),:class=>"btn btn-large btn-info"%>
+    </div>
+    <br/>
+  </div>
+</div>

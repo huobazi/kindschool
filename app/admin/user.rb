@@ -78,7 +78,7 @@ ActiveAdmin.register User do
     default_actions
   end
 
-
+  filter :kindergarten
   filter :email
   filter :name
   filter :login
