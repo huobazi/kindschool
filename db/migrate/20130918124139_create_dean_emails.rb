@@ -13,5 +13,6 @@ class CreateDeanEmails < ActiveRecord::Migration
       t.boolean :visible , :default => false  #是否显示
       t.timestamps
     end
+    
   end
 end
