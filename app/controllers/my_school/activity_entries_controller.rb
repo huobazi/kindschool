@@ -10,7 +10,7 @@ class MySchool::ActivityEntriesController < MySchool::ManageController
     @activity = Activity.find_by_id(params[:activity_entry][:activity_id])
 
     if @activity.nil?
-      flash[:error] = "法非操作"
+      flash[:error] = "非法操作"
       if params[:mark] == "interest_activities"
         redirect_to my_school_interest_activities_path
       else
@@ -19,7 +19,7 @@ class MySchool::ActivityEntriesController < MySchool::ManageController
       return
     end
 
-    if @activity.tp
+    if @activity.tp.presence == 1
 
       if Time.now.utc > @activity.end_at
         flash[:error] = "该兴趣讨论已经结束,不能回复"
