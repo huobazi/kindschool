@@ -3,14 +3,14 @@
         <ul class="slide-pic">
           <%if @img.blank?%>
           <li class="cur">
-              <a href="###" target="_blank">
+              <a  href="/t/colorful/483-5552.jpg" class="fancybox"  title="宣传图片">
                  <img src="/t/colorful/483-5552.jpg" alt=""/>
                </a>
              </li>
           <%end%>
           <%@img.each do |img|%>
           <li class="cur">
-            <a style="height: 177px;" href="<%= img.try(:page_img).public_filename  %>" class="fancybox"  title="宣传图片">
+            <a  href="<%= img.try(:page_img).public_filename  %>" class="fancybox"  title="宣传图片">
                  <img src="<%=img.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : img.try(:page_img).public_filename %>" alt=""/>
                </a>
              </li>
