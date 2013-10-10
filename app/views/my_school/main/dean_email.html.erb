@@ -1,0 +1,19 @@
+<div class="admissions_information">
+  <div class="admissions_info_title">
+    <h2>园长邮箱</h2>
+  </div>
+  <div class="admissions_info_content">
+    <%= simple_form_for @dean_email, :validate => true, :url => {:controller=>"/my_school/main",:action=>:create_dean_email}, :html =>{:class=>"form-horizontal"} do |f| %>
+      <%= f.input :user_name, :validate => true, :required => true,:input_html=>{"data-toggle" => "tooltip", :title => "家长姓名必须填写", :maxlength => "20"} %>
+      <%= f.input :user_email, :validate => true, :required => true,:input_html=>{"data-toggle" => "tooltip", :title => "家长邮箱必须填写", :maxlength => "100"} %>
+      <%= f.input :title, :validate => true, :required => true,:input_html=>{"data-toggle" => "tooltip", :title => "标题必须填写", :maxlength => "200"} %>
+      <%= f.input :content, :validate => true, :required => true,:input_html=>{:class=>"span5",:rows=>8,"data-toggle" => "tooltip", :title => "内容必须填写", :maxlength => "800"} %>
+      <div class="control-group">
+        <div class="controls">
+          <%= f.submit('发送',:class=>"btn btn-large btn-primary", disable_with: "正在提交...") %>
+          <%= link_to '返回',url_for(:controller=>"/my_school/main",:action=>"dean_email_list"),:class=>"btn btn-large btn-info" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

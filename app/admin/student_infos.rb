@@ -53,11 +53,10 @@ ActiveAdmin.register StudentInfo do
     column :come_in_at
     default_actions
   end
-
+  filter :kindergarten
   filter :user_name,:as=>:string,:label=>"学生名字"
   filter :squad_name,:as=>:string,:label=>"班级名称"
   #  filter :kindergarten_name,:as=>:string,:label=>"幼儿园名字"
-  filter :kindergarten
 
   form do |f|
     f.inputs "账号信息", :for => [:user, f.object.user || User.new] do |user|

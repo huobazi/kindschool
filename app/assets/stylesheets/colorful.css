@@ -401,6 +401,14 @@ a{
     padding-bottom: 60px;
     border-bottom: 3px #a5c600 solid;
 }
+.login_showcase{
+    float: left;
+    width: 98%;
+    height: 260px;
+    overflow: hidden;
+    padding-bottom: 60px;
+    border-bottom: 3px #a5c600 solid;
+}
 .main {
     height: 100%;
     margin: 0 auto;
@@ -721,13 +729,13 @@ a{
     background-image: url("/t/colorful/interface.png");
     background-position:-138px 0px;
     height: 46px;
-    width: 52px;
+    width: 53px;
 }
 .work_action_delete_move{
     background-image: url("/t/colorful/interface.png");
     background-position: -138px -57px;
     height: 65px;
-    width: 52px;
+    width: 53px;
     display: none;
 }
 .work_action_return{
@@ -837,6 +845,9 @@ a{
 /*===========表格==============*/
 .work_list{
     padding: 20px 20px 20px 45px;
+}
+.work_main_list{
+    padding: 20px 20px 20px 25px;
 }
 .work table.list{
     width: 100%;
@@ -1727,7 +1738,7 @@ ul.feature_list li{
     float: left;
     min-height: 370px;
     _height: 370px;
-    margin: 10px;
+    padding: 10px;
     max-width: 931px;
     overflow: hidden;
     text-align: center;
@@ -2857,4 +2868,8 @@ i.img-icon{
 .ke-dialog .ke-upload-area{
     display: inline-block;
     height: 35px;
+}
+input.flaot_but{
+    float: left;
+    margin: 5px;
 }

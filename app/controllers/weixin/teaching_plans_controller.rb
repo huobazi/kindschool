@@ -3,12 +3,12 @@
 class Weixin::TeachingPlansController < Weixin::ManageController
   def index
     if current_user.get_users_ranges[:tp] == :student
-      @teaching_plans = TeachingPlan.where("squad_id = ? or squad_id is null", current_user.student_info.squad_id).page(params[:page] || 1).per(6)
+      @teaching_plans = @kind.teaching_plans.where("squad_id = ? or squad_id is null", current_user.student_info.squad_id).page(params[:page] || 1).per(6)
     elsif current_user.get_users_ranges[:tp] == :teachers  
-      @teaching_plans = TeachingPlan.where("squad_id in (select squad_id from teachers where staff_id = ?) or squad_id is NULL", current_user.staff.id).page(params[:page] || 1).per(6)
+      @teaching_plans = @kind.teaching_plans.where("squad_id in (select squad_id from teachers where staff_id = ?) or squad_id is NULL", current_user.staff.id).page(params[:page] || 1).per(6)
     else
       if (session[:operates] || []).include?('my_school/teaching_plans/new')
-        @teaching_plans = TeachingPlan.page(params[:page] || 1).per(6)
+        @teaching_plans = @kind.teaching_plans.page(params[:page] || 1).per(6)
       end
     end
   end

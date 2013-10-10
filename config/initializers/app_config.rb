@@ -50,6 +50,9 @@ MENUS ={"home"=>{
  },
    "65000"=>{
     "my_school/news"=>DEFULT_ACTION
+   },
+   "66000"=>{
+    "my_school/dean_emails"=>DEFULT_ACTION
    }
 },
   "personnel"=>{

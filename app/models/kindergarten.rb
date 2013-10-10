@@ -19,7 +19,8 @@ class Kindergarten < ActiveRecord::Base
 
   has_many :users   #所有用户
 
-  has_many :operates
+  has_many :dean_emails
+#  has_many :operates
   has_many :grades,:order=>:sequence  #年级
   has_many :grade_teachers,:through=>:grades, :source => :staff  #年级组长
 
@@ -329,5 +330,11 @@ class Kindergarten < ActiveRecord::Base
     bind_null = self.users.where("(weixin_code is null or weixin_code='')  and (weiyi_code is null or weiyi_code='')").count()
     bind_weiyi_no = self.users.where("weixin_code is not null and weixin_code!='' and (weiyi_code is null or weiyi_code='')").count()
     return {:user_all=>user_all,:woman=>woman,:man=>(user_all - woman),:bind_ok=>bind_ok,:bind_null=>bind_null,:bind_weiyi_no=>bind_weiyi_no,:bind_weixin_no=>(user_all - bind_ok - bind_null - bind_weiyi_no)}
+  end
+
+
+  #判断幼儿园是否有某个权限
+  def has_choose_operate?(operate_id)
+    return self.option_operates.collect(&:operate_id).include?(operate_id)
   end
 end
