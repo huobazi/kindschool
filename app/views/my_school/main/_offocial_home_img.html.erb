@@ -10,7 +10,7 @@
           <%end%>
           <%@img.each do |img|%>
           <li class="cur">
-              <a href="###" target="_blank">
+            <a style="height: 177px;" href="<%= img.try(:page_img).public_filename  %>" class="fancybox"  title="宣传图片">
                  <img src="<%=img.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : img.try(:page_img).public_filename %>" alt=""/>
                </a>
              </li>
@@ -30,3 +30,7 @@
             </ul>
         </div>
     </div>
+<script>
+<!--
+$(".fancybox").fancybox();
+</script>
