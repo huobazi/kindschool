@@ -16,6 +16,11 @@ class MySchool::UsersController < MySchool::ManageController
       redirect_to :action => :index,:controller=>"/my_school/home"
       return
     end
+    root_showcase = @kind.page_contents.find_by_number("official_website_home")
+      if root_showcase && !root_showcase.content_entries.blank?
+        @teacher_infos = root_showcase.content_entries.where(:number=>"official_home_teacher")
+        @img= root_showcase.content_entries.where(:number=>'official_home_pub_img')     
+      end
     begin
       if request.post?
         if session[:login_error_count]  && session[:login_error_count] > 2
