@@ -1,6 +1,9 @@
 #encoding:utf-8
 #学员菜谱
 class MySchool::CookBooksController < MySchool::ManageController
+
+  before_filter :student_can_not_destroy, :only => :destroy
+
   def index
     @cook_books = @kind.cook_books.search(params[:cook_book]).page(params[:page] || 1).per(10).order("created_at DESC")
     all_roles = ['admin','principal','vice_principal','assistant_principal','park_hospital']
