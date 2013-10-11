@@ -24,7 +24,7 @@
         <%end%>
          <%if choose_operate_show('my_school/news/destroy')%>
         <li>
-          <a href="/" title="删除" id="destroy_multiple">
+          <a href="javascript: void(0);" title="删除" id="destroy_multiple">
             <div class="work_action_delete">
             </div>
             <div class="work_action_delete_move">
@@ -43,7 +43,9 @@
               </label>
               <a class="hidden-wrap" href="javascript: void(0)" rel="nofollow"><i class="img-icon icon-remove-circle pull-right"></i></a>
             </div>
-            <%= render partial: "news", collection: @news %>
+            <%= form_tag my_school_news_path(@news), method: :delete, :id => "destroy_multi_form" do %>
+              <%= render partial: "news", collection: @news %>
+            <% end %>
           <%= paginate @news  %>
         <% else %>
           暂无新闻
@@ -55,8 +57,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
   $("#destroy_multiple").click(function(){
+    if (confirm('您确定删除选中的新闻吗')) {
       $("#destroy_multi_form").submit();
-      return false;
+    }
   });
 });
 </script>
