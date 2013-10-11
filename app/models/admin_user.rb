@@ -5,9 +5,9 @@ class AdminUser < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, 
     :recoverable, :rememberable, :trackable, :validatable
-
+  attr_accessor :auth_code
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me,:role_name
+  attr_accessible :email, :password, :password_confirmation, :remember_me,:role_name#,:auth_code
   # attr_accessible :title, :body
   
   ROLE_NAME_DATA = {"admin"=>"管理员","operation"=>"运营","bazaar"=>"市场","member"=>"成员"}

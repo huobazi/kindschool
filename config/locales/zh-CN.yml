@@ -294,6 +294,7 @@ zh-CN:
         last_sign_in_at: "最后登录时间"
         sign_in_count: "登录次数"
         password: "密码"
+        auth_code: "验证码"
         password_confirmation: "确认密码"
         role_name: "所属角色"
         role_name_label: "所属角色"

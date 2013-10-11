@@ -1,6 +1,6 @@
 <div class="login" id="longin_form_head">
   <div class="logo" >
-    <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" alt="Logo" class="logo_vertical png_bg"/>
+    <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename(:middle) : '/t/colorful/logo.png' %>" alt="Logo" class="logo_vertical png_bg"/>
     <% if @kind %>
       <span id="kind_name"><%= @kind.name %></span>
       <script type="text/javascript">
@@ -113,7 +113,7 @@
                 </label>
               <% else %>
                 <label class="notice_info">
-                  <a href="#login_course" id="link_course">查看账号激活指南</a>&nbsp;&nbsp;<a href="/doc/guides/<%= @kind.number %>_guides.pdf">下载指南(pdf格式)</a>
+                  <a href="#login_course" id="link_course">查看账号激活指南</a>&nbsp;&nbsp;<a href="<%= download_guides_pdf %>">下载指南(pdf格式)</a>
                 </label>
               <% end %>
             </div>

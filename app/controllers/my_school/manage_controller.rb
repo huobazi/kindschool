@@ -5,6 +5,16 @@ class  MySchool::ManageController < MySchool::BaseController
   before_filter :login_required,:check_operates,:choose_role, :except => [:login,:signup,:error_notice] #if action_name != 'login'#:auth,
 
   layout proc{ |controller| get_layout }
+
+  protected
+  def student_can_not_destroy
+    if current_user.get_users_ranges[:tp] == :student
+      flash[:error] = "学员没有权限删除"
+      redirect_to :action => :index
+      return
+    end
+  end
+
   private
   #设置模板
   def get_layout

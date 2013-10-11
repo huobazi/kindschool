@@ -2,7 +2,7 @@
   <div class="admissions_info_title">
     <h2>园长邮箱 
       <% if @kind.has_choose_operate?(11100) %>
-        <%= link_to '发送新邮件',url_for(:controller=>"/my_school/main",:action=>"dean_email"),:class=>"btn btn-large btn-primary",:style=>"float:right;" %>
+        <%= link_to '发送新信件',url_for(:controller=>"/my_school/main",:action=>"dean_email"),:class=>"btn btn-large btn-primary",:style=>"float:right;" %>
       <% end %>
     </h2>
     <% if flash.any? %>

@@ -3,7 +3,6 @@
 #demo {
 background: #FFF;
 overflow:hidden;
-border: 1px dashed #CCC;
 width: 90%;
 height: 177px;
 }
@@ -61,7 +60,7 @@ height: 177px;
    </div>
   </div>
 <script>
-<!--
+$(function() {
 $(".fancybox").fancybox();
 var speed=20;
 var tab=document.getElementById("demo");
@@ -78,7 +77,7 @@ tab.scrollLeft++;
 var MyMar=setInterval(Marquee,speed);
 tab.onmouseover=function() {clearInterval(MyMar)};
 tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
--->
+});
 </script>
 </div>
 </div>

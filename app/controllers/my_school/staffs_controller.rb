@@ -5,7 +5,7 @@ class  MySchool::StaffsController < MySchool::ManageController
     store_search_location
     if request.xhr?
       @search_record = "staffs"
-      @search_record_count = @staffs.total
+      @search_record_count = @staffs.total_count
       render "my_school/commons/_search_index.js.erb"
     else
       render "index"

@@ -186,6 +186,14 @@ ActiveAdmin.register Kindergarten do
         end
       end
 
+      #这个地方加一个用户绑定统计
+      div do
+        br
+        panel "幼儿园统计" do  
+          render :partial => "/admin/kindergartens/kindergartens_sas",:locals => { :kind => kind.id }
+        end
+      end
+
 
       div do
         br
@@ -446,6 +454,8 @@ ActiveAdmin.register Kindergarten do
           end
         end
       end
+
+      
 
     end
   end

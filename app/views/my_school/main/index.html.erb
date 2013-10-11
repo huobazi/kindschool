@@ -5,7 +5,7 @@
   <div style="background-color: white; float: left; width: 100%;">
     <div class="official_home_img">
       <%#=render "offocial_home_img"%>
-      <%=render "offocial_home_rolling_img"%>
+      <%=render :partial =>"my_school/main/offocial_home_rolling_img",:locals => { :image_type => "origin" } %>
      <!--  <img src="<%#=@img.try(:first).try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @img.first.try(:page_img).public_filename %>" alt=""/> -->
     </div>
     <div class="official_foot">

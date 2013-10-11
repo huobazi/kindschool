@@ -1,6 +1,7 @@
 #encoding:utf-8
 class MySchool::UsersController < MySchool::ManageController
 
+  include MySchool::UsersHelper
 
   protect_from_forgery :except=>:signup
   #提示界面
