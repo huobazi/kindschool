@@ -447,6 +447,13 @@ ActiveAdmin.register Kindergarten do
         end
       end
 
+      div do
+        br
+        panel "幼儿园统计" do  
+          render :partial => "/admin/dashboard/weixin_users"
+        end
+      end
+
     end
   end
 
