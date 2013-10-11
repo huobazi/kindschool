@@ -89,6 +89,7 @@ a{
 }
 .logo{
     width: 95%;
+    padding-top: 3px;
     padding-left: 15px;
     padding-bottom: 20px;
 }
@@ -1392,6 +1393,7 @@ a.album_a{
     margin-bottom: 25px;
     position: relative;
     width: 238px;
+    float: left;
 }
 .album_window{
     background-image: url("/t/colorful/album_window.png");
@@ -1438,10 +1440,14 @@ a.album_a .album_img img{
 .photo_style .title {
     margin-top: 3px;
     font-size: 18px;
+    width: 100%;
+    float: left;
 }
 .photo_style .title .name {
     color: #222;
     word-wrap: break-word;
+}
+.actions_info{
 }
 .photo_style .actions {
     display: inline-block;
