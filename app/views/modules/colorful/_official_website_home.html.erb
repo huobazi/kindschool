@@ -98,7 +98,7 @@
    <%entry=@content_entries.where(:number=>"official_home_pub_img") %>
     <%if entry.size<5%>
       <div class="control-group">
-         <label class="control-label">首页宣传图片上传<br/>(2-5张滑动)</label>
+         <label class="control-label">首页滑动图片上传<br/>(2-5张滑动)</label>
         <div class="controls">
          <label class="show_label">
            <%= file_field_tag 'home_publicity_img', :class => 'profile_input required' %>
