@@ -10,11 +10,11 @@
             var kind_color = ["#EF554C","#f6ab1d","violet","#00c0f6","#a4c500","#f7a200"];
             $("#kind_name span").each(function(index, Element){
               var color = kind_color[index%kind_color.length];
-              $(this).css("color",color)
-            })
+              $(this).css("color",color);
+            });
           }
           load_color();
-        })
+        });
       </script>
     <% end %>
   </div>
@@ -175,4 +175,24 @@
       $("#login_course").show();
     })
   })
+</script>
+<script  type="text/javascript">
+  $(function() {
+    $(".fancybox").fancybox();
+    var speed=20;
+    var tab=document.getElementById("demo");
+    var tab1=document.getElementById("demo1");
+    var tab2=document.getElementById("demo2");
+    tab2.innerHTML=tab1.innerHTML;
+    function Marquee(){
+      if(tab2.offsetWidth-tab.scrollLeft<=0)
+        tab.scrollLeft-=tab1.offsetWidth
+      else{
+        tab.scrollLeft++;
+      }
+    }
+    var MyMar=setInterval(Marquee,speed);
+    tab.onmouseover=function() {clearInterval(MyMar)};
+    tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
+  });
 </script>
