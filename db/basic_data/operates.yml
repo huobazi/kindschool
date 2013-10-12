@@ -1558,6 +1558,17 @@ teaching_plan_destory:
   action: "destroy"
   protocol: ""
   <<: *DEFAULTS
+teaching_plan_show:
+  id: 8206
+  parent_id: 8
+  name: "展示教学计划"
+  level: 2
+  sequence: 0
+  note: "展示教学计划"
+  controller: "my_school/teaching_plans"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
 
 album_record_index:
   id: 9000
@@ -1619,13 +1630,13 @@ album_record_create:
   protocol: ""
   <<: *DEFAULTS
 
-album_record_create:
+album_record_edit:
   id: 9005
   parent_id: 9
-  name: "照片集锦_创建"
+  name: "照片集锦_编辑"
   level: 2
   sequence: 0
-  note: "照片集锦_创建"
+  note: "照片集锦_编辑"
   controller: "my_school/albums"
   action: "edit"
   protocol: ""
@@ -1663,6 +1674,17 @@ album_entry_index:
   note: "照片集锦_管理相册的照片"
   controller: "my_school/albums"
   action: "entry_index"
+  protocol: ""
+  <<: *DEFAULTS
+album_record_edit:
+  id: 9009
+  parent_id: 9
+  name: "照片集锦_更新"
+  level: 2
+  sequence: 0
+  note: "照片集锦_编辑"
+  controller: "my_school/albums"
+  action: "update"
   protocol: ""
   <<: *DEFAULTS
 
