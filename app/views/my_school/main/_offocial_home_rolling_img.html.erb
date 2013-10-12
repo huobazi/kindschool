@@ -45,7 +45,7 @@
           <% if entry.page_img %>
             <a  href="<%= entry.page_img.public_filename %>" class="fancybox"  title="<%= entry.title %>">
               <%if image_type == "middle"%>
-                <img src="<%= entry.page_img.public_filename(:middle) %>" alt="" height="370"/>
+                <img src="<%= entry.page_img.public_filename(:thumb) %>" alt="" height="370"/>
               <%else%>
                 <img src="<%= entry.page_img.public_filename %>" alt="" height="370"/>
               <%end%>
