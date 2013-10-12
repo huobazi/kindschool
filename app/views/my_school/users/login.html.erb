@@ -103,7 +103,7 @@
             <% end %>
             <div class="login_submit_div">
               <div class="login_submit">
-                <a href="###" class="button_xun">&nbsp;</a>
+                <a href="###" class="button_xun" id="button_xun">&nbsp;</a>
               </div>
             </div>
             <div class="error_div">
@@ -153,7 +153,7 @@
 
 <script type="text/javascript">
   $(function(){
-    $(".button_xun").click(function(){
+    $(".button_xun,#button_xun").click(function(){
       $("#longin_form").submit();
     })
     $("#longin_form").keydown(function(e){
