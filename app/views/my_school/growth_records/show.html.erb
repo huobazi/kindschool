@@ -67,7 +67,7 @@
               </a>
             <% end %>
           <% else %>
-            <% if choose_operate_show("my_school/garden_growth_records/garden") %>
+            <% if choose_operate_show("my_school/garden_growth_records/edit") %>
               <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:edit,:id=>@growth_record.id)%>" title="编辑">
                 <div class="work_action_edit">
                 </div>
