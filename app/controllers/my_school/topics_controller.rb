@@ -189,7 +189,7 @@ class  MySchool::TopicsController < MySchool::ManageController
     end
 
     if params[:visible].presence == "all"
-      params[:topic][:squad_id] = "NULL"
+      params[:topic][:squad_id] = nil
     end
     if current_user.get_users_ranges[:tp] == :student
       @topic = @kind.topics.find_by_id_and_creater_id(params[:id], current_user.id)
