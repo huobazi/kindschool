@@ -10,7 +10,7 @@ class PageImg < ActiveRecord::Base
     :jpeg_quality=>75,
     :storage => :file_system,
     :max_size => 10.megabytes,
-    :thumbnails => { :thumb => '206x206>', :tiny => '103x103>',:middle=>'239x177>' },
+    :thumbnails => { :thumb => '206x206>', :tiny => '103x103>',:middle=>'239x177>' ,:big=>'400x400>'},
     :processor => :MiniMagick#:Rmagick
   #:resize_to => '640x360>',
   #    :thumbnails => { :thumb => '140x105>' }

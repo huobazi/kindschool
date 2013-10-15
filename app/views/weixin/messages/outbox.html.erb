@@ -7,8 +7,8 @@
     发件箱
   </div>
   <div class="message_list">
-    <div style="text-align: center;padding-top: 5px;">
-      <%= link_to "发消息", new_weixin_message_path, :class => "btn btn-warning has-btn-new btn-large" %>
+    <div class="btn-new-wrap">
+      <%= link_to "发消息", new_weixin_message_path, :class => "btn btn-warning btn-large btn-block" %>
     </div>
     <ul class="data_list">
       <% if @messages.blank? %>
