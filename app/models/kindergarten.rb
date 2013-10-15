@@ -79,6 +79,7 @@ class Kindergarten < ActiveRecord::Base
   has_many :teaching_plans
 
   has_many :sys_logs
+  has_many :access_status
 
   validates :login_note, :length=>{:maximum=>120 }
 

@@ -8,6 +8,7 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
     else
       @growth_records = @kind.growth_records.where(:tp => 0).page(params[:page] || 1).per(10).order("created_at DESC")
     end
+    AccessStatu.update_unread(@kind, "GrowthRecord", current_user)
   end
 
   def delete_img

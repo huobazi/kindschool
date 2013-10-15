@@ -12,6 +12,7 @@ class Weixin::ActivitiesController < Weixin::ManageController
     else
       @activities = @kind.activities.where(:tp => 0).page(params[:page] || 1).per(10).order("created_at DESC")
     end
+    AccessStatu.update_unread(@kind, "Activity", current_user)
   end
 
   def show
@@ -124,7 +125,7 @@ class Weixin::ActivitiesController < Weixin::ManageController
   def update
     if params[:activity].present?
       if params[:visible].presence == "all"
-        params[:activity][:squad_id] = "NULL"
+        params[:activity][:squad_id] = nil
       else
         if params[:activity][:squad_id].present?
           if current_user.get_users_ranges[:tp] == :teachers

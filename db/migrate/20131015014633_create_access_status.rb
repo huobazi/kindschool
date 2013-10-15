@@ -4,6 +4,7 @@ class CreateAccessStatus < ActiveRecord::Migration
       t.integer :user_id
       t.string :module_name
       t.timestamp :accessed_at
+      t.integer :kindergarten_id
 
       t.timestamps
     end

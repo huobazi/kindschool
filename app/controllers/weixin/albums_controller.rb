@@ -9,6 +9,7 @@ class Weixin::AlbumsController  < Weixin::ManageController
     else
       @albums = @kind.albums.where(:is_show=> 1).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
     end
+    AccessStatu.update_unread(@kind, "Album", current_user)
   end
 
   def grade_class
