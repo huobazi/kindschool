@@ -30,7 +30,7 @@ class Weixin::ApiController < Weixin::BaseController
             :FromUserName=>xml_data[:ToUserName],
             :CreateTime=>Time.now.to_i,
             :MsgType=>"text",
-            :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
+            :Content=>"欢迎关注#{@kind.name} \n #{get_menu} ",
             :FuncFlag=>0
           })
       elsif xml_data[:Event] == "unsubscribe"
@@ -48,7 +48,7 @@ class Weixin::ApiController < Weixin::BaseController
                   :FromUserName=>xml_data[:ToUserName],
                   :CreateTime=>Time.now.to_i,
                   :MsgType=>"text",
-                  :Content=>"#{current_user.name}您好!\n\r #{get_read_new_message}",
+                  :Content=>"#{current_user.name}您好! \n #{get_read_new_message}",
                   :FuncFlag=>0
                 })
             elsif xml_data[:Content] == "2"
@@ -67,7 +67,7 @@ class Weixin::ApiController < Weixin::BaseController
                   :FromUserName=>xml_data[:ToUserName],
                   :CreateTime=>Time.now.to_i,
                   :MsgType=>"text",
-                  :Content=>"#{current_user.name}您好!班级主题活动: \n\r <a href=\"http://#{request.host_with_port}/weixin/activities?#{get_validate_string}\"> 进入家园互动</a>",
+                  :Content=>"#{current_user.name}您好!班级主题活动: \n <a href=\"http://#{request.host_with_port}/weixin/activities?#{get_validate_string}\"> 进入家园互动</a>",
                   :FuncFlag=>0
                 })
             elsif xml_data[:Content] == "4"
@@ -76,7 +76,7 @@ class Weixin::ApiController < Weixin::BaseController
                   :FromUserName=>xml_data[:ToUserName],
                   :CreateTime=>Time.now.to_i,
                   :MsgType=>"text",
-                  :Content=>"#{current_user.name}您好!近期菜谱: \n\r #{get_read_cook_books}",
+                  :Content=>"#{current_user.name}您好!近期菜谱: \n #{get_read_cook_books}",
                   :FuncFlag=>0
                 })
             elsif xml_data[:Content] == "5"
@@ -87,7 +87,7 @@ class Weixin::ApiController < Weixin::BaseController
                     :FromUserName=>xml_data[:ToUserName],
                     :CreateTime=>Time.now.to_i,
                     :MsgType=>"text",
-                    :Content=>"#{current_user.name}您好! \n\r 没有相册集锦消息\r\n <a href=\"http://#{request.host_with_port}/weixin?#{get_validate_string}\"> 进入家园互动</a>",
+                    :Content=>"#{current_user.name}您好! \n 没有相册集锦消息 \n <a href=\"http://#{request.host_with_port}/weixin?#{get_validate_string}\"> 进入家园互动</a>",
                     :FuncFlag=>0
                   })
               else
@@ -111,7 +111,7 @@ class Weixin::ApiController < Weixin::BaseController
                   :FromUserName=>xml_data[:ToUserName],
                   :CreateTime=>Time.now.to_i,
                   :MsgType=>"text",
-                  :Content=>"#{current_user.name}您好! \n\r 查看宝宝成长信息\r\n <a href=\"http://#{request.host_with_port}/weixin/garden_growth_records?#{get_validate_string}\"> 点击进入</a>",
+                  :Content=>"#{current_user.name}您好! \n 查看宝宝成长信息 \n <a href=\"http://#{request.host_with_port}/weixin/garden_growth_records?#{get_validate_string}\"> 点击进入</a>",
                   :FuncFlag=>0
                 })
             else
@@ -126,7 +126,7 @@ class Weixin::ApiController < Weixin::BaseController
                       :FromUserName=>xml_data[:ToUserName],
                       :CreateTime=>Time.now.to_i,
                       :MsgType=>"text",
-                      :Content=>"#{current_user.name}您好!\n\r文字记录上传成功，您可以在照片集锦的个人集锦中查看。\n\r点击链接分享到成长记录:\n\r <a href=\"#{url_garden}\">添加到成长记录</a>",
+                      :Content=>"#{current_user.name}您好! \n 文字记录上传成功，您可以在照片集锦的个人集锦中查看。 \n 点击链接分享到成长记录: \n <a href=\"#{url_garden}\">添加到成长记录</a>",
                       :FuncFlag=>0
                     })
                 end
@@ -135,7 +135,7 @@ class Weixin::ApiController < Weixin::BaseController
                     :FromUserName=>xml_data[:ToUserName],
                     :CreateTime=>Time.now.to_i,
                     :MsgType=>"text",
-                    :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
+                    :Content=>"欢迎关注#{@kind.name} \n #{get_menu} ",
                     :FuncFlag=>0
                   })
               end
@@ -154,7 +154,7 @@ class Weixin::ApiController < Weixin::BaseController
                   :FromUserName=>xml_data[:ToUserName],
                   :CreateTime=>Time.now.to_i,
                   :MsgType=>"text",
-                  :Content=>"#{current_user.name}您好!\n\r照片上传成功，您可以在照片集锦的个人集锦中查看。点击链接分享到成长记录:\n\r<a href=\"#{url_garden}\">添加到成长记录</a>",
+                  :Content=>"#{current_user.name}您好! \n 照片上传成功，您可以在照片集锦的个人集锦中查看。点击链接分享到成长记录: \n<a href=\"#{url_garden}\">添加到成长记录</a>",
                   :FuncFlag=>0
                 })
             end
@@ -163,7 +163,7 @@ class Weixin::ApiController < Weixin::BaseController
                 :FromUserName=>xml_data[:ToUserName],
                 :CreateTime=>Time.now.to_i,
                 :MsgType=>"text",
-                :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
+                :Content=>"欢迎关注#{@kind.name} \n #{get_menu} ",
                 :FuncFlag=>0
               })
           end
@@ -174,7 +174,7 @@ class Weixin::ApiController < Weixin::BaseController
                 :FromUserName=>xml_data[:ToUserName],
                 :CreateTime=>Time.now.to_i,
                 :MsgType=>"text",
-                :Content=>"欢迎关注#{@kind.name}\n\r 点击以下链接绑定账号：\n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_user?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
+                :Content=>"欢迎关注#{@kind.name} \n 点击以下链接绑定账号： \n <a href=\"http://#{request.host_with_port}/weixin/main/bind_user?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
                 :FuncFlag=>0
               })
           elsif xml_data[:Content] == "2"
@@ -193,7 +193,7 @@ class Weixin::ApiController < Weixin::BaseController
                 :FromUserName=>xml_data[:ToUserName],
                 :CreateTime=>Time.now.to_i,
                 :MsgType=>"text",
-                :Content=>"欢迎关注#{@kind.name}\n\r #{get_menu} ",
+                :Content=>"欢迎关注#{@kind.name} \n #{get_menu} ",
                 :FuncFlag=>0
               })
           end
@@ -224,7 +224,7 @@ class Weixin::ApiController < Weixin::BaseController
             :FromUserName=>xml_data[:ToUserName],
             :CreateTime=>Time.now.to_i,
             :MsgType=>"text",
-            :Content=>"微服务，一公益 \n\r#{get_weiyi_menu} ",
+            :Content=>"微服务，一公益 \n #{get_weiyi_menu} ",
             :FuncFlag=>0
           })
       elsif xml_data[:Event] == "CLICK"
@@ -239,7 +239,7 @@ class Weixin::ApiController < Weixin::BaseController
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
               :MsgType=>"text",
-              :Content=>"微服务，一公益 \n\r#{get_weiyi_menu} ",
+              :Content=>"微服务，一公益 \n #{get_weiyi_menu} ",
               :FuncFlag=>0
             })
         end
@@ -260,7 +260,7 @@ class Weixin::ApiController < Weixin::BaseController
               :FromUserName=>xml_data[:ToUserName],
               :CreateTime=>Time.now.to_i,
               :MsgType=>"text",
-              :Content=>"微服务，一公益 \n\r#{get_weiyi_menu} ",
+              :Content=>"微服务，一公益 \n #{get_weiyi_menu} ",
               :FuncFlag=>0
             })
         end
@@ -285,7 +285,7 @@ class Weixin::ApiController < Weixin::BaseController
         :FromUserName=>xml_data[:ToUserName],
         :CreateTime=>Time.now.to_i,
         :MsgType=>"text",
-        :Content=>"微服务，一公益\n\r#{about}",
+        :Content=>"微服务，一公益 \n #{about}",
         :FuncFlag=>0
       })
   end
@@ -297,7 +297,7 @@ class Weixin::ApiController < Weixin::BaseController
           :FromUserName=>xml_data[:ToUserName],
           :CreateTime=>Time.now.to_i,
           :MsgType=>"text",
-          :Content=>"微服务，一公益\n\r 您的账户已绑定成功",
+          :Content=>"微服务，一公益 \n 您的账户已绑定成功",
           :FuncFlag=>0
         })
     else
@@ -305,7 +305,7 @@ class Weixin::ApiController < Weixin::BaseController
           :FromUserName=>xml_data[:ToUserName],
           :CreateTime=>Time.now.to_i,
           :MsgType=>"text",
-          :Content=>"微服务，一公益\n\r点击以下链接绑定账号：\n\r <a href=\"http://#{request.host_with_port}/weixin/main/bind_weiyi?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
+          :Content=>"微服务，一公益 \n 点击以下链接绑定账号： \n <a href=\"http://#{request.host_with_port}/weixin/main/bind_weiyi?#{get_validate_string}code=#{xml_data[:FromUserName]}\"> 点击绑定</a>",
           :FuncFlag=>0
         })
     end
@@ -318,29 +318,29 @@ class Weixin::ApiController < Weixin::BaseController
 
   def get_menu
     if logged_in?
-      "回复以下数字进行操作：\n\r 1、查看消息\n\r 2、幼儿园介绍\n\r 3、班级活动\n\r 4、每周菜谱\n\r 5、照片集锦\n\r 6、宝宝成长\n\r h、查看菜单"
+      "回复以下数字进行操作： \n 1、查看消息 \n 2、幼儿园介绍 \n 3、班级活动 \n 4、每周菜谱 \n 5、照片集锦 \n 6、宝宝成长 \n h、查看菜单"
     else
-      "回复以下数字进行操作：\n\r 1、进行账号绑定\n\r 2、幼儿园介绍\n\r h、查看菜单"
+      "回复以下数字进行操作： \n 1、进行账号绑定 \n 2、幼儿园介绍 \n h、查看菜单"
     end
   end
   
   def get_weiyi_menu
-    "1、进行账号绑定\n\r 2、平台介绍\n\r 3、联系我们"
+    "1、进行账号绑定 \n 2、平台介绍 \n 3、联系我们"
   end
 
   def get_read_new_message
     count = current_user.get_read_new_count
     if count > 0
-      return "您有#{count}条未读消息\n\r <a href=\"http://#{request.host_with_port}/weixin/messages?#{get_validate_string}\"> 点击查看</a>"
+      return "您有#{count}条未读消息 \n <a href=\"http://#{request.host_with_port}/weixin/messages?#{get_validate_string}\"> 点击查看</a>"
     else
-      return "您没有未读消息\n\r点击以下链接查看：\n\r <a href=\"http://#{request.host_with_port}/weixin/messages?#{get_validate_string}\"> 查看历史消息</a>"
+      return "您没有未读消息 \n 点击以下链接查看: \n <a href=\"http://#{request.host_with_port}/weixin/messages?#{get_validate_string}\"> 查看历史消息</a>"
     end
   end
   def get_read_cook_books
     if cook_book = @kind.cook_books.order("start_at DESC").first
-      return "近期菜谱:\r\n点击以下链接查看：\n\r #{cook_book.start_at ? (cook_book.start_at.to_short_datetime + "\n\r ") : ""}#{cook_book.end_at ? ("至" + cook_book.end_at.to_short_datetime.to_s + "\n\r ") : ""} <a href=\"http://#{request.host_with_port}/weixin/cook_books?#{get_validate_string}\"> 点击查看</a>"
+      return "近期菜谱: \n 点击以下链接查看: \n #{cook_book.start_at ? (cook_book.start_at.to_short_datetime + " \n ") : ""}#{cook_book.end_at ? ("至" + cook_book.end_at.to_short_datetime.to_s + " \n ") : ""} <a href=\"http://#{request.host_with_port}/weixin/cook_books?#{get_validate_string}\"> 点击查看</a>"
     else
-      return "没有菜谱消息\r\n <a href=\"http://#{request.host_with_port}/weixin?#{get_validate_string}\"> 进入家园互动</a>"
+      return "没有菜谱消息 \n <a href=\"http://#{request.host_with_port}/weixin?#{get_validate_string}\"> 进入家园互动</a>"
     end
   end
 
