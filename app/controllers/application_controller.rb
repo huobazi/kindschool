@@ -1,7 +1,19 @@
+#encoding:utf-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :school_install?
   before_filter :set_p3p
+
+  before_filter :load_auth_code
+  def load_auth_code
+    if controller_path == "active_admin/devise/sessions" && action_name=="create"
+      if params[:auth_code] != session[:code]
+        flash[:error] = "验证码不正确"
+        redirect_to :action => "new",:controller=>"/active_admin/devise/sessions"
+      end
+    end
+  end
+
   # check_authorization
   include ApplicationHelper
 
@@ -16,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
   
   def set_p3p
-     headers['P3P'] = "policyref=\"/w3c/p3p.xml\", CP=\"ALL DSP COR CURa ADMa DEVa TAIa OUR BUS IND UNI COM NAV INT\""
+    headers['P3P'] = "policyref=\"/w3c/p3p.xml\", CP=\"ALL DSP COR CURa ADMa DEVa TAIa OUR BUS IND UNI COM NAV INT\""
   end 
 
   private

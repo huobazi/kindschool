@@ -59,9 +59,10 @@ class MySchool::RolesController < MySchool::ManageController
      if @role = @kind.roles.where(:id=>params[:id]).first
        ids = params[:operate] || []
        if ids.blank?
-         @role.option_operates.each do |operate|
-         operate.destroy
-         end
+#         @role.option_operates.each do |operate|
+#         operate.destroy
+#         end
+         @role.option_operates.destroy_all
        else
          delete_ids = []
          @role.option_operates.each do |option|
