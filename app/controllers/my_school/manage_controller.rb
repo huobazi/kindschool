@@ -3,6 +3,8 @@ class  MySchool::ManageController < MySchool::BaseController
   include AuthenticatedSystem
   before_filter :login_from_cookie
   before_filter :login_required,:check_operates,:choose_role, :except => [:login,:signup,:error_notice] #if action_name != 'login'#:auth,
+  after_filter :auto_write_log
+
 
   layout proc{ |controller| get_layout }
 
@@ -29,6 +31,16 @@ class  MySchool::ManageController < MySchool::BaseController
           redirect_to my_school_home_index_path
         end
       end
+    end
+  end
+
+  ##自动添加日志 (根据日志配置过滤)
+  def auto_write_log
+    if current_user != :false
+     if  user =  current_user
+       SysLog.write_log user.id, url_options[:_path_segments], request.method,
+                        request.original_url,request.remote_ip,params,@kind.id #if Rails.env.production?
+     end
     end
   end
 
