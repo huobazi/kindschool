@@ -27,6 +27,7 @@ class AdminAbility
           can [:add_functional_to_kind,:update_functional], OptionOperate
           can :loading, Kindergarten
           can [:read],[SysLog]
+          can :default_role, Kindergarten
           #        cannot :reset_password, User
         when "bazaar"
           then

@@ -9,11 +9,24 @@ ActiveAdmin.register Kindergarten do
     redirect_to(:controller=>"/admin/kindergartens", :action=>:show,:id=>params[:id])
   end
 
+  member_action :default_role, :method => :get do
+    @kindergarten = Kindergarten.find(params[:id])
+    @kindergarten.default_role!
+    flash[:notice] = "还原所有角色默认权限成功"
+    redirect_to(:controller=>"/admin/kindergartens", :action=>:show,:id=>params[:id])
+  end
+
   action_item :only => :show do
     if can?(:loading, resource)
       if kindergarten.init_status
         link_to('初始化数据', loading_admin_kindergarten_path(kindergarten))
       end
+    end
+  end
+
+  action_item :only => :show do
+    if can?(:default_role, resource)
+      link_to('还原所有角色默认权限', default_role_admin_kindergarten_path(kindergarten))
     end
   end
 

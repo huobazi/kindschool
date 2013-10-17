@@ -96,6 +96,28 @@ class Kindergarten < ActiveRecord::Base
      self.option_operates.where(:operate_id=>8200).first
   end
 
+  def default_role!
+    self.roles.each do |role|
+      role.option_operates.delete_all
+    end
+    roles = YAML.load_file("#{Rails.root}/db/basic_data/role.yml")
+    if !roles.blank?
+      roles.each do |k,v|
+        operates = v.delete("operates")
+        role_number = v["number"]
+        role = self.roles.find_by_number(role_number)
+        unless operates.blank?
+          operates.each do |operate_id|
+            if option = OptionOperate.find_by_operate_id_and_kindergarten_id(operate_id,self.id)
+              role.option_operates << option
+            end
+          end
+        end
+        role.save!
+      end
+    end
+  end
+
   def loading!
     if self.init_status
     PAGE_CONTENTS.each do |k,v|
