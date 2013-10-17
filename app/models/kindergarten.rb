@@ -78,6 +78,8 @@ class Kindergarten < ActiveRecord::Base
 
   has_many :teaching_plans
 
+  has_many :sys_logs
+
   validates :login_note, :length=>{:maximum=>120 }
 
   attr_accessible :asset_img_attributes

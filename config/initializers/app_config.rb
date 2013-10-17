@@ -170,11 +170,7 @@ MENUS ={"home"=>{
 
 SYSLOGS={
   "my_school/topics"=>{
-    "index"=>{"GET"=>"论坛信息列表"},
     "create"=>{"POST"=>"保存帖子"}
-  },
-  "my_school/home"=>{
-    "index"=>{"GET"=>"互动家园首页"},
   },
   "my_school/messages"=>{
     "create"=>{"POST"=>"发送消息"}

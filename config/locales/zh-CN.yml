@@ -247,6 +247,7 @@ zh-CN:
       comment: "评论"
       read_user: "阅读人员记录"
       dean_email: "园长信箱"
+      sys_log: "操作日志"
     attributes:
       dean_email:
         kindergarten_id: "所属幼儿园"
@@ -714,6 +715,16 @@ zh-CN:
         description: "描述"
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"
+      sys_log:
+        kindergarten: "幼儿园"
+        method: "请求方式"
+        node: "描述"
+        original_url: "请求地址"
+        remote_ip: "请求ip"
+        url_chinese: "操作功能"
+        url_options: "controller和action"
+        url_params: "提交参数"
+        user: "用户名"
       comment:
         comment: "评论"
     errors:
