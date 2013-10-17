@@ -19,7 +19,7 @@ class MySchool::AlbumsController  < MySchool::ManageController
       end
     else
       if (session[:operates] || []).include?('my_school/albums/new')
-        @albums = @kind.albums.page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+        @albums = @kind.albums.search(params[:album] || {}).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
       else
         @albums = @kind.albums.where(:is_show=> 1).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
       end

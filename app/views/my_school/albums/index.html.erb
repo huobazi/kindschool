@@ -23,6 +23,17 @@
         </li>
       </ul>
     </div>
+    <% if current_user.tp != 0 %>
+    <div class="search_form_s">
+        <%= form_tag '/my_school/albums' , :method=>"get" do %>
+          <b>创建人：</b>
+          <%= text_field :album,:creater_name_like,:style=>"width:100px; margin-top: 10px;" ,:value=>"#{params[:album][:creater_name_like] if params[:album] }"  %>
+          <b>班级：</b>
+          <%= select_tag("album[squad_id_equals]", options_for_select(([["全部",""]]+@kind.squads.collect{|x|[x.name,x.id]}),(params[:album].blank? ?  "" : params[:album][:squad_id_equals])),:style=>"width:100px;margin-top: 10px;") %>
+          <%= submit_tag "搜索" , :class => "btn search_btn btn-primary"%>
+        <%end%>
+    </div>
+    <%end%>
     <div class="work_list" >
       <ul id="album_wall" >
         <% (@albums || []).each do |album| %>
@@ -40,9 +51,10 @@
                   <span><img src="/t/colorful/is_top.gif" alt="置顶" /></span>
                 <% end %>
                 <% if album.squad.present? %>
-                  <span class="label label-info" style="margin-left: 10px;"><%= album.try(:squad_name) %></span>
+                  <span class="label label-info" style="margin-left: 10px;"><%= album.try(:squad_name) %>-<%=album.creater.name%></span>
+                  <span class="label"><%=album.creater.name%></span>
                 <% else %>
-                  <span class="label label-info" style="margin-left: 10px;">全园可见</span>
+                  <span class="label label-info" style="margin-left: 10px;">全园可见-<%=album.creater.name%></span>
                 <% end %>
             </div>
             <% unless current_user.get_users_ranges[:tp] == :student %>
