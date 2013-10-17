@@ -80,6 +80,18 @@ class AccessStatu < ActiveRecord::Base
 
         records = user.personal_sets
 
+      elsif module_name == "CookBook"
+
+        records = kind.cook_books
+
+      elsif module_name == "WeixinShareUser"
+
+        records = WeixinShareUser.where("visible=1 AND user_id=? AND weixin_shares.send_date < ?" ,user.id, Time.zone.now).joins("LEFT JOIN weixin_shares ON(weixin_shares.id = weixin_share_users.weixin_share_id)")
+
+      elsif module_name == "News"
+
+        records = News.where("kindergarten_id = ? and approve_status = 0",kind.id)
+
       end
 
 

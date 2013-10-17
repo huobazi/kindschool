@@ -11,6 +11,7 @@ class Weixin::CookBooksController < Weixin::ManageController
     if userrole[:tp] == :all
       @flag= true
     end
+    AccessStatu.update_unread(@kind, "CookBook", current_user)
   end
 
   def show
