@@ -93,3 +93,6 @@ end
 group :development, :test do
   gem 'guard-livereload'
 end
+
+gem "thin"
+gem "mail"
