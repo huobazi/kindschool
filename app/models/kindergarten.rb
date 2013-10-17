@@ -106,14 +106,16 @@ class Kindergarten < ActiveRecord::Base
         operates = v.delete("operates")
         role_number = v["number"]
         role = self.roles.find_by_number(role_number)
-        unless operates.blank?
-          operates.each do |operate_id|
-            if option = OptionOperate.find_by_operate_id_and_kindergarten_id(operate_id,self.id)
-              role.option_operates << option
+        if !role.blank?
+          unless operates.blank?
+            operates.each do |operate_id|
+              if option = OptionOperate.find_by_operate_id_and_kindergarten_id(operate_id,self.id)
+                role.option_operates << option
+              end
             end
           end
+          role.save!
         end
-        role.save!
       end
     end
   end
