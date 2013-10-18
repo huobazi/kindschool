@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  module_name: MyString
+  accessed_at: 2013-10-15 09:46:33
+
+two:
+  user_id: 1
+  module_name: MyString
+  accessed_at: 2013-10-15 09:46:33

@@ -1,6 +1,7 @@
 #encoding:utf-8
 class Weixin::MainController < Weixin::BaseController
   layout proc{ |controller| get_layout }
+  include Weixin::WeixinStatusHelper
 
   before_filter :login_from_cookie
   before_filter :login_required, :except => [:bind_user,:error_messages,:about,:contact_us,:bind_weiyi,:weiyi_error_messages]

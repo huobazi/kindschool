@@ -26,6 +26,8 @@ class Weixin::TopicsController < Weixin::ManageController
       end
     end
 
+    AccessStatu.update_unread(@kind, "Topic", current_user)
+
   end
 
   def show
