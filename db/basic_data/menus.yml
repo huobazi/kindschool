@@ -423,6 +423,24 @@
     height_level: "b"
     sequence: 1220
 
+#- id: 110000
+#  number: "official"
+#  name: "办公管理"
+#  operate_id: 13
+#  height_level: "a"
+#  url: "###"
+#  sequence: 90
+#  children:
+#  - id: 110001
+#    name: "评估管理"
+#    operate_id: 15000
+#    number: 110001
+#    url: "/my_school/evaluates"
+#    title: "评估管理"
+#    height_level: "a"
+#    sequence: 810
+
+
 # - id: 130000
 #   number: 130000
 #   name: "审核管理"

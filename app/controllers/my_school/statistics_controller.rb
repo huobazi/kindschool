@@ -1,6 +1,8 @@
 #encoding:utf-8
 class  MySchool::StatisticsController < MySchool::ManageController
 
+  include StatisticsHelper
+
   def growth_record
     if current_user.get_users_ranges[:tp] == :student
       flash[:error] = "没有权限"
