@@ -147,7 +147,7 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
       params[:activity][:kindergarten_id] = @kind.id
       params[:activity][:tp] = 1
       if params[:visible].presence == "all"
-        params[:activity][:squad_id] = "NULL"
+        params[:activity][:squad_id] = nil
       else
         if current_user.get_users_ranges[:tp] == :teachers
           unless current_user.get_users_ranges[:squads].collect(&:id).include?(params[:activity][:squad_id].to_i)

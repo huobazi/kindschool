@@ -11,6 +11,7 @@ class Weixin::TeachingPlansController < Weixin::ManageController
         @teaching_plans = @kind.teaching_plans.page(params[:page] || 1).per(6)
       end
     end
+    AccessStatu.update_unread(@kind, "TeachingPlan", current_user)
   end
 
   def show

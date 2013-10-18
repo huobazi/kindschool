@@ -87,6 +87,7 @@ School::Application.routes.draw do
       collection do
         get :grade_class
         post :add_entry_imgs
+        get :graduate_class
       end
       member do
         get :entry_index

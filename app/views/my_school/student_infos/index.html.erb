@@ -53,7 +53,7 @@
           <%= text_field :student_info,:user_login_like,:style=>"width:100px; margin-top: 10px;" ,:value=>"#{params[:student_info][:user_login_like] if params[:student_info] }"  %>
           <b>班级：</b>
     <%#= text_field :student_info,:squad_name_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:squad_name_like] if params[:student_info] }"  %>
-          <%= select_tag("student_info[squad_id_equals]", options_for_select(([["全部",""]]+@kind.squads.collect{|x|[x.name,x.id]}),(params[:student_info].blank? ?  "" : params[:student_info][:squad_id_equals])),:style=>"width:100px;margin-top: 10px;") %>
+          <%= select_tag("student_info[squad_id_equals]", options_for_select(([["全部",""]]+@kind.squads.collect{|x|["#{x.name}   #{x.historyreview}",x.id]}),(params[:student_info].blank? ?  "" : params[:student_info][:squad_id_equals])),:style=>"width:100px;margin-top: 10px;") %>
           <br/>
           <b>手机号：</b>
           <%= text_field :student_info,:user_phone_like,:style=>"width:100px; margin-top: 10px;" ,:value=>"#{params[:student_info][:user_phone_like] if params[:student_info] }"  %>

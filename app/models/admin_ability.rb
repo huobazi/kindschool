@@ -12,7 +12,7 @@ class AdminAbility
         when "admin"
           then
           can :read, :all
-          can :manage, :all
+          can :manage, :all #,:except=>[SysLog]
         when "operation"
           then
           can [:create,:read, :update, :destroy], [WeiyiConfig,Category,CommentDatabank,WeixinDatabank,WeixinShare]
@@ -26,6 +26,8 @@ class AdminAbility
           can :share_users, WeixinDatabank
           can [:add_functional_to_kind,:update_functional], OptionOperate
           can :loading, Kindergarten
+          can [:read],[SysLog]
+          can :default_role, Kindergarten
           #        cannot :reset_password, User
         when "bazaar"
           then

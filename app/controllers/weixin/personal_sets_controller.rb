@@ -8,7 +8,8 @@ class Weixin::PersonalSetsController < Weixin::ManageController
     elsif userrole == :teacher
       @flag= "teacher"
     end
-  	@sets = current_user.personal_sets.search(params[:personal_set] || {}).page(params[:page] || 1).per(6)
+    @sets = current_user.personal_sets.search(params[:personal_set] || {}).page(params[:page] || 1).per(6)
+    AccessStatu.update_unread(@kind, "PersonalSet", current_user)
   end
 
   def destroy

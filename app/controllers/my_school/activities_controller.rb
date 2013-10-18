@@ -148,7 +148,7 @@ class MySchool::ActivitiesController < MySchool::ManageController
       params[:activity][:kindergarten_id] = @kind.id
       params[:activity][:tp] = 0
       if params[:visible].presence == "all"
-        params[:activity][:squad_id] = "NULL"
+        params[:activity][:squad_id] = nil
       else
         if params[:activity][:squad_id].present?
           if current_user.get_users_ranges[:tp] == :teachers

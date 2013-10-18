@@ -2,61 +2,64 @@
   <div class='navbar navbar-inverse'>
     <div class='nav-collapse' style="height: auto;">
       <ul class="nav weixin_menu">
-        <li class="menu_li"><a href="###" class="notice" for="#message_div"><div class="show_div"></div><img src="/t/colorful/notice_img.png" alt="宝宝成长" /><label>通知公告</label></a>
+        <% message_count =current_user.get_read_new_count %>
+        <li class="menu_li"><a href="###" class="notice" for="#message_div"><div class="show_div"></div><img src="/t/colorful/notice_img.png" alt="宝宝成长" /><label>通知公告<% unless (message_count > 99 ? "99" : message_count) + show_unread("news").to_i == 0 %>(<%= (message_count > 99 ? "99" : message_count) + show_unread("news").to_i %>) <% end %>
+        </label></a>
           <div id="message_div" class="hide menu_second">
             <ul class="list_menu_li">
               <li ><a href="/weixin/messages/new"><div class="s_arrow"></div><label>发消息</label></a></li>
-              <% message_count =current_user.get_read_new_count %>
               <li><a href="/weixin/messages"><div class="s_arrow"></div><label>收件箱(<%= message_count > 99 ? "99" : message_count %>未读)</label></a></li>
               <li ><a href="/weixin/messages/outbox"><div class="s_arrow"></div><label>发件箱</label></a></li>
               <li ><a href="/weixin/messages/draft_box"><div class="s_arrow"></div><label>草稿箱</label></a></li>
               <!-- <li ><a href="/weixin/notices"><div class="s_arrow"></div><label>通知消息</label></a></li> -->
-              <li ><a href="/weixin/news"><div class="s_arrow"></div><label>新闻</label></a></li>
+              <li ><a href="/weixin/news"><div class="s_arrow"></div><label>新闻<%= show_unread_html("news") %></label></a></li>
             </ul>
           </div>
         </li>
-        <li class="menu_li"><a href="###" class="activity" for="#activity_div"><div class="show_div"></div><img src="/t/colorful/activity_img.png" alt="活动信息" /><label>活动信息</label></a>
+        <li class="menu_li"><a href="###" class="activity" for="#activity_div"><div class="show_div"></div><img src="/t/colorful/activity_img.png" alt="活动信息" /><label>活动信息<%= show_unread_html("Activity") %></label></a>
           <div id="activity_div" class="hide menu_second">
             <ul class="list_menu_li">
-              <li><a href="/weixin/activities"><div class="s_arrow"></div><label>主题活动</label></a></li>
-              <li ><a href="/weixin/interest_activities"><div class="s_arrow"></div><label>兴趣讨论</label></a></li>
+              <li><a href="/weixin/activities"><div class="s_arrow"></div><label>主题活动<%= show_unread_html("Activity", nil, 0) %></label></a></li>
+              <li ><a href="/weixin/interest_activities"><div class="s_arrow"></div><label>兴趣讨论<%= show_unread_html("Activity", nil, 1) %></label></a></li>
             </ul>
           </div>
         </li>
-        <li class="menu_li"><a href="/weixin/cook_books" class="cook"><img src="/t/colorful/cook_img.png" alt="每周菜谱" /><label>每周菜谱</label></a></li>
+        <li class="menu_li"><a href="/weixin/cook_books" class="cook"><img src="/t/colorful/cook_img.png" alt="每周菜谱" /><label>每周菜谱<%= show_unread_html("CookBook") %></label></a></li>
 
-        <li class="menu_li"><a href="###" class="topic" for="#topic_div"><div class="show_div"></div><img src="/t/colorful/topic_img.png" alt="信息论坛" /><label>信息论坛</label></a>
+        <li class="menu_li"><a href="###" class="topic" for="#topic_div"><div class="show_div"></div><img src="/t/colorful/topic_img.png" alt="信息论坛" /><label>信息论坛<%= show_unread_html("Topic") %></label></a>
           <div id="topic_div" class="hide menu_second">
             <ul class="list_menu_li">
-              <li><a href="<%= url_for(:controller => "/weixin/topics", :action => :index) %>"><div class="s_arrow"></div><label>全部贴子</label></a></li>
+              <li><a href="<%= url_for(:controller => "/weixin/topics", :action => :index) %>"><div class="s_arrow"></div><label>全部贴子<%= show_unread_html("Topic") %></label></a></li>
               <% @topic_categories.each do |category| %>
-                <li><a href="<%= url_for(:controller => "/weixin/topics", :action => :index, :topic_category_id => category.id) %>"><div class="s_arrow"></div><label><%= category.name %></label></a></li>
+                <li><a href="<%= url_for(:controller => "/weixin/topics", :action => :index, :topic_category_id => category.id) %>"><div class="s_arrow"></div><label><%= category.name %><%= show_unread_html('Topic', category.topics, nil) %></label></a></li>
               <% end %>
             </ul>
           </div>
         </li>
         <li class="menu_li">
-          <a href="###" class="phone" for="#phone_div"><div class="show_div"></div><img src="/t/colorful/phone_img.png" alt="照片集锦" /><label>照片集锦</label></a>
+        <a href="###" class="phone" for="#phone_div"><div class="show_div"></div><img src="/t/colorful/phone_img.png" alt="照片集锦" /><label>照片集锦<% unless show_unread("Album").to_i + show_unread("PersonalSet").to_i == 0 %>(<%= show_unread("Album").to_i + show_unread("PersonalSet").to_i %>) <% end %>
+        </label></a>
           <div id="phone_div" class="hide menu_second">
             <ul class="list_menu_li">
-              <li><a href="/weixin/albums"><div class="s_arrow"></div><label>相册集锦</label></a></li>
-              <li ><a href="/weixin/personal_sets"><div class="s_arrow"></div><label>个人集锦</label></a></li>
+              <li><a href="/weixin/albums"><div class="s_arrow"></div><label>相册集锦<%= show_unread_html("Album") %></label></a></li>
+              <li ><a href="/weixin/personal_sets"><div class="s_arrow"></div><label>个人集锦<%= show_unread_html("PersonalSet") %></label></a></li>
             </ul>
           </div>
         </li>
-        <li class="menu_li"><a href="###" class="growth" for="#growth_div"><div class="show_div"></div><img src="/t/colorful/growth_img.png" alt="宝宝成长" /><label>宝宝成长</label></a>
+        <li class="menu_li"><a href="###" class="growth" for="#growth_div"><div class="show_div"></div><img src="/t/colorful/growth_img.png" alt="宝宝成长" /><label>宝宝成长<% unless show_unread("GrowthRecord").to_i + show_unread("TeachingPlan").to_i == 0 %>(<%= show_unread("GrowthRecord").to_i + show_unread("TeachingPlan").to_i %>) <% end %>
+        </label></a>
           <div id="growth_div" class="hide menu_second">
             <ul>
-              <li><a href="/weixin/garden_growth_records"><div class="s_arrow"></div><img src="/t/colorful/login_img11.png" alt="头像"/><label>宝宝在园</label></a></li>
-              <li ><a href="/weixin/growth_records"><div class="s_arrow"></div><img src="/t/colorful/login_img9.png" alt="头像"/><label>宝宝在家</label></a></li>
+              <li><a href="/weixin/garden_growth_records"><div class="s_arrow"></div><img src="/t/colorful/login_img11.png" alt="头像"/><label>宝宝在园<%= show_unread_html("GrowthRecord", nil, 0) %></label></a></li>
+              <li ><a href="/weixin/growth_records"><div class="s_arrow"></div><img src="/t/colorful/login_img9.png" alt="头像"/><label>宝宝在家<%= show_unread_html("GrowthRecord", nil, 1) %></label></a></li>
               <%unless @kind.kinder_teaching_plan.blank?%>
-              <li ><a href="/weixin/teaching_plans"><div class="s_arrow"></div><img src="/t/colorful/login_img7.png" alt="头像"/><label>教学计划</label></a></li>
+              <li ><a href="/weixin/teaching_plans"><div class="s_arrow"></div><img src="/t/colorful/login_img7.png" alt="头像"/><label>教学计划<%= show_unread_html("TeachingPlan") %></label></a></li>
               <%end%>
             </ul>
           </div>
         </li>
         <li class="menu_li">
-          <a href="/weixin/weixin_share_users" class="share"><img src="/t/colorful/share_img.png" alt="每日一贴" /><label>每日一贴</label></a>
+          <a href="/weixin/weixin_share_users" class="share"><img src="/t/colorful/share_img.png" alt="每日一贴" /><label>每日一贴<%= show_unread_html("WeixinShareUser") %></label></a>
         </li>
       </ul>
     </div>

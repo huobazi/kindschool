@@ -166,7 +166,42 @@ MENUS ={"home"=>{
       "131000" => {
         "my_school/approves" => ["news_list","news_show"]}
     }
-
-
-
 }
+
+SYSLOGS={
+  "my_school/topics"=>{
+    "create"=>{"POST"=>"保存帖子"}
+  },
+  "my_school/messages"=>{
+    "create"=>{"POST"=>"发送消息"}
+  },
+  "my_school/garden_growth_records"=>{
+    "create"=>{"POST"=>"创建宝宝在园"}
+  },
+  "my_school/garden_growth_records"=>{
+    "create"=>{"POST"=>"创建宝宝在园"}
+  },
+  "my_school/comments"=>{
+    "send_comment"=>{"POST"=>"发表评论"}
+  },
+  "my_school/cook_books"=>{
+    "create"=>{"POST"=>"创建菜谱"}
+  },
+  "my_school/physical_records"=>{
+    "create"=>{"POST"=>"创建体检记录"}
+  },
+  "my_school/seedlings"=>{
+    "create"=>{"POST"=>"创建疫苗记录"}
+  },
+  "my_school/teaching_plans"=>{
+    "create"=>{"POST"=>"创建教学计划"}
+  },
+  "my_school/albums"=>{
+    "create"=>{"POST"=>"创建相册集锦"}
+  },
+  "my_school/activities"=>{
+    "create"=>{"POST"=>"创建活动统计"}
+  }
+}
+
+

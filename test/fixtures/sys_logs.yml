@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kindergarten_id: 1
+  user_id: 1
+  url_options: MyString
+  method: MyString
+  original_url: MyString
+  remote_ip: MyString
+  url_chinese: MyText
+  url_params: MyText
+  node: MyText
+
+two:
+  kindergarten_id: 1
+  user_id: 1
+  url_options: MyString
+  method: MyString
+  original_url: MyString
+  remote_ip: MyString
+  url_chinese: MyText
+  url_params: MyText
+  node: MyText

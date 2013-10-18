@@ -5,6 +5,7 @@ class Album < ActiveRecord::Base
   belongs_to :kindergarten
   belongs_to :squad
   belongs_to :grade
+  belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
   has_many :album_entries , :dependent => :destroy
   has_many :comments , :as => :resource, :dependent => :destroy
 

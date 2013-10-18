@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
   has_many :personal_sets ,:class_name=>"PersonalSet"
   
   has_many :ret_password_records
+
+  has_many :sys_logs
    
   before_save :encrypt_password #,:automatically_generate_account
 
