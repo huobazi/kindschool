@@ -12,19 +12,19 @@
 <div class="stat-list">
   <div class="header">宝宝家园成长记录统计</div>
   <div class="content">
-    <p><i class="icon-list"></i>成长记录总数量:<span class="count"><%= @growth_records_count %></span></p>
-    <p><i class="icon-home"></i>宝宝在家成长记录总数量:<span class="count"><%= @home_growth_records_count %></span></p>
-    <p><i class="icon-certificate"></i>宝宝在园成长记录总数量:<span class="count"><%= @garden_growth_records_count %></span></p>
+    <p><i class="icon-list"></i>所有成长记录总数量:<span class="count"><%= @growth_records_count %></span></p>
+    <p><i class="icon-home"></i>所有宝宝在家成长记录总数量:<span class="count"><%= @home_growth_records_count %></span></p>
+    <p><i class="icon-certificate"></i>所有宝宝在园成长记录总数量:<span class="count"><%= @garden_growth_records_count %></span></p>
   </div>
 
   <div class="stat-box" id="home_growth_records">
-    <p class="title"><a href="javascript:void(0);" class="fold"><i class="pull-right f del"></i></a><span class="pull-right">周成长记录数量:<%= @home_growth_records.count %></span><i class="icon-home"></i>宝宝在家成长记录</p>
+    <p class="title"><a href="javascript:void(0);" class="fold"><i class="pull-right f del"></i></a><span class="pull-right">周成长记录数量:<%= @home_growth_records.count %></span><i class="icon-home"></i>本周宝宝在家成长记录<%= output_week %></p>
     <ul class="squad_list">
       <% @kind.squads.each do |squad| %>
         <% if (current_user.get_users_ranges[:tp] == :teachers && @squads.collect(&:id).include?(squad.id)) || current_user.get_users_ranges[:tp] == :all %>
           <li class="squad_item" for="squad_<%= squad.id %>">
             <div class="process">
-              <div><i class="hand"></i><%= squad.try(:name) %></div>
+              <div><i class="hand"></i><%= squad.try(:name) %><%= out_s_s_count(squad) %></div>
               <span class="squad_student_count" style="display: none;"><%= squad.student_infos.count %></span>
               <p class="squad_info percentage">""</p>
               <span class="percentage_number"></span>
@@ -49,13 +49,13 @@
   </div>
 
   <div class="stat-box" id="garden_growth_records">
-    <p class="title"><a href="javascript:void(0);" class="fold"><i class="pull-right f del"></i></a><span class="pull-right">周成长记录数量:<%= @garden_growth_records.count %></span><i class="icon-certificate"></i>宝宝在园成长记录</p>
+    <p class="title"><a href="javascript:void(0);" class="fold"><i class="pull-right f del"></i></a><span class="pull-right">周成长记录数量:<%= @garden_growth_records.count %></span><i class="icon-certificate"></i>本周宝宝在园成长记录<%= output_week %></p>
     <ul class="squad_list">
       <% @kind.squads.each do |squad| %>
         <% if ( current_user.get_users_ranges[:tp] == :teachers && @squads.collect(&:id).include?(squad.id) ) || current_user.get_users_ranges[:tp] == :all %>
           <li class="squad_item" for="squad_<%= squad.id %>">
             <div class="process">
-              <div><i class="hand"></i></i><%= squad.try(:name) %></div>
+              <div><i class="hand"></i></i><%= squad.try(:name) %><%= out_s_s_count(squad) %></div>
               <span class="squad_student_count" style="display: none;"><%= squad.student_infos.count %></span>
               <p class="squad_info percentage">""</p>
               <span class="percentage_number"></span>
@@ -218,6 +218,18 @@ $(document).ready(function() {
     })
   })
 
+  $(".squad_list").each(function() {
+      $(this).children(".squad_item").each(function() {
+        var sum = 0;
+        var squad_s_class = "i." + $(this).attr("for");
+        $(this).find(squad_s_class).each(function() {
+          if($(this).text() > 0){
+            sum += 1;
+          }
+        })
+        $(this).find(".s_s_count").text(sum);
+      });
+  })
 
 })
 </script>
