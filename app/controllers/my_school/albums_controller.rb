@@ -12,12 +12,14 @@ class MySchool::AlbumsController  < MySchool::ManageController
         @albums = @kind.albums.where("is_show = 1 and (squad_id = ? or squad_id is null)", current_user.student_info.squad_id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
       end
     elsif current_user.get_users_ranges[:tp] == :teachers  
+        @all_squads = current_user.staff.squads.where(:graduate=>false).collect{|x|["#{x.name}   #{x.historyreview}",x.id]}
       if (session[:operates] || []).include?('my_school/albums/new')
-        @albums = @kind.albums.where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+        @albums = @kind.albums.search(params[:album] || {}).where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
       else
         @albums = @kind.albums.where("is_show = 1 and ( squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL )", current_user.staff.id, current_user.id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
       end
     else
+        @all_squads = @kind.squads.where(:graduate=>false).collect{|x|["#{x.name}   #{x.historyreview}",x.id]}
       if (session[:operates] || []).include?('my_school/albums/new')
         @albums = @kind.albums.search(params[:album] || {}).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
       else
@@ -262,6 +264,25 @@ class MySchool::AlbumsController  < MySchool::ManageController
       format.html { redirect_to my_school_albums_path }
       format.json { head :no_content }
     end
+  end
+
+  def graduate_class
+    puts "1111111111111111111"
+    puts params.inspect
+    if current_user.get_users_ranges[:tp] == :teachers  
+      if params[:graduate]=="true"
+        @all_squads = current_user.staff.squads.collect{|x|["#{x.name}   #{x.historyreview}",x.id]}
+      else
+        @all_squads = current_user.staff.squads.where(:graduate => false).collect{|x|["#{x.name}   #{x.historyreview}",x.id]}        
+      end
+    else
+      if params[:graduate] == "true"   
+        @all_squads = @kind.squads.collect{|x|["#{x.name}   #{x.historyreview}",x.id]}
+      else
+        @all_squads = @kind.squads.where(:graduate => false).collect{|x|["#{x.name}   #{x.historyreview}",x.id]}        
+      end
+    end
+    render "graduate_class", :layout => false
   end
 
   private

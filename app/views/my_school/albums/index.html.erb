@@ -23,13 +23,18 @@
         </li>
       </ul>
     </div>
-    <% if current_user.tp != 0 %>
+    <% if @all_squads %>
     <div class="search_form_s">
         <%= form_tag '/my_school/albums' , :method=>"get" do %>
           <b>创建人：</b>
           <%= text_field :album,:creater_name_like,:style=>"width:100px; margin-top: 10px;" ,:value=>"#{params[:album][:creater_name_like] if params[:album] }"  %>
+          <span id="graduate_class_id" style="width:100px;">
           <b>班级：</b>
-          <%= select_tag("album[squad_id_equals]", options_for_select(([["全部",""]]+@kind.squads.collect{|x|[x.name,x.id]}),(params[:album].blank? ?  "" : params[:album][:squad_id_equals])),:style=>"width:100px;margin-top: 10px;") %>
+          <%= select_tag("album[squad_id_equals]", options_for_select(([["全部",""]]+@all_squads),(params[:album].blank? ?  "" : params[:album][:squad_id_equals])),:style=>"width:100px;margin-top: 10px;") %>
+        </span>
+          <label class="checkbox inline" style="margin-left: 20px;">
+          <input type="checkbox" id="graduate" value="option1" name="graduate" />包括毕业的班级
+        </label>
           <%= submit_tag "搜索" , :class => "btn search_btn btn-primary"%>
         <%end%>
     </div>
@@ -92,3 +97,19 @@
       })
     })
   </script>
+  <script type="text/javascript">
+      $("#graduate").click(function(){
+        if($("#graduate").is(":checked")) {
+          var graduate = true
+        } else {
+          var graduate = false
+        }
+        $.get( "/my_school/albums/graduate_class",
+          {
+              graduate: graduate
+          },
+        function(result){
+          $("#graduate_class_id").html(result);
+        })
+      });
+    </script>

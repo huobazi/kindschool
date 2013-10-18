@@ -24,7 +24,7 @@
     <div class="search_form_s">
         <%= form_tag '/my_school/teaching_plans' , :method=>"get" do %>
           <b>班级：</b>
-          <%= select_tag("teaching_plan[squad_id_equals]", options_for_select(([["全部",""]]+@kind.squads.collect{|x|[x.name,x.id]}),(params[:teaching_plan].blank? ?  "" : params[:teaching_plan][:squad_id_equals])),:style=>"width:100px;margin-top: 10px;") %>
+          <%= select_tag("teaching_plan[squad_id_equals]", options_for_select(([["全部",""]]+@kind.squads.collect{|x|["#{x.name}   #{x.historyreview}",x.id]}),(params[:teaching_plan].blank? ?  "" : params[:teaching_plan][:squad_id_equals])),:style=>"width:100px;margin-top: 10px;") %>
           <%= submit_tag "搜索" , :class => "btn search_btn btn-primary"%>
         <%end%>
     </div>

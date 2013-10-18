@@ -1,0 +1,4 @@
+<%unless @all_squads.blank? %>
+<b>班级：</b>
+          <%= select_tag("album[squad_id_equals]", options_for_select(([["全部",""]]+@all_squads),(params[:album].blank? ?  "" : params[:album][:squad_id_equals])),:style=>"width:100px;margin-top: 10px;") %>
+<%end%>
