@@ -206,6 +206,9 @@ a{
 .small_system_menu{
     background-color: #008fdc;
 }
+.small_official_menu{
+    background-color: #a4c500;
+}
 .small_statistics_menu{
     border-radius:0px 0px 5px 0px;
     background-color: #bb4da0;
@@ -240,6 +243,12 @@ a{
 }
 .small_system_ul{
     background-color: #008fdc;
+    width: 100%;
+    /*    margin-top: 5px;*/
+    padding-top: 3px;
+}
+.small_official_ul{
+    background-color: #a4c500;
     width: 100%;
     /*    margin-top: 5px;*/
     padding-top: 3px;
