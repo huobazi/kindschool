@@ -110,9 +110,9 @@ class AccessStatu < ActiveRecord::Base
       begin
         records.total_count
       rescue NoMethodError
-        return records.count
+        return records.try(:count)
       else
-        return records.total_count
+        return records.try(:total_count)
       end
     end
 
