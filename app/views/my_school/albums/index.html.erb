@@ -39,6 +39,17 @@
         <%end%>
     </div>
     <%end%>
+    <% if @squad %>
+    <div class="search_form_s">
+        <%= form_tag '/my_school/albums' , :method=>"get" do %>
+          <span id="graduate_class_id" style="width:100px;">
+          <b>班级：</b>
+          <%= select_tag("album[squad_id_equals]", options_for_select(([["全部",""]]+[[@squad.name,@squad.id]]),(params[:album].blank? ?  "" : params[:album][:squad_id_equals])),:style=>"width:100px;margin-top: 10px;") %>
+        </span>
+          <%= submit_tag "搜索" , :class => "btn search_btn btn-primary"%>
+        <%end%>
+    </div>
+    <%end%>
     <div class="work_list" >
       <ul id="album_wall" >
         <% (@albums || []).each do |album| %>
