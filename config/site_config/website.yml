@@ -3,7 +3,7 @@
   weixin_token: "weiyi"
   #公司网站域名
   web_host: weiyizixun.com
-  admin_user: admin@admin.com
+  admin_user: noreply@weiyizixun.com
 
 development:
   weixin_blind: false
