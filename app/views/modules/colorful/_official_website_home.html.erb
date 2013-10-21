@@ -72,8 +72,8 @@
   <label class="control-label">老师简介</label>
 </div>
 <div class="control-group">
-    <%#= text_field_tag :teacher_content,@entry.content, :class => 'profile_input '%>
-  <%= kindeditor_tag :teacher_content,@entry.content, :allowFileManager => false %> 
+  <%= text_field_tag :teacher_content,@entry.content%>
+  <%#= kindeditor_tag :teacher_content,@entry.content, :allowFileManager => false %> 
     <p>如: 本科学历</p>
     <p>教育学学士学位</p>
     <p>小学高级教师</p>
