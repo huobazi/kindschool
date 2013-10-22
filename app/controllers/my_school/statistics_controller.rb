@@ -28,6 +28,12 @@ class  MySchool::StatisticsController < MySchool::ManageController
    @cur_begginning_of_week = Time.now.beginning_of_week.year.to_s + "-" + Time.now.beginning_of_week.month.to_s + "-" + Time.now.beginning_of_week.day.to_s
    @cur_end_of_week = Time.now.end_of_week.year.to_s + "-" + Time.now.end_of_week.month.to_s + "-" + Time.now.end_of_week.day.to_s
 
+    if request.xhr?
+      render "my_school/statistics/growth_record.js.erb"
+    else
+      render "my_school/statistics/growth_record"
+    end
+
   end
 
   def kind_stat
