@@ -37,6 +37,27 @@
     initDate();
   }
 
+  function nowDate(){
+    curD = new Date();
+    curD.setHours(12,12,12,0);
+    var dateLong = curD.getTime();
+
+
+    if ( curD.getDay()== 0 ){
+      dateLong = dateLong - (6*dayTime);
+    }else {
+      dateLong = dateLong - (curD.getDay()-1)*dayTime;
+    }
+
+    curD.setTime(dateLong);
+
+    firstD = curD;
+    lastD = new Date();
+    lastD.setTime(firstD.getTime()+6*dayTime);
+    var ss = firstD.getFullYear()+'-'+(firstD.getMonth()+1)+'-'+firstD.getDate()+'~'+lastD.getFullYear()+'-'+(lastD.getMonth()+1)+'-'+lastD.getDate();
+    document.getElementById('val').setAttribute('value',ss);
+  }
+
   function nextDate(){
     var dateLong = curD.getTime();
     curD.setTime(dateLong + (7*dayTime));
@@ -75,16 +96,10 @@
       <div class="topics">
 
         <%= form_tag '/my_school/statistics/growth_record' , :method=>"get", :id => "stat_growth_record" do %>
-          <%= hidden_field_tag "start_at" %>
-          <%= hidden_field_tag "end_at" %>
           <p>
-            <% if params[:start_at].present? or params[:end_at].present? %>
-              <input type="text" style="margin-top: 10px;"  id="val" value="<%= params[:start_at] %>~<%= params[:end_at] %>" />
-            <% else %>
-              <input type="text" style="margin-top: 10px;" id="val" value="<%= @cur_begginning_of_week %>~<%= @cur_end_of_week %>"  />
-            <% end %>
+            <input type="text" style="margin-top: 10px;" id="val" value="<%= @cur_begginning_of_week %>~<%= @cur_end_of_week %>"  />
             <a class="normal_link btn" href="javascript:void(0);"  onclick="backDate();">上一周</a>
-            <a class="normal_link btn" href="javascript:void(0);" onclick="curDate();" >本周</a>
+            <a class="normal_link btn" href="javascript:void(0);" onclick="nowDate();">本周</a>
             <a class="normal_link btn" href="javascript:void(0);" onclick="nextDate();" >下一周</a>
           </p>
           <a class="btn view" id="stat-failure" href="javascript:void(0);" >查看成长记录未完成的学员</a>
@@ -106,9 +121,18 @@
 $(document).ready(function() {
   $(".normal_link").each(function() {
     $(this).click(function() {
-      $("#start_at").val($("#val").val().split("~")[0]);
-      $("#end_at").val($("#val").val().split("~")[1])
+      var start_at = $("#val").val().split("~")[0];
+      var end_at = $("#val").val().split("~")[1]
+      /*
       $("#stat_growth_record").submit();
+      */
+      $.ajax({
+        url: "/my_school/statistics/growth_record",
+        data: {
+          start_at: start_at,
+          end_at: end_at
+        }
+      })
     })
   })
   var growth_record_scroll;
