@@ -1,12 +1,12 @@
 <script type="text/javascript">
   jQuery(function() {
-    $('#growth_record_start_at_equals').datepicker({
+    $('#growth_record_start_at_less_than_or_equal_to').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
     }).on("changeDate", function() {
       $(this).datepicker('hide')
     });;
-    $('#growth_record_end_at_equals').datepicker({
+    $('#growth_record_end_at_greater_than_or_equal_to').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
     }).on("changeDate", function() {
@@ -99,9 +99,9 @@
         <b>学员：</b>
         <%= text_field :growth_record,:student_info_user_name_like,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:student_info_user_name_like] if params[:growth_record] }"%>
         <b>开始时间：</b>
-        <%= text_field :growth_record,:start_at_equals,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:start_at_equals] if params[:growth_record] }"  %>
+        <%= text_field :growth_record,:start_at_less_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:start_at_less_than_or_equal_to] if params[:growth_record] }"  %>
         <b>结束时间：</b>
-        <%= text_field :growth_record,:end_at_equals,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:end_at_equals] if params[:growth_record] }"  %>
+        <%= text_field :growth_record,:end_at_greater_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:end_at_greater_than_or_equal_to] if params[:growth_record] }"  %>
         <%= submit_tag "搜索" , :class => "btn btn-primary" %>
       <%end%>
     </div>
