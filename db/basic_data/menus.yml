@@ -197,6 +197,15 @@
     height_level: "a"
     sequence: 92
 
+  - id: 46000
+    name: "老师日常统计"
+    operate_id: 14400
+    url: "/my_school/statistics/teacher_stat"
+    number: 46000
+    title: "老师日常统计"
+    height_level: "a"
+    sequence: 92
+
 - id: 50000
   number: "home"
   name: "/t/colorful/home.png"

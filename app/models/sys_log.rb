@@ -5,6 +5,98 @@ class SysLog < ActiveRecord::Base
   belongs_to :kindergarten
   belongs_to :user #, :class_name => "User", :foreign_key => "user_id"
 
+  class << self
+    attr_accessor :syslog_list
+    attr_accessor :syslogkeys
+  end
+
+  def self.init_syslog_list
+    self.syslog_list = {
+      "topics" => {
+        "name" => "贴子",
+        "count" => 0,
+        "text" => ""
+      },
+      "messages" => {
+        "name" => "消息",
+        "count" => 0,
+        "text" => ""
+      },
+      "garden_growth_records" => {
+        "name" => "宝宝在园成长记录",
+        "count" => 0,
+        "text" => ""
+      },
+      "growth_records" => {
+        "name" => "宝宝在家成长记录",
+        "count" => 0,
+        "text" => ""
+      },
+      "comment" => {
+        "name" => "评论",
+        "count" => 0,
+        "text" => ""
+      },
+      "cook_books" => {
+        "name" => "菜谱",
+        "count" => 0,
+        "text" => ""
+      },
+      "physical_records" => {
+        "name" => "体检记录",
+        "count" => 0,
+        "text" => ""
+      },
+      "seedlings" => {
+        "name" => "疫苗记录",
+        "count" => 0,
+        "text" => ""
+      },
+      "teaching_plans" => {
+        "name" => "教学计划",
+        "count" => 0,
+        "text" => ""
+      },
+      "albums" => {
+        "name" => "相册集锦",
+        "count" => 0,
+        "text" => ""
+      },
+      "activities" => {
+        "name" => "活动",
+        "count" => 0,
+        "text" => ""
+      }
+    }
+    self.syslogkeys = SYSLOGS.keys.map {|sk| sk.split("/").last }
+  end
+
+  # 计算并输出各种操作对象的数量
+  def self.output_syslog(teacher)
+    self.init_syslog_list
+    syslogs = SysLog.where(:user_id => teacher.try(:user_id))
+    unless syslogs.blank?
+      syslogs.each do |syslog|
+        record_name = syslog.url_options.split("/").last.chomp
+        if self.syslogkeys.include?(record_name)
+          self.syslog_list[record_name]["count"] += 1
+          if self.syslog_list[record_name]["text"].blank?
+            self.syslog_list[record_name]["text"] = syslog.url_chinese
+          end
+        end
+      end
+      text = ""
+      (self.syslog_list.values || []).each do |sl|
+        if sl["count"] > 0
+          text += "<p>#{sl["text"]}数量#{sl["count"]}<p>"
+        end
+      end
+      return text
+    else
+      return "<p>没有任何操作记录</p>"
+    end
+  end
+
   def self.write_log(current_user_id,url,method,original_url,remote_ip,params,kind_id)
       logtrail=SysLog.new
       controller = url[:controller]

@@ -96,5 +96,9 @@ class  MySchool::StatisticsController < MySchool::ManageController
     @sms_records_count = @records.first.sum_count.to_i
   end
 
+  # 老师日常管理统计
+  def teacher_stat
+  end
+
 end
 

@@ -1,0 +1,47 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>
+          老师日常统计
+        </label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li>
+              统计
+            </li>
+            <li>/</li>
+            <li>老师日常统计</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+      </ul>
+    </div>
+
+
+    <div class="work_list">
+      <div class="stat-content">
+        <% @kind.staffs.each do |staff| %>
+          <!-- start panel -->
+          <div class="panel">
+            <div class="header"><%= staff.name %></div>
+            <div class="inner">
+              <div>
+                <%= raw SysLog.output_syslog(staff) %>
+              </div>
+            </div>
+          </div>
+          <!-- end panel -->
+        <% end %>
+      </div>
+  </div>
+
+</div>
+
+</div>
