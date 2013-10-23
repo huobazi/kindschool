@@ -39,7 +39,7 @@ class AccessStatu < ActiveRecord::Base
       elsif module_name == "TeachingPlan"
         if user.get_users_ranges[:tp] == :student
           records = kind.teaching_plans.where("squad_id = ? or squad_id is null", user.student_info.squad_id)
-        elsif user.get_users_ranges[:tp] == :teachers  
+        elsif user.get_users_ranges[:tp] == :teachers
           records = kind.teaching_plans.where("squad_id in (select squad_id from teachers where staff_id = ?) or squad_id is NULL", user.staff.id)
         else
           records = kind.teaching_plans

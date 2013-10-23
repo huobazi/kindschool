@@ -64,6 +64,20 @@
     initDate();
   }
 
+  jQuery(function() {
+    $('#start_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });;
+    $('#end_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });;
+  });
 </script>
 <div class="show_work">
   <%= render :partial => "/modules/colorful/work_menu" %>
@@ -94,13 +108,19 @@
 
     <div class="work_list">
       <div class="topics">
-
         <%= form_tag '/my_school/statistics/growth_record' , :method=>"get", :id => "stat_growth_record" do %>
           <p>
-            <input type="text" style="margin-top: 10px;" id="val" value="<%= @cur_begginning_of_week %>~<%= @cur_end_of_week %>"  />
+          按时间段搜索:
+            <input type="text" class="input-small" style="margin-top: 10px;" id="start_at" placeholder="开始时间" />
+            <input type="text" class="input-small" style="margin-top: 10px;" id="end_at" placeholder="结束时间" />
+            <a href="javascript:void(0);" class="btn" id="time-search">查看该时间段内的成长记录</a>
+          </p>
+          <p>
+          按周搜索:
             <a class="normal_link btn" id="first" href="javascript:void(0);"  onclick="backDate();">上一周</a>
             <a class="normal_link btn" href="javascript:void(0);" onclick="nowDate();">本周</a>
             <a class="normal_link btn" href="javascript:void(0);" onclick="nextDate();" >下一周</a>
+            <input type="hidden" style="margin-top: 10px;" id="val" value="<%= @cur_begginning_of_week %>~<%= @cur_end_of_week %>"  />
           </p>
           <a class="btn view" id="stat-failure" href="javascript:void(0);" >查看成长记录未完成的学员</a>
           <a class="btn view" id="stat-success" href="javascript:void(0);" >查看成长记录已完成的学员</a>
@@ -127,7 +147,12 @@ $(document).ready(function() {
       /*
       $("#stat_growth_record").submit();
       */
-      $.ajax({
+      search_growth_record_ajax(start_at, end_at)
+    })
+  });
+
+  function search_growth_record_ajax(start_at, end_at) {
+    $.ajax({
         url: "/my_school/statistics/growth_record",
         data: {
           start_at: start_at,
@@ -140,8 +165,14 @@ $(document).ready(function() {
           $(".topics").find("img.loadding_pt").hide();
         }
       })
-    })
+  }
+
+  $("#time-search").click(function() {
+      var start_at = $("#start_at").val();
+      var end_at = $("#end_at").val();
+      search_growth_record_ajax(start_at, end_at);
   })
+
   var growth_record_scroll;
   $('a.view').each(function () {
     $(this).click(function() {
