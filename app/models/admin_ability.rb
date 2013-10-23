@@ -25,14 +25,15 @@ class AdminAbility
           can :reset_password, User
           can :share_users, WeixinDatabank
           can [:add_functional_to_kind,:update_functional], OptionOperate
-          can :loading, Kindergarten
-          can [:read],[SysLog]
-          can :default_role, Kindergarten
+          can [:loading,:default_role,:pay_sms,:pay_sms_count], Kindergarten
+          can [:read],[SysLog,SmsLog]
           #        cannot :reset_password, User
         when "bazaar"
           then
+          can [:read],Kindergarten
         when "member"
           then
+          can [:read],Kindergarten
         end
         can :read, ActiveAdmin::Page, :name => "Dashboard"
       end

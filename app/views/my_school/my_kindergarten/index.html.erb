@@ -101,10 +101,10 @@
             <% if @kind.begin_allsms %>
               <% if @kind.open_allsms %>
                 <div class="control-group">
-                  <label class="control-label">本月群发短信消息数量</label>
+                  <label class="control-label">短信消息条数量</label>
                   <div class="controls">
                     <label class="show_label">
-                      剩余次数：<%=@kind.get_surplu_allsms_count %> / 总数：<%=@kind.allsms_count %>
+                      剩余条数：<%=@kind.get_surplu_allsms_count %>
                     </label>
                   </div>
                 </div>
@@ -113,7 +113,7 @@
                   <label class="control-label">本月群发短信消息数量</label>
                   <div class="controls">
                     <label class="show_label">
-                      <%=@kind.get_allsms_count %>
+                      <%=@kind.get_surplu_allsms_count %>
                     </label>
                   </div>
                 </div>

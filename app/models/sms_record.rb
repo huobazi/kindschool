@@ -34,6 +34,10 @@ class SmsRecord < ActiveRecord::Base
   end
   handle_asynchronously :send_sms #添加到异步执行方法中
 
+  #获取计算的实时数值
+  def get_sms_count
+    return (1 + (self.content || "").size / 70)
+  end
   
   private
   def load_user_name

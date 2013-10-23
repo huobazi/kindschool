@@ -1,12 +1,12 @@
 <div class="stat-list">
-  <div class="header">本周成长记录统计<%= output_week %></div>
+  <div class="header">成长记录统计<%= output_week %></div>
   <div class="content">
-    <p><i class="icon-list"></i>本周成长记录总数量:<span class="count"><%= @growth_records.count %><span></p>
-    <p><i class="icon-home"></i>本周宝宝在家成长记录总数量:<span class="count"><%= @home_growth_records.count %></span></p>
-    <p><i class="icon-certificate"></i>本周宝宝在园成长记录总数量:<span class="count"><%= @garden_growth_records.count %></span></p>
-    <p><i class="icon-list"></i>本周总共有<span id="week_growth_record_count" class="count"></span>位学员完成了成长记录</p>
-    <p><i class="icon-home"></i>本周总共有<span id="week_home_growth_record_count" class="count"></span>位学员完成了宝宝在家成长记录</p>
-    <p><i class="icon-certificate"></i>本周总共有<span id="week_garden_growth_record_count" class="count"></span>位学员完成了宝宝在园成长记录</p>
+    <p><i class="icon-list"></i>成长记录总数量:<span class="count"><%= @growth_records.count %><span></p>
+    <p><i class="icon-home"></i>宝宝在家成长记录总数量:<span class="count"><%= @home_growth_records.count %></span></p>
+    <p><i class="icon-certificate"></i>宝宝在园成长记录总数量:<span class="count"><%= @garden_growth_records.count %></span></p>
+    <p><i class="icon-list"></i>总共有<span id="week_growth_record_count" class="count"></span>位学员完成了成长记录</p>
+    <p><i class="icon-home"></i>总共有<span id="week_home_growth_record_count" class="count"></span>位学员完成了宝宝在家成长记录</p>
+    <p><i class="icon-certificate"></i>总共有<span id="week_garden_growth_record_count" class="count"></span>位学员完成了宝宝在园成长记录</p>
   </div>
 </div>
 <div class="stat-list">
@@ -18,7 +18,7 @@
   </div>
 
   <div class="stat-box" id="home_growth_records">
-    <p class="title"><a href="javascript:void(0);" class="fold"><i class="pull-right f del"></i></a><span class="pull-right">周成长记录数量:<%= @home_growth_records.count %></span><i class="icon-home"></i>本周宝宝在家成长记录<%= output_week %></p>
+    <p class="title"><a href="javascript:void(0);" class="fold"><i class="pull-right f del"></i></a><span class="pull-right">成长记录数量:<%= @home_growth_records.count %></span><i class="icon-home"></i>宝宝在家成长记录<%= output_week %></p>
     <ul class="squad_list">
       <% @kind.squads.each do |squad| %>
         <% if (current_user.get_users_ranges[:tp] == :teachers && @squads.collect(&:id).include?(squad.id)) || current_user.get_users_ranges[:tp] == :all %>
@@ -49,7 +49,7 @@
   </div>
 
   <div class="stat-box" id="garden_growth_records">
-    <p class="title"><a href="javascript:void(0);" class="fold"><i class="pull-right f del"></i></a><span class="pull-right">周成长记录数量:<%= @garden_growth_records.count %></span><i class="icon-certificate"></i>本周宝宝在园成长记录<%= output_week %></p>
+    <p class="title"><a href="javascript:void(0);" class="fold"><i class="pull-right f del"></i></a><span class="pull-right">成长记录数量:<%= @garden_growth_records.count %></span><i class="icon-certificate"></i>宝宝在园成长记录<%= output_week %></p>
     <ul class="squad_list">
       <% @kind.squads.each do |squad| %>
         <% if ( current_user.get_users_ranges[:tp] == :teachers && @squads.collect(&:id).include?(squad.id) ) || current_user.get_users_ranges[:tp] == :all %>
