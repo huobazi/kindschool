@@ -246,9 +246,9 @@
               <th>是否班主任</th>
               <th>操作</th>
             </tr>
-            <% @staff.teachers.each do |teacher| %>
+            <% (@staff.teachers || []).each do |teacher| %>
               <tr>
-                <td><%= teacher.squad.grade ? teacher.squad.grade.name : "" %></td>
+                <td><%= (teacher.squad && teacher.squad.grade) ? teacher.squad.grade.name : "" %></td>
                 <td><%= link_to teacher.squad.name, :controller => "/my_school/squads", :action => :show, :id => teacher.squad_id %></td>
                 <td><%= teacher.tp == 1 ? "是" : "否" %></td>
                 <td>
