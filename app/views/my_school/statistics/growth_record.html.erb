@@ -77,7 +77,41 @@
     }).on("changeDate", function() {
       $(this).datepicker('hide')
     });;
+
+    $('#year_start_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });;
+
+    $('#year_end_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });;
   });
+
+  function nextyear() {
+    var start_year = $("#year_start_at").val().split("-");
+    var next_start_year = (parseInt(start_year[0]) + 1) + "-" + start_year[1] + "-" + start_year[2];
+    var end_year = $("#year_end_at").val().split("-");
+    var next_end_year = (parseInt(end_year[0]) + 1) + "-" + end_year[1] + "-" + end_year[2];
+
+    $("#year_start_at").val(next_start_year);
+    $("#year_end_at").val(next_end_year);
+  }
+
+  function preyear() {
+    var start_year = $("#year_start_at").val().split("-");
+    var next_start_year = (parseInt(start_year[0]) - 1) + "-" + start_year[1] + "-" + start_year[2];
+    var end_year = $("#year_end_at").val().split("-");
+    var next_end_year = (parseInt(end_year[0]) - 1) + "-" + end_year[1] + "-" + end_year[2];
+
+    $("#year_start_at").val(next_start_year);
+    $("#year_end_at").val(next_end_year);
+  }
 </script>
 <div class="show_work">
   <%= render :partial => "/modules/colorful/work_menu" %>
@@ -116,8 +150,16 @@
             <a href="javascript:void(0);" class="btn" id="time-search">查看该时间段内的成长记录</a>
           </p>
           <p>
-          按周搜索:
-            <a class="normal_link btn" id="first" href="javascript:void(0);"  onclick="backDate();">上一周</a>
+          按学年搜索:&nbsp;&nbsp;&nbsp;
+            <input type="text" class="input-small" style="margin-top: 10px;" id="year_start_at" value="<%= Time.now.year %>-9-1" />
+            <input type="text" class="input-small" style="margin-top: 10px;" id="year_end_at" value="<%= Time.now.next_year.year %>-9-1" />
+            <a href="javascript:void(0);" class="btn year-search" id="curyear-search">查看该学年</a>
+            <a href="javascript:void(0);" class="btn year-search" id="preyear-search" onclick="preyear();">上一学年</a>
+            <a href="javascript:void(0);" class="btn year-search" id="nextyear-search" onclick="nextyear();">下一学年</a>
+          </p>
+          <p>
+          按周搜索:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="normal_link btn" href="javascript:void(0);"  onclick="backDate();">上一周</a>
             <a class="normal_link btn" href="javascript:void(0);" onclick="nowDate();">本周</a>
             <a class="normal_link btn" href="javascript:void(0);" onclick="nextDate();" >下一周</a>
             <input type="hidden" style="margin-top: 10px;" id="val" value="<%= @cur_begginning_of_week %>~<%= @cur_end_of_week %>"  />
@@ -173,6 +215,13 @@ $(document).ready(function() {
       search_growth_record_ajax(start_at, end_at);
   })
 
+  $(".year-search").each(function() {
+    $(this).click(function() {
+      var start_at = $("#year_start_at").val();
+      var end_at = $("#year_end_at").val();
+      search_growth_record_ajax(start_at, end_at);
+    })
+  })
   var growth_record_scroll;
   $('a.view').each(function () {
     $(this).click(function() {
