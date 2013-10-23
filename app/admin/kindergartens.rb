@@ -8,7 +8,28 @@ ActiveAdmin.register Kindergarten do
     flash[:notice] ="初始化完成."
     redirect_to(:controller=>"/admin/kindergartens", :action=>:show,:id=>params[:id])
   end
+  
+  member_action :pay_sms, :method => :get, :title => "充值短信" do
+    @kindergarten = Kindergarten.find_by_id(params[:id])
+  end
+  
+  member_action :pay_sms_count, :method => :post do
+    if @kindergarten = Kindergarten.find_by_id(params[:id])
+      if params[:pay_count].blank?
+        flash[:error] = "短信条数不能为空"
+        redirect_to :action => :pay_sms, :controller => "/admin/kindergartens",:id=>params[:id]
+      else
+        SmsLog.pay_count(@kindergarten.id,params[:pay_count].to_i,current_admin_user.id)
+        flash[:success] = "操作成功"
+        redirect_to :action => :show, :controller => "/admin/kindergartens", :id => @kindergarten.id
+      end
+    else
+      flash[:error] = "幼儿园不存在"
+      redirect_to :action => :index, :controller => "/admin/kindergartens"
+    end
+  end
 
+  
   member_action :default_role, :method => :get do
     @kindergarten = Kindergarten.find(params[:id])
     @kindergarten.default_role!
@@ -27,6 +48,12 @@ ActiveAdmin.register Kindergarten do
   action_item :only => :show do
     if can?(:default_role, resource)
       link_to('还原所有角色默认权限', default_role_admin_kindergarten_path(kindergarten))
+    end
+  end
+  
+  action_item :only => :show do
+    if can?(:pay_sms, resource)
+      link_to('充值短信', pay_sms_admin_kindergarten_path(kindergarten))
     end
   end
 
@@ -90,7 +117,7 @@ ActiveAdmin.register Kindergarten do
       f.input :sms_user_count
       f.input :begin_allsms
       f.input :open_allsms
-      f.input :allsms_count
+#      f.input :allsms_count
       f.input :login_note
       f.input :note
       f.input :init_status
@@ -122,10 +149,11 @@ ActiveAdmin.register Kindergarten do
       row :address
       row :aliases_url
       row :sms_count
+      row :balance_count
       row :sms_user_count
       row :begin_allsms
       row :open_allsms
-      row :allsms_count
+#      row :allsms_count
       row :login_note
       row :note
       row :asset_img do |obj|

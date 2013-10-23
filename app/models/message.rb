@@ -6,6 +6,7 @@ class Message < ActiveRecord::Base
   belongs_to :kindergarten
   belongs_to :sender, :class_name => "User",:foreign_key=>:sender_id
   has_many :message_entries
+  has_many :sms_logs
 
   #回复的信息
   has_many :return_messages, :class_name => "Message",:foreign_key=>:entry_id,:order=>"send_date DESC", :dependent => :destroy
@@ -43,7 +44,9 @@ class Message < ActiveRecord::Base
   before_save :messages_approve_status_start
   before_save :load_sms_records
 
-
+  def get_full_message
+    "#{self.sender.try(:name)} 发送消息：#{self.content} \r 给#{self.message_entries.count}人"
+  end
   
 
   #是否是回复的
@@ -68,6 +71,7 @@ class Message < ActiveRecord::Base
   #该消息回复记录
   def is_retrun(user_id)
     is_retrun = self.return_messages.where(:sender_id=>user_id)
+    return is_retrun
   end
 
   #该消息是否已读
@@ -132,6 +136,8 @@ class Message < ActiveRecord::Base
         else
           message_entries_data =  self.message_entries
         end
+        sms_log_count = 0
+        sms_log_vip_count = 0
         message_entries_data.each do |entry|
           if([1,2].include?(self.tp) && (self.allsms || entry.receiver.is_receive || ( self.send_me && entry.receiver_id == self.sender_id))) || self.tp == 3
             role = self.sender.role if self.sender && self.sender.role
@@ -139,8 +145,21 @@ class Message < ActiveRecord::Base
               entry.sms_record =  SmsRecord.new(:chain_code=>self.chain_code,:sender_id=>self.sender_id,
                 :sender_name=>self.sender_name,:content=>"#{self.content} #{self.get_kindergarten_name} #{role ? (role.name + '-') : ''}#{self.get_sender_name}",:receiver_id=>entry.receiver.id,
                 :receiver_name=>entry.receiver.name,:receiver_phone=>entry.receiver.phone,:kindergarten_id=>self.kindergarten_id)
+              if self.tp==1
+                if entry.receiver.is_receive
+                  sms_log_vip_count -= entry.sms_record.get_sms_count
+                else
+                  sms_log_count -= entry.sms_record.get_sms_count
+                end
+              end
             end
           end
+        end
+        if sms_log_count < 0
+          self.sms_logs << SmsLog.new(:count=>sms_log_count,:user_id=>self.sender_id,:kindergarten_id=>self.kindergarten_id,:tp=>0,:note=>(self.allsms ? "群发消耗短信" : "发消耗短信"))
+        end
+        if sms_log_vip_count < 0
+          self.sms_logs << SmsLog.new(:count=>sms_log_vip_count,:user_id=>self.sender_id,:kindergarten_id=>self.kindergarten_id,:tp=>4,:note=>(self.allsms ? "付费用户群发消耗短信" : "付费用户发消耗短信"))
         end
       end
     end
@@ -155,7 +174,7 @@ class Message < ActiveRecord::Base
           raise "您的幼儿园短信群发已关闭！"
         end
       end
-      if curr_kindergarten.open_allsms
+      if curr_kindergarten.open_allsms && self.allsms
         #如果是编辑
         if self.id_was
           if !self.status_was && self.status

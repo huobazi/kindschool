@@ -2,7 +2,7 @@
 #幼儿园
 class Kindergarten < ActiveRecord::Base
   attr_accessible :init_status,:logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token,:latlng,:address,
-    :aliases_url,:sms_count,:sms_user_count,:telephone,:allsms_count,:open_allsms,:begin_allsms,:login_note
+    :aliases_url,:sms_count,:sms_user_count,:telephone,:allsms_count,:open_allsms,:begin_allsms,:login_note,:balance_count
 
   validates :name,:presence => true, :uniqueness => true, :length => { :maximum => 100}
   validates :number,:presence => true, :uniqueness => true, :length => { :maximum => 100},:exclusion => { :in => %w(www) }
@@ -20,7 +20,8 @@ class Kindergarten < ActiveRecord::Base
   has_many :users   #所有用户
 
   has_many :dean_emails
-#  has_many :operates
+  has_many :sms_logs
+  #  has_many :operates
   has_many :grades,:order=>:sequence  #年级
   has_many :grade_teachers,:through=>:grades, :source => :staff  #年级组长
 
@@ -93,7 +94,7 @@ class Kindergarten < ActiveRecord::Base
   end
 
   def kinder_teaching_plan
-     self.option_operates.where(:operate_id=>8200).first
+    self.option_operates.where(:operate_id=>8200).first
   end
 
   def default_role!
@@ -122,97 +123,97 @@ class Kindergarten < ActiveRecord::Base
 
   def loading!
     if self.init_status
-    PAGE_CONTENTS.each do |k,v|
-      unless self.page_contents.collect(&:number).include?(k)
-        self.page_contents << PageContent.new((v || {}).merge(:number=>k))
-      end
-    end
-    #改变初始化的值,false不能在进行初始化
-    self.init_status = false
-    #创建了幼儿园的SEO初始化
-    shrink_record = ShrinkRecord.new()
-    #幼儿园名字 幼儿园 幼儿园的number 幼儿园地址
-    shrink_record.keywords = self.name+","+self.number+",幼儿园,"+self.address+"."
-    #幼儿园名字 幼儿园 幼儿园的number 幼儿园地址
-    shrink_record.description = self.name+","+self.number+",幼儿园,"+self.address+"." 
-    self.shrink_record = shrink_record
-    #创建所需要的审核模块
-    approve_modules = YAML.load_file("#{Rails.root}/db/basic_data/approve_modules.yml")
-    approve_modules.each do |k,approve_module|
-      if self.approve_modules.blank? && self.approve_modules.find_by_number(approve_module[:number]).blank?
-        @approve_module = ApproveModule.new(approve_module)
-        @approve_module.kindergarten =self
-        @approve_module.save
-      end
-    end
-    content_entries = YAML.load_file("#{Rails.root}/db/basic_data/content_entries.yml")
-    content_entries.each do |k,content_entry|
-      if k == "official_website_home_news"
-        @new = News.new(content_entry)
-        @new.kindergarten = self
-        @new.save!
-      else
-        page_content=self.page_contents.find_by_number(k)
-        content_entry["content_entries"].each do |record|
-          page_content.content_entries << ContentEntry.new(record)
+      PAGE_CONTENTS.each do |k,v|
+        unless self.page_contents.collect(&:number).include?(k)
+          self.page_contents << PageContent.new((v || {}).merge(:number=>k))
         end
-
-        page_content.save
       end
-    end
+      #改变初始化的值,false不能在进行初始化
+      self.init_status = false
+      #创建了幼儿园的SEO初始化
+      shrink_record = ShrinkRecord.new()
+      #幼儿园名字 幼儿园 幼儿园的number 幼儿园地址
+      shrink_record.keywords = self.name+","+self.number+",幼儿园,"+self.address+"."
+      #幼儿园名字 幼儿园 幼儿园的number 幼儿园地址
+      shrink_record.description = self.name+","+self.number+",幼儿园,"+self.address+"."
+      self.shrink_record = shrink_record
+      #创建所需要的审核模块
+      approve_modules = YAML.load_file("#{Rails.root}/db/basic_data/approve_modules.yml")
+      approve_modules.each do |k,approve_module|
+        if self.approve_modules.blank? && self.approve_modules.find_by_number(approve_module[:number]).blank?
+          @approve_module = ApproveModule.new(approve_module)
+          @approve_module.kindergarten =self
+          @approve_module.save
+        end
+      end
+      content_entries = YAML.load_file("#{Rails.root}/db/basic_data/content_entries.yml")
+      content_entries.each do |k,content_entry|
+        if k == "official_website_home_news"
+          @new = News.new(content_entry)
+          @new.kindergarten = self
+          @new.save!
+        else
+          page_content=self.page_contents.find_by_number(k)
+          content_entry["content_entries"].each do |record|
+            page_content.content_entries << ContentEntry.new(record)
+          end
+          page_content.save
+        end
+      end
 
-    self.option_operates.each do |operate|
-      operate.destroy
-    end
-    operates = Operate.all
-    operates.each do |op|
-      option_operate = OptionOperate.new(:operate_id=>op.id)
-      self.option_operates << option_operate
-    end
+      self.option_operates.each do |operate|
+        operate.destroy
+      end
+      operates = Operate.all
+      operates.each do |op|
+        option_operate = OptionOperate.new(:operate_id=>op.id)
+        self.option_operates << option_operate
+      end
 
-    self.roles.each  do |role|
-      role.destroy
-    end
-    roles = YAML.load_file("#{Rails.root}/db/basic_data/role.yml")
-    if !roles.blank?
-      roles.each do |k,v|
-        operates = v.delete("operates")
-        role = Role.new(v)
-        role.kindergarten = self
-        unless operates.blank?
-          operates.each do |operate_id|
-            if option = OptionOperate.find_by_operate_id_and_kindergarten_id(operate_id,self.id)
-              role.option_operates << option
+      self.roles.each  do |role|
+        role.destroy
+      end
+      roles = YAML.load_file("#{Rails.root}/db/basic_data/role.yml")
+      if !roles.blank?
+        roles.each do |k,v|
+          operates = v.delete("operates")
+          role = Role.new(v)
+          role.kindergarten = self
+          unless operates.blank?
+            operates.each do |operate_id|
+              if option = OptionOperate.find_by_operate_id_and_kindergarten_id(operate_id,self.id)
+                role.option_operates << option
+              end
             end
           end
-        end
-        role.save!
-      end
-    end
-    #创建所需要的表格
-    content_patterns = YAML.load_file("#{Rails.root}/db/basic_data/content_patterns.yml")
-    if !content_patterns.blank?
-      content_patterns.each do |k,pattern|
-        unless content_pattern = self.content_patterns.where(:number=>pattern["number"]).first
-          content_pattern = ContentPattern.new(pattern)
-          content_pattern.kindergarten_id = self.id
-          content_pattern.save
+          role.save!
         end
       end
-    end
-    #创建论坛分类
-    topic_categories = YAML.load_file("#{Rails.root}/db/basic_data/topic_categories.yml")
-    if !topic_categories.blank?
-      topic_categories.each do |k, category|
-        unless topic_category = self.topic_categories.where(:name => category["name"]).first
-          topic_category = TopicCategory.new(category)
-          topic_category.kindergarten_id = self.id
-          topic_category.save
+      #创建所需要的表格
+      content_patterns = YAML.load_file("#{Rails.root}/db/basic_data/content_patterns.yml")
+      if !content_patterns.blank?
+        content_patterns.each do |k,pattern|
+          unless content_pattern = self.content_patterns.where(:number=>pattern["number"]).first
+            content_pattern = ContentPattern.new(pattern)
+            content_pattern.kindergarten_id = self.id
+            content_pattern.save
+          end
         end
       end
+      #创建论坛分类
+      topic_categories = YAML.load_file("#{Rails.root}/db/basic_data/topic_categories.yml")
+      if !topic_categories.blank?
+        topic_categories.each do |k, category|
+          unless topic_category = self.topic_categories.where(:name => category["name"]).first
+            topic_category = TopicCategory.new(category)
+            topic_category.kindergarten_id = self.id
+            topic_category.save
+          end
+        end
+      end
+      self.save!
+      SmsLog.monthly_balance_kind(self)
     end
-    self.save!
-   end
   end
 
   #升学验证
@@ -338,14 +339,7 @@ class Kindergarten < ActiveRecord::Base
 
   #获取当月还剩群发短信消息数
   def get_surplu_allsms_count
-    surplu_allsms_count = self.allsms_count - self.get_allsms_count
-    surplu_allsms_count < 0 ? 0 : surplu_allsms_count
-  end
-
-  #获取当月还剩群发短信消息数
-  def get_allsms_count
-    time = Time.now.strftime("%Y-%m-01")
-    self.messages.with_deleted.where("status=1 AND approve_status=0 AND allsms=1 AND created_at > ?",time).count
+    self.balance_count < 0 ? 0 : self.balance_count
   end
 
 

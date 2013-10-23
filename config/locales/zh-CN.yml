@@ -200,6 +200,7 @@ zh-CN:
     models:
       admin_user: "管理员"
       asset_img: "图片资源"
+      sms_log: "短息计费日志"
       kindergarten: "幼儿园"
       user: "用户"
       grade: "年级"
@@ -249,6 +250,19 @@ zh-CN:
       dean_email: "园长信箱"
       sys_log: "操作日志"
     attributes:
+      sms_log:
+        kindergarten_id: "所属幼儿园"
+        kindergarten: "所属幼儿园"
+        user: "用户"
+        user_id: "用户id"
+        admin_user: "管理用户"
+        admin_user_id: "管理用户id"
+        note: "描述"
+        message_id: "短信消息"
+        message: "短信消息"
+        count: "数量"
+        tp: "类型"
+        created_at: "时间"
       dean_email:
         kindergarten_id: "所属幼儿园"
         kindergarten: "所属幼儿园"
@@ -307,6 +321,7 @@ zh-CN:
         content_type: "图片类型"
       kindergarten:
         name: "名称"
+        balance_count: "短信剩余条数"
         note: "描述"
         number: "编号"
         template: "展示模板"
@@ -324,7 +339,7 @@ zh-CN:
         latlng: "经纬度"
         address: "地址"
         aliases_url: "独立域名"
-        sms_count: "可用短信数量"
+        sms_count: "每月免费短信数量"
         sms_user_count: "短信用户数量"
         allsms_count: "每月群发短信次数"
         open_allsms: "开启限制数量群发"

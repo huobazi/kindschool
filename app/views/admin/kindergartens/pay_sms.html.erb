@@ -1,0 +1,25 @@
+<%= semantic_form_for @kindergarten, :url =>url_for(:controller=>"/admin/kindergartens",:action=>"pay_sms_count"), :method => :post do |f| %>
+  <%= f.inputs '幼儿园信息' do %>
+    <%= f.input :name, :as => :string, :input_html => { :disabled => true } %>
+    <%= f.input :number, :as => :string, :input_html => {:disabled => true} %>
+    <%= f.input :sms_count, :as => :string, :input_html => {:disabled => true} %>
+    <%= f.input :balance_count, :as => :string, :input_html => {:disabled => true} %>
+  <% end %>
+  <%= f.inputs "充值短信条数" do %>
+    <li class='check_boxes'>
+      <fieldset>
+        <legend class="label"><label>短信数量</label></legend>
+        <ol>
+          <li>
+              <input name="pay_count" type="text" value="" />
+          </li>
+          <li>
+              <%= f.submit "提交" %>
+          </li>
+        </ol>
+      </fieldset>
+    </li>
+    <%= f.input :id, :as => :hidden, :input_html => {:name => "kindergarten_id"} %>
+  <% end %>
+<% end %>
+

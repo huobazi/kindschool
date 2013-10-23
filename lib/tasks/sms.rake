@@ -21,4 +21,8 @@ namespace :sms do
     end
     puts "短信回复获取完毕.#{Time.now}"
   end
+  task :balance => :environment do
+    SmsLog.monthly_balance
+    puts "月结完毕.#{Time.now}"
+  end
 end

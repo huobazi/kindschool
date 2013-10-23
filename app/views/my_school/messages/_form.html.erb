@@ -71,13 +71,17 @@
     <label class="control-label" for="inputPassword">短信发给自己</label>
     <div class="controls">
       <%  if action_name == "new" %>
-        <%= check_box_tag('message[send_me]',"1",true)%>
+        <%= check_box_tag('message[send_me]',"1",false)%>
       <% else %>
         <%= check_box_tag('message[send_me]',"1",@message.send_me)%>
       <% end %>
       <div class="count_div">
         <div>
-          选中是否发送短信才会生效
+          <% if action_name == "new" || action_name == "create" %>
+          <%= raw(@kind.get_surplu_allsms_count == 0 && !current_user.is_receive ? "<font style='color:red'>剩余短信不足，无法发给自己</font>" : "选中是否发送短信才会生效")%>
+          <% else %>
+          <%= raw(@kind.get_surplu_allsms_count == 0 && !@message.sender.is_receive ? "<font style='color:red'>剩余短信不足，无法发给自己</font>" : "选中是否发送短信才会生效")%>
+          <% end %>
         </div>
       </div>
     </div>
@@ -94,7 +98,7 @@
         <div class="count_div">
          <div>
             选中是否发送短信才会生效
-            <p>您所在幼儿园当月群发的次数为:<span style="color:red"><%=@kind.get_surplu_allsms_count%></span></p>
+            <p>您所在幼儿园当月剩余短信条数为:<span style="color:red"><%=@kind.get_surplu_allsms_count%></span></p>
          </div>
         </div>
       </div>
