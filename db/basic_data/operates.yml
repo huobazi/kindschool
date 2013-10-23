@@ -1685,13 +1685,13 @@ album_entry_index:
   action: "entry_index"
   protocol: ""
   <<: *DEFAULTS
-album_record_edit:
+album_record_update:
   id: 9009
   parent_id: 9
   name: "照片集锦_更新"
   level: 2
   sequence: 0
-  note: "照片集锦_编辑"
+  note: "照片集锦_更新"
   controller: "my_school/albums"
   action: "update"
   protocol: ""
