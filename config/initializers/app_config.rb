@@ -178,8 +178,8 @@ SYSLOGS={
   "my_school/garden_growth_records"=>{
     "create"=>{"POST"=>"创建宝宝在园"}
   },
-  "my_school/garden_growth_records"=>{
-    "create"=>{"POST"=>"创建宝宝在园"}
+  "my_school/growth_records"=>{
+    "create"=>{"POST"=>"创建宝宝在家"}
   },
   "my_school/comments"=>{
     "send_comment"=>{"POST"=>"发表评论"}
