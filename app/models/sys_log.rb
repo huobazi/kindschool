@@ -72,28 +72,35 @@ class SysLog < ActiveRecord::Base
   end
 
   # 计算并输出各种操作对象的数量
-  def self.output_syslog(teacher)
+  def self.output_syslog(teacher, start_at=nil, end_at=nil)
     self.init_syslog_list
-    syslogs = SysLog.where(:user_id => teacher.try(:user_id))
+    if start_at.present? && end_at.present?
+      syslogs = SysLog.where("user_id = ? and created_at >= ? and created_at <= ?", teacher.try(:user_id), start_at, end_at)
+    else
+      syslogs = SysLog.where(:user_id => teacher.try(:user_id))
+    end
     unless syslogs.blank?
       syslogs.each do |syslog|
-        record_name = syslog.url_options.split("/").last.chomp
-        if self.syslogkeys.include?(record_name)
+        record_controller = syslog.url_options.split("controller: ").last.chomp
+        record_name = record_controller.split("/").last.chomp
+        record_actions = /action:\s(\w+)\b/.match(syslog.url_options)[1]
+        record_method = syslog.method
+        if self.syslogkeys.include?(record_name) && SYSLOGS.keys.include?(record_controller)
           self.syslog_list[record_name]["count"] += 1
           if self.syslog_list[record_name]["text"].blank?
-            self.syslog_list[record_name]["text"] = syslog.url_chinese
+            self.syslog_list[record_name]["text"] = SYSLOGS[record_controller][record_actions][record_method]
           end
         end
       end
       text = ""
       (self.syslog_list.values || []).each do |sl|
         if sl["count"] > 0
-          text += "<p>#{sl["text"]}数量#{sl["count"]}<p>"
+          text += "<p>#{sl["text"]}数量:<span class='text-info'>#{sl["count"]}<span><p>"
         end
       end
       return text
     else
-      return "<p>没有任何操作记录</p>"
+      return "<p class='muted'>没有任何操作记录</p>"
     end
   end
 

@@ -1,0 +1,20 @@
+<!-- start panel -->
+  <div class="panel">
+    <div class="header"><%= staff.name %>
+      <span class="pull-right">
+        <% if @start_at.present? && @end_at.present? %>
+          <%= @start_at %> ~ <%= @end_at %>
+        <% end %>
+      </span>
+    </div>
+    <div class="inner">
+      <div>
+        <% if @start_at.present? && @end_at.present? %>
+          <%= raw SysLog.output_syslog(staff, @start_at, @end_at) %>
+        <% else %>
+          <%= raw SysLog.output_syslog(staff) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<!-- end panel -->

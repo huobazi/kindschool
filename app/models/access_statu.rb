@@ -3,7 +3,6 @@ class AccessStatu < ActiveRecord::Base
 
   belongs_to :kindergarten
 
-
   def self.records(kind, module_name, user, search, tp)
     if search
       records = search

@@ -1,3 +1,17 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#start_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd",
+      autoclose: true
+    });
+    $('#end_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd",
+      autoclose: true
+    })
+  })
+</script>
 <div class="show_work">
   <%= render :partial => "/modules/colorful/work_menu" %>
   <div class="work">
@@ -27,21 +41,39 @@
 
     <div class="work_list">
       <div class="stat-content">
-        <% @kind.staffs.each do |staff| %>
-          <!-- start panel -->
-          <div class="panel">
-            <div class="header"><%= staff.name %></div>
-            <div class="inner">
-              <div>
-                <%= raw SysLog.output_syslog(staff) %>
-              </div>
-            </div>
-          </div>
-          <!-- end panel -->
-        <% end %>
+        <div class="well">
+          <input type="text" class="input-small" style="margin-top: 10px;" id="start_at" value="<%= cur_begin_week %>" />
+          <input type="text" class="input-small" style="margin-top: 10px;" id="end_at" value="<%= cur_end_week %>" />
+          <a class="btn" id="view_action" href="javascript:void(0);">查看这段时间老师的操作记录</a>
+        </div>
+        <div id="action_list">
+          <%= render :partial => "staff", :collection => @staffs %>
+        </div>
       </div>
   </div>
 
 </div>
 
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    $("#view_action").click(function() {
+      $.ajax({
+        url: "/my_school/statistics/teacher_stat",
+        data: {
+          start_at: $("#start_at").val(),
+          end_at: $("#end_at").val()
+        },
+        beforeSend: function() {
+          $('<img class="loading_img loadding_pt" src="/t/colorful/gif_preloader.gif" alt="" />').appendTo(".stat-content");
+        },
+        success: function() {
+          $(".stat-content").find("img.loadding_pt").hide();
+        }
+      })
+    })
+
+  })
+</script>

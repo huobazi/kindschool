@@ -98,6 +98,16 @@ class  MySchool::StatisticsController < MySchool::ManageController
 
   # 老师日常管理统计
   def teacher_stat
+    @staffs = @kind.staffs
+    if request.xhr?
+      unless params[:start_at].blank? and params[:end_at].blank?
+        @start_at = params[:start_at]
+        @end_at = params[:end_at]
+      end
+      render "my_school/statistics/teacher_stat.js.erb"
+    else
+      render "my_school/statistics/teacher_stat"
+    end
   end
 
 end
