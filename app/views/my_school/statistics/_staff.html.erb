@@ -1,6 +1,6 @@
 <!-- start panel -->
   <div class="panel">
-    <div class="header"><%= staff.name %>
+    <div class="header"><%= staff.try(:user).try(:full_name) %>
       <span class="pull-right">
         <% if @start_at.present? && @end_at.present? %>
           <%= @start_at %> ~ <%= @end_at %>
