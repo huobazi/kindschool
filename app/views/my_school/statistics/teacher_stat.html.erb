@@ -1,0 +1,79 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#start_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd",
+      autoclose: true
+    });
+    $('#end_at').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd",
+      autoclose: true
+    })
+  })
+</script>
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>
+          老师日常统计
+        </label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li>
+              统计
+            </li>
+            <li>/</li>
+            <li>老师日常统计</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+      </ul>
+    </div>
+
+
+    <div class="work_list">
+      <div class="stat-content">
+        <div class="well">
+          <input type="text" class="input-small" style="margin-top: 10px;" id="start_at" value="<%= cur_begin_week %>" />
+          <input type="text" class="input-small" style="margin-top: 10px;" id="end_at" value="<%= cur_end_week %>" />
+          <a class="btn" id="view_action" href="javascript:void(0);">查看这段时间老师的操作记录</a>
+        </div>
+        <div id="action_list">
+          <%= render :partial => "staff", :collection => @staffs %>
+        </div>
+      </div>
+  </div>
+
+</div>
+
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    $("#view_action").click(function() {
+      $.ajax({
+        url: "/my_school/statistics/teacher_stat",
+        data: {
+          start_at: $("#start_at").val(),
+          end_at: $("#end_at").val()
+        },
+        beforeSend: function() {
+          $('<img class="loading_img loadding_pt" src="/t/colorful/gif_preloader.gif" alt="" />').appendTo(".stat-content");
+        },
+        success: function() {
+          $(".stat-content").find("img.loadding_pt").hide();
+        }
+      })
+    })
+
+  })
+</script>

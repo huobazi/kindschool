@@ -20,4 +20,12 @@ module StatisticsHelper
       raw "(已完成人数:<span class='s_s_count' style='color: #15a230;'></span>/总人数:0)"
     end
   end
+
+  def cur_begin_week
+     Time.now.beginning_of_week.year.to_s + "-" + Time.now.beginning_of_week.month.to_s + "-" + Time.now.beginning_of_week.day.to_s
+  end
+
+  def cur_end_week
+     Time.now.end_of_week.year.to_s + "-" + Time.now.end_of_week.month.to_s + "-" + Time.now.end_of_week.day.to_s
+  end
 end

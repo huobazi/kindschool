@@ -14,7 +14,7 @@ class SysLog < ActiveRecord::Base
         logtrail.url_chinese=syslog
         logtrail.kindergarten_id=kind_id
         logtrail.user_id=current_user_id
-        logtrail.url_options=url
+        logtrail.url_options="#{controller}/#{action}"
         logtrail.method=method
         logtrail.original_url=original_url
         logtrail.remote_ip=remote_ip
