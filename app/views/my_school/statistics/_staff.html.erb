@@ -9,10 +9,17 @@
     </div>
     <div class="inner">
       <div>
-        <% if @start_at.present? && @end_at.present? %>
-          <%= raw SysLog.output_syslog(staff, @start_at, @end_at) %>
+        <% if @syslogs[staff.try(:user_id)] %>
+          <% @syslogs[staff.try(:user_id)].each do |syslog| %>
+            <% record = /(\w+\/\w+)\/(\w+)/.match(syslog.url_options) %>
+            <% record_controller = record[1] %>
+            <% record_action = record[2] %>
+            <% if SYSLOGS[record_controller] %>
+              <p><%= SYSLOGS[record_controller][record_action][syslog.method] %>的数量为:&nbsp;<span class="text-info"><%= syslog.syslogcount %></span></p>
+            <% end %>
+          <% end %>
         <% else %>
-          <%= raw SysLog.output_syslog(staff) %>
+          <p class="muted">没有操作记录</p>
         <% end %>
       </div>
     </div>

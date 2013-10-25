@@ -99,11 +99,14 @@ class  MySchool::StatisticsController < MySchool::ManageController
   # 老师日常管理统计
   def teacher_stat
     @staffs = @kind.staffs
+    unless params[:start_at].blank? and params[:end_at].blank?
+      @syslogs = SysLog.select("count(1) as syslogcount, sys_logs.url_options, sys_logs.user_id, sys_logs.method").joins("INNER JOIN staffs as st on(sys_logs.user_id = st.user_id)").joins("INNER JOIN users as u on u.id = st.user_id").where("u.kindergarten_id=? and sys_logs.created_at >= ? and sys_logs.created_at <= ?", @kind.id, params[:start_at], params[:end_at] ).group("sys_logs.url_options, sys_logs.user_id").group_by {|syslog| syslog.user_id}
+      @start_at = params[:start_at]
+      @end_at = params[:end_at]
+    else
+      @syslogs = SysLog.select("count(1) as syslogcount, sys_logs.url_options, sys_logs.user_id, sys_logs.method").joins("INNER JOIN staffs as st on(sys_logs.user_id = st.user_id)").joins("INNER JOIN users as u on u.id = st.user_id").where("u.kindergarten_id=?", @kind.id).group("sys_logs.url_options, sys_logs.user_id").group_by {|syslog| syslog.user_id}
+    end
     if request.xhr?
-      unless params[:start_at].blank? and params[:end_at].blank?
-        @start_at = params[:start_at]
-        @end_at = params[:end_at]
-      end
       render "my_school/statistics/teacher_stat.js.erb"
     else
       render "my_school/statistics/teacher_stat"
