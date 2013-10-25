@@ -2888,3 +2888,7 @@ input.flaot_but{
     float: left;
     margin: 5px;
 }
+.show_movie{
+    padding-left: 40px;
+    padding-top: 60px;
+}

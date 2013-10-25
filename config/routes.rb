@@ -179,7 +179,7 @@ School::Application.routes.draw do
     end
     resources :home do
       collection do
-        get :about,:contact_us
+        get :show_videos,:about,:contact_us,:help_videos
       end
     end
     resources :grades do
