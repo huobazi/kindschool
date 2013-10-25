@@ -5,15 +5,6 @@ class SysLog < ActiveRecord::Base
   belongs_to :kindergarten
   belongs_to :user #, :class_name => "User", :foreign_key => "user_id"
 
-  # 计算并输出各种操作对象的数量
-  def self.output_syslog(teacher, start_at=nil, end_at=nil)
-    if start_at.present? && end_at.present?
-      syslogs = SysLog.where("user_id = ?", teacher.try(:user_id), start_at, end_at).group(:url_options)
-    else
-      syslogs = SysLog.where(:user_id => teacher.try(:user_id))
-    end
-  end
-
   def self.write_log(current_user_id,url,method,original_url,remote_ip,params,kind_id)
       logtrail=SysLog.new
       controller = url[:controller]
