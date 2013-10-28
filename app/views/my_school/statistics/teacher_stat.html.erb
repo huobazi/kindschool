@@ -47,7 +47,11 @@
           <a class="btn" id="view_action" href="javascript:void(0);">查看这段时间老师的操作记录</a>
         </div>
         <div id="action_list">
-          <%= render :partial => "staff", :collection => @staffs %>
+          <% unless @staffs.blank? %>
+            <%= render :partial => "staff", :collection => @staffs %>
+          <% else %>
+            <p class="muted">没有教职工</p>
+          <% end %>
         </div>
       </div>
   </div>

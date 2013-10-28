@@ -212,4 +212,17 @@ SYSLOGS={
   }
 }
 
+TEACHER_STAT = {
+  "my_school/topics/create" =>"创建帖子",
+  "my_school/messages/create" =>"发送消息",
+  "my_school/garden_growth_records/create" =>"创建宝宝在园成长记录",
+  "my_school/growth_records/create" =>"创建宝宝在园成长记录",
+  "my_school/comments/create" =>"发表评论",
+  "my_school/cook_books/create" =>"创建菜谱",
+  "my_school/physical_records/create" =>"创建体检记录",
+  "my_school/seedlings/create" =>"创建疫苗记录",
+  "my_school/teaching_plans/create" =>"创建教学计划",
+  "my_school/albums/create" =>"创建相册集锦",
+  "my_school/activities/create" =>"创建活动"
+}
 
