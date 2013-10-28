@@ -36,6 +36,8 @@ class Kindergarten < ActiveRecord::Base
   has_one :admin, :class_name => "User", :conditions => "tp = 2" #管理员，只有一个
   has_one :asset_img, :class_name => "AssetImg", :as => :resource, :dependent => :destroy #logo，只有一个
   has_one :asset_logo, :class_name => "AssetLogo", :as => :resource, :dependent => :destroy #二维码，只有一个
+  has_one :evaluate
+  
   belongs_to :template
 
   has_many :option_operates

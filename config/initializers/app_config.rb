@@ -165,6 +165,11 @@ MENUS ={"home"=>{
     "130000"=>{
       "131000" => {
         "my_school/approves" => ["news_list","news_show"]}
+    },
+    "110000"=>{
+      "110001"=>{
+        "my_school/evaluates"=>["index"]
+      }
     }
 }
 

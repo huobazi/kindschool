@@ -38,5 +38,5 @@ School::Application.configure do
     app.assets.logger = Logger.new('/dev/null')
   end
   # Expands the lines which load the assets
-  config.assets.debug = false
+  config.assets.debug = true
 end
