@@ -15,7 +15,7 @@ class AdminAbility
           can :manage, :all #,:except=>[SysLog]
         when "operation"
           then
-          can [:create,:read, :update, :destroy], [WeiyiConfig,Category,CommentDatabank,WeixinDatabank,WeixinShare]
+          can [:create,:read, :update, :destroy], [HelpMovie,HelpCategory,WeiyiConfig,Category,CommentDatabank,WeixinDatabank,WeixinShare]
           can [:read, :update], ShrinkRecord
           can [:create,:read, :update], [Kindergarten,User,StudentInfo,Staff,OptionOperate]
           can [:read], [Teacher,CareerStrategy,Message,MessageEntry,Role,Smarty,AdminUser,TopicCategory,
