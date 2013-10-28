@@ -69,7 +69,7 @@
         <div class="show">
           <div class="clearfix">
             <input type="checkbox" id="check_all_roles" name="" value="" alt="选择全部班级" class="check_all_roles" /><label style="display: inline; font-size: 15px;" for="check_all_roles">选择全部班级</label>
-            <a class="btn btn-link pull-right" id="recovery">恢复默认</a>
+            <a class="btn btn-link pull-right" id="recovery">撤消</a>
           </div>
           <%= simple_form_for(@staff, :url => update_allocation_my_school_teachers_path(:staff_id => @staff.id), :html => {:class => "form-horizontal", :method => :post}) do |f| %>
             <% n = 0 %>

@@ -9,17 +9,21 @@
     </div>
     <div class="inner">
       <div>
-        <% if @syslogs[staff.try(:user_id)] %>
-          <% @syslogs[staff.try(:user_id)].each do |syslog| %>
-            <% record = /(\w+\/\w+)\/(\w+)/.match(syslog.url_options) %>
-            <% record_controller = record[1] %>
-            <% record_action = record[2] %>
-            <% if SYSLOGS[record_controller] %>
-              <p><%= SYSLOGS[record_controller][record_action][syslog.method] %>的数量为:&nbsp;<span class="text-info"><%= syslog.syslogcount %></span></p>
+        <% if staff && !staff.user.blank? %>
+          <% if @syslogs[staff.try(:user_id)] %>
+            <% @syslogs[staff.try(:user_id)].each do |syslog| %>
+              <% record = /(\w+\/\w+)\/(\w+)/.match(syslog.url_options) %>
+              <% record_controller = record[1] %>
+              <% record_action = record[2] %>
+              <% if SYSLOGS[record_controller] %>
+                <p><%= SYSLOGS[record_controller][record_action][syslog.method] %>的数量为:&nbsp;<span class="text-info"><%= syslog.syslogcount %></span></p>
+              <% else %>
+                <p>数据错误</p>
+              <% end %>
             <% end %>
+          <% else %>
+            <p class="muted">没有操作记录</p>
           <% end %>
-        <% else %>
-          <p class="muted">没有操作记录</p>
         <% end %>
       </div>
     </div>
