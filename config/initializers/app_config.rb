@@ -209,6 +209,24 @@ SYSLOGS={
   },
   "my_school/activities"=>{
     "create"=>{"POST"=>"创建活动"}
+  },
+  "weixin/messages"=>{
+    "create"=>{"POST"=>"微信创建消息"}
+  },
+  "weixin/garden_growth_records"=>{
+    "create"=>{"POST"=>"微信创建宝宝在园成长记录"}
+  },
+  "weixin/growth_records"=>{
+    "create"=>{"POST"=>"微信创建宝宝在家成长记录"}
+  },
+  "weixin/activities"=>{
+    "create"=>{"POST"=>"微信创建活动"}
+  },
+  "weixin/topics"=>{
+    "create"=>{"POST"=>"微信创建帖子"}
+  },
+  "weixin/topics"=>{
+    "create"=>{"POST"=>"微信创建帖子"}
   }
 }
 
