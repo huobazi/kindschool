@@ -1,0 +1,88 @@
+<div id="left_tree" style="float:left;width:200px;">
+  <h2>文章分类结构</h2>
+  <ul id="sys_function_groups_tree">
+    <%= nested_set_to_treeview @help_categories, :current_node=>@help_categories %>
+  </ul>
+  <div class="exe_btns clearfix">
+    <%= link_to '新增分类', new_admin_category_path, :id=>'btn_new_category' %>
+    <%= link_to '管理结构树', '#', :id=>'btn_open_architecture_tree' %>
+  </div>
+</div>
+<div id="right_list" style="float:left;min-width:600px;">
+  <%#= render 'permissions_list' %>
+</div>
+<div id="sys_architecture_manage" title="系统功能结构管理">
+    <div id="sys_architecture_manage_editor"></div>
+     <table id="sys_architecture_manage_tree" class="list_tbl">
+      <thead>
+        <tr>
+          <th>功能模块</th>
+          <th>备注</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% (@help_categories || []).each do |item| %>
+        <tr id="node-<%=item.id%>" class="<%= item.child? ? "child-of-node-#{item.parent_id}" : 'parent' %>">
+          <td><%= item.name %></td>
+          <td><%= item.remark %></td>
+          <td>
+            <%= link_to '编辑', edit_admin_category_path(item), :class=>'edit_link' %>
+            <%= link_to '删除', admin_category_path(item), :confirm => '确定要删除吗?', :method => :delete %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    
+    
+</div>
+
+  <% content_for :script do %>
+  <%= include_jquery_ui_tag %>
+    <%= include_jquery_treeview_tag %>
+  <%= include_jquery_treetable_tag %>
+  <style type="text/css">
+    #sys_function_groups_tree span.file{cursor:pointer;}
+    #sys_function_groups_tree li.focus{background-color:#9acd32;}
+  </style>
+  <script type="text/javascript">
+    $(function(){
+        // 属性初始化
+        $('#sys_function_groups_tree').treeview();
+        $('#sys_function_groups_tree span.file').live('click', function(){
+            $('#sys_function_groups_tree li.focus').removeClass('focus');
+            $(this).parent().addClass('focus');
+            var g_id = $(this).attr('nodeid');
+        });
+
+        // 系统功能结构管理对话框窗口初始化
+        $('#sys_architecture_manage').dialog({autoOpen:false,modal:true,width:620,height:445});
+        //树形表格初始化
+    $("#sys_architecture_manage_tree").treeTable({clickableNodeNames:true});
+        // 打开新增功能结构的界面
+        $('#btn_new_category').click(function(){
+            $('#sys_architecture_manage_editor').load(this.href, function(){
+                $("#sys_architecture_manage_tree").hide();   // 结构树隐藏，结构编辑区显示
+                $('#sys_architecture_manage_editor').show();
+                $('#sys_architecture_manage').dialog('open');
+            });
+            return false;
+        });
+        // 打开系统结构树管理的界面
+        $('#btn_open_architecture_tree').click(function(){
+            $("#sys_architecture_manage_tree").show();   // 结构树显示，结构编辑区隐藏
+            $('#sys_architecture_manage_editor').hide();
+            $('#sys_architecture_manage').dialog('open');
+            return false
+        });
+        $('#sys_architecture_manage_tree a.edit_link').live('click', function(){
+            $('#sys_architecture_manage_editor').load(this.href, function(){
+                $("#sys_architecture_manage_tree").hide();   // 结构树隐藏，结构编辑区显示
+                $('#sys_architecture_manage_editor').show();
+            });
+            return false;
+        });
+    });
+  </script>
+<% end %>

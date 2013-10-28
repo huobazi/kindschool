@@ -8,9 +8,9 @@ class MySchool::TeachingPlansController < MySchool::ManageController
     elsif current_user.get_users_ranges[:tp] == :teachers  
       @teaching_plans = @kind.teaching_plans.where("squad_id in (select squad_id from teachers where staff_id = ?) or squad_id is NULL", current_user.staff.id).page(params[:page] || 1).per(10)
     else
-      if (session[:operates] || []).include?('my_school/teaching_plans/new')
+      # if (session[:operates] || []).include?('my_school/teaching_plans/new')
         @teaching_plans = @kind.teaching_plans.search(params[:teaching_plan] || {}).page(params[:page] || 1).per(10)
-      end
+      # end
     end
   end
 

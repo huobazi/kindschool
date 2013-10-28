@@ -126,7 +126,7 @@ School::Application.routes.draw do
     end
 
     resources :statistics do
-      get :sms_all_statistics,:sms_statistics,:virtual_squad, :message, :growth_record, :kind_stat, :on => :collection
+      get :sms_all_statistics,:sms_statistics,:virtual_squad, :message, :growth_record, :teacher_stat, :kind_stat, :on => :collection
     end
     resources :users do
       collection do
@@ -179,7 +179,7 @@ School::Application.routes.draw do
     end
     resources :home do
       collection do
-        get :about,:contact_us
+        get :show_videos,:about,:contact_us,:help_videos
       end
     end
     resources :grades do

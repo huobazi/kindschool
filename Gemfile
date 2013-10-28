@@ -74,6 +74,10 @@ gem "harmonious_dictionary", "~>0.0.1"
 gem "flash_cookie_session","1.1.5"
 gem 'uploadify-rails',"3.1.1.1"
 
+#扩展提供了一组嵌套的功能
+gem 'nested_set' , '~> 1.7.0' # http://github.com/skyeagle/nested_set
+
+
 
 #https://github.com/jhjguxin/sitemap_generator  #TODO:需要研究 SEO的网站地图
 

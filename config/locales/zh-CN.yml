@@ -249,7 +249,25 @@ zh-CN:
       read_user: "阅读人员记录"
       dean_email: "园长信箱"
       sys_log: "操作日志"
+      help_category: "视频分类"
+      help_movie: "帮助视频"
     attributes:
+      help_movie:
+        name: "名字"
+        content: "内容"
+        created_at: "创建于"
+        updated_at: "更新于"
+      help_category:
+        parent_id: "父类"
+        parent: "父类"
+        name: "名字"
+        code: "编号"
+        remark: "标记"
+        tp_id: "角色"
+        help_movie_id: "帮助视频"
+        help_movie: "帮助视频"
+        created_at: "创建于"
+        updated_at: "更新于"
       sms_log:
         kindergarten_id: "所属幼儿园"
         kindergarten: "所属幼儿园"

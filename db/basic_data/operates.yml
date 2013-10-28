@@ -2054,6 +2054,7 @@ statistics_virtual_squad:
   action: "virtual_squad"
   protocol: ""
   <<: *DEFAULTS
+
 statistics_sms_statistics:
   id: 14400
   parent_id: 11
@@ -2065,6 +2066,7 @@ statistics_sms_statistics:
   action: "sms_statistics"
   protocol: ""
   <<: *DEFAULTS
+
 official_evaluates:
   id: 15000
   parent_id: 13
@@ -2074,5 +2076,17 @@ official_evaluates:
   note: "评估管理"
   controller: "my_school/evaluates"
   action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+
+teacher_stat_statistics:
+  id: 14500
+  parent_id: 11
+  name: "老师日常统计"
+  level: 2
+  sequence: 4
+  note: "老师日常统计"
+  controller: "my_school/statistics"
+  action: "teacher_stat"
   protocol: ""
   <<: *DEFAULTS

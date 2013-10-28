@@ -1,0 +1,139 @@
+﻿*{margin:0;
+    padding:0;}
+body {
+    background-color:#c5cacd;
+    display:inline;
+}
+.center{
+    margin:0px auto;
+    width:490px;
+   }
+   .center_left{
+       width:17px;
+       height:255px;
+       float:left;
+   }
+   .center_center{
+       width:456px;
+       height:255px;
+       float:left;
+       background:url(/images/login/cen.gif) top repeat-x;
+   }
+   .center_right{
+       width:17px;
+       height:255px;
+       float:left;
+   }
+   .down{
+       margin:0px auto;
+       width:490px;
+       height:147px;
+   }
+   .name{
+       width:456px;
+       height:67px;
+   }
+   .txt{
+       width:150px
+   }
+   .name_left{
+       float:left;
+       width:235px;
+       color:#000033;
+       _width:235px;
+       font-size:16px;
+       font-family:"黑体";
+       padding-top:20px;
+       padding-left:11px;
+       _font-size:16px;
+       _font-family:"黑体";
+       _padding-left:11px;
+       _padding-top:20px;
+       height:42px;
+       _height:57px;
+       display:inline;
+   }
+   .name_right{
+       font-size:14px;
+       font-family:"宋体";
+       font-weight:bold;
+       color:#000000;
+       padding-top:41px;
+       padding-left:80px;
+       width:120px;
+       float:left;
+   }
+   .content{
+       width:456px;
+       height:165px;
+   }
+   .content_left{
+       width:136px;
+       float:left;
+       padding-top:50px;
+       *padding-top:50px;
+       _padding-top:40px;
+       padding-left:10px;
+   }
+   .content_center{
+       width:1px;
+       height:102px;
+       float:left;
+       padding-top:25px;
+       *padding-top:25px;
+       _padding-top:15px;
+   }
+   .content_right{
+       float:left;
+       padding-left:40px;
+       *padding-left:40px;
+       _padding-left:40px;
+       padding-top:5px;
+       *padding-top:5px;
+       _padding-top:3px;
+       font-size:12px;
+   }
+   .right_top{
+       height:20px;
+       font-size:12px;
+       padding-top:20px;
+       *padding-top:20px;
+       _padding-top:10px;}
+   .right_down{
+       font-size:12px;
+       padding-top:8px;
+   }
+   .content_right div{
+       margin-bottom:3px;
+       _margin-bottom:1px;
+   }
+   .right_login{
+       /*padding-left:140px !important;*/
+       padding-left:140px;
+       *padding-left:140px;
+       _padding-left:185px;
+   }
+   .errormsg{
+       margin:1px auto;
+       color:#FF0000;
+       width:250px;
+   }
+   .field_with_errors {
+    background-color: red;
+    display:inline;
+    /*display: table;*/
+    /*float:right;*/
+   }
+   .field_with_errors input {
+    border: red solid 1px;
+   }
+
+   .btn{
+       background:url(/images/login/btn.gif) no-repeat;
+       width:61px;
+       height:21px;
+       padding:0;
+       margin:0;
+       cursor:pointer;
+       border:none;}
+
