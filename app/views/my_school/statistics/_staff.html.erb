@@ -11,25 +11,24 @@
       <div>
         <% unless @syslogs.blank? %>
           <% if staff && !staff.user.blank? %>
-            <% if @syslogs[staff.try(:user_id)] %>
-              <% @syslogs[staff.try(:user_id)].each do |syslog| %>
-                <% record = /(\w+\/\w+)\/(\w+)/.match(syslog.url_options) %>
-                <% record_controller = record[1] %>
-                <% record_action = record[2] %>
-                <% if SYSLOGS[record_controller] %>
-                  <p><%= SYSLOGS[record_controller][record_action][syslog.method] %>的数量为:&nbsp;<span class="text-info"><%= syslog.syslogcount %></span></p>
-                <% else %>
-                  <p>数据错误</p>
+            <% TEACHER_STAT.each do |k,v|  %>
+              <p>
+                <%= v %>:
+                <% syslog_count = 0 %>
+                <% if data = @syslogs[staff.try(:user_id)] %>
+                  <% if record_data = data.find{ |record| record.url_options == k } %> 
+                    <% syslog_count = record_data.syslogcount %>
+                  <% end %>
                 <% end %>
-              <% end %>
-            <% else %>
-              <p class="muted">没有操作记录</p>
+                <span class="text-info"><%= syslog_count %></span>
+              </p>
             <% end %>
           <% end %>
         <% else %>
-          <p class="muted">没有操作记录</p>
+          <p class="muted">没有操作记录<p>
         <% end %>
       </div>
+
     </div>
   </div>
 <!-- end panel -->
