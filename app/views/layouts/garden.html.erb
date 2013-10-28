@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>微一资讯园讯通</title>
+    <%#= stylesheet_link_tag    "application", :media => "all" %>
+    <%#= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag "app_bootstrap", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <script language='javascript' type="text/javascript">
+      function ResumeError() {
+        return true;
+      }
+      window.onerror = ResumeError;
+    </script>
+    <!--[if IE 6]>
+    <%= javascript_include_tag "DD_belatedPNG" %>
+<script type="text/javascript">
+  /* EXAMPLE */
+  DD_belatedPNG.fix('div, ul, img, li, input , a');
+</script>
+<![endif]-->
+    <meta name="description" content="微一资讯,微服务，从事移动互联网的校讯通服务。" />
+    <meta name="keywords" content="园讯通,校讯通,深圳校讯通,微一资讯,微壹资讯,微壹资讯科技,幼儿园微信,微信幼儿园,微信服务平台,免费校讯通,免费服务幼儿园" />
+    <meta charset="utf-8"/>
+  </head>
+  <body onload="ResumeError()">
+    <div class="head_bg_left">
+
+    </div>
+    <div class="head_bg_right">
+
+    </div>
+    <div class="weiyi">
+      <%= render :partial=>"/modules/garden/head" %>
+      <div class="weiyi_center">
+        <%= yield %>
+      </div>
+    </div>
+    <%= render :partial=>"/modules/garden/food" %>
+    <div style="display: none;">
+      <script type="text/javascript">
+        try{
+          var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cdiv id='cnzz_stat_icon_1000041998'%3E%3C/div%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000041998%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+        }catch(ex){}
+      </script>
+    </div>
+  </body>
+</html>

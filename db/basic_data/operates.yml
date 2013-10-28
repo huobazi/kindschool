@@ -2067,6 +2067,18 @@ statistics_sms_statistics:
   protocol: ""
   <<: *DEFAULTS
 
+official_evaluates:
+  id: 15000
+  parent_id: 13
+  name: "评估管理"
+  level: 2
+  sequence: 1
+  note: "评估管理"
+  controller: "my_school/evaluates"
+  action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+
 teacher_stat_statistics:
   id: 14500
   parent_id: 11
@@ -2078,15 +2090,3 @@ teacher_stat_statistics:
   action: "teacher_stat"
   protocol: ""
   <<: *DEFAULTS
-
-#official_evaluates:
-#  id: 15000
-#  parent_id: 13
-#  name: "评估管理"
-#  level: 2
-#  sequence: 1
-#  note: "评估管理"
-#  controller: "my_school/evaluates"
-#  action: "index"
-#  protocol: ""
-#  <<: *DEFAULTS
