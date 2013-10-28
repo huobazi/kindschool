@@ -5,7 +5,7 @@
   web_host: weiyizixun.com
   admin_user: noreply@weiyizixun.com
   #备案号
-  record_code: "粤ICP备13072833"
+  record_code: "粤ICP备13072833-1"
 
 development:
   weixin_blind: false
