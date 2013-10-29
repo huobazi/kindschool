@@ -4,7 +4,8 @@ ActiveAdmin.register WeiyiConfig do
 
   index do
     div do
-      '编号："web_weiyi_about"为微一官网的关于我们,"web_weiyi_interact"为微一官网的家园互动,"web_weiyi_contact"为微一官网的联系我们'
+      raw '编号：<br/>"web_weiyi_about"为微一官网的关于我们,"web_weiyi_interact"为微一官网的家园互动,"web_weiyi_contact"为微一官网的联系我们,<br/>
+            "web_garden_about"为园讯通简介,"web_garden_kindergarten"为推荐幼儿园(需要考虑在宽220，高140范围内显示)'
     end
     column :number
     column :content  do |record|

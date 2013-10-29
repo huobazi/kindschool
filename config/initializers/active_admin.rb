@@ -13,6 +13,7 @@ ActiveAdmin.setup do |config|
       menu.add :label => "用户管理", :priority => 2
       menu.add :label => "资料库", :priority => 2
       menu.add :label => "微壹平台管理", :priority => 2
+      menu.add :label => "园讯通管理", :priority => 3
       menu.add :label => "短信计费", :priority => 3
       menu.add :label => "系统配置", :priority => 4
     end

@@ -370,7 +370,7 @@ School::Application.routes.draw do
 
   match 'garden' => 'garden/main#index'
   namespace :garden do
-    
+    resources :garden_news
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.

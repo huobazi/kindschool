@@ -1,0 +1,313 @@
+/*
+ *= require jquery.ui.all
+ *= require uploadify
+*/
+ul, li {
+    list-style-type: none;
+}
+body,ul,li{
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+}
+.garden{
+    width: 980px;
+    margin: 0 auto;
+}
+/*====head=========*/
+.head {
+    background-image: url(/t/garden/head_bg1.png);
+    height: 491px;
+    width: 1180px;
+    margin: 0 auto 10px;
+}
+.head2{
+    background-image: url(/t/garden/head_bg2.png);
+    height: 328px;
+}
+.head .logo {
+    padding-bottom: 5px;
+}
+.head .logo img{
+    height: 45px;
+    padding: 5px;
+}
+.head .menu{
+    width: 100%;
+}
+.head .menu_left{
+    background-image: url(/t/garden/menu_left.png);
+    height: 60px;
+    width: 31px;
+    float: left;
+}
+.head .menu_center{
+    background-image: url(/t/garden/menu_center.png);
+    height: 60px;
+    min-width: 450px;
+    _width: 450px;
+    float: left;
+}
+.head .menu_right{
+    background-image: url(/t/garden/menu_right.png);
+    height: 60px;
+    width: 36px;
+    float: left;
+}
+.menu_center li{
+    font-size: 16px;
+    line-height: 53px;
+    float: left;
+}
+.menu_center li a{
+    color: #FFFFFF;
+    display: block;
+    width: 100px;
+    text-align: center;
+    text-decoration: none;
+}
+.menu_center li a.selected{
+    background-image: url(/t/garden/menu_selected.png);
+    background-position: center 13px;
+    background-repeat: no-repeat;
+    color: #DA4F4C;
+    font-weight: bold;
+}
+.menu_center li a:hover{
+    background-image: url(/t/garden/menu_selected.png);
+    background-position: center 13px;
+    background-repeat: no-repeat;
+    color: #DA4F4C;
+    font-weight: bold;
+}
+.login_menu{
+    float: right;
+}
+
+.login_menu .login_menu_left{
+    background-image: url(/t/garden/login_menu_left.png);
+    height: 60px;
+    width: 31px;
+    float: left;
+}
+.login_menu .login_menu_center{
+    background-image: url(/t/garden/login_menu_center.png);
+    height: 60px;
+    min-width: 100px;
+    _width: 100px;
+    float: left;
+}
+.login_menu .login_menu_right{
+    background-image: url(/t/garden/login_menu_right.png);
+    height: 60px;
+    width: 37px;
+    float: left;
+}
+.login_menu_center a.login {
+    color: #FFFFFF;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    width: 100px;
+    font-size: 18px;
+    line-height: 53px;
+}
+.login_menu_center #login:hover{
+    font-weight: bold;
+    color: #DA4F4C;
+    background-image: url(/t/garden/menu_selected.png);
+    background-position: center 13px;
+    background-repeat: no-repeat;
+}
+/*=======center=======*/
+.info{
+    float: left;
+    width: 350px;
+}
+.info_small{
+    float: left;
+    width: 266px;
+    background-image: url(/t/garden/recommend.png);
+    background-repeat: no-repeat;
+    height: 254px;
+    position: relative;
+}
+.small_title{
+    color: #FFFFFF;
+    font-size: 20px;
+    position: absolute;
+    right: 65px;
+    top: 40px;
+}
+.small_center{
+    height: 140px;
+    left: 20px;
+    position: absolute;
+    top: 90px;
+    width: 220px;
+    word-wrap: break-word;
+}
+.small_center img{
+    width: 100px;
+}
+.info_head{
+}
+.info_head_left{
+    background-image: url(/t/garden/info_head_left.png);
+    background-repeat: no-repeat;
+    width: 21px;
+    height: 28px;
+    float: left;
+}
+.info_head_right{
+    background-image: url(/t/garden/info_head_right.png);
+    background-repeat: no-repeat;
+    width: 21px;
+    height: 28px;
+    float: left;
+}
+.info_head_center{
+    background-image: url(/t/garden/info_head_center.png);
+    width: 300px;
+    height: 28px;
+    float: left;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 28px;
+}
+.info_center {
+    padding: 40px 10px 10px;
+    font-size: 14px;
+    color: #6a6a6a;
+}
+.info_food{
+    background-image: url(/t/garden/info_food.png);
+    width: 342px;
+    height: 91px;
+}
+.new_left{
+    float: left;
+    width: 250px;
+    font-size: 14px;
+    color: #6a6a6a;
+}
+.new_right{
+    float: left;
+    width: 80px;
+    color: #da4f4c;
+    font-size: 12px;
+}
+.info_head_more{
+    float: right;
+    color: #ffffff;
+    font-size: 12px;
+}
+.info_head_more a{
+    color: #ffffff;
+}
+.center_bg{
+    background-image: url(/t/garden/center_bg.png);
+    background-repeat: repeat-y;
+    min-height: 300px;
+    _height: 300px;
+    padding: 20px;
+}
+.head_title{
+    color: #DA4F4C;
+    margin-bottom: 20px;
+}
+.return_action{
+    background-image: url("/t/garden/interface.png");
+    background-position: -512px 0;
+    float: right;
+    height: 58px;
+    width: 86px;
+    margin-right: 20px;
+}
+.picture{
+    float: left;
+    width: 100%;
+}
+.picture_left{
+    background-image: url(/t/garden/picture_left.png);
+    background-repeat: no-repeat;
+    width: 92px;
+    height: 243px;
+    float: left;
+}
+.picture_center{
+    background-image: url(/t/garden/picture_center.png);
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    width: 770px;
+    height: 243px;
+    float: left;
+}
+.picture_right{
+    background-image: url(/t/garden/picture_right.png);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    width: 118px;
+    height: 243px;
+    float: left;
+}
+.picture .prev{
+    float: right;
+    height: 100%;
+    min-width: 50px;
+    _width:50px;
+}
+.picture .next{
+    float: left;
+    height: 100%;
+    min-width: 50px;
+    _width:50px;
+}
+.picture_center .jCarouselLite{
+    float: left;
+    margin-top: 32px;
+}
+.picture .prev .left{
+    background: url("/t/colorful/moving_direction.png") no-repeat 0 50%;
+    width: 45px;
+    height: 100%;
+}
+.picture .next .right{
+    background: url("/t/colorful/moving_direction.png") no-repeat scroll -50px 50%;
+    width: 45px;
+    height: 100%;
+}
+.picture .jCarouselLite li{
+    margin: 7px;
+    border: 4px #b0afae solid;
+    height: 177px;
+    width: 239px;
+}
+/*=======food======*/
+.food{
+    color: #9b9b9b;
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+}
+.food ul{
+    width: 300px;
+    text-align: center;
+    margin: 0 auto;
+}
+.food li{
+    display: inline;
+}
+.food a{
+    font-size: 16px;
+    color: #9b9b9b;
+}
+.food_note{
+    font-size: 12px;
+    width: 350px;
+    text-align: center;
+    margin: 0 auto;
+}
+.food_note a{
+    font-size: 12px;
+}

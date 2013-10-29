@@ -1,1 +1,107 @@
-家园互动首页
+<div class="info">
+  <div class="info_head">
+    <div class="info_head_left"></div>
+    <div class="info_head_center">园讯通介绍</div>
+    <div class="info_head_right"></div>
+  </div>
+  <div class="info_center">
+    <% if garden_about = WeiyiConfig.find_by_number("web_garden_about") %>
+      <%= garden_about.content %>
+    <% else %>
+      暂无介绍
+    <% end %>
+  </div>
+  <div class="info_food">
+  </div>
+</div>
+<div class="info">
+  <div class="info_head">
+    <div class="info_head_left"></div>
+    <div class="info_head_center">新闻
+      <div class="info_head_more">|&nbsp;<a href="/garden/garden_news" title="查看更多新闻">更多</a></div>
+    </div>
+    <div class="info_head_right"></div>
+  </div>
+  <div class="info_center">
+    <ul>
+      <% GardenNew.find(:all,:limit=>5,:order=>"created_at DESC").each do |garden_new| %>
+        <li>
+          <a href="<%=url_for(:controller=>"/garden/garden_news",:action=>:show,:id=>garden_new.id)%>" title="<%= "#{garden_new.title} #{garden_new.note}" %>">
+            <div class="new_left"><%= truncate(garden_new.title, :length => 18) %></div>
+            <div class="new_right"><%= garden_new.created_at.to_short_datetime %></div>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<div class="info_small">
+  <div class="small_title">推荐幼儿园</div>
+  <div class="small_center">推荐幼儿园</div>
+</div>
+<div class="picture">
+  <div class="picture_left">
+    <div class="prev">
+      <div class="left">
+      </div>
+      &nbsp;
+    </div>
+  </div>
+  <div class="picture_center">
+    <div class="jCarouselLite">
+      <ul>
+        <li>
+          <a href="/t/colorful/Home_26-10.jpg" class="fancybox"  title="">
+            <img src="/t/colorful/Home_26-10.jpg" alt="" width="239" height="177"/>
+          </a>
+        </li>
+        <li>
+          <a href="/t/colorful/Home_24.jpg" class="fancybox" title="">
+            <img src="/t/colorful/Home_24.jpg" alt="" width="239" height="177"/>
+          </a>
+        </li>
+        <li>
+          <a href="/t/colorful/Home_26-10.jpg" class="fancybox" title="">
+            <img src="/t/colorful/Home_26-10.jpg" alt="" width="239" height="177"/>
+          </a>
+        </li>
+        <li>
+          <a href="/t/colorful/Home_24.jpg" class="fancybox" title="">
+            <img src="/t/colorful/Home_24.jpg" alt="" width="239" height="177"/>
+          </a>
+        </li>
+        <li>
+          <a href="/t/colorful/Home_26-10.jpg" class="fancybox" title="">
+            <img src="/t/colorful/Home_26-10.jpg" alt="" width="239" height="177"/>
+          </a>
+        </li>
+        <li>
+          <a href="/t/colorful/Home_24.jpg" class="fancybox" title="测试">
+            <img src="/t/colorful/Home_24.jpg" alt="" width="239" height="177"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="picture_right">
+    <div class="next">
+      <div class="right">
+      </div>
+      &nbsp;
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+<script type="text/javascript">
+  $(function() {
+    $(".jCarouselLite").jCarouselLite({
+      btnNext: ".picture .next",
+      btnPrev: ".picture .prev",
+      auto: 1000,
+      speed: 3000,
+      visible: 3,
+      onMouse:true
+    });
+    $(".fancybox").fancybox();
+  });
+</script>
