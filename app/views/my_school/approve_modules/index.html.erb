@@ -60,7 +60,7 @@
                     <td><%=approve_module.status ? "已开启" : "未开启" %></td>
                     <td>
                       <%(approve_module.approve_module_users || []).each do |approve_module_user|%>
-                      <%= approve_module_user.user.name%>
+                      <%= approve_module_user.try(:user).try(:name)%>
                       <%end%>
                     </td>
                     <td><%=link_to "设置" ,
