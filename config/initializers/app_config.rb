@@ -247,7 +247,7 @@ GARDEN_MENU ={
   "home"=>{"garden/main"=>["index"]},
   "garden_news"=>{"garden/garden_news"=>["index"]},
   "classic_users"=>{"garden/classic_users"=>["index"]},
-  "photo_gallery"=>{"garden/photo_galleries"=>["index"]},
+  "photo_gallery"=>{"garden/garden_pictures"=>["index"]},
   "business"=>{"garden/business"=>["index"]},
   "help"=>{"garden/help"=>["index"]}
 }

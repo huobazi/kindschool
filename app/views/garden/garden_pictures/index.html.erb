@@ -1,0 +1,98 @@
+<div class="center_bg">
+  <h1 class="head_title">照片集锦</h1>
+  <% if @garden_pictures.blank? %>
+    <h2>很抱歉！没有照片集锦信息。</h2>
+  <% else %>
+    <script type="text/javascript">
+      document.write('<style>.noscript { display: none; }</style>');
+    </script>
+    <div id="page">
+      <div id="container">
+        <!-- Start Advanced Gallery Html Containers -->
+        <div id="gallery" class="content"  style="border-left: 1px solid #BABABA;width: 550px;">
+          <div id="controls" class="controls"></div>
+          <div class="slideshow-container">
+            <div id="loading" class="loader"></div>
+            <div id="slideshow" class="slideshow"></div>
+          </div>
+          <div id="caption" class="caption-container"></div>
+        </div>
+        <div id="thumbs" class="navigation" >
+          <ul class="thumbs noscript">
+            <% @garden_pictures.each do |garden_picture| %>
+              <li>
+                <a class="thumb" href="<%=garden_picture.page_img.public_filename(:big)%>" title="<%=garden_picture.title%>">
+                  <img src="<%=garden_picture.page_img.public_filename(:big)%>" alt="<%=garden_picture.title%>" />
+                </a>
+                <div class="caption">
+                  <div class="download">
+                    <a href="<%=garden_picture.page_img.public_filename%>" target="_blank">浏览原图</a>
+                  </div>
+                  <div class="image-title"><%=garden_picture.title%></div>
+                  <div class="image-desc">创建时间<%= garden_picture.created_at.try(:to_long_datetime) %></div>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <div style="clear: both;"></div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        // We only want these styles applied when javascript is enabled
+        $('div.navigation').css({'width' : '315px', 'float' : 'left'});
+        $('div.content').css('display', 'block');
+
+        // Initially set opacity on thumbs and add
+        // additional styling for hover effect on thumbs
+        var onMouseOutOpacity = 0.67;
+        $('#thumbs ul.thumbs li').opacityrollover({
+          mouseOutOpacity:   onMouseOutOpacity,
+          mouseOverOpacity:  1.0,
+          fadeSpeed:         'fast',
+          exemptionSelector: '.selected'
+        });
+
+        // Initialize Advanced Galleriffic Gallery
+        var gallery = $('#thumbs').galleriffic({
+          delay:                     2500,
+          numThumbs:                 15,
+          preloadAhead:              10,
+          enableTopPager:            true,
+          enableBottomPager:         true,
+          maxPagesToShow:            4,
+          imageContainerSel:         '#slideshow',
+          controlsContainerSel:      '#controls',
+          captionContainerSel:       '#caption',
+          loadingContainerSel:       '#loading',
+          renderSSControls:          true,
+          renderNavControls:         true,
+          playLinkText:              '播放',
+          pauseLinkText:             '暂停',
+          prevLinkText:              '&lsaquo; 上一张',
+          nextLinkText:              '下一张 &rsaquo;',
+          nextPageLinkText:          '下一页 &rsaquo;',
+          prevPageLinkText:          '&lsaquo; 上一页',
+          enableHistory:             false,
+          autoStart:                 false,
+          syncTransitions:           true,
+          defaultTransitionDuration: 900,
+          onSlideChange:             function(prevIndex, nextIndex) {
+            // 'this' refers to the gallery, which is an extension of $('#thumbs')
+            this.find('ul.thumbs').children()
+            .eq(prevIndex).fadeTo('fast', onMouseOutOpacity).end()
+            .eq(nextIndex).fadeTo('fast', 1.0);
+          },
+          onPageTransitionOut:       function(callback) {
+            this.fadeTo('fast', 0.0, callback);
+          },
+          onPageTransitionIn:        function() {
+            this.fadeTo('fast', 1.0);
+          }
+        });
+      });
+    </script>
+  <% end %>
+</div>

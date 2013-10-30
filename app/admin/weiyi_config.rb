@@ -19,7 +19,8 @@ ActiveAdmin.register WeiyiConfig do
   index do
     div do
       raw '编号：<br/>"web_weiyi_about"为微一官网的关于我们,"web_weiyi_interact"为微一官网的家园互动,"web_weiyi_contact"为微一官网的联系我们,<br/>
-            "web_garden_about"为园讯通简介,"web_garden_kindergarten"为推荐幼儿园(需要考虑在宽220，高140范围内显示)'
+            "web_garden_about"为园讯通简介,"web_garden_kindergarten"为推荐幼儿园(需要考虑在宽220，高140范围内显示),<br/>
+      "web_garden_classic_users"为经典客户'
     end
     column :number
     column :content  do |record|
@@ -35,14 +36,14 @@ ActiveAdmin.register WeiyiConfig do
       f.input :number, :required => true
     end
     f.inputs "配置内容" do
-      if ["web_weiyi_about","web_weiyi_interact","web_weiyi_contact","web_garden_about","web_garden_kindergarten"].include?(f.object.number)
+      if ["web_weiyi_about","web_weiyi_interact","web_weiyi_contact","web_garden_about","web_garden_kindergarten","web_garden_classic_users"].include?(f.object.number)
         f.kindeditor :content,:allowFileManager => false
       else
         f.input :content
       end
     end
     if f.object.number == "web_garden_kindergarten"
-      f.inputs "上传滚动照片"  do
+      f.inputs "上传滚动照片,建议比率239*177"  do
         f.has_many :page_imgs do |page_img|
           if !page_img.object.new_record?
             page_img.input :created_at, :as => :string, :input_html => {:disabled => true }

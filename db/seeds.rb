@@ -55,5 +55,6 @@ Template.transaction do
      WeiyiConfig.create(:number=>"web_weiyi_about",:content=>"关于我们")
      WeiyiConfig.create(:number=>"web_garden_about",:content=>"园讯通文字介绍,园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍")
      WeiyiConfig.create(:number=>"web_garden_kindergarten",:content=>"推荐幼儿园")
+     WeiyiConfig.create(:number=>"web_garden_classic_users",:content=>"经典客户")
    end
 end

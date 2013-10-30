@@ -1,0 +1,8 @@
+<div class="center_bg">
+  <h1 class="head_title">经典客户</h1>
+  <% if @classic_users.blank? %>
+    未发布经典客户信息
+  <% else %>
+    <%= raw(@classic_users.content) %>
+  <% end %>
+</div>
