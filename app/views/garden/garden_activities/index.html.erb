@@ -1,0 +1,21 @@
+<div class="center_bg">
+  <h1 class="head_title">活动发布</h1>
+  <% if @garden_activities.blank? %>
+    <h2>很抱歉！没有活动信息。</h2>
+  <% else %>
+    <table class="table table-striped">
+      <tbody>
+        <% @garden_activities.each do |garden_activitie| %>
+          <tr>
+            <td>
+              <%= link_to garden_activitie.title,{:controller=>"/garden/garden_activities",:action=>:show,:id=>garden_activitie.id},:title=>garden_activitie.title,:target=>"_blank" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="paginate_div">
+      <%= paginate @garden_activities  %>
+    </div>
+  <% end %>
+</div>

@@ -248,6 +248,6 @@ GARDEN_MENU ={
   "garden_news"=>{"garden/garden_news"=>["index"]},
   "classic_users"=>{"garden/classic_users"=>["index"]},
   "photo_gallery"=>{"garden/garden_pictures"=>["index"]},
-  "business"=>{"garden/business"=>["index"]},
+  "business"=>{"garden/activities"=>["index"]},
   "help"=>{"garden/help"=>["index"]}
 }

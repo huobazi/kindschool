@@ -372,6 +372,7 @@ School::Application.routes.draw do
   namespace :garden do
     resources :garden_news
     resources :garden_pictures
+    resources :garden_activities
     resources :classic_users
   end
   # The priority is based upon order of creation:
