@@ -38,7 +38,7 @@ ActiveAdmin.register WeiyiConfig do
     end
     f.inputs "配置内容" do
       if ["web_weiyi_about","web_weiyi_interact","web_weiyi_contact",
-          "web_garden_about","web_garden_kindergarten","web_garden_classic_users",
+          "web_garden_kindergarten","web_garden_classic_users",
           "web_weiyi_video","web_weiyi_scheme","web_weiyi_cultivate","web_weiyi_benefit"].include?(f.object.number)
         f.kindeditor :content,:allowFileManager => false
       else
