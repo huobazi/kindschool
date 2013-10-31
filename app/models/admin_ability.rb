@@ -20,7 +20,8 @@ class AdminAbility
           can [:create,:read, :update], [Kindergarten,User,StudentInfo,Staff,OptionOperate]
           can [:read], [Teacher,CareerStrategy,Message,MessageEntry,Role,Smarty,AdminUser,TopicCategory,
             Topic,TopicEntry,GrowthRecord,SeedlingRecord,Operate,Menu,Template,Grade,Squad,
-            PhysicalRecord,Album,AlbumEntry,ContentPattern,StudentResource,Activity,ActivityEntry,PageContent,ContentEntry]
+            PhysicalRecord,Album,AlbumEntry,ContentPattern,StudentResource,Activity,ActivityEntry,PageContent,ContentEntry,
+            GardenNew,GardenPicture,GardenActivitie]
           can [:read,:destroy], [AssetImg,CookBook,Notice]
           can :reset_password, User
           can :share_users, WeixinDatabank
