@@ -11,4 +11,5 @@ class GardenNew < ActiveRecord::Base
   
   attr_accessible :page_imgs_attributes
   accepts_nested_attributes_for :page_imgs
+  just_define_datetime_picker :created_at, :add_to_attr_accessible => true
 end

@@ -15,6 +15,7 @@ ActiveAdmin.register GardenNew do
   form do |f|
     f.inputs "园讯通新闻" do
       f.input :title, :required => true
+      f.input :created_at, :as => :just_datetime_picker
       f.input :note
     end
     f.inputs "正文" do
