@@ -40,4 +40,23 @@ class MainController < ApplicationController
     @web_weiyi_contact = WeiyiConfig.find_by_number("web_weiyi_contact")
     render :layout=>"weiyi"
   end
+
+
+  
+  def weiyi_video
+    @web_weiyi_video = WeiyiConfig.find_by_number("web_weiyi_video")
+    render :layout=>"weiyi"
+  end
+  def weiyi_scheme
+    @web_weiyi_scheme = WeiyiConfig.find_by_number("web_weiyi_scheme")
+    render :layout=>"weiyi"
+  end
+  def weiyi_cultivate
+    @web_weiyi_cultivate = WeiyiConfig.find_by_number("web_weiyi_cultivate")
+    render :layout=>"weiyi"
+  end
+  def weiyi_benefit
+    @web_weiyi_benefit = WeiyiConfig.find_by_number("web_weiyi_benefit")
+    render :layout=>"weiyi"
+  end
 end

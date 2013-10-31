@@ -8,7 +8,18 @@
         <% @garden_activities.each do |garden_activitie| %>
           <tr>
             <td>
-              <%= link_to garden_activitie.title,{:controller=>"/garden/garden_activities",:action=>:show,:id=>garden_activitie.id},:title=>garden_activitie.title,:target=>"_blank" %>
+              <div class="text-center">
+                <%= link_to garden_activitie.title,{:controller=>"/garden/garden_activities",:action=>:show,:id=>garden_activitie.id},:title=>garden_activitie.title,:target=>"_blank" %>
+              </div>
+              <%= raw garden_activitie.note %>
+              <div class="text-right">
+                <% if !garden_activitie.start_at.blank? %>
+                  活动时间：<%= garden_activitie.start_at.to_long_datetime %>
+                  <% if !garden_activitie.end_at.blank? %>
+                    至<%= garden_activitie.end_at.to_long_datetime %>
+                  <% end %>
+                <% end %>
+              </div>
             </td>
           </tr>
         <% end %>

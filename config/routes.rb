@@ -374,6 +374,11 @@ School::Application.routes.draw do
     resources :garden_pictures
     resources :garden_activities
     resources :classic_users
+    resources :help do
+      collection do
+        get :show_videos
+      end
+    end
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -426,7 +431,7 @@ School::Application.routes.draw do
   # just remember to delete public/index.html.
   resources :main do
     collection do
-      get :weiyi_solution,:weiyi_interact,:weiyi_contact
+      get :weiyi_solution,:weiyi_interact,:weiyi_contact,:weiyi_video,:weiyi_scheme,:weiyi_cultivate,:weiyi_benefit
     end
   end
   root :to => 'main#index'

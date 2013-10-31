@@ -199,6 +199,9 @@ zh-CN:
   activerecord:
     models:
       admin_user: "管理员"
+      garden_new: "新闻"
+      garden_picture: "照片集锦"
+      garden_activitie: "发布活动"
       asset_img: "图片资源"
       sms_log: "短息计费日志"
       kindergarten: "幼儿园"
@@ -252,6 +255,22 @@ zh-CN:
       help_category: "视频分类"
       help_movie: "帮助视频"
     attributes:
+      garden_activitie:
+        content: "详细内容"
+        note: "简述"
+        title: "标题"
+        title: "标题"
+        start_at: "开始时间"
+        end_at: "结束时间"
+      garden_picture:
+        title: "标题"
+        tp: "类型"
+      garden_new:
+        content: "详细内容"
+        note: "简述"
+        title: "标题"
+        creater: "创建人"
+        creater_id: "创建人"
       help_movie:
         name: "名字"
         content: "内容"

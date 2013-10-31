@@ -243,6 +243,15 @@ body,ul,li{
     height: 243px;
     float: left;
 }
+.s_picture{
+    margin: 0 auto;
+    text-align: center;
+    float: none;
+    width: 800px;
+}
+.s_picture_center{
+    width:530px;
+}
 .picture_right{
     background-image: url(/t/garden/picture_right.png);
     background-repeat: no-repeat;

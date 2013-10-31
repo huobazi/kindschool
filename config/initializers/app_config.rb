@@ -245,9 +245,9 @@ TEACHER_STAT = {
 }
 GARDEN_MENU ={
   "home"=>{"garden/main"=>["index"]},
-  "garden_news"=>{"garden/garden_news"=>["index"]},
+  "garden_news"=>{"garden/garden_news"=>["index","show"]},
   "classic_users"=>{"garden/classic_users"=>["index"]},
   "photo_gallery"=>{"garden/garden_pictures"=>["index"]},
-  "business"=>{"garden/activities"=>["index"]},
+  "business"=>{"garden/garden_activities"=>["index","show"]},
   "help"=>{"garden/help"=>["index"]}
 }
