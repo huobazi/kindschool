@@ -19,25 +19,32 @@
       "jquery.opacityrollover"
   %>
     <%= csrf_meta_tags %>
-    <%#*<script language='javascript' type="text/javascript">%>
-      <%#*function ResumeError() {%>
-        <%#*return true;%>
-      <%#*}%>
-      <%#*window.onerror = ResumeError;%>
-    <%#*</script>%>
+<script language='javascript' type="text/javascript">
+function ResumeError() {
+return true;
+}
+window.onerror = ResumeError;
+</script>
+
     <!--[if IE 6]>
     <%= javascript_include_tag "DD_belatedPNG" %>
 <script type="text/javascript">
-  /* EXAMPLE */
-  DD_belatedPNG.fix('div, ul, img, li, input , a');
+  DD_belatedPNG.fix('div,ul,img,li,input,a');
+// <![CDATA[
+if((window.navigator.appName.toUpperCase().indexOf("MICROSOFT")>=0)&&(document.execCommand))
+try{
+document.execCommand("BackgroundImageCache", false, true);
+ }
+catch(e){}
+// ]]>
 </script>
 <![endif]-->
     <meta name="description" content="微一资讯,微服务，从事移动互联网的校讯通服务。" />
     <meta name="keywords" content="园讯通,校讯通,深圳校讯通,微一资讯,微壹资讯,微壹资讯科技,幼儿园微信,微信幼儿园,微信服务平台,免费校讯通,免费服务幼儿园" />
     <meta charset="utf-8"/>
   </head>
-  <%#*onload="ResumeError()"%>
-  <body >
+
+  <body onload="ResumeError()">
     <%= render :partial=>"/modules/garden/head" %>
     <div class="garden">
       <div class="weiyi_center">

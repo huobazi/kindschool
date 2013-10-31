@@ -17,7 +17,8 @@
 <div class="info">
   <div class="info_head">
     <div class="info_head_left"></div>
-    <div class="info_head_center">新闻
+    <div class="info_head_center">
+      <div style="float: left;">新闻</div>
       <div class="info_head_more">|&nbsp;<a href="/garden/garden_news" title="查看更多新闻">更多</a></div>
     </div>
     <div class="info_head_right"></div>
@@ -39,67 +40,71 @@
   <div class="small_title">推荐幼儿园</div>
   <div class="small_center"><%= raw(@web_garden_kindergarten.content) unless @web_garden_kindergarten.blank? %></div>
 </div>
-<div class="picture">
-  <div class="picture_left">
-    <div class="prev">
-      <div class="left">
+<div class="picture_div">
+  <div class="picture s_picture">
+
+    <div class="picture_left">
+      <div class="prev">
+        <div class="left">
+        </div>
+        &nbsp;
       </div>
-      &nbsp;
     </div>
-  </div>
-  <div class="picture_center">
-    <div class="jCarouselLite">
-      <% if @web_garden_kindergarten.page_imgs.count() > 2 %>
-        <ul>
-          <% @web_garden_kindergarten.page_imgs.each do |page_img| %>
+
+    <div class="picture_center s_picture_center">
+      <div class="jCarouselLite">
+        <% if @web_garden_kindergarten.page_imgs.count() > 2 %>
+          <ul>
+            <% @web_garden_kindergarten.page_imgs.each do |page_img| %>
+              <li>
+                <a href="<%= page_img.public_filename %>" class="fancybox">
+                  <img src="<%= page_img.public_filename(:middle) %>" alt="" width="239" height="177"/>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <ul>
             <li>
-              <a href="<%= page_img.public_filename %>" class="fancybox">
-                <img src="<%= page_img.public_filename(:middle) %>" alt="" width="239" height="177"/>
+              <a href="/t/colorful/Home_26-10.jpg" class="fancybox"  title="">
+                <img src="/t/colorful/Home_26-10.jpg" alt="" width="239" height="177"/>
               </a>
             </li>
-          <% end %>
-        </ul>
-      <% else %>
-        <ul>
-          <li>
-            <a href="/t/colorful/Home_26-10.jpg" class="fancybox"  title="">
-              <img src="/t/colorful/Home_26-10.jpg" alt="" width="239" height="177"/>
-            </a>
-          </li>
-          <li>
-            <a href="/t/colorful/Home_24.jpg" class="fancybox" title="">
-              <img src="/t/colorful/Home_24.jpg" alt="" width="239" height="177"/>
-            </a>
-          </li>
-          <li>
-            <a href="/t/colorful/Home_26-10.jpg" class="fancybox" title="">
-              <img src="/t/colorful/Home_26-10.jpg" alt="" width="239" height="177"/>
-            </a>
-          </li>
-          <li>
-            <a href="/t/colorful/Home_24.jpg" class="fancybox" title="">
-              <img src="/t/colorful/Home_24.jpg" alt="" width="239" height="177"/>
-            </a>
-          </li>
-          <li>
-            <a href="/t/colorful/Home_26-10.jpg" class="fancybox" title="">
-              <img src="/t/colorful/Home_26-10.jpg" alt="" width="239" height="177"/>
-            </a>
-          </li>
-          <li>
-            <a href="/t/colorful/Home_24.jpg" class="fancybox" title="测试">
-              <img src="/t/colorful/Home_24.jpg" alt="" width="239" height="177"/>
-            </a>
-          </li>
-        </ul>
-      <% end %>
-    </div>
-  </div>
-  <div class="picture_right">
-    <div class="next">
-      <div class="right">
+            <li>
+              <a href="/t/colorful/Home_24.jpg" class="fancybox" title="">
+                <img src="/t/colorful/Home_24.jpg" alt="" width="239" height="177"/>
+              </a>
+            </li>
+            <li>
+              <a href="/t/colorful/Home_26-10.jpg" class="fancybox" title="">
+                <img src="/t/colorful/Home_26-10.jpg" alt="" width="239" height="177"/>
+              </a>
+            </li>
+            <li>
+              <a href="/t/colorful/Home_24.jpg" class="fancybox" title="">
+                <img src="/t/colorful/Home_24.jpg" alt="" width="239" height="177"/>
+              </a>
+            </li>
+            <li>
+              <a href="/t/colorful/Home_26-10.jpg" class="fancybox" title="">
+                <img src="/t/colorful/Home_26-10.jpg" alt="" width="239" height="177"/>
+              </a>
+            </li>
+            <li>
+              <a href="/t/colorful/Home_24.jpg" class="fancybox" title="测试">
+                <img src="/t/colorful/Home_24.jpg" alt="" width="239" height="177"/>
+              </a>
+            </li>
+          </ul>
+        <% end %>
       </div>
-      &nbsp;
+    </div>
+    <div class="picture_right">
+      <div class="next">
+        <div class="right">
+        </div>
+        &nbsp;
+      </div>
     </div>
   </div>
 </div>
@@ -111,7 +116,7 @@
       btnPrev: ".picture .prev",
       auto: 1000,
       speed: 3000,
-      visible: 3,
+      visible: 2,
       onMouse:true
     });
     $(".fancybox").fancybox();

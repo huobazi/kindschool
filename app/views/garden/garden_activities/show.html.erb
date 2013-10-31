@@ -2,7 +2,6 @@
   <h1 class="head_title">活动发布
     <%=  link_to "","/garden/garden_activities",:class=>"return_action" %>
   </h1>
-
   <% if @garden_activitie.blank? %>
     <h2>很抱歉！没有活动信息。</h2>
   <% else %>
@@ -32,7 +31,7 @@
           </div>
         </div>
         <div class="picture_center s_picture_center">
-          <div class="jCarouselLite">
+          <div class="jCarouselLite s_jCarouselLite">
             <ul>
               <% @garden_activitie.page_imgs.each do |page_img| %>
                 <li>
