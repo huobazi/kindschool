@@ -39,9 +39,9 @@
             <div class="activity_content_info">
               <div class="activity_content_title">
                 <% if recent_activity.tp == 0 %>
-                  <%= link_to recent_activity.title, my_school_activity_path(recent_activity), :class => "btn-link" %>
+                  <%= link_to truncate(recent_activity.title, length: 45, omission: "..."), my_school_activity_path(recent_activity), :class => "btn-link" %>
                 <% else %>
-                  <%= link_to recent_activity.title, my_school_interest_activity_path(recent_activity), :class => "btn-link" %>
+                  <%= link_to truncate(recent_activity.title, length: 45, omission: "..."), my_school_interest_activity_path(recent_activity), :class => "btn-link" %>
                 <% end %>
               </div>
               <div class="activity_content_text"><%= simple_format recent_activity.content %></div>
