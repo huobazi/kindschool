@@ -9,9 +9,9 @@
           <% @activities.each do |activity| %>
             <li>
               <% if activity.tp == 0 %>
-                <%= link_to activity.title, my_school_activity_path(activity) %>
+                <%= link_to truncate(activity.title, length: 30, omission: '...'), my_school_activity_path(activity) %>
               <% else %>
-                <%= link_to activity.title, my_school_interest_activity_path(activity) %>
+                <%= link_to truncate(activity.title, length: 30, omission: '...'), my_school_interest_activity_path(activity) %>
               <% end %>
             </li>
           <% end %>
