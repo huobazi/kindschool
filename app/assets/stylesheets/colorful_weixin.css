@@ -944,6 +944,12 @@ span.help-inline {
     width: 80%;
 }
 
+.activity_content {
+    word-break: break-all;
+    max-height: 300px;
+    overflow: hidden;
+}
+
 /*=================kindeditor================*/
 
 .ke-dialog-body label {
