@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <% all_count = ((params[:page].blank? ? 1 : params[:page].to_i) - 1) * 10 %>
+        <% all_count = (((params[:page].blank? ? 1 : params[:page].to_i) - 1) * 10) + 1 %>
         <% @garden_news.each do |garden_new| %>
           <tr>
             <td><%= all_count %></td>

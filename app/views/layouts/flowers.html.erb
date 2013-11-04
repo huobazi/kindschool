@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title><%= @kind ? @kind.name : "School" %></title>
+    <%= stylesheet_link_tag    "app_bootstrap", :media => "all" %>
+    <%= stylesheet_link_tag    "colorful", :media => "all" %>
+    <%= stylesheet_link_tag    "jquery.rater", :media => "all" %>
+    <%= stylesheet_link_tag    "fancybox/jquery.fancybox",
+      "fancybox/jquery.fancybox-buttons",
+      "fancybox/jquery.fancybox-thumbs",
+      "galleriffic",
+      "datepicker", :media => "all" %>
+    <%= javascript_include_tag "colorful","highcharts/highcharts","highcharts/highcharts-more","jquery.jcarouselLite","jquery.validate"%>
+    
+    <%= javascript_include_tag "fancybox/jquery.mousewhee",
+      "fancybox/jquery.fancybox",
+      "fancybox/jquery.fancybox-buttons",
+      "fancybox/jquery.fancybox-thumbs",
+      "fancybox/jquery.fancybox-media",
+      "bootstrap-datepicker",
+      "bootstrap-datepicker.zh-CN",
+      "jquery.timers",
+      "jquery.galleriffic",
+      "jquery.opacityrollover",
+      "jquery.lettering"
+  %>
+    <%= javascript_include_tag(:uploadify,"uploadify-rails") %>
+    <%= javascript_include_tag "jquery.rater" %>
+    <%#= javascript_include_tag "jquery.icheck.min" %>
+    <%= javascript_include_tag "rails.validations" %>
+    <%= javascript_include_tag "rails.validations.simple_form" %>
+    <%= javascript_include_tag "rails.validations.customValidators" %>
+    <meta charset="utf-8"/>
+    <%= csrf_meta_tags %>
+
+   <%#*<script language='javascript' type="text/javascript">%>
+      <%#*function ResumeError() {%>
+        <%#*return true;%>
+      <%#*}%>
+      <%#*window.onerror = ResumeError;%>
+    <%#*</script>%>
+    <!--[if IE 6]>
+    <%= javascript_include_tag "DD_belatedPNG" %>
+<script type="text/javascript">
+  DD_belatedPNG.fix('div, ul, img, li, input , a');
+  /* string argument can be any CSS selector */
+</script>
+<![endif]-->
+    <%#*onload="ResumeError()"%>
+  </head>
+  <body >
+    <div class="wrapper">
+      <%= render :partial => "/modules/flowers/head" %>
+      <%= yield %>
+      <%= render :partial => "/modules/flowers/foot" %>
+    </div>
+    <div style="display: none;">
+      <script type="text/javascript">
+        try{
+        var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cdiv id='cnzz_stat_icon_1000041998'%3E%3C/div%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000041998%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+        }catch(ex){}
+      </script>
+    </div>
+  </body>
+</html>
