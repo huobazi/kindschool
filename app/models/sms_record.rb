@@ -19,7 +19,7 @@ class SmsRecord < ActiveRecord::Base
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end
-STATUS = { 0=>"正在发生",1=> "发生成功", 2=>"发送失败"}
+STATUS = { 0=>"正在发送",1=> "发生成功", 2=>"发送失败"}
   #发送短信
   def send_sms
     chain = (self.chain_code || 0).to_s.split("").last(3).join("")
