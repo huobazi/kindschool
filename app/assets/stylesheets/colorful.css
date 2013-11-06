@@ -521,6 +521,8 @@ a{
 .activity_content_text{
     word-wrap: break-word;
     color: #2c2c2c;
+    max-height: 300px;
+    overflow: hidden;
 }
 .activity_content_text a{
     color: blue;

@@ -9,15 +9,15 @@
           <% @activities.each do |activity| %>
             <li>
               <% if activity.tp == 0 %>
-                <%= link_to activity.title, my_school_activity_path(activity) %>
+                <%= link_to truncate(activity.title, length: 27, omission: '...'), my_school_activity_path(activity) %>
               <% else %>
-                <%= link_to activity.title, my_school_interest_activity_path(activity) %>
+                <%= link_to truncate(activity.title, length: 27, omission: '...'), my_school_interest_activity_path(activity) %>
               <% end %>
             </li>
           <% end %>
         </ul>
       </div>
-      <% if @activities.count == 8 %>
+      <% if @activities.count == 5 %>
         <div class="activity_more">
           <%= link_to "查看更多","/" %>
         </div>
@@ -37,7 +37,13 @@
               <% end %>
             </div>
             <div class="activity_content_info">
-              <div class="activity_content_title"><%= recent_activity.title %></div>
+              <div class="activity_content_title">
+                <% if recent_activity.tp == 0 %>
+                  <%= link_to truncate(recent_activity.title, length: 45, omission: "..."), my_school_activity_path(recent_activity), :class => "btn-link" %>
+                <% else %>
+                  <%= link_to truncate(recent_activity.title, length: 45, omission: "..."), my_school_interest_activity_path(recent_activity), :class => "btn-link" %>
+                <% end %>
+              </div>
               <div class="activity_content_text"><%= simple_format recent_activity.content %></div>
             </div>
           </li>

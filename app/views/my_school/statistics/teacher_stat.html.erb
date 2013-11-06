@@ -42,9 +42,17 @@
     <div class="work_list">
       <div class="stat-content">
         <div class="well">
-          <input type="text" class="input-small" style="margin-top: 10px;" id="start_at" value="<%= cur_begin_week %>" />
-          <input type="text" class="input-small" style="margin-top: 10px;" id="end_at" value="<%= cur_end_week %>" />
-          <a class="btn" id="view_action" href="javascript:void(0);">查看这段时间老师的操作记录</a>
+          <div>
+            按时间段搜索:
+            <input type="text" class="input-small" style="margin-top: 10px;" id="start_at" value="<%= cur_begin_week %>" />
+            <input type="text" class="input-small" style="margin-top: 10px;" id="end_at" value="<%= cur_end_week %>" />
+            <a class="btn view_action" href="javascript:void(0);">搜索</a>
+          </div>
+          <div>
+            按教职工搜索:
+            <input type="text" class="input-small" style="margin-top: 10px;" id="staff_name" placeholder="教职工名称" />
+            <a class="btn view_action" href="javascript:void(0);">搜索</a>
+          </div>
         </div>
         <div id="action_list">
           <% unless @staffs.blank? %>
@@ -54,7 +62,7 @@
           <% end %>
         </div>
       </div>
-  </div>
+    </div>
 
 </div>
 
@@ -63,21 +71,24 @@
 <script type="text/javascript">
   $(document).ready(function() {
 
-    $("#view_action").click(function() {
-      $.ajax({
-        url: "/my_school/statistics/teacher_stat",
-        data: {
-          start_at: $("#start_at").val(),
-          end_at: $("#end_at").val()
-        },
-        beforeSend: function() {
-          $('<img class="loading_img loadding_pt" src="/t/colorful/gif_preloader.gif" alt="" />').appendTo(".stat-content");
-        },
-        success: function() {
-          $(".stat-content").find("img.loadding_pt").hide();
-        }
+     $(".view_action").each(function() {
+        $(this).click(function() {
+          $.ajax({
+            url: "/my_school/statistics/teacher_stat",
+            data: {
+              start_at: $("#start_at").val(),
+              end_at: $("#end_at").val(),
+              staff_name: $("#staff_name").val()
+            },
+            beforeSend: function() {
+              $('<img class="loading_img loadding_pt" src="/t/colorful/gif_preloader.gif" alt="" />').appendTo(".stat-content");
+            },
+            success: function() {
+              $(".stat-content").find("img.loadding_pt").hide();
+            }
+          })
+        });
       })
-    })
 
   })
 </script>

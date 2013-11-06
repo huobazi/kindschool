@@ -1,3 +1,26 @@
-<div class="head">
-  head
+<div class="head <%= "head2" if @menu != "home" %>">
+  <div class="garden">
+    <div class="logo"><img src="/weiyi/logo_little.png" alt="logo"/></div>
+    <div class="menu">
+      <div class="menu_left"></div>
+      <div class="menu_center">
+        <ul>
+          <li><a href="/garden" class="<%= "selected" if @menu == "home"  %>">首页</a></li>
+          <li><a href="/garden/garden_news" class="<%= "selected" if @menu == "garden_news"  %>">新闻中心</a></li>
+          <li><a href="/garden/classic_users" class="<%= "selected" if @menu == "classic_users"  %>">经典客户</a></li>
+          <li><a href="/garden/garden_pictures" class="<%= "selected" if @menu == "photo_gallery"  %>">照片集锦</a></li>
+          <li><a href="/garden/garden_activities" class="<%= "selected" if @menu == "business"  %>">活动发布</a></li>
+          <li><a href="/garden/help" class="<%= "selected" if @menu == "help"  %>">帮助信息</a></li>
+        </ul>
+      </div>
+      <div class="menu_right"></div>
+      <div class="login_menu">
+        <div class="login_menu_left"></div>
+        <div class="login_menu_center">
+          <a href="/" class="login" id="login">微一官网</a>
+        </div>
+        <div class="login_menu_right"></div>
+      </div>
+    </div>
+  </div>
 </div>

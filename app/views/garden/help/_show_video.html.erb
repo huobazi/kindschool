@@ -1,0 +1,7 @@
+<div class="show_movie">
+	<%if @help_movie.blank?%>
+	<p>暂无内容,点击其他视频分类</p>
+	<%else%>
+	<p><%=raw @help_movie.try(:content)%></p>
+	<%end%>
+</div>

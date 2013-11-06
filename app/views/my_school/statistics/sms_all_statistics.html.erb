@@ -39,7 +39,7 @@
       <ul class="work_action">
       </ul>
     </div>
-    <div class="search_form">
+    <div class="search_form_s">
       <%= form_tag '/my_school/statistics/sms_all_statistics' , :method=>"get" do %>
         <b>发送人姓名：</b>
         <%= text_field :sms_record,:sender_name_like,:style=>"width:100px;" ,:value=>"#{params[:sms_record][:sender_name_like] if params[:sms_record] }"%>

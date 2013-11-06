@@ -1,0 +1,70 @@
+<div class="center_bg">
+  <h1 class="head_title">活动发布
+    <%=  link_to "","/garden/garden_activities",:class=>"return_action" %>
+  </h1>
+  <% if @garden_activitie.blank? %>
+    <h2>很抱歉！没有活动信息。</h2>
+  <% else %>
+    <blockquote>
+      <p><h1><%= @garden_activitie.title %></h1></p>
+      <small><%= raw  @garden_activitie.note %></small>
+    </blockquote>
+    <p>
+      <small><%= raw @garden_activitie.content %></small>
+    </p>
+    <p class="text-right">
+      <% if !@garden_activitie.start_at.blank? %>
+        活动时间：<%= @garden_activitie.start_at.to_long_datetime %>
+        <% if !@garden_activitie.end_at.blank? %>
+          至<%= @garden_activitie.end_at.to_long_datetime %>
+        <% end %>
+      <% end %>
+    </p>
+
+    <% if @garden_activitie.page_imgs.count() > 2 %>
+      <div class="picture s_picture">
+        <div class="picture_left">
+          <div class="prev">
+            <div class="left">
+            </div>
+            &nbsp;
+          </div>
+        </div>
+        <div class="picture_center s_picture_center">
+          <div class="jCarouselLite s_jCarouselLite">
+            <ul>
+              <% @garden_activitie.page_imgs.each do |page_img| %>
+                <li>
+                  <a href="<%= page_img.public_filename %>" class="fancybox">
+                    <img src="<%= page_img.public_filename(:middle) %>" alt="" width="239" height="177"/>
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <div class="picture_right">
+          <div class="next">
+            <div class="right">
+            </div>
+            &nbsp;
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <script type="text/javascript">
+        $(function() {
+          $(".jCarouselLite").jCarouselLite({
+            btnNext: ".picture .next",
+            btnPrev: ".picture .prev",
+            auto: 1000,
+            speed: 3000,
+            visible: 2,
+            onMouse:true
+          });
+          $(".fancybox").fancybox();
+        });
+      </script>
+    <% end %>
+  <% end %>
+</div>

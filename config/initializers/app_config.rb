@@ -237,7 +237,7 @@ TEACHER_STAT = {
   "my_school/messages/create" =>"发送消息",
   "my_school/garden_growth_records/create" =>"创建宝宝在园成长记录",
   "my_school/growth_records/create" =>"创建宝宝在园成长记录",
-  "my_school/comments/create" =>"发表评论",
+  "my_school/comments/send_comment" =>"发表评论",
   "my_school/cook_books/create" =>"创建菜谱",
   "my_school/physical_records/create" =>"创建体检记录",
   "my_school/seedlings/create" =>"创建疫苗记录",
@@ -245,4 +245,11 @@ TEACHER_STAT = {
   "my_school/albums/create" =>"创建相册集锦",
   "my_school/activities/create" =>"创建活动"
 }
-
+GARDEN_MENU ={
+  "home"=>{"garden/main"=>["index"]},
+  "garden_news"=>{"garden/garden_news"=>["index","show"]},
+  "classic_users"=>{"garden/classic_users"=>["index"]},
+  "photo_gallery"=>{"garden/garden_pictures"=>["index"]},
+  "business"=>{"garden/garden_activities"=>["index","show"]},
+  "help"=>{"garden/help"=>["index"]}
+}

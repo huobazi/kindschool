@@ -1,0 +1,136 @@
+<div class="head">
+  <div class="small_menu">
+    <% sys_admin_menus("a").each do |menu| %>
+      <%= "<div class='center_menu small_#{menu[:number]}_menu' >".html_safe%>
+      <%= "<img src='/t/colorful/#{menu[:number]}.jpg' alt=菜单/>".html_safe%>
+      <div class="show_menu">
+        <%= "<ul class='small_#{menu[:number]}_ul'>".html_safe%>
+        <% menu[:children].each do |ch|%>
+          <%unless ch[:name] == menu[:name] %>
+            <li><%= link_to ch[:name],ch[:url]%> </li>
+          <%end%>
+        <%end%>
+        </ul>
+      </div>
+    </div>
+  <%end%>
+  <%if choose_operate_show("my_school/approves")%>
+    <div class="center_menu small_approve_menu">
+      <img alt="菜单" src="/t/colorful/approve.jpg"/>
+      <div class="show_menu" style="display: none;">
+        <ul class="small_approve_ul">
+          <%if choose_operate_show("my_school/approves/news_list")%>
+            <li>
+              <a href="/my_school/approves/news_list">新闻内容审核</a>
+            </li>
+          <%end%>
+          <%if choose_operate_show("my_school/approves/activities_list")%>
+            <li>
+              <a href="/my_school/approves/activities_list">活动信息审核</a>
+            </li>
+          <%end%>
+          <%if choose_operate_show("my_school/approves/notices_list")%>
+            <li>
+              <a href="/my_school/approves/notices_list">通知信息审核</a>
+            </li>
+          <%end%>
+          <%if choose_operate_show("my_school/approves/messages_list")%>
+            <li>
+              <a href="/my_school/approves/messages_list">消息审核</a>
+            </li>
+          <%end%>
+          <%if choose_operate_show("my_school/approves/topics_list")%>
+            <li>
+              <a href="/my_school/approves/topics_list">帖子论坛审核</a>
+            </li>
+          <%end%>
+        </ul>
+      </div>
+    </div>
+  <%end%>
+  <div class="small_login_menu">
+    <% message_count =current_user.get_read_new_count %>
+    <%= link_to current_user.name, :controller => "/my_school/users", :action => :show, :id => current_user.id %>(<%= link_to (message_count > 99 ? "99" : message_count),{:controller=>"/my_school/messages",:action=>:index},:class=>"message_count_a" %>)
+    <%= link_to "退出", {:controller=>"/my_school/users",:action=>:logout},:class=>"logout_a"%>
+  </div>
+</div>
+<div class="logo">
+  <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" width="100" height="79" alt="Logo" class="logo_vertical"/>
+  <span id="kind_name"><%= @kind.name %></span>
+  <script type="text/javascript">
+    $(function(){
+      $("#kind_name").lettering();
+      function load_color(){
+        var kind_color = ["#EF554C","#f6ab1d","violet","#00c0f6","#a4c500","#f7a200"];
+        $("#kind_name span").each(function(index, Element){
+          var color = kind_color[index%kind_color.length];
+          $(this).css("color",color)
+        })
+      }
+      load_color();
+    })
+  </script>
+</div>
+<div class="menu">
+  <div class="menu_left">
+  </div>
+  <div class="menu_right">
+  </div>
+  <div class="menu_center">
+    <ul>
+      <% sys_admin_menus("b").each do |menu| %>
+      <%#=menu.inspect%>
+        <li>
+          <%#=menu.inspect%>
+          <%= link_to  menu[:name].match(/^\//) ? image_tag('/t/colorful/home.png') : menu[:name], menu[:children][0] ?  menu[:children][0][:url] : menu[:url] %>
+          <%if menu[:current]%>
+            <div class="menu_selected">
+            </div>
+          <%end%>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="submenu_center">
+    <ul class="home">
+      <li style="border: none;">
+
+      </li>
+    </ul>
+    <% if flash.any? %>
+      <div id="flash-messages">
+        <% if flash[:notice] %>
+          <div class="alert alert-notice">
+            <a class="close" data-dismiss="alert">x</a>
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+        <% if flash[:alert] %>
+          <div class="alert">
+            <a class="close" data-dismiss="alert">x</a>
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+        <% if flash[:success] %>
+          <div class="alert alert-success">
+            <a class="close" data-dismiss="alert">x</a>
+            <%= flash[:success] %>
+          </div>
+        <% end %>
+        <% if flash[:info] %>
+          <div class="alert alert-info">
+            <a class="close" data-dismiss="alert">x</a>
+            <%= flash[:info] %>
+          </div>
+        <% end %>
+        <% if flash[:error] %>
+          <div class="alert alert-error">
+            <a class="close" data-dismiss="alert">x</a>
+            <%= raw flash[:error] %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>

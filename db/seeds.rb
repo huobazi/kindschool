@@ -50,5 +50,16 @@ Template.transaction do
      WeiyiConfig.create(:number=>"about",:content=>"微壹是服务于幼儿园的校讯通平台。")
      WeiyiConfig.create(:number=>"contact",:content=>"联系我们的介绍内容。")
      WeiyiConfig.create(:number=>"weixin_validate",:content=>"0")
+     WeiyiConfig.create(:number=>"web_weiyi_contact",:content=>"联系我们")
+     WeiyiConfig.create(:number=>"web_weiyi_interact",:content=>"家园互动")
+     WeiyiConfig.create(:number=>"web_weiyi_about",:content=>"关于我们")
+     WeiyiConfig.create(:number=>"web_garden_about",:content=>"园讯通文字介绍,园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍")
+     WeiyiConfig.create(:number=>"web_garden_kindergarten",:content=>"推荐幼儿园")
+     WeiyiConfig.create(:number=>"web_garden_classic_users",:content=>"经典客户")
+
+     WeiyiConfig.create(:number=>"web_weiyi_video",:content=>"移动视频")
+     WeiyiConfig.create(:number=>"web_weiyi_scheme",:content=>"影视策划")
+     WeiyiConfig.create(:number=>"web_weiyi_cultivate",:content=>"动漫培训")
+     WeiyiConfig.create(:number=>"web_weiyi_benefit",:content=>"公益活动")
    end
 end
