@@ -6,4 +6,5 @@ class EvaluateAsset < ActiveRecord::Base
   belongs_to :kindergarten
   belongs_to :user
   belongs_to :resource, :polymorphic => true
+  mount_uploader :avatar, EvaluateAvatarUploader
 end

@@ -1,0 +1,53 @@
+<div class="new_button_evaluate">
+<%=link_to "添加评估项",new_my_school_evaluate_evaluate_entry_path(@evaluates.id),:class=>"btn blue"%>
+<br/>
+</div>
+<table  class="table table-striped table-hover">
+	<tr>
+		<th>
+			排序
+		</th>
+		<th>
+			名称
+		</th>
+		<th>
+			案条
+		</th>
+		<th>
+			描述
+		</th>
+		<th>
+			自评说明
+		</th>
+		<th>
+			卷
+		</th>
+		<th>
+			操作
+		</th>
+	</tr>
+	<%(@evaluate_entries || []).each do |evaluate|%>
+	<tr>
+		<td><%=evaluate.sequence%></td>
+		<td><%=evaluate.name%></td>
+		<td><%=evaluate.article_case%></td>
+		<td>
+			<%=link_to '点击查看描述' , my_school_evaluate_evaluate_entry_path(@evaluates,evaluate), :title=>"#{raw(evaluate.note)}"%>
+			</td>
+		<td><%=raw evaluate.self_note%></td>
+		<td><%evaluate.evaluate_vtocs.each do |entry|%>
+			<%=entry.name%>
+			<%end%>
+		</td>
+			
+		<td>
+			<div class="index_a">
+			<%=link_to "查看&添加卷" ,my_school_evaluate_evaluate_entry_path(@evaluates,evaluate)%>
+			<%=link_to "编辑" ,edit_my_school_evaluate_evaluate_entry_path(@evaluates,evaluate)%>
+			<%= link_to '删除',my_school_evaluate_evaluate_entry_path(@evaluates,evaluate), method: :delete, data: { confirm: '确定要删除么?删除之后就无法找回!' } %>
+		   </div>
+		</td>
+	</tr>
+	<%end%>
+</table>
+<%= paginate @evaluate_entries %>

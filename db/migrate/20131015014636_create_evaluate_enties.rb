@@ -1,7 +1,7 @@
 #评估管理方案39条细则
 class CreateEvaluateEnties < ActiveRecord::Migration
   def change
-    create_table :evaluate_enties do |t|
+    create_table :evaluate_entries do |t|
       t.integer :kindergarten_id
       t.integer :evaluate_id
       t.string :name

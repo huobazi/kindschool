@@ -1,0 +1,36 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>          
+          评估管理
+          <%#=link_to @album.title , my_school_album_path(@album),:class=>'blue'%><!-- ->修改相册 -->
+        </label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+             <li><%= link_to "评估管理", my_school_evaluates_path %></li>
+             <li>/</li>
+            <li><%=link_to @evaluate_entry.name ,my_school_evaluate_evaluate_entry_path(@evaluate_entry.evaluate.id,@evaluate_entry.id)%></li></li>
+            <li>/</li>
+            <li>编辑卷</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="work_form">
+      <div class="form_div">
+        <%= form_for( @evaluate_entry,:url=>my_school_evaluate_vtoc_path(@evaluate_vtoc) , :html =>{:class=>"form-horizontal"}) do |f| %>
+          <%= render 'form', :f=>f %>
+       <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
+

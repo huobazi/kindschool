@@ -1,0 +1,5 @@
+<div class="form_div">
+        <%= form_for( @evaluate , :validate => true, :url=>my_school_evaluates_path(@evaluate) , :html =>{:class=>"form-horizontal"}) do |f| %>
+         <%= f.submit('启用系统',:class=>"btn btn-primary btn-large", disable_with: "正在提交...") %>
+       <% end %>
+      </div>

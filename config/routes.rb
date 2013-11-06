@@ -5,7 +5,17 @@ School::Application.routes.draw do
   match 'code/recode' => 'code#recode'
   match 'my_school' => 'my_school/main#index'
   namespace :my_school do
-    resources :evaluates
+    resources :evaluate_vtocs do
+      collection do
+        post :create_evaluate_asset
+      end
+      member do
+        delete :delete_evaluate_asset
+      end
+    end
+    resources :evaluates do
+      resources :evaluate_entries
+    end
     resources :dean_emails
     resources :read_users do
       collection do

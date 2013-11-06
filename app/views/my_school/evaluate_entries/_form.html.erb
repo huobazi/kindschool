@@ -1,0 +1,45 @@
+<div class="control-group">
+ 	<%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
+<div class="controls">
+     <%= text_field_tag(:kindergarten,@kind.name, disabled: true) %>
+</div>
+</div>
+ <div class="control-group">
+ 	<%=f.label :name, '评估名称:' ,:class=>"control-label"%>
+<div class="controls">
+  <%= f.text_field(:name , :validate => true, placeholder: "请输入评估名称") %>
+
+  <p class="help-block">长度不能小于3。</p>
+</div>
+ </div>
+ <div class="control-group">
+  <%=f.label :article_case, '案条:' ,:class=>"control-label"%>
+<div class="controls">
+  <%= f.text_field(:article_case , :validate => true, placeholder: "请输入案条") %>
+</div>
+ </div>
+  <div class="control-group">
+  <%=f.label :note, '描述:' ,:class=>"control-label"%>
+  <div class="controls">
+  <%#= f.text_area(:note , :validate => true, placeholder: "请输入描述",:size => "20x5") %>
+  <%= f.kindeditor :note, :class => 'profile_input required',placeholder: "请输入描述",:items=>ITEMKE%>
+  </div>
+ </div>
+ <div class="control-group">
+  <%=f.label :self_note, '自评说明:' ,:class=>"control-label"%>
+  <div class="controls">
+  <%#= f.text_area(:self_note , :validate => true, placeholder: "请输入自评说明",:size => "20x5") %>
+  <%= f.kindeditor :self_note, :class => 'profile_input required',placeholder: "请输入描述",:items=>ITEMKE%>
+  </div>
+ </div>
+ <div class="control-group">
+  <%=f.label :sequence, '排序:' ,:class=>"control-label"%>
+<div class="controls">
+  <%= f.text_field(:sequence) %>
+</div>
+ </div>
+<div class="control-group">
+<div class="controls">
+<%= f.submit('保存',:class=>"btn btn-large btn-primary", disable_with: "正在提交") %>
+</div>
+</div>

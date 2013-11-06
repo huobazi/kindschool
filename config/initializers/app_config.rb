@@ -12,7 +12,7 @@ PAGE_CONTENTS = YAML.load_file("config/site_config/page_contents.yml")
 DEFULT_ACTION = ['index','show','edit','new','update','create','destroy']
 #富文本框的item选择
 ITEMKE=['justifyleft', 'justifycenter', 'justifyright','justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', '|','formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
-        'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat'] 
+        'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat','table'] 
 ITEMS=[
         'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
         'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
@@ -169,9 +169,11 @@ MENUS ={"home"=>{
       "131000" => {
         "my_school/approves" => ["news_list","news_show"]}
     },
-    "110000"=>{
+    "official"=>{
       "110001"=>{
-        "my_school/evaluates"=>["index"]
+        "my_school/evaluates"=>["index"],
+        "my_school/evaluate_entries"=>["new","edit","show"],
+        "my_school/evaluate_vtocs"=>["new","edit","show"]
       }
     }
 }

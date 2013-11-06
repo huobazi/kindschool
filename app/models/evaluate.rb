@@ -3,5 +3,5 @@
 class Evaluate < ActiveRecord::Base
   attr_accessible :kindergarten_id, :note
   belongs_to :kindergarten
-
+  has_many :evaluate_entries
 end
