@@ -251,3 +251,11 @@ GARDEN_MENU ={
   "business"=>{"garden/garden_activities"=>["index","show"]},
   "help"=>{"garden/help"=>["index"]}
 }
+HOME_MENU ={
+  "home"=>{"my_school/main"=>["index"]},
+  "show_official_about_us"=>{"my_school/main"=>["show_official_about_us"]},
+  "admissions_information"=>{"my_school/main"=>["admissions_information"]},
+  "show_one_new"=>{"my_school/main"=>["show_one_new"]},
+  "offical_home_selected"=>{"my_school/main"=>["offical_home_selected"]},
+  "feature"=>{"my_school/main"=>["feature"]}
+}

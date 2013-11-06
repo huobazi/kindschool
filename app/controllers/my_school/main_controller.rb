@@ -2,7 +2,7 @@
 class MySchool::MainController < MySchool::BaseController
   before_filter :find_shrink_record
   #幼儿园首页
-  layout "colorful_main"
+  #  layout "colorful_main"
   def index
     if @kind 
       @news = @kind.news.where(:approve_status=>0).limit(6)
@@ -20,11 +20,11 @@ class MySchool::MainController < MySchool::BaseController
   end
   #关于我们
   def about
-    render :layout=>"colorful_main"
+    #    render :layout=>"colorful_main"
   end
   #联系我们
   def contact_us
-    render :layout=>"colorful_main"
+    #    render :layout=>"colorful_main"
   end
 
   #官网里面的圆所特色
@@ -111,7 +111,17 @@ class MySchool::MainController < MySchool::BaseController
     if @kind && @kind.shrink_record
       @keywords = @kind.shrink_record.keywords
       @description = @kind.shrink_record.description
-    end 
+    end
+    @menu = "home"
+    data = HOME_MENU || []
+    data.each do |menu,value|
+      if arr = value[controller_path.to_s]
+        if arr.include?(action_name.to_s)
+          @menu = menu
+          break
+        end
+      end
+    end
   end
 
 end

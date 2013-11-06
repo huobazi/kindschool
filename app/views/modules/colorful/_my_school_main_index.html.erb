@@ -1,0 +1,119 @@
+<%= stylesheet_link_tag    "css/banner"%>
+<%= javascript_include_tag "js/banner.js"%>
+<div class="official_home_index">
+  <div style="background-color: white; float: left; width: 100%;">
+    <div class="official_home_img">
+      <%=render :partial =>"my_school/main/offocial_home_rolling_img",:locals => { :image_type => "origin" } %>
+    </div>
+    <div class="official_foot">
+      <div class="official_home_img_left">
+      </div>
+      <div class="official_home_img_right">
+      </div>
+    </div>
+  </div>
+  <div class="official_home_info">
+    <div class="official_left_work">
+      <div class = "official_home_news">
+        <div class="official_home_news_image">
+        </div>
+        <div class="official_home_news_content">
+          <ul class="official_home_news_list">
+            <%(@news||[]).each do |n_ew|%>
+              <li>
+                <div class="official_square"></div>
+                <div class="official_font">
+                  <%= link_to truncate(n_ew.title || "",:length=>29), show_one_new_my_school_main_index_path(:new_id=>n_ew.id),:title=>n_ew.title %>
+                </div>
+                <div class="official_time">
+                  <%= n_ew.start_data.try(:to_short_datetime)%>
+                </div>
+              </li>
+            <%end%>
+          </ul>
+          <div class="officail_news_more">
+            <!-- <a href="###"><strong>查看更多</strong></a> -->
+            <%=link_to "<strong>查看更多</strong>".html_safe ,show_new_list_my_school_main_index_path %>
+          </div>
+        </div>
+      </div>
+      <div class = "official_home_address">
+        <div class="official_home_address_image">
+        </div>
+        <div class="official_home_news_content">
+          <div class="official_home_address_info">
+            <h3>地址</h3>
+            <div class="official_home_address_line">
+            </div>
+            <p><%=@kind.address.blank? ? "幼儿园暂时没有填写地址" : @kind.address %></p>
+            <h3>联系电话</h3>
+            <div class="official_home_address_line">
+            </div>
+            <p><%=@kind.telephone.blank? ? "暂时没有填写" : @kind.telephone%></p>
+            <% if @kind.has_choose_operate?(11100) %>
+              <h3>园长信箱</h3>
+              <div class="official_home_address_line">
+              </div>
+              <span>
+                <a href="<%= url_for(:controller=>"/my_school/main",:action=>"dean_email_list") %>" >
+                  <img src="/star_imgs/dean_emails.png" alt="园长信箱" />
+                </a>
+              </span>
+            <% end %>
+          </div>
+          <div class="official_home_address_img">
+            <!--  <img src="/t/colorful/483-5552.jpg" alt="" width="320" /> -->
+            <div style="width:320px;height:350px;border:1px solid gray" id="map_div">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="official_home_teacher">
+      <div class="official_home_teacher_image">
+      </div>
+      <div class="official_home_teacher_info">
+        <ul class="teacher_list">
+          <%(@teacher_infos||[]).each do |info|%>
+            <li>
+              <div class="official_home_teacher_img">
+                <img src="<%=info.page_img.blank? ? '/t/colorful/activity_logo1.jpg' : info.page_img.public_filename %>" alt="" width="200px"   />
+              </div>
+              <div class="teacher_info">
+                <div class="teacher_title">
+                  <h3><%=info.title%></h3>
+                </div>
+                <div class="teacher_content">
+                  <%=raw info.content%>
+                </div>
+              </div>
+
+            </li>
+          <%end%>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<% unless @kind.latlng.blank? %>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=0E39b8c685958445866a62ebd4f2da1b"></script>
+  <script type="text/javascript">
+    $(function(){
+      map = new BMap.Map("map_div");
+      var latlng = "<%=@kind.latlng%>";
+      var latlng_data = latlng.split(",")
+      map.centerAndZoom(new BMap.Point(latlng_data[1],latlng_data[0]), 14);
+      map.addControl(new BMap.NavigationControl());
+      map.addControl(new BMap.MapTypeControl());          //添加地图类型控件
+      map.enableScrollWheelZoom();
+      var gc = new BMap.Geocoder();
+      var marker ;
+      var point = new BMap.Point(latlng_data[1], latlng_data[0]);
+      if(marker){
+        map.removeOverlay(marker);
+      }
+      marker = new BMap.Marker(point);  // 创建标注
+      map.addOverlay(marker);
+    })
+  </script>
+<% end %>

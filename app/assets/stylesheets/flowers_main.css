@@ -99,9 +99,10 @@ a:hover{
 .official_home_img img{
 /*    height: 370px;*/
 }
-.official_left_work{
-    float: left;
-    width: 65%;
+.official_right_work{
+    float: right;
+    width: 396px;
+    margin-top: 35px;
 }
 .official_home_teacher_img img{
     border: 0 none;
@@ -228,4 +229,8 @@ float:right;width:300px
 }
 a.main_link:hover{
     color: #005580;
+}
+.home_bg {
+    background: url("/t/flowers/home_bg.png") no-repeat;
+    background-position: -20px top;
 }

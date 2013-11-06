@@ -1,6 +1,17 @@
 # encoding: utf-8
 include UploadifyRailsHelper
 module ApplicationHelper
+  def view_layout
+    if @kind && @kind.template
+      @kind.template.number
+    else
+      if template = Template.find_by_is_default(1)
+        template.number
+      else
+        raise "模板信息缺失，请联系管理员"
+      end
+    end
+  end
   def sys_admin_menus(t=nil)
     current_menus = MENUS
     menus = current_user.authed_menus(t)
@@ -65,16 +76,16 @@ module ApplicationHelper
     temp_level = 0
     (node_set||[]).each_with_index do |item, i|
       levels = item[:lvl] || item.level
-        if temp_level >levels
-            (temp_level -levels).times do |i|
-                 html << "</ul></li>"
-                end
-            temp_level = levels
+      if temp_level >levels
+        (temp_level -levels).times do |i|
+          html << "</ul></li>"
         end
-        if temp_level < levels
-           html << "<ul>" 
-           temp_level +=1
-        end
+        temp_level = levels
+      end
+      if temp_level < levels
+        html << "<ul>"
+        temp_level +=1
+      end
       html << "<li class='#{'focus' if options[:current_node]==item}'><span class='#{item.leaf? ? 'file':'folder'}' nodeid=#{item.id}>#{item.name}</span>"
       if item.leaf?
         html << "</li>"
@@ -132,17 +143,17 @@ module ApplicationHelper
       "没年级的班不做升学"
     end
   end
-#  def get_required_form_data
-#    required_form_data
-#  end
-#
-#private
-#  def required_form_data
-#    @session_key ||= ::Rails.application.config.session_options[:key]
-#    @forgery_token = request_forgery_protection_token
-#    {
-#      @session_key   => cookies[@session_key],
-#      @forgery_token => form_authenticity_token
-#    }
-#  end
+  #  def get_required_form_data
+  #    required_form_data
+  #  end
+  #
+  #private
+  #  def required_form_data
+  #    @session_key ||= ::Rails.application.config.session_options[:key]
+  #    @forgery_token = request_forgery_protection_token
+  #    {
+  #      @session_key   => cookies[@session_key],
+  #      @forgery_token => form_authenticity_token
+  #    }
+  #  end
 end

@@ -37,8 +37,8 @@
 </script>
 <![endif]-->
   </head>
-  <body style="background-color: #d9edfa" onload="ResumeError()">
-    <div  class="wrapper">
+  <body style="background-color: #ffffff" onload="ResumeError()">
+    <div  class="wrapper <%= @menu == "home" ? "home_bg" : "head_bg" %>">
       <div class="main_logo">
         <% if @kind %>
           <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" width="100" height="79" alt="Logo" class="logo_vertical"/>
@@ -58,49 +58,30 @@
               });
             });
           </script>
-          <script type="text/javascript">
-            $(function(){
-              $("#kind_name").lettering();
-              function load_color(){
-                var kind_color = ["#EF554C","#f6ab1d","violet","#00c0f6","#a4c500","#f7a200"];
-                $("#kind_name span").each(function(index, Element){
-                  var color = kind_color[index%kind_color.length];
-                  $(this).css("color",color)
-                })
-              }
-              load_color();
-            })
-          </script>
         <% end %>
       </div>
       <div id="main" class="menu">
         <div class="menu_left"> </div>
-        <div class="menu_right"> </div>
         <div class="menu_center official_menu_center">
           <ul>
-            <li>
-              <%= link_to "<div class='offical_home'>
-</div>".html_safe,:controller=>"/my_school/main",:action=>:index %>
+            <li class="<%= "selected" if @menu == "home"%>">
+              <%= link_to "首页",:controller=>"/my_school/main",:action=>:index %>
+            </li>
+            <li class="<%= "selected" if @menu == "show_official_about_us"%>">
+              <%= link_to "关于幼儿园",:controller=>"/my_school/main",:action=>:show_official_about_us %>
+            </li>
+            <li class="<%= "selected" if @menu == "feature"%>">
+              <%= link_to "园所特色",:controller=>"/my_school/main",:action=>:feature %>
+            </li>
+            <li class="<%= "selected" if @menu == "admissions_information"%>">
+              <%= link_to "招生信息",:controller=>"/my_school/main",:action=>:admissions_information %>
             </li>
             <li>
-              <%= link_to "<div class='offical_about_us'>
-</div>".html_safe,:controller=>"/my_school/main",:action=>:show_official_about_us %>
-            </li>
-            <li>
-              <%= link_to "<div class='offical_feature'>
-</div>".html_safe,:controller=>"/my_school/main",:action=>:feature %>
-            </li>
-            <li>
-              <%= link_to "<div class='offical_admiss_infor'>
-</div>".html_safe,:controller=>"/my_school/main",:action=>:admissions_information %>
-            </li>
-            <li>
-              <!-- <a href="#{}"></a> -->
-              <%= link_to "<div class='offical_school_index'>
-</div>".html_safe,{:controller=>"/my_school/home",:action=>:index} ,{:target=>"_blank"}%>
+              <%= link_to "家园互动",{:controller=>"/my_school/home",:action=>:index} ,{:target=>"_blank"}%>
             </li>
           </ul>
         </div>
+        <div class="menu_right"> </div>
         <div class="submenu_center">
           &nbsp;
         </div>
@@ -123,28 +104,6 @@
       </script>
     </div>
     <script type="text/javascript">
-     var pa = location.pathname
-       $(function(){$('.official_menu_center ul li a').each(function(){
-        var url = $(this).attr('href')   
-        if (pa == url)
-        {
-        if( pa == '/my_school/main/show_official_about_us'){
-          return $("a>.offical_about_us").addClass('offical_about_us_selected'),false
-        }
-        else if(pa == '/my_school/main/feature') 
-        {
-          return $("a>.offical_feature").addClass('offical_feature_selected'),false
-        }
-        else if(pa == '/my_school/main/admissions_information') 
-        {
-          return $("a>.offical_admiss_infor").addClass('offical_admiss_infor_selected'),false
-        }
-        else if(pa == '/my_school' || pa == '/my_school/main/show_new_list' ||pa == '/my_school/main/show_one_new' ) 
-        {
-          return $("a>.offical_home").addClass('offical_home_selected'),false
-        }
-        }
-     })});
       $(function(){
         $.floatingAd({
           //频率

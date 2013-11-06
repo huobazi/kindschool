@@ -18,25 +18,10 @@ input {
 .ie6fixedBR{position:fixed;right:0;bottom:0}
 /* IE6浏览器的特有方法 */
 #kind_name{
-    color: violet;
+    color: #474747;
     vertical-align: middle;
-    font-size: 48px;
+    font-size: 37px;
     font-weight: bold;
-    /*text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,0.1), 0 0 5px rgba(0,0,0,0.1),0 1px 3px rgba(0,0,0,0.3),0 3px 5px rgba(0,0,0,0.2),0 5px 10px rgba(0,0,0,0.25);*/
-    /*text-shadow: 0 0 4px white, -0 -5px 4px #ff3, 2px -10px 6px #fd3, -2px -15px 11px #f80,-2px -25px 18px #f20;*/
-    /*text-shadow: 0 0 0.2em #f87, 0 0 0.2em #f87;*/
-    text-shadow:  0 1px 0 #ccc,
-        0 2px 0 #c9c9c9,
-        0 3px 0 #bbb,
-        0 4px 0 #b9b9b9,
-        0 5px 0 #aaa,
-        0 6px 1px rgba(0,0,0,.1),
-        0 0 5px rgba(0,0,0,.1),
-        0 1px 3px rgba(0,0,0,.3),
-        0 3px 5px rgba(0,0,0,.2),
-        0 5px 10px rgba(0,0,0,.25),
-        0 10px 10px rgba(0,0,0,.2),
-        0 20px 20px rgba(0,0,0,.15);
 }
 #kind_name span{
     display: inline;
@@ -102,24 +87,25 @@ a{
 
 /*=======首页样式======================begin*/
 .main_logo{
-    padding-bottom: 25px;
-    padding-top: 15px;
-    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 5px;
     position: relative;
+    text-align: left;
 }
 #main .menu_center{
-    background-color: #008FDC;
-    height: 100px;
-    width: 100%;
+    background-image: url(/t/flowers/menu_center.png);
+    background-repeat: repeat-x;
+    height: 45px;
     text-align: center;
+    float: left;
+    width: 550px;
 }
 #main .menu_center ul {
     width: 100%;
 }
 #main .menu_center ul li{
-    border-right: 1px solid white;
-    margin-left: 55px;
-    width: 120px;
+    margin-left: 15px;
+    width: 90px;
 }
 #main .menu_center ul li:last-child{
     border: none;
@@ -132,22 +118,18 @@ a{
     /*min-height: 1000px;*/
 }
 #main .menu_left {
-    background-image: url("/t/colorful/official_home.png");
-    background-position: -728px -55px;
+    background-image: url(/t/flowers/menu_left.png);
     background-repeat: no-repeat;
-    height: 120px;
-    left: -14px;
-    position: absolute;
-    width: 24px;
+    width: 38px;
+    height: 45px;
+    float: left;
 }
 #main .menu_right {
-    background-image: url("/t/colorful/official_home.png");
-    background-position: -758px -55px;
+    background-image: url(/t/flowers/menu_right.png);
     background-repeat: no-repeat;
-    height: 120px;
-    left: 951px;
-    position: absolute;
-    width: 24px;
+    width: 38px;
+    height: 45px;
+    float: left;
 }
 #main .menu_center ul{
     padding: 0px;
@@ -281,24 +263,25 @@ a{
 
 /*------------菜单-------------*/
 .menu{
-    width: 100%;
-    position: relative;
+    float: right;
+    /*    width: 100%;*/
+    /*    position: relative;*/
 }
 .menu_left{
-    background-image: url(/t/colorful/menu_left.jpg);
+    background-image: url(/t/flowers/menu_left.png);
     background-repeat: no-repeat;
-    width: 14px;
-    height: 63px;
-    position: absolute;
-    left:-14px;
+    width: 16px;
+    height: 45px;
+    /*    position: absolute;*/
+    /*    left:-14px;*/
 }
 .menu_right{
-    background-image: url(/t/colorful/menu_right.jpg);
+    background-image: url(/t/flowers/menu_right.png);
     background-repeat: no-repeat;
-    width: 14px;
-    height: 63px;
-    position: absolute;
-    left:951px;
+    width: 38px;
+    height: 45px;
+    /*    position: absolute;*/
+    /*    left:951px;*/
 }
 .menu_center{
     width: 100%;
@@ -309,7 +292,6 @@ a{
     padding-left: 30px;
 }
 .menu_center ul li{
-    border-right: 1px dotted white;
     float: left;
     line-height: 25px;
     margin-top: 12px;
@@ -318,16 +300,21 @@ a{
     width: 125px;
 }
 .menu_center ul li a{
+    text-decoration: none;
     z-index: 2;
     position: relative;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
 }
-.menu_center ul li:last-child {
-    border: none;
+.menu_center ul li.selected a{
+    color: #D9FC4F;
+    font-size: 18px;
 }
-
 .menu_center ul li a:hover{
-    text-decoration: underline;
-    color: white;
+    text-decoration: none;
+    color: #D9FC4F;
+    font-size: 18px;
 }
 .submenu_center{
     height: auto;
@@ -1736,7 +1723,7 @@ ul.feature_list li{
 }
 .official_menu_center ul li{
     width:130px;
-    height: 80px;
+    height: 35px;
 }
 .contact_us_kinder{
     float:left;
@@ -1782,15 +1769,19 @@ ul.feature_list li{
     width: 180px;
 }
 .official_home_news_image{
-    background-image: url("/t/colorful/title.png");
-    background-position: -10px -5px;
+    background-image: url("/t/flowers/new_title.png");
     background-repeat: no-repeat;
-    height: 100px;
-    left: -20px;
+    height: 27px;
+    left: 0;
     position: absolute;
     top: 30px;
-    width: 270px;
+    width: 396px;
     z-index: 100;
+    font-size: 16px;
+    color: #49a200;
+    font-weight: bold;
+    padding-left: 20px;
+    line-height: 28px;
 }
 .official_foot{
     float: left;
@@ -1809,15 +1800,29 @@ ul.feature_list li{
 .official_home_news_content{
     float: left;
     width: 100%;
-    margin-top: 78px;
-    background-color: white ;
+    margin-top: 54px;
+}
+.official_home_address_content{
+    float: left;
+    width: 394px;
+    margin-top: 64px;
+    border: 1px solid #49a200;
+    border-radius: 6px 6px 6px 6px;
+}
+.official_home_address_logo{
+    background-image: url("/t/flowers/linkimg.png");
+    background-repeat: no-repeat;
+    float: left;
+    height: 150px;
+    width: 136px;
+    margin-top: -10px;
 }
 ul.official_home_news_list{
     float: left;
     margin-bottom: 40px;
-    margin-left: 30px;
-    margin-top: 60px;
-    width: 90%;
+    margin-left: 0px;
+    margin-top: 10px;
+    width: 95%;
 }
 
 ul.official_home_news_list li .official_square{
@@ -1850,48 +1855,40 @@ ul.official_home_news_list li .official_time{
 .officail_news_more {
     float: right;
     height: 30px;
-    margin-bottom: 20px;
-    margin-top: -20px;
     width: 100px;
 }
 .officail_news_more a{
-    background-image: url("/t/colorful/title.png");
-    background-position: -70px -330px;
-    background-repeat: no-repeat;
     float: left;
     height: 30px;
     width: 70px;
     text-align: center;
     line-height: 30px;
     font-size: 12px;
+    color: #7b7b7b;
 }
 .officail_news_more a:hover {
-    background-image: url("/t/colorful/title.png");
-    background-position: -70px -363px;
-    background-repeat: no-repeat;
     float: left;
     font-size: 12px;
     height: 30px;
     line-height: 30px;
     text-align: center;
     width: 70px;
+    color: #7b7b7b;
+    text-decoration: underline;
 }
 
 .official_home_address_image{
-    background-image: url("/t/colorful/title.png");
-    background-position: -10px -210px;
+    background-image: url("/t/flowers/linkme.png");
     background-repeat: no-repeat;
-    height: 100px;
-    left: -20px;
+    height: 17px;
     position: absolute;
     top: 30px;
-    width: 270px;
+    width: 84px;
     z-index: 100;
 }
 .official_home_address_info{
     float: left;
-    margin-left: 30px;
-    margin-top: 60px;
+    margin-left: 10px;
     width: 30%;
 }
 .official_home_address {
@@ -1900,8 +1897,29 @@ ul.official_home_news_list li .official_time{
     position: relative;
     width: 100%;
 }
-.official_home_address_info h3{
-    border-bottom: 2px solid red;
+.official_home_address_info .official_label{
+    float: left;
+    width: 100%;
+}
+.official_home_address_info .official_label_left{
+    float: left;
+    background-image: url("/t/flowers/label_left.png");
+    background-repeat: no-repeat;
+    height: 19px;
+    width: 13px;
+}
+.official_home_address_info .official_label_center{
+    float: left;
+    background-image: url("/t/flowers/label_center.png");
+    background-repeat: repeat-x;
+    height: 19px;
+}
+.official_home_address_info .official_label_right{
+    float: left;
+    background-image: url("/t/flowers/label_right.png");
+    background-repeat: no-repeat;
+    height: 19px;
+    width: 13px;
 }
 .official_home_address_info span{
     font-size: 20px;

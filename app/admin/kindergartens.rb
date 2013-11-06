@@ -105,7 +105,7 @@ ActiveAdmin.register Kindergarten do
       f.input :number
       f.input :name
       f.input :status,:as=>:select,:collection=>Kindergarten::STATUS_DATA.invert
-      f.input :template, :selected => f.object.default_template
+      f.input :template#, :selected => f.object.default_template
       f.input :weixin_status,:as=>:select,:collection=>Kindergarten::WEIXIN_STATUS_DATA.invert
       f.input :weixin_code
       f.input :weixin_token
