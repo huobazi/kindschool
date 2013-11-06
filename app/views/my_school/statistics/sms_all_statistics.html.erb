@@ -56,7 +56,7 @@
           <div class="header">短信统计</div>
           <div class="inner">
             <div class="info">
-              <p><span><b>短信总数量: </b></span><%= @sms_records_count %><%=link_to "查看全部","###",:class=>'blue'%></p>
+              <p><span><b>短信总数量: </b></span><%= @sms_records_count.to_i %>条 &nbsp;&nbsp;&nbsp;&nbsp;<%#=link_to "查看全部","###",:class=>'blue',:style=>"color:blue;"%></p>
             </div>
         <div>
           <div class="header">全部短信详细</div>
