@@ -89,5 +89,10 @@ class MySchool::EvaluateVtocsController < MySchool::ManageController
     end
 
   end
+   def download
+    @evaluate_asset =EvaluateAsset.find(params[:id])
+    path = "/#{@evaluate_asset.avatar}"
+    send_file path, :x_sendfile=>true
+  end
 
 end
