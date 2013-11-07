@@ -1,6 +1,7 @@
 #encoding:utf-8
 #教学计划
 class MySchool::TeachingPlansController < MySchool::ManageController
+  include TeachingPlansHelper
   
   def index
     if current_user.get_users_ranges[:tp] == :student
@@ -150,12 +151,24 @@ end
    end
 
    def destroy
-     @teaching_plan = @kind.teaching_plans.find(params[:id])
-      @teaching_plan.destroy
-       flash[:notice] = '删除成功.'
-       respond_to do |format|
-         format.html { redirect_to my_school_teaching_plans_path }
-         format.json { head :no_content }
-       end 
+     unless params[:teaching_plan].blank? 
+       @teaching_plans = @kind.teaching_plans.where(:id=>params[:teaching_plan])
+     else
+       @teaching_plans = @kind.teaching_plans.where(:id=>params[:id])
+     end
+     if @teaching_plans.blank?
+       flash[:error] = "请选择教学计划"
+       redirect_to :action => :index
+       return
+     end
+
+     @teaching_plans.each do |teaching_plan|
+       teaching_plan.destroy
+     end
+     respond_to do |format|
+       flash[:success] = "删除成长教学计划"
+       format.html { redirect_to my_school_teaching_plans_path }
+       format.json { head :no_content }
+     end
    end
 end

@@ -1,4 +1,10 @@
 <div class="topic topic_line pull-left">
+
+  <% if choose_operate_show("my_school/teaching_plans/destroy") and delete_teaching_plan?(teaching_plans) %>
+    <div class="pull-left"><input type="checkbox" class="check" name="teaching_plan[]" id="teaching_plan_<%= teaching_plans.id %>" value="<%= teaching_plans.id %>" /></div>
+  <% else %>
+    <div class="pull-left place place-input-position"></div>
+  <% end %>
   <div class="right_info">
     <div class="pull-right">
       <%# if choose_operate_show("my_school/teaching_plans/show") %>
