@@ -18,6 +18,16 @@
             </div><div class='work_action_add_move'>
             </div>".html_safe ,new_my_school_teaching_plan_path)  if  choose_operate_show("my_school/teaching_plans/new") %>
         </li>
+        <li>
+          <% if choose_operate_show("my_school/teaching_plans/destroy") %>
+            <a href="javascript: void(0)" title="删除" id="destroy_multiple">
+              <div class="work_action_delete">
+              </div>
+              <div class="work_action_delete_move">
+              </div>
+            </a>
+          <% end %>
+        </li>
       </ul>
     </div>
     <% if current_user.tp != 0 %>
@@ -33,13 +43,31 @@
     <div class="work_list">
         <% unless @teaching_plans.blank? %>
           <div class="topics" id="cook_books">
-            <%= render partial: "teaching_plans", collection: @teaching_plans %>
+            <% if choose_operate_show("my_school/teaching_plans/destroy") %>
+              <div class="select_all_wrap clearfix" style="display: none;">
+                <label class="input_select_all checkbox inline">
+                  <input type="checkbox" id="check_all" /> 全选
+                </label>
+                <a class="hidden-wrap" href="javascript: void(0)" rel="nofollow"><i class="img-icon icon-remove-circle pull-right"></i></a>
+              </div>
+            <% end %>
+            <%= form_tag my_school_teaching_plan_path(@teaching_plans), method: :delete, :id => "destroy_multi_form" do %>
+              <%= render partial: "teaching_plans", collection: @teaching_plans %>
+            <% end %>
           </div>
         <%= paginate @teaching_plans  %>
         <% else %>
-          暂无教学计划
+          没有教学计划
         <% end %>
     </div>
   </div>
 
 </div>
+
+<script type="text/javascript">
+  $("#destroy_multiple").click(function(){
+    if (confirm('您确定删除选中的教学计划吗')) {
+      $("#destroy_multi_form").submit();
+    }
+  });
+</script>
