@@ -98,7 +98,7 @@ class GrowthRecord < ActiveRecord::Base
     else
       #宝宝在园，给家长发
       if self.student_info && self.student_info.user
-        self.student_info.user.send_system_message!("#{Time.now.to_short_datetime} 您有一条宝宝在园记录","您的孩子在幼儿园又有了新的表现哦，快去关注吧。")
+        self.student_info.user.send_system_message!("#{Time.now.to_short_datetime} 您有一条宝宝在园记录","您的孩子在幼儿园又有了新的表现哦，快去关注吧.")
       end
     end
   end

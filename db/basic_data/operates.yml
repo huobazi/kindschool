@@ -2247,6 +2247,18 @@ official_evaluate_vtocs_delete:
   protocol: ""
   <<: *DEFAULTS
 
+official_evaluate_vtocs_download:
+  id: 15208
+  parent_id: 13
+  name: "评估管理卷下载附件"
+  level: 2
+  sequence: 1
+  note: "评估管理卷下载附件"
+  controller: "my_school/evaluate_vtocs"
+  action: "download"
+  protocol: ""
+  <<: *DEFAULTS
+
 teacher_stat_statistics:
   id: 14500
   parent_id: 11

@@ -60,6 +60,8 @@ class MySchool::EvaluateVtocsController < MySchool::ManageController
     unless params[:evaluate_asset].blank?
       (params[:evaluate_asset] || []).each do |p_evaluate_asset|
        evaluate_asset=EvaluateAsset.new(p_evaluate_asset)
+       evaluate_asset.kindergarten=@kind
+       evaluate_asset.user=current_user
        evaluate_asset.file_name = p_evaluate_asset[:avatar].original_filename if p_evaluate_asset[:avatar]
        @evaluate_vtoc.evaluate_assets << evaluate_asset
       end
@@ -91,8 +93,12 @@ class MySchool::EvaluateVtocsController < MySchool::ManageController
   end
    def download
     @evaluate_asset =EvaluateAsset.find(params[:id])
-    path = "/#{@evaluate_asset.avatar}"
-    send_file path, :x_sendfile=>true
+    if current_user.kindergarten == @evaluate_asset.kindergarten
+      path = "/#{@evaluate_asset.avatar}"
+      send_file path, :x_sendfile=>true
+    else
+      redirect_to :back ,:notice=>"你没有权限下载"
+    end
   end
 
 end
