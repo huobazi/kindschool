@@ -18,6 +18,7 @@ class GrowthRecord < ActiveRecord::Base
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
   has_many :comments, :as => :resource
   has_many :asset_imgs, :class_name => "AssetImg", :as => :resource, :dependent => :destroy
+  # has_many :messages
 
   just_define_datetime_picker :start_at, :add_to_attr_accessible => true
   just_define_datetime_picker :end_at, :add_to_attr_accessible => true
@@ -90,7 +91,7 @@ class GrowthRecord < ActiveRecord::Base
         unless squad_staffs.blank?
           squad_staffs.each do |teacher|
             if teacher.user
-              teacher.user.send_system_message!("#{Time.now.to_short_datetime} #{self.student_info.full_name}发布了一条宝宝在家记录","您的学生在家又有了新的表现哦，快去关注吧。")
+              teacher.user.send_system_message!("#{Time.now.to_short_datetime} #{self.student_info.full_name}发布了一条宝宝在家记录","您的学生在家又有了新的表现哦，快去关注吧。",2,self.class.to_s,self.id)
             end
           end
         end
@@ -98,7 +99,7 @@ class GrowthRecord < ActiveRecord::Base
     else
       #宝宝在园，给家长发
       if self.student_info && self.student_info.user
-        self.student_info.user.send_system_message!("#{Time.now.to_short_datetime} 您有一条宝宝在园记录","您的孩子在幼儿园又有了新的表现哦，快去关注吧.")
+        self.student_info.user.send_system_message!("#{Time.now.to_short_datetime} 您有一条宝宝在园记录","您的孩子在幼儿园又有了新的表现哦，快去关注吧.",2,self.class.to_s,self.id)
       end
     end
   end

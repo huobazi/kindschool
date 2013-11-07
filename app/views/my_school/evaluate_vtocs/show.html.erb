@@ -66,13 +66,14 @@
             <div class="controls">
 
               <table class="table table-striped table-hover">
-                <tr><th>附件名称</th><th>操作</th></tr>
+                <tr><th>附件名称</th><th>上传附件人</th><th>操作</th></tr>
                 <% (@evaluate_assets || []).each do |evaluate_resource|%>
                 <tr>
                   <td>
                     <%#=link_to evaluate_resource.file_name,evaluate_resource.avatar_url,:class=>"blue"%>
                     <%=link_to evaluate_resource.file_name,"../evaluate/#{evaluate_resource.id}/#{File.basename(evaluate_resource.avatar.url)}",:class=>"blue"%>
                   </td>
+                  <td><%=evaluate_resource.user.try(:name)%></td>
                   <td><%=link_to "删除",delete_evaluate_asset_my_school_evaluate_vtoc_path(@evaluate_vtoc.id,:evaluate_asset_id=>evaluate_resource.id), method: :delete, data: { confirm: '确定要删除么?删除之后就无法找回!'}%></td></tr>
                 <%end%>
               </table>   

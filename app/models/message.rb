@@ -1,12 +1,13 @@
 #encoding:utf-8
 class Message < ActiveRecord::Base
   acts_as_paranoid
-  attr_accessible :approve_status, :approver_id, :chain_code, :content, :entry_id,:send_me,
+  attr_accessible :resource_type,:resource_id,:approve_status, :approver_id, :chain_code, :content, :entry_id,:send_me,
     :kindergarten_id, :parent_id, :send_date, :sender_id, :sender_name, :status, :title, :tp,:allsms
   belongs_to :kindergarten
   belongs_to :sender, :class_name => "User",:foreign_key=>:sender_id
   has_many :message_entries
   has_many :sms_logs
+  belongs_to :resource, :polymorphic => true
 
   #回复的信息
   has_many :return_messages, :class_name => "Message",:foreign_key=>:entry_id,:order=>"send_date DESC", :dependent => :destroy

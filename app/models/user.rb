@@ -299,9 +299,9 @@ class User < ActiveRecord::Base
   
   #发送系统消息
   #消息类型为2或者3
-  def send_system_message!(title,content,tp=2)
+  def send_system_message!(title,content,tp=2,resource_type=nil,resource_id=nil)
     if title && content
-      message = Message.new(:title=>title,:content=>content,:tp=>tp,:send_date=>Time.now.utc,:kindergarten_id=>self.kindergarten_id,:status=>1)
+      message = Message.new(:title=>title,:content=>content,:tp=>tp,:send_date=>Time.now.utc,:kindergarten_id=>self.kindergarten_id,:status=>1,:resource_id=>resource_id,:resource_type=>resource_type)
       sms = 0
       sms = 1 if(tp == 2 && self.is_receive) || tp == 3
       message.message_entries << MessageEntry.new(:phone=>self.phone,:receiver_id=>self.id,:sms=>sms)
