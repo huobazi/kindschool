@@ -442,7 +442,7 @@ School::Application.routes.draw do
   # just remember to delete public/index.html.
   resources :main do
     collection do
-      get :weiyi_solution,:weiyi_interact,:weiyi_contact,:weiyi_video,:weiyi_scheme,:weiyi_cultivate,:weiyi_benefit
+      get :weiyi_tourism,:weiyi_solution,:weiyi_interact,:weiyi_contact,:weiyi_video,:weiyi_scheme,:weiyi_cultivate,:weiyi_benefit
     end
   end
   root :to => 'main#index'
