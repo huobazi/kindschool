@@ -2,5 +2,5 @@ evaluate1:
   name: "办园条件"
   article_case: "办园条件"
   sequence: 1
-  note:
-  self_note:
+  note: "办学条件说明"
+  self_note: "办学条件说明"
