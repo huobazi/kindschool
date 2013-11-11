@@ -254,7 +254,12 @@ zh-CN:
       sys_log: "操作日志"
       help_category: "视频分类"
       help_movie: "帮助视频"
+      resource_library: "上传资源库"
     attributes:
+      resource_library: 
+        file_name: "文件名"
+        resource_avatar_url: "文件地址"
+        resource_avatar: "文件地址"
       sms_record: 
         status: "状态"
         chain_code: "扩展码"

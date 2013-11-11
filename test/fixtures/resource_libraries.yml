@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  resource_avatar: MyString
+  user_id: 1
+  file_name: MyString
+  file_size: 1
+
+two:
+  resource_avatar: MyString
+  user_id: 1
+  file_name: MyString
+  file_size: 1
