@@ -8,8 +8,4 @@ module MySchool::ManageHelper
 	    200-str.size
 	end
 
-  def paginate(scope, options = {}, &block)
-    super + raw("<ul><li>每页#{scope.limit_value.to_s}/总共#{scope.total_count.to_s}</li></ul>")
-  end
-
 end
