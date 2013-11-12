@@ -117,6 +117,7 @@ ActiveAdmin.register Kindergarten do
       f.input :sms_user_count
       f.input :begin_allsms
       f.input :open_allsms
+      f.input :hint_tp
 #      f.input :allsms_count
       f.input :login_note
       f.input :note
@@ -153,6 +154,7 @@ ActiveAdmin.register Kindergarten do
       row :sms_user_count
       row :begin_allsms
       row :open_allsms
+      row :hint_tp
 #      row :allsms_count
       row :login_note
       row :note
