@@ -30,36 +30,72 @@ Template.transaction do
     end
   end
 
-   puts "\n导入系统菜单数据"
-   Menu.delete_all
-   YAML::load(File.read("#{Rails.root}/db/basic_data/menus.yml")).each do |p|
+  puts "\n导入系统菜单数据"
+  Menu.delete_all
+  YAML::load(File.read("#{Rails.root}/db/basic_data/menus.yml")).each do |p|
     children = p.delete('children')
-     menu = Menu.new(p)
-     menu.id = p["id"]
-     menu.save
-      (children || []).each do |child|
-       submenu = Menu.new(child)
-       submenu.id = child["id"]
-       menu.children << submenu
-       print "."
-      end
-      puts ".\n"
-   end
-   puts "\n导入微壹平台数据数据"
-   unless WeiyiConfig.find_by_number("about")
-     WeiyiConfig.create(:number=>"about",:content=>"微壹是服务于幼儿园的校讯通平台。")
-     WeiyiConfig.create(:number=>"contact",:content=>"联系我们的介绍内容。")
-     WeiyiConfig.create(:number=>"weixin_validate",:content=>"0")
-     WeiyiConfig.create(:number=>"web_weiyi_contact",:content=>"联系我们")
-     WeiyiConfig.create(:number=>"web_weiyi_interact",:content=>"家园互动")
-     WeiyiConfig.create(:number=>"web_weiyi_about",:content=>"关于我们")
-     WeiyiConfig.create(:number=>"web_garden_about",:content=>"园讯通文字介绍,园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍")
-     WeiyiConfig.create(:number=>"web_garden_kindergarten",:content=>"推荐幼儿园")
-     WeiyiConfig.create(:number=>"web_garden_classic_users",:content=>"经典客户")
-
-     WeiyiConfig.create(:number=>"web_weiyi_video",:content=>"移动视频")
-     WeiyiConfig.create(:number=>"web_weiyi_scheme",:content=>"影视策划")
-     WeiyiConfig.create(:number=>"web_weiyi_cultivate",:content=>"动漫培训")
-     WeiyiConfig.create(:number=>"web_weiyi_benefit",:content=>"公益活动")
-   end
+    menu = Menu.new(p)
+    menu.id = p["id"]
+    menu.save
+    (children || []).each do |child|
+      submenu = Menu.new(child)
+      submenu.id = child["id"]
+      menu.children << submenu
+      print "."
+    end
+    puts ".\n"
+  end
+  puts "\n导入微壹平台数据数据"
+  unless WeiyiConfig.find_by_number("about")
+    WeiyiConfig.create(:number=>"about",:content=>"微壹是服务于幼儿园的校讯通平台。")
+    print "."
+  end
+  unless WeiyiConfig.find_by_number("contact")
+    WeiyiConfig.create(:number=>"contact",:content=>"联系我们的介绍内容。")
+    print "."
+  end
+  unless WeiyiConfig.find_by_number("weixin_validate")
+    WeiyiConfig.create(:number=>"weixin_validate",:content=>"0")
+    print "."
+  end
+  unless WeiyiConfig.find_by_number("web_weiyi_contact")
+    WeiyiConfig.create(:number=>"web_weiyi_contact",:content=>"联系我们")
+    print "."
+  end
+  unless WeiyiConfig.find_by_number("web_weiyi_interact")
+    WeiyiConfig.create(:number=>"web_weiyi_interact",:content=>"家园互动")
+    print "."
+  end
+  unless WeiyiConfig.find_by_number("web_weiyi_about")
+    WeiyiConfig.create(:number=>"web_weiyi_about",:content=>"关于我们")
+    print "."
+  end
+  unless WeiyiConfig.find_by_number("web_garden_about")
+    WeiyiConfig.create(:number=>"web_garden_about",:content=>"园讯通文字介绍,园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍园讯通文字介绍")
+    print "."
+  end
+  unless WeiyiConfig.find_by_number("web_garden_kindergarten")
+    WeiyiConfig.create(:number=>"web_garden_kindergarten",:content=>"推荐幼儿园")
+    print "."
+  end
+  unless WeiyiConfig.find_by_number("web_garden_classic_users")
+    WeiyiConfig.create(:number=>"web_garden_classic_users",:content=>"经典客户")
+    print "."
+  end
+  unless WeiyiConfig.find_by_number("web_weiyi_video")
+    WeiyiConfig.create(:number=>"web_weiyi_video",:content=>"移动视频")
+    print "."
+  end
+  unless WeiyiConfig.find_by_number("web_weiyi_scheme")
+    WeiyiConfig.create(:number=>"web_weiyi_scheme",:content=>"影视策划")
+    print "."
+  end
+  unless WeiyiConfig.find_by_number("web_weiyi_cultivate")
+    WeiyiConfig.create(:number=>"web_weiyi_cultivate",:content=>"动漫培训")
+    print "."
+  end
+  unless WeiyiConfig.find_by_number("web_weiyi_benefit")
+    WeiyiConfig.create(:number=>"web_weiyi_benefit",:content=>"公益活动")
+    print "."
+  end
 end

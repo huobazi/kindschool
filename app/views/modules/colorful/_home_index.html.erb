@@ -1,0 +1,21 @@
+<div class="show_publicity">
+  <img src="/t/colorful/small_publicity.jpg" alt="展示图"/>
+</div>
+<div class="center">
+  <div class="note_info">
+    <div class="note_logo">
+      <img src="/t/colorful/clown.jpg" alt="欢迎" />
+    </div>
+    <div class="note">
+      <div class="note_title">
+        欢迎来我们的幼儿园！
+      </div>
+      <div style="text-indent: 10px;padding-top: 10px;">
+        <%= raw @kind.note %>
+      </div>
+    </div>
+  </div>
+  <%#= render :partial => "/modules/colorful/showcase" %>
+  <%= render :partial => "/modules/colorful/new_showcase" %>
+  <%= render :partial => "/modules/colorful/activity" %>
+</div>

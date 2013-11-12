@@ -6,13 +6,14 @@
     height: 30px;
 }
 a:hover{
-    color:white;
+    color: #636363;
     text-decoration:none;
 }
 .new_form{
     background-color: #FBFBFB;
-    border: 1px solid #E3E3E3;
-    margin-top: 48px;
+    border: 2px solid #ACCD93;
+    border-radius: 6px;
+    margin-top: 42px;
     padding: 40px;
     position: relative;
 }
@@ -21,7 +22,7 @@ a:hover{
     position: relative;
 }
 .official_new_img{
-     background-image: url("/t/colorful/title.png");
+    background-image: url("/t/colorful/title.png");
     background-position: -320px -10px;
     background-repeat: no-repeat;
     height: 100px;
@@ -97,7 +98,7 @@ a:hover{
     margin-bottom: 15px;
 }
 .official_home_img img{
-/*    height: 370px;*/
+    /*    height: 370px;*/
 }
 .official_right_work{
     float: right;
@@ -150,13 +151,13 @@ ul li a:hover{
     float:left;width:500px;
 }
 .time_control_title{float: left;
-    font-weight: bold;
-    padding-left: 20px;
-    padding-top: 5px;
-    width: 160px;
+                    font-weight: bold;
+                    padding-left: 20px;
+                    padding-top: 5px;
+                    width: 160px;
 }
 .show_count_time{
-float:right;width:300px
+    float:right;width:300px
 }
 .content a{
     color: blue;
@@ -171,58 +172,58 @@ float:right;width:300px
 
 
 .floatingAd .ad{
-	z-index: 100;
-	background: none;
-	position: absolute;
-	display: none;
+    z-index: 100;
+    background: none;
+    position: absolute;
+    display: none;
 }
 .floatingAd a{
-	color:#000000;
-	display: inline-block;
-	text-decoration: none;
+    color:#000000;
+    display: inline-block;
+    text-decoration: none;
 }
 .floatingAd a img{
-	border: 0;
+    border: 0;
 }
 .floatingAd .close_div{
-	display: none;
+    display: none;
 }
 .floatingAd .opacity{
-	position: absolute;
-	top: 100px;
-	width: 100%;
-	height: 25px;
-	background-color: #000000;
-	opacity: 0.20;
-	filter: alpha(opacity = 20);
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    height: 25px;
+    background-color: #000000;
+    opacity: 0.20;
+    filter: alpha(opacity = 20);
 }
 .opacity1{
-	opacity: 0.90;
-	filter: alpha(opacity = 90);
+    opacity: 0.90;
+    filter: alpha(opacity = 90);
 }
 .floatingAd .text{
-	position: absolute;
-	top: 100px;
-	width: 100%;
-	height: 25px;
-	color: #000000;
-	line-height: 25px;
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    height: 25px;
+    color: #000000;
+    line-height: 25px;
 }
 .floatingAd .text .button{
-	position: relative;
-	float: right;
-	top: 5px;
-	right: 5px;
-	width: 16px;
-	height: 16px;
-	background: url("/star_imgs/close.png") no-repeat;
-	cursor: pointer;
+    position: relative;
+    float: right;
+    top: 5px;
+    right: 5px;
+    width: 16px;
+    height: 16px;
+    background: url("/star_imgs/close.png") no-repeat;
+    cursor: pointer;
 }
 .floatingAd .text .title{
-	position: relative;
-	float: left;
-	font-size: 12px;
-	margin-left: 5px;
+    position: relative;
+    float: left;
+    font-size: 12px;
+    margin-left: 5px;
 }
 .main_link{
     color: #6E86CD;
@@ -233,4 +234,56 @@ a.main_link:hover{
 .home_bg {
     background: url("/t/flowers/home_bg.png") no-repeat;
     background-position: -20px top;
+    min-height: 824px;
+}
+.home_bg2{
+    background: url("/t/flowers/home_bg2.png") no-repeat;
+    background-position: center top;
+    min-height: 294px;
+}
+.contact_title{
+    float: left;
+    width: 100%;
+    margin: 30px;
+    border-bottom: 1px solid #c4c4c4;
+    padding-bottom: 5px;
+}
+.contact_title_form{
+    float: left;
+    width: 100%;
+    margin: 30px 30px 30px 0;
+    border-bottom: 1px solid #c4c4c4;
+    padding-bottom: 5px;
+}
+.contact_title_img{
+    background-image: url("/t/flowers/title_img.png");
+    background-repeat: no-repeat;
+    width: 14px;
+    height: 20px;
+    float: left;
+    margin-right: 5px;
+}
+.contact_title_label{
+    float: left;
+    font-size: 21px;
+    color: #589f10;
+}
+.flowers_work{
+    margin-top: 208px;
+    min-height: 300px;
+    _height: 300px;
+}
+.flowers_food{
+    border: 2px solid #E5E8E1;
+    border-radius: 6px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+.contact_us{
+    border: 2px solid #ACCD93;
+    border-radius: 6px;
+}
+.menu{
+    float: right;
 }

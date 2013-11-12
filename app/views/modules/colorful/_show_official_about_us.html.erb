@@ -1,45 +1,31 @@
- <div class="carousel main">
-    <div class="prev">
-      <div class="left">
-      </div>
-      &nbsp;
-    </div>
-    <div class="jCarouselLite">
-      <% if(root_showcase = @kind.page_contents.find_by_number("official_website_about_us")) && !root_showcase.content_entries.blank? %>
-        <ul>
-          <% root_showcase.content_entries.each do |entry| %>
-          <li>
-            <%= entry.title%>
-          </li>
-          <li>
-            <%= entry.content%>
-          </li>
-            <% if entry.page_img %>
-              <li>
-                <a href="<%= entry.page_img.public_filename(:thumb) %>" class="fancybox"  title="<%= entry.title %>">
-                  <img src="<%= entry.page_img.public_filename(:middle) %>" alt="" width="239px" height="177px"/>
-                </a>
-              </li>
-            <% end %>
-          <% end %>
-        </ul>
-      <% else %>
-        <ul>
-          <li>
-            <a href="/t/colorful/Home_26-10.jpg" class="fancybox"  title="">
-              <img src="/t/colorful/Home_26-10.jpg" alt="" width="239px" height="177px"/>
-            </a>
-          </li>
-        </ul>
-      <% end %>
-    </div>
-    <div class="next">
-      <div class="right">
+<div class="official_contact_img"> </div>
+<div class="contact_us_kinder">
 
-      </div>
-      &nbsp;
+	<div class="contact_us_content">
+     <%=raw @entry.try(:content)%>
+	</div>
+	<div class="show_menu_center">
+       <div class="show_center_left"> </div>
+       <div class="show_center_right"> </div>
+       <div class="show_center">
+        <ul>
+         <li>
+           <a><%= @entry_title.try(:title)%></a>
+         </li>
+        </ul>
+       </div>
     </div>
-    <div class="clear"></div>
-  </div>
-
+    <div class="contact_us_class_image">
+    	<div class="class_big_image" style="width: 560px;height:370px;">
+                    <img src="<%=@entry_img.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_img.page_img.public_filename  %>" alt="" style="width: 560px;height:370px;"/>
+    	</div>
+    	<div class="class_middle_image">
+    	<div class="class_middle_top_image" style="width: 275px;height: 180px;">
+          <img src="<%=@entry_top.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_top.page_img.public_filename%>" alt="" style="width: 275px;height: 180px;"/>
+    	</div>
+        <div class="class_middle_bottom_image" style="width: 275px;height: 180px;">
+          <img src="<%=@entry_bottom.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_bottom.page_img.public_filename%>" alt="" style="width: 275px;height: 180px;"   />
+    	</div>
+    	</div>
+    </div>
 </div>

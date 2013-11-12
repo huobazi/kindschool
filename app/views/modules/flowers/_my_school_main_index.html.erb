@@ -40,10 +40,18 @@
               <div class="official_label_right"></div>
             </div>
             <p><%=@kind.address.blank? ? "幼儿园暂时没有填写地址" : @kind.address %></p>
-            <h3>联系电话</h3>
+            <div class="official_label">
+              <div class="official_label_left"></div>
+              <div class="official_label_center">联系电话</div>
+              <div class="official_label_right"></div>
+            </div>
             <p><%=@kind.telephone.blank? ? "暂时没有填写" : @kind.telephone%></p>
             <% if @kind.has_choose_operate?(11100) %>
-              <h3>园长信箱</h3>
+              <div class="official_label">
+                <div class="official_label_left"></div>
+                <div class="official_label_center">园长信箱</div>
+                <div class="official_label_right"></div>
+              </div>
               <span>
                 <a href="<%= url_for(:controller=>"/my_school/main",:action=>"dean_email_list") %>" >
                   <img src="/star_imgs/dean_emails.png" alt="园长信箱" />

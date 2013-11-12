@@ -1,11 +1,9 @@
-<div class="food">
+<div class="food <%= controller_path == "my_school/main" && action_name == "index" ? "" : "flowers_food" %>">
   <div class="food_content">
-    <hr />
     <%= link_to "首页","/" %>|
     <%= link_to "关于我们","/my_school/main/about" %>|
     <%= link_to "联系我们","/my_school/main/contact_us" %>|
     <%= link_to "帮助","/my_school/home/help_videos" %>
-    <hr />
     <label>
       @2013 by 微壹. All rights reserved.
     </label>
