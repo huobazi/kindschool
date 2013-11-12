@@ -95,14 +95,14 @@ statistics:
   note: "统计"
   <<: *DEFAULTS
 
-#official:
-#  id: 13
-#  parent_id: 1
-#  name: "办公管理"
-#  level: 1
-#  sequence: 1
-#  note: "办公管理"
-#  <<: *DEFAULTS
+official:
+ id: 13
+ parent_id: 1
+ name: "办公管理"
+ level: 1
+ sequence: 1
+ note: "办公管理"
+ <<: *DEFAULTS
 
 #---------------------------功能
 
@@ -2076,6 +2076,186 @@ official_evaluates:
   note: "评估管理"
   controller: "my_school/evaluates"
   action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+
+official_evaluates_create:
+  id: 15001
+  parent_id: 13
+  name: "启用评估管理"
+  level: 2
+  sequence: 1
+  note: "启用评估管理"
+  controller: "my_school/evaluates"
+  action: "create"
+  protocol: ""
+  <<: *DEFAULTS
+
+official_evaluate_entries_new:
+  id: 15101
+  parent_id: 13
+  name: "新建评估项"
+  level: 2
+  sequence: 1
+  note: "新建评估项"
+  controller: "my_school/evaluate_entries"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+official_evaluate_entries_create:
+  id: 15102
+  parent_id: 13
+  name: "创建评估项"
+  level: 2
+  sequence: 1
+  note: "创建评估项"
+  controller: "my_school/evaluate_entries"
+  action: "create"
+  protocol: ""
+  <<: *DEFAULTS
+
+official_evaluate_entries_edit:
+  id: 15103
+  parent_id: 13
+  name: "编辑评估项"
+  level: 2
+  sequence: 1
+  note: "编辑评估项"
+  controller: "my_school/evaluate_entries"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+official_evaluate_entries_update:
+  id: 15104
+  parent_id: 13
+  name: "更新评估项"
+  level: 2
+  sequence: 1
+  note: "更新评估项"
+  controller: "my_school/evaluate_entries"
+  action: "update"
+  protocol: ""
+  <<: *DEFAULTS
+
+official_evaluate_entries_show:
+  id: 15105
+  parent_id: 13
+  name: "显示评估项"
+  level: 2
+  sequence: 1
+  note: "显示评估项"
+  controller: "my_school/evaluate_entries"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+official_evaluate_entries_destroy:
+  id: 15106
+  parent_id: 13
+  name: "删除评估项"
+  level: 2
+  sequence: 1
+  note: "删除评估项"
+  controller: "my_school/evaluate_entries"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
+
+official_evaluate_vtocs_new:
+  id: 15201
+  parent_id: 13
+  name: "新建评估管理卷"
+  level: 2
+  sequence: 1
+  note: "新建评估管理卷"
+  controller: "my_school/evaluate_vtocs"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+official_evaluate_vtocs_create:
+  id: 15202
+  parent_id: 13
+  name: "创建评估管理卷"
+  level: 2
+  sequence: 1
+  note: "创建评估管理卷"
+  controller: "my_school/evaluate_vtocs"
+  action: "create"
+  protocol: ""
+  <<: *DEFAULTS
+
+official_evaluate_vtocs_edit:
+  id: 15203
+  parent_id: 13
+  name: "编辑评估管理卷"
+  level: 2
+  sequence: 1
+  note: "编辑评估管理卷"
+  controller: "my_school/evaluate_vtocs"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+official_evaluate_vtocs_update:
+  id: 15207
+  parent_id: 13
+  name: "更新评估管理卷"
+  level: 2
+  sequence: 1
+  note: "更新评估管理卷"
+  controller: "my_school/evaluate_vtocs"
+  action: "update"
+  protocol: ""
+  <<: *DEFAULTS
+
+official_evaluate_vtocs_asset:
+  id: 15204
+  parent_id: 13
+  name: "评估管理卷上传附件"
+  level: 2
+  sequence: 1
+  note: "评估管理卷上传附件"
+  controller: "my_school/evaluate_vtocs"
+  action: "create_evaluate_asset"
+  protocol: ""
+  <<: *DEFAULTS
+
+official_evaluate_vtocs_show:
+  id: 15205
+  parent_id: 13
+  name: "显示评估管理卷"
+  level: 2
+  sequence: 1
+  note: "显示评估管理卷"
+  controller: "my_school/evaluate_vtocs"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
+official_evaluate_vtocs_delete:
+  id: 15206
+  parent_id: 13
+  name: "评估管理卷删除附件"
+  level: 2
+  sequence: 1
+  note: "评估管理卷删除附件"
+  controller: "my_school/evaluate_vtocs"
+  action: "delete_evaluate_asset"
+  protocol: ""
+  <<: *DEFAULTS
+
+official_evaluate_vtocs_download:
+  id: 15208
+  parent_id: 13
+  name: "评估管理卷下载附件"
+  level: 2
+  sequence: 1
+  note: "评估管理卷下载附件"
+  controller: "my_school/evaluate_vtocs"
+  action: "download"
   protocol: ""
   <<: *DEFAULTS
 

@@ -22,13 +22,23 @@
     </div>
   </div>
   <div class="message_list">
-    <label class="message_content"><%= @message.content %></label>
+    <label class="message_content"><%= @message.content %>
+      <%if @message.resource %>
+
+                 <%if @message.resource.tp%>
+                <%=link_to "查看宝宝在家" ,weixin_growth_record_path(@message.resource.id),:style=>"color:blue"%>
+                <%else%>
+                <%=link_to "查看宝宝在园",weixin_garden_growth_record_path(@message.resource.id) ,:style=>"color:blue"%>
+                 <%end%>
+                <%end%>
+    </label>
     <% unless @return_messages.blank? %>
       <ul class="data_list">
         <% @return_messages.each do |message| %>
           <li>
             <div><label class="message_user"><%=message.sender_name%>:回复</label><label class="message_time"><%=message.send_date ? message.send_date.to_long_datetime : ""%></label></div>
-            <div class="message_content"><%= message.content %></div>
+            <div class="message_content"><%= message.content %>
+            </div>
           </li>
         <% end %>
       </ul>

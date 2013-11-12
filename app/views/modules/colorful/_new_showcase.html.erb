@@ -39,7 +39,7 @@ height: 177px;
    	    <% root_showcase.content_entries.each do |entry| %>
             <% if entry.page_img %>
                 <a style="height: 177px;" href="<%= entry.page_img.public_filename %>" class="fancybox"  title="<%= entry.title %>">
-                  <img src="<%= entry.page_img.public_filename(:middle) %>" onerror="this.src=<%=entry.page_img.public_filename%>" alt="" width="239" height="177"/>
+                  <img  src="<%= entry.page_img.public_filename(:middle) %>" onerror="this.src=<%=entry.page_img.public_filename%>" alt="" width="239" height="177"/>
                 </a>
            <%end%>
         <%end%>

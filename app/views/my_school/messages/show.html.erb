@@ -79,6 +79,15 @@
             <div class="controls">
               <label class="show_label">
                 <%= @message.content %>
+
+                <%if @message.resource %>
+
+                 <%if @message.resource.tp%>
+                <%=link_to "查看宝宝在家" ,my_school_growth_record_path(@message.resource.id),:class=>"blue"%>
+                <%else%>
+                <%=link_to "查看宝宝在园",my_school_garden_growth_record_path(@message.resource.id) ,:class=>"blue"%>
+                 <%end%>
+                <%end%>
               </label>
             </div>
           </div>

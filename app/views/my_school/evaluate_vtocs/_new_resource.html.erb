@@ -1,0 +1,19 @@
+<div class="control-group"  id="group_appurtenance_file">
+    <%=label_tag :avatar, '上传附件:' ,:class=>"control-label"%>
+    <div class="controls" id="evaluate_avatar">
+      <div class="evaluate_file">
+      <%= file_field_tag("evaluate_asset[][avatar]") %>
+     </div>
+      <p>您上传的附件不能超过5M</p>
+    </div>
+    <div class="controls" id="a_evaluate_arry">
+    <a class="blue">继续添加</a>
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){
+  $("#a_evaluate_arry a").click(function(){
+    $("#evaluate_avatar").after("<div class='controls'><div class='appurtenance_file'><input type='file' name='evaluate_asset[][avatar]' data-validate='true'></div><p>您上传的附件不能超过5M</p></div>");
+  })
+  })
+</script>

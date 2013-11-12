@@ -1,0 +1,93 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>评估管理</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+             <li><%= link_to "评估管理", my_school_evaluates_path %></li>
+            <li>/</li>
+            <li><%=link_to @evaluate_entry.name ,my_school_evaluate_evaluate_entry_path(@evaluate_entry.evaluate.id,@evaluate_entry.id)%></li>
+            <li>/</li>
+            <li><%=@evaluate_vtoc.name%></li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+       <li>
+        <%=link_to "<div class='work_action_edit'>
+            </div>
+            <div class='work_action_edit_move'>
+            </div>".html_safe,edit_my_school_evaluate_vtoc_path(@evaluate_vtoc)%>
+        </li>
+        <li>
+          <%=link_to "<div class='work_action_return'>
+            </div>
+            <div class='work_action_return_move'>
+            </div>".html_safe ,my_school_evaluate_evaluate_entry_path(@evaluate_entry.evaluate.id,@evaluate_entry.id)%>
+        </li>
+      </ul>
+    </div>
+
+    <div class="work_form">
+      <div class="form_div">
+        <%= form_for(@evaluate_vtoc,:url=>create_evaluate_asset_my_school_evaluate_vtocs_path(:evaluate_vtoc_id=>@evaluate_vtoc.id),:html =>{:multipart=>true,:class=>"form-horizontal"},:method=>'post') do |f| %>
+          <div class="control-group">
+            <label class="control-label">所属幼儿园:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=@kind.name %>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">所属评估项:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=@evaluate_entry.name %>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >卷名称:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= @evaluate_vtoc.name%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >附件:</label>
+            <div class="controls">
+
+              <table class="table table-striped table-hover">
+                <tr><th>附件名称</th><th>上传附件人</th><th>操作</th></tr>
+                <% (@evaluate_assets || []).each do |evaluate_resource|%>
+                <tr>
+                  <td>
+                    <%#=link_to evaluate_resource.file_name,evaluate_resource.avatar_url,:class=>"blue"%>
+                    <%=link_to evaluate_resource.file_name,"../evaluate/#{evaluate_resource.id}/#{File.basename(evaluate_resource.avatar.url)}",:class=>"blue"%>
+                  </td>
+                  <td><%=evaluate_resource.user.try(:name)%></td>
+                  <td><%=link_to "删除",delete_evaluate_asset_my_school_evaluate_vtoc_path(@evaluate_vtoc.id,:evaluate_asset_id=>evaluate_resource.id), method: :delete, data: { confirm: '确定要删除么?删除之后就无法找回!'}%></td></tr>
+                <%end%>
+              </table>   
+              <%= paginate @evaluate_assets %>
+            </div>
+          </div>
+           <%=render "new_resource"%>
+           <div class="control-group">
+             <div class="controls">
+               <%= f.submit('保存',:class=>"btn btn-large btn-primary", disable_with: "正在提交") %>
+            </div>
+          </div>
+          <%end%>
+      </div>
+    </div>
+  </div>
+</div>

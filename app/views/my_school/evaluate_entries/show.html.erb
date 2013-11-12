@@ -1,0 +1,99 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>评估管理</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+             <li><%= link_to "评估管理", my_school_evaluates_path %></li>
+            <li>/</li>
+            <li>查看评估项 <%=@evaluate_entry.name%></li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+          <%=link_to "<div class='work_action_return'>
+            </div>
+            <div class='work_action_return_move'>
+            </div>".html_safe ,my_school_evaluates_path%>
+        </li>
+      </ul>
+    </div>
+    <div class="work_form">
+      <div class="new_button_evaluate">
+       <%=link_to "评估项添加卷",new_my_school_evaluate_vtoc_path(:evaluate_entry_id=>@evaluate_entry.id),:class=>"btn blue"%>
+       <br/>
+      </div>
+      <div class="form_div">
+        <form class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label">所属幼儿园:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=@kind.name %>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >评估名称:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= @evaluate_entry.name%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >描述:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=raw @evaluate_entry.note%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >案条:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= @evaluate_entry.article_case%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >自评说明:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=raw @evaluate_entry.self_note%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >排序:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= @evaluate_entry.sequence%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >评估卷:</label>
+            <div class="controls">
+              <label class="show_label">
+                <% (@evaluate_entry.evaluate_vtocs || []).each_with_index do |evaluate_vtoc,index|%>
+                <%=index+1%>
+                <%=link_to evaluate_vtoc.name ,my_school_evaluate_vtoc_path(evaluate_vtoc.id) ,:class=>"blue"%>
+                <br/>
+                <%end%>
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

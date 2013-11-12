@@ -59,4 +59,9 @@ class MainController < ApplicationController
     @web_weiyi_benefit = WeiyiConfig.find_by_number("web_weiyi_benefit")
     render :layout=>"weiyi"
   end
+
+  def weiyi_tourism
+    @web_weiyi_tourism = WeiyiConfig.find_by_number("weiyi_tourism")
+    render :layout=>"weiyi"
+  end
 end

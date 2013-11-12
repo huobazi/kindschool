@@ -30,10 +30,10 @@
     <% end %>
   <% end %>
   <% squads.group_by{|squad| squad.grade}.each do |grade,squads| %>
-    <div class="checkall gray">
-      <div class="checkall_div"><input type="checkbox" id="grade_users_checkall_<%= grade.id %>" for="#grade_div_<%= grade.id %>"/><label for="grade_users_checkall_<%= grade.id %>"><%=grade.name%></label></div>
+    <div class="checkall gray"> 
+      <div class="checkall_div"><input type="checkbox" id="grade_users_checkall_<%= grade.try(:id) %>" for="#grade_div_<%= grade.try(:id) %>"/><label for="grade_users_checkall_<%= grade.try(:id) %>"><%=grade.try(:name)%></label></div>
     </div>
-    <div id="grade_div_<%= grade.id %>">
+    <div id="grade_div_<%= grade.try(:id) %>">
       <% squads.each do |squad| %>
         <div class="checkall light_gray">
           <div class="checkall_div"><input type="checkbox" id="squad_users_checkall_<%= squad.id %>" for="#squad_users_div_<%= squad.id %>"/><label for="squad_users_checkall_<%= squad.id %>"><%=squad.name%></label></div>

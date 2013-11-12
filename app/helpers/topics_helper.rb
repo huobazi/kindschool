@@ -8,8 +8,8 @@ module TopicsHelper
         false
       end
     elsif current_user.get_users_ranges[:tp] == :teachers
-      @squads = current_user.get_users_ranges[:squads]
-      if current_user.get_users_ranges[:squads].collect(&:id).include?(topic.try(:squad_id)) or current_user.id == topic.creater_id
+      squads = current_user.get_users_ranges[:squads]
+      if squads.collect(&:id).include?(topic.try(:squad_id)) or current_user.id == topic.creater_id
         true
       else
         false

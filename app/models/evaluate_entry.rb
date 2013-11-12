@@ -6,5 +6,6 @@ class EvaluateEntry < ActiveRecord::Base
   attr_accessible :kindergarten_id, :note,:evaluate_id,:name,:article_case,:sequence,:note,:self_note
   belongs_to :kindergarten
   belongs_to :evaluate
+  has_many :evaluate_vtocs
   validates :name, :presence => true
 end

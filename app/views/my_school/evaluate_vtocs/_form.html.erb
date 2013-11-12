@@ -1,0 +1,25 @@
+<div class="control-group">
+ 	<%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
+<div class="controls">
+     <%= text_field_tag(:kindergarten,@kind.name, disabled: true) %>
+</div>
+</div>
+<div class="control-group">
+ 	<%=f.label :evaluate_entry_id, '评估项' ,:class=>"control-label"%>
+<div class="controls">
+     <%= text_field_tag(:evaluate_entry,@evaluate_entry.name, disabled: true) %>
+</div>
+</div>
+<div class="control-group">
+ 	<%=f.label :name, '卷名称:' ,:class=>"control-label"%>
+<div class="controls">
+  <%= f.text_field(:name , :validate => true, placeholder: "请输入评估名称") %>
+  </div>
+</div>
+<%#=render "new_resource"%>
+
+<div class="control-group">
+  <div class="controls">
+     <%= f.submit('保存',:class=>"btn btn-large btn-primary", disable_with: "正在提交") %>
+  </div>
+</div>

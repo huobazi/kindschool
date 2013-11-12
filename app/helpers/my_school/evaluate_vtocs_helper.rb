@@ -1,0 +1,2 @@
+module MySchool::EvaluateVtocsHelper
+end

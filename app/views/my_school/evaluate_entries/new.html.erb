@@ -1,0 +1,34 @@
+<div class="show_work">
+  <%= render :partial => "/modules/colorful/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>评估管理
+         <!--  <%#=link_to '相册锦集',my_school_albums_path,:class=>"blue"%>-><%#=link_to @album.title , my_school_album_path(@album),:class=>'blue'%> -->
+          <!-- ->上传相片 --></label>
+        <div class="crumbs">
+          <a href="/my_school/evaluates" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+             <li><%= link_to "评估管理", my_school_evaluates_path %></li>
+            <li>/</li>
+            <li>新建评估项</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="work_form">
+      <div class="form_div">
+        <%= form_for(@evaluate_entry,:url=>my_school_evaluate_evaluate_entries_path(@evaluate.id,@evaluate_entry),:html =>{:multipart=>true,:class=>"form-horizontal"}) do |f| %>
+          <%= render 'form', :f=>f %>
+        <%end%>
+        <hr/>
+        <%#= uploadify_rails_options %>
+          
+      </div>
+    </div>
+  </div>
+
+</div>

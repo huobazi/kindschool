@@ -9,6 +9,7 @@
 /mini_captcha.jpg
 # Ignore the default SQLite database.
 /db/*.sqlite3
+/evaluate/*
 /db/schema.rb
 /public/asset_imgs/*
 /public/asset_logos/*

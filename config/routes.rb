@@ -1,11 +1,22 @@
 School::Application.routes.draw do
 
-
+  
   match 'code/code_image' => 'code#code_image'
   match 'code/recode' => 'code#recode'
   match 'my_school' => 'my_school/main#index'
+  match "my_school/evaluate/:id/:basename.:extension", :controller => "my_school/evaluate_vtocs", :action => "download", :conditions => { :method => :get }
   namespace :my_school do
-    resources :evaluates
+    resources :evaluate_vtocs do
+      collection do
+        post :create_evaluate_asset
+      end
+      member do
+        delete :delete_evaluate_asset
+      end
+    end
+    resources :evaluates do
+      resources :evaluate_entries
+    end
     resources :dean_emails
     resources :read_users do
       collection do
@@ -431,7 +442,7 @@ School::Application.routes.draw do
   # just remember to delete public/index.html.
   resources :main do
     collection do
-      get :weiyi_solution,:weiyi_interact,:weiyi_contact,:weiyi_video,:weiyi_scheme,:weiyi_cultivate,:weiyi_benefit
+      get :weiyi_tourism,:weiyi_solution,:weiyi_interact,:weiyi_contact,:weiyi_video,:weiyi_scheme,:weiyi_cultivate,:weiyi_benefit
     end
   end
   root :to => 'main#index'
