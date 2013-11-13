@@ -6,8 +6,7 @@
     <%= stylesheet_link_tag    "app_bootstrap", :media => "all" %>
     <%= stylesheet_link_tag    "flowers","fancybox/jquery.fancybox",
       "fancybox/jquery.fancybox-buttons",
-      "fancybox/jquery.fancybox-thumbs", :media => "all" %>
-    <%= stylesheet_link_tag    "flowers_main" , :media => "all"%>
+      "fancybox/jquery.fancybox-thumbs","flowers_main", :media => "all" %>
 
     <meta name="description" content="<%=@description%>" />
     <meta name="keywords" content="<%=@keywords%>" />
@@ -61,7 +60,7 @@
         <% end %>
       </div>
       <div id="main" class="menu">
-        <div class="menu_left"> </div>
+        <div class="menu_right"> </div>
         <div class="menu_center official_menu_center">
           <ul>
             <li class="<%= "selected" if @menu == "home"%>">
@@ -81,7 +80,7 @@
             </li>
           </ul>
         </div>
-        <div class="menu_right"> </div>
+        <div class="menu_left"> </div>
         <div class="submenu_center">
           &nbsp;
         </div>

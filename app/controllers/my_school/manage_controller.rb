@@ -32,6 +32,7 @@ class  MySchool::ManageController < MySchool::BaseController
         end
       end
     end
+    @menu_int = ((1..7).to_a.random)
   end
 
   ##自动添加日志 (根据日志配置过滤)

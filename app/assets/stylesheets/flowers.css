@@ -106,8 +106,8 @@ a{
     width: 100%;
 }
 #main .menu_center ul li{
-    margin-left: 15px;
-    width: 90px;
+    margin-left: 10px;
+    width: 95px;
 }
 #main .menu_center ul li:last-child{
     border: none;
@@ -118,6 +118,7 @@ a{
     position: relative;
     min-height: 635px;
     _height: 635px;
+    overflow:visible;
     /*background-color: #EAEAEA;*/
     /*min-height: 1000px;*/
 }
@@ -274,6 +275,48 @@ a{
     width: 987px;
     height: 321px;
 }
+.menu_head_1{
+    background-image: url(/t/flowers/banner-1.png);
+    background-repeat: no-repeat;
+    width: 987px;
+    height: 282px;
+}
+.menu_head_2{
+    background-image: url(/t/flowers/banner-2.png);
+    background-repeat: no-repeat;
+    width: 987px;
+    height: 282px;
+}
+.menu_head_3{
+    background-image: url(/t/flowers/banner-3.png);
+    background-repeat: no-repeat;
+    width: 987px;
+    height: 282px;
+}
+.menu_head_4{
+    background-image: url(/t/flowers/banner-4.png);
+    background-repeat: no-repeat;
+    width: 987px;
+    height: 282px;
+}
+.menu_head_5{
+    background-image: url(/t/flowers/banner-5.png);
+    background-repeat: no-repeat;
+    width: 987px;
+    height: 282px;
+}
+.menu_head_6{
+    background-image: url(/t/flowers/banner-6.png);
+    background-repeat: no-repeat;
+    width: 987px;
+    height: 282px;
+}
+.menu_head_7{
+    background-image: url(/t/flowers/banner-7.png);
+    background-repeat: no-repeat;
+    width: 987px;
+    height: 282px;
+}
 .menu{
     /*    float: right;*/
     /*    width: 100%;*/
@@ -317,6 +360,23 @@ a{
     background-image: url(/t/flowers/home_menu_right.png);
     background-repeat: no-repeat;
     margin-top: -10px;
+}
+#home_menu .home_menu_center_to{
+    background-image: url(/t/flowers/home_menu_center_to.png);
+    height: 44px;
+    margin-top: -4px;
+}
+#home_menu .home_menu_left_to{
+    background-image: url(/t/flowers/home_menu_left_to.png);
+    height: 44px;
+    width: 22px;
+    margin-top: -4px;
+}
+#home_menu .home_menu_right_to{
+    background-image: url(/t/flowers/home_menu_right_to.png);
+    height: 44px;
+    width: 22px;
+    margin-top: -4px;
 }
 .home_menu_center ul{
     padding-left: 30px;
@@ -491,6 +551,13 @@ a{
 }
 /*---展示效果-------------------------*/
 .show_publicity{
+    width: 951px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom:10px;
+    text-align: center;
+}
+.show_publicity_div{
     float: right;
     height: 291px;
     width: 550px;
@@ -502,8 +569,11 @@ a{
     _width: 951px;
 }
 
-
 /*---首页主题页面-----------------------*/
+.home_index_work{
+    float: left;
+    width: 100%;
+}
 .center{
     padding: 20px 5px 5px;
     background-color: white;
@@ -771,6 +841,27 @@ a{
     top: -2px;
     width: 207px;
     z-index: 2;
+}
+.work_menu .work_selected_1{
+    background-image: url("/t/flowers/left_select_1.png");
+}
+.work_menu .work_selected_2{
+    background-image: url("/t/flowers/left_select_2.png");
+}
+.work_menu .work_selected_3{
+    background-image: url("/t/flowers/left_select_3.png");
+}
+.work_menu .work_selected_4{
+    background-image: url("/t/flowers/left_select_4.png");
+}
+.work_menu .work_selected_5{
+    background-image: url("/t/flowers/left_select_5.png");
+}
+.work_menu .work_selected_6{
+    background-image: url("/t/flowers/left_select_6.png");
+}
+.work_menu .work_selected_7{
+    background-image: url("/t/flowers/left_select_7.png");
 }
 /*---------中间功能-----------------*/
 .work .headline{
@@ -1884,6 +1975,7 @@ ul.feature_list li{
     padding: 10px;
     max-width: 931px;
     overflow: hidden;
+    _overflow:visible;
     text-align: center;
     width: 931px;
 }
@@ -2148,7 +2240,9 @@ ul.teacher_list li{
     width: 21px;
     height: 23px;
     right: 2px;
-    background: url("/t/colorful/tips_delete.png") no-repeat 0 0;
+    background-image: url("/t/colorful/tips_delete.png");
+    background-repeat: no-repeat;
+    background-position: 0 0;
     top: -6px;
     line-height: 26px;
     color: #fff;
@@ -2636,7 +2730,8 @@ i.img-icon{
     *display:inline;
 }
 .add {
-    background: url("/t/colorful/add.png") no-repeat;
+    background-image: url("/t/colorful/add.png");
+    background-repeat: no-repeat;
     width: 30px;
     height: 30px;
     display: inline-block;
@@ -2645,7 +2740,8 @@ i.img-icon{
 }
 
 .del {
-    background: url("/t/colorful/del.png") no-repeat;
+    background-image: url("/t/colorful/del.png");
+    background-repeat: no-repeat;
     width: 30px;
     height: 30px;
     display: inline-block;
@@ -2925,7 +3021,8 @@ i.img-icon{
     vertical-align: text-top;
     display: inline-block;
     margin-left: 5px;
-    background: url("/t/colorful/validate_icons.png") no-repeat;
+    background-image: url("/t/colorful/validate_icons.png");
+    background-repeat: no-repeat;
 }
 
 .validate_success_icon {

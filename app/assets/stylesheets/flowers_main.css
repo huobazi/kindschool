@@ -188,19 +188,7 @@ ul li a:hover{
 .floatingAd .close_div{
     display: none;
 }
-.floatingAd .opacity{
-    position: absolute;
-    top: 100px;
-    width: 100%;
-    height: 25px;
-    background-color: #000000;
-    opacity: 0.20;
-    filter: alpha(opacity = 20);
-}
-.opacity1{
-    opacity: 0.90;
-    filter: alpha(opacity = 90);
-}
+
 .floatingAd .text{
     position: absolute;
     top: 100px;
@@ -216,7 +204,8 @@ ul li a:hover{
     right: 5px;
     width: 16px;
     height: 16px;
-    background: url("/star_imgs/close.png") no-repeat;
+    background-image: url("/star_imgs/close.png");
+    background-repeat: no-repeat;
     cursor: pointer;
 }
 .floatingAd .text .title{
@@ -232,12 +221,14 @@ a.main_link:hover{
     color: #005580;
 }
 .home_bg {
-    background: url("/t/flowers/home_bg.png") no-repeat;
+    background-image: url("/t/flowers/home_bg.png");
+    background-repeat: no-repeat;
     background-position: -20px top;
     min-height: 824px;
 }
 .home_bg2{
-    background: url("/t/flowers/home_bg2.png") no-repeat;
+    background-image: url("/t/flowers/home_bg2.png");
+    background-repeat: no-repeat;
     background-position: center top;
     min-height: 294px;
 }
@@ -272,6 +263,8 @@ a.main_link:hover{
     margin-top: 208px;
     min-height: 300px;
     _height: 300px;
+    overflow:visible;
+    _margin-top: 108px;
 }
 .flowers_food{
     border: 2px solid #E5E8E1;
@@ -286,4 +279,27 @@ a.main_link:hover{
 }
 .menu{
     float: right;
+    width: 100%;
+}
+#main .menu_left{
+    float: right;
+}
+#main .menu_center{
+    float: right;
+}
+#main .menu_right{
+    float: right;
+}
+.floatingAd .opacity{
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    height: 25px;
+    background-color: #000000;
+    opacity: 0.20;
+    filter: alpha(opacity = 20);
+}
+.opacity1{
+    opacity: 0.90;
+    filter: alpha(opacity = 90);
 }
