@@ -88,7 +88,9 @@
       <div class="main_work <%= controller_path == "my_school/main" && action_name == "index" ? "" : "flowers_work" %>">
         <%= yield %>
       </div>
-      <%= render :partial => "/modules/flowers/foot" %>
+      <div class="<%= controller_path == "my_school/main" && action_name == "index" ? 'food_min_div' : 'food_max_div' %>">
+        <%= render :partial => "/modules/flowers/foot" %>
+      </div>
       <div id="dialog_users_guide"  title="用户登录指南">
         <%if @kind%>
           <%= render :partial => "/modules/colorful/users_guide" %>

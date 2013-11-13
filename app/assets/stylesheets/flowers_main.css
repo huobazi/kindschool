@@ -290,6 +290,15 @@ a.main_link:hover{
 #main .menu_right{
     float: right;
 }
+.food_min_div{
+    margin-top: 55px;
+    float: left;
+    width: 100%;
+}
+.food_max_div{
+    float: left;
+    width: 100%;
+}
 .floatingAd .opacity{
     position: absolute;
     top: 100px;
