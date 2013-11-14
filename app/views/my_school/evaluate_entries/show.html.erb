@@ -27,7 +27,7 @@
     </div>
     <div class="work_form">
       <div class="new_button_evaluate">
-       <%=link_to "评估项添加卷",new_my_school_evaluate_vtoc_path(:evaluate_entry_id=>@evaluate_entry.id),:class=>"btn blue"%>
+       <%=link_to "评估项添加资料目录",new_my_school_evaluate_vtoc_path(:evaluate_entry_id=>@evaluate_entry.id),:class=>"btn blue"%>
        <br/>
       </div>
       <div class="form_div">
@@ -41,7 +41,31 @@
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label" >评估名称:</label>
+            <label class="control-label" >案条:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= @evaluate_entry.article_case%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >一级指标名称:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= @evaluate_entry.a_indicator%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >二级指标名称:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= @evaluate_entry.b_indicator%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >三级指标名称:</label>
             <div class="controls">
               <label class="show_label">
                 <%= @evaluate_entry.name%>
@@ -49,18 +73,10 @@
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label" >描述:</label>
+            <label class="control-label" >三级指标描述:</label>
             <div class="controls">
               <label class="show_label">
                 <%=raw @evaluate_entry.note%>
-              </label>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label" >案条:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%= @evaluate_entry.article_case%>
               </label>
             </div>
           </div>
@@ -81,7 +97,7 @@
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label" >评估卷:</label>
+            <label class="control-label" >资料目录:</label>
             <div class="controls">
               <label class="show_label">
                 <% (@evaluate_entry.evaluate_vtocs || []).each_with_index do |evaluate_vtoc,index|%>
