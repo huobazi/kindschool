@@ -4,10 +4,22 @@
      <%= text_field_tag(:kindergarten,@kind.name, disabled: true) %>
 </div>
 </div>
- <div class="control-group">
- 	<%=f.label :name, '评估名称:' ,:class=>"control-label"%>
+<div class="control-group">
+  <%=f.label :a_indicator, '一级指标名称:' ,:class=>"control-label"%>
 <div class="controls">
-  <%= f.text_field(:name , :validate => true, placeholder: "请输入评估名称") %>
+  <%= f.text_field(:a_indicator , :validate => true, placeholder: "请输入评估一级指标名称") %>
+</div>
+ </div>
+ <div class="control-group">
+  <%=f.label :b_indicator, '二级指标名称:' ,:class=>"control-label"%>
+<div class="controls">
+  <%= f.text_field(:b_indicator , :validate => true, placeholder: "请输入评估二级指标名称") %>
+</div>
+ </div>
+ <div class="control-group">
+ 	<%=f.label :name, '三级指标名称:' ,:class=>"control-label"%>
+<div class="controls">
+  <%= f.text_field(:name , :validate => true, placeholder: "请输入评估三级指标名称") %>
 
   <p class="help-block">长度不能小于3。</p>
 </div>

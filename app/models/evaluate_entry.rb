@@ -3,7 +3,7 @@
 class EvaluateEntry < ActiveRecord::Base
   #:self_note #自评说明
   #:article_case #案条
-  attr_accessible :kindergarten_id, :note,:evaluate_id,:name,:article_case,:sequence,:note,:self_note
+  attr_accessible :b_indicator,:a_indicator,:kindergarten_id, :note,:evaluate_id,:name,:article_case,:sequence,:note,:self_note
   belongs_to :kindergarten
   belongs_to :evaluate
   has_many :evaluate_vtocs
