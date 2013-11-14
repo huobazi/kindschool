@@ -21,7 +21,6 @@ class Evaluate < ActiveRecord::Base
            evaluate_vtocs=EvaluateVtoc.new()
            evaluate_vtocs.name = evaluate_vtoc
            evaluate_vtocs.kindergarten=self.kindergarten
-           puts evaluate_vtoc.inspect
            evaluate_entry.evaluate_vtocs<<evaluate_vtocs
         end
         evaluate_entry.kindergarten=self.kindergarten

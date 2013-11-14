@@ -3,7 +3,7 @@
 class MySchool::EvaluatesController < MySchool::ManageController
    def index
      @evaluates = @kind.evaluate
-     if @evaluates.blank?
+     if @evaluates.blank? || @evaluates.evaluate_entries.blank?
      	@evaluate = Evaluate.new()
      else
      	@evaluate_entries = @evaluates.evaluate_entries.page(params[:page] || 1).per(10)

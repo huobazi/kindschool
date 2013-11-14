@@ -17,15 +17,24 @@
              <li>/</li>
             <li><%=link_to @evaluate_entry.name ,my_school_evaluate_evaluate_entry_path(@evaluate_entry.evaluate.id,@evaluate_entry.id)%></li></li>
             <li>/</li>
-            <li>编辑卷</li>
+            <li>编辑资料目录</li>
           </ul>
         </div>
       </div>
+      <ul class="work_action">
+       <li>
+        <li>
+          <%=link_to "<div class='work_action_return'>
+            </div>
+            <div class='work_action_return_move'>
+            </div>".html_safe ,my_school_evaluate_evaluate_entry_path(@evaluate_entry.evaluate.id,@evaluate_entry.id)%>
+        </li>
+      </ul>
     </div>
 
     <div class="work_form">
       <div class="form_div">
-        <%= form_for( @evaluate_entry,:url=>my_school_evaluate_vtoc_path(@evaluate_vtoc) , :html =>{:class=>"form-horizontal"}) do |f| %>
+        <%= form_for( @evaluate_vtoc,:url=>my_school_evaluate_vtoc_path(@evaluate_vtoc) , :html =>{:class=>"form-horizontal"}) do |f| %>
           <%= render 'form', :f=>f %>
        <% end %>
       </div>

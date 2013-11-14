@@ -19,7 +19,7 @@
       </ul>
     </div>
     <div class="work_list">
-      <%if @evaluates.blank?%>
+      <%if @evaluates.blank? || @evaluates.evaluate_entries.blank? %>
         <%=render "new_form"%>
       <%else%>
         <%=render "list_evaluates"%>
