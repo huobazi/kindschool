@@ -21,7 +21,8 @@ ActiveAdmin.register WeiyiConfig do
       raw '编号：<br/>"web_weiyi_about"为微一官网的关于我们,"web_weiyi_interact"为微一官网的家园互动,"web_weiyi_contact"为微一官网的联系我们,<br/>
             "web_garden_about"为园讯通简介,"web_garden_kindergarten"为推荐幼儿园(需要考虑在宽220，高140范围内显示),<br/>
             "web_garden_classic_users"为经典客户,"web_weiyi_video"为移动视频,"web_weiyi_scheme"为影视策划,<br/>
-            "web_weiyi_cultivate"为动漫培训,"web_weiyi_benefit"为公益活动,"weiyi_tourism"为科技旅游'
+            "web_weiyi_cultivate"为动漫培训,"web_weiyi_benefit"为公益活动,"weiyi_tourism"为科技旅游,<br/>
+            "weiyi_seo_description"为微一的seo描述,"weiyi_seo_keywords"为微一的seo关键字'
     end
     column :number
     column :content  do |record|

@@ -98,4 +98,12 @@ Template.transaction do
     WeiyiConfig.create(:number=>"web_weiyi_benefit",:content=>"公益活动")
     print "."
   end
+  unless WeiyiConfig.find_by_number("weiyi_seo_description")
+    WeiyiConfig.create(:number=>"weiyi_seo_description",:content=>"微一资讯,微服务，从事移动互联网的校讯通服务。")
+    print "."
+  end
+  unless WeiyiConfig.find_by_number("weiyi_seo_keywords")
+    WeiyiConfig.create(:number=>"weiyi_seo_keywords",:content=>"园讯通,校讯通,深圳校讯通,微一资讯,微壹资讯,微壹资讯科技,幼儿园微信,微信幼儿园,微信服务平台,免费校讯通,免费服务幼儿园")
+    print "."
+  end
 end
