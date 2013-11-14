@@ -3,6 +3,7 @@ class  Weixin::ManageController < Weixin::BaseController
   #  include AuthenticatedSystem
   before_filter :login_from_cookie
   before_filter :login_required,:load_config, :except => [:login] #if action_name != 'login'#:auth,
+  after_filter :auto_write_log
   layout proc{ |controller| get_layout }
   private
 
@@ -21,4 +22,15 @@ class  Weixin::ManageController < Weixin::BaseController
   def get_layout
     session[:weixin_layout] ||= "#{load_layout}_weixin"
   end
+
+  ##自动添加日志 (根据日志配置过滤)
+  def auto_write_log
+    if current_user != :false
+     if  user =  current_user
+       SysLog.write_log user.id, url_options[:_path_segments], request.method,
+                        request.original_url,request.remote_ip,params,@kind.id #if Rails.env.production?
+     end
+    end
+  end
+
 end
