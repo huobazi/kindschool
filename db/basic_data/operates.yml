@@ -2090,6 +2090,17 @@ official_evaluates_create:
   action: "create"
   protocol: ""
   <<: *DEFAULTS
+official_evaluates_destroy:
+  id: 15002
+  parent_id: 13
+  name: "关闭评估管理"
+  level: 2
+  sequence: 1
+  note: "关闭评估管理"
+  controller: "my_school/evaluates"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
 
 official_evaluate_entries_new:
   id: 15101
