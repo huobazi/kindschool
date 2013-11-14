@@ -105,11 +105,12 @@ class MySchool::EvaluateVtocsController < MySchool::ManageController
       @evaluate_vtoc = EvaluateVtoc.find(params[:id])
       @evaluate_entry = @evaluate_vtoc.evaluate_entry
       evaluate = @evaluate_entry.evaluate
-    @evaluate_vtoc.destroy
+     @evaluate_vtoc.destroy
     respond_to do |format|
       format.html { redirect_to my_school_evaluate_evaluate_entry_path(evaluate.id,@evaluate_entry.id) }
       format.json { head :no_content }
     end
+
    end
 
 
