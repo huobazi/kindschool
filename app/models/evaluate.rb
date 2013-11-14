@@ -3,7 +3,7 @@
 class Evaluate < ActiveRecord::Base
   attr_accessible :kindergarten_id, :note
   belongs_to :kindergarten
-  has_many :evaluate_entries
+  has_many :evaluate_entries, :dependent => :destroy
   after_save :export_demo
   private
   #创建demo项目
