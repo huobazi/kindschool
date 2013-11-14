@@ -83,14 +83,15 @@ class Weixin::BaseController < ApplicationController
     end
   end
   def load_layout
-    if @kind && @kind.template
-      @kind.template.number
-    else
-      if template = Template.find_by_is_default(1)
-        template.number
-      else
-        raise "模板信息缺失，请联系管理员"
-      end
-    end
+#    if @kind && @kind.template
+#      @kind.template.number
+#    else
+#      if template = Template.find_by_is_default(1)
+#        template.number
+#      else
+#        raise "模板信息缺失，请联系管理员"
+#      end
+#    end
+    "colorful"
   end
 end
