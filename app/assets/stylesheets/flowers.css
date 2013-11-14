@@ -3,7 +3,9 @@
  *= require uploadify
 */
 body{
-    background-color: #f0ebe2;
+    background-image: url(/t/flowers/bg.png);
+    background-repeat: repeat-y;
+    background-position: top center;
     margin: 0;
     padding: 0;
     position: relative;
@@ -18,25 +20,10 @@ input {
 .ie6fixedBR{position:fixed;right:0;bottom:0}
 /* IE6浏览器的特有方法 */
 #kind_name{
-    color: violet;
+    color: #474747;
     vertical-align: middle;
-    font-size: 48px;
+    font-size: 37px;
     font-weight: bold;
-    /*text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,0.1), 0 0 5px rgba(0,0,0,0.1),0 1px 3px rgba(0,0,0,0.3),0 3px 5px rgba(0,0,0,0.2),0 5px 10px rgba(0,0,0,0.25);*/
-    /*text-shadow: 0 0 4px white, -0 -5px 4px #ff3, 2px -10px 6px #fd3, -2px -15px 11px #f80,-2px -25px 18px #f20;*/
-    /*text-shadow: 0 0 0.2em #f87, 0 0 0.2em #f87;*/
-    text-shadow:  0 1px 0 #ccc,
-        0 2px 0 #c9c9c9,
-        0 3px 0 #bbb,
-        0 4px 0 #b9b9b9,
-        0 5px 0 #aaa,
-        0 6px 1px rgba(0,0,0,.1),
-        0 0 5px rgba(0,0,0,.1),
-        0 1px 3px rgba(0,0,0,.3),
-        0 3px 5px rgba(0,0,0,.2),
-        0 5px 10px rgba(0,0,0,.25),
-        0 10px 10px rgba(0,0,0,.2),
-        0 20px 20px rgba(0,0,0,.15);
 }
 #kind_name span{
     display: inline;
@@ -64,7 +51,7 @@ ul,li{
     clear:both
 }
 a{
-    color: white;
+    color: #636363;
     text-decoration: none;
 }
 .wrapper{
@@ -102,24 +89,25 @@ a{
 
 /*=======首页样式======================begin*/
 .main_logo{
-    padding-bottom: 25px;
-    padding-top: 15px;
-    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 5px;
     position: relative;
+    text-align: left;
 }
 #main .menu_center{
-    background-color: #008FDC;
-    height: 100px;
-    width: 100%;
+    background-image: url(/t/flowers/menu_center.png);
+    background-repeat: repeat-x;
+    height: 45px;
     text-align: center;
+    float: left;
+    width: 550px;
 }
 #main .menu_center ul {
     width: 100%;
 }
 #main .menu_center ul li{
-    border-right: 1px solid white;
-    margin-left: 55px;
-    width: 120px;
+    margin-left: 10px;
+    width: 95px;
 }
 #main .menu_center ul li:last-child{
     border: none;
@@ -128,26 +116,25 @@ a{
     width: 951px;
     overflow: hidden;
     position: relative;
+    min-height: 635px;
+    _height: 635px;
+    overflow:visible;
     /*background-color: #EAEAEA;*/
     /*min-height: 1000px;*/
 }
 #main .menu_left {
-    background-image: url("/t/colorful/official_home.png");
-    background-position: -728px -55px;
+    background-image: url(/t/flowers/menu_left.png);
     background-repeat: no-repeat;
-    height: 120px;
-    left: -14px;
-    position: absolute;
-    width: 24px;
+    width: 38px;
+    height: 45px;
+    float: left;
 }
 #main .menu_right {
-    background-image: url("/t/colorful/official_home.png");
-    background-position: -758px -55px;
+    background-image: url(/t/flowers/menu_right.png);
     background-repeat: no-repeat;
-    height: 120px;
-    left: 951px;
-    position: absolute;
-    width: 24px;
+    width: 38px;
+    height: 45px;
+    float: left;
 }
 #main .menu_center ul{
     padding: 0px;
@@ -161,13 +148,18 @@ a{
     width: 100%;
     color: white;
 }
+.login_menu_label{
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    float: left;
+    margin-right: 2px;
+    padding: 0 5px;
+}
 .small_login_menu{
     border-radius:0px 0px 0px 5px;
-    background-color: #e8352b;
-    background-image: url(/t/colorful/small_login.png);
-    background-repeat: no-repeat;
-    background-position:5px 2px;
     float: right;
+    color: #636363;
     padding: 2px 0px 0px 25px;
     font-family: "Microsoft YaHei";
     font-size: 12px;
@@ -180,14 +172,6 @@ a{
     padding-right:2px;
     padding-left:2px;
 }
-.small_login_menu .logout_a{
-    border-left: 1px solid white;
-    padding-left: 5px;
-    padding-right: 10px;
-}
-.small_login_menu a:hover{
-    text-decoration: underline;
-}
 .center_menu {
     float: right;
     padding-left: 15px;
@@ -195,23 +179,28 @@ a{
     padding-top: 2px;
     height: 20px;
     position: relative;
-    z-index: 98; 
+    z-index: 98;
 }
 .small_personnel_menu{
-    background-color: #f7a200;
+    /*    background-color: #f7a200;*/
+    color: #565656;
 }
 .small_approve_menu{
-    background-color: #a5c600;
+    /*    background-color: #a5c600;*/
+    color: #565656;
 }
 .small_system_menu{
-    background-color: #008fdc;
+    /*    background-color: #008fdc;*/
+    color: #565656;
 }
 .small_official_menu{
-    background-color: #a4c500;
+    /*    background-color: #a4c500;*/
+    color: #565656;
 }
 .small_statistics_menu{
     border-radius:0px 0px 5px 0px;
-    background-color: #bb4da0;
+    /*    background-color: #bb4da0;*/
+    color: #565656;
     width: 50px;
 }
 .center_menu li{
@@ -236,31 +225,31 @@ a{
     z-index: 99;
 }
 .small_personnel_ul{
-    background-color: #f7a200;
+    background-color: #DDDDDD;
     width: 100%;
     /*    margin-top: 5px;*/
     padding-top: 3px;
 }
 .small_system_ul{
-    background-color: #008fdc;
+    background-color: #DDDDDD;
     width: 100%;
     /*    margin-top: 5px;*/
     padding-top: 3px;
 }
 .small_official_ul{
-    background-color: #a4c500;
+    background-color: #DDDDDD;
     width: 100%;
     /*    margin-top: 5px;*/
     padding-top: 3px;
 }
 .small_approve_ul{
-    background-color: #a5c600;
+    background-color: #DDDDDD;
     width: 100%;
     /*    margin-top: 5px;*/
     padding-top: 3px;
 }
 .small_statistics_ul {
-    background-color: #bb4da0;
+    background-color: #DDDDDD;
     width: 100%;
     padding-top: 3px;
 }
@@ -280,36 +269,151 @@ a{
 }
 
 /*------------菜单-------------*/
+.menu_head{
+    background-image: url(/t/flowers/home-banner.png);
+    background-repeat: no-repeat;
+    width: 987px;
+    height: 321px;
+}
+.menu_head_1{
+    background-image: url(/t/flowers/banner-1.png);
+    background-repeat: no-repeat;
+    width: 987px;
+    height: 282px;
+}
+.menu_head_2{
+    background-image: url(/t/flowers/banner-2.png);
+    background-repeat: no-repeat;
+    width: 987px;
+    height: 282px;
+}
+.menu_head_3{
+    background-image: url(/t/flowers/banner-3.png);
+    background-repeat: no-repeat;
+    width: 987px;
+    height: 282px;
+}
+.menu_head_4{
+    background-image: url(/t/flowers/banner-4.png);
+    background-repeat: no-repeat;
+    width: 987px;
+    height: 282px;
+}
+.menu_head_5{
+    background-image: url(/t/flowers/banner-5.png);
+    background-repeat: no-repeat;
+    width: 987px;
+    height: 282px;
+}
+.menu_head_6{
+    background-image: url(/t/flowers/banner-6.png);
+    background-repeat: no-repeat;
+    width: 987px;
+    height: 282px;
+}
+.menu_head_7{
+    background-image: url(/t/flowers/banner-7.png);
+    background-repeat: no-repeat;
+    width: 987px;
+    height: 282px;
+}
 .menu{
-    width: 100%;
-    position: relative;
+    /*    float: right;*/
+    /*    width: 100%;*/
+    /*    position: relative;*/
 }
 .menu_left{
-    background-image: url(/t/colorful/menu_left.jpg);
+    background-image: url(/t/flowers/menu_left.png);
     background-repeat: no-repeat;
-    width: 14px;
-    height: 63px;
-    position: absolute;
-    left:-14px;
+    width: 16px;
+    height: 45px;
+    /*    position: absolute;*/
+    /*    left:-14px;*/
 }
 .menu_right{
-    background-image: url(/t/colorful/menu_right.jpg);
+    background-image: url(/t/flowers/menu_right.png);
     background-repeat: no-repeat;
-    width: 14px;
-    height: 63px;
-    position: absolute;
-    left:951px;
+    width: 38px;
+    height: 45px;
+    /*    position: absolute;*/
+    /*    left:951px;*/
 }
-.menu_center{
-    width: 100%;
-    height: 50px;
-    background-color: #008fdc;
+#home_menu .home_menu_center{
+    float: right;
+    height: 54px;
+    background-image: url(/t/flowers/home_menu_center.png);
+    background-repeat: repeat-x;
+    margin-top: -10px;
+}
+#home_menu .home_menu_left{
+    float: right;
+    height: 54px;
+    width: 26px;
+    background-image: url(/t/flowers/home_menu_left.png);
+    background-repeat: no-repeat;
+    margin-top: -10px;
+}
+#home_menu .home_menu_right{
+    float: right;
+    height: 54px;
+    width: 26px;
+    background-image: url(/t/flowers/home_menu_right.png);
+    background-repeat: no-repeat;
+    margin-top: -10px;
+}
+#home_menu .home_menu_center_to{
+    background-image: url(/t/flowers/home_menu_center_to.png);
+    height: 44px;
+    margin-top: -4px;
+}
+#home_menu .home_menu_left_to{
+    background-image: url(/t/flowers/home_menu_left_to.png);
+    height: 44px;
+    width: 22px;
+    margin-top: -4px;
+}
+#home_menu .home_menu_right_to{
+    background-image: url(/t/flowers/home_menu_right_to.png);
+    height: 44px;
+    width: 22px;
+    margin-top: -4px;
+}
+.home_menu_center ul{
+    padding-left: 30px;
+}
+.home_menu_center ul li{
+    float: left;
+    line-height: 25px;
+    margin-top: 12px;
+    position: relative;
+    text-align: center;
+    width: 78px;
+}
+.home_menu_center ul li a{
+    text-decoration: none;
+    z-index: 2;
+    position: relative;
+    color: #A3A3A3;
+    font-size: 15px;
+    font-weight: bold;
+}
+.home_menu_center ul li.menu_selected{
+    width: 144px;
+}
+.home_menu_center ul li.menu_selected a{
+    color: #000000;
+    font-size: 18px;
+    float: right;
+}
+.home_menu_center ul li a:hover{
+    text-decoration: none;
+    color: #000000;
+    font-size: 18px;
 }
 .menu_center ul{
     padding-left: 30px;
 }
 .menu_center ul li{
-    border-right: 1px dotted white;
     float: left;
     line-height: 25px;
     margin-top: 12px;
@@ -318,16 +422,21 @@ a{
     width: 125px;
 }
 .menu_center ul li a{
+    text-decoration: none;
     z-index: 2;
     position: relative;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
 }
-.menu_center ul li:last-child {
-    border: none;
+.menu_center ul li.selected a{
+    color: #D9FC4F;
+    font-size: 18px;
 }
-
 .menu_center ul li a:hover{
-    text-decoration: underline;
-    color: white;
+    text-decoration: none;
+    color: #D9FC4F;
+    font-size: 18px;
 }
 .submenu_center{
     height: auto;
@@ -356,16 +465,90 @@ a{
 .submenu_center ul li:last-child {
     border: none;
 }
-.menu_selected{
-    background-image: url("/t/colorful/menu_selected.png");
-    height: 60px;
-    left: 0;
+.menu_selected_home{
+    background-image: url("/t/flowers/menu_selected_home.png");
+    height: 105px;
+    left: 10px;
     position: absolute;
-    top: -18px;
-    width: 125px;
+    top: -38px;
+    width: 95px;
     z-index: 1;
 }
-
+.menu_selected_60000{
+    background-image: url("/t/flowers/menu_selected_60000.png");
+    height: 72px;
+    left: 0;
+    position: absolute;
+    top: -28px;
+    width: 81px;
+    z-index: 1;
+}
+.menu_selected_70000{
+    background-image: url("/t/flowers/menu_selected_70000.png");
+    height: 71px;
+    left: 0;
+    position: absolute;
+    top: -28px;
+    width: 69px;
+    z-index: 1;
+}
+.menu_selected_90000{
+    background-image: url("/t/flowers/menu_selected_90000.png");
+    height: 70px;
+    left: 0;
+    position: absolute;
+    top: -28px;
+    width: 78px;
+    z-index: 1;
+}
+.menu_selected_100000{
+    background-image: url("/t/flowers/menu_selected_100000.png");
+    height: 78px;
+    left: 0;
+    position: absolute;
+    top: -28px;
+    width: 74px;
+    z-index: 1;
+}
+.menu_selected_80000{
+    background-image: url("/t/flowers/menu_selected_80000.png");
+    height: 71px;
+    left: 0;
+    position: absolute;
+    top: -28px;
+    width: 71px;
+    z-index: 1;
+}
+.menu_selected_120000{
+    background-image: url("/t/flowers/menu_selected_120000.png");
+    height: 69px;
+    left: 0;
+    position: absolute;
+    top: -28px;
+    width: 66px;
+    z-index: 1;
+}
+.flower_home_cz{
+    height: 293px;
+    position: absolute;
+    right: -35px;
+    top: 0;
+    width: 181px;
+}
+.flower_home_ys{
+    height: 293px;
+    position: absolute;
+    right: 146px;
+    top: 0;
+    width: 161px;
+}
+.flower_home_zp{
+    height: 293px;
+    position: absolute;
+    right: 307px;
+    top: 0;
+    width: 230px;
+}
 /*---展示效果-------------------------*/
 .show_publicity{
     width: 951px;
@@ -374,12 +557,23 @@ a{
     margin-bottom:10px;
     text-align: center;
 }
+.show_publicity_div{
+    float: right;
+    height: 291px;
+    width: 550px;
+    position: relative;
+    margin-bottom:10px;
+    text-align: center;
+}
 .show_publicity img{
     _width: 951px;
 }
 
-
 /*---首页主题页面-----------------------*/
+.home_index_work{
+    float: left;
+    width: 100%;
+}
 .center{
     padding: 20px 5px 5px;
     background-color: white;
@@ -396,11 +590,11 @@ a{
     float: left;
 }
 .note{
-    width: 791px;
+    width: 401px;
     float: left;
 }
 .note_info{
-    width: 100%;
+    width: 401px;
     float: left;
 }
 .showcase{
@@ -409,7 +603,6 @@ a{
     height: 197px;
     overflow: hidden;
     padding-bottom: 60px;
-    border-bottom: 3px #a5c600 solid;
 }
 .login_showcase{
     float: left;
@@ -534,12 +727,11 @@ a{
 }
 /*------------food底部----------*/
 .food{
-    background-color: #008fdc;
     width: 100%;
     float: left;
     margin-top: 10px;
     padding-bottom: 40px;
-    color: white;
+    color: #636363;
 }
 .food hr{
     color: white;
@@ -554,9 +746,10 @@ a{
 }
 .food a{
     padding: 5px;
+    color: #636363;
 }
 .food label{
-    color: white;
+    color: #636363;
 }
 
 /*---------左边菜单-----------------*/
@@ -648,6 +841,27 @@ a{
     top: -2px;
     width: 207px;
     z-index: 2;
+}
+.work_menu .work_selected_1{
+    background-image: url("/t/flowers/left_select_1.png");
+}
+.work_menu .work_selected_2{
+    background-image: url("/t/flowers/left_select_2.png");
+}
+.work_menu .work_selected_3{
+    background-image: url("/t/flowers/left_select_3.png");
+}
+.work_menu .work_selected_4{
+    background-image: url("/t/flowers/left_select_4.png");
+}
+.work_menu .work_selected_5{
+    background-image: url("/t/flowers/left_select_5.png");
+}
+.work_menu .work_selected_6{
+    background-image: url("/t/flowers/left_select_6.png");
+}
+.work_menu .work_selected_7{
+    background-image: url("/t/flowers/left_select_7.png");
 }
 /*---------中间功能-----------------*/
 .work .headline{
@@ -1528,17 +1742,19 @@ legend label{
 }
 .feature{
     float:left;
-    width: 100%;
+    width: 947px;
     background-color: #FBFBFB;
     position: relative;
     border: 1px solid #E3E3E3;
-    margin-top: 48px;
+    margin-top: 42px;
+    border: 2px solid #ACCD93;
+    border-radius: 6px;
 }
 ul.feature_list li{
     padding: 30px 2px;
     width: 380px;
     height: 180px;
-    border-bottom: 3px solid #fdb968;
+    border-bottom: 3px solid #ACCD93;
     margin:  0 35px 5px;
     float: left ;
 }
@@ -1621,8 +1837,8 @@ ul.feature_list li{
 .admissions_information{
     float: left;
     background-color: #FBFBFB;
-    border: 1px solid #E3E3E3;
-    width:100%;
+    border: 2px solid #ACCD93;
+    width:947px;
     margin-top: 42px;
     position: relative;
 }
@@ -1637,7 +1853,7 @@ ul.feature_list li{
     float: left;
     width: 960px;
     height: 47px;
-    background-color: #faa038;
+    background-color: #ACCD93;
 
 }
 .show_admiss_info_menu_center{
@@ -1736,15 +1952,16 @@ ul.feature_list li{
 }
 .official_menu_center ul li{
     width:130px;
-    height: 80px;
+    height: 35px;
 }
 .contact_us_kinder{
     float:left;
-    width: 100%;
+    width: 947px;
     background-color: #FBFBFB;
-    border: 1px solid #E3E3E3;
+    border: 2px solid #ACCD93;
     margin-top: 42px;
     position: relative;
+    border-radius: 6px 6px 6px 6px;
 }
 
 .official_home_index{
@@ -1758,6 +1975,7 @@ ul.feature_list li{
     padding: 10px;
     max-width: 931px;
     overflow: hidden;
+    _overflow:visible;
     text-align: center;
     width: 931px;
 }
@@ -1782,15 +2000,19 @@ ul.feature_list li{
     width: 180px;
 }
 .official_home_news_image{
-    background-image: url("/t/colorful/title.png");
-    background-position: -10px -5px;
+    background-image: url("/t/flowers/new_title.png");
     background-repeat: no-repeat;
-    height: 100px;
-    left: -20px;
+    height: 27px;
+    left: 0;
     position: absolute;
     top: 30px;
-    width: 270px;
+    width: 396px;
     z-index: 100;
+    font-size: 16px;
+    color: #49a200;
+    font-weight: bold;
+    padding-left: 20px;
+    line-height: 28px;
 }
 .official_foot{
     float: left;
@@ -1809,15 +2031,29 @@ ul.feature_list li{
 .official_home_news_content{
     float: left;
     width: 100%;
-    margin-top: 78px;
-    background-color: white ;
+    margin-top: 54px;
+}
+.official_home_address_content{
+    float: left;
+    width: 394px;
+    margin-top: 64px;
+    border: 1px solid #49a200;
+    border-radius: 6px 6px 6px 6px;
+}
+.official_home_address_logo{
+    background-image: url("/t/flowers/linkimg.png");
+    background-repeat: no-repeat;
+    float: left;
+    height: 150px;
+    width: 136px;
+    margin-top: -10px;
 }
 ul.official_home_news_list{
     float: left;
     margin-bottom: 40px;
-    margin-left: 30px;
-    margin-top: 60px;
-    width: 90%;
+    margin-left: 0px;
+    margin-top: 10px;
+    width: 95%;
 }
 
 ul.official_home_news_list li .official_square{
@@ -1850,49 +2086,40 @@ ul.official_home_news_list li .official_time{
 .officail_news_more {
     float: right;
     height: 30px;
-    margin-bottom: 20px;
-    margin-top: -20px;
     width: 100px;
 }
 .officail_news_more a{
-    background-image: url("/t/colorful/title.png");
-    background-position: -70px -330px;
-    background-repeat: no-repeat;
     float: left;
     height: 30px;
     width: 70px;
     text-align: center;
     line-height: 30px;
     font-size: 12px;
+    color: #7b7b7b;
 }
 .officail_news_more a:hover {
-    background-image: url("/t/colorful/title.png");
-    background-position: -70px -363px;
-    background-repeat: no-repeat;
     float: left;
     font-size: 12px;
     height: 30px;
     line-height: 30px;
     text-align: center;
     width: 70px;
+    color: #7b7b7b;
+    text-decoration: underline;
 }
 
 .official_home_address_image{
-    background-image: url("/t/colorful/title.png");
-    background-position: -10px -210px;
+    background-image: url("/t/flowers/linkme.png");
     background-repeat: no-repeat;
-    height: 100px;
-    left: -20px;
+    height: 17px;
     position: absolute;
     top: 30px;
-    width: 270px;
+    width: 84px;
     z-index: 100;
 }
 .official_home_address_info{
     float: left;
-    margin-left: 30px;
-    margin-top: 60px;
-    width: 30%;
+    width: 256px;
 }
 .official_home_address {
     float: left;
@@ -1900,8 +2127,31 @@ ul.official_home_news_list li .official_time{
     position: relative;
     width: 100%;
 }
-.official_home_address_info h3{
-    border-bottom: 2px solid red;
+.official_home_address_info .official_label{
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+}
+.official_home_address_info .official_label_left{
+    float: left;
+    background-image: url("/t/flowers/label_left.png");
+    background-repeat: no-repeat;
+    height: 19px;
+    width: 13px;
+}
+.official_home_address_info .official_label_center{
+    float: left;
+    background-image: url("/t/flowers/label_center.png");
+    background-repeat: repeat-x;
+    height: 19px;
+    color: #ffffff;
+}
+.official_home_address_info .official_label_right{
+    float: left;
+    background-image: url("/t/flowers/label_right.png");
+    background-repeat: no-repeat;
+    height: 19px;
+    width: 13px;
 }
 .official_home_address_info span{
     font-size: 20px;
@@ -1990,7 +2240,9 @@ ul.teacher_list li{
     width: 21px;
     height: 23px;
     right: 2px;
-    background: url("/t/colorful/tips_delete.png") no-repeat 0 0;
+    background-image: url("/t/colorful/tips_delete.png");
+    background-repeat: no-repeat;
+    background-position: 0 0;
     top: -6px;
     line-height: 26px;
     color: #fff;
@@ -2478,7 +2730,8 @@ i.img-icon{
     *display:inline;
 }
 .add {
-    background: url("/t/colorful/add.png") no-repeat;
+    background-image: url("/t/colorful/add.png");
+    background-repeat: no-repeat;
     width: 30px;
     height: 30px;
     display: inline-block;
@@ -2487,7 +2740,8 @@ i.img-icon{
 }
 
 .del {
-    background: url("/t/colorful/del.png") no-repeat;
+    background-image: url("/t/colorful/del.png");
+    background-repeat: no-repeat;
     width: 30px;
     height: 30px;
     display: inline-block;
@@ -2767,7 +3021,8 @@ i.img-icon{
     vertical-align: text-top;
     display: inline-block;
     margin-left: 5px;
-    background: url("/t/colorful/validate_icons.png") no-repeat;
+    background-image: url("/t/colorful/validate_icons.png");
+    background-repeat: no-repeat;
 }
 
 .validate_success_icon {

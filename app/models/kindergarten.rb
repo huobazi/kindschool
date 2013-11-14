@@ -2,13 +2,14 @@
 #幼儿园
 class Kindergarten < ActiveRecord::Base
   attr_accessible :init_status,:logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token,:latlng,:address,
-    :aliases_url,:sms_count,:sms_user_count,:telephone,:allsms_count,:open_allsms,:begin_allsms,:login_note,:balance_count
+    :aliases_url,:sms_count,:sms_user_count,:telephone,:allsms_count,:open_allsms,:begin_allsms,:login_note,:balance_count,:hint_tp
 
   validates :name,:presence => true, :uniqueness => true, :length => { :maximum => 100}
   validates :number,:presence => true, :uniqueness => true, :length => { :maximum => 100},:exclusion => { :in => %w(www) }
   validates :aliases_url, :uniqueness => true,:allow_blank => true
   
   validates :note, :length => { :maximum => 800}
+  HINT_TP_DATA = {"0"=>"不发短信","1"=>"发短信"}
   STATUS_DATA = {"0"=>"正常","1"=>"锁定"}
   WEIXIN_STATUS_DATA = {"0"=>"未授权绑定","1"=>"已授权绑定"}
 

@@ -1,0 +1,46 @@
+<div class="new_form">
+  <div class="official_new_img">
+  </div>
+  <div class="official_new_line">
+  </div>
+  <div class="official_new_title">
+    <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label_left" >新闻标题</label>
+        <div class="table_controls">
+          <label class="show_label">
+            发布时间
+          </label>
+        </div>
+        <div class="table_controls">
+          <label class="show_label">
+            浏览次数
+          </label>
+        </div>
+      </div>
+      <div class="official_new_list_solid_line"></div>
+      <% (@news || []).each do |n_ew| %>
+        <div class="control-group">
+          <label class="control-label_left" ><%#= link_to n_ew.title, my_school_news_path(n_ew) %>
+            <%= link_to n_ew.title, show_one_new_my_school_main_index_path(:new_id=>n_ew.id) %>
+          </label>
+          <div class="table_controls">
+            <label class="show_label">
+              <%=raw n_ew.created_at.try(:to_long_datetime)%>
+            </label>
+          </div>
+          <div class="table_controls">
+            <label class="show_label">
+              <%= n_ew.show_count %>
+            </label>
+          </div>
+        </div>
+        <div class="official_new_dotted_line">
+        </div>
+      <% end %>
+    </form>
+    <%unless @news.blank?%>
+      <%= paginate @news  %>
+    <%end%>
+  </div>
+</div>

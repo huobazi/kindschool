@@ -375,6 +375,7 @@ zh-CN:
         filename: "图片"
         content_type: "图片类型"
       kindergarten:
+        hint_tp: "提醒系统化"
         name: "名称"
         balance_count: "短信剩余条数"
         note: "描述"

@@ -21,7 +21,8 @@ class MySchool::BaseController < ApplicationController
 
   #设置模板
   def get_layout
-    session[:main_layout] ||= "#{load_layout}_main"
+    "#{load_layout}_main"
+    #session[:main_layout] ||= "#{load_layout}_main"
   end
   def load_layout
     if @kind && @kind.template
