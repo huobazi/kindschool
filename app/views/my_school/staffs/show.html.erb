@@ -249,7 +249,7 @@
             <% (@staff.teachers || []).each do |teacher| %>
               <tr>
                 <td><%= (teacher.squad && teacher.squad.grade) ? teacher.squad.grade.name : "" %></td>
-                <td><%= link_to teacher.squad.name, :controller => "/my_school/squads", :action => :show, :id => teacher.squad_id %></td>
+                <td><%= link_to teacher.squad.try(:name), :controller => "/my_school/squads", :action => :show, :id => teacher.squad_id %></td>
                 <td><%= teacher.tp == 1 ? "是" : "否" %></td>
                 <td>
                   <% if teacher.tp == 0 %>

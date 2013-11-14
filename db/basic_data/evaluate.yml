@@ -1,6 +1,256 @@
 evaluate1:
-  name: "办园条件"
-  article_case: "办园条件"
+  a_indicator: " 办园条件"
+  b_indicator: " 经费"
+  name: "1★"
+  article_case: "NO.1-1"
   sequence: 1
-  note: "<br /> <table style='border-collapse:collapse;' align='center'> <tbody> <tr> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>一级</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>指标</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>二级</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>指标</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>三级</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>指标</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='56'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>省定<span>B</span><span>级指标</span></span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='571'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>评估标准</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='33'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>分值</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='33'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'>得分</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>达标度</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='75'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>备注</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> </tr> <tr> <td style='border:#000000 0.5pt solid;' rowspan='15' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>办</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>园</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>条</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>件</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>经</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>费</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>1★</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='56'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>略</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='571'> <p class='p0'> <span style='font-weight:bold;font-size:10.5pt;font-family:'宋体';'>“经费”</span><span style='font-size:10.5pt;font-family:'宋体';'>内涵与要求：</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'>1、&nbsp;</span><span style='font-size:10.5pt;font-family:'宋体';'>幼儿园产权、使用权明确、合法，保证国有教育资产保值、增值，年审合格；</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'>2、&nbsp;</span><span style='font-size:10.5pt;font-family:'宋体';'>收费符合物价部门的规定，正常运转经费有保障，无挪用、占用现象；</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'>3、&nbsp;</span><span style='font-size:10.5pt;font-family:'宋体';'>教职工工资福利占幼儿园经常性办学经费*的比例明确、合理；</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'>4、&nbsp;</span><span style='font-size:10.5pt;font-family:'宋体';'>教职工经济收入水平逐步提高，每年剩余经费有10%以上用于改善教职工生活福利；</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'>5、&nbsp;</span><span style='font-size:10.5pt;font-family:'宋体';'>依法办理劳动用工手续，与所有教职工签订劳动合同，并办理医疗、工伤、养老等社会保险。</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='33'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>15</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='33'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='44'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='75'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'>*<span>指幼儿园各项收入总和。</span></span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> </tr> <tr> <td style='border:#000000 0.5pt solid;' rowspan='7' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>场</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>地</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>园</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>舍</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>2</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='56'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>略</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='571'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='33'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>10</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='33'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='44'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='75'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> </tr> <tr> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>3</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='56'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>略</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='571'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='33'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>5</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='33'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='44'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='75'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> </tr> <tr> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>4</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='56'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>略</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='571'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';text-decoration:underline;'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='33'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>10</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='33'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='44'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='75'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> </tr> <tr> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>5★</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='56'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>略</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='571'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='33'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>10</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='33'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='44'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='75'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> </tr> <tr> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>6</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='56'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>略</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='571'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='33'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>4</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='33'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='44'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='75'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> </tr> <tr> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>7</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='56'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>略</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='571'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='33'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>5</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='33'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='44'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='75'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> </tr> <tr> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>8★</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='56'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>略</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='571'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='33'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>6</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='33'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='44'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='75'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> </tr> <tr> <td style='border:#000000 0.5pt solid;' rowspan='4' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>教</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>育</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>玩</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>具</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>设</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>备</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>设</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>施</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>9</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='56'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>略</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='571'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='33'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>15</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='33'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='44'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='75'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> </tr> <tr> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>10</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='56'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>略</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='571'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='33'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>10</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='33'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='44'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='75'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> </tr> <tr> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>11</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='56'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>略</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='571'> <p class='p0'> <span style='font-weight:bold;font-size:10.5pt;font-family:'宋体';'>“图书装备”</span><span style='font-size:10.5pt;font-family:'宋体';'>要 素补充：每园图书资料应有幼教刊物（8种以上）、文件法规、国内外教育论著、国内外幼教论著、教育动态信息、教研科研、教材教法、自然科学、社会科学、文 学、艺术、工具书等书籍；教师人手一册《幼儿园工作规程》、《幼儿园教育指导纲要（试行）》、《广东省幼儿园教育指南（试行）》等；订有3种以上报纸。</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='33'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>10</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='33'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='44'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='75'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'>要素<span>2</span><span>、</span><span>3</span><span>合并，各</span><span>5</span><span>分</span></span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> </tr> <tr> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>12</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='56'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>略</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='571'> <p class='p0'> <span style='font-weight:bold;font-size:10.5pt;font-family:'宋体';'>“设施”</span><span style='font-size:10.5pt;font-family:'宋体';'>要素修订：有沙地、不低于</span><span style='font-size:10.5pt;font-family:'宋体';'>0.3</span><span style='font-size:10.5pt;font-family:'宋体';'>米深的嬉水池、直跑道；有饲养角、种植园地。</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='33'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>10</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='33'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='44'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='75'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> </tr> <tr> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>规</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>模</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>13★</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='56'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>略</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='571'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='33'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>10</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='33'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='44'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='75'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> </tr> <tr> <td style='border:#000000 0.5pt solid;' rowspan='2' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>教</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>职</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>工</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>配</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>备</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>14★</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='56'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>略</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='571'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'>修订：有专职财务人员</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='33'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>15</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='33'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='44'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='75'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>要素<span>1</span><span>、</span><span>2</span><span>为必达，各</span><span>3.5</span><span>分；其余</span><span>2</span><span>分。</span></span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> </tr> <tr> <td style='border:#000000 0.5pt solid;' valign='center' width='44'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>15</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='56'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>略</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='571'> <p class='p0'> <span style='font-weight:bold;font-size:10.5pt;font-family:'宋体';'>“教师配备”</span><span style='font-size:10.5pt;font-family:'宋体';'>要素修订：（1）带班教师专业合格率为100%；（2）专科教师具备全日制大专毕业以上学历，并取得幼儿园教师资格证书。</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='33'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>15</span><span style='font-size:10.5pt;font-family:'宋体';'></span> </p> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='33'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='top' width='44'> <p class='p0'> <span style='font-size:10.5pt;font-family:'宋体';'></span> </p> <br /> </td> <td style='border:#000000 0.5pt solid;' valign='center' width='75'> <p class='p0' style='text-align:center;'> <span style='font-size:10.5pt;font-family:'宋体';'>“教师配备”分为<span>3</span><span>个要素，各</span></span> </p> </td> </tr> </tbody> </table> "
-  self_note: "办学条件说明"
+  note: "① 办园经费落实，幼儿园教育经费*、生均教育经费及生均公用经费逐步增长。（9分）<br/>② 证照*齐全，手续完备，按时年审。（3分）<br/>③ 教职工工资、国家政策规定的各种生活津贴按时、足额发放，依法为教职工办理医疗、工伤、养老等社会保险。（5分）<br/>④ 教职工工资待遇逐步提高。（3分）<br/><b>{民办幼儿园标准</b><br/>① 幼儿园产权、使用权明晰、合法。（3分）<br/>② 证照*齐全，手续完备，按时年审。（3分）<br/>③ 收费符合省、市的规定，经费来源稳定、合法，并有足够的资金保证幼儿园正常运转和持续发展。（3分）<br/>④ 生均教育经费及生均公用经费逐步增长。（3分）<br/>⑤ 按月按时足额发放教职工工资，依法为教职工办理医疗、工伤、养老等社会保险。（5分）<br/>⑥ 教职工工资待遇逐步提高。（3分）<b>}</b><br/>"
+  evaluate_vtocs:
+    name1: "幼儿园各类办学证照"
+    name2: "幼儿园近三年经费收支情况表" 
+    name3: "幼儿园财务审计报告"
+    name4: "幼儿近三年花名册"
+    name5: "幼儿收费公示栏"
+    name6: "全园幼儿名单及部分发票"
+    name7: "幼儿园近三年教职工花名册"
+    name8: "幼儿园近三年教职工社保缴费明细"
+    name9: "幼儿园近三年教职工年收入统计表"
+    name10: "教职工工资明细表"
+    name11: "幼儿园教职工劳动合同"
+evaluate2:
+  a_indicator: "办园条件"
+  b_indicator: "场地园舍"
+  name: "2"
+  article_case: "NO.2-1"
+  sequence: 2
+  note: "①建筑场地独立完整。（5分）<br/>② 远离污染源、交通要道，无噪音影响，园门两侧无乱摆摊、堆放杂物等现象，且方便家长接送，日照充分，场地干燥，排水通畅，清洁整齐。（5分）<br/>③ 幼儿园布局合理，符合建筑规范，建筑造型和室内设计符合幼儿特点，满足教育需要，空气流通，光线充足。（5分）<br/>④ 绿化覆盖率* 50%以上。（3分）<br/>"
+  evaluate_vtocs:
+    name1: "幼儿园建筑平面图"
+    name2: "幼儿园周边环境、道路、绿化情况照片说明" 
+    name3: "幼儿园绿化率统计表"
+evaluate3:
+  a_indicator: "办园条件"
+  b_indicator: "场地园舍"
+  name: "3★"
+  article_case: "NO.2-2"
+  sequence: 3
+  note: "① 幼儿园生均占地面积*不少于13 m2（城市老园不少于10 m2 ）。（5分）<br/>② 户外活动场地使用面积生均4m2以上。（4分）<br/>③ 有玩沙池、玩水池、游泳池、大型器械运动区、30米直跑道、运动场、种植园地、饲养角。（5分）<br/>"
+  evaluate_vtocs:
+    name1: "全园幼儿名单及人数统计"
+    name2: "幼儿园园舍场地面积一览表" 
+    name3: "幼儿园建筑造型照片及说明"
+    name4: "室外活动区照片及说明"
+    name5: "游泳池使用说明"
+evaluate4:
+  a_indicator: "办园条件"
+  b_indicator: "场地园舍"
+  name: "4★"
+  article_case: "NO.2-3"
+  sequence: 4
+  note: "① 园舍建筑面积生均7m2以上（不含教职工宿舍）。（6分）<br/>② 活动室使用面积与寝室合用每班100 m2以上，与寝室分设的每班54m 2以上，寄宿园有独立的寝室，配备儿童单人床。（6分）<br/>③ 每班卫生间15m2以上，且大班的卫生间设立性别分隔；贮藏室（间）每间9m2以上。（3分）<br/>"
+  evaluate_vtocs:
+    name1: "幼儿园建筑等面积一览表"
+    name2: "幼儿活动室、卫生间等面积统计表" 
+    name3: "幼儿园活动室卫生间照片说明"
+evaluate5:
+  a_indicator: "办园条件"
+  b_indicator: "场地园舍"
+  name: "5"
+  article_case: "NO.2-4"
+  sequence: 5
+  note: "有音乐活动室（120-160 m2）、美工活动室、科学启蒙室、体育活动室、图书阅览室、综合游戏室等，功能齐全、实用，按教育教学活动和孩子发展需要设计与提供玩具材料。（10分） <br/>"
+  evaluate_vtocs:
+    name1: "幼儿园功能室面积一览表"
+    name2: "幼儿园功能室使用说明" 
+    name3: "幼儿园功能室使用安排表"
+    name4: "幼儿园功能室照片说明"
+    name5: "幼儿园功能室设备、教玩具登记表"
+evaluate6:
+  a_indicator: "办园条件"
+  b_indicator: "场地园舍"
+  name: "6"
+  article_case: "NO.2-5"
+  sequence: 6
+  note: "有音乐活动室（120-160 m2）、美工活动室、科学启蒙室、体育活动室、图书阅览室、综合游戏室等，功能齐全、实用，按教育教学活动和孩子发展需要设计与提供玩具材料。（10分） <br/>"
+  evaluate_vtocs:
+    name1: "幼儿园办公及辅助用房面积一览表"
+    name2: "幼儿园厨房操作流程图" 
+    name3: "幼儿园厨房照片说明"
+evaluate7:
+  a_indicator: "办园条件"
+  b_indicator: "教育玩具设施设备"
+  name: "7"
+  article_case: "NO.3-1"
+  sequence: 7
+  note: "① 按《广东省幼儿园(班)设备设施配备标准（试行）》配备玩教具、电教器材、劳动工具、桌椅书架、体育器材、医疗保健器械和药品。（5分）<br/>② 按省幼儿园图书装备要求配置图书，生均藏书8册以上。（3分）<br/>③ 每班配置钢琴、照相机、计算机。（Ⅱ类、Ⅲ类地区每班配置满足教学活动需要的键盘乐器及电教设备）（3分）<br/>④ 自制玩教具数量多、质量好，具有多功能、多层次，能满足幼儿各类活动的需要。（4分）<br/>"
+  evaluate_vtocs:
+    name1: "幼儿园设备设施及教玩具登记表"
+    name2: "保健室器械及药品一览表" 
+    name3: "图书资料登记表"
+    name4: "班级钢琴、照相机、计算机、电教设备配置表"
+    name5: "班级自制体育器械登记表" 
+    name6: "班级教玩具登记表"
+evaluate8:
+  a_indicator: "办园条件"
+  b_indicator: "教育玩具设施设备"
+  name: "8"
+  article_case: "NO.3-2"
+  sequence: 8
+  note: "① 配备办公专用计算机，建立现代办公管理系统。（3分）<br/>② 图书刊物中幼教刊物8种以上，报纸4种以上，教参、工具书100种以上。（2分）<br/>③ 音像资料、计算机软件等资料丰富，建立教育信息资源库，能满足各类活动需要。（5分）<br/>"
+  evaluate_vtocs:
+    name1: "办公专用计算机及现代办公管理系统设备情况统计表"
+    name2: "幼儿园幼教刊物、报纸、教参、工具书统计表" 
+    name3: "幼儿园音像资料、计算机软件资料统计表"
+    name4: "幼儿园教参书登记表"
+evaluate9:
+  a_indicator: "办园条件"
+  b_indicator: " 规模"
+  name: "9★"
+  article_case: "NO.4-1"
+  sequence: 9
+  note: "① 幼儿园规模有利于保教工作和资源配置优化，不少于6个班。(5分)<br/>② 每班班额标准：大班35人，中班30人，小班25人。（5分）<br/>省一级班额不得超过标准5人；<br/>市一级班额不得超过标准6人；<br/>县一级班额不得超过标准7人。<br/>"
+  evaluate_vtocs:
+    name1: "全园幼儿花名册"
+    name2: "全园幼儿名单" 
+    name3: "规模发展情况一览表"
+    name4: "市一级幼儿园批准文件"
+evaluate10:
+  a_indicator: "办园条件"
+  b_indicator: "教职工配备"
+  name: "10★"
+  article_case: "NO.5-1"
+  sequence: 10
+  note: "① 教职工与幼儿比例（6分）<br/>省一级全日制为1:6，寄宿制幼儿园为1:4-1:5；<br/>市一级全日制为1:6.1—1:6.9 ，寄宿制幼儿园为1：5.1－1:5.9 ；<br/>县一级全日制为1:7，寄宿制幼儿园为1:6 。<br/>② 每班教师2人以上。(3分)<br/>③ 保育员每班全日制不少于1人，寄宿制幼儿园不少于2人。（2分）<br/>④ 6-9个班（含寄宿制）设园长2人，10个班及以上（含寄宿制）幼儿园设园长3人。（3分）<br/>⑤ 全日制幼儿园不足200名幼儿配备专职医务人员1人（寄宿制幼儿园2人,其中主治医师1人），全日制幼儿园超过200名配专职医务人员2人以上,其中医生1人（寄宿制幼儿园3人以上,其中主治医师1人）。（2分）<br/>⑥ 有专职财务人员，炊事员、其他工作人员满足幼儿园需要。（2分）<br/>"
+  evaluate_vtocs:
+    name1: "幼儿园教职工配置一览表"
+    name2: "幼儿园教职工与幼儿比例统计表" 
+evaluate11:
+  a_indicator: "办园条件"
+  b_indicator: "教职工配备"
+  name: "11★"
+  article_case: "NO.5-2"
+  sequence: 11
+  note: "① 园长具有大专以上学历及幼儿园高级教师职称，取得园长岗位培训合格证书并按国家和省有关任职条件配备。（3分）<br/> ② 教师专业合格率（学前教育专业毕业或取得幼儿园教师资格证）100％。<br/>③ 教师大专学历60％以上（Ⅱ类地区50%以上、Ⅲ类地区40％以上）。(3分)<br/>④ 保育员具有高中（45岁以上具有初中）以上文化程度，受过幼儿保育职业培训。（2分）<br/>⑤ 医师具有医学院校毕业程度，医生和护士具有中等卫生学校毕业以上学历。保健员具有高中毕业程度。医务人员经岗前培训，并取得上岗证。（2分）<br/>"
+  evaluate_vtocs:
+    name1: "幼儿园教职工花名册"
+    name2: "幼儿园教职工学历情况一览表"
+    name3: "园长学历、职称、岗位培训合格证复印件"
+    name4: "专任教师学历、资格证、职称复印件"
+    name5: "保育员学历、职业培训证复印件"
+    name6: "医务人员学历、职称、上岗证复印件"
+    name7: "幼儿园教职工任职资格达标统计表"
+evaluate13:
+  a_indicator: "幼儿园管理"
+  b_indicator: "办学方向及依法治教"
+  name: "13★"
+  article_case: "NO.6-2"
+  sequence: 13
+  note: "① 依法治园，建立规范的幼儿园章程，落实园长负责制。（民办幼儿园实行董事会或理事会领导下的园长任期制和负责制，园长任期相对稳定，董事会或理事会与园长职责明确，做到决策权与执行权分离；园长依法独立行使教育教学和行政管理职权，董事会或理事会成员不干涉园长行使法定职权；园长每年向董事会或理事会提交工作报告）。（8分）<br/>② 各项规章制度经过民主程序产生，不断健全完善，可操作性强，形成互相支持、运转高效的工作机制，各级人员岗位职责明确，有考核、有检查。（4分）<br/>③ 管理架构科学、合理，各种组织机构（园务委员会、党、团、教代会、工会、家长委员会等）健全、职责明确，相互协调，运作畅通、高效，充分发挥职能作用。（5分）<br/>④ 近1年没有重大责任事故*。（3分）<br/>"
+  evaluate_vtocs:
+    name1: "教育法规文件"
+    name2: "幼儿园章程"
+    name3: "幼儿园规章制度汇编"
+    name4: "幼儿园董事会资料"
+    name5: "幼儿园年度工作报告"
+    name6: "幼儿园园长聘书"
+    name7: "幼儿园园长岗位职责"
+    name8: "幼儿园组织机构图"
+    name9: "幼儿园组织机构人员名单"   
+    name10: "幼儿园园务会议记录"
+    name11: "幼儿园全园教职工会议"
+    name12: "幼儿园工会资料"
+    name13: "幼儿园团支部资料"
+    name14: "幼儿园教代会及工会团支部活动资料"
+    name15: "幼儿园家委会成员名单及须知"
+    name16: "幼儿园无重大事故证明"
+evaluate14:
+  a_indicator: "幼儿园管理"
+  b_indicator: " 队伍建设"
+  name: "14"
+  article_case: "NO.7-1"
+  sequence: 14
+  note: "① 领导班子结构合理，具有幼儿教育理论、教育管理理论基础，重视观念更新、理论学习和经验总结。（3分）<br/>② 廉洁奉公，团结合作，有较强的决策和协调能力，富有改革创新精神，治园能力强。（3分）<br/>③ 关心教职工工作、学习、生活，干群关系融洽，凝聚力强，群众评议满意率高。（3分）<br/>④ 熟悉保教工作，重视并做好教育教学、教改和科研、保健工作的管理，带头开展教改、科研工作，指导实践能力强。（3分）<br/>⑤ 园长每学期跟班观摩及指导教育活动不少于20天，业务副园长不少于40天，主管后勤副园长不少于10天。（3分）<br/>"
+  evaluate_vtocs:
+    name1: "幼儿园园务值班记录"
+    name2: "幼儿园领导班子情况表"
+    name3: "幼儿园领导关心职工情况资料"
+    name4: "幼儿园领导看望职工情况资料"
+    name5: "幼儿园行政人员考核资料"
+    name6: "幼儿园园长培训记录"
+    name7: "幼儿园园长日常工作检查记录"
+    name8: "幼儿园园长听课记录"
+    name9: "幼儿园园务值班记录"
+    name10: "幼儿园副园长培训记录"   
+    name11: "幼儿园副园长日常工作检查记录"
+    name12: "幼儿园副园长听课记录"
+evaluate15:
+  a_indicator: "幼儿园管理"
+  b_indicator: " 队伍建设"
+  name: "15"
+  article_case: "NO.7-2"
+  sequence: 15
+  note: "① 教职工政治、业务学习制度落实，重视队伍思想观念更新和业务水平提高，外部培训和园本培训相结合，有目的、有计划、效果显著，完成教师、保健医生、保育员继续教育任务，有专项经费，并提供时间保障。（6分）<br/>② 建立教职工个人成长档案，重视通过评价机制（教师自评为主，园长及有关管理人员、其他教师和家长参与评价的制度）促进教师个人专业成长，有计划对不同需求层次的教师群体进行针对性培养，措施得力，效果明显。 （6分）<br/>"
+  evaluate_vtocs:
+    name1: "幼儿园教职工政治学习活动记录"
+    name2: "幼儿园教职工培训制度"
+    name3: "幼儿园学习会议制度"
+    name4: "幼儿园教师成长计划"
+    name5: "幼儿园教师学习蒙氏教育读后感"
+    name6: "幼儿园新教师岗前培训"
+    name7: "幼儿园保育员培训资料"
+    name8: "教师技能技巧比赛"
+    name9: "幼儿园教师英语口语测查"
+    name10: "幼儿园教职工考核细则"   
+    name11: "幼儿园教职工考核资料"
+    name12: "幼儿园教职工培训计划及总结"
+    name13: "幼儿园教职工会议记录"
+    name14: "幼儿园教师教研活动记录"
+    name15: "幼儿园园本培训活动记录表"
+    name16: "幼儿园骨干教师资料"
+    name17: "幼儿园教师外出学习资料"
+    name18: "幼儿园教师继续教育培训证明"
+    name19: "幼儿园教师继续教育学习汇总表"
+    name20: "教师培训需求调查问卷"
+evaluate17:
+  a_indicator: "幼儿园管理"
+  b_indicator: "队伍建设"
+  name: "17★"
+  article_case: "NO.7-4"
+  sequence: 17
+  note: "① 树立全体工作人员都是教育者的思想，重视职业道德建设，敬业爱幼，为人师表，营造安全、温馨的心理环境，建立以爱为核心的情感氛围和校园文化。（5分）<br/>②队伍团结协作，以班、级组、教研组等为单位建立学习和发展共同体，各成员之间分工明确、合理，工作衔接自然、紧密，关系融洽，共同进步。（5分）<br/>③ 无体罚或变相体罚幼儿现象，近3年教职工无违法、犯罪。（3分）<br/>"
+  evaluate_vtocs: 
+    name1: "幼儿园文化建设实施方案"
+    name2: "幼儿园教师职业道德规范"
+    name3: "幼儿园教师日常行为规范"
+    name4: "幼儿园教师师德文集"
+    name5: "幼儿园家长对教师的感谢信"
+    name6: "幼儿园老师致家长感谢信"
+    name7: "幼儿园家长表扬信"
+    name8: "幼儿园教师职业道德考核资料"   
+    name9: "幼儿园教职工无违法犯罪证明"
+    name10: "近三年幼儿园个人集体获奖证书资料" 
+    name11: "幼儿园班务会议记录" 
+    name12: "幼儿园班务计划" 
+    name13: "幼儿园班务总结" 
+evaluate18:
+  a_indicator: "幼儿园管理"
+  b_indicator: "队伍建设"
+  name: "18"
+  article_case: "NO.7-5"
+  sequence: 18
+  note: "重视利用信息技术和网络信息资源进行教育教学活动，50%以上（Ⅱ类地区30%以上、Ⅲ类地区20％以上）教师能用多媒体计算机技术进行教学。（4分）<br/>"
+  evaluate_vtocs: 
+    name1: "幼儿园计算机使用管理制度及网络平台管理制度"
+    name2: "幼儿园教师计算机维护记录"
+    name3: "教师电脑培训资料"
+    name4: "教师教学课件一览表"
+evaluate19:
+  a_indicator: "幼儿园管理"
+  b_indicator: "队伍建设"
+  name: "19"
+  article_case: "NO.7-6"
+  sequence: 19
+  note: "① 教职工队伍稳定，近3年保教人员年流动率*不超过15% 。（3分）<br/>② 在当地有声誉较高的学科带头人。（3分）<br/>"
+  evaluate_vtocs: 
+    name1: "幼儿园保教人员流动名单与保教人员年流动率统计表"
+    name2: "教职工配置一览表"
