@@ -3,7 +3,7 @@
 class MySchool::EvaluatesController < MySchool::ManageController
    def index
      @evaluates = @kind.evaluate
-     if @evaluates.blank?
+     if @evaluates.blank? 
      	@evaluate = Evaluate.new()
      else
      	@evaluate_entries = @evaluates.evaluate_entries.page(params[:page] || 1).per(10)
@@ -20,5 +20,13 @@ class MySchool::EvaluatesController < MySchool::ManageController
           format.html { render action: "index" }
         end
       end
+   end
+   def destroy
+     @evaluate = Evaluate.find(params[:id])
+     @evaluate.destroy
+    respond_to do |format|
+      format.html { redirect_to my_school_evaluates_path, notice: '关闭成功.' }
+      format.json { head :no_content }
+    end
    end
 end

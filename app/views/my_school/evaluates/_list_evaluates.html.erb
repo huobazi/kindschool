@@ -8,20 +8,26 @@
 			排序
 		</th>
 		<th>
-			名称
-		</th>
-		<th>
 			案条
 		</th>
 		<th>
-			描述
+			一级指标名称
+		</th>
+		<th>
+			二级指标名称
+		</th>
+		<th>
+			三级指标名称
+		</th>
+		<th>
+			三级指标描述
 		</th>
 		<th>
 			自评说明
 		</th>
-		<th>
-			卷
-		</th>
+		<!-- <th>
+			资料目录
+		</th> -->
 		<th>
 			操作
 		</th>
@@ -29,16 +35,22 @@
 	<%(@evaluate_entries || []).each do |evaluate|%>
 	<tr>
 		<td><%=evaluate.sequence%></td>
-		<td><%=evaluate.name%></td>
 		<td><%=evaluate.article_case%></td>
+		<td><%=evaluate.a_indicator%></td>
+		<td><%=evaluate.b_indicator%></td>
+		<td><%=evaluate.name%></td>
+		
 		<td>
 			<%=link_to '点击查看描述' , my_school_evaluate_evaluate_entry_path(@evaluates,evaluate), :title=>"#{raw(evaluate.note)}"%>
 			</td>
-		<td><%=raw evaluate.self_note%></td>
-		<td><%evaluate.evaluate_vtocs.each do |entry|%>
-			<%=entry.name%>
-			<%end%>
-		</td>
+		<td>
+			<%=link_to '点击查看自评说明' , my_school_evaluate_evaluate_entry_path(@evaluates,evaluate), :title=>"#{raw(evaluate.self_note)}"%>
+			</td>
+		<!-- <td> -->
+			<%#evaluate.evaluate_vtocs.each do |entry|%>
+			<%#=entry.name%>
+			<%#end%>
+		<!-- </td> -->
 			
 		<td>
 			<div class="index_a">

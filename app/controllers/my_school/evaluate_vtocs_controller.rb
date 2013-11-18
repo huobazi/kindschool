@@ -19,7 +19,7 @@ class MySchool::EvaluateVtocsController < MySchool::ManageController
      @evaluate_vtoc = EvaluateVtoc.find(params[:id])
      @evaluate_entry = @evaluate_vtoc.evaluate_entry
      respond_to do |format|
-      if @evaluate_vtoc.update_attributes(params[:evaluate_entry])
+      if @evaluate_vtoc.update_attributes(params[:evaluate_vtoc])
         format.html { redirect_to my_school_evaluate_vtoc_path(@evaluate_vtoc), notice: '评估卷更新成功.' }
       else
         format.html { render action: "edit" }
@@ -100,5 +100,18 @@ class MySchool::EvaluateVtocsController < MySchool::ManageController
       redirect_to :back ,:notice=>"你没有权限下载"
     end
   end
+
+  def destroy
+      @evaluate_vtoc = EvaluateVtoc.find(params[:id])
+      @evaluate_entry = @evaluate_vtoc.evaluate_entry
+      evaluate = @evaluate_entry.evaluate
+     @evaluate_vtoc.destroy
+    respond_to do |format|
+      format.html { redirect_to my_school_evaluate_evaluate_entry_path(evaluate.id,@evaluate_entry.id) }
+      format.json { head :no_content }
+    end
+
+   end
+
 
 end
