@@ -158,6 +158,10 @@ class Weixin::ApiController < Weixin::BaseController
                   :FuncFlag=>0
                 })
             end
+          elsif xml_data[:MsgType] == "voice"
+            puts "===================a"
+            puts "#{xml_data.inspect}"
+            puts "===================b"
           else
             x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
                 :FromUserName=>xml_data[:ToUserName],
