@@ -1,0 +1,66 @@
+<div class="show_work">
+  <%= render :partial => "/modules/#{view_layout}/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>评估模板下载</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+             <li><%= link_to "评估模板下载", my_school_evaluate_templates_path %></li>
+            <li>/</li>
+            <li>查看评估模板 <%=@evaluate_template.name%></li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+      </ul>
+    </div>
+    <div class="work_form">
+      <div class="new_button_evaluate">
+       <%#=link_to "评估项添加资料目录",new_my_school_evaluate_vtoc_path(:evaluate_entry_id=>@evaluate_entry.id),:class=>"btn blue"%>
+       <br/>
+      </div>
+      <div class="form_div">
+        <form class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label">所属幼儿园:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=@kind.name %>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >名称:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= @evaluate_template.name%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >描述:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%= @evaluate_template.note%>
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" >附件:</label>
+            <div class="controls">
+              <label class="show_label">
+                <%=link_to @evaluate_template.name,@evaluate_template.template_url,:class=>"blue"%>
+              </label>
+            </div>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

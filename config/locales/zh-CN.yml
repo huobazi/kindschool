@@ -255,7 +255,13 @@ zh-CN:
       help_category: "视频分类"
       help_movie: "帮助视频"
       resource_library: "上传资源库"
+      evaluate_template: "评估模板下载"
     attributes:
+      evaluate_template:
+        name: "名称"
+        template_url: "附件地址"
+        note: "描述"
+        tp: "类型"
       resource_library: 
         file_name: "文件名"
         resource_avatar_url: "文件地址"

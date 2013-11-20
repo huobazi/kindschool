@@ -98,7 +98,7 @@ class  MySchool::StatisticsController < MySchool::ManageController
 
   # 老师日常管理统计
   def teacher_stat
-    
+
     unless params[:start_at].blank? and params[:end_at].blank?
       unless params[:staff_name].blank?
         q = "%#{params[:staff_name]}%"
@@ -126,4 +126,3 @@ class  MySchool::StatisticsController < MySchool::ManageController
   end
 
 end
-

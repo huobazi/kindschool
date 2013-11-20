@@ -448,6 +448,14 @@
     title: "评估管理"
     height_level: "a"
     sequence: 810
+  - id: 110002
+    name: "评估模板下载"
+    operate_id: 16000
+    number: 110002
+    url: "/my_school/evaluate_templates"
+    title: "评估模板下载"
+    height_level: "a"
+    sequence: 811
 
 
 # - id: 130000
