@@ -268,8 +268,6 @@ class MySchool::AlbumsController  < MySchool::ManageController
   end
 
   def graduate_class
-    puts "1111111111111111111"
-    puts params.inspect
     if current_user.get_users_ranges[:tp] == :teachers  
       if params[:graduate]=="true"
         @all_squads = current_user.staff.squads.collect{|x|["#{x.name}   #{x.historyreview}",x.id]}

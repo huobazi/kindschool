@@ -1,0 +1,34 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    <a href="<%= url_for(:action=>:show,:id=>@album.id) %>" title="返回" class="weixin_return">返回</a> 相册集锦
+  </div>
+  <div class="message_list message_form">
+    <br/>
+    <%= simple_form_for @album, :validate => true, :url => {:controller=>"/weixin/albums",:action=>:update}, :html =>{:class=>"form-horizontal"} do |f| %>
+      <%= render :partial => "/my_school/albums/form" ,:locals=>{:val=>"weixin", :f=>f} %>
+      <br/>
+      <div class="control-group">
+        <div class="controls">
+          <div id="upload_notice">
+            <input type="text" name="uploaded_data" id="uploadify"/>
+            <div id="uploadify_queue_div">
+            </div>
+          </div>
+          <script type='text/javascript'>
+            $(document).ready(function() {
+              var option = <%= uploadify_rails_options %>;
+              option["uploader"] = "<%= url_for(:controller=>"/my_school/albums",:action=>"add_entry_imgs",:id=>@album.id,:t=>Time.now.to_i) %>";
+              $('input#uploadify').uploadify(option);
+            });
+          </script>
+        </div>
+      </div>
+    <% end %>
+    <br/>
+  </div>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
