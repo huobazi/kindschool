@@ -41,7 +41,7 @@
     <div class="infos">
       <div class="title">
         <% if controller_name == "growth_records" %>
-          <%= link_to raw("<span style='font-size: 18px;'>#{growth_record.student_info_label}</span><span style='color: #333;font-size:14px;'>#{growth_record.comments.any? ? "有评论" : "没有评论"}</span>"), my_school_growth_record_path(growth_record) %>
+          <%= link_to raw("<span style='font-size: 18px;'>#{growth_record.student_info_label}</span><span style='color: #333;font-size:14px;'></span>"), my_school_growth_record_path(growth_record) %>
         <% else %>
           <%= link_to raw("<span style='font-size: 18px;'>#{growth_record.student_info_label}</span><span style='color: #333;font-size: 14px;'></span>"), my_school_garden_growth_record_path(growth_record) %>
         <% end %>
