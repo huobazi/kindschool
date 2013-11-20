@@ -4,7 +4,6 @@ class CreatePersonalSets < ActiveRecord::Migration
       t.integer :resource_id
       t.string :resource_type
       t.integer :user_id
-
       t.timestamps
     end
   end

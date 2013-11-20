@@ -25,8 +25,8 @@
         <% unless current_user.get_users_ranges[:tp] == :student %>
           <%if choose_operate_show('my_school/album_entries/create')%>
             <li>
-              <%=link_to "<div class='work_action_add'>
-    </div><div class='work_action_add_move'>
+              <%=link_to "<div class='work_action_add_image'>
+    </div><div class='work_action_add_image_move'>
     </div>".html_safe ,new_my_school_album_album_entry_path(@album.id)%>
             </li>
           <%end%>

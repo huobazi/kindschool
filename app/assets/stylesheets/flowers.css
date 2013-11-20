@@ -1042,6 +1042,21 @@ a{
     width: 52px;
     display: none;
 }
+.work_action_add_image{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -946px 0;
+    height: 46px;
+    width: 52px;
+    margin-right: 1px;
+}
+.work_action_add_image_move{
+    background-image: url("/t/colorful/interface.png");
+    background-position: -946px -57px;
+    height: 65px;
+    width: 52px;
+    display: none;
+    margin-right: 1px;
+}
 /*===========表单==============*/
 .work_form{
     padding: 20px 15px 20px 25px;

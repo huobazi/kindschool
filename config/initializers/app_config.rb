@@ -229,9 +229,6 @@ SYSLOGS={
   },
   "weixin/topics"=>{
     "create"=>{"POST"=>"微信创建帖子"}
-  },
-  "weixin/topics"=>{
-    "create"=>{"POST"=>"微信创建帖子"}
   }
 }
 
@@ -246,7 +243,12 @@ TEACHER_STAT = {
   "my_school/seedlings/create" =>"创建疫苗记录",
   "my_school/teaching_plans/create" =>"创建教学计划",
   "my_school/albums/create" =>"创建相册集锦",
-  "my_school/activities/create" =>"创建活动"
+  "my_school/activities/create" =>"创建活动",
+  "weixin/topics/create" => "微信创建贴子",
+  "weixin/activities/create" => "微信创建活动",
+  "weixin/growth_records/create" => "微信创建宝宝在家成长记录",
+  "weixin/garden_growth_records/create" => "微信创建宝宝在园成长记录",
+  "weixin/messages/create" => "微信创建消息"
 }
 GARDEN_MENU ={
   "home"=>{"garden/main"=>["index"]},
