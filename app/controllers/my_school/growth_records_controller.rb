@@ -131,6 +131,11 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     if @growth_record.nil?
       flash[:error] = "没有权限或该宝宝在家成长记录不存在"
       redirect_to :action => :home
+    else
+      if @growth_record.creater_id == current_user.id
+        @growth_record.accessed_at = Time.now.utc
+        @growth_record.save
+      end
     end
   end
 

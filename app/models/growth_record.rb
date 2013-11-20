@@ -78,8 +78,9 @@ class GrowthRecord < ActiveRecord::Base
       end
     end
     str += "</div>"
-
   end
+
+  include UnreadComment
 
   private
   #发送消息
