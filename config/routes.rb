@@ -14,6 +14,7 @@ School::Application.routes.draw do
         delete :delete_evaluate_asset
       end
     end
+    resources :evaluate_templates
     resources :evaluates do
       resources :evaluate_entries
     end

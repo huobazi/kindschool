@@ -174,6 +174,9 @@ MENUS ={"home"=>{
         "my_school/evaluates"=>["index"],
         "my_school/evaluate_entries"=>["new","edit","show"],
         "my_school/evaluate_vtocs"=>["new","edit","show"]
+      },
+      "110002"=>{
+        "my_school/evaluate_templates"=>["index","show"]
       }
     }
 }

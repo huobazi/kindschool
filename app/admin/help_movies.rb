@@ -3,7 +3,9 @@ ActiveAdmin.register HelpMovie do
 
   menu :parent => "微壹平台管理", :priority => 1
   index do
-    column :content
+    column :content do |obj|
+        raw(obj.content)
+      end
     column :name
     
     default_actions

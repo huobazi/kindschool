@@ -1,0 +1,40 @@
+<table  class="table table-striped table-hover">
+	<tr>
+		<th>
+			序号
+		</th>
+		<th>
+			名称
+		</th>
+		
+		<th>
+			描述
+		</th>
+		<th>
+			
+		</th>
+		<th>
+			操作
+		</th>
+	</tr>
+	<%(@evaluate_templates || []).each_with_index do |evaluate,index|%>
+	<tr>
+		<td><%=index+1%></td>
+		<td><%=evaluate.name%></td>
+		<td>
+			<%=raw(evaluate.note)%>
+		</td>
+		
+		<td>
+	    </td>	
+		<td>
+			<div class="index_a">
+			<%=link_to "查看" ,my_school_evaluate_template_path(evaluate)%>
+			<%=link_to "下载",evaluate.template_url,:class=>"blue"%>
+			
+		   </div>
+		</td>
+	</tr>
+	<%end%>
+</table>
+<%= paginate @evaluate_templates %>

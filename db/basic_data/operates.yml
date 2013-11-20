@@ -2281,3 +2281,16 @@ teacher_stat_statistics:
   action: "teacher_stat"
   protocol: ""
   <<: *DEFAULTS
+
+official_evaluate_templates:
+  id: 16000
+  parent_id: 13
+  name: "评估模板下载"
+  level: 2
+  sequence: 1
+  note: "评估模板下载"
+  controller: "my_school/evaluate_templates"
+  action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+
