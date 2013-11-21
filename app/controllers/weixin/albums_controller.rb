@@ -93,6 +93,66 @@ class Weixin::AlbumsController  < Weixin::ManageController
         format.html { render :action=> :edit }
       end
     end
+  end
 
+  def new
+    @album = @kind.albums.new
+    if current_user.get_users_ranges[:tp] == :student
+      flash[:error] = "没有权限"
+      redirect_to :action=> :index
+      return
+    else current_user.get_users_ranges[:tp] == :teachers
+      @squads = current_user.get_users_ranges[:squads]
+    end
+    if @grades = @kind.grades
+      #    if @squads = @grades.first.squads
+      #    end
+    end
+  end
+
+  def create
+    if current_user.get_users_ranges[:tp] == :student
+      flash[:error] = "没有权限"
+      redirect_to :action=> :index
+      return
+    end
+    if params[:album].present? && params[:album][:squad_id].present?
+      if params[:album][:squad_id].to_i > 0
+        if current_user.get_users_ranges[:tp] == :teachers
+          unless current_user.get_users_ranges[:squads].collect(&:id).include?(params[:album][:squad_id].to_i)
+            flash[:error] = "非法操作"
+            redirect_to :action => :index
+            return
+          end
+          squad = Squad.find(params[:album][:squad_id].to_i)
+          params[:album][:squad_name] = squad.name
+        end
+      else
+        if (session[:operates] || []).include?('my_school/albums/new')
+          params[:album].delete :squad_id
+        else
+          flash[:error] = "非法操作"
+          redirect_to :action => :index
+          return
+        end
+      end
+    end
+
+    @album = @kind.albums.new(params[:album])
+    unless params[:class_number].blank?
+      if squad = Squad.find(params[:class_number].to_i)#where(:id=>params[:class_number].to_i).first
+        @album.squad =  squad
+        @album.squad_name = squad.name
+      end
+    end
+    @album.send_date = Time.now
+    @album.creater_id = current_user.id
+    respond_to do |format|
+      if @album.save
+        format.html { redirect_to weixin_albums_path, :notice=> '相册锦集创建成功.' }
+      else
+        format.html { render :action=> "new" }
+      end
+    end
   end
 end

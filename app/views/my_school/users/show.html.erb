@@ -86,16 +86,15 @@
           <tr>
             <th>手机号</th>
             <td><%= current_user.phone %></td>
-            <th>绑定微信</th>
+            <th>幼儿园微信</th>
             <td><%= current_user.weixin_code.blank? ? "未绑定" : "已绑定" %></td>
           </tr>
           <tr>
             <th>所属类别</th>
             <td><%= current_user.tp_label %></td>
+            <th>微一平台微信</th>
+            <td><%= current_user.weiyi_code.blank? ? "未绑定" : "已绑定" %></td>
           </tr>
-
-
-
         <% if current_user.tp == 0 %>
           <tr>
             <td colspan="4">学员信息</td>

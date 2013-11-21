@@ -29,43 +29,7 @@
     </div>
     <div class="work_list">
       <%= form_for(@user, :url => { :controller => "/my_school/users", :action => :update}, :multipart => true, :html => {:class => "form-horizontal", :multipart => true}) do |f| %>
-        <div class="control-group">
-          <%= f.label :kindergarten_label, :class => "control-label" %>&nbsp;&nbsp;
-          <%= f.text_field :kindergarten_label, :disabled => true %>
-        </div>
-        <div class="control-group">
-          <%= f.label :tp_label, :class => "control-label" %>&nbsp;&nbsp;
-          <%= f.text_field :tp_label, :disabled => true  %>
-        </div>
-        <div class="control-group">
-          <label class="control-label">头像</label>&nbsp;&nbsp;
-          <%= f.file_field :asset_logo ,:name=>"asset_logo" %>
-          <div>
-           &nbsp;&nbsp; <img src="<%= @user.asset_logo ? @user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="103" alt="头像"/>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= f.label :name, :class => "control-label" %>&nbsp;&nbsp;
-          <%= f.text_field :name %>
-        </div>
-        <div class="control-group">
-          <%= f.label :gender, :class => "control-label" %>&nbsp;&nbsp;
-          <input type="radio" id="user_G" name="user[gender]" value="G" <%= current_user.gender == "G" ? "checked": "" %> />男
-          <input type="radio" id="user_M" name="user[gender]" value="M" <%= current_user.gender == "M" ? "checked" : "" %>/>女
-        </div>
-        <div class="control-group">
-          <%= f.label :phone, :class => "control-label" %>&nbsp;&nbsp;
-          <%= f.text_field :phone %>
-        </div>
-        <div class="control-group">
-          <label class="control-label">绑定微信</label>&nbsp;&nbsp;
-          <input value="<%= @user.weixin_code.blank? ? "未绑定" : "已绑定" %>" disabled="disabled" type="text"/>
-        </div>
-        <div class="control-group">
-          <div class="controls">
-            <%= f.submit :class => "btn btn-primary btn-large", value: "保存", disable_with: "正在提交..." %>
-          </div>
-        </div>
+        <%= render :partial => "/my_school/users/user_form" ,:locals=>{:f=>f} %>
       <% end %>
     </div>
 

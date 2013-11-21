@@ -1,0 +1,19 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<script type="text/javascript" src="/assets/plupload.full.min.js"></script>
+<div class="message_div">
+  <div class="message_title">
+    <a href="<%= url_for(:action=>:index) %>" title="返回" class="weixin_return">返回</a> 相册集锦
+  </div>
+  <div class="message_list message_form">
+    <br/>
+    <%= simple_form_for @album, :validate => true, :url => {:controller=>"/weixin/albums",:action=>:create}, :html =>{:class=>"form-horizontal"} do |f| %>
+      <%= render :partial => "/my_school/albums/form" ,:locals=>{:val=>"weixin", :f=>f} %>
+      <br/>
+    <% end %>
+    <br/>
+  </div>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
