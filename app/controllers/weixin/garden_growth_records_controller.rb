@@ -157,7 +157,7 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
     if current_user.get_users_ranges[:tp] == :student
       @growth_record = @kind.growth_records.where("tp = ? and student_info_id = ?", 0, current_user.student_info.id).find_by_id(params[:id])
     elsif current_user.get_users_ranges[:tp] == :teachers
-      @growth_record = GrowthRecord.where("student_infos.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) and tp=0",current_user.staff.id).joins("INNER JOIN student_infos on(student_infos.id = growth_records.student_info_id)").find_by_id(params[:id])
+      @growth_record = GrowthRecord.where("student_infos.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) and tp=0",current_user.staff.id).joins("INNER JOIN student_infos on(student_infos.id = growth_records.student_info_id)").readonly(false).find_by_id(params[:id])
     else
       @growth_record = @kind.growth_records.find_by_id_and_tp(params[:id], 0)
     end
