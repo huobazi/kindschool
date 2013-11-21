@@ -22,6 +22,12 @@ class Weixin::AlbumsController  < Weixin::ManageController
   def show
     @album = @kind.albums.find(params[:id])
     @album_entries=@album.album_entries.page(params[:page] || 1).per(6).order("created_at DESC")
+    unless @album.nil?
+      if current_user.id == @album.creater_id
+        @album.accessed_at = Time.now.utc
+        @album.save
+      end
+    end
   end
   
   def edit

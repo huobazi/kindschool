@@ -5,7 +5,6 @@ class  MySchool::ManageController < MySchool::BaseController
   before_filter :login_required,:check_operates,:choose_role, :except => [:login,:signup,:error_notice] #if action_name != 'login'#:auth,
   after_filter :auto_write_log
 
-
   layout proc{ |controller| get_layout }
 
   protected

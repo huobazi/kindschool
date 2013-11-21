@@ -42,6 +42,11 @@ class Weixin::TopicsController < Weixin::ManageController
       flash[:error] = "没有该贴子或权限不够"
       redirect_to :action => :index
       return
+    else
+      if current_user.id == @topic.creater_id
+        @topic.accessed_at = Time.now.utc
+        @topic.save
+      end
     end
     @replies = @topic.topic_entries.page(params[:page] || 1).per(10)
     @goodbacks = @topic.goodbacks

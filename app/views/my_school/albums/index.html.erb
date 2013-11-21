@@ -71,6 +71,9 @@
                 <% else %>
                   <span class="label label-info" style="margin-left: 10px;">全园可见-<%=album.creater.try(:name)%></span>
                 <% end %>
+                <% if current_user.id == album.creater_id %>
+                  <%= album.unread_comment_count %><img src="/t/colorful/has_comments.png" />
+                <% end %>
             </div>
             <% unless current_user.get_users_ranges[:tp] == :student %>
               <div class="actions" id="actions_<%= album.id %>" style="display: none;">

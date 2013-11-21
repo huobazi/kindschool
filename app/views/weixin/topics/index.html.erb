@@ -32,6 +32,9 @@
                 <span class="label label-success"><%= topic.topic_category.try(:name) %></span>
               <% end %>
               <span class="label label-warning"><%= topic.topic_entries.any? ? topic.topic_entries.count : "" %></span>
+              <% if current_user.id == topic.creater_id %>
+                <%= topic.unread_comment_count %><img src="/t/colorful/has_comments.png" />
+              <% end %>
             </p>
             <p class="info">由<span class="author"><%= topic.creater.try(:name) %></span>发表于&nbsp;<span><%= topic.created_at.try(:to_long_datetime) %></span></p>
           </li>

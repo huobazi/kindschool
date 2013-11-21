@@ -1,1 +1,37 @@
-<p>sb</p>
+<div class="search_form_s">
+      <%= form_tag '/admin/smsstatistics' , :method=>"get" do %>
+        <b>幼儿园名称：</b>
+        <%= text_field :sms_record,:created_at_greater_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:sms_record][:created_at_greater_than_or_equal_to] if params[:sms_record] }"  %>
+        <b>发送开始时间：</b>
+        <%= text_field :sms_record,:created_at_greater_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:sms_record][:created_at_greater_than_or_equal_to] if params[:sms_record] }"  %>
+        <b>发送结束时间：</b>
+        <%= text_field :sms_record,:created_at_less_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:sms_record][:created_at_less_than_or_equal_to] if params[:sms_record] }"  %>
+        <%= submit_tag "搜索"  , :class => "btn search_btn"%>
+      <%end%>
+    </div>
+    <br/><br/>
+     <div class="index_as_table">
+        <table border="0" cellspacing="0" cellpadding="0" id="index_table_sms_records" class="index_table index" paginator="true">
+         <thead>
+            <tr>
+               <th class="kindergarten">幼儿园</th>
+               
+              <th class="status">发送条数</th>
+              <th class="">
+                短信类型
+              </th>
+              <th class=""></th>
+            </tr>
+            </thead>
+           <tbody>
+           	<%sms_records.each do |record|%>
+             <tr class="odd" id="sms_record_6">
+             <td class="kindergarten">   <%=record.kindergarten.name%>
+             </td>
+            <td class="chain_code"><%=record.sum_count.to_i%>条</td>
+            <td><%=Message::TP_DATA[record.message_entry.try(:message).try(:tp).to_s]%></td>
+           </tr>
+          <%end%> 
+         </tbody>
+      </table>
+   </div>

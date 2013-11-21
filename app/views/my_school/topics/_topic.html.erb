@@ -37,6 +37,9 @@
         <% else %>
           <%= link_to topic.title, my_school_topic_path(topic) %>
         <% end %>
+        <% if current_user.id == topic.creater_id %>
+          <%= topic.unread_comment_count %><img src="/t/colorful/has_comments.png" />
+        <% end %>
       </div>
       <div class="info">
         <span class="label label-info label-info-squad">
