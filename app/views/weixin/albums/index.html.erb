@@ -5,6 +5,9 @@
   <div class="message_title">
     <a href="<%= weixin_path %>" title="返回" class="weixin_return">返回</a>
     相册集锦
+    <%if choose_operate_show('my_school/albums/new')%>
+      <%= link_to "新增" ,url_for(:action=>:new),:class=>'new_message btn btn-warning' %>
+    <% end %>
   </div>
   <div class="message_list">
     <ul class="data_list">

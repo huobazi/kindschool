@@ -1,0 +1,18 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<script type="text/javascript" src="/assets/plupload.full.min.js"></script>
+<div class="message_div">
+  <div class="message_title">
+    <a href="<%= weixin_path %>" title="返回" class="weixin_return">返回</a> 修改个人信息
+  </div>
+  <div class="message_list message_form">
+    <br/>
+    <%= simple_form_for @user, :validate => true, :url => {:controller=>"/weixin/users",:action=>:update_user}, :html =>{:class=>"form-horizontal"} do |f| %>
+      <%= render :partial => "/my_school/users/user_form" ,:locals=>{:f=>f} %>
+    <% end %>
+    <br/>
+  </div>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>

@@ -1,6 +1,7 @@
 <div class="container">
   <%= render :partial => "/modules/colorful/weixin_head" %>
 </div>
+<script type="text/javascript" src="/assets/plupload.full.min.js"></script>
 <div class="message_div">
   <div class="message_title">
     <a href="<%= url_for(:action=>:show,:id=>@album.id) %>" title="返回" class="weixin_return">返回</a> 相册集锦
@@ -12,17 +13,53 @@
       <br/>
       <div class="control-group">
         <div class="controls">
-          <div id="upload_notice">
-            <input type="text" name="uploaded_data" id="uploadify"/>
-            <div id="uploadify_queue_div">
-            </div>
+          <br />
+          <div id="filelist"></div>
+          <div id="container">
+            <a id="pickfiles" href="javascript:;" class="btn btn-info">选择照片</a>
+            <a id="uploadfiles" href="javascript:;" class="btn btn-success">上传照片</a>
           </div>
-          <script type='text/javascript'>
-            $(document).ready(function() {
-              var option = <%= uploadify_rails_options %>;
-              option["uploader"] = "<%= url_for(:controller=>"/my_school/albums",:action=>"add_entry_imgs",:id=>@album.id,:t=>Time.now.to_i) %>";
-              $('input#uploadify').uploadify(option);
+          <script type="text/javascript">
+            // Custom example logic
+            var atoken = $("input[name=authenticity_token]").val(); 
+            var uploader = new plupload.Uploader({
+              runtimes : 'html5,flash,silverlight,html4',
+              browse_button : 'pickfiles', // you can pass in id...
+              container: document.getElementById('container'), // ... or DOM Element itself
+              url : '<%= url_for(:controller=>"/my_school/albums",:action=>"add_entry_imgs",:id=>@album.id,:t=>Time.now.to_i) %>',
+              filters : {
+                max_file_size : '5mb',
+                mime_types: [
+                  {title : "Image files", extensions : "jpg,gif,png"}
+                ]
+              },
+              file_data_name : "Filedata",
+              multipart_params : {authenticity_token : atoken},
+              flash_swf_url : '/plupload/Moxie.swf',
+              silverlight_xap_url : '/plupload/Moxie.xap',
+              init: {
+                PostInit: function() {
+                  document.getElementById('filelist').innerHTML = '';
+
+                  document.getElementById('uploadfiles').onclick = function() {
+                    uploader.start();
+                    return false;
+                  };
+                },
+                FilesAdded: function(up, files) {
+                  plupload.each(files, function(file) {
+                    document.getElementById('filelist').innerHTML += '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
+                  });
+                },
+                UploadProgress: function(up, file) {
+                  document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span>' + file.percent + "%</span>";
+                },
+                Error: function(up, err) {
+                  document.getElementById('console').innerHTML += "\nError #" + err.code + ": " + err.message;
+                }
+              }
             });
+            uploader.init();
           </script>
         </div>
       </div>

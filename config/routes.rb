@@ -311,8 +311,8 @@ School::Application.routes.draw do
     end
     resources :users do
       collection do
-        get :login,:error_messages,:change_password_view
-        post :login,:change_password
+        get :login,:error_messages,:change_password_view,:edit
+        post :login,:change_password,:update_user
       end
     end
     resources :cook_books

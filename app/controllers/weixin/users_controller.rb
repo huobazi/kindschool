@@ -109,6 +109,27 @@ class Weixin::UsersController < Weixin::ManageController
     redirect_to :controller => "/weixin/users", :action => :change_password_view
   end
 
+  def edit
+    @user = User.find_by_id(current_user.id)
+    @user.kindergarten_id = @kind.id
+    @user.tp = current_user.tp
+  end
+
+  def update
+    @user = User.find_by_id(current_user.id)
+    if @user.update_attributes(params[:user])
+      if params[:asset_logo]
+        @user.asset_logo = AssetLogo.new(:uploaded_data=> params[:asset_logo])
+        @user.save
+      end
+      flash[:success] = "修改用户个人信息成功"
+      redirect_to weixin_path(@user)
+    else
+      flash[:error] = "操作失败"
+      render :edit
+    end
+  end
+
   private
 
   def load_noisy_image

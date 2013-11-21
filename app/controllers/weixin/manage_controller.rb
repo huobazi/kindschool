@@ -16,6 +16,11 @@ class  Weixin::ManageController < Weixin::BaseController
         return
       end
     end
+    unless session[:operates].blank?
+      operates_data = current_user.operates.collect{ |operate| "#{operate.controller}/#{operate.action}"}
+      operates_data.uniq!
+      session[:operates] = operates_data
+    end
   end
   private
   #设置模板
@@ -26,10 +31,10 @@ class  Weixin::ManageController < Weixin::BaseController
   ##自动添加日志 (根据日志配置过滤)
   def auto_write_log
     if current_user != :false
-     if  user =  current_user
-       SysLog.write_log user.id, url_options[:_path_segments], request.method,
-                        request.original_url,request.remote_ip,params,@kind.id #if Rails.env.production?
-     end
+      if  user =  current_user
+        SysLog.write_log user.id, url_options[:_path_segments], request.method,
+          request.original_url,request.remote_ip,params,@kind.id #if Rails.env.production?
+      end
     end
   end
 

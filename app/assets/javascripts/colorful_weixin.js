@@ -15,7 +15,6 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require kindeditor
-//= require uploadify
 $(function(){
     function tabs(tabTit,on,tabCon){
         $(tabCon).each(function(){
