@@ -4,6 +4,9 @@
 <div class="message_div">
   <div class="message_title">
     <a href="<%= url_for(:action=>:index) %>" title="返回" class="weixin_return">返回</a> 相册集锦
+    <%if choose_operate_show('my_school/albums/edit')%>
+      <%= link_to "编辑" ,url_for(:action=>:edit,:message_id=>@album.id),:class=>'new_message btn btn-warning' %>
+    <% end %>
   </div>
   <div class="show_title">
     <div class="title">

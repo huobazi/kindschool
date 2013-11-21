@@ -20,6 +20,9 @@
               <div class="left_two">
                 <label class="title_label"><%= album.title %></label>
                 <label class="time_label"><%= album.send_date ? album.send_date.to_short_datetime : "" %></label>
+                <% if current_user.id == album.creater_id %>
+                  <%= album.unread_comment_count %><img src="/t/colorful/has_comments.png" />
+                <% end %>
               </div>
             </a>
           </li>

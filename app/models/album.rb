@@ -11,6 +11,8 @@ class Album < ActiveRecord::Base
 
   validates :title, :presence => true, :length => {:minimum=> 3, :maximum=> 20}
 
+  include UnreadComment
+
    def show_main_img
     if self.album_entry_id && (record = self.album_entries.find_by_id(self.album_entry_id))
       album_entry = record

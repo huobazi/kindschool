@@ -23,6 +23,14 @@ class Topic < ActiveRecord::Base
 
   before_destroy :ensure_not_topic_entries
 
+  def unread_comment_count
+    if accessed_at
+      topic_entries.where("created_at > ?", accessed_at).count
+    else
+      topic_entries.count
+    end
+  end
+
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end

@@ -165,7 +165,7 @@
           <div id="content_down">
             <% unless @activity.asset_img.blank? %>
               <div class="logo" style="float: left;">
-                <a href="<%= @activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="<%= @activity.note %>" >
+                <a href="<%= @activity.asset_img.public_filename %>" class="fancybox" title="<%= @activity.note %>" >
                   <img src="<%= @activity.asset_img.public_filename(:thumb) %>" />
                 </a>
               </div>

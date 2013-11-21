@@ -139,8 +139,13 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
     if @growth_record.nil?
       flash[:error] = "没有权限或该宝宝在园成长记录不存在"
       redirect_to :action => :garden
+      return
     else
       render "my_school/growth_records/show"
+      if current_user.id == @growth_record.creater_id
+        @growth_record.accessed_at = Time.now.utc
+        @growth_record.save
+      end
     end
   end
 

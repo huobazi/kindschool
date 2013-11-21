@@ -1,54 +1,58 @@
-<div class="activity">
-  <div class="activity_div">
-    <div class="activity_list">
-      <div class="activity_title">
-        活动通知
+<% if !@activities.blank? || !@recent_activities.blank? %>
+  <div class="activity">
+    <div class="activity_div">
+      <div class="activity_list">
+        <div class="activity_title">
+          活动通知
+        </div>
+        <div class="activity_list_info">
+          <ul>
+            <% @activities.each do |activity| %>
+              <li>
+                <% if activity.tp == 0 %>
+                  <%= link_to truncate(activity.title, length: 27, omission: '...'), my_school_activity_path(activity) %>
+                <% else %>
+                  <%= link_to truncate(activity.title, length: 27, omission: '...'), my_school_interest_activity_path(activity) %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <% if @activities.count == 5 %>
+          <div class="activity_more">
+            <%= link_to "查看更多","/" %>
+          </div>
+        <% end %>
       </div>
-      <div class="activity_list_info">
+      <div class="activity_content">
         <ul>
-          <% @activities.each do |activity| %>
+          <% @recent_activities.each do |recent_activity| %>
             <li>
-              <% if activity.tp == 0 %>
-                <%= link_to truncate(activity.title, length: 27, omission: '...'), my_school_activity_path(activity) %>
-              <% else %>
-                <%= link_to truncate(activity.title, length: 27, omission: '...'), my_school_interest_activity_path(activity) %>
-              <% end %>
+              <div class="activity_content_logo">
+                <% if recent_activity.asset_img.blank? %>
+                  <img src="/t/colorful/activity_logo1.jpg" alt="" />
+                <% else %>
+                  <a href="<%= recent_activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
+                    <img src="<%= recent_activity.asset_img.public_filename(:middle) %>" />
+                  </a>
+                <% end %>
+              </div>
+              <div class="activity_content_info">
+                <div class="activity_content_title">
+                  <% if recent_activity.tp == 0 %>
+                    <%= link_to truncate(recent_activity.title, length: 45, omission: "..."), my_school_activity_path(recent_activity), :class => "btn-link" %>
+                  <% else %>
+                    <%= link_to truncate(recent_activity.title, length: 45, omission: "..."), my_school_interest_activity_path(recent_activity), :class => "btn-link" %>
+                  <% end %>
+                </div>
+                <div class="activity_content_text"><%= simple_format recent_activity.content %></div>
+              </div>
             </li>
           <% end %>
         </ul>
       </div>
-      <% if @activities.count == 5 %>
-        <div class="activity_more">
-          <%= link_to "查看更多","/" %>
-        </div>
-      <% end %>
-    </div>
-    <div class="activity_content">
-      <ul>
-        <% @recent_activities.each do |recent_activity| %>
-          <li>
-            <div class="activity_content_logo">
-              <% if recent_activity.asset_img.blank? %>
-                <img src="/t/colorful/activity_logo1.jpg" alt="" />
-              <% else %>
-                <a href="<%= recent_activity.asset_img.public_filename(:thumb) %>" class="fancybox" title="" >
-                  <img src="<%= recent_activity.asset_img.public_filename(:middle) %>" />
-                </a>
-              <% end %>
-            </div>
-            <div class="activity_content_info">
-              <div class="activity_content_title">
-                <% if recent_activity.tp == 0 %>
-                  <%= link_to truncate(recent_activity.title, length: 45, omission: "..."), my_school_activity_path(recent_activity), :class => "btn-link" %>
-                <% else %>
-                  <%= link_to truncate(recent_activity.title, length: 45, omission: "..."), my_school_interest_activity_path(recent_activity), :class => "btn-link" %>
-                <% end %>
-              </div>
-              <div class="activity_content_text"><%= simple_format recent_activity.content %></div>
-            </div>
-          </li>
-        <% end %>
-      </ul>
     </div>
   </div>
-</div>
+<% else %>
+  <div>没有活动</div>
+<% end %>

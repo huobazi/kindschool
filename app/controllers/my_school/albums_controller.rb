@@ -224,6 +224,11 @@ class MySchool::AlbumsController  < MySchool::ManageController
       flash[:error] = "没有权限或相册不存在"
       redirect_to :action=> :index
       return
+    else
+      if current_user.id == @album.creater_id
+        @album.accessed_at = Time.now.utc
+        @album.save
+      end
     end
     @album_entries=@album.album_entries.order("created_at DESC")
     @album_entry=AlbumEntry.new()
@@ -268,8 +273,6 @@ class MySchool::AlbumsController  < MySchool::ManageController
   end
 
   def graduate_class
-    puts "1111111111111111111"
-    puts params.inspect
     if current_user.get_users_ranges[:tp] == :teachers  
       if params[:graduate]=="true"
         @all_squads = current_user.staff.squads.collect{|x|["#{x.name}   #{x.historyreview}",x.id]}
