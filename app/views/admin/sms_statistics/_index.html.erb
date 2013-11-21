@@ -1,7 +1,7 @@
 <div class="search_form_s">
       <%= form_tag '/admin/smsstatistics' , :method=>"get" do %>
         <b>幼儿园名称：</b>
-        <%= text_field :sms_record,:created_at_greater_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:sms_record][:created_at_greater_than_or_equal_to] if params[:sms_record] }"  %>
+        <%= select_tag("sms_record[kindergarten_id_equals]", options_for_select(([["全部",""]]+Kindergarten.all.collect{|x|["#{x.name}",x.id]}),(params[:sms_record].blank? ?  "" : params[:sms_record][:kindergarten_id_equals])),:style=>"width:100px;margin-top: 10px;") %>
         <b>发送开始时间：</b>
         <%= text_field :sms_record,:created_at_greater_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:sms_record][:created_at_greater_than_or_equal_to] if params[:sms_record] }"  %>
         <b>发送结束时间：</b>
