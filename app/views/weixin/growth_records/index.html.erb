@@ -18,9 +18,16 @@
       <% else %>
         <% @growth_records.each do |growth_record| %>
           <li class="show" data-id="<%= growth_record.id %>">
-            <p class="title"><span class="name"><%= growth_record.student_info_label %></span></p>
-            <p class="info"><span><%= growth_record.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span><%= growth_record.end_at.try(:to_short_datetime) %></span>&nbsp;由<span class="author"><%= growth_record.try(:creater).try(:name) %></span>创建于&nbsp;<span><%= growth_record.created_at.try(:to_long_datetime) %></span></p>
-            <div class="content">
+            <p class="title"><span class="name"><%= growth_record.student_info_label %></span>
+              <span>
+                <% if current_user.id == growth_record.creater_id %>
+                  <%= growth_record.unread_comment_count %><img src="/t/colorful/has_comments.png" />
+                <% end %>
+              </span>
+            </p>
+            <p class="info"><span><%= growth_record.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span><%= growth_record.end_at.try(:to_short_datetime) %></span>&nbsp;由<span class="author"><%= growth_record.try(:creater).try(:name) %></span>创建于&nbsp;<span><%= growth_record.created_at.try(:to_long_datetime) %></span>
+            
+            </p>
               <%= simple_format growth_record.content %>
             </div>
           </li>
