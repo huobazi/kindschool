@@ -16,11 +16,14 @@ class  Weixin::ManageController < Weixin::BaseController
         return
       end
     end
+    puts "===============a"
     unless session[:operates].blank?
       operates_data = current_user.operates.collect{ |operate| "#{operate.controller}/#{operate.action}"}
       operates_data.uniq!
       session[:operates] = operates_data
+      puts "===============b"
     end
+    puts "=================session[:operates]=====#{session[:operates].inspect}"
   end
   private
   #设置模板
