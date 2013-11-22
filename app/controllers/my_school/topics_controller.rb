@@ -56,7 +56,7 @@ class  MySchool::TopicsController < MySchool::ManageController
       redirect_to :action => :index
       return
     else
-      if current_user.id = @topic.creater_id
+      if current_user.id == @topic.creater_id
         @topic.accessed_at = Time.now.utc
         @topic.save
       end

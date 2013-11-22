@@ -1,6 +1,6 @@
 #encoding:utf-8
 class GrowthRecord < ActiveRecord::Base
-  attr_accessible :content, :creater_id, :end_at, :kindergarten_id, :squad_name, :start_at, :student_info_id, :tp, :student_info, :siesta, :dine, :reward
+  attr_accessible :content, :creater_id, :end_at, :kindergarten_id, :squad_name, :start_at, :student_info_id, :tp, :student_info, :siesta, :dine, :reward, :accessed_at
 
   scope :week_stat, ->(start_at, end_at) { where("start_at >= ? and end_at <= ?", start_at, end_at) }
 
