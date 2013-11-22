@@ -2,7 +2,7 @@
 #后台短信统计
 ActiveAdmin.register_page "SmsStatistics" do
 menu :parent => "短信计费", :priority => 14
- content :title => proc{ I18n.t("active_admin.dashboard") } do
+ content :title => proc{ I18n.t("active_admin.smsstatistics") } do
   # collection_action :kind_sms_records, :method => :get, :title => "幼儿园" do
   # end
   columns do

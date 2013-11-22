@@ -814,6 +814,7 @@ zh-CN:
       next: "下一页 &raquo;"
       truncate: "..."
   active_admin:
+    smsstatistics: "短信统计"
     batch_actions:
       labels:
         luck: "中奖用户"
