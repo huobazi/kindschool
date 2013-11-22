@@ -1,6 +1,6 @@
 #encoding:utf-8
 class Album < ActiveRecord::Base
-  attr_accessible :album_entry_id,:approve_status, :approver_id, :content, :creater_id, :grade_id, :is_show, :kindergarten_id, :send_date, :squad_id, :squad_name, :title, :tp, :is_top
+  attr_accessible :album_entry_id,:approve_status, :approver_id, :content, :creater_id, :grade_id, :is_show, :kindergarten_id, :send_date, :squad_id, :squad_name, :title, :tp, :is_top, :accessed_at
 
   belongs_to :kindergarten
   belongs_to :squad
