@@ -17,7 +17,7 @@ class  Weixin::ManageController < Weixin::BaseController
       end
     end
     puts "===============a"
-    unless session[:operates].blank?
+    if session[:operates].blank?
       operates_data = current_user.operates.collect{ |operate| "#{operate.controller}/#{operate.action}"}
       operates_data.uniq!
       session[:operates] = operates_data
