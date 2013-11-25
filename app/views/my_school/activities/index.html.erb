@@ -38,7 +38,9 @@
         </li>
         <li>
           <% if choose_operate_show("my_school/activities/destroy") %>
-            <%= render :partial => "/my_school/commons/delete_action" %>
+            <a href="javascript: void(0)" rel="nofollow" title="删除" id="destroy_multiple">
+              <%= render :partial => "/my_school/commons/delete_action" %>
+            </a>
           <% end %>
         </li>
       </ul>
@@ -58,7 +60,7 @@ $(document).ready(function(){
   $(".fancybox").fancybox();
 });
 $("#destroy_multiple").click(function(){
-  if (confirm('您确定删除选中的贴子吗')) {
+  if (confirm('您确定删除选中的记录吗')) {
     $("#destroy_multi_form").submit();
   }
 });
