@@ -43,15 +43,7 @@
         </li>
       </ul>
     </div>
-    <div class="search_form">
-      <%= form_tag '#{ controller_name == "activities" ? "my_school/activities" : "my_school/interest_activities" }' , :method=>"get" do %>
-      <b>标题：</b>
-      <%= text_field :activity,:title_like,:style=>"width:100px;" ,:value=>"#{params[:activity][:title_like] if params[:activity] }"  %>
-      <b>内容：</b>
-      <%= text_field :activity,:content_like,:style=>"width:100px;" ,:value=>"#{params[:activity][:content_like] if params[:activity] }"  %>
-      <%= submit_tag "搜索"  , :class => "btn btn-primary"%>
-      <%end%>
-    </div>
+    <%= render :partial => "search_form" %>
     <div class="work_list">
       <div class="topics">
         <%= render "my_school/activities/tab_activities" %>
