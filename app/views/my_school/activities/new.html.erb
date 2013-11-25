@@ -30,24 +30,10 @@
       </div>
       <ul class="work_action">
         <li>
-          <% if controller_name == "activities" %>
-            <% if choose_operate_show("my_school/activities/index") %>
-              <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:index)%>" title="返回">
-                <div class="work_action_return">
-                </div>
-                <div class="work_action_return_move">
-                </div>
-              </a>
-            <% end %>
-          <% else %>
-            <% if choose_operate_show("my_school/interest_activities/index") %>
-              <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:index)%>" title="返回">
-                <div class="work_action_return">
-                </div>
-                <div class="work_action_return_move">
-                </div>
-              </a>
-            <% end %>
+          <% if choose_operate_show("#{params[:controller]}/index") %>
+            <a href="<%=url_for(:controller=>"#{params[:controller]}",:action=>:index)%>" title="返回">
+              <%= render :partial => "/my_school/commons/return_action" %>
+            </a>
           <% end %>
         </li>
       </ul>
