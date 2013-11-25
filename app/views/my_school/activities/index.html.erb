@@ -30,25 +30,11 @@
       </div>
       <ul class="work_action">
         <li>
-          <% if controller_name == "activities" %>
-            <% if choose_operate_show("my_school/activities/new") %>
-              <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:new)%>" title="添加">
-                <div class="work_action_add">
-                </div>
-                <div class="work_action_add_move">
-                </div>
-              </a>
-            <% end %>
-        <% else %>
-          <% if choose_operate_show("my_school/interest_activities/new") %>
-            <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:new)%>" title="添加">
-              <div class="work_action_add">
-                </div>
-                <div class="work_action_add_move">
-                </div>
+          <% if choose_operate_show("#{params[:controller]}/new") %>
+            <a href="<%=url_for(:controller=>"#{params[:controller]}",:action=>:new)%>" title="添加">
+              <%= render :partial => "/my_school/commons/add_action" %>
             </a>
           <% end %>
-        <% end %>
         </li>
         <li>
           <% if choose_operate_show("my_school/activities/destroy") %>
