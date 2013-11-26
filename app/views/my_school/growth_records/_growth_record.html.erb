@@ -14,39 +14,22 @@
       </div>
     <% end %>
     <div class="pull-right replies">
-      <% if controller_name == "growth_records" %>
-        <% if choose_operate_show("my_school/growth_records/show") %>
-          <a title="查看<%= growth_record.student_info_label %>的成长记录" alt="要看<%= growth_record.student_info_label %>的成长记录" href="<%= my_school_growth_record_path(growth_record) %>"><i class="img-icon icon-eye-open"></i></a>
-        <% end %>
-      <% else %>
-        <% if choose_operate_show("my_school/garden_growth_records/show") %>
-          <a title="查看<%= growth_record.student_info_label %>的成长记录" alt="要看<%= growth_record.student_info_label %>的成长记录" href="<%= my_school_garden_growth_record_path(growth_record) %>"><i class="img-icon icon-eye-open"></i></a>
-        <% end %>
-      <% end %>
-      <% if controller_name == "growth_records" %>
-        <% if choose_operate_show("my_school/growth_records/edit") %>
-          <a title="编辑<%= growth_record.student_info_label %>的成长记录" alt="编辑<%= growth_record.student_info_label %>的成长记录" href="<%= edit_my_school_growth_record_path(growth_record) %>"><i class="img-icon icon-edit"></i></a>
-        <% end %>
-      <% else %>
-        <% if choose_operate_show("my_school/garden_growth_records/edit") %>
-          <a title="编辑<%= growth_record.student_info_label %>的成长记录" alt="编辑<%= growth_record.student_info_label %>的成长记录" href="<%= edit_my_school_garden_growth_record_path(growth_record) %>"><i class="img-icon icon-edit"></i></a>
-        <% end %>
-      <% end %>
-      <% if controller_name == "growth_records" %>
-        <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{growth_record.comments.count}</span>"), my_school_growth_record_path(growth_record, anchor: "load_comments"), class: "count" %>
-      <% else %>
-        <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{growth_record.comments.count}</span>"), my_school_garden_growth_record_path(growth_record, anchor: "load_comments"), class: "count" %>
+
+      <% if choose_operate_show("#{params[:controller]}/show") %>
+        <a title="查看<%= growth_record.student_info_label %>的成长记录" alt="要看<%= growth_record.student_info_label %>的成长记录" href="<%= url_for(:controller => "#{params[:controller]}", :action => :show, :id => growth_record.id) %>"><i class="img-icon icon-eye-open"></i></a>
+        </a>
       <% end %>
 
+      <% if choose_operate_show("#{params[:controller]}/edit") %>
+        <a title="编辑<%= growth_record.student_info_label %>的成长记录" alt="编辑<%= growth_record.student_info_label %>的成长记录" href="<%= url_for(:controller => "#{params[:controller]}", :action => "edit", :id => growth_record.id) %>"><i class="img-icon icon-edit"></i></a>
+      <% end %>
 
+      <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{growth_record.comments.count}</span>"), url_for(:controller => "#{params[:controller]}", :action => "show", id: growth_record.id, anchor: "load_comments"), class: "count" %>
     </div>
     <div class="infos">
       <div class="title">
-        <% if controller_name == "growth_records" %>
-          <%= link_to raw("<span style='font-size: 18px;'>#{growth_record.student_info_label}</span><span style='color: #333;font-size:14px;'></span>"), my_school_growth_record_path(growth_record) %>
-        <% else %>
-          <%= link_to raw("<span style='font-size: 18px;'>#{growth_record.student_info_label}</span><span style='color: #333;font-size: 14px;'></span>"), my_school_garden_growth_record_path(growth_record) %>
-        <% end %>
+        <%= link_to raw("<span style='font-size: 18px;'>#{growth_record.student_info_label}</span><span style='color: #333;font-size: 14px;'></span>"), url_for(:controller => "#{params[:controller]}", :action => "show", :id => growth_record.id) %>
+
         <% if growth_record.asset_imgs.any? %>
           <img src="/t/colorful/has-picture.png" alt="" />
         <% end %>
