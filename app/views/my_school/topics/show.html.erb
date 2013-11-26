@@ -20,7 +20,7 @@
         <li>
           <% if choose_operate_show("my_school/topics/edit") %>
             <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:edit,:id=>@topic.id)%>" title="编辑">
-              <%= render partial: "/my_school/commons/edit" %>
+              <%= render partial: "/my_school/commons/edit_action" %>
             </a>
           <% end %>
         </li>
