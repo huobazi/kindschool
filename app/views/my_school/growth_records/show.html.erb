@@ -36,64 +36,32 @@
       </div>
       <ul class="work_action">
         <li>
-          <% if controller_name == "growth_records" %>
-            <% if choose_operate_show("my_school/growth_records/new") %>
-              <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new) %>" title="添加">
-                <div class="work_action_add">
-                </div>
-                <div class="work_action_add_move">
-                </div>
-              </a>
-            <% end %>
-          <% else %>
-            <% if choose_operate_show("my_school/garden_growth_records/new") %>
-              <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new)%>" title="添加">
-                <div class="work_action_add">
-                </div>
-                <div class="work_action_add_move">
-                </div>
+          <% if choose_operate_show("#{params[:controller]}/new") %>
+            <% unless current_user.get_users_ranges[:tp] == :teachers && controller_name == "growth_records" %>
+              <a href="<%=url_for(:controller=>"#{params[:controller]}",:action=>:new)%>" title="添加">
+                <%= render partial: "/my_school/commons/add_action" %>
               </a>
             <% end %>
           <% end %>
         </li>
         <li>
-          <% if controller_name == "growth_records" %>
-            <% if choose_operate_show("my_school/growth_records/edit") %>
-              <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:edit,:id=>@growth_record.id)%>" title="编辑">
-                <div class="work_action_edit">
-                </div>
-                <div class="work_action_edit_move">
-                </div>
-              </a>
-            <% end %>
-          <% else %>
-            <% if choose_operate_show("my_school/garden_growth_records/edit") %>
-              <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:edit,:id=>@growth_record.id)%>" title="编辑">
-                <div class="work_action_edit">
-                </div>
-                <div class="work_action_edit_move">
-                </div>
-              </a>
-            <% end %>
+          <% if choose_operate_show("#{params[:controller]}/edit") %>
+            <a href="<%=url_for(:controller=>"#{params[:controller]}",:action=>:edit,:id=>@growth_record.id)%>" title="编辑">
+              <%= render partial: "/my_school/commons/edit_action" %>
+            </a>
           <% end %>
         </li>
         <li>
           <% if controller_name == "growth_records" %>
             <% if choose_operate_show("my_school/growth_records/home") %>
               <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:home, params: session[:return_to])%>" title="返回">
-                <div class="work_action_return">
-                </div>
-                <div class="work_action_return_move">
-                </div>
+                <%= render partial: "/my_school/commons/return_action" %>
               </a>
             <% end %>
           <% else %>
             <% if choose_operate_show("my_school/garden_growth_records/garden") %>
               <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:garden, params: session[:return_to])%>" title="返回">
-                <div class="work_action_return">
-                </div>
-                <div class="work_action_return_move">
-                </div>
+                <%= render partial: "/my_school/commons/return_action" %>
               </a>
             <% end %>
           <% end %>

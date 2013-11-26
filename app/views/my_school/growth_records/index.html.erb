@@ -46,47 +46,19 @@
       </div>
       <ul class="work_action">
         <li>
-            <% if controller_name == "growth_records" %>
-              <% unless current_user.get_users_ranges[:tp] == :teachers %>
-                <% if choose_operate_show("my_school/growth_records/new") %>
-                  <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:new)%>" title="添加">
-                    <div class="work_action_add">
-                    </div>
-                    <div class="work_action_add_move">
-                    </div>
-                  </a>
-                <% end %>
-              <% end %>
-            <% else %>
-              <% if choose_operate_show("my_school/garden_growth_records/new") %>
-                <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:new)%>" title="添加">
-                  <div class="work_action_add">
-                  </div>
-                  <div class="work_action_add_move">
-                  </div>
-                </a>
-              <% end %>
+          <% if choose_operate_show("#{params[:controller]}/new") %>
+            <% unless current_user.get_users_ranges[:tp] == :teachers && controller_name == "growth_records" %>
+              <a href="<%=url_for(:controller=>"#{params[:controller]}",:action=>:new)%>" title="添加">
+                <%= render partial: "/my_school/commons/add_action" %>
+              </a>
             <% end %>
+          <% end %>
         </li>
         <li>
-          <% if controller_name == "growth_records" %>
-            <% unless current_user.get_users_ranges[:tp] == :teachers %>
-              <% if choose_operate_show("my_school/growth_records/destroy") %>
-                <a href="javascript: void(0)" title="删除" id="destroy_multiple">
-                  <div class="work_action_delete">
-                  </div>
-                  <div class="work_action_delete_move">
-                  </div>
-                </a>
-              <% end %>
-            <% end %>
-          <% else %>
-            <% if choose_operate_show("my_school/garden_growth_records/destroy") %>
+          <% if choose_operate_show("#{params[:controller]}/destroy") %>
+            <% unless controller_name == "growth_records" && current_user.get_users_ranges[:tp] == :teachers %>
               <a href="javascript: void(0)" title="删除" id="destroy_multiple">
-                <div class="work_action_delete">
-                </div>
-                <div class="work_action_delete_move">
-                </div>
+                <%= render partial: "/my_school/commons/delete_action" %>
               </a>
             <% end %>
           <% end %>
@@ -94,18 +66,7 @@
       </ul>
     </div>
 
-    <div class="search_form">
-      <%= form_tag '#{ controller_name == "growth_records" ? "/my_school/growth_records/home" : "/my_school/garden_growth_records/garden"}' , :method=>"get" do %>
-        <b>学员：</b>
-        <%= text_field :growth_record,:student_info_user_name_like,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:student_info_user_name_like] if params[:growth_record] }"%>
-        <b>开始时间：</b>
-        <%= text_field :growth_record,:start_at_less_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:start_at_less_than_or_equal_to] if params[:growth_record] }"  %>
-        <b>结束时间：</b>
-        <%= text_field :growth_record,:end_at_greater_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:end_at_greater_than_or_equal_to] if params[:growth_record] }"  %>
-        <%= submit_tag "搜索" , :class => "btn btn-primary" %>
-      <%end%>
-    </div>
-
+    <%= render partial: "/my_school/growth_records/search_form" %>
 
     <div class="work_list">
       <div class="topics">
