@@ -1,0 +1,11 @@
+<div class="search_form">
+  <%= form_tag '/my_school/notices' , :method=>"get" do %>
+    <b>发布人：</b>
+    <%= text_field :notice,:creater_name_like,:style=>"width:100px;" ,:value=>"#{params[:notice][:creater_name_like] if params[:notice] }"%>
+    <b>标题：</b>
+    <%= text_field :notice,:title_like,:style=>"width:100px;" ,:value=>"#{params[:notice][:title_like] if params[:notice] }"  %>
+    <b>发布时间：</b>
+    <%= text_field :notice,:send_date_equals,:style=>"width:100px;" ,:value=>"#{params[:notice][:send_date_equals] if params[:notice] }"  %>
+    <%= submit_tag "搜索"  , :class => "btn btn-primary"%>
+  <%end%>
+</div>

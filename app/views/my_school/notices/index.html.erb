@@ -32,34 +32,18 @@
       <ul class="work_action">
         <li>
           <a href="<%=url_for(:controller=>"/my_school/notices",:action=>:new)%>" title="添加">
-            <div class="work_action_add">
-            </div>
-            <div class="work_action_add_move">
-            </div>
+            <%= render partial: "/my_school/commons/add_action" %>
           </a>
         </li>
         <li>
           <a href="/" title="删除" id="destroy_multiple">
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
+            <%= render partial: "/my_school/commons/delete_action" %>
           </a>
         </li>
       </ul>
     </div>
 
-    <div class="search_form">
-     <%= form_tag '/my_school/notices' , :method=>"get" do %>
-      <b>发布人：</b>
-      <%= text_field :notice,:creater_name_like,:style=>"width:100px;" ,:value=>"#{params[:notice][:creater_name_like] if params[:notice] }"%>
-      <b>标题：</b>
-      <%= text_field :notice,:title_like,:style=>"width:100px;" ,:value=>"#{params[:notice][:title_like] if params[:notice] }"  %>
-      <b>发布时间：</b>
-      <%= text_field :notice,:send_date_equals,:style=>"width:100px;" ,:value=>"#{params[:notice][:send_date_equals] if params[:notice] }"  %>
-      <%= submit_tag "搜索"  , :class => "btn btn-primary"%>
-      <%end%>
-    </div>
+    <%= render partial: "search_form" %>
 
     <div class="work_list">
       <%= render "tab_notices.html.erb" %>

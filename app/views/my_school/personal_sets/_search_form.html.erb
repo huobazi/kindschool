@@ -1,0 +1,9 @@
+<div class="search_form">
+  <%= form_tag '/my_school/personal_sets' , :method=>"get" do %>
+    <b>上传时间大于：</b>
+    <%= text_field :personal_set,:created_at_greater_than,:style=>"width:100px;" ,:value=>"#{params[:personal_set][:created_at_greater_than] if params[:personal_set] }"  %>
+    <b>上传时间小于：</b>
+    <%= text_field :personal_set,:created_at_less_than,:style=>"width:100px;" ,:value=>"#{params[:personal_set][:created_at_less_than] if params[:personal_set] }"  %>
+    <%= submit_tag "搜索" , :class => "btn search_btn" %>
+  <%end%>
+</div>
