@@ -1,0 +1,6 @@
+<div class="search_form">
+  <%= form_tag '/my_school/virtual_squads' , :method=>"get" do %>
+    <b>延时班名：</b><%= text_field :virtual_squad,:name_like,:style=>"width:100px;" ,:class=>"control-label",:value=>"#{params[:virtual_squad][:name_like] if params[:virtual_squad] }" %>
+    <%= submit_tag "搜索", :class => "btn btn-primary"%>
+  <%end%>
+</div>

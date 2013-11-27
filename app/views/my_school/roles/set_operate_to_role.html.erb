@@ -18,11 +18,8 @@
       </div>
       <ul class="work_action">
         <a href="<%=url_for(:controller=>"/my_school/roles",:action=>:show, :id=>@role)%>" title="返回">
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
-          </a>
+          <%= render partial: "/my_school/commons/return_action" %>
+        </a>
       </ul>
     </div>
 
