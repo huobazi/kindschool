@@ -273,5 +273,5 @@ PAGE_CONTROLLER = [
   "interest_activities", "albums", "cook_books",
   "physical_records", "seedlings",
   "notices", "squads", "grades",
-  "staffs", "messages", "virtual_squads"
+  "staffs", "messages", "virtual_squads", "student_infos"
 ]
