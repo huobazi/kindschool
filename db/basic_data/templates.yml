@@ -6,5 +6,5 @@ colorful:
 flowers:
   name: "花儿朵朵"
   number: flowers
-  is_default: 1
+  is_default: 0
   image_url: "/t/flowers.jpg"
