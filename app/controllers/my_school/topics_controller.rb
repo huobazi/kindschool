@@ -2,16 +2,16 @@
 class  MySchool::TopicsController < MySchool::ManageController
   include TopicsHelper
   def index
-    @topic_categories = @kind.topic_categories.order("sequence DESC")
+    @topic_categories = @kind.topic_categories
 
     unless params[:topic_category_id].blank?
       if topic_category = @kind.topic_categories.find_by_id(params[:topic_category_id])
         if current_user.get_users_ranges[:tp] == :student
-          @topics = @kind.topics.where("topic_category_id = ? and approve_status = 0  and (creater_id = ? or squad_id = ? or squad_id is null)", topic_category.id, current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
+          @topics = @kind.topics.where("topic_category_id = ? and approve_status = 0  and (creater_id = ? or squad_id = ? or squad_id is null)", topic_category.id, current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1)
         elsif current_user.get_users_ranges[:tp] == :teachers
-          @topics = @kind.topics.search(params[:topic] || {}).where("topic_category_id = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", topic_category.id, current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
+          @topics = @kind.topics.search(params[:topic] || {}).where("topic_category_id = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", topic_category.id, current_user.staff.id, current_user.id).page(params[:page] || 1)
         else
-          @topics = @kind.topics.where(:topic_category_id => topic_category.id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
+          @topics = @kind.topics.where(:topic_category_id => topic_category.id).search(params[:topic] || {}).page(params[:page] || 1)
         end
         @topic_category_id = params[:topic_category_id]
       else
@@ -21,11 +21,11 @@ class  MySchool::TopicsController < MySchool::ManageController
       @topic_category_id = params[:topic_category_id]
     else
       if current_user.get_users_ranges[:tp] == :student
-        @topics = @kind.topics.where("creater_id = ? or squad_id = ? or squad_id is null", current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
+        @topics = @kind.topics.where("creater_id = ? or squad_id = ? or squad_id is null", current_user.id, current_user.student_info.squad_id).search(params[:topic] || {}).page(params[:page] || 1)
       elsif current_user.get_users_ranges[:tp] == :teachers
-        @topics = @kind.topics.search(params[:topic] || {}).where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("is_top DESC, created_at DESC")
+        @topics = @kind.topics.search(params[:topic] || {}).where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1)
       else
-        @topics = @kind.topics.search(params[:topic] || {}).page(params[:page] || 1).per(10).order("is_top DESC").order("created_at DESC")
+        @topics = @kind.topics.search(params[:topic] || {}).page(params[:page] || 1)
       end
     end
 
@@ -66,7 +66,7 @@ class  MySchool::TopicsController < MySchool::ManageController
     @topic_entry_count = @topic.topic_entries.count
     @topic_entry.topic_id = @topic.id
     @topic_entry.creater_id = current_user.id
-    @topic_entries = @topic.topic_entries.page(params[:page] || 0).per(10)
+    @topic_entries = @topic.topic_entries.page(params[:page] || 0)
     @goodbacks = @topic.goodbacks
     @topic.show_count += 1
     @topic.save
@@ -135,11 +135,11 @@ class  MySchool::TopicsController < MySchool::ManageController
     end
     unless params[:appurtenance].blank?
       (params[:appurtenance] || []).each do |p_appurtenance|
-       appurtenance=Appurtenance.new(p_appurtenance)
-       appurtenance.file_name = p_appurtenance[:avatar].original_filename if p_appurtenance[:avatar]
-       if @topic.appurtenances.size < 6
-         @topic.appurtenances << appurtenance
-       end
+        appurtenance=Appurtenance.new(p_appurtenance)
+        appurtenance.file_name = p_appurtenance[:avatar].original_filename if p_appurtenance[:avatar]
+        if @topic.appurtenances.size < 6
+          @topic.appurtenances << appurtenance
+        end
       end
     end
     if @topic.save!
@@ -152,19 +152,19 @@ class  MySchool::TopicsController < MySchool::ManageController
       return
     end
     raise "上传的文件大于6m请重新上传."
-    rescue Exception =>ex
-      message =[]
-      unless @topic.blank?
+  rescue Exception =>ex
+    message =[]
+    unless @topic.blank?
       (@topic.appurtenances||[]).each do |app|
         unless app.errors.blank?
-         str = app.errors.messages[:avatar].join("")
-         message << str
+          str = app.errors.messages[:avatar].join("")
+          message << str
         end
       end
     end
-      flash[:error] = ex.message
-      flash[:error] << message.join(",") unless message.blank?#{}"上传的文件大于6m请重新上传."
-      render :new
+    flash[:error] = ex.message
+    flash[:error] << message.join(",") unless message.blank?#{}"上传的文件大于6m请重新上传."
+    render :new
 
   end
 
@@ -206,44 +206,44 @@ class  MySchool::TopicsController < MySchool::ManageController
 
     unless params[:appurtenance].blank?
       (params[:appurtenance] || []).each do |p_appurtenance|
-       appurtenance=Appurtenance.new(p_appurtenance)
-       appurtenance.file_name = p_appurtenance[:avatar].original_filename if p_appurtenance[:avatar]
-       if @topic.appurtenances.size < 6
-         @topic.appurtenances << appurtenance
-       end
-      end
-    end
-    Topic.transaction do
-    @topic.save!
-    unless current_user.get_users_ranges[:tp] == :all
-      if  @topic.update_attributes( params[:topic].except(:is_show, :is_top, :topic_category_id) )
-        flash[:success] = "更新贴子成功"
-        redirect_to my_school_topic_path(@topic)
-      else
-        raise "更新贴子失败"
-      end
-    else
-      if @topic.update_attributes( params[:topic].except(:topic_category_id) )
-        flash[:success] = "更新贴子成功"
-        redirect_to my_school_topic_path(@topic)
-      else
-        raise  "更新贴子失败"
-      end
-    end
-   end
-   rescue Exception =>ex
-      message =[]
-      unless @topic.blank?
-      (@topic.appurtenances||[]).each do |app|
-        unless app.errors.blank?
-         str = app.errors.messages[:avatar].join("")
-         message << str
+        appurtenance=Appurtenance.new(p_appurtenance)
+        appurtenance.file_name = p_appurtenance[:avatar].original_filename if p_appurtenance[:avatar]
+        if @topic.appurtenances.size < 6
+          @topic.appurtenances << appurtenance
         end
       end
     end
-      flash[:error] = ex.message
-      flash[:error] << message.join(",") unless message.blank?#{}"上传的文件大于6m请重新上传."
-      render :edit
+    Topic.transaction do
+      @topic.save!
+      unless current_user.get_users_ranges[:tp] == :all
+        if  @topic.update_attributes( params[:topic].except(:is_show, :is_top, :topic_category_id) )
+          flash[:success] = "更新贴子成功"
+          redirect_to my_school_topic_path(@topic)
+        else
+          raise "更新贴子失败"
+        end
+      else
+        if @topic.update_attributes( params[:topic].except(:topic_category_id) )
+          flash[:success] = "更新贴子成功"
+          redirect_to my_school_topic_path(@topic)
+        else
+          raise  "更新贴子失败"
+        end
+      end
+    end
+  rescue Exception =>ex
+    message =[]
+    unless @topic.blank?
+      (@topic.appurtenances||[]).each do |app|
+        unless app.errors.blank?
+          str = app.errors.messages[:avatar].join("")
+          message << str
+        end
+      end
+    end
+    flash[:error] = ex.message
+    flash[:error] << message.join(",") unless message.blank?#{}"上传的文件大于6m请重新上传."
+    render :edit
   end
 
   def destroy
@@ -268,7 +268,7 @@ class  MySchool::TopicsController < MySchool::ManageController
   end
 
   def my
-    @topics = @kind.topics.where(:creater_id => current_user.id).search(params[:topic] || {}).page(params[:page] || 1).per(10).order("created_at DESC")
+    @topics = @kind.topics.where(:creater_id => current_user.id).search(params[:topic] || {}).page(params[:page] || 1).reorder("created_at DESC")
 
     render "my_school/topics/index"
   end

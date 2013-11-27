@@ -2,6 +2,9 @@
 class Topic < ActiveRecord::Base
   attr_accessible :approve_status, :approver_id, :content, :creater_id, :is_show, :is_top, :kindergarten_id, :show_count, :status, :title, :tp, :topic_category_id, :squad_id, :accessed_at
   attr_accessible :appurtenance_upload_limit
+
+  default_scope order("is_top DESC, created_at DESC")
+
   validates :kindergarten_id, :creater_id, :topic_category_id, :title, :content, :presence => true
   validates :title, :length => { :minimum => 3, :maximum => 100 }
   validates :content, :length => { :minimum => 3 }
@@ -10,17 +13,14 @@ class Topic < ActiveRecord::Base
   belongs_to :topic_category
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
   belongs_to :squad
-   
   has_many :appurtenances, :class_name => "Appurtenance", :as => :resource, :dependent => :destroy
-
   has_many :topic_entries
   has_many :goodbacks, :class_name => "TopicEntry", :foreign_key => "topic_id",:order=>"id",:conditions=>"goodback=1"
-
   has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
 
   include ResourceApproveStatusStart
-  before_save :news_approve_status_start
 
+  before_save :news_approve_status_start
   before_destroy :ensure_not_topic_entries
 
   def unread_comment_count
@@ -36,9 +36,9 @@ class Topic < ActiveRecord::Base
   end
 
   def change_arry_approve_record
-     [:content,:title] 
+    [:content,:title] 
   end
- 
+
 
   def topic_category_label
     self.topic_category ? self.topic_category.name : "论坛分类信息丢失"

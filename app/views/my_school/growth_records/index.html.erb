@@ -1,12 +1,12 @@
 <script type="text/javascript">
   jQuery(function() {
-    $('#growth_record_start_at_less_than_or_equal_to').datepicker({
+    $('#growth_record_start_at_greater_than_or_equal_to').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
     }).on("changeDate", function() {
       $(this).datepicker('hide')
     });;
-    $('#growth_record_end_at_greater_than_or_equal_to').datepicker({
+    $('#growth_record_end_at_less_than_or_equal_to').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
     }).on("changeDate", function() {
