@@ -20,10 +20,7 @@
         <li>
           <% if choose_operate_show("my_school/staffs/new") %>
             <a href="<%=url_for(:controller=>"/my_school/staffs",:action=>:new)%>" title="添加">
-              <div class="work_action_add">
-              </div>
-              <div class="work_action_add_move">
-              </div>
+              <%= render partial: "/my_school/commons/add_action" %>
             </a>
           <% end %>
         </li>
@@ -33,29 +30,13 @@
           -->
           <% if choose_operate_show("my_school/staffs/destroy") %>
             <a id="destroy_multiple" href="javascript: void(0)" rel="nofollow" >
-              <div class="work_action_delete">
-              </div>
-              <div class="work_action_delete_move">
-              </div>
+              <%= render partial: "/my_school/commons/delete_action" %>
             </a>
           <% end %>
         </li>
       </ul>
     </div>
-    <div class="search_form">
-      <%= form_tag '/my_school/staffs' , :method=>"get" do %>
-        <b>名称：</b>
-        <%= text_field :staff,:user_name_like,:style=>"width:100px;" ,:value=>"#{params[:staff][:user_name_like] if params[:staff] }"  %>
-        <b>账号：</b>
-        <%= text_field :staff,:user_login_like,:style=>"width:100px;" ,:value=>"#{params[:staff][:user_login_like] if params[:staff] }"  %>
-        <b>发短信：</b>
-        <%= select_tag("staff[user_is_send_equals]", options_for_select([["全部",""],["可发短信",1],["不可发短信",0]],(params[:staff].blank? ? "" : params[:staff][:user_is_send_equals])),:style=>"width:100px; margin-top: 10px;") %>
-        <br/>
-        <b>收短信：</b>
-        <%= select_tag("staff[user_is_receive_equals]", options_for_select([["全部",""],["可收短信",1],["不可收短信",0]],(params[:staff].blank? ? "" : params[:staff][:user_is_receive_equals])),:style=>"width:100px; margin-top: 10px;") %>
-        <%= submit_tag "搜索", :class => "btn btn-primary"%>
-      <%end%>
-    </div>
+    <%= render partial: "/my_school/staffs/search_form" %>
     <div class="work_list">
       <%= render "tab_staffs" %>
     </div>
