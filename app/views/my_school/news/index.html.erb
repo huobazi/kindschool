@@ -25,10 +25,7 @@
          <%if choose_operate_show('my_school/news/destroy')%>
         <li>
           <a href="javascript: void(0);" title="删除" id="destroy_multiple">
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
+            <%= render partial: "/my_school/commons/delete_action" %>
           </a>
         </li>
         <%end%>
