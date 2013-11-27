@@ -31,39 +31,27 @@
         <li>
           <% if choose_operate_show("my_school/topic_categories/new") %>
             <a href="<%=url_for(:controller=>"/my_school/topic_categories",:action=>:new)%>" title="添加">
-              <div class="work_action_add">
-              </div>
-              <div class="work_action_add_move">
-              </div>
+              <%= render partial: "/my_school/commons/add_action" %>
             </a>
           <% end %>
         </li>
         <li>
           <% if choose_operate_show("my_school/topic_categories/edit") %>
             <a href="<%=url_for(:controller=>"/my_school/topic_categories",:action=>:edit,:id=>@topic_category.id)%>" title="编辑">
-              <div class="work_action_edit">
-              </div>
-              <div class="work_action_edit_move">
-              </div>
+              <%= render partial: "/my_school/commons/edit_action" %>
             </a>
           <% end %>
         </li>
         <li>
           <% if choose_operate_show("my_school/topic_categories/destroy") %>
             <%= link_to(url_for(:controller=>"/my_school/topic_categories",:action=>:destroy,:id=>@topic_category.id),:method=>:delete, :confirm => "您确定删除该论坛分类吗?") do %>
-              <div class="work_action_delete">
-              </div>
-              <div class="work_action_delete_move">
-              </div>
+              <%= render partial: "/my_school/commons/delete_action" %>
             <% end %>
           <% end %>
         </li>
         <li>
           <a href="<%=url_for(:controller=>"/my_school/topic_categories",:action=>:index)%>" title="返回">
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
+            <%= render partial: "/my_school/commons/return_action" %>
           </a>
         </li>
       </ul>

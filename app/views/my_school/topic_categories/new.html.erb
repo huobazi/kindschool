@@ -28,10 +28,7 @@
         <li>
           <% if choose_operate_show("my_school/topic_categories/index") %>
             <a href="<%=url_for(:controller=>"/my_school/topic_categories",:action=>:index)%>" title="返回">
-              <div class="work_action_return">
-              </div>
-              <div class="work_action_return_move">
-              </div>
+              <%= render partial: "/my_school/commons/return_action" %>
             </a>
           <% end %>
         </li>

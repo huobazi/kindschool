@@ -21,10 +21,7 @@
           <li>
             <% if choose_operate_show("my_school/student_infos/new") %>
               <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:new)%>" title="添加">
-                <div class="work_action_add">
-                </div>
-                <div class="work_action_add_move">
-                </div>
+                <%= render partial: "/my_school/commons/add_action" %>
               </a>
             <% end %>
           </li>
@@ -34,67 +31,14 @@
             -->
             <% if choose_operate_show("my_school/student_infos/destroy") %>
               <a id="destroy_multiple" href="javascript: void(0)" rel="nofollow">
-                <div class="work_action_delete">
-                </div>
-                <div class="work_action_delete_move">
-                </div>
+                <%= render partial: "/my_school/commons/delete_action" %>
               </a>
             <% end %>
           </li>
         </ul>
       <% end %>
     </div>
-    <% if current_user.tp != 0 %>
-      <div class="search_form_s">
-        <%= form_tag '/my_school/student_infos' , :method=>"get" do %>
-          <b>名称：</b>
-          <%= text_field :student_info,:user_name_like,:style=>"width:100px; margin-top: 10px;" ,:value=>"#{params[:student_info][:user_name_like] if params[:student_info] }"  %>
-          <b>账号：</b>
-          <%= text_field :student_info,:user_login_like,:style=>"width:100px; margin-top: 10px;" ,:value=>"#{params[:student_info][:user_login_like] if params[:student_info] }"  %>
-          <b>班级：</b>
-    <%#= text_field :student_info,:squad_name_like,:style=>"width:100px;" ,:value=>"#{params[:student_info][:squad_name_like] if params[:student_info] }"  %>
-          <%= select_tag("student_info[squad_id_equals]", options_for_select(([["全部",""]]+@kind.squads.collect{|x|["#{x.name}   #{x.historyreview}",x.id]}),(params[:student_info].blank? ?  "" : params[:student_info][:squad_id_equals])),:style=>"width:100px;margin-top: 10px;") %>
-          <br/>
-          <b>手机号：</b>
-          <%= text_field :student_info,:user_phone_like,:style=>"width:100px; margin-top: 10px;" ,:value=>"#{params[:student_info][:user_phone_like] if params[:student_info] }"  %>
-          <b>收短信：</b>
-          <%= select_tag("student_info[user_is_receive_equals]", options_for_select([["全部",""],["可收短信",1],["不可收短信",0]],(params[:student_info].blank? ? "" : params[:student_info][:user_is_receive_equals])),:style=>"width:100px; margin-top: 10px;") %>
-          <b>是否完全绑定</b>
-          <%= select_tag("weixin_bland", options_for_select([["全部",""],["完全绑定",1],["完全未绑定",2],["只绑定幼儿园",3],["只绑定微壹平台",4]],(params[:weixin_bland].blank? ? "" : params[:weixin_bland])),:style=>"width:150px;margin-top: 10px;") %>
-          <%= submit_tag "搜索"  , :class => "btn search_btn btn-primary"%>
-        <%end%>
-        <%if choose_operate_show("my_school/student_infos/download_student_infos")%>
-          <p>
-            表格下载:
-            <%= link_to "深圳市教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "shenzhen",student_info: params[:student_info]) ,:class=>"btn" %>
-            <%= link_to "广东省教育系统", download_student_infos_my_school_student_infos_path(format: "xls",tp: "guangzhou",student_info: params[:student_info]) ,:class=>"btn" %>
-            <%= link_to "南山教育系统",download_nanshan_my_school_student_infos_path(student_info: params[:student_info]),:class=>"btn"%>
-
-          </p>
-          <% if choose_operate_show("my_school/student_infos/new") %>
-            <a href="###"  id="add_student_info">进行批量导入</a>
-            <div id="add_student_info_div" <%= raw(params[:importing] ? 'style="display:block;"' : "") %>>
-              <%= form_tag import_my_school_student_infos_path, multipart: true,:id=>"import_form" do %>
-                <% if @kind.aliases_url.blank?
-                  web_address = "http://#{@kind.number}.#{WEBSITE_CONFIG["web_host"]}"
-                else
-                  web_address = kind.aliases_url
-                end
-              %>
-                <div class="import_div"><div class="import_label">导入后短信提示：</div><div class="import_text import_tip">您已经成功注册了<%= @kind.name %>微壹校讯通平台,您的登录名:???,密码:***,登录地址:<%= web_address %> </div></div>
-                <div class="import_div"><div class="import_label">短信追加描述：</div><div class="import_text import_tip"><%= @kind.login_note.blank? ? "无" : @kind.login_note %>
-                    <span class="help-block">如需修改，请在"系统设置"->"幼儿园设置"中修改"注册短信追加内容"</span>
-                  </div>
-                </div>
-                <%= file_field_tag :file %>
-                <%= submit_tag "批量导入",:class=>"btn" %>
-                <a class="blue" title="批量表格下载" href="/doc/Children.xls">批量表格下载</a>
-              <% end %>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
+    <%= render partial: "/my_school/student_infos/search_form" %>
     <div class="work_list">
       <%= render "tab_student_infos" %>
     </div>
