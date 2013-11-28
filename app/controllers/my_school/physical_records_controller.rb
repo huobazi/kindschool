@@ -3,16 +3,16 @@
 class MySchool::PhysicalRecordsController < MySchool::ManageController
   before_filter :student_can_not_destroy, :only => :destroy
   def index
-  	all_roles = ['admin','principal','vice_principal','assistant_principal','park_hospital']
+    all_roles = ['admin','principal','vice_principal','assistant_principal','park_hospital']
     userrole = current_user.get_users_ranges
     if @flag=all_roles.include?(@role)
       search = @kind.physical_records.search(params[:physical_record] || {})
-      @physical_records = search.page(params[:page] || 1).per(10).order("created_at DESC")
+      @physical_records = search.page(params[:page] || 1)
       # @physical_records = @kind.physical_records.page(params[:page] || 1).per(10).order("created_at DESC")
     elsif userrole[:tp] == :all
       @flag= true
       search = @kind.physical_records.search(params[:physical_record] || {})
-      @physical_records = search.page(params[:page] || 1).per(10).order("created_at DESC")
+      @physical_records = search.page(params[:page] || 1)
       # @physical_records = @kind.physical_records.page(params[:page] || 1).per(10).order("created_at DESC")
     elsif userrole[:tp] == :teachers
       squads = []
@@ -30,10 +30,10 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
       # end
       # @physical_records = PhysicalRecord.where(["student_infos.squad_id in (?)",squads]).joins("LEFT JOIN student_infos on (student_infos.id = seedling_records.student_info_id)").page(params[:page] || 1).per(10).order("created_at DESC")
       search = PhysicalRecord.joins("inner JOIN student_infos as s on (s.id = physical_records.student_info_id)").search(params[:physical_record] || {}).where(["s.squad_id in (?)",squads])
-      @physical_records =  search.page(params[:page] || 1).per(10).order("created_at DESC")
+      @physical_records =  search.page(params[:page] || 1)
     elsif userrole[:tp] == :student
       search = current_user.student_info.physical_records.search(params[:physical_record] || {})
-      @physical_records =  search.page(params[:page] || 1).per(10).order("created_at DESC")
+      @physical_records =  search.page(params[:page] || 1)
     end
 
     if request.xhr?
@@ -130,7 +130,7 @@ class MySchool::PhysicalRecordsController < MySchool::ManageController
   def class_student
     if grade=@kind.grades.where(:id=>params[:grade].to_i).first
       if squad = grade.squads.where(:id=>params[:class_number].to_i).first
-         @student_infos = squad.student_infos
+        @student_infos = squad.student_infos
       end
     end
     render "class_student", :layout => false

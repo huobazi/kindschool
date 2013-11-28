@@ -7,11 +7,11 @@ class MySchool::InterestActivitiesController < MySchool::ManageController
 
   def index
     if current_user.get_users_ranges[:tp] == :student
-      @activities = @kind.activities.search(params[:activity] || {}).where("tp = ? and  (squad_id = ? or squad_id is null)", 1, current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
+      @activities = @kind.activities.search(params[:activity] || {}).where("tp = ? and  (squad_id = ? or squad_id is null)", 1, current_user.student_info.squad_id).page(params[:page] || 1)
     elsif current_user.get_users_ranges[:tp] == :teachers
-      @activities = @kind.activities.search(params[:activity] || {}).where("tp = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", 1, current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
+      @activities = @kind.activities.search(params[:activity] || {}).where("tp = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", 1, current_user.staff.id, current_user.id).page(params[:page] || 1)
     else
-      @activities = @kind.activities.search(params[:activity] || {}).where(:tp => 1).page(params[:page] || 1).per(10).order("created_at DESC")
+      @activities = @kind.activities.search(params[:activity] || {}).where(:tp => 1).page(params[:page] || 1)
     end
 
     if request.xhr?
