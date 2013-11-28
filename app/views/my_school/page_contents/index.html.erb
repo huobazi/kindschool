@@ -24,10 +24,10 @@
       <div id="topic_category_tabs">
         <ul class="nav nav-tabs">
           <li class="<%= params[:tp_id]=='1' ? 'active' : '' %>">
-            <%=link_to "幼儿园官网设置",my_school_page_contents_path(:tp_id=>1)%>
+          <%=link_to "幼儿园官网设置",my_school_page_contents_path(:tp_id=>1)%>
           </li>
           <li class="<%= params[:tp_id] ? "" : "active" %>">
-            <a href="<%= url_for(:controller => "/my_school/page_contents", :action => :index) %>">互动家园设置</a>
+          <a href="<%= url_for(:controller => "/my_school/page_contents", :action => :index) %>">互动家园设置</a>
           </li>
         </ul>
       </div>

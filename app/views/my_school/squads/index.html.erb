@@ -18,36 +18,22 @@
       </div>
       <ul class="work_action">
         <li>
-          <% if choose_operate_show("my_school/squads/index") %>
-            <a href="<%=url_for(:controller=>"/my_school/squads",:action=>:new)%>" title="添加">
-              <div class="work_action_add">
-              </div>
-              <div class="work_action_add_move">
-              </div>
-            </a>
-          <% end %>
+        <% if choose_operate_show("my_school/squads/index") %>
+          <a href="<%=url_for(:controller=>"/my_school/squads",:action=>:new)%>" title="添加">
+            <%= render partial: "/my_school/commons/add_action" %>
+          </a>
+        <% end %>
         </li>
         <li>
-          <% if choose_operate_show("my_school/squads/destroy") %>
-            <a id="destroy_multiple" href="javascript: void(0)" rel="nofollow">
-              <div class="work_action_delete">
-              </div>
-              <div class="work_action_delete_move">
-              </div>
-            </a>
-          <% end %>
+        <% if choose_operate_show("my_school/squads/destroy") %>
+          <a id="destroy_multiple" href="javascript: void(0)" rel="nofollow">
+            <%= render partial: "/my_school/commons/delete_action" %>
+          </a>
+        <% end %>
         </li>
       </ul>
     </div>
-    <div class="search_form">
-     <%= form_tag '/my_school/squads' , :method=>"get" do %>
-      <b>名称：</b>
-      <%= text_field :squad,:name_like,:style=>"width:100px;" ,:value=>"#{params[:squad][:name_like] if params[:squad] }"  %>
-      <b>年级：</b>
-      <%= text_field :squad,:grade_name_like,:style=>"width:100px;" ,:value=>"#{params[:squad][:grade_name_like] if params[:squad] }"  %>
-      <%= submit_tag "搜索"  , :class => "btn btn-primary"%>
-      <%end%>
-    </div>
+    <%= render partial: "/my_school/squads/search_form" %>
     <div class="work_list">
       <%= render "tab_squads" %>
     </div>

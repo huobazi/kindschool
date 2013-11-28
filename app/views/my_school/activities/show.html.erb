@@ -39,87 +39,31 @@
       </div>
       <ul class="work_action">
         <li>
-          <% if controller_name == "activities" %>
-            <% if choose_operate_show("my_school/activities/new") %>
-              <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:new)%>" title="添加">
-                <div class="work_action_add">
-                </div>
-                <div class="work_action_add_move">
-                </div>
-              </a>
-            <% end %>
-        <% else %>
-          <% if choose_operate_show("my_school/interest_activities/new") %>
-            <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:new)%>" title="添加">
-              <div class="work_action_add">
-              </div>
-              <div class="work_action_add_move">
-              </div>
+          <% if choose_operate_show("#{params[:controller]}/new") %>
+            <a href="<%=url_for(:controller=>"#{params[:controller]}",:action=>:new)%>" title="添加">
+              <%= render :partial => "/my_school/commons/add_action" %>
             </a>
           <% end %>
-        <% end %>
         </li>
         <li>
-          <% if controller_name == "activities" %>
-            <% if choose_operate_show("my_school/activities/edit") %>
-              <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:edit,:id=>@activity.id)%>" title="编辑">
-                <div class="work_action_edit">
-                </div>
-                <div class="work_action_edit_move">
-                </div>
-              </a>
-            <% end %>
-        <% else %>
-          <% if choose_operate_show("my_school/interest_activities/edit") %>
-            <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:edit,:id=>@activity.id)%>" title="编辑">
-              <div class="work_action_edit">
-              </div>
-              <div class="work_action_edit_move">
-              </div>
+          <% if choose_operate_show("#{params[:controller]}/edit") %>
+            <a href="<%=url_for(:controller=>"#{params[:controller]}",:action=>:edit,:id=>@activity.id)%>" title="编辑">
+              <%= render :partial => "/my_school/commons/edit_action" %>
             </a>
-            <% end %>
-        <% end %>
+          <% end %>
         </li>
         <li>
-          <% if controller_name == "activities" %>
-            <% if choose_operate_show("my_school/activities/destroy") %>
-              <%= link_to(url_for(:controller=>"/my_school/activities",:action=>:destroy,:id=>@activity.id),:method=>:delete, :confirm => "您确定删除该活动吗?") do %>
-                <div class="work_action_delete">
-                </div>
-                <div class="work_action_delete_move">
-                </div>
-              <% end %>
-            <% end %>
-          <% else %>
-            <% if choose_operate_show("my_school/interest_activities/destroy") %>
-              <%= link_to(url_for(:controller=>"/my_school/interest_activities",:action=>:destroy,:id=>@activity.id),:method=>:delete, :confirm => "您确定删除该兴趣讨论吗?") do %>
-                <div class="work_action_delete">
-                </div>
-                <div class="work_action_delete_move">
-                </div>
-              <% end %>
+          <% if choose_operate_show("#{params[:controller]}/destroy") %>
+            <%= link_to(url_for(:controller=>"#{params[:controller]}",:action=>:destroy,:id=>@activity.id),:method=>:delete, :confirm => "您确定删除吗?") do %>
+              <%= render :partial => "/my_school/commons/delete_action" %>
             <% end %>
           <% end %>
         </li>
         <li>
-          <% if controller_name == "activities" %>
-            <% if choose_operate_show("my_school/activities/index") %>
-              <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:index)%>" title="返回">
-                <div class="work_action_return">
-                </div>
-                <div class="work_action_return_move">
-                </div>
-              </a>
-            <% end %>
-          <% else %>
-            <% if choose_operate_show("my_school/interest_activities/index") %>
-              <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:index)%>" title="返回">
-                <div class="work_action_return">
-                  </div>
-                  <div class="work_action_return_move">
-                  </div>
-               </a>
-            <% end %>
+          <% if choose_operate_show("#{params[:controller]}/index") %>
+            <a href="<%=url_for(:controller=>"#{params[:controller]}",:action=>:index)%>" title="返回">
+              <%= render partial: "/my_school/commons/return_action" %>
+            </a>
           <% end %>
         </li>
       </ul>

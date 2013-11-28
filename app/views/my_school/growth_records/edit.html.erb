@@ -40,35 +40,23 @@
           <% if controller_name == "growth_records" %>
             <% if choose_operate_show("my_school/growth_records/home") %>
               <a href="<%=url_for(:controller=>"/my_school/growth_records",:action=>:home, params: session[:return_to])%>" title="返回">
-                <div class="work_action_return">
-                </div>
-                <div class="work_action_return_move">
-                </div>
+                <%= render partial: "/my_school/commons/return_action" %>
               </a>
             <% end %>
-        <% else %>
-          <% if choose_operate_show("my_school/garden_growth_records/garden") %>
-            <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:garden, params: session[:return_to])%>" title="返回">
-              <div class="work_action_return">
-                </div>
-                <div class="work_action_return_move">
-                </div>
+          <% else %>
+            <% if choose_operate_show("my_school/garden_growth_records/garden") %>
+              <a href="<%=url_for(:controller=>"/my_school/garden_growth_records",:action=>:garden, params: session[:return_to])%>" title="返回">
+                <%= render partial: "/my_school/commons/return_action" %>
               </a>
             <% end %>
-        <% end %>
+          <% end %>
         </li>
       </ul>
     </div>
     <div class="work_form">
       <div class="form_div">
-        <% if controller_name == "growth_records" %>
-          <%= simple_form_for @growth_record, :validate => true, :url => {:controller=>"/my_school/growth_records",:action=>:update}, :html =>{:class=>"form-horizontal", :multipart => true} do |f| %>
-            <%= render :partial => "form",:object=>f %>
-          <% end %>
-        <% else %>
-          <%= simple_form_for @growth_record, :validate => true, :url => {:controller=>"/my_school/garden_growth_records",:action=>:update}, :html =>{:class=>"form-horizontal", :multipart => true} do |f| %>
-            <%= render :partial => "my_school/growth_records/form",:object=>f %>
-          <% end %>
+        <%= simple_form_for @growth_record, :validate => true, :url => {:controller=>"#{params[:controller]}",:action=>:update}, :html =>{:class=>"form-horizontal", :multipart => true} do |f| %>
+          <%= render :partial => "my_school/growth_records/form",:object=>f %>
         <% end %>
       </div>
     </div>

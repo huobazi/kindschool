@@ -20,22 +20,13 @@
         <li>
           <% if choose_operate_show("my_school/topic_categories/new") %>
             <a href="<%=url_for(:controller=>"/my_school/topic_categories",:action=>:new)%>" title="添加">
-              <div class="work_action_add">
-              </div>
-              <div class="work_action_add_move">
-              </div>
+              <%= render partial: "/my_school/commons/add_action" %>
             </a>
           <% end %>
         </li>
       </ul>
     </div>
-    <div class="search_form">
-     <%= form_tag '/my_school/topic_categories' , :method=>"get" do %>
-      <b>名称：</b>
-      <%= text_field :topic_category,:name_like,:style=>"width:100px;" ,:value=>"#{params[:topic_category][:name_like] if params[:topic_category] }"  %>
-      <%= submit_tag "搜索", :class => "btn btn-primary"%>
-      <%end%>
-    </div>
+    <%= render partial: "/my_school/topic_categories/search_form" %>
     <div class="work_list">
       <%= render "tab_topic_categories" %>
     </div>

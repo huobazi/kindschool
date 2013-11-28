@@ -1,0 +1,9 @@
+<div class="search_form">
+ <%= form_tag '/my_school/cook_books' , :method=>"get" do %>
+  <b>开始时间：</b>
+  <%= text_field :cook_book,:start_at_greater_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:cook_book][:start_at_greater_than_or_equal_to] if params[:cook_book] }"  %>
+  <b>结束时间：</b>
+  <%= text_field :cook_book,:end_at_less_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:cook_book][:end_at_less_than_or_equal_to] if params[:cook_book] }"  %>
+  <%= submit_tag "搜索" , :class => "btn btn-primary"%>
+  <%end%>
+</div>

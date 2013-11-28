@@ -266,3 +266,12 @@ HOME_MENU ={
   "offical_home_selected"=>{"my_school/main"=>["offical_home_selected"]},
   "feature"=>{"my_school/main"=>["feature"]}
 }
+
+PAGE_CONTROLLER = [
+  "topics", "activities",
+  "growth_records", "garden_growth_records",
+  "interest_activities", "albums", "cook_books",
+  "physical_records", "seedlings",
+  "notices", "squads", "grades",
+  "staffs", "messages", "virtual_squads", "student_infos", "personal_sets"
+]

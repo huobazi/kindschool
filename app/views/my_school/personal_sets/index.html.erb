@@ -13,13 +13,13 @@
   </script>
   <script type="text/javascript">
   jQuery(function() {
-    $('#personal_set_created_at_greater_than').datepicker({
+    $('#personal_set_created_at_greater_than_or_equal_to').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
     }).on("changeDate", function() {
       $(this).datepicker('hide')
     });
-    $('#personal_set_created_at_less_than').datepicker({
+    $('#personal_set_created_at_less_than_or_equal_to').datepicker({
       language: "zh-CN",
       format:"yyyy-mm-dd"
     }).on("changeDate", function() {
@@ -30,7 +30,7 @@
   })
 
 </script>
-  <div class="show_work">
+<div class="show_work">
   <%= render :partial => "/modules/#{view_layout}/work_menu" %>
   <div class="work">
     <div class="headline">
@@ -48,63 +48,56 @@
       <ul class="work_action">
         <li>
 
-            <%=(link_to "<div class='work_action_add'>
+        <%=(link_to "<div class='work_action_add'>
   </div><div class='work_action_add_move'>
   </div>".html_safe ,new_my_school_personal_set_path)%>
-            <% 
-  #if choose_operate_show('my_school/personal_sets/new')
+  <% 
+    #if choose_operate_show('my_school/personal_sets/new')
   %>
 
-        </li>
-      </ul>
-    </div>
-   <div class="search_form">
-      <%= form_tag '/my_school/personal_sets' , :method=>"get" do %>
-        <b>上传时间大于：</b>
-       <%= text_field :personal_set,:created_at_greater_than,:style=>"width:100px;" ,:value=>"#{params[:personal_set][:created_at_greater_than] if params[:personal_set] }"  %>
-       <b>上传时间小于：</b>
-       <%= text_field :personal_set,:created_at_less_than,:style=>"width:100px;" ,:value=>"#{params[:personal_set][:created_at_less_than] if params[:personal_set] }"  %>
-        <%= submit_tag "搜索" , :class => "btn search_btn" %>
-      <%end%>
+  </li>
+</ul>
     </div>
 
+    <%= render partial: "search_form" %>
 
-  <div class="work_list" >
 
-  <div id="timeline">
-    <ul id="dates">
-      <% (@sets || []).each do |set| %>
-      <li>
-        <a href="#<%=set.created_at.try(:to_long_datetime)%>" class="selected"><%=set.created_at.try(:to_long_datetime)%>
-        </a>
-      </li>
-      <%end%>
-    </ul>
-    <ul id="issues">
-      <% (@sets || []).each do |set| %>
-      <li id="<%=set.created_at.try(:to_long_datetime)%>" class="selected">
-        <%if set.resource_type=="PhotoGallery"%>
-          <img src="<%= set.resource.try(:public_filename) %>" width="256px" height="256px"  class="img-rounded" />
-          <%else%>
-          <h1><%=set.resource.try(:content)%></h1>
-        <%end%>
-        <%if @flag=="student"%>
-        <%=link_to "添加到成长记录" , new_my_school_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
-        <%else%>
-        <%=link_to "添加到成长记录" ,new_my_school_garden_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
-        <%end%>
-        <%= link_to '删除', my_school_personal_set_path(set), :method=> :delete, :data=> { :confirm=> '你确定删除该信息吗' },:class=> "destroy" ,:class=>"personal_set_delete btn"%>
-      </li>
-      <% end %>
-    </ul>
-    <div id="grad_top"></div>
-    <div id="grad_bottom"></div>
-    <a href="#" id="next">+</a>
-    <a href="#" id="prev">-</a>
-  </div>
-  <div class="paginate_div">
-     <%= paginate @sets  %>
-     </div>
+    <div class="work_list" >
+
+      <div id="timeline">
+        <ul id="dates">
+          <% (@sets || []).each do |set| %>
+            <li>
+            <a href="#<%=set.created_at.try(:to_long_datetime)%>" class="selected"><%=set.created_at.try(:to_long_datetime)%>
+            </a>
+            </li>
+          <%end%>
+        </ul>
+        <ul id="issues">
+          <% (@sets || []).each do |set| %>
+            <li id="<%=set.created_at.try(:to_long_datetime)%>" class="selected">
+            <%if set.resource_type=="PhotoGallery"%>
+              <img src="<%= set.resource.try(:public_filename) %>" width="256px" height="256px"  class="img-rounded" />
+            <%else%>
+              <h1><%=set.resource.try(:content)%></h1>
+            <%end%>
+            <%if @flag=="student"%>
+              <%=link_to "添加到成长记录" , new_my_school_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
+            <%else%>
+              <%=link_to "添加到成长记录" ,new_my_school_garden_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
+            <%end%>
+            <%= link_to '删除', my_school_personal_set_path(set), :method=> :delete, :data=> { :confirm=> '你确定删除该信息吗' },:class=> "destroy" ,:class=>"personal_set_delete btn"%>
+            </li>
+          <% end %>
+        </ul>
+        <div id="grad_top"></div>
+        <div id="grad_bottom"></div>
+        <a href="#" id="next">+</a>
+        <a href="#" id="prev">-</a>
+      </div>
+      <div class="paginate_div">
+        <%= paginate @sets  %>
+      </div>
     </div>
   </div>
 </div>

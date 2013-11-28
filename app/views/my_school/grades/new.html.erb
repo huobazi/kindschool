@@ -21,10 +21,7 @@
       <ul class="work_action">
         <li>
           <a href="<%=url_for(:controller=>"/my_school/grades",:action=>:index)%>" title="返回">
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
+            <%= render partial: "/my_school/commons/return_action" %>
           </a>
         </li>
       </ul>

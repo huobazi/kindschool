@@ -30,24 +30,10 @@
       </div>
       <ul class="work_action">
         <li>
-          <% if controller_name == "activities" %>
-            <% if choose_operate_show("my_school/activities/index") %>
-              <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:index)%>" title="返回">
-                <div class="work_action_return">
-                </div>
-                <div class="work_action_return_move">
-                </div>
-              </a>
-            <% end %>
-          <% else %>
-            <% if choose_operate_show("my_school/interest_activities/index") %>
-              <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:index)%>" title="返回">
-                <div class="work_action_return">
-                </div>
-                <div class="work_action_return_move">
-                </div>
-              </a>
-            <% end %>
+          <% if choose_operate_show("#{params[:controller]}/index") %>
+            <a href="<%=url_for(:controller=>"#{params[:controller]}",:action=>:index)%>" title="返回">
+              <%= render :partial => "/my_school/commons/return_action" %>
+            </a>
           <% end %>
         </li>
       </ul>
@@ -55,14 +41,8 @@
 
     <div class="work_form">
       <div class="form_div">
-        <% if controller_name == "activities" %>
-          <%= simple_form_for(@activity, :validate => true, :url => my_school_activities_path, :html => {:class => "form-horizontal"}) do |f| %>
-            <%= render :partial => "form", :object => f %>
-          <% end %>
-        <% else %>
-          <%= simple_form_for(@activity, :validate => true, :url => my_school_interest_activities_path, :html => {:class => "form-horizontal"}) do |f| %>
-            <%= render :partial => "my_school/activities/form", :object => f %>
-          <% end %>
+        <%= simple_form_for(@activity, :validate => true, :url => url_for(:controller => "#{params[:controller]}", :action => "create"), :html => {:class => "form-horizontal"}) do |f| %>
+          <%= render :partial => "my_school/activities/form", :object => f %>
         <% end %>
       </div>
     </div>

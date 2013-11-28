@@ -28,19 +28,13 @@
         <% if current_user.tp == 0 %>
           <li>
             <a href="<%=url_for(:controller=>"/my_school/student_infos",:action=>:edit,:id=>current_user.student_info.id) %>" title="编辑">
-              <div class="work_action_edit">
-              </div>
-              <div class="work_action_edit_move">
-              </div>
+              <%= render partial: "/my_school/commons/edit_action" %>
             </a>
           </li>
         <% else %>
           <li>
             <a href="<%=url_for(:controller=>"/my_school/users",:action=>:edit,:id=>current_user.id)%>" title="编辑">
-              <div class="work_action_edit">
-              </div>
-              <div class="work_action_edit_move">
-              </div>
+              <%= render partial: "/my_school/commons/edit_action" %>
             </a>
           </li>
         <% end %>

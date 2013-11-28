@@ -32,20 +32,12 @@
         </li>
         <li>
           <a href="/" title="删除" id="destroy_multiple">
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
+            <%= render partial: "/my_school/commons/delete_action" %>
           </a>
         </li>
       </ul>
     </div>
-    <div class="search_form">
-     <%= form_tag '/my_school/virtual_squads' , :method=>"get" do %>
-      <b>延时班名：</b><%= text_field :virtual_squad,:name_like,:style=>"width:100px;" ,:class=>"control-label",:value=>"#{params[:virtual_squad][:name_like] if params[:virtual_squad] }" %>
-      <%= submit_tag "搜索", :class => "btn btn-primary"%>
-      <%end%>
-    </div>
+    <%= render partial: "/my_school/virtual_squads/search_form" %>
     <div class="work_list">
       <%= render "tab_virtual_squads" %>
     </div>

@@ -30,47 +30,22 @@
       </div>
       <ul class="work_action">
         <li>
-          <% if controller_name == "activities" %>
-            <% if choose_operate_show("my_school/activities/new") %>
-              <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:new)%>" title="添加">
-                <div class="work_action_add">
-                </div>
-                <div class="work_action_add_move">
-                </div>
-              </a>
-            <% end %>
-        <% else %>
-          <% if choose_operate_show("my_school/interest_activities/new") %>
-            <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:new)%>" title="添加">
-              <div class="work_action_add">
-                </div>
-                <div class="work_action_add_move">
-                </div>
+          <% if choose_operate_show("#{params[:controller]}/new") %>
+            <a href="<%=url_for(:controller=>"#{params[:controller]}",:action=>:new)%>" title="添加">
+              <%= render :partial => "/my_school/commons/add_action" %>
             </a>
           <% end %>
-        <% end %>
         </li>
         <li>
           <% if choose_operate_show("my_school/activities/destroy") %>
             <a href="javascript: void(0)" rel="nofollow" title="删除" id="destroy_multiple">
-              <div class="work_action_delete">
-              </div>
-              <div class="work_action_delete_move">
-              </div>
+              <%= render :partial => "/my_school/commons/delete_action" %>
             </a>
           <% end %>
         </li>
       </ul>
     </div>
-    <div class="search_form">
-      <%= form_tag '#{ controller_name == "activities" ? "my_school/activities" : "my_school/interest_activities" }' , :method=>"get" do %>
-      <b>标题：</b>
-      <%= text_field :activity,:title_like,:style=>"width:100px;" ,:value=>"#{params[:activity][:title_like] if params[:activity] }"  %>
-      <b>内容：</b>
-      <%= text_field :activity,:content_like,:style=>"width:100px;" ,:value=>"#{params[:activity][:content_like] if params[:activity] }"  %>
-      <%= submit_tag "搜索"  , :class => "btn btn-primary"%>
-      <%end%>
-    </div>
+    <%= render :partial => "my_school/activities/search_form" %>
     <div class="work_list">
       <div class="topics">
         <%= render "my_school/activities/tab_activities" %>
@@ -85,7 +60,7 @@ $(document).ready(function(){
   $(".fancybox").fancybox();
 });
 $("#destroy_multiple").click(function(){
-  if (confirm('您确定删除选中的贴子吗')) {
+  if (confirm('您确定删除选中的记录吗')) {
     $("#destroy_multi_form").submit();
   }
 });

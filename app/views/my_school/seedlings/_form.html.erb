@@ -18,12 +18,12 @@
       $(this).datepicker('hide')
     });
     $("#grade").change(function(){
-            $.get( "/my_school/seedlings/grade_class",
-                    { grade: $('#grade').val()},
-                    function(result){
-                        $("#class_number_partial").html(result);
-                     })
-                   });
+      $.get( "/my_school/seedlings/grade_class",
+        { grade: $('#grade').val()},
+        function(result){
+        $("#class_number_partial").html(result);
+      })
+    });
   });
   $('#grade').trigger('change');
   // $("#grade").change();

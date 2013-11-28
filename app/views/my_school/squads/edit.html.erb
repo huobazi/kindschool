@@ -16,9 +16,9 @@
             <li>人员管理</li>
             <li>/</li>
             <li>
-              <% if choose_operate_show("my_school/squads/index") %>
-                <%= link_to "班级管理", my_school_squads_path %>
-              <% end %>
+            <% if choose_operate_show("my_school/squads/index") %>
+              <%= link_to "班级管理", my_school_squads_path %>
+            <% end %>
             </li>
             <li>/</li>
             <li>班级编辑</li>
@@ -27,14 +27,11 @@
       </div>
       <ul class="work_action">
         <li>
-          <% if choose_operate_show("my_school/squads/index") %>
-            <a href="<%=url_for(:controller=>"/my_school/squads",:action=>:index)%>" title="返回">
-              <div class="work_action_return">
-              </div>
-              <div class="work_action_return_move">
-              </div>
-            </a>
-          <% end %>
+        <% if choose_operate_show("my_school/squads/index") %>
+          <a href="<%=url_for(:controller=>"/my_school/squads",:action=>:index)%>" title="返回">
+            <%= render partial: "/my_school/commons/return_action" %>
+          </a>
+        <% end %>
         </li>
       </ul>
     </div>

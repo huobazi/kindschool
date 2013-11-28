@@ -1,0 +1,9 @@
+<div class="search_form">
+  <%= form_tag '/my_school/squads' , :method=>"get" do %>
+    <b>名称：</b>
+    <%= text_field :squad,:name_like,:style=>"width:100px;" ,:value=>"#{params[:squad][:name_like] if params[:squad] }"  %>
+    <b>年级：</b>
+    <%= text_field :squad,:grade_name_like,:style=>"width:100px;" ,:value=>"#{params[:squad][:grade_name_like] if params[:squad] }"  %>
+    <%= submit_tag "搜索"  , :class => "btn btn-primary"%>
+  <%end%>
+</div>

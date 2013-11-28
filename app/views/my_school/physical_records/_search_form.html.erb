@@ -1,0 +1,10 @@
+<div class="search_form">
+  <%= form_tag '/my_school/physical_records' , :method=>"get" do %>
+    <b>学员：</b>
+    <%= text_field :physical_record,:student_info_user_name_like,:style=>"width:100px;" ,:value=>"#{params[:physical_record][:student_info_user_name_like] if params[:physical_record] }"%>
+    <b>体检记录：</b><%= text_field :physical_record,:content_like,:style=>"width:100px;" ,:class=>"control-label",:value=>"#{params[:physical_record][:content_like] if params[:physical_record] }" %>
+    <b>体检时间：</b>
+    <%= text_field :physical_record,:send_date_equals,:style=>"width:100px;" ,:value=>"#{params[:physical_record][:send_date_equals] if params[:physical_record] }"  %>
+    <%= submit_tag "搜索"  , :class => "btn btn-primary"%>
+  <%end%>
+</div>

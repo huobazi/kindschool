@@ -22,34 +22,22 @@
       <ul class="work_action">
         <li>
           <a href="<%=url_for(:controller=>"/my_school/cook_books",:action=>:new)%>" title="添加">
-            <div class="work_action_add">
-            </div>
-            <div class="work_action_add_move">
-            </div>
+            <%= render partial: "/my_school/commons/add_action" %>
           </a>
         </li>
         <li>
           <a href="<%=url_for(:controller=>"/my_school/cook_books",:action=>:edit,:id=>@cook_book.id)%>" title="编辑">
-            <div class="work_action_edit">
-            </div>
-            <div class="work_action_edit_move">
-            </div>
+            <%= render partial: "/my_school/commons/edit_action" %>
           </a>
         </li>
         <li>
           <%= link_to(url_for(:controller=>"/my_school/cook_books",:action=>:destroy,:id=>@cook_book.id),:method=>:delete, :confirm => "您确定删除该菜谱吗?") do %>
-            <div class="work_action_delete">
-            </div>
-            <div class="work_action_delete_move">
-            </div>
+            <%= render partial: "/my_school/commons/delete_action" %>
           <% end %>
         </li>
         <li>
           <a href="<%=url_for(:controller=>"/my_school/cook_books",:action=>:index)%>" title="返回">
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
+            <%= render partial: "/my_school/commons/return_action" %>
           </a>
         </li>
       </ul>

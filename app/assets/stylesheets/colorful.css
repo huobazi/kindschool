@@ -2913,29 +2913,45 @@ input.flaot_but{
     float: right;
     padding-bottom: 10px;
 }
-  #demo_rolling {
-    background: #FFF;
-    overflow:hidden;
-    width: 100%;
-    height: 370px;
-  }
-  #demo_rolling img {
-    border: 3px solid #F2F2F2;
-    height: 370px;
-  }
-  #indemo {
-    float: left;
-    width: 800%;
-    height: 370px;
-  }
-  #demo1 {
-    float: left;
-    height: 370px;
-  }
-  #demo1 a{
-    float: left;
-  }
-  #demo2 {
-    float: left;
-    height: 370px;
-  }
+#demo_rolling {
+  background: #FFF;
+  overflow:hidden;
+  width: 100%;
+  height: 370px;
+}
+#demo_rolling img {
+  border: 3px solid #F2F2F2;
+  height: 370px;
+}
+#indemo {
+  float: left;
+  width: 800%;
+  height: 370px;
+}
+#demo1 {
+  float: left;
+  height: 370px;
+}
+#demo1 a{
+  float: left;
+}
+#demo2 {
+  float: left;
+  height: 370px;
+}
+
+.adjust {
+  color: rgb(53, 123, 28);
+  font-size: 12px;
+}
+
+.icon-customecomment {
+  background: url("/t/colorful/has_comments.png") no-repeat 0px -4px;
+  display: inline-block;
+  height: 17px;
+  line-height: 17px;
+  margin-top: 1px;
+  vertical-align: text-top;
+  width: 17px;
+  margin-right: 2px;
+}

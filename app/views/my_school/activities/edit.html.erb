@@ -21,29 +21,17 @@
       </div>
       <ul class="work_action">
         <li>
-          <% if controller_name == "activities" %>
-            <a href="<%=url_for(:controller=>"/my_school/activities",:action=>:index)%>" title="返回">
-          <% else %>
-            <a href="<%=url_for(:controller=>"/my_school/interest_activities",:action=>:index)%>" title="返回">
-          <% end %>
-            <div class="work_action_return">
-            </div>
-            <div class="work_action_return_move">
-            </div>
+          <a href="<%=url_for(:controller=>"#{params[:controller]}",:action=>:index)%>" title="返回">
+            <%= render partial: "my_school/commons/return_action" %>
           </a>
+
         </li>
       </ul>
     </div>
     <div class="work_form">
       <div class="form_div">
-        <% if controller_name == "activities" %>
-          <%= simple_form_for @activity, :validate => true, :url => {:controller=>"/my_school/activities",:action=>:update}, :html =>{:class=>"form-horizontal"} do |f| %>
-            <%= render :partial => "form",:object=>f %>
-          <% end %>
-        <% else %>
-          <%= simple_form_for @activity, :validate => true, :url => {:controller=>"/my_school/interest_activities",:action=>:update}, :html =>{:class=>"form-horizontal"} do |f| %>
-            <%= render :partial => "my_school/activities/form",:object=>f %>
-          <% end %>
+        <%= simple_form_for @activity, :validate => true, :url => {:controller=>"#{params[:controller]}",:action=>:update}, :html =>{:class=>"form-horizontal"} do |f| %>
+          <%= render :partial => "my_school/activities/form", :object => f %>
         <% end %>
       </div>
     </div>
