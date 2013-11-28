@@ -21,7 +21,7 @@
             <p class="title"><span class="name"><%= growth_record.student_info_label %></span>
               <span>
                 <% if current_user.id == growth_record.creater_id %>
-                  <%= growth_record.unread_comment_count %><img src="/t/colorful/has_comments.png" />
+                  <span class="icon-customecomment"></span><span class="adjust">评论(<%= growth_record.unread_comment_count %>)</span>
                 <% end %>
               </span>
             </p>

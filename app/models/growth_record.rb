@@ -4,6 +4,8 @@ class GrowthRecord < ActiveRecord::Base
 
   scope :week_stat, ->(start_at, end_at) { where("start_at >= ? and end_at <= ?", start_at, end_at) }
 
+  default_scope order("created_at DESC")
+
   belongs_to :kindergarten
   belongs_to :student_info
 

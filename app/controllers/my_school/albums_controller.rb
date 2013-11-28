@@ -8,23 +8,23 @@ class MySchool::AlbumsController  < MySchool::ManageController
     if current_user.get_users_ranges[:tp] == :student
       @squad = current_user.student_info.squad #.collect{|x|["#{x.name}   #{x.historyreview}",x.id]} 
       if (session[:operates] || []).include?('my_school/albums/new')
-        @albums = @kind.albums.search(params[:album] || {}).where("squad_id = ? or squad_id is null", current_user.student_info.squad_id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+        @albums = @kind.albums.search(params[:album] || {}).where("squad_id = ? or squad_id is null", current_user.student_info.squad_id).page(params[:page] || 1)
       else
-        @albums = @kind.albums.search(params[:album] || {}).where("is_show = 1 and (squad_id = ? or squad_id is null)", current_user.student_info.squad_id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+        @albums = @kind.albums.search(params[:album] || {}).where("is_show = 1 and (squad_id = ? or squad_id is null)", current_user.student_info.squad_id).page(params[:page] || 1)
       end
     elsif current_user.get_users_ranges[:tp] == :teachers  
         @all_squads = current_user.staff.squads.where(:graduate=>false).collect{|x|["#{x.name}   #{x.historyreview}",x.id]}
       if (session[:operates] || []).include?('my_school/albums/new')
-        @albums = @kind.albums.search(params[:album] || {}).where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+        @albums = @kind.albums.search(params[:album] || {}).where("squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1)
       else
-        @albums = @kind.albums.search(params[:album] || {}).where("is_show = 1 and ( squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL )", current_user.staff.id, current_user.id).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+        @albums = @kind.albums.search(params[:album] || {}).where("is_show = 1 and ( squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL )", current_user.staff.id, current_user.id).page(params[:page] || 1)
       end
     else
         @all_squads = @kind.squads.where(:graduate=>false).collect{|x|["#{x.name}   #{x.historyreview}",x.id]}
       if (session[:operates] || []).include?('my_school/albums/new')
-        @albums = @kind.albums.search(params[:album] || {}).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+        @albums = @kind.albums.search(params[:album] || {}).page(params[:page] || 1)
       else
-        @albums = @kind.albums.search(params[:album] || {}).where(:is_show=> 1).page(params[:page] || 1).per(6).order("is_top DESC, created_at DESC")
+        @albums = @kind.albums.search(params[:album] || {}).where(:is_show=> 1).page(params[:page] || 1)
       end
     end
 

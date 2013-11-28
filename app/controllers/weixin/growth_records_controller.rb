@@ -2,11 +2,11 @@
 class Weixin::GrowthRecordsController < Weixin::ManageController
   def index
     if current_user.get_users_ranges[:tp] == :student
-      @growth_records = GrowthRecord.where("tp = ? and (creater_id = ? or student_info_id = ?)", 1, current_user.id, current_user.student_info.id).page(params[:page] || 1).per(10).order("created_at DESC")
+      @growth_records = GrowthRecord.where("tp = ? and (creater_id = ? or student_info_id = ?)", 1, current_user.id, current_user.student_info.id).page(params[:page] || 1)
     elsif current_user.get_users_ranges[:tp] == :teachers
-      @growth_records = GrowthRecord.where("student_infos.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) and tp=1",current_user.staff.id).joins("INNER JOIN student_infos on(student_infos.id = growth_records.student_info_id)").page(params[:page] || 1).per(10).order("created_at DESC")
+      @growth_records = GrowthRecord.where("student_infos.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) and tp=1",current_user.staff.id).joins("INNER JOIN student_infos on(student_infos.id = growth_records.student_info_id)").page(params[:page] || 1)
     else
-      @growth_records = @kind.growth_records.where(:tp => 1).page(params[:page] || 1).per(10).order("created_at DESC")
+      @growth_records = @kind.growth_records.where(:tp => 1).page(params[:page] || 1)
     end
     AccessStatu.update_unread(@kind, "GrowthRecord", current_user)
   end

@@ -72,7 +72,7 @@
                   <span class="label label-info" style="margin-left: 10px;">全园可见-<%=album.creater.try(:name)%></span>
                 <% end %>
                 <% if current_user.id == album.creater_id %>
-                  <%= album.unread_comment_count %><img src="/t/colorful/has_comments.png" />
+                  <span class="icon-customecomment"></span><span class="adjust">评论(<%= album.unread_comment_count %>)</span>
                 <% end %>
             </div>
             <% unless current_user.get_users_ranges[:tp] == :student %>

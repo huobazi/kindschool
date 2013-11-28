@@ -1091,3 +1091,19 @@ ul.list_menu_li li{
 .label {
   padding: 10px;
 }
+
+.adjust {
+  color: rgb(53, 123, 28);
+  font-size: 12px;
+}
+
+.icon-customecomment {
+  background: url("/t/colorful/has_comments.png") no-repeat 0px -4px;
+  display: inline-block;
+  height: 17px;
+  line-height: 17px;
+  margin-top: 1px;
+  vertical-align: text-top;
+  width: 17px;
+  margin-right: 2px;
+}
