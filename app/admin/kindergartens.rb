@@ -194,10 +194,12 @@ ActiveAdmin.register Kindergarten do
           end
           ul do
             li do
-              link_to "添加班级",:controller=>"/admin/squads",:kindergarten_id=>kind.id,:action=>:new,:id=>nil
-            end
-            li do
-              link_to "查看班级列表",:controller=>"/admin/squads",:action=>:index,:id=>nil,"q[kindergarten_id_eq]"=>kind.id
+              span :class => "action_item" do
+                link_to "添加班级",:controller=>"/admin/squads",:kindergarten_id=>kind.id,:action=>:new,:id=>nil
+              end
+              span :class => "action_item" do
+                link_to "查看班级列表",:controller=>"/admin/squads",:action=>:index,:id=>nil,"q[kindergarten_id_eq]"=>kind.id
+              end
             end
           end
         end
@@ -223,7 +225,9 @@ ActiveAdmin.register Kindergarten do
           end
           ul do
             li do
-              link_to "添加教职工", :controller=>"/admin/staffs", :kindergarten_id=>kind.id, :action=>:new, :id=>nil
+              span :class => "action_item" do
+                link_to "添加教职工", :controller=>"/admin/staffs", :kindergarten_id=>kind.id, :action=>:new, :id=>nil
+              end
             end
           end
         end
@@ -245,7 +249,7 @@ ActiveAdmin.register Kindergarten do
             table_for(kind.topics.limit(10).order("id DESC")) do |t|
               t.column("标题") {|item| item.title}
               t.column("发贴人") {|item| item.creater.try(:name)}
-              t.column("内容") {|item| raw item.content}
+              t.column("创建时间") { |item| item.created_at }
               tr :class => "odd" do
                 td ""
                 td "贴子总数", :style => "text-align: right;"
@@ -256,8 +260,10 @@ ActiveAdmin.register Kindergarten do
             "未有贴子"
           end
           ul do
-            li do
-              link_to "查看贴子列表", :controller => "/admin/topics", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+            li :class => "btn-black" do
+              span :class => "action_item" do
+                link_to "查看贴子列表", :controller => "/admin/topics", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+              end
             end
           end
         end
@@ -282,7 +288,9 @@ ActiveAdmin.register Kindergarten do
           end
           ul do
             li do
-              link_to "创建菜谱", :controller => "/admin/cook_books", :action => :new, :kindergarten_id => kind.id
+              span :class => "action_item" do
+                link_to "创建菜谱", :controller => "/admin/cook_books", :action => :new, :kindergarten_id => kind.id
+              end
             end
           end
         end
@@ -308,7 +316,9 @@ ActiveAdmin.register Kindergarten do
           end
           ul do
             li do
-              link_to "创建通知", :controller => "/admin/notices", :action => :new, :kindergarten_id => kind.id
+              span :class => "action_item" do
+                link_to "创建通知", :controller => "/admin/notices", :action => :new, :kindergarten_id => kind.id
+              end
             end
           end
         end
@@ -338,7 +348,9 @@ ActiveAdmin.register Kindergarten do
             #              link_to "创建消息", :controller => "/admin/messages", :action => :new, :kindergarten_id => kind.id
             #            end
             li do
-              link_to "查看消息列表", :controller => "/admin/messages", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+              span :class => "action_item" do
+                link_to "查看消息列表", :controller => "/admin/messages", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+              end
             end
           end
         end
@@ -366,7 +378,9 @@ ActiveAdmin.register Kindergarten do
           end
           ul do
             li do
-              link_to "查看成长记录列表", :controller => "/admin/growth_records", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+              span :class => "action_item" do
+                link_to "查看成长记录列表", :controller => "/admin/growth_records", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+              end
             end
           end
         end
@@ -417,7 +431,9 @@ ActiveAdmin.register Kindergarten do
 
         ul do
           li do
-            link_to "创建页面内容", :controller => "/admin/page_contents", :action => :new, :kindergarten_id => kind.id
+            span :class => "action_item" do
+              link_to "创建页面内容", :controller => "/admin/page_contents", :action => :new, :kindergarten_id => kind.id
+            end
           end
         end
       end
@@ -437,10 +453,12 @@ ActiveAdmin.register Kindergarten do
           end
           ul do
             li do
-              link_to "创建论坛分类", :controller => "/admin/topic_categories", :action => :new, :kindergarten_id => kind.id
-            end
-            li do
-              link_to "查看论坛分类列表", :controller => "/admin/topic_categories", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+              span :class => "action_item" do
+                link_to "创建论坛分类", :controller => "/admin/topic_categories", :action => :new, :kindergarten_id => kind.id
+              end
+              span :class => "action_item" do
+                link_to "查看论坛分类列表", :controller => "/admin/topic_categories", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+              end
             end
           end
         end
@@ -460,17 +478,23 @@ ActiveAdmin.register Kindergarten do
             end
             ul do
               li do
-                link_to "查看seo关键字列表", :controller => "/admin/shrink_records", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+                span :class => "action_item" do
+                  link_to "查看seo关键字列表", :controller => "/admin/shrink_records", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+                end
               end
             end
           else
             "还没有seo关键字优化"
             ul do
               li do
-                link_to "创建seo关键字优化", :controller => "/admin/shrink_records", :action => :new, :kindergarten_id => kind.id
+                span :class => "action_item" do
+                  link_to "创建seo关键字优化", :controller => "/admin/shrink_records", :action => :new, :kindergarten_id => kind.id
+                end
               end
               li do
-                link_to "查看seo关键字列表", :controller => "/admin/shrink_records", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+                span :class => "action_item" do
+                  link_to "查看seo关键字列表", :controller => "/admin/shrink_records", :action => :index,"q[kindergarten_id_eq]"=>kind.id
+                end
               end
             end
           end
@@ -493,12 +517,13 @@ ActiveAdmin.register Kindergarten do
 
         ul do
           li do
-            link_to "添加功能", :controller=>"/admin/option_operates", :kindergarten_id=>kind.id, :action=>:add_functional_to_kind, :id=>nil
+            span :class => "action_item" do
+              link_to "添加功能", :controller=>"/admin/option_operates", :kindergarten_id=>kind.id, :action=>:add_functional_to_kind, :id=>nil
+            end
           end
         end
       end
 
-      
 
     end
   end
@@ -509,7 +534,9 @@ ActiveAdmin.register Kindergarten do
       ul do
         kind.grades.order(:sequence).each do |entry|
           li do
-            link_to entry.name,:controller=>"/admin/grades",:action=>:show,:id=>entry.id
+            span :class => "action_item" do
+              link_to entry.name,:controller=>"/admin/grades",:action=>:show,:id=>entry.id
+            end
           end
         end
       end
@@ -517,10 +544,14 @@ ActiveAdmin.register Kindergarten do
     end
     ul do
       li do
-        link_to "添加年级",:controller=>"/admin/grades",:kindergarten_id=>kind.id,:action=>:new,:id=>nil
+        span :class => "action_item" do
+          link_to "添加年级",:controller=>"/admin/grades",:kindergarten_id=>kind.id,:action=>:new,:id=>nil
+        end
       end
       li do
-        link_to "查看年级列表",:controller=>"/admin/grades",:action=>:index,:id=>nil,"q[kindergarten_id_eq]"=>kind.id
+        span :class => "action_item" do
+          link_to "查看年级列表",:controller=>"/admin/grades",:action=>:index,:id=>nil,"q[kindergarten_id_eq]"=>kind.id
+        end
       end
     end
   end
@@ -530,13 +561,19 @@ ActiveAdmin.register Kindergarten do
     ul do
       li do
         if kind.admin.blank?
-          link_to "添加管理员",:action=>:new,:controller=>"/admin/users",:tp=>"admin",:kindergarten_id=>kind.id,:id=>nil
+          span :class => "action_item" do
+            link_to "添加管理员",:action=>:new,:controller=>"/admin/users",:tp=>"admin",:kindergarten_id=>kind.id,:id=>nil
+          end
         else
-          link_to "#{kind.admin.login}|#{kind.admin.name}",:action=>:show,:controller=>"/admin/users",:id=>kind.admin.id
+          span :class => "action_item" do
+            link_to "#{kind.admin.login}|#{kind.admin.name}",:action=>:show,:controller=>"/admin/users",:id=>kind.admin.id
+          end
         end
       end
       li do
-        link_to "设置默认模版", :controller => "/admin/templates", :action => :index, :kindergarten_id => kind.id, :id=>nil
+        span :class => "action_item" do
+          link_to "设置默认模版", :controller => "/admin/templates", :action => :index, :kindergarten_id => kind.id, :id=>nil
+        end
       end
     end
   end

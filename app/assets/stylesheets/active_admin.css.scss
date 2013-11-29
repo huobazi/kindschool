@@ -1195,3 +1195,63 @@ body.active_admin .ke-plugin-filemanager-body .ke-table .ke-datetime {
 	text-align: center;
 }
 
+body.active_admin {
+  #active_admin_content {
+    li {
+      list-style: none;
+    }
+
+    a {
+      display: inline-block;
+      padding: 4px 12px;
+      margin-bottom: 0;
+      vertical-align: middle; 
+      cursor: pointer;
+      color: #0088cc;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #005580;
+      text-decoration: underline;
+      background-color: transparent; 
+    }
+
+    .action_item {
+      margin-bottom: 8px;
+      display: inline-block;
+      a {
+        -webkit-border-radius: 200px;
+        -moz-border-radius: 200px;
+        border-radius: 200px;
+        display: inline-block;
+        font-weight: bold;
+        font-size: 1.0em;
+        font-family: Helvetica, Arial, sans-serif;
+        line-height: 12px;
+        margin-right: 3px;
+        text-decoration: none;
+        -webkit-font-smoothing: antialiased;
+        background: white;
+        background: -webkit-linear-gradient(-90deg, white, #e7e7e7);
+        background: -moz-linear-gradient(-90deg, white, #e7e7e7);
+        background: linear, -90deg, white, #e7e7e7;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe7e7e7');
+        -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe7e7e7');
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 0 0 rgba(255, 255, 255, 0.8) inset;
+        border: solid 1px #c7c7c7;
+        border-color: #c7c7c7;
+        border-top-color: lightgrey;
+        border-right-color: #c7c7c7;
+        border-bottom-color: #c2c2c2;
+        border-left-color: #c7c7c7;
+        text-shadow: white 0 1px 0;
+        color: #5e6469;
+        padding: 4px 12px;
+        margin: 0px;
+      }
+    }
+  }
+
+  
+}
+

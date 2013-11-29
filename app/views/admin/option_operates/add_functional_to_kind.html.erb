@@ -10,12 +10,12 @@
     <% @operate_root.children.each do |c| %>
       <li class='check_boxes'>
       <fieldset>
-        <legend class="label"><label><%= c.name %></label></legend>
+        <legend class="label"><label><input class="flag_check" type="checkbox" name="" value="" alt="全选" id="flag_<%= c.id %>" /><%= c.name %></label></legend>
         <ol>
           <% c.children.each do |operate| %>
             <li>
             <label for="operate_<%= operate.id %>">
-            <input id="operate_<%= operate.id %>" name="operate[]" type="checkbox" value="<%= operate.id %>" <%= @kind.operates.include?(operate) ? "checked=true": nil %> /> <%= operate.name %> </label>
+              <input id="operate_<%= operate.id %>" class="flag_<%= c.id %>_operate" name="operate[]" type="checkbox" value="<%= operate.id %>" <%= @kind.operates.include?(operate) ? "checked=true default=true": nil %> /> <%= operate.name %> </label>
             </li>
           <% end %>
         </ol>
@@ -23,6 +23,30 @@
       </li>
     <% end %>
     <%= f.input :id,:as=>:hidden, :input_html => {:name => "kindergarten_id"}%>
+    <a href="javascript:void(0);" id="recovery">撤消</a>
+
     <%= f.actions %>
   <% end %>
 <% end %>
+
+<script type="text/javascript">
+  $(function() {
+
+    $(".flag_check").each(function() {
+      var check_val = "." + $(this).attr("id") + "_operate"
+      $(this).click(function() {
+        $(check_val).attr("checked", this.checked)
+      })
+    })
+
+    $("#recovery").click(function() {
+      $("input").each(function() {
+        if ( $(this).attr("default") == "true" ) {
+          $(this).attr("checked", true);
+        } else {
+          $(this).attr("checked", false);
+        }
+      })
+    })
+  });
+</script>

@@ -6,11 +6,11 @@ class Weixin::ActivitiesController < Weixin::ManageController
   before_filter :is_student?, :only => [:new, :create, :update, :edit, :destroy]
   def index
     if current_user.get_users_ranges[:tp] == :student
-      @activities = @kind.activities.where(:tp => 0, :squad_id => current_user.student_info.squad_id).page(params[:page] || 1).per(10).order("created_at DESC")
+      @activities = @kind.activities.where(:tp => 0, :squad_id => current_user.student_info.squad_id).page(params[:page] || 1)
     elsif current_user.get_users_ranges[:tp] == :teachers
-      @activities = @kind.activities.where("tp = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", 0, current_user.staff.id, current_user.id).page(params[:page] || 1).per(10).order("created_at DESC")
+      @activities = @kind.activities.where("tp = ? and (squad_id in (select squad_id from teachers where staff_id = ?) or creater_id = ? or squad_id is NULL)", 0, current_user.staff.id, current_user.id).page(params[:page] || 1)
     else
-      @activities = @kind.activities.where(:tp => 0).page(params[:page] || 1).per(10).order("created_at DESC")
+      @activities = @kind.activities.where(:tp => 0).page(params[:page] || 1)
     end
     AccessStatu.update_unread(@kind, "Activity", current_user)
   end

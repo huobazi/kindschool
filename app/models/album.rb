@@ -2,6 +2,10 @@
 class Album < ActiveRecord::Base
   attr_accessible :album_entry_id,:approve_status, :approver_id, :content, :creater_id, :grade_id, :is_show, :kindergarten_id, :send_date, :squad_id, :squad_name, :title, :tp, :is_top, :accessed_at
 
+  paginates_per 6
+
+  default_scope order("is_top DESC, created_at DESC")
+
   belongs_to :kindergarten
   belongs_to :squad
   belongs_to :grade

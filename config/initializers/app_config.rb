@@ -268,10 +268,14 @@ HOME_MENU ={
 }
 
 PAGE_CONTROLLER = [
-  "topics", "activities",
-  "growth_records", "garden_growth_records",
-  "interest_activities", "albums", "cook_books",
-  "physical_records", "seedlings",
-  "notices", "squads", "grades",
-  "staffs", "messages", "virtual_squads", "student_infos", "personal_sets"
+  "topics/index", "activities/index",
+  "growth_records/index", "garden_growth_records/index",
+  "growth_records/home", "garden_growth_records/garden",
+  "interest_activities/index", "albums/index", "cook_books/index",
+  "physical_records/index", "seedlings/index",
+  "notices/index", "squads/index", "grades/index",
+  "staffs/index", "messages/index", "virtual_squads/index",
+  "student_infos/index", "personal_sets/index",
+  "roles/index", "messages/outbox", "messages/draft_box",
+  "dean_emails/index"
 ]

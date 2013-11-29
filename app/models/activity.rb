@@ -2,6 +2,8 @@
 class Activity < ActiveRecord::Base
   attr_accessible :approve_status, :approver_id, :content, :creater_id, :end_at, :kindergarten_id, :logo, :note, :send_range, :send_range_ids, :start_at, :title, :tp, :squad_id
 
+  default_scope order("created_at DESC")
+
   just_define_datetime_picker :start_at, :add_to_attr_accessible => true
   just_define_datetime_picker :end_at, :add_to_attr_accessible => true
 
