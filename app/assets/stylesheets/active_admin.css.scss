@@ -1217,6 +1217,8 @@ body.active_admin {
     }
 
     .action_item {
+      margin-bottom: 8px;
+      display: inline-block;
       a {
         -webkit-border-radius: 200px;
         -moz-border-radius: 200px;
