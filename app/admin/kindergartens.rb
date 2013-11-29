@@ -194,10 +194,12 @@ ActiveAdmin.register Kindergarten do
           end
           ul do
             li do
-              link_to "添加班级",:controller=>"/admin/squads",:kindergarten_id=>kind.id,:action=>:new,:id=>nil
-            end
-            li do
-              link_to "查看班级列表",:controller=>"/admin/squads",:action=>:index,:id=>nil,"q[kindergarten_id_eq]"=>kind.id
+              span :class => "action_item" do
+                link_to "添加班级",:controller=>"/admin/squads",:kindergarten_id=>kind.id,:action=>:new,:id=>nil
+              end
+              span :class => "action_item" do
+                link_to "查看班级列表",:controller=>"/admin/squads",:action=>:index,:id=>nil,"q[kindergarten_id_eq]"=>kind.id
+              end
             end
           end
         end
@@ -245,7 +247,7 @@ ActiveAdmin.register Kindergarten do
             table_for(kind.topics.limit(10).order("id DESC")) do |t|
               t.column("标题") {|item| item.title}
               t.column("发贴人") {|item| item.creater.try(:name)}
-              t.column("内容") {|item| raw item.content}
+              t.column("创建时间") { |item| item.created_at }
               tr :class => "odd" do
                 td ""
                 td "贴子总数", :style => "text-align: right;"
@@ -256,7 +258,7 @@ ActiveAdmin.register Kindergarten do
             "未有贴子"
           end
           ul do
-            li do
+            li :class => "btn-black" do
               link_to "查看贴子列表", :controller => "/admin/topics", :action => :index,"q[kindergarten_id_eq]"=>kind.id
             end
           end
