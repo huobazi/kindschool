@@ -1,12 +1,12 @@
 # encoding: utf-8
 module MySchool::ManageHelper
-	def choose_operate_show(controller_view)
-		(session[:operates]||[]).include?(controller_view)
-	end
-	def calculated_figures
-		str = current_user.name + current_user.role.try(:name).to_s
-	    200-str.size
-	end
+  def choose_operate_show(controller_view)
+    (session[:operates]||[]).include?(controller_view)
+  end
+  def calculated_figures
+    str = current_user.name + current_user.role.try(:name).to_s
+    200-str.size
+  end
 
   def paginate(scope, options = {}, &block)
     js = <<EOF
@@ -24,7 +24,7 @@ EOF
     str ||= super
     if scope.total_count > scope.limit_value
       str << raw("<ul id='redirect_page'><li><span>每页#{scope.limit_value.to_s}条/总共#{scope.total_count.to_s}条记录</span>&nbsp;&nbsp;")
-      if PAGE_CONTROLLER.include?(controller_name) && (action_name == "index" || action_name == "home" || action_name == "garden")
+      if PAGE_CONTROLLER.include?("#{controller_name}/#{action_name}")
         str << raw("<span>
         跳到第<input type='' class='input-mini' id='page_number' value='#{params[:page] ? params[:page] : ""}' />页
         </span>")
