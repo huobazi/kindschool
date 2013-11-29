@@ -361,7 +361,7 @@ ActiveAdmin.register Kindergarten do
           unless kind.growth_records.blank?
             table_for(kind.growth_records.limit(10).order("id DESC")) do |t|
               t.column("创建人") {|item| item.creater.try(:name)}
-              t.column("内容") {|item| item.content}
+              t.column("内容") {|item| truncate item.content}
               t.column("所属学员") {|item| item.student_info.try(:name)}
               t.column("类型") {|item| GrowthRecord::TP_DATA[item.tp.to_s]}
               t.column("创建时间") {|item| item.created_at.try(:to_short_datetime)}
