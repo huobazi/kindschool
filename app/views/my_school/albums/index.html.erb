@@ -54,10 +54,10 @@
       <ul id="album_wall" >
         <% (@albums || []).each do |album| %>
           <li class="photo_style" for="actions_<%= album.id %>">
-            <a href="<%= my_school_album_path(album)%>" class="album_a ">
+            <a href="<%= my_school_album_path(album)%>" class="album_a " title="<%= album.created_at.try(:to_short_datetime) %>">
               <div class="album_window"></div>
               <div class="album_img">
-                <img src="<%= album.show_main_img ? album.show_main_img.public_filename(:thumb) : '/t/colorful/login_img10.png' %>"  alt="<%=album.title%>"/>
+                <img src="<%= album.show_main_img ? album.show_main_img.public_filename(:thumb) : '/t/colorful/login_img10.png' %>"  alt="<%=album.title%>" />
               </div>
             </a>
             <div class="title">
@@ -77,6 +77,7 @@
             </div>
             <% unless current_user.get_users_ranges[:tp] == :student %>
               <div class="actions" id="actions_<%= album.id %>" style="display: none;">
+                
                 <%if choose_operate_show('my_school/albums/destroy')%>
                   <%= link_to '删除', my_school_album_path(album), :method=> :delete, :data=> { :confirm=> '你确定删除该照片集锦吗' },:class=> "destroy" %>
                 <%end%>
