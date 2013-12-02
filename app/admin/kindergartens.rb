@@ -175,6 +175,14 @@ ActiveAdmin.register Kindergarten do
       row :created_at
       row :updated_at
 
+      #这个地方加一个用户绑定统计
+      div do
+        br
+        panel "幼儿园统计" do  
+          render :partial => "/admin/kindergartens/kindergartens_sas",:locals => { :kind => kind.id }
+        end
+      end
+
       div do
         br
         panel "班级信息" do
@@ -232,15 +240,6 @@ ActiveAdmin.register Kindergarten do
           end
         end
       end
-
-      #这个地方加一个用户绑定统计
-      div do
-        br
-        panel "幼儿园统计" do  
-          render :partial => "/admin/kindergartens/kindergartens_sas",:locals => { :kind => kind.id }
-        end
-      end
-
 
       div do
         br
@@ -361,7 +360,7 @@ ActiveAdmin.register Kindergarten do
           unless kind.growth_records.blank?
             table_for(kind.growth_records.limit(10).order("id DESC")) do |t|
               t.column("创建人") {|item| item.creater.try(:name)}
-              t.column("内容") {|item| item.content}
+              t.column("内容") {|item| truncate item.content}
               t.column("所属学员") {|item| item.student_info.try(:name)}
               t.column("类型") {|item| GrowthRecord::TP_DATA[item.tp.to_s]}
               t.column("创建时间") {|item| item.created_at.try(:to_short_datetime)}
