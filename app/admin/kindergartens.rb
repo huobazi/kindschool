@@ -175,6 +175,14 @@ ActiveAdmin.register Kindergarten do
       row :created_at
       row :updated_at
 
+      #这个地方加一个用户绑定统计
+      div do
+        br
+        panel "幼儿园统计" do  
+          render :partial => "/admin/kindergartens/kindergartens_sas",:locals => { :kind => kind.id }
+        end
+      end
+
       div do
         br
         panel "班级信息" do
@@ -232,15 +240,6 @@ ActiveAdmin.register Kindergarten do
           end
         end
       end
-
-      #这个地方加一个用户绑定统计
-      div do
-        br
-        panel "幼儿园统计" do  
-          render :partial => "/admin/kindergartens/kindergartens_sas",:locals => { :kind => kind.id }
-        end
-      end
-
 
       div do
         br
