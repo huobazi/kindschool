@@ -12,7 +12,7 @@ class EvaluateAvatarUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "../evaluate/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "../evaluate/#{model.class.to_s.underscore}/#{mounted_as}/#{model.kindergarten.number}/#{model.resource.id}/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -46,7 +46,7 @@ class EvaluateAvatarUploader < CarrierWave::Uploader::Base
   def filename
     if original_filename
       # current_path 是 Carrierwave 上传过程临时创建的一个文件，有时间标记，所以它将是唯一的
-      @name ||= Digest::MD5.hexdigest(File.dirname(current_path))
+       @name ||= original_filename
       "#{@name}.#{file.extension}"
     end
   end

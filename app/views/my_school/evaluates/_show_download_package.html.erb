@@ -1,0 +1,9 @@
+<table  class="table table-striped table-hover">
+	<tr><th>下载包</th><th>创建时间</th></tr>
+	<tr>
+		<td>
+			<%=link_to "下载包",download_my_school_evaluates_path,:class=>"blue"%>
+		</td>
+		<td><%=@download_package.try(:created_at).try(:to_long_datetime)%></td>
+	</tr>
+</table>

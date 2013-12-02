@@ -8,6 +8,7 @@ class MySchool::EvaluatesController < MySchool::ManageController
      else
      	@evaluate_entries = @evaluates.evaluate_entries.page(params[:page] || 1).per(10)
      end
+     @download_package=@kind.download_package
    end
    def create
      @evaluate = Evaluate.new()
@@ -29,4 +30,25 @@ class MySchool::EvaluatesController < MySchool::ManageController
       format.json { head :no_content }
     end
    end
+   
+   def download_packages
+    require 'rubygems'     
+    require 'zip/zip'
+    @kind.download_package.update_attributes(:status=>true) if @kind.download_package
+    evaluate = @kind.evaluate
+    evaluate.delay.download_package 
+    @download_package = @kind.download_package
+    redirect_to my_school_evaluates_path
+   end
+
+   def download
+   package = @kind.download_package
+    if current_user.kindergarten == @kind
+      path = "#{File.dirname(__FILE__)}/../../../stuff_to_zip/#{@kind.number}/#{@kind.number}.zip"
+      send_file path, :x_sendfile=>true
+    else
+      redirect_to :back ,:notice=>"你没有权限下载"
+    end
+   end
+
 end

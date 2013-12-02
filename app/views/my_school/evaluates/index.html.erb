@@ -29,6 +29,16 @@
           <%end%>
         <%=render "list_evaluates"%>
       <%end%>
+      <% if choose_operate_show("my_school/evaluates/download_packages") %>
+      <div class="download_package">
+      <%if @download_package && @download_package.status %>
+      <%=link_to "正在打包中" , "###",:class=>"btn"%>
+       <%else%>
+       <%=link_to "打包下载" , download_packages_my_school_evaluates_path,:class=>"btn"%>
+       <%=render "show_download_package"%>
+       <%end%>
+      </div>
+      <%end%>
     </div>
   </div>
 

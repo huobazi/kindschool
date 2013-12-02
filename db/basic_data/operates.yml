@@ -2269,6 +2269,28 @@ official_evaluate_vtocs_download:
   action: "download"
   protocol: ""
   <<: *DEFAULTS
+official_evaluate_download_packages:
+  id: 15301
+  parent_id: 13
+  name: "评估管理下载打包"
+  level: 2
+  sequence: 1
+  note: "评估管理下载打包"
+  controller: "my_school/evaluates"
+  action: "download_packages"
+  protocol: ""
+  <<: *DEFAULTS
+official_evaluate_download:
+  id: 15302
+  parent_id: 13
+  name: "评估管理压缩包下载"
+  level: 2
+  sequence: 1
+  note: "评估管理压缩包下载"
+  controller: "my_school/evaluates"
+  action: "download"
+  protocol: ""
+  <<: *DEFAULTS
 
 teacher_stat_statistics:
   id: 14500

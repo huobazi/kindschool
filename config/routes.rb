@@ -17,6 +17,10 @@ School::Application.routes.draw do
     resources :evaluate_templates
     resources :evaluates do
       resources :evaluate_entries
+       collection do
+        get :download_packages
+        get :download
+       end
     end
     resources :dean_emails
     resources :read_users do

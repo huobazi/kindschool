@@ -38,6 +38,8 @@ class Kindergarten < ActiveRecord::Base
   has_one :asset_img, :class_name => "AssetImg", :as => :resource, :dependent => :destroy #logo，只有一个
   has_one :asset_logo, :class_name => "AssetLogo", :as => :resource, :dependent => :destroy #二维码，只有一个
   has_one :evaluate
+
+  has_one :download_package
   
   belongs_to :template
 
@@ -81,6 +83,8 @@ class Kindergarten < ActiveRecord::Base
   has_one :shrink_record
 
   has_many :teaching_plans
+
+  has_many :evaluate_vtocs
 
   has_many :sys_logs
   has_many :access_status
