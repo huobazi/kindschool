@@ -1252,6 +1252,19 @@ body.active_admin {
     }
   }
 
-  
 }
 
+
+body.active_admin form.list-arrange fieldset > ol > li.check_boxes fieldset ol li {
+  display: inline-block;
+  width: 30%;
+}
+
+body.active_admin {
+  .pagination {
+    float: none;
+    li {
+      float: left;
+    }
+  }
+}

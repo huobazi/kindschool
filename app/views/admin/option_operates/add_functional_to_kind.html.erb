@@ -1,4 +1,4 @@
-<%= semantic_form_for @kind, :url =>url_for(:controller=>"/admin/option_operates",:action=>"update_functional"), :method => :post do |f| %>
+<%= semantic_form_for @kind, :url =>url_for(:controller=>"/admin/option_operates",:action=>"update_functional"), :method => :post, :html => {:class => "list-arrange"} do |f| %>
   <%= f.inputs '幼儿园信息' do %>
     <%= f.input :number, :as => :string, :input_html => { :disabled => true } %>
     <%= f.input :name, :as => :string, :input_html => {:disabled => true} %>

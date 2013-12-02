@@ -109,7 +109,7 @@
 
 <div class="control-group">
   <div class="controls">
-    <%= f.submit "发送消息",:class => 'btn btn-primary btn-large' %>
+    <%= f.submit "发送消息",:class => 'btn btn-primary btn-large', :disable_with=> "正在提交..." %>
     &nbsp;&nbsp;
     <%= f.submit  "存为草稿", :name => 'draft', :class => 'btn btn-primary btn-large' %>
   </div>
