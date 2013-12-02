@@ -10,6 +10,7 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /evaluate/*
+/stuff_to_zip/*
 /db/schema.rb
 /public/asset_imgs/*
 /public/asset_logos/*
