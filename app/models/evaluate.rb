@@ -33,7 +33,7 @@ class Evaluate < ActiveRecord::Base
         input_filenames.each do |filename,filename_url|
           url = filename_url[0]
           if name == directory[filename]
-            zipfile.add(filename, './' + url)
+            zipfile.add(filename, "./#{url}")
             zipfile.rename(filename,filename_url[1])
           end
         end
