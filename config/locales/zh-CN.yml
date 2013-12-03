@@ -390,7 +390,7 @@ zh-CN:
         status: "状态"
         login_note: "注册短信追加内容"
         weixin_status: "微信公共账号状态"
-        weixin_status_label: "微信公共账号状态"
+        weixin_status_label: "微信绑定状态"
         weixin_code: "微信账号"
         weixin_token: "微信token"
         asset_img: "LOGO"
