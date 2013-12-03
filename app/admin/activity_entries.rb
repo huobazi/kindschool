@@ -3,10 +3,16 @@ ActiveAdmin.register ActivityEntry do
   menu :parent => "幼儿园管理", :priority => 24
 
   index do
-    column :note
-    column :tp
+    column :note do |obj|
+      raw truncate(obj.note, :length => 360)
+    end
+    column :tp do |obj|
+      obj.tp ? "活动" : "兴趣讨论"
+    end
     column :activity
-    column :creater_id
+    column :creater_id do |obj|
+      obj.creater.try(:name)
+    end
     column :activity_img do |obj|
       if obj.activity_img.blank?
         raw "图片不存在"
