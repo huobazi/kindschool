@@ -50,12 +50,11 @@ class Evaluate < ActiveRecord::Base
       File.delete("#{File.dirname(__FILE__)}/../../.#{dir_name}#{name}.zip")  
      end
     end   
-    # File.chown("www-data", "www-data", "#{File.dirname(__FILE__)}/../../.#{dir_name}#{@kind.number}.zip")
-    filepath="#{File.dirname(__FILE__)}/../../.#{dir_name}"
+    filepath="#{File.dirname(__FILE__)}/../../../stuff_to_zip/"
     data=File.stat(filepath)
     uid=data.uid 
     gid=data.gid 
-    File.chown(uid,gid,filepath,filepath+"#{@kind.number}.zip") 
+    File.chown(uid,gid,filepath+"#{@kind.number}",filepath+"#{@kind.number}/#{@kind.number}.zip") 
     @kind.download_package.destroy if @kind.download_package
      package =DownloadPackage.new(:name=>"评估系统")
      package.package = "#{@kind.number}.zip"
