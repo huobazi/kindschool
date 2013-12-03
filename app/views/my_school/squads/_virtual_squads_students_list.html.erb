@@ -10,8 +10,8 @@
         </tr>
         <% @user_info.each do |user_squad| %>
           <tr>
-            <td><%= user_squad.user.name %></td>
-            <td><%= user_squad.squad.name %></td>
+            <td><%= user_squad.user ? user_squad.user.name : "缺少信息" %></td>
+            <td><%= user_squad.squad ? user_squad.squad.name : "未设置年级" %></td>
           </tr>
         <% end %>
       </table>
