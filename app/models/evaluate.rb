@@ -33,7 +33,7 @@ class Evaluate < ActiveRecord::Base
         input_filenames.each do |filename,filename_url|
           url = filename_url[0]
           if name == directory[filename]
-            zipfile.add(filename, "./#{url}" + url)
+            zipfile.add(filename, "./#{url}")
             zipfile.rename(filename,filename_url[1])
           end
         end
@@ -50,7 +50,7 @@ class Evaluate < ActiveRecord::Base
       File.delete("#{File.dirname(__FILE__)}/../../.#{dir_name}#{name}.zip")  
      end
     end   
-    filepath="#{File.dirname(__FILE__)}/../../../app/models/evaluate.rb"
+    filepath="#{File.dirname(__FILE__)}/evaluate.rb"
     ch_files = "#{File.dirname(__FILE__)}/../../stuff_to_zip/"
     data=File.stat(filepath)
     uid=data.uid 
