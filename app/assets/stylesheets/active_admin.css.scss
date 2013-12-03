@@ -1267,4 +1267,11 @@ body.active_admin {
       float: left;
     }
   }
+  #header h1 {
+    background: #fff;
+    margin-top: -9px;
+    img {
+      height: 35px;
+    }
+  }
 }
