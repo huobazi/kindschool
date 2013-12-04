@@ -256,7 +256,31 @@ zh-CN:
       help_movie: "帮助视频"
       resource_library: "上传资源库"
       evaluate_template: "评估模板下载"
+      credit_log: "积分日志"
+      credit_cofig: "积分配置"
+      squad_credit: "班级积分"
+      personal_credit: "个人积分管理"
     attributes:
+      personal_credit:
+        kindergarten: "幼儿园"
+        user: "用户"
+        credit: "积分"
+      squad_credit: 
+        kindergarten: "幼儿园"
+        squad: "班级名称"
+        credit: "积分"
+      credit_log:
+        kindergarten: "幼儿园"
+        tp: "类型"
+        credit: "积分"
+        note: "描述"
+        resource: "积分类型来源"
+        business: "业务来源"
+      credit_cofig: 
+        name: "名称"
+        number: "编码"
+        credit: "积分"
+        note: "描述"
       evaluate_template:
         name: "名称"
         template_url: "附件地址"

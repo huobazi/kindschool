@@ -34,7 +34,11 @@ class MySchool::EvaluatesController < MySchool::ManageController
    def download_packages
     require 'rubygems'     
     require 'zip/zip'
-    @kind.download_package.update_attributes(:status=>true) if @kind.download_package
+    if @kind.download_package
+    @kind.download_package.update_attributes(:status=>true) 
+    else
+     @kind.download_package = DownloadPackage.create(:status=>true) 
+    end
     evaluate = @kind.evaluate
     evaluate.delay.download_package 
     @download_package = @kind.download_package
