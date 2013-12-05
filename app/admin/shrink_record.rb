@@ -1,4 +1,4 @@
-100coding:utf-8
+#encoding:utf-8
 #SEO搜素关键字记录表
 ActiveAdmin.register ShrinkRecord do
   menu :parent => "微壹平台", :priority => 28
