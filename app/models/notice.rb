@@ -28,6 +28,10 @@ class Notice < ActiveRecord::Base
     Notice::SEND_RANGE_DATA["#{self.send_range || 0}"]
   end
 
+  def approver_status_label
+    Notice::STATUS[self.approve_status]
+  end
+
   def change_arry_approve_record
      [:content,:title,:send_date,:send_range,:send_range_ids] 
   end

@@ -17,10 +17,13 @@ ActiveAdmin.register Notice do
   end
 
   index do
-    column :title
+    column :title do |notice|
+      truncate(notice.title)
+    end
     column :kindergarten
-    column :creater_id
-    column :status
+    column :creater
+    column :send_date
+    column :approver_status_label
     default_actions
   end
 
@@ -41,13 +44,11 @@ ActiveAdmin.register Notice do
       row :title
       row :content
       row :kindergarten
-      row :creater_id
-      row :status
-      row :approve_status
+      row :creater
+      row :approver_status_label
       row :approver_id
       row :send_date
-      row :send_range
-      row :send_range_ids
+      row :send_range_label
     end
   end
 end
