@@ -22,8 +22,10 @@ ActiveAdmin.register Topic do
     end
     column :creater
     column :kindergarten
-    column :status
     column :show_count
+    column :topic_entires_count do |topic|
+      topic.topic_entries.count
+    end
     default_actions
   end
 
