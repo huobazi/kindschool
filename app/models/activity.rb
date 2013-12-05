@@ -1,6 +1,6 @@
 #encoding:utf-8
 class Activity < ActiveRecord::Base
-  attr_accessible :approve_status, :approver_id, :content, :creater_id, :end_at, :kindergarten_id, :logo, :note, :send_range, :send_range_ids, :start_at, :title, :tp, :squad_id
+  attr_accessible :approve_status, :approver_id, :content, :creater_id, :end_at, :kindergarten_id, :note, :send_range, :send_range_ids, :start_at, :title, :tp, :squad_id
 
   default_scope order("created_at DESC")
 
@@ -27,8 +27,14 @@ class Activity < ActiveRecord::Base
 
   STATUS = { 0=>"审核通过",1=> "待审核", 2=>"审核不通过"}
 
+  TP = { 0 => "活动", 1 => "兴趣讨论" }
+
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
+  end
+
+  def tp_label
+    Activity::TP[self.tp]
   end
 
   def last_page

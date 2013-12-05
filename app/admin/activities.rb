@@ -19,9 +19,8 @@ ActiveAdmin.register Activity do
   index do
     column :title
     column :kindergarten
-    column :logo
-    column :creater_id
-    column :tp
+    column :creater
+    column :tp_label
     default_actions
   end
 
@@ -42,15 +41,16 @@ ActiveAdmin.register Activity do
     attributes_table do
       row :kindergarten
       row :title
-      row :tp
+      row :tp_label
       row :note
       row :creater_id
-      row :content
+      row :content do |activity|
+        raw activity.content
+      end
       row :approve_status
       row :approver_id
       row :send_range
       row :send_range_ids
-      row :logo
     end
   end
 end
