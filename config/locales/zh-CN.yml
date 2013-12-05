@@ -260,6 +260,7 @@ zh-CN:
       credit_cofig: "积分配置"
       squad_credit: "班级积分"
       personal_credit: "个人积分管理"
+      merchant: "商家"
     attributes:
       personal_credit:
         kindergarten: "幼儿园"
@@ -830,6 +831,12 @@ zh-CN:
         url_options: "controller和action"
         url_params: "提交参数"
         user: "用户名"
+      merchant:
+        name: "商家名称"
+        status: "状态"
+        status_label: "状态"
+        note: "描述"
+        asset_img: "LOGO"
       comment:
         comment: "评论"
     errors:

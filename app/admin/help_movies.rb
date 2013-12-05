@@ -1,7 +1,7 @@
 #encoding:utf-8
 ActiveAdmin.register HelpMovie do
 
-  menu :parent => "微壹平台管理", :priority => 1
+  menu :parent => "微壹平台", :priority => 1
   index do
     column :content do |obj|
         raw(obj.content)

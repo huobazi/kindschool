@@ -3,7 +3,7 @@ class CreateMerchants < ActiveRecord::Migration
     create_table :merchants do |t|
       t.string :name
       t.text :note
-      t.integer :logo_id
+      t.integer :status, :default => 0  #0正常,1关闭
       t.timestamps
     end
   end

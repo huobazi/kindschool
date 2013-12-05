@@ -1,6 +1,6 @@
 #encoding:utf-8
 ActiveAdmin.register WeiyiConfig do
-  menu :parent => "微壹平台管理", :priority => 1
+  menu :parent => "微壹平台", :priority => 1
 
   member_action :delete_img, :method => :get do
     if(@weiyi_config = WeiyiConfig.find_by_id(params[:id])) && (page_img = @weiyi_config.page_imgs.find(params[:img_id]))

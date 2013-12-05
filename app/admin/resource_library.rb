@@ -2,7 +2,7 @@
 #后台资源库
 ActiveAdmin.register ResourceLibrary do
 
-  menu :parent => "微壹平台管理", :priority => 1
+  menu :parent => "微壹平台", :priority => 1
   index do
     column :file_name
     column :resource_avatar_url

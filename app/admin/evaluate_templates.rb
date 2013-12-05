@@ -1,6 +1,6 @@
 #encoding:utf-8
 ActiveAdmin.register EvaluateTemplate do
-  menu :parent => "自评模板管理", :priority => 1
+  menu :parent => "园讯通管理", :priority => 1
 
   index do
     column :name
