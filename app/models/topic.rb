@@ -50,7 +50,7 @@ class Topic < ActiveRecord::Base
   end
 
   def squad_label
-    self.squad ? self.squad.name : "没有班级信息"
+    self.squad ? self.squad.name : "全园可见"
   end
 
   def ensure_not_topic_entries

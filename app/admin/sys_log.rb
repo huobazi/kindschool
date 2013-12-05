@@ -8,7 +8,9 @@ ActiveAdmin.register SysLog do
   index do
     column :kindergarten
     column :user
-    column :node
+    column :node do |syslog|
+      truncate syslog.node
+    end
     column :url_chinese
     default_actions
   end

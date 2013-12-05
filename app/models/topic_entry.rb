@@ -1,3 +1,4 @@
+#encoding:utf-8
 class TopicEntry < ActiveRecord::Base
   attr_accessible :content, :creater_id, :status, :topic_id,:goodback
 
@@ -13,5 +14,13 @@ class TopicEntry < ActiveRecord::Base
     else
       self.update_attribute(:goodback, false)
     end
+  end
+
+  def human_goodback
+    goodback ? "是" : "否"
+  end
+
+  def human_is_show
+    is_show ? "是" : "否"
   end
 end
