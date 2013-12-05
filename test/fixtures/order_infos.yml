@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  order_id: 1
+  product_id: 1
+  kindergarten_id: 1
+  amount: 1.5
+  count: 1
+  credit: 1.5
+  comment: MyString
+  quality: 1
+  address_info: MyString
+  phone: MyString
+  address: MyString
+  shipping_address_id: 1
+
+two:
+  order_id: 1
+  product_id: 1
+  kindergarten_id: 1
+  amount: 1.5
+  count: 1
+  credit: 1.5
+  comment: MyString
+  quality: 1
+  address_info: MyString
+  phone: MyString
+  address: MyString
+  shipping_address_id: 1

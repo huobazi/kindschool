@@ -77,7 +77,6 @@
             </div>
             <% unless current_user.get_users_ranges[:tp] == :student %>
               <div class="actions" id="actions_<%= album.id %>" style="display: none;">
-                
                 <%if choose_operate_show('my_school/albums/destroy')%>
                   <%= link_to '删除', my_school_album_path(album), :method=> :delete, :data=> { :confirm=> '你确定删除该照片集锦吗' },:class=> "destroy" %>
                 <%end%>

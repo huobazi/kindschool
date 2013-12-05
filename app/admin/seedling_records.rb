@@ -6,7 +6,9 @@ ActiveAdmin.register SeedlingRecord do
     column :student_info
     column :name
     column :kindergarten
-    column :creater_id
+    column :creater
+    column :shot_at
+    column :expire_at
     default_actions
   end
 
@@ -25,7 +27,7 @@ ActiveAdmin.register SeedlingRecord do
     attributes_table do
       row :student_info
       row :name
-      row :creater_id
+      row :creater
       row :kindergarten
       row :shot_at
       row :expire_at

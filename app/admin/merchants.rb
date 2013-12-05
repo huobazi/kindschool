@@ -1,7 +1,7 @@
 #sencoding:utf-8
 #商家
 ActiveAdmin.register Merchant do
-  menu :parent => "积分管理", :priority => 15
+  menu :parent => "积分商城", :priority => 15
 
   index do
     column :name

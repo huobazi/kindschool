@@ -1,32 +1,36 @@
 #encoding:utf-8
-ActiveAdmin.register PersonalCredit do
+#邮寄地址
+ActiveAdmin.register DeliveryAddress  do
   menu :parent => "积分商城", :priority => 15
 
   index do
-    column :user
-    column :credit
     column :kindergarten
+    column :user
+    column :phone
+    column :address
     default_actions
   end
 
-  filter :user
-  filter :kindergarten
-
+  filter :name
 
   form do |f|
-    f.inputs "个人积分管理" do
+    f.inputs "商品分类" do
       f.input :kindergarten
       f.input :user
-      f.input :credit
+      f.input :phone
+      f.input :address
+      f.input :address_info
     end
     f.actions
   end
 
   show do |menu|
     attributes_table do
-      row :user
-      row :credit
       row :kindergarten
+      row :user
+      row :phone
+      row :address
+      row :address_info
     end
   end
 end

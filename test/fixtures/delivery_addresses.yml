@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kindergarten_id: 1
+  user_id: 1
+  address_info: MyString
+  phone: MyString
+  address: MyString
+
+two:
+  kindergarten_id: 1
+  user_id: 1
+  address_info: MyString
+  phone: MyString
+  address: MyString
