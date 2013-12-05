@@ -5,8 +5,9 @@ ActiveAdmin.register ContentEntry do
   index do
     column :page_content
     column :title
-    column :number
-    column :content
+    column :content do |content_entry|
+      raw truncate(content_entry.content, :length => 180)
+    end
     column :page_img do |obj|
       if obj.page_img.blank?
         raw "图片不存在"
@@ -35,7 +36,9 @@ ActiveAdmin.register ContentEntry do
       row :page_content
       row :number
       row :title
-      row :content
+      row :content do |content_entry|
+        raw content_entry.content
+      end
       row :page_img do |obj|
         if obj.page_img.blank?
           raw "图片不存在"

@@ -879,6 +879,8 @@ zh-CN:
         content: "内容"
         page_content: "页面内容"
         page_img: "图片"
+        created_at: "创建时间"
+        updated_at: "更新时间"
       page_img:
         resource_id: "选题"
         filename: "图片"
