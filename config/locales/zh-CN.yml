@@ -534,7 +534,7 @@ zh-CN:
         created_at: "创建时间"
         updated_at: "更新时间"
       teacher:
-        squad: "班级"
+        squad: "负责的班级"
         staff: "教职工名称"
         created_at: "创建时间"
         updated_at: "更新时间"
