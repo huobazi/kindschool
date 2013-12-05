@@ -468,6 +468,7 @@ zh-CN:
         content_type: "图片类型"
       kindergarten:
         hint_tp: "提醒系统化"
+        hint_tp_label: "提醒系统化"
         name: "名称"
         balance_count: "短信剩余条数"
         note: "描述"
@@ -491,7 +492,9 @@ zh-CN:
         sms_user_count: "短信用户数量"
         allsms_count: "每月群发短信次数"
         open_allsms: "开启限制数量群发"
+        open_allsms_label: "开启限制数量群发"
         begin_allsms: "可使用短信群发"
+        begin_allsms_label: "可使用短信群发"
         telephone: "联系电话"
         init_status: "幼儿园初始化值"
       user:
