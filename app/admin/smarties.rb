@@ -13,7 +13,7 @@ ActiveAdmin.register Smarty do
   form do |f|
     f.inputs "常用功能" do
       f.input :option_operate, :required => true
-      f.input :role, :required => true
+      f.input :role, :required => true, :prompt => "请选择角色"
       f.input :rename
     end
     f.actions

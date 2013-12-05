@@ -15,4 +15,8 @@ class Role < ActiveRecord::Base
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end
+
+  def admin_label
+    admin ? "是" : "否"
+  end
 end

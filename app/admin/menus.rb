@@ -14,21 +14,18 @@ ActiveAdmin.register Menu do
     end
   end
   index do
-    column :kindergarten
     column :number
     column :name
     column :sequence
     column :parented
     column :url
     column :title
-    column :visible
-    column :height_level
+    column :visible_label
     column :operate_id
     default_actions
   end
 
   filter :name
-  filter :kindergarten
 
   form do |f|
     f.inputs "权限" do
@@ -48,15 +45,13 @@ ActiveAdmin.register Menu do
 
   show do |menu|
     attributes_table do
-      row :kindergarten
       row :number
       row :sequence
       row :name
       row :parented
       row :url
       row :title
-      row :visible
-      row :height_level
+      row :visible_label
       row :operate_id
       div do
         br

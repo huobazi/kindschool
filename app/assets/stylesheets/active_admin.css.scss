@@ -1275,4 +1275,13 @@ body.active_admin {
     }
   }
 
+  #active_admin_content a {
+    padding: 0;
+  }
+
+  #active_admin_content {
+    .pagination a {
+      padding: 4px 12px; 
+    }
+  }
 }

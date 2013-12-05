@@ -7,7 +7,9 @@ class SmsLog < ActiveRecord::Base
   belongs_to :message
   belongs_to :user, :class_name => "User" #发送人
   belongs_to :admin_user, :class_name => "AdminUser" #处理人
+
   validates :kindergarten_id, :presence => true
+
   after_create :loading_sms
 
   TP_DATA = {"0"=>"消耗短信","1"=>"系统处理","2"=>"月结短信","3"=>"每月免费短信","4"=>"付费用户消费"}

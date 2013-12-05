@@ -1,24 +1,24 @@
 ActiveAdmin.register AdminUser do
   #  controller.authorize_resource
-  index do                            
-    column :email                     
+  index do
+    column :email
     column :role_name_label
-    column :current_sign_in_at        
-    column :last_sign_in_at           
-    column :sign_in_count             
-    default_actions                   
-  end                                 
+    column :current_sign_in_at
+    column :last_sign_in_at
+    column :sign_in_count
+    default_actions
+  end
 
-  filter :email                       
+  filter :email
 
-  form do |f|                         
+  form do |f|
     f.inputs "Admin Details" do
-      f.input :email                  
+      f.input :email
       f.input :role_name, :as=>:select,:collection=>AdminUser::ROLE_NAME_DATA.invert, :required => true
-      f.input :password               
-      f.input :password_confirmation  
-    end                               
-    f.actions                         
+      f.input :password
+      f.input :password_confirmation
+    end
+    f.actions
   end
 
   show do
@@ -32,4 +32,4 @@ ActiveAdmin.register AdminUser do
       row :updated_at
     end
   end
-end                                   
+end

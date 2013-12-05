@@ -43,7 +43,7 @@ ActiveAdmin.register OptionOperate do
   index do
     column :kindergarten
     column :operate
-    column :visible
+    column :visible_label
     default_actions
   end
 
@@ -60,7 +60,7 @@ ActiveAdmin.register OptionOperate do
     attributes_table do
       row :kindergarten
       row :operate
-      row :visible
+      row :visible_label
     end
   end
 end
