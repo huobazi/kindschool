@@ -5,7 +5,7 @@ ActiveAdmin.register PhysicalRecord do
   index do
     column :student_info
     column :send_date
-    column :creater_id
+    column :creater
     column :kindergarten
     default_actions
   end
@@ -23,7 +23,7 @@ ActiveAdmin.register PhysicalRecord do
     attributes_table do
       row :kindergarten
       row :student_info
-      row :creater_id
+      row :creater
       row :send_date
       row :content do |t|
         raw t.content
