@@ -3,11 +3,13 @@ ActiveAdmin.register TopicEntry do
   menu :parent => "幼儿园管理", :priority => 12
 
   index do
-    column :content
-    column :creater_id
-    column :status
+    column :content do |topic_entry|
+      truncate(topic_entry.content)
+    end
+    column :creater
     column :topic
-    column :goodback
+    column :human_goodback
+    column :human_is_show
     default_actions
   end
 
@@ -25,8 +27,8 @@ ActiveAdmin.register TopicEntry do
       row :content
       row :topic
       row :goodback
-      row :creater_id
-      row :status
+      row :creater
+      row :human_is_show
     end
   end
 end

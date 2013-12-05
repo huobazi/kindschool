@@ -15,14 +15,15 @@ ActiveAdmin.register Topic do
       new!
     end
   end
-  
+
   index do
     column :title do |topic|
-      link_to topic.title, :controller => "/admin/topics", :action => :show, :id => topic.id
+      link_to truncate(topic.title), :controller => "/admin/topics", :action => :show, :id => topic.id
     end
     column :creater
     column :kindergarten
     column :show_count
+    column :squad_label
     column :topic_entires_count do |topic|
       topic.topic_entries.count
     end

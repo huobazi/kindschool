@@ -22,11 +22,9 @@ ActiveAdmin.register CookBook do
     column :range_tp do |t|
       CookBook::RANGE_TP_DATA["#{t.range_tp}"]
     end
-    column :creater_id
+    column :creater
     default_actions
   end
-
-  filter :kindergarten
 
   form do |f|
     f.inputs "菜谱信息" do
@@ -51,7 +49,7 @@ ActiveAdmin.register CookBook do
       row :range_tp do |t|
         CookBook::RANGE_TP_DATA["#{t.range_tp}"]
       end
-      row :creater_id
+      row :creater
     end
   end
 end
