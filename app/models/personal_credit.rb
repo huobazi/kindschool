@@ -4,6 +4,6 @@ class PersonalCredit < ActiveRecord::Base
   attr_accessible :credit, :kindergarten_id, :user_id
   belongs_to :user
   belongs_to :kindergarten
-  validates :name,:presence => true
+  validates :credit,:presence => true
 
 end
