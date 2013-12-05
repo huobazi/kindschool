@@ -3,10 +3,10 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   acts_as_paranoid
   validates_as_paranoid
+
   attr_accessible :kindergarten_id, :logo,:login, :name, :note, :number, :status,:chain_code,
     :tp,:crypted_password,:salt,:role_id,:remember_token,:remember_token_expires_at,:chain_delete,
     :gender,:phone,:area_id,:weixin_code,:weiyi_code,:token_key,:token_secret,:token_at, :email,:is_send,:is_receive
-
   attr_accessible :password, :password_confirmation
   attr_accessor :password, :password_confirmation
 
@@ -14,28 +14,18 @@ class User < ActiveRecord::Base
   belongs_to :kindergarten
   has_one :student_info, :dependent => :destroy
   has_one :staff, :dependent => :destroy
-
   has_one :asset_logo, :class_name => "AssetLogo", :as => :resource, :dependent => :destroy #logo，只有一个
   belongs_to :role
-
   has_many :messages, :class_name => "Message",:foreign_key=>:sender_id
-
   has_many :user_squads , :class_name=>"UserSquad"
-
   has_many :news , :class_name=>"New"
-
   has_many :approve_module_users , :class_name=>"ApproveModuleUser"
-
   has_one  :approve_entry
-
   has_many :personal_sets ,:class_name=>"PersonalSet"
-  
   has_many :ret_password_records
-
   has_many :sys_logs
-   
-  before_save :encrypt_password #,:automatically_generate_account
 
+  before_save :encrypt_password #,:automatically_generate_account
   before_create :automatically_generate_account, :unless => :role_student?
 
 
@@ -48,7 +38,6 @@ class User < ActiveRecord::Base
   validates :login,:presence => true, :if => :role_student? #,format: {with: /^wys/, message: "注册名不能以#{PRE_STUDENT}"} , :if => :role_student?
   validates_format_of :login,:without=>/^#{PRE_STUDENT}/,:message=>"帐户不能以#{PRE_STUDENT}开头" , :if => :role_student?
   # validates :login,:presence => true,:uniqueness => true, format: {with: /^(\+\d+-)?[1-9]{1}[0-9]{10}$/, message: "手机格式不正确"}#{ :scope => :kindergarten_id}
-
 #  validates :login, :uniqueness => true
   validates_uniqueness_of_without_deleted :login
   validates_uniqueness_of_without_deleted :email,:scope => :kindergarten_id, :allow_blank => true
@@ -58,6 +47,18 @@ class User < ActiveRecord::Base
   GENDER_DATA = {"M"=>"女","G"=>"男"}
   TP_DATA = {"0"=>"学员","1"=>"教职工","2"=>"管理员"}
   STATUS_DATA = {"start"=>"在园","graduate"=>"毕业","leave"=>"离开","freeze"=>"冻结"}
+
+  def status_data_label
+    User::STATUS_DATA[self.status]
+  end
+
+  def is_send_label
+    is_send ? "是" : "否"
+  end
+
+  def is_receive_label
+    is_receive ? "是" : "否"
+  end
 
   def automatically_generate_account
    #kind = self.kindergarten

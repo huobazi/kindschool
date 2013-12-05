@@ -24,7 +24,7 @@ ActiveAdmin.register User do
     redirect_to(:controller=>"/admin/users", :action=>:show,:id=>params[:id])
   end
 
-  
+
   action_item :only => :show do
     if can?(:reset_password, resource)
       link_to('重置密码', reset_password_admin_user_path(user))
@@ -53,7 +53,7 @@ ActiveAdmin.register User do
       end
     end
   end
-  
+
   index do
     column :name
     column :login do |user|
@@ -73,8 +73,8 @@ ActiveAdmin.register User do
     column :weiyi_code do |user|
       user.weiyi_code.blank? ? "未绑定" : "已绑定"
     end
-    column :is_send
-    column :is_receive
+    column :is_send_label
+    column :is_receive_label
     default_actions
   end
 
@@ -128,8 +128,8 @@ ActiveAdmin.register User do
       row :weiyi_code
       row :created_at
       row :updated_at
-      row :is_send
-      row :is_receive
+      row :is_send_label
+      row :is_receive_label
       div do
         br
         panel "最后重置密码时间" do
@@ -317,7 +317,7 @@ ActiveAdmin.register User do
                   li do
                     link_to "为该教职工分配班级", :controller => "/admin/teachers",
                       :action => :allocation, :kindergarten_id =>
-                      user.kindergarten_id, :staff_id => user.staff
+                    user.kindergarten_id, :staff_id => user.staff
                   end
                 end
               end

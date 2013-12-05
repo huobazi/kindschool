@@ -503,15 +503,17 @@ zh-CN:
         kindergarten_label: "所属幼儿园"
         kindergarten: "所属幼儿园"
         area: "城市"
-        weixin_code: "是否绑定幼儿园"
-        weiyi_code: "是否绑定微一资讯"
+        weixin_code: "绑定幼儿园"
+        weiyi_code: "绑定微一资讯"
         password: "密码"
         password_confirmation: "确认密码"
         old_password: "原始密码"
         created_at: "创建时间"
         updated_at: "更新时间"
         is_send: '是否能够发短信'
+        is_send_label: '能够发短信'
         is_receive: '是否能够接受短信'
+        is_receive_label: '能够接受短信'
         chain_code: "短信扩展码"
       grade:
         kindergarten_label: "所属幼儿园"
