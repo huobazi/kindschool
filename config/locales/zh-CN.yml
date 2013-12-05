@@ -503,7 +503,8 @@ zh-CN:
         kindergarten_label: "所属幼儿园"
         kindergarten: "所属幼儿园"
         area: "城市"
-        weixin_code: "微信id"
+        weixin_code: "是否绑定幼儿园"
+        weiyi_code: "是否绑定微一资讯"
         password: "密码"
         password_confirmation: "确认密码"
         old_password: "原始密码"
@@ -938,6 +939,8 @@ zh-CN:
         description: "描述"
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"
+        created_at: "创建时间"
+        updated_at: "更新时间"
       sys_log:
         kindergarten: "幼儿园"
         method: "请求方式"
