@@ -4,9 +4,9 @@ class CreateCreditLogs < ActiveRecord::Migration
       t.integer :kindergarten_id
       t.integer :resource_id
       t.string :resource_type
-      t.integer :tp
+      t.integer :tp  ,:default=>0
       t.string :note
-      t.float :credit
+      t.float :credit,:default=>0
       t.integer :business_id
       t.string :business_type
 
