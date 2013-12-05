@@ -6,7 +6,7 @@ ActiveAdmin.register SeedlingRecord do
     column :student_info
     column :name
     column :kindergarten
-    column :creater_id
+    column :creater
     default_actions
   end
 

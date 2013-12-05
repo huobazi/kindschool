@@ -3,13 +3,15 @@ ActiveAdmin.register GrowthRecord do
   menu :parent => "幼儿园管理", :priority => 17
 
   index do
-    column :content
+    column :content do |growth_record|
+      truncate(growth_record.content)
+    end
     column :tp do |growth_record|
       GrowthRecord::TP_DATA[growth_record.tp.to_s]
     end
     column :kindergarten
     column :creater
-    column :student_info
+    column :student
     column :squad_name
     default_actions
   end
