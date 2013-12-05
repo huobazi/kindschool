@@ -18,13 +18,11 @@ ActiveAdmin.register Message do
     column :title
     column :kindergarten
     column :sender_name
-    column :tp
-    column :approve_status
+    column :tp_data_label
+    column :approve_status_label
     column :send_date
     default_actions
   end
-
-  filter :kindergarten
 
   form do |f|
     f.inputs "消息信息" do
@@ -43,17 +41,16 @@ ActiveAdmin.register Message do
       row :content
       row :kindergarten
       row :sender_name
-      row :sender_id
       row :send_date
-      row :status
-      row :approve_status
+      row :status_data_label
+      row :approve_status_label
       row :approver_id
       row :parent_id
       row :entry_id
       row :chain_code
-      row :tp
-      row :send_me
-      row :allsms
+      row :tp_data_label
+      row :send_me_label
+      row :allsms_label
     end
   end
 end

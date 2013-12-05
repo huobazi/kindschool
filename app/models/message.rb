@@ -29,9 +29,28 @@ class Message < ActiveRecord::Base
 
   STATUS = { 0=>"审核通过",1=> "待审核", 2=>"审核不通过"}
 
+  def tp_data_label
+    Message::TP_DATA["#{self.tp}"]
+  end
+
+  def approve_status_label
+    Message::STATUS[self.approve_status]
+  end
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
+  end
+
+  def status_data_label
+    self.status ? Message::STATUS_DATA["1"] : Message::STATUS_DATA["0"]
+  end
+
+  def send_me_label
+    self.send_me ? "是" : "否"
+  end
+
+  def allsms_label
+    self.allsms ? "是" : "否"
   end
 
   #已读状态
