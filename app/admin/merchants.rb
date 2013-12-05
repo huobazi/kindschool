@@ -25,6 +25,9 @@ ActiveAdmin.register Merchant do
       f.inputs "上传logo图片", :for => [:asset_img, f.object.asset_img || AssetImg.new] do |img|
         img.input :uploaded_data,:as=>:file,:name => "asset_img"
       end
+      
+    end
+    f.inputs "商家页面内容" do
       f.kindeditor :note,:allowFileManager => false
     end
     f.actions
@@ -43,8 +46,8 @@ ActiveAdmin.register Merchant do
           raw "<img src='#{obj.asset_img.public_filename(:middle)}'  onerror='this.src='/assets/no_img.png'"
         end
       end
-      row :content do
-        raw(record.content)
+      row :note do
+        raw(record.note)
       end
     end
   end
