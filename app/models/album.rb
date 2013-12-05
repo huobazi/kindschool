@@ -21,7 +21,7 @@ class Album < ActiveRecord::Base
     is_show ? "是" : "否"
   end
 
-   def show_main_img
+  def show_main_img
     if self.album_entry_id && (record = self.album_entries.find_by_id(self.album_entry_id))
       album_entry = record
     else
@@ -31,8 +31,19 @@ class Album < ActiveRecord::Base
       asset_img = album_entry.asset_img
     end
     asset_img
-   end
+  end
 
+  def is_top_label
+    is_top ? "是" : "否"
+  end
+
+  def comments_count_label
+    comments.count
+  end
+
+  def album_entries_count_label
+    album_entries.count
+  end
   def grade_label
     self.grade ? self.grade.name : "未设置年级"
   end

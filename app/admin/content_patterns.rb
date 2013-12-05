@@ -4,8 +4,10 @@ ActiveAdmin.register ContentPattern do
 
   index do
     column :number
-    column :kindergarten
-    column :content
+    column :kindergarten_label
+    column :content do |content_pattern|
+      raw content_pattern.content
+    end
     column :name
     default_actions
   end
@@ -24,9 +26,13 @@ ActiveAdmin.register ContentPattern do
   show do |t|
     attributes_table do
       row :number
-      row :content
+      row :content do |content_pattern|
+        raw content_pattern.content
+      end
       row :name
-      row :kindergarten
+      row :kindergarten_label
+      row :created_at
+      row :updated_at
     end
   end
 end
