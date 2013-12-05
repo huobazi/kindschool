@@ -4,11 +4,10 @@ ActiveAdmin.register Album do
 
   index do
     column :title
-    column :kindergarten
-    column :is_show
-    column :squad
-    column :grade
-    column :creater_id
+    column :kindergarten_label
+    column :is_show_label
+    column :squad_label
+    column :creater
     default_actions
   end
 
@@ -22,22 +21,20 @@ ActiveAdmin.register Album do
       f.input :is_show, :as => :boolean
       f.input :kindergarten_id, :as => :hidden
       f.input :squad_id, :as => :hidden
-      f.input :grade_id, :as => :hidden
     end
     f.actions
   end
 
   show do |menu|
     attributes_table do
-      row :kindergarten
+      row :kindergarten_label
       row :title
-      row :creater_id
+      row :creater
       row :content
-      row :is_show
+      row :is_show_label
       row :approve_status
       row :approver_id
-      row :squad
-      row :grade
+      row :squad_label
       row :send_date
     end
   end

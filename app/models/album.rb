@@ -17,6 +17,10 @@ class Album < ActiveRecord::Base
 
   include UnreadComment
 
+  def is_show_label
+    is_show ? "是" : "否"
+  end
+
    def show_main_img
     if self.album_entry_id && (record = self.album_entries.find_by_id(self.album_entry_id))
       album_entry = record
@@ -37,6 +41,6 @@ class Album < ActiveRecord::Base
   end
 
   def squad_label
-    self.squad ? self.squad.name : "未设置班级"
+    self.squad ? self.squad.name : "全园可见"
   end
 end
