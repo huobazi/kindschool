@@ -15,9 +15,8 @@ class Activity < ActiveRecord::Base
   has_many :activity_entries
   has_one :asset_img, :class_name => "AssetImg", :as => :resource, :dependent => :destroy #logo，只有一个
   belongs_to :squad
-
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
- 
+  belongs_to :approver, :class_name => "User", :foreign_key => "approver_id"
   has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
 
   attr_accessible :asset_img_attributes
@@ -37,13 +36,21 @@ class Activity < ActiveRecord::Base
     Activity::TP[self.tp]
   end
 
+  def approve_status_label
+    Activity::STATUS[self.approve_status]
+  end
+
+  def activity_entries_count_label
+    activity_entries.count
+  end
+
   def last_page
     page = (self.activity_entries.count.to_f / 10).ceil
     page > 1 ? page : nil
   end
 
   def squad_label
-    self.squad ? self.squad.name : "没有班级信息"
+    self.squad ? self.squad.name : "全园可见"
   end
   
   def change_arry_approve_record

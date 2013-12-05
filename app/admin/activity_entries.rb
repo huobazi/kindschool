@@ -7,19 +7,21 @@ ActiveAdmin.register ActivityEntry do
       raw truncate(obj.note, :length => 360)
     end
     column :tp do |obj|
-      obj.tp ? "活动" : "兴趣讨论"
+      obj.tp ? "活动的评论" : "兴趣讨论的评论"
     end
     column :activity
     column :creater_id do |obj|
       obj.creater.try(:name)
     end
-    column :activity_img do |obj|
-      if obj.activity_img.blank?
-        raw "图片不存在"
-      else
-        raw "<img src='#{obj.activity_img.public_filename(:tiny)}'  onerror='this.src='/assets/no_img.png'"
-      end
-    end
+    # column :activity_img do |obj|
+    #   if obj.activity_img.blank?
+    #     raw "图片不存在"
+    #   else
+    #     raw "<img src='#{obj.activity_img.public_filename(:tiny)}'  onerror='this.src='/assets/no_img.png'"
+    #   end
+    # end
+    column :is_show_label
+    column :deleted_at
     default_actions
   end
 
@@ -38,14 +40,15 @@ ActiveAdmin.register ActivityEntry do
       row :note
       row :activity
       row :tp
-      row :creater_id
-      row :activity_img do |obj|
-        if obj.activity_img.blank?
-          raw "图片不存在"
-        else
-          raw "<img src='#{obj.activity_img.public_filename(:tiny)}'  onerror='this.src='/assets/no_img.png'"
-        end
-      end
+      row :creater
+      row :is_show_label
+      # row :activity_img do |obj|
+      #   if obj.activity_img.blank?
+      #     raw "图片不存在"
+      #   else
+      #     raw "<img src='#{obj.activity_img.public_filename(:tiny)}'  onerror='this.src='/assets/no_img.png'"
+      #   end
+      # end
     end
   end
 end

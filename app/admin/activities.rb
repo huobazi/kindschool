@@ -19,8 +19,12 @@ ActiveAdmin.register Activity do
   index do
     column :title
     column :kindergarten
+    column :start_at
+    column :end_at
     column :creater
     column :tp_label
+    column :squad_label
+    column :activity_entries_count_label
     default_actions
   end
 
@@ -42,15 +46,15 @@ ActiveAdmin.register Activity do
       row :kindergarten
       row :title
       row :tp_label
+      row :squad_label
       row :note
       row :creater_id
       row :content do |activity|
         raw activity.content
       end
-      row :approve_status
-      row :approver_id
-      row :send_range
-      row :send_range_ids
+      row :approve_status_label
+      row :approver
+      row :activity_entries_count_label
     end
   end
 end

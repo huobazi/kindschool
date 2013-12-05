@@ -18,7 +18,6 @@ ActiveAdmin.register PageContent do
 
   index do
     column :kindergarten
-    column :number
     column :name
     column :logo_url
     column :note

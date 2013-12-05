@@ -10,6 +10,8 @@ ActiveAdmin.register GrowthRecord do
       GrowthRecord::TP_DATA[growth_record.tp.to_s]
     end
     column :kindergarten
+    column :start_at
+    column :end_at
     column :creater
     column :student
     column :squad_name
