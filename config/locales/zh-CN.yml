@@ -534,7 +534,7 @@ zh-CN:
         created_at: "创建时间"
         updated_at: "更新时间"
       teacher:
-        squad: "班级"
+        squad: "负责的班级"
         staff: "教职工名称"
         created_at: "创建时间"
         updated_at: "更新时间"
@@ -621,6 +621,10 @@ zh-CN:
         topic_category_label: "论坛分类"
         show_count: "浏览次数"
         appurtenances: "附件"
+        topic_entires_count: "评论数量"
+        created_at: "创建时间"
+        updated_at: "更新时间"
+        accessed_at: "最近访问时间"
       topic_entry:
         topic: "回复的贴子"
         content: "内容"
