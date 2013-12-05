@@ -695,6 +695,7 @@ zh-CN:
         sms: "短信服务"
         phone: "手机号"
         content: "内容"
+        read_status_label: "阅读状态"
       growth_record:
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"
@@ -711,6 +712,10 @@ zh-CN:
         siesta: "午休"
         dine: "进餐"
         reward: "评价星数"
+        created_at: "创建时间"
+        updated_at: "更新时间"
+        accessed_at: "最近访问时间"
+        student: "学员"
       seedling_record:
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"
@@ -720,6 +725,9 @@ zh-CN:
         shot_at: "注射时间"
         expire_at: "过期时间"
         creater_id: "创建人"
+        creater: "创建人"
+        created_at: "创建时间"
+        updated_at: "更新时间"
       physical_record:
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"

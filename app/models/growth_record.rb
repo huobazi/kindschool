@@ -18,6 +18,7 @@ class GrowthRecord < ActiveRecord::Base
   validates :reward, :numericality=> true
 
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
+  belongs_to :student, :class_name => "User", :foreign_key => "student_info_id"
   has_many :comments, :as => :resource
   has_many :asset_imgs, :class_name => "AssetImg", :as => :resource, :dependent => :destroy
   # has_many :messages
