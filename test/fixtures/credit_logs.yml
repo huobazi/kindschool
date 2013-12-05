@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  kindergarten_id: 1
+  resource_id: 1
+  resource_type: MyString
+  tp: 1
+  note: MyString
+  credit: 1.5
+  business_id: 1
+  business_type: MyString
+
+two:
+  kindergarten_id: 1
+  resource_id: 1
+  resource_type: MyString
+  tp: 1
+  note: MyString
+  credit: 1.5
+  business_id: 1
+  business_type: MyString

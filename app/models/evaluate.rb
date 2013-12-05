@@ -62,7 +62,6 @@ class Evaluate < ActiveRecord::Base
      package.kindergarten=@kind
      package.status = false
      package.save! 
-     #`chown -R www-data:www-data stuff_to_zip/#{@kind.number}`
   end
   private
   #创建demo项目

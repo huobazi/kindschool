@@ -256,7 +256,31 @@ zh-CN:
       help_movie: "帮助视频"
       resource_library: "上传资源库"
       evaluate_template: "评估模板下载"
+      credit_log: "积分日志"
+      credit_cofig: "积分配置"
+      squad_credit: "班级积分"
+      personal_credit: "个人积分管理"
     attributes:
+      personal_credit:
+        kindergarten: "幼儿园"
+        user: "用户"
+        credit: "积分"
+      squad_credit: 
+        kindergarten: "幼儿园"
+        squad: "班级名称"
+        credit: "积分"
+      credit_log:
+        kindergarten: "幼儿园"
+        tp: "类型"
+        credit: "积分"
+        note: "描述"
+        resource: "积分类型来源"
+        business: "业务来源"
+      credit_cofig: 
+        name: "名称"
+        number: "编码"
+        credit: "积分"
+        note: "描述"
       evaluate_template:
         name: "名称"
         template_url: "附件地址"
@@ -510,7 +534,7 @@ zh-CN:
         created_at: "创建时间"
         updated_at: "更新时间"
       teacher:
-        squad: "班级"
+        squad: "负责的班级"
         staff: "教职工名称"
         created_at: "创建时间"
         updated_at: "更新时间"
@@ -597,6 +621,10 @@ zh-CN:
         topic_category_label: "论坛分类"
         show_count: "浏览次数"
         appurtenances: "附件"
+        topic_entires_count: "评论数量"
+        created_at: "创建时间"
+        updated_at: "更新时间"
+        accessed_at: "最近访问时间"
       topic_entry:
         topic: "回复的贴子"
         content: "内容"
