@@ -7,7 +7,9 @@ ActiveAdmin.register Album do
     column :kindergarten_label
     column :is_show_label
     column :squad_label
+    column :album_entries_count_label
     column :creater
+    column :is_top_label
     default_actions
   end
 
@@ -32,10 +34,11 @@ ActiveAdmin.register Album do
       row :creater
       row :content
       row :is_show_label
-      row :approve_status
-      row :approver_id
       row :squad_label
-      row :send_date
+      row :accessed_at
+      row :is_top_label
+      row :album_entries_count_label
+      row :comments_count_label
     end
   end
 end

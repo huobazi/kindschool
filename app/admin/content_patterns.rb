@@ -5,7 +5,9 @@ ActiveAdmin.register ContentPattern do
   index do
     column :number
     column :kindergarten
-    column :content
+    column :content do |content_pattern|
+      raw content_pattern.content
+    end
     column :name
     default_actions
   end
