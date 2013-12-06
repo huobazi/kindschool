@@ -34,8 +34,10 @@ EOF
     str << js.to_s.html_safe
   end
 
-  def render_report_link(options = {})
-    render partial: "/my_school/commons/report_link", locals: {:resource_id => options[:resource_id], :resource_type => options[:resource_type]}
+  def render_report_link(obj)
+    if obj
+      render partial: "/my_school/commons/report_link", locals: {:resource_id => obj.resource_class_id, :resource_type => obj.resource_class_name}
+    end
   end
 
 end

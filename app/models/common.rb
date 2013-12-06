@@ -7,7 +7,7 @@ module Common
     return self.class.name
   end
 
-  def resource_id
+  def resource_class_id
     self.try(:id)
   end
 
