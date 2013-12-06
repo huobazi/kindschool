@@ -1,6 +1,9 @@
 School::Application.routes.draw do
 
   
+  resources :reports
+
+
   match 'code/code_image' => 'code#code_image'
   match 'code/recode' => 'code#recode'
   match 'my_school' => 'my_school/main#index'
