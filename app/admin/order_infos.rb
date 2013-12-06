@@ -19,8 +19,9 @@ ActiveAdmin.register OrderInfo  do
     default_actions
   end
 
-  filter :name
-
+  filter :product
+  filter :phone
+  
   form do |f|
     f.inputs "订单详情" do
       f.input :order

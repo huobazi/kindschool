@@ -15,8 +15,9 @@ ActiveAdmin.register Order  do
     default_actions
   end
 
-  filter :name
-
+  filter :number
+  filter :status
+  
   form do |f|
     f.inputs "订单" do
       f.input :kindergarten

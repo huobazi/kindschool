@@ -267,7 +267,12 @@ zh-CN:
       order: "订单"
       order_info: "订单详细"
       report: "举报"
+      shop_config: "商城配置"
     attributes:
+      shop_config:
+        number: "编码"
+        note: "描述"
+        status: "状态"
       product:
         name: "商品名称"
         product_category: "商品分类"
