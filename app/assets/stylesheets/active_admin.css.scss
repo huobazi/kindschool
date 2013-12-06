@@ -1275,13 +1275,21 @@ body.active_admin {
     }
   }
 
-  #active_admin_content a {
-    padding: 0;
-  }
-
   #active_admin_content {
     .pagination a {
       padding: 4px 12px; 
+    }
+
+    a {
+      padding: 0;
+    }
+
+    .clear_filters_btn {
+      padding: 7px 16px 6px 16px;
+    }
+
+    li.cancel a {
+      padding: 7px 16px 6px 16px;
     }
   }
 }

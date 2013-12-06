@@ -266,6 +266,7 @@ zh-CN:
       product_category: "商品分类"
       order: "订单"
       order_info: "订单详细"
+      report: "举报"
     attributes:
       product:
         name: "商品名称"
@@ -979,6 +980,15 @@ zh-CN:
         asset_img: "LOGO"
       comment:
         comment: "评论"
+      report:
+        content: "内容"
+        informants: "举报人"
+        created_at: "创建时间"
+        updated_at: "更新时间"
+        process: "处理情况"
+        process_label: "处理情况"
+        resource_type: "举报的对象"
+        resource_id: "举报的对象id"
     errors:
       <<: *errors
   views:
