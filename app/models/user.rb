@@ -8,22 +8,22 @@ class User < ActiveRecord::Base
     :tp,:crypted_password,:salt,:role_id,:remember_token,:remember_token_expires_at,:chain_delete,
     :gender,:phone,:area_id,:weixin_code,:weiyi_code,:token_key,:token_secret,:token_at, :email,:is_send,:is_receive
   attr_accessible :password, :password_confirmation
-  attr_accessor :password, :password_confirmation
-
+  attr_accessor   :password, :password_confirmation
 
   belongs_to :kindergarten
-  has_one :student_info, :dependent => :destroy
-  has_one :staff, :dependent => :destroy
-  has_one :asset_logo, :class_name => "AssetLogo", :as => :resource, :dependent => :destroy #logo，只有一个
   belongs_to :role
-  has_many :messages, :class_name => "Message",:foreign_key=>:sender_id
-  has_many :user_squads , :class_name=>"UserSquad"
-  has_many :news , :class_name=>"New"
-  has_many :approve_module_users , :class_name=>"ApproveModuleUser"
-  has_one  :approve_entry
-  has_many :personal_sets ,:class_name=>"PersonalSet"
-  has_many :ret_password_records
-  has_many :sys_logs
+  has_one    :student_info, :dependent => :destroy
+  has_one    :staff, :dependent => :destroy
+  has_one    :asset_logo, :class_name => "AssetLogo", :as => :resource, :dependent => :destroy #logo，只有一个
+  has_one    :approve_entry
+  has_many   :messages, :class_name => "Message",:foreign_key=>:sender_id
+  has_many   :reports, :class_name => 'Report', :foreign_key => :informants_id
+  has_many   :user_squads , :class_name=>"UserSquad"
+  has_many   :news , :class_name=>"New"
+  has_many   :approve_module_users , :class_name=>"ApproveModuleUser"
+  has_many   :personal_sets ,:class_name=>"PersonalSet"
+  has_many   :ret_password_records
+  has_many   :sys_logs
 
   before_save :encrypt_password #,:automatically_generate_account
   before_create :automatically_generate_account, :unless => :role_student?

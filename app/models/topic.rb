@@ -19,6 +19,7 @@ class Topic < ActiveRecord::Base
   has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
 
   include ResourceApproveStatusStart
+  include Common
 
   before_save :news_approve_status_start
   before_destroy :ensure_not_topic_entries
@@ -36,7 +37,7 @@ class Topic < ActiveRecord::Base
   end
 
   def change_arry_approve_record
-    [:content,:title] 
+    [:content,:title]
   end
 
 
