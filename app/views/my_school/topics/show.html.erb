@@ -68,7 +68,7 @@
               <span class="link">
                 <%= @topic.creater.try(:name) %>
               </span>&nbsp;创建于&nbsp;<span class="time"><%= @topic.try(:created_at).try(:to_long_datetime) %></span>
-              <%= render_report_link(@topic) %>
+              <span class="pull-right"><%= render_report_link(@topic) %></span>
             </p>
             <%= render :partial=>"/my_school/approves/load_approves_log" ,:locals=>{:record_id=>@topic.approve_record.try(:id),:approve_status=>@topic.approve_status} %>
           </div>
