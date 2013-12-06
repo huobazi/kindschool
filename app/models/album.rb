@@ -12,6 +12,7 @@ class Album < ActiveRecord::Base
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
   has_many :album_entries , :dependent => :destroy
   has_many :comments , :as => :resource, :dependent => :destroy
+  validate_harmonious_of :content
 
   validates :title, :presence => true, :length => {:minimum=> 3, :maximum=> 20}
 

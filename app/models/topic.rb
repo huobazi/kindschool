@@ -8,6 +8,7 @@ class Topic < ActiveRecord::Base
   validates :kindergarten_id, :creater_id, :topic_category_id, :title, :content, :presence => true
   validates :title, :length => { :minimum => 3, :maximum => 100 }
   validates :content, :length => { :minimum => 3 }
+  validate_harmonious_of :title, :content
 
   belongs_to :kindergarten
   belongs_to :topic_category
