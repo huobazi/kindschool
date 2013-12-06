@@ -1,14 +1,13 @@
 School::Application.routes.draw do
 
-  
-  resources :reports
-
-
   match 'code/code_image' => 'code#code_image'
   match 'code/recode' => 'code#recode'
   match 'my_school' => 'my_school/main#index'
   match "my_school/evaluate/:id/:basename.:extension", :controller => "my_school/evaluate_vtocs", :action => "download", :conditions => { :method => :get }
   namespace :my_school do
+    resources :reports do
+      get :create, :on => :collection
+    end
     resources :evaluate_vtocs do
       collection do
         post :create_evaluate_asset
@@ -63,7 +62,7 @@ School::Application.routes.draw do
         get :virtual_delete
       end
     end
-    resources :news  do 
+    resources :news  do
       collection do
         post :add_new_imgs
       end
@@ -90,17 +89,17 @@ School::Application.routes.draw do
         post :create_dean_email
       end
     end
-    resources :virtual_squads  do 
+    resources :virtual_squads  do
       collection {get :get_edit_ids}
     end
     resources :roles do
       member do
         get :set_operate_to_role
-        post :save_operate_to_role 
+        post :save_operate_to_role
       end
     end
     resources :smarties do
-      collection {get :role_operates}  
+      collection {get :role_operates}
     end
     resources :albums do
       collection do
@@ -225,7 +224,7 @@ School::Application.routes.draw do
         get :download_nanshan
         post :download
         get :download_student_infos
-        get :virtual_squad 
+        get :virtual_squad
         post :virtual_squad_choose
         post :import
         get :delete
@@ -399,67 +398,12 @@ School::Application.routes.draw do
       end
     end
   end
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
   resources :main do
     collection do
       get :weiyi_tourism,:weiyi_solution,:weiyi_interact,:weiyi_contact,:weiyi_video,:weiyi_scheme,:weiyi_cultivate,:weiyi_benefit
     end
   end
   root :to => 'main#index'
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
