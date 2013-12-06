@@ -36,7 +36,7 @@ EOF
 
   def render_report_link(obj)
     if obj
-      render partial: "/my_school/commons/report_link", locals: {:resource_id => obj.resource_class_id, :resource_type => obj.resource_class_name}
+      render partial: "/my_school/commons/report_link", locals: {:obj => obj}
     end
   end
 
