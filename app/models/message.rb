@@ -3,20 +3,19 @@ class Message < ActiveRecord::Base
   acts_as_paranoid
   attr_accessible :resource_type,:resource_id,:approve_status, :approver_id, :chain_code, :content, :entry_id,:send_me,
     :kindergarten_id, :parent_id, :send_date, :sender_id, :sender_name, :status, :title, :tp,:allsms
-  belongs_to :kindergarten
-  belongs_to :sender, :class_name => "User",:foreign_key=>:sender_id
   has_many :message_entries
   has_many :sms_logs
-  belongs_to :resource, :polymorphic => true
-
   #回复的信息
   has_many :return_messages, :class_name => "Message",:foreign_key=>:entry_id,:order=>"send_date DESC", :dependent => :destroy
+  has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
+  belongs_to :kindergarten
+  belongs_to :sender, :class_name => "User",:foreign_key=>:sender_id
+  belongs_to :resource, :polymorphic => true
   belongs_to :parent_message, :class_name => "Message",:foreign_key=>:entry_id
 
   validates :content,:send_date, :presence => true
   validates :sender_id,:presence => {:if=>:if_sernder?}
   validates :title, :presence => {:if => :if_return?}
-
   validates :content, :length => { :minimum => 1 }
   validate_harmonious_of :title,:content
 
@@ -24,9 +23,6 @@ class Message < ActiveRecord::Base
   #系统提示消息，开通短信，将受到短信；
   #系统短信消息，所有人都将收到短信；
   TP_DATA = {"0"=>"站内信","1"=>"站内加短信","2"=>"系统提示消息","3"=>"系统短信消息","4"=>"系统站内消息"}
-
-  has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
-
   STATUS = { 0=>"审核通过",1=> "待审核", 2=>"审核不通过"}
 
   def tp_data_label
