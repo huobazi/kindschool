@@ -9,6 +9,7 @@ School::Application.routes.draw do
   match 'my_school' => 'my_school/main#index'
   match "my_school/evaluate/:id/:basename.:extension", :controller => "my_school/evaluate_vtocs", :action => "download", :conditions => { :method => :get }
   namespace :my_school do
+    resources :credit_shop
     resources :evaluate_vtocs do
       collection do
         post :create_evaluate_asset

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title><%= @kind ? @kind.name : "School" %></title>
+
+    <%= stylesheet_link_tag    "app_bootstrap", :media => "all" %>
+    <%= stylesheet_link_tag    "credit_shop","fancybox/jquery.fancybox",
+      "fancybox/jquery.fancybox-buttons",
+      "fancybox/jquery.fancybox-thumbs", :media => "all" %>
+    <meta name="description" content="<%=@description%>" />
+    <meta name="keywords" content="<%=@keywords%>" />
+    <meta charset="utf-8"/>
+    <%= javascript_include_tag "application","colorful","highcharts/highcharts","highcharts/highcharts-more","colorful_main","jquery.lettering","fancybox/jquery.mousewhee",
+      "fancybox/jquery.fancybox",
+      "fancybox/jquery.fancybox-buttons",
+      "fancybox/jquery.fancybox-thumbs",
+      "fancybox/jquery.fancybox-media","jquery.jcarouselLite" %>
+    <%= csrf_meta_tags %>
+    <script language='javascript' type="text/javascript">
+      function ResumeError() {
+        return true;
+      }
+      window.onerror = ResumeError;
+    </script>
+    <!--[if IE 6]>
+    <%= javascript_include_tag "DD_belatedPNG" %>
+<script type="text/javascript">
+  /* EXAMPLE */
+  DD_belatedPNG.fix('div, ul, img, li, input , a');
+
+  /* string argument can be any CSS selector */
+  /* .png_bg example is unnecessary */
+  /* change it to what suits you! */
+</script>
+<![endif]-->
+  </head>
+  <body style="background-color: #d9edfa" onload="ResumeError()">
+    <div  class="wrapper">
+      <div class="main_work">
+        <%= yield %>
+      </div>
+    </div>
+    <div style="display: none;">
+      <script type="text/javascript">
+        try{
+          var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cdiv id='cnzz_stat_icon_1000041998'%3E%3C/div%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000041998%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+        }catch(ex){}
+      </script>
+    </div>
+  </body>
+</html>
