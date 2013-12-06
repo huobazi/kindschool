@@ -166,7 +166,7 @@ School::Application.routes.draw do
       get :virtual_delete, :goodback, :on => :member
     end
     resources :activities do
-      get :grade_squad_partial, :on => :activities
+      get :grade_squad_partial, :on => :collection
     end
   end
 
