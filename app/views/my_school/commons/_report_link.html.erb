@@ -1,6 +1,6 @@
 <% if Report.find_report_for_resource(current_user, obj.resource_class_name, obj.resource_class_id).blank? %>
   <% unless obj.creater_id == current_user.id %>
-    <%= link_to "举报", url_for(:controller => "my_school/reports", :action => "create", :method => 'get', :resource_type => obj.resource_class_name, :resource_id => obj.resource_class_id, :url => request.original_url), :class => 'btn btn-link', :confirm => '您确定要举报吗?' %>
+    <span id="report_link"><%= link_to "举报", url_for(:controller => "my_school/reports", :action => "create", :method => 'get', :resource_type => obj.resource_class_name, :resource_id => obj.resource_class_id, :url => request.original_url), :class => 'btn btn-link', :confirm => '您确定要举报吗?', :remote => true %></span>
   <% end %>
 <% else %>
   <b>已被举报</b>
