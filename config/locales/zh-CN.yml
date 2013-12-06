@@ -460,6 +460,7 @@ zh-CN:
         filename: "图片"
         content_type: "图片类型"
       kindergarten:
+        enable_credit: "是否启用积分系统"
         hint_tp: "提醒系统化"
         name: "名称"
         balance_count: "短信剩余条数"

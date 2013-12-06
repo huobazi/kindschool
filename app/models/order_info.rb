@@ -6,4 +6,5 @@ class OrderInfo < ActiveRecord::Base
   belongs_to :product
   belongs_to :delivery_address
   belongs_to :kindergarten
+  validates :phone,:presence => true
 end
