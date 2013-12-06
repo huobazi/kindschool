@@ -1,24 +1,22 @@
 <%if approve_status != 0 %>
-                <p class="info">审核状态:<span><%= News::STATUS[approve_status] %></span>
-                </p>
-                <%=link_to "查看审核日志","###",:id=>"viewing_the_audit_log",:class=>"blue"%>
-              <%end%>
+  <p class="info">审核状态:<span><%= News::STATUS[approve_status] %></span>
+  </p>
+  <%=link_to "查看审核日志","###",:id=>"viewing_the_audit_log",:class=>"blue"%>
+<%end%>
 <div class="viewing_the_audit_log_div" ></div>
 <script type="text/javascript">
-  $(function(){
-    $("#viewing_the_audit_log").click(function(){
-      if($(".viewing_the_audit_log_div").text() == ""){
+$(function () {
+  $("#viewing_the_audit_log").click(function () {
+    if ($(".viewing_the_audit_log_div").text() == "") {
       $(".viewing_the_audit_log_div").load("<%=url_for(:controller=>'my_school/approves',:action=>:get_approve_record_log,:id=>record_id)%>")
       $(".viewing_the_audit_log_div").show();
-  }
-    else
-    { 
-      if($(".viewing_the_audit_log_div").css("display") == "none"){
-                $(".viewing_the_audit_log_div").show();
-              }else{
-                $(".viewing_the_audit_log_div").hide();
-              }
+    } else {
+      if ($(".viewing_the_audit_log_div").css("display") == "none") {
+        $(".viewing_the_audit_log_div").show();
+      } else {
+        $(".viewing_the_audit_log_div").hide();
+      }
     }
   })
-    })
+})
 </script>
