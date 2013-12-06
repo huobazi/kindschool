@@ -36,7 +36,7 @@ class Topic < ActiveRecord::Base
   end
 
   def change_arry_approve_record
-    [:content,:title] 
+    [:content,:title]
   end
 
 

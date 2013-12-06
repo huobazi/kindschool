@@ -96,6 +96,8 @@
               </table>
             <% end %>
             <p class="info"><a href="<%= new_my_school_topic_path(growth_record_id: @growth_record.id) %>" title="分享到论坛贴子" alt="分享到论坛贴子"><i class="icon-share pull-right"></i></a><span class="time"><%= @growth_record.try(:start_at).try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span class="time"><%= @growth_record.try(:end_at).try(:to_short_datetime) %></span>&nbsp;由&nbsp;<span class="link"><%= @growth_record.try(:creater).try(:name) %></span>&nbsp;创建于&nbsp;<span class="time"><%= @growth_record.try(:created_at).try(:to_long_datetime) %></span></p>
+
+            <%= render_report_link(@growth_record) %>
           </div>
           <div class="content">
             <%= simple_format raw(@growth_record.content) %>

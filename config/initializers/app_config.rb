@@ -279,3 +279,6 @@ PAGE_CONTROLLER = [
   "roles/index", "messages/outbox", "messages/draft_box",
   "dean_emails/index"
 ]
+
+require 'active_record'
+ActiveRecord::Base.send(:include, Common)

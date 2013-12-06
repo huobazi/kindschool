@@ -6,7 +6,6 @@ class Teacher < ActiveRecord::Base
   belongs_to :squad
 
   validates :staff, :squad, :presence => true
-
   validates :staff_id, :uniqueness => {:scope => :squad_id}
 
 end

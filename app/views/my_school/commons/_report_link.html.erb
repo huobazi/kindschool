@@ -1,0 +1,5 @@
+<% if Report.find_report_for_resource(current_user, resource_type, resource_id).blank? %>
+  <%= link_to "举报", url_for(:controller => "my_school/reports", :action => "create", :method => 'get', :resource_type => resource_type, :resource_id => resource_id, :url => request.original_url), :class => 'btn btn-link', :confirm => '您确定要举报吗?' %>
+<% else %>
+  <span>已举报</span>
+<% end %>
