@@ -40,17 +40,22 @@ ActiveAdmin.register StudentInfo do
   index do
     column :user
     column :kindergarten
-    column "年级" do |obj|
-      obj.squad && obj.squad.grade ? (auto_link obj.squad.grade) : "无年级"
+    # column "年级" do |obj|
+    #   obj.squad && obj.squad.grade ? (auto_link obj.squad.grade) : "无年级"
+    # end
+    column "性别" do |student|
+      student.try(:user).try(:gender_label)
+    end
+    column "状态" do |student|
+      student.try(:user).try(:status_data_label)
     end
     column :squad
-    column "微信id" do |student|
+    column "绑定幼儿园" do |student|
       student.try(:user).try(:weixin_code).blank? ? "未绑定" : "已绑定"
     end
-    column "Weiyi Code" do |student|
-      student.try(:user).try(:weixin_code).blank? ? "未绑定" : "已绑定"
+    column "绑定微一" do |student|
+      student.try(:user).try(:weiyi_code).blank? ? "未绑定" : "已绑定"
     end
-    column :come_in_at
     default_actions
   end
   filter :kindergarten

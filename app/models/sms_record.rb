@@ -14,12 +14,16 @@ class SmsRecord < ActiveRecord::Base
 
   before_create :load_user_name
   after_create :send_sms
-  
- 
+
+  STATUS = { 0=>"正在发送",1=> "发生成功", 2=>"发送失败"}
+
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end
-STATUS = { 0=>"正在发送",1=> "发生成功", 2=>"发送失败"}
+
+  def status_label
+    SmsRecord::STATUS[self.status]
+  end
   #发送短信
   def send_sms
     chain = (self.chain_code || 0).to_s.split("").last(3).join("")
@@ -38,7 +42,7 @@ STATUS = { 0=>"正在发送",1=> "发生成功", 2=>"发送失败"}
   def get_sms_count
     return (1 + (self.content || "").size / 70)
   end
-  
+
   private
   def load_user_name
     if self.sender

@@ -8,11 +8,11 @@ ActiveAdmin.register Kindergarten do
     flash[:notice] ="初始化完成."
     redirect_to(:controller=>"/admin/kindergartens", :action=>:show,:id=>params[:id])
   end
-  
+
   member_action :pay_sms, :method => :get, :title => "充值短信" do
     @kindergarten = Kindergarten.find_by_id(params[:id])
   end
-  
+
   member_action :pay_sms_count, :method => :post do
     if @kindergarten = Kindergarten.find_by_id(params[:id])
       if params[:pay_count].blank?
@@ -29,7 +29,7 @@ ActiveAdmin.register Kindergarten do
     end
   end
 
-  
+
   member_action :default_role, :method => :get do
     @kindergarten = Kindergarten.find(params[:id])
     @kindergarten.default_role!
@@ -50,7 +50,7 @@ ActiveAdmin.register Kindergarten do
       link_to('还原所有角色默认权限', default_role_admin_kindergarten_path(kindergarten))
     end
   end
-  
+
   action_item :only => :show do
     if can?(:pay_sms, resource)
       link_to('充值短信', pay_sms_admin_kindergarten_path(kindergarten))
@@ -119,7 +119,7 @@ ActiveAdmin.register Kindergarten do
       f.input :open_allsms
       f.input :enable_credit
       f.input :hint_tp
-#      f.input :allsms_count
+      #      f.input :allsms_count
       f.input :login_note
       f.input :note
       f.input :init_status
@@ -153,10 +153,10 @@ ActiveAdmin.register Kindergarten do
       row :sms_count
       row :balance_count
       row :sms_user_count
-      row :begin_allsms
-      row :open_allsms
-      row :hint_tp
-#      row :allsms_count
+      row :begin_allsms_label
+      row :open_allsms_label
+      row :hint_tp_label
+      #      row :allsms_count
       row :login_note
       row :note
       row :asset_img do |obj|
@@ -179,7 +179,7 @@ ActiveAdmin.register Kindergarten do
       #这个地方加一个用户绑定统计
       div do
         br
-        panel "幼儿园统计" do  
+        panel "幼儿园统计" do
           render :partial => "/admin/kindergartens/kindergartens_sas",:locals => { :kind => kind.id }
         end
       end
@@ -302,8 +302,8 @@ ActiveAdmin.register Kindergarten do
           unless kind.notices.blank?
             table_for(kind.notices.limit(10).order("id DESC")) do |t|
               t.column("标题") {|item| item.title}
-              t.column("创建人") {|item| item.creater_id}
-              t.column("状态") {|item| item.status}
+              t.column("创建人") {|item| item.try(:creater).try(:name)}
+              t.column("通知范围") {|item| item.send_range_label}
               tr :class => "odd" do
                 td ""
                 td "通知总数", :style => "text-align :right;"
@@ -331,8 +331,9 @@ ActiveAdmin.register Kindergarten do
             table_for(kind.messages.where("tp=1 or tp=2").limit(10).order("id DESC")) do |t|
               t.column("标题") {|item| item.title}
               t.column("发送人") {|item| item.sender.try(:name)}
-              t.column("状态") {|item| item.status}
-              t.column("发送时间") {|item| item.send_date.try(:to_short_datetime)}
+              t.column("类型") {|item| item.tp_data_label}
+              t.column("状态") {|item| item.status_data_label}
+              t.column("发送时间") {|item| item.send_date.try(:to_long_datetime)}
               tr :class => "odd" do
                 td ""
                 td "消息总数", :style => "text-align :right;"

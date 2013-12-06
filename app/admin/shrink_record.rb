@@ -19,8 +19,12 @@ ActiveAdmin.register ShrinkRecord do
 
   index do
     column :url
-    column :description
-    column :keywords
+    column :description do |shrink_record|
+      truncate shrink_record.description
+    end
+    column :keywords do |shrink_record|
+      truncate shrink_record.keywords
+    end
     column :kindergarten
     default_actions
   end

@@ -4,97 +4,79 @@ class Kindergarten < ActiveRecord::Base
   attr_accessible :enable_credit,:init_status,:logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token,:latlng,:address,
     :aliases_url,:sms_count,:sms_user_count,:telephone,:allsms_count,:open_allsms,:begin_allsms,:login_note,:balance_count,:hint_tp
 
-  validates :name,:presence => true, :uniqueness => true, :length => { :maximum => 100}
-  validates :number,:presence => true, :uniqueness => true, :length => { :maximum => 100},:exclusion => { :in => %w(www) }
-  validates :aliases_url, :uniqueness => true,:allow_blank => true
-  
-  validates :note, :length => { :maximum => 800}
-  HINT_TP_DATA = {"0"=>"不发短信","1"=>"发短信"}
-  STATUS_DATA = {"0"=>"正常","1"=>"锁定"}
-  WEIXIN_STATUS_DATA = {"0"=>"未授权绑定","1"=>"已授权绑定"}
-
-
-  def weixin_status_label
-    Kindergarten::WEIXIN_STATUS_DATA[self.weixin_status.to_s]
-  end
-
-  has_many :users   #所有用户
-
-  has_many :dean_emails
-  has_many :sms_logs
+  has_many   :users   #所有用户
+  has_many   :dean_emails
+  has_many   :sms_logs
   #  has_many :operates
-  has_many :grades,:order=>:sequence  #年级
-  has_many :grade_teachers,:through=>:grades, :source => :staff  #年级组长
-
-  has_many :squads,:order=>[:grade_id,:sequence] #班级
-  has_many :squads_teachers,:through=>:squads, :source => :teachers  #班级负责老师
-
-  has_many :student_infos,:include=>:user,:order=>"users.name DESC",:conditions=>"users.tp=0"  #学员信息
-
-  has_many :staff_users,:class_name=>"User",:order=>:name,:conditions=>"tp=1"
-  has_many :staffs,:through=>:users,:order=>"users.name DESC",:conditions=>"users.tp=1" #
-
-  has_one :admin, :class_name => "User", :conditions => "tp = 2" #管理员，只有一个
-  has_one :asset_img, :class_name => "AssetImg", :as => :resource, :dependent => :destroy #logo，只有一个
-  has_one :asset_logo, :class_name => "AssetLogo", :as => :resource, :dependent => :destroy #二维码，只有一个
-  has_one :evaluate
-
-  has_one :download_package
-  
+  has_many   :grades,:order=>:sequence  #年级
+  has_many   :grade_teachers,:through=>:grades, :source => :staff  #年级组长
+  has_many   :squads,:order=>[:grade_id,:sequence] #班级
+  has_many   :squads_teachers,:through=>:squads, :source => :teachers  #班级负责老师
+  has_many   :student_infos,:include=>:user,:order=>"users.name DESC",:conditions=>"users.tp=0"  #学员信息
+  has_many   :staff_users,:class_name=>"User",:order=>:name,:conditions=>"tp=1"
+  has_many   :staffs,:through=>:users,:order=>"users.name DESC",:conditions=>"users.tp=1" #
+  has_one    :admin, :class_name => "User", :conditions => "tp = 2" #管理员，只有一个
+  has_one    :asset_img, :class_name => "AssetImg", :as => :resource, :dependent => :destroy #logo，只有一个
+  has_one    :asset_logo, :class_name => "AssetLogo", :as => :resource, :dependent => :destroy #二维码，只有一个
+  has_one    :evaluate
+  has_one    :download_package
   belongs_to :template
-
-  has_many :option_operates
-  has_many :operates, :through => :option_operates
-  has_many :topic_entries, :through => :topics
-
-  has_many :career_strategies
-  has_many :graduate_career_strategies,:conditions=>"squads.graduate=0",:through=>:career_strategies,:source=>:from,:order=>"career_strategies.graduation DESC"
-
-  has_many :topics
-
-  has_many :cook_books
-
-  has_many :notices
-
-  has_many :messages 
-
-  has_many :growth_records
-
-  has_many :seedling_records
-
-  has_many :physical_records
-
-  has_many :albums
-
-  has_many :content_patterns
-
-  has_many :activities
-
-  has_many :page_contents
-
-  has_many :roles
-
-  has_many :topic_categories
-
-  has_many :news
-
-  has_many :approve_modules
-
-  has_one :shrink_record
-
-  has_many :teaching_plans
-
-  has_many :evaluate_vtocs
-
-  has_many :sys_logs
-  has_many :access_status
-
-  validates :login_note, :length=>{:maximum=>120 }
+  has_many   :option_operates
+  has_many   :operates, :through => :option_operates
+  has_many   :topic_entries, :through => :topics
+  has_many   :career_strategies
+  has_many   :graduate_career_strategies,:conditions=>"squads.graduate=0",:through=>:career_strategies,:source=>:from,:order=>"career_strategies.graduation DESC"
+  has_many   :topics
+  has_many   :cook_books
+  has_many   :notices
+  has_many   :messages
+  has_many   :growth_records
+  has_many   :seedling_records
+  has_many   :physical_records
+  has_many   :albums
+  has_many   :content_patterns
+  has_many   :activities
+  has_many   :page_contents
+  has_many   :roles
+  has_many   :topic_categories
+  has_many   :news
+  has_many   :approve_modules
+  has_one    :shrink_record
+  has_many   :teaching_plans
+  has_many   :evaluate_vtocs
+  has_many   :sys_logs
+  has_many   :access_status
 
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img
   attr_accessible :asset_logo_attributes
   accepts_nested_attributes_for :asset_logo
+
+  validates :name,:presence => true, :uniqueness => true, :length => { :maximum => 100}
+  validates :number,:presence => true, :uniqueness => true, :length => { :maximum => 100},:exclusion => { :in => %w(www) }
+  validates :aliases_url, :uniqueness => true,:allow_blank => true
+  validates :note, :length => { :maximum => 800}
+  validates :login_note, :length=>{:maximum=>120 }
+
+  HINT_TP_DATA = {"0"=>"不发短信","1"=>"发短信"}
+  STATUS_DATA = {"0"=>"正常","1"=>"锁定"}
+  WEIXIN_STATUS_DATA = {"0"=>"未授权绑定","1"=>"已授权绑定"}
+
+  def begin_allsms_label
+    begin_allsms ? "是" : "否"
+  end
+
+  def open_allsms_label
+    open_allsms ? "是" : "否"
+  end
+
+  def hint_tp_label
+    hint_tp ? "是" : "否"
+  end
+
+  def weixin_status_label
+    Kindergarten::WEIXIN_STATUS_DATA[self.weixin_status.to_s]
+  end
 
   def default_template
     Template.find_by_is_default(true).id
@@ -264,7 +246,7 @@ class Kindergarten < ActiveRecord::Base
           end
         end
       end
-      
+
       #变化班级名字，1、对升学班级，替换成最终班级名字，2、升级策略改变
       squads_data.each do |squad|
         if career_strategy = squad.career_strategy

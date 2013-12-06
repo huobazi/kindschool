@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  content: MyText
+  informants: 1
+  process: 1
+  resource_id: 1
+  resource_type: MyString
+
+two:
+  content: MyText
+  informants: 1
+  process: 1
+  resource_id: 1
+  resource_type: MyString

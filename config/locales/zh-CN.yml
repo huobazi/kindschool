@@ -231,9 +231,9 @@ zh-CN:
       album_entry: "相片图片"
       content_pattern: "表格模版"
       student_resource: "学员提交图片"
-      activity: "活动"
-      activity_entry: "活动评论"
-      page_content: "页面内容"
+      activity: "活动信息"
+      activity_entry: "活动信息的评论"
+      page_content: "内置配置"
       content_entry: "内容详细"
       page_img: "页面图片资源"
       activity_img: "活动图片"
@@ -266,6 +266,7 @@ zh-CN:
       product_category: "商品分类"
       order: "订单"
       order_info: "订单详细"
+      report: "举报"
     attributes:
       product:
         name: "商品名称"
@@ -341,6 +342,8 @@ zh-CN:
         template_url: "附件地址"
         note: "描述"
         tp: "类型"
+        created_at: "创建时间"
+        updated_at: "更新时间"
       resource_library: 
         file_name: "文件名"
         resource_avatar_url: "文件地址"
@@ -358,6 +361,11 @@ zh-CN:
         receiver_name: "接受人"
         receiver_phone: "接受人电话号码"
         sms_count: "短信条数"
+        kindergarten_id: "幼儿园"
+        kindergarten_label: "所属幼儿园"
+        created_at: "创建时间"
+        updated_at: "更新时间"
+        status_label: "状态"
       garden_activitie:
         content: "详细内容"
         note: "简述"
@@ -462,6 +470,7 @@ zh-CN:
       kindergarten:
         enable_credit: "是否启用积分系统"
         hint_tp: "提醒系统化"
+        hint_tp_label: "提醒系统化"
         name: "名称"
         balance_count: "短信剩余条数"
         note: "描述"
@@ -485,7 +494,9 @@ zh-CN:
         sms_user_count: "短信用户数量"
         allsms_count: "每月群发短信次数"
         open_allsms: "开启限制数量群发"
+        open_allsms_label: "开启限制数量群发"
         begin_allsms: "可使用短信群发"
+        begin_allsms_label: "可使用短信群发"
         telephone: "联系电话"
         init_status: "幼儿园初始化值"
       user:
@@ -504,14 +515,17 @@ zh-CN:
         kindergarten_label: "所属幼儿园"
         kindergarten: "所属幼儿园"
         area: "城市"
-        weixin_code: "微信id"
+        weixin_code: "绑定幼儿园"
+        weiyi_code: "绑定微一资讯"
         password: "密码"
         password_confirmation: "确认密码"
         old_password: "原始密码"
         created_at: "创建时间"
         updated_at: "更新时间"
         is_send: '是否能够发短信'
+        is_send_label: '能够发短信'
         is_receive: '是否能够接受短信'
+        is_receive_label: '能够接受短信'
         chain_code: "短信扩展码"
       grade:
         kindergarten_label: "所属幼儿园"
@@ -612,6 +626,7 @@ zh-CN:
         number: "编号"
         admin: "是否是管理员"
         note: "描述"
+        admin_label: "是否是管理员"
         created_at: "创建时间"
         updated_at: "更新时间"
       operate:
@@ -634,10 +649,12 @@ zh-CN:
         children: "下级菜单"
         number: "编号"
         name: "名称"
-        url: "url配置"
-        title: "tip提示"
+        url: "url"
+        title: "标题"
         visible: "是否可见"
+        visible_label: "是否可见"
         sequence: "排序"
+        operate_id: "权限id"
       smarty:
         role: "角色"
         option_operate: "幼儿园常用功能"
@@ -646,6 +663,7 @@ zh-CN:
         kindergarten: "幼儿园"
         operate: "权限"
         visible: "是否可见"
+        visible_label: "是否可见"
       template:
         name: "名称"
         number: "编号"
@@ -837,31 +855,51 @@ zh-CN:
         squad_label: "所属班级"
         start_at: "开始时间"
         end_at: "结束时间"
-        logo: "LOGO"
         creater_id: "创建人"
+        creater: "创建人"
         approve_status: "审核状态"
+        approve_status_label: "审核状态"
         approver_id: "审核人"
+        approver: "审核人"
         note: "描述"
         title: "标题"
         content: "内容"
         tp: "活动类型"
+        tp_label: "活动类型"
+        created_at: "创建时间"
+        updated_at: "更新时间"
+        squad: "班级"
+        activity_entries_count_label: "回复的数量"
       activity_entry:
         note: "描述"
         tp: "类型"
         creater_id: "创建者"
+        creater: "创建者"
         activity: "活动"
         activity_img: "活动图片"
+        is_show_label: "是否显示"
+        is_show: "是否显示"
+        created_at: "创建时间"
+        updated_at: "更新时间"
+        deleted_at: "最近访问时间"
       page_content:
         number: "编号"
         name: "名称"
         kindergarten_label: "所属幼儿园"
         kindergarten: "幼儿园"
+        note: "描述"
+        created_at: "创建时间"
+        updated_at: "更新时间"
+        logo_url: "预览图"
+        tp_label: "类型"
       content_entry:
         title: "标题"
         number: "编号"
         content: "内容"
         page_content: "页面内容"
         page_img: "图片"
+        created_at: "创建时间"
+        updated_at: "更新时间"
       page_img:
         resource_id: "选题"
         filename: "图片"
@@ -893,6 +931,8 @@ zh-CN:
         category_id: "分类"
         category: "分类"
         visible: "是否显示"
+        created_at: "创建时间"
+        updated_at: "更新时间"
       comment_databank:
         content: "内容"
         user_id: "创建人"
@@ -905,6 +945,8 @@ zh-CN:
         weixin_databank: "微信资料库记录"
         send_date: "推送时间"
         visible: "是否显示"
+        created_at: "创建时间"
+        updated_at: "更新时间"
       weixin_share_user:
         weixin_share_id: "微信推送记录"
         weixin_share: "微信推送记录"
@@ -919,6 +961,8 @@ zh-CN:
         description: "描述"
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"
+        created_at: "创建时间"
+        updated_at: "更新时间"
       sys_log:
         kindergarten: "幼儿园"
         method: "请求方式"
@@ -937,6 +981,15 @@ zh-CN:
         asset_img: "LOGO"
       comment:
         comment: "评论"
+      report:
+        content: "内容"
+        informants: "举报人"
+        created_at: "创建时间"
+        updated_at: "更新时间"
+        process: "处理情况"
+        process_label: "处理情况"
+        resource_type: "举报的对象"
+        resource_id: "举报的对象id"
     errors:
       <<: *errors
   views:

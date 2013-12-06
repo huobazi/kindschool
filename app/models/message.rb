@@ -19,12 +19,12 @@ class Message < ActiveRecord::Base
 
   validates :content, :length => { :minimum => 1 }
   validate_harmonious_of :title,:content
-  
+
   STATUS_DATA = {"0"=>"草稿","1"=>"已发送"}
   #系统提示消息，开通短信，将受到短信；
   #系统短信消息，所有人都将收到短信；
   TP_DATA = {"0"=>"站内信","1"=>"站内加短信","2"=>"系统提示消息","3"=>"系统短信消息","4"=>"系统站内消息"}
-  
+
   has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
 
   STATUS = { 0=>"审核通过",1=> "待审核", 2=>"审核不通过"}
@@ -67,7 +67,7 @@ class Message < ActiveRecord::Base
   def get_full_message
     "#{self.sender.try(:name)} 发送消息：#{self.content} \r 给#{self.message_entries.count}人"
   end
-  
+
 
   #是否是回复的
   def if_return?
@@ -78,7 +78,7 @@ class Message < ActiveRecord::Base
   def if_sernder?
     [0,1].include?(self.tp)
   end
-  
+
   #该消息是否已经回复
   def is_retrun?(user_id)
     is_retrun = self.return_messages.where(:sender_id=>user_id).first
@@ -145,8 +145,6 @@ class Message < ActiveRecord::Base
     end
   end
 
-
-  
   #创建和更新时加载
   def load_sms_records
     if self.status

@@ -47,8 +47,10 @@ ActiveAdmin.register Role do
     end
     column :kindergarten
     column :number
-    column :admin
-    column :note
+    column :admin_label
+    column :note do |role|
+      truncate(role.note)
+    end
     default_actions
   end
 
@@ -71,7 +73,7 @@ ActiveAdmin.register Role do
       row :kindergarten
       row :name
       row :number
-      row :admin
+      row :admin_label
       row :note
       row :created_at
       row :updated_at
@@ -102,7 +104,7 @@ ActiveAdmin.register Role do
           end
         end
       end
-      
+
     end
   end
 end

@@ -41,17 +41,17 @@ ActiveAdmin.register Staff do
   index do
     column :user
     column :kindergarten_label
-    column "微信id" do |staff|
+    column "绑定幼儿园" do |staff|
       staff.try(:user).try(:weixin_code).blank? ? "未绑定" : "已绑定"
     end
-    column "Weiyi Code" do |staff|
-      staff.try(:user).try(:weixin_code).blank? ? "未绑定" : "已绑定"
+    column "绑定微一" do |staff|
+      staff.try(:user).try(:weiyi_code).blank? ? "未绑定" : "已绑定"
     end
-    column :created_at
-    column :updated_at
+    column :birthday
+    column :come_in_at
     default_actions
   end
-  
+
   filter :user_name,:as=>:string,:label=>"老师名字"
 #  filter :user_kindergarten_id,:as=>:select,:label=>"幼儿园"
   filter :user_login,:as=>:string,:label=>"账号"

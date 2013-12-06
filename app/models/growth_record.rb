@@ -2,21 +2,18 @@
 class GrowthRecord < ActiveRecord::Base
   attr_accessible :content, :creater_id, :end_at, :kindergarten_id, :squad_name, :start_at, :student_info_id, :tp, :student_info, :siesta, :dine, :reward, :accessed_at
 
-  scope :week_stat, ->(start_at, end_at) { where("start_at >= ? and end_at <= ?", start_at, end_at) }
-
   default_scope order("created_at DESC")
-
-  belongs_to :kindergarten
-  belongs_to :student_info
+  scope :week_stat, ->(start_at, end_at) { where("start_at >= ? and end_at <= ?", start_at, end_at) }
 
   validates :start_at, :end_at, :presence => true
   validates :content, :length => { :minimum => 5 }
   validates :student_info_id, :presence => true
-
   validates :siesta, :length => { :maximum=> 50 }, :allow_blank => true
   validates :dine, :length=> {:maximum=> 50}, :allow_blank => true
   validates :reward, :numericality=> true
 
+  belongs_to :kindergarten
+  belongs_to :student_info
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
   belongs_to :student, :class_name => "User", :foreign_key => "student_info_id"
   has_many :comments, :as => :resource
@@ -25,8 +22,11 @@ class GrowthRecord < ActiveRecord::Base
 
   just_define_datetime_picker :start_at, :add_to_attr_accessible => true
   just_define_datetime_picker :end_at, :add_to_attr_accessible => true
+
   after_create :load_messages
   before_destroy :ensure_not_comments
+
+  TP_DATA = {"false"=>"宝宝在园", "true"=>"宝宝在家"}
 
   def ensure_not_comments
     unless self.comments.blank?
@@ -36,8 +36,6 @@ class GrowthRecord < ActiveRecord::Base
       end
     end
   end
-
-  TP_DATA = {"false"=>"宝宝在园", "true"=>"宝宝在家"}
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"

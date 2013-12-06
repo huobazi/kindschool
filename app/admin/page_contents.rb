@@ -18,10 +18,13 @@ ActiveAdmin.register PageContent do
 
   index do
     column :kindergarten
-    column :number
     column :name
-    column :logo_url
-    column :note
+    column :logo_url do |page_content|
+      raw "<img src='#{page_content.logo_url}' width='200' height='100' />"
+    end
+    column :note do |page_content|
+      raw truncate(page_content.note)
+    end
 
     default_actions
   end
@@ -43,8 +46,13 @@ ActiveAdmin.register PageContent do
       row :kindergarten
       row :number
       row :name
-      row :logo_url
-      row :note
+      row :logo_url do |page_content|
+        raw "<img src='#{page_content.logo_url}' width='200' height='100' />"
+      end
+      row :tp_label
+      row :note do |page_content|
+        raw page_content.note
+      end
     end
   end
 end

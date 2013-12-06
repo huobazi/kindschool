@@ -1,5 +1,6 @@
+#encoding:utf-8
 class ActivityEntry < ActiveRecord::Base
-  attr_accessible :activity_id, :creater_id, :note, :tp
+  attr_accessible :activity_id, :creater_id, :note, :tp, :is_show
 
   belongs_to :activity
 
@@ -12,5 +13,8 @@ class ActivityEntry < ActiveRecord::Base
   attr_accessible :activity_img_attributes
   accepts_nested_attributes_for :activity_img
 
+  def is_show_label
+    is_show ? "是" : "否"
+  end
 
 end
