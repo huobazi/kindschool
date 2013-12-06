@@ -995,6 +995,7 @@ zh-CN:
         process_label: "处理情况"
         resource_type: "举报的对象"
         resource_id: "举报的对象id"
+        kindergarten: "幼儿园"
     errors:
       <<: *errors
   views:

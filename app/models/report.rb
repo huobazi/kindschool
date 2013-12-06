@@ -3,6 +3,7 @@ class Report < ActiveRecord::Base
   attr_accessible :content, :informants_id, :process, :resource_id, :resource_type
 
   belongs_to :informants, :class_name => 'User', :foreign_key => "informants_id"
+  belongs_to :kindergarten
 
   validates :resource_type, :resource_id, :informants_id, :presence => true
   validates :informants_id, :uniqueness => {:scope => [:resource_id, :resource_type]}
@@ -19,9 +20,10 @@ class Report < ActiveRecord::Base
     end
   end
 
-  def create_report(resource_type, resource_id)
+  def create_report(resource_type, resource_id, kind)
     self.resource_id = resource_id
     self.resource_type = resource_type
+    self.kindergarten = kind
     self.save
   end
 
