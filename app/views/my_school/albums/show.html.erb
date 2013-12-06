@@ -45,7 +45,7 @@
     <div class="work_form">
       <div class="big_form_div">
         <div class="albums_title"><!--  style="float:left;width:700px;"-->
-          <%= @album.title %>
+          <%= @album.title %><span class="pull-right"><%= render_report_link(@album) %></span>
           <hr/>
         </div>
         <%=render 'album_entry'%>
