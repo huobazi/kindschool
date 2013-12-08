@@ -4,7 +4,7 @@ class Album < ActiveRecord::Base
 
   paginates_per 6
 
-  default_scope order("is_top DESC, created_at DESC")
+  default_scope order("albums.is_top DESC, albums.created_at DESC")
 
   belongs_to :kindergarten
   belongs_to :squad

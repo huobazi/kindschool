@@ -199,12 +199,22 @@
 
   - id: 46000
     name: "老师日常统计"
-    operate_id: 14400
+    operate_id: 14500
     url: "/my_school/statistics/teacher_stat"
     number: 46000
     title: "老师日常统计"
     height_level: "a"
     sequence: 92
+
+  - id: 47000
+    name: "照片集锦统计"
+    operate_id: 14600
+    url: "/my_school/statistics/albums_stat"
+    number: 47000
+    title: "照片集锦统计"
+    height_level: "a"
+    sequence: 92
+
 
 - id: 50000
   number: "home"

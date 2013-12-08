@@ -154,6 +154,9 @@ MENUS ={"home"=>{
       },
       "46000" => {
         "my_school/statistics" => ["teacher_stat"]
+      },
+      "47000" => {
+        "my_school/statistics" => ["albums_stat"]
       }
     },
     "120000" => {

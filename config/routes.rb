@@ -87,7 +87,8 @@ School::Application.routes.draw do
 
     resources :statistics do
       get :sms_all_statistics,:sms_statistics,:virtual_squad,
-          :message, :growth_record, :teacher_stat, :kind_stat, :on => :collection
+          :message, :growth_record, :teacher_stat, :kind_stat,
+          :albums_stat, :on => :collection
     end
     resources :users do
       get :login,:logout, :error_notice, :show, 
