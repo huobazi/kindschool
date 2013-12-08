@@ -277,7 +277,8 @@ PAGE_CONTROLLER = [
   "staffs/index", "messages/index", "virtual_squads/index",
   "student_infos/index", "personal_sets/index",
   "roles/index", "messages/outbox", "messages/draft_box",
-  "dean_emails/index"
+  "dean_emails/index", "statistics/sms_all_statistics",
+  "statistics/sms_statistics", "statistics/message"
 ]
 
 require 'active_record'

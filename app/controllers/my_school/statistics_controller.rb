@@ -125,4 +125,8 @@ class  MySchool::StatisticsController < MySchool::ManageController
     end
   end
 
+  def albums_stat
+    
+  end
+
 end
