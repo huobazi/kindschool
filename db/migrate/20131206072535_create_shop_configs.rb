@@ -3,7 +3,7 @@ class CreateShopConfigs < ActiveRecord::Migration
     create_table :shop_configs do |t|
       t.string :number
       t.string :note
-      t.integer :status,
+      t.integer :status, :default => 0
 
       t.timestamps
     end
