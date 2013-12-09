@@ -10,6 +10,7 @@ class Activity < ActiveRecord::Base
   validates :title, :content, :start_at, :end_at, :tp, :presence => true
   validates :title, :length => { :minimum => 3, :maximum => 100 }
   validates :content, :length => { :minimum => 5 }
+  validate_harmonious_of :title, :content
 
   belongs_to :kindergarten
   has_many :activity_entries

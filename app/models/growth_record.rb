@@ -11,6 +11,7 @@ class GrowthRecord < ActiveRecord::Base
   validates :siesta, :length => { :maximum=> 50 }, :allow_blank => true
   validates :dine, :length=> {:maximum=> 50}, :allow_blank => true
   validates :reward, :numericality=> true
+  validate_harmonious_of :content
 
   belongs_to :kindergarten
   belongs_to :student_info

@@ -17,15 +17,16 @@
         <p class="title"><span class="name"><%= @topic.title %></span></p>
         <p class="info">
           <% if @topic.squad.present? %>
-          <table class="attributes">
-            <tr>
-              <th>班级</th>
-              <td style="text-align: center;"><%= @topic.squad.try(:name) %></td>
-            </tr>
-          </table>
-        <% else %>
-          <span class="label label-info">全园可见</span>
-        <% end %>
+            <table class="attributes">
+              <tr>
+                <th>班级</th>
+                <td style="text-align: center;"><%= @topic.squad.try(:name) %></td>
+              </tr>
+            </table>
+          <% else %>
+            <span class="label label-info">全园可见</span>
+          <% end %>
+          <%= render_report_link(@topic) %>
         </p>
         <p class="info"><span class="author"><%= @topic.creater.try(:name) %></span>&nbsp;发表于&nbsp;<span><%= @topic.created_at.to_long_datetime %></span></p>
         <div class="content"><%= simple_format @topic.content %>
@@ -64,7 +65,7 @@
         <ul class="topic_replies">
           <% @replies.each do |reply| %>
             <li class="show" id="topic_entry_<%= reply.id %>">
-              <p class="info"><span class="author"><%= reply.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span><%= reply.created_at.try(:to_long_datetime) %></span> </p>
+              <p class="info"><span class="author"><%= reply.creater.try(:name) %></span>&nbsp;回复于&nbsp;<span><%= reply.created_at.try(:to_long_datetime) %></span></p>
               <div class="content"><%= simple_format reply.content %></div>
             </li>
           <% end %>

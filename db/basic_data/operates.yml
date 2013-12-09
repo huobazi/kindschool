@@ -2032,6 +2032,7 @@ statistic_kind_stat:
   action: "kind_stat"
   protocol: ""
   <<: *DEFAULTS
+
 statistic_message:
   id: 14200
   parent_id: 11
@@ -2066,6 +2067,19 @@ statistics_sms_statistics:
   action: "sms_statistics"
   protocol: ""
   <<: *DEFAULTS
+statistic_albums:
+  id: 14600
+  parent_id: 11
+  name: "照片集锦统计"
+  level: 2
+  sequence: 4
+  note: "照片集锦统计"
+  controller: "my_school/statistics"
+  action: "albums_stat"
+  protocol: ""
+  <<: *DEFAULTS
+
+
 
 official_evaluates:
   id: 15000

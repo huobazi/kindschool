@@ -1,24 +1,24 @@
 <div class="control-group">
-            <label class="control-label" >审核结果:</label>
-            <div class="controls">
-              <label class="show_label">
-               <%=radio_button("approve_record" ,"status", 0)%>不通过
-               </label>
-               <label class="show_label">
-               <%=radio_button("approve_record" ,"status", 1,:checked=>"checked" )%>通过
-              </label>
-            </div>
+  <label class="control-label" >审核结果:</label>
+  <div class="controls">
+    <label class="show_label">
+      <%=radio_button("approve_record" ,"status", 0)%>不通过
+    </label>
+    <label class="show_label">
+      <%=radio_button("approve_record" ,"status", 1,:checked=>"checked" )%>通过
+    </label>
+  </div>
 </div>
 <div class="control-group">
-            <label class="control-label" >审核描述:</label>
-            <div class="controls">
-              <label class="show_label">
-                <%=text_area(:approve_entry, :note,:rows => 6)%>
-              </label>
-            </div>
+  <label class="control-label" >审核描述:</label>
+  <div class="controls">
+    <label class="show_label">
+      <%=text_area(:approve_entry, :note,:rows => 6)%>
+    </label>
+  </div>
 </div>
 <div class="control-group">
-            <div class="controls">
-              <%= f.submit('保存',:class=>"btn btn-primary btn-large", disable_with: "正在提交...") %>
-            </div>
+  <div class="controls">
+    <%= f.submit('保存',:class=>"btn btn-primary btn-large", disable_with: "正在提交...") %>
+  </div>
 </div>

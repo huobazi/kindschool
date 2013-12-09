@@ -11,7 +11,7 @@ class PhotoGallery < ActiveRecord::Base
   has_many :children, :class_name=>'PhotoGallery', :foreign_key=>'parent_id'
 
   has_one :personal_set, :class_name => "PersonalSet", :as => :resource, :dependent => :destroy
-  
+
   has_attachment :content_type => :image,
     :jpeg_quality=>75,
     :storage => :file_system,

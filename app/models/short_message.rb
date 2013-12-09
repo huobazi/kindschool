@@ -74,7 +74,7 @@ class ShortMessage
     end
   end
 
-  
+
   private
   #参数：url和参数
   def self.http_post(url,json_data)

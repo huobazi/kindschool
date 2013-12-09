@@ -1,299 +1,173 @@
 School::Application.routes.draw do
 
+  root :to => 'main#index'
   match 'code/code_image' => 'code#code_image'
   match 'code/recode' => 'code#recode'
   match 'my_school' => 'my_school/main#index'
   match "my_school/evaluate/:id/:basename.:extension", :controller => "my_school/evaluate_vtocs", :action => "download", :conditions => { :method => :get }
   namespace :my_school do
+    resources :credit_shop
     resources :reports do
       get :create, :on => :collection
     end
     resources :evaluate_vtocs do
-      collection do
-        post :create_evaluate_asset
-      end
-      member do
-        delete :delete_evaluate_asset
-      end
+      post :create_evaluate_asset, :on => :collection
+      delete :delete_evaluate_asset, :on => :member
     end
     resources :evaluate_templates
     resources :evaluates do
       resources :evaluate_entries
-       collection do
-        get :download_packages
-        get :download
-       end
+      get :download_packages, :download, :on => :collection
     end
     resources :dean_emails
     resources :read_users do
-      collection do
-        get :load_read_users
-      end
+      get :load_read_users, :on => :collection
     end
     resources :teaching_plans
     resources :personal_sets
     resources :approve_modules do
-      collection do
-        get :get_edit_ids
-      end
+      get :get_edit_ids, :on => :collection
     end
     resources :approves do
-      collection do
-        get :news_list
-        get :news_show
-        post :one_news_approve
-        get :activities_list
-        get :activity_show
-        get :notices_list
-        get :notice_show
-        get :messages_list
-        get :message_show
-        get :topics_list
-        get :topic_show
-        get :get_approve_record_log
-      end
+      get  :news_list, :news_show, :activities_list, :activity_show, :notices_list,
+           :notice_show, :messages_list, :message_show, :topics_list,
+           :topic_show, :get_approve_record_log, :on => :collection
+      post :one_news_approve, :on => :collection
     end
     resources :comments do
-      collection do
-        post :send_comment
-        post :modify
-      end
-      member do
-        get :virtual_delete
-      end
+      post :send_comment, :on => :collection
+      post :modify, :on => :collection
+      get :virtual_delete, :on => :member
     end
     resources :news  do
-      collection do
-        post :add_new_imgs
-      end
-      member do
-        get :page_img_destroy
-      end
+      post :add_new_imgs, :on => :collection
+      get :page_img_destroy, :on => :member
     end
-    resources :my_kindergarten do
-    end
+    resources :my_kindergarten
     resources :main do
-      collection do
-        get :no_kindergarten
-        get :about
-        get :contact_us
-        get :feature
-        get :show_official_about_us
-        get :admissions_information
-        get :show_one_new
-        get :show_new_list
-        get :dean_email
-        get :dean_email_list
-        get :dean_email_show
-        post :dean_email
-        post :create_dean_email
-      end
+      get :no_kindergarten, :about, :contact_us, :feature, :show_official_about_us,
+          :admissions_information, :show_one_new, :show_new_list, :dean_emails,
+          :dean_email_list, :dean_email_show, :on => :collection
+      post :dean_email, :create_dean_email, :on => :collection
     end
     resources :virtual_squads  do
-      collection {get :get_edit_ids}
+      get :get_edit_ids, :on => :collection
     end
     resources :roles do
-      member do
-        get :set_operate_to_role
-        post :save_operate_to_role
-      end
+      get :set_operate_to_role, :on => :member
+      post :save_operate_to_role, :on => :member
     end
     resources :smarties do
       collection {get :role_operates}
     end
     resources :albums do
-      collection do
-        get :grade_class
-        post :add_entry_imgs
-        get :graduate_class
-      end
-      member do
-        get :entry_index
-      end
+      get :grade_class, :graduate_class, :on => :collection
+      post :add_entry_imgs, :on => :collection
+      get :entry_index, :on => :member
       resources :album_entries do
-        member {get :choose_main_img}
+        get :choose_main_img, :on => :member
       end
     end
     resources :career_strategies do
-      collection do
-        delete :destroy_multiple
-        get :career_class,:career_class_validate
-      end
+      delete :destroy_multiple, :on => :collection
+      get :career_class,:career_class_validate, :on => :collection
     end
 
     resources :interest_activities
 
     resources :content_patterns
     resources :seedlings do
-      collection {get :grade_class}
-      collection {get :class_student}
-      collection {post :destory_choose}
-      collection {delete :destroy_multiple}
+      get :grade_class, :class_student, :on => :collection
+      post :destory_choose, :on => :collection
     end
     resources :physical_records do
-      collection do
-        delete :destroy_multiple
-      end
-      collection {get :grade_class}
-      collection {get :class_student}
+      get :grade_class, :class_student, :on => :collection
     end
-    resources :cook_books do
-      collection do
-        delete :destroy_multiple
-      end
-    end
+    resources :cook_books
 
     resources :statistics do
-      get :sms_all_statistics,:sms_statistics,:virtual_squad, :message, :growth_record, :teacher_stat, :kind_stat, :on => :collection
+      get :sms_all_statistics,:sms_statistics,:virtual_squad,
+          :message, :growth_record, :teacher_stat, :kind_stat,
+          :albums_stat, :on => :collection
     end
     resources :users do
-      collection do
-        get :login,:logout,:error_notice,:show,:change_password_view, :old_password_validator
-        post :login,:change_password
-      end
-      member do
-        get :set_send_sms,:set_gather_sms
-        post :reset_password
-      end
+      get :login,:logout, :error_notice, :show, 
+          :change_password_view, :old_password_validator, :on => :collection
+      post :login,:change_password, :on => :collection
+      get :set_send_sms, :set_gather_sms, :on => :member
+      post :reset_password, :on => :member
     end
     resources :activity_entries do
-      member do
-        get :virtual_delete
-      end
+      get :virtual_delete, :on => :member
     end
     resources :squads do
-      collection do
-        post :add_strategy
-        get :name_uniqueness_validator
-      end
-      member do
-        get :add_strategy_view
-        get :set_squads_teacher
-        get :cancel_class_teacher
-      end
+      post :add_strategy, :on => :collection
+      get :name_uniqueness_validator, :on => :collection
+      get :add_strategy_view, :set_squads_teacher, :cancel_class_teacher, :on => :member
+      get :set_squads_teacher
+      get :cancel_class_teacher
     end
     resources :notices do
-      collection do
-        delete :destroy_multiple
-        get :approve
-      end
+      delete :destroy_multiple, :on => :collection
+      get :approve, :on => :collection
     end
     resources :messages do
-      member do
-        get :outbox_show
-        get :draft_show
-        get :draft_edit
-        get :get_edit_ids
-        get :get_entry_status
-        post :draft_update
-        post :return_message
-      end
-      collection do
-        get :outbox,:get_kindergarten,:get_grade,:get_student
-        post :get_grades_all,:get_squads_all,:get_roles_all,:get_users_all
-        delete :destroy_multiple
-        get :draft_box
-      end
+      get :outbox_show, :draft_show, :draft_edit, :get_edit_ids,
+          :get_entry_status, :on => :member
+      post :draft_update, :return_message, :on => :member
+      get :outbox, :get_kindergarten, :get_grade, :get_student, :draft_box, :on => :collection
+      post :get_grades_all, :get_squads_all, :get_roles_all, :get_users_all, :on => :collection
+      delete :destroy_multiple, :on => :collection
     end
     resources :home do
-      collection do
-        get :show_videos,:about,:contact_us,:help_videos
-      end
+      get :show_videos, :about, :contact_us, :help_videos, :on => :collection
     end
     resources :grades do
-      collection do
-        delete :destroy_multiple
-      end
+      delete :destroy_multiple, :on => :collection
     end
     resources :staffs do
-      collection do
-        get :phone_uniqueness_validator, :login_uniqueness_validator
-      end
+      get :phone_uniqueness_validator, :login_uniqueness_validator, :on => :collection
     end
     resources :page_contents do
-      member do
-        get :delete_content,:edit_content
-        post :add_content,:update_content
-      end
+      get :delete_content, :edit_content, :on => :member
+      post :add_content, :update_content, :on => :member
     end
     resources :student_infos do
-      collection do
-        delete :destroy_multiple
-        get :grade_squad_partial
-        get :student_execl
-        get :download_nanshan
-        post :download
-        get :download_student_infos
-        get :virtual_squad
-        post :virtual_squad_choose
-        post :import
-        get :delete
-        get :phone_uniqueness_validator
-      end
+      delete :destroy_multiple, :on => :collection
+      get :grade_squad_partial, :student_execl, :download_nanshan, :download_student_infos,
+          :virtual_squad, :delete, :phone_uniqueness_validator, :on => :collection
+      post :download, :virtual_squad_choose, :import, :on => :collection
     end
     resources :templates do
-      collection do
-        get :set_default_template_view
-        get :set_default_template
-      end
+      get :set_default_template_view, :set_default_template, :on => :collection
     end
 
     resources :teachers do
-      collection do
-        get :allocation
-        post :update_allocation
-        get :set_class_teacher
-        get :set_class_teacher_for_squad_view
-        get :set_class_teacher_for_squad
-        get :cancel_class_teacher
-      end
+      get :allocation, :set_class_teacher, :set_class_teacher_for_squad_view,
+          :set_class_teacher_for_squad, :cancel_class_teacher, :on => :collection
+      post :update_allocation, :on => :collection
     end
 
     resources :growth_records do
-      collection do
-        get :home
-        delete :destroy_multiple
-        get :grade_squad_partial
-        get :squad_student_partial
-      end
-      member do
-        get :delete_img
-      end
+      get :home, :grade_squad_partial, :squad_student_partial, :on => :collection
+      get :delete_img, :on => :member
     end
 
-    resources :topic_categories do
-      collection do
-        delete :destroy_multiple
-      end
-    end
+    resources :topic_categories
 
     resources :garden_growth_records do
-      collection do
-        get :garden
-        delete :destroy_multiple
-      end
-      member do
-        get :delete_img
-      end
+      get :garden, :on => :collection
+      get :delete_img, :on => :member
     end
 
     resources :topics do
-      collection do
-        delete :destroy_multiple
-        get :my
-        get :grade_squad_partial
-      end
+      get :my, :grade_squad_partial, :on => :collection
     end
     resources :topic_entries do
-      member do
-        get :virtual_delete,:goodback
-      end
+      get :virtual_delete, :goodback, :on => :member
     end
     resources :activities do
-      collection do
-        delete :destroy_multiple
-        get :grade_squad_partial
-      end
+      get :grade_squad_partial, :on => :collection
     end
   end
 
@@ -302,78 +176,45 @@ School::Application.routes.draw do
   match 'weixin/contact_us' => 'weixin/main#contact_us'
   namespace :weixin do
     resources :api do
-      collection do
-        post :index
-        get :index
-      end
+      post :index, :on => :collection
+      get :index, :on => :collection
     end
     resources :main do
-      collection do
-        get :bind_user,:error_messages,:get_user_all_teachers,:get_user_all_squads,:weiyi_error_messages
-        post :bind_user
-        get :bind_weiyi
-        post :bind_weiyi
-      end
+      get :bind_user, :error_messages, :get_user_all_teachers,
+          :get_user_all_squads, :weiyi_error_messages, :bind_weiyi, :on => :collection
+      post :bind_user, :bind_weiyi,  :on => :collection
     end
     resources :users do
-      collection do
-        get :login,:error_messages,:change_password_view,:edit
-        post :login,:change_password,:update_user
-      end
+      get :login, :error_messages, :change_password_view, :edit, :on => :collection
+      post :login, :change_password, :update_user, :on => :collection
     end
     resources :cook_books
     resources :albums
     resources :topics do
-      collection do
-        get :my
-        get :grade_squad_partial
-      end
+      get :my, :grade_squad_partial, :on => :collection
     end
     resources :growth_records do
-      collection do
-        get :grade_squad
-        get :squad_student
-      end
-      member do
-        get :delete_img
-      end
+      get :grade_squad, :squad_student, :on => :collection
+      get :delete_img, :on => :member
     end
     resources :garden_growth_records do
-      collection do
-        get :grade_squad
-        get :squad_student
-      end
-      member do
-        get :delete_img
-      end
+      get :grade_squad, :squad_student, :on => :collection
+      get :delete_img, :on => :member
     end
     resources :activities do
-      collection do
-        get :grade_squad_partial
-      end
+      get :grade_squad_partial, :on => :collection
     end
     resources :interest_activities do
-      collection do
-        get :grade_squad_partial
-      end
+      get :grade_squad_partial, :on => :collection
     end
     resources :activity_entries
     resources :topic_entries
     resources :messages do
-      member do
-        get :outbox_show
-        get :draft_show
-        get :draft_edit
-        get :get_edit_ids
-        post :draft_update
-        post :return_message
-      end
-      collection do
-        get :outbox,:get_kindergarten,:get_grade,:get_student
-        post :get_grades_all,:get_squads_all,:get_roles_all,:get_users_all
-        delete :destroy_multiple
-        get :draft_box
-      end
+      get :outbox_show, :draft_show, :draft_edit, :get_edit_ids, :on => :member
+      post :draft_update, :return_message, :on => :member
+      get :outbox, :get_kindergarten, :get_grade, :get_student, :draft_box, :on => :collection
+      post :get_grades_all, :get_squads_all, :get_roles_all, :get_users_all, :on => :collection
+      delete :destroy_multiple, :on => :collection
     end
     resources :notices
     resources :weixin_share_users
@@ -393,17 +234,13 @@ School::Application.routes.draw do
     resources :garden_activities
     resources :classic_users
     resources :help do
-      collection do
-        get :show_videos
-      end
+      get :show_videos, :on => :collection
     end
   end
   resources :main do
-    collection do
-      get :weiyi_tourism,:weiyi_solution,:weiyi_interact,:weiyi_contact,:weiyi_video,:weiyi_scheme,:weiyi_cultivate,:weiyi_benefit
-    end
+    get :weiyi_tourism, :weiyi_solution, :weiyi_interact, :weiyi_contact,
+        :weiyi_video, :weiyi_scheme, :weiyi_cultivate, :weiyi_benefit, :on => :collection
   end
-  root :to => 'main#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

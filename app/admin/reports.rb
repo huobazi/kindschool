@@ -5,6 +5,7 @@ ActiveAdmin.register Report do
   index do
     column :informants
     column :process_label
+    column :kindergarten
     column :content do |report|
       truncate(report.content)
     end
@@ -16,6 +17,7 @@ ActiveAdmin.register Report do
   filter :content
   filter :process, :as => :select, :collection => Report::PROCESS.invert
   filter :informants
+  filter :kindergarten
   filter :resource_type
   filter :resource_id
   filter :created_at
@@ -24,6 +26,7 @@ ActiveAdmin.register Report do
     attributes_table do
       row :informants
       row :process_label
+      row :kindergarten
       row :content
       row :resource_type
       row :resource_id

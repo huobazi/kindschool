@@ -8,6 +8,7 @@ class Topic < ActiveRecord::Base
   validates :kindergarten_id, :creater_id, :topic_category_id, :title, :content, :presence => true
   validates :title, :length => { :minimum => 3, :maximum => 100 }
   validates :content, :length => { :minimum => 3 }
+  validate_harmonious_of :title, :content
 
   belongs_to :kindergarten
   belongs_to :topic_category
@@ -19,7 +20,6 @@ class Topic < ActiveRecord::Base
   has_one :approve_record,:class_name=>"ApproveRecord", :as => :resource, :dependent => :destroy
 
   include ResourceApproveStatusStart
-  include Common
 
   before_save :news_approve_status_start
   before_destroy :ensure_not_topic_entries

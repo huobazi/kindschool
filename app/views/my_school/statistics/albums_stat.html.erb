@@ -1,0 +1,83 @@
+<div class="show_work">
+  <%= render :partial => "/modules/#{view_layout}/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>
+          照片集锦统计
+        </label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li>
+              统计
+            </li>
+            <li>/</li>
+            <li>照片集锦统计</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+      </ul>
+    </div>
+
+
+    <div class="work_list">
+      <div class="stat-content">
+            <div class="panel">
+              <div class="header">照片集锦统计</div>
+              <div class="inner">
+                <p>总数量:<span><%= @albums_count %></span></p>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="header">每个班级的照片集锦</div>
+              <div class="inner">
+                <div>
+                  <% @squad_albums.each do |squad_album| %>
+                    <p><%= squad_album.squad_name ||= "全园可见" %>:<span><%= squad_album.try(:squad_count) %></span></p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="header">每个老师的照片集锦</div>
+              <div class="inner">
+                <div>
+                  <% @creater_albums.each do |creater_album| %>
+                    <p><%= creater_album.try(:creater_name) %>:<span><%= creater_album.try(:creater_count) %></span></p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+      </div>
+  </div>
+
+</div>
+
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".fold").each(function() {
+
+      $(this).click(function(event) {
+        event.preventDefault();
+        $(this).parent().parent().children(".detail_stat").slideToggle("fast", function() {
+          if ( $(this).parent().find("i.f").hasClass("icon-plus") ) {
+            $(this).parent().find("i.f").removeClass("icon-plus").addClass("icon-minus");
+          } else {
+            $(this).parent().find("i.f").removeClass("icon-minus").addClass("icon-plus");
+          }
+        });
+
+      })
+
+    })
+  })
+</script>
+

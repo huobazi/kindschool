@@ -46,6 +46,7 @@ class Kindergarten < ActiveRecord::Base
   has_many   :evaluate_vtocs
   has_many   :sys_logs
   has_many   :access_status
+  has_many   :reports
 
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img

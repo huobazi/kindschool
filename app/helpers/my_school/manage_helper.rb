@@ -4,8 +4,9 @@ module MySchool::ManageHelper
     (session[:operates]||[]).include?(controller_view)
   end
   def calculated_figures
-    str = current_user.name + current_user.role.try(:name).to_s
-    200-str.size
+    # str = current_user.name + current_user.role.try(:name).to_s
+    # 200-str.size
+    72
   end
 
   def paginate(scope, options = {}, &block)
@@ -34,8 +35,10 @@ EOF
     str << js.to_s.html_safe
   end
 
-  def render_report_link(options = {})
-    render partial: "/my_school/commons/report_link", locals: {:resource_id => options[:resource_id], :resource_type => options[:resource_type]}
+  def render_report_link(obj)
+    if obj
+      render partial: "/my_school/commons/report_link", locals: {:obj => obj}
+    end
   end
 
 end

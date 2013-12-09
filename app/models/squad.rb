@@ -7,7 +7,7 @@ class Squad < ActiveRecord::Base
 
   before_create :create_validate_name
   before_update :update_validate_name
-  
+
   #  validates :name, :uniqueness => {:scope => :kindergarten_id , :conditions=>lambda { |table| table[:graduate] ==0 }}
 
   validates :kindergarten,:presence => true
@@ -16,7 +16,6 @@ class Squad < ActiveRecord::Base
   belongs_to :grade  #年级
   has_one :career_strategy, :class_name=>"CareerStrategy",:foreign_key=>:from_id #升学策略
   has_many :source_career_strategies, :class_name=>"CareerStrategy",:foreign_key=>:to_id #升学策略
-
   has_many :student_infos  #学生信息
   has_many :users,:through=>:student_infos #学生的用户信息
   has_many :teachers
@@ -26,10 +25,7 @@ class Squad < ActiveRecord::Base
   has_many :user_squads_all_users,:through=>:user_squads,:source=>:user #所有延时班的人
   has_many :user_squads_teacher_users,:through=>:user_squads,:source=>:user,:conditions => "users.tp = 1 OR users.tp = 2" #所有延时班的老师
   has_many :user_squads_student_users,:through=>:user_squads,:source=>:user,:conditions => "users.tp = 0"  #所有延时班的学生
-
   has_many :activities
-  has_many :topics
-
   has_many :topics
 
   def full_name
@@ -64,12 +60,11 @@ class Squad < ActiveRecord::Base
     bind_weiyi_no = self.users.where("weiyi_code IS NULL AND weixin_code IS NOT NULL").count()
     return {:user_all=>user_all,:woman=>woman,:man=>(user_all - woman),:bind_ok=>bind_ok,:bind_null=>bind_null,:bind_weiyi_no=>bind_weiyi_no,:bind_weixin_no=>(user_all - bind_ok - bind_null - bind_weiyi_no)}
   end
-  
+
   #班级学生得到延时班学生
   def get_sqiads_virtual_squads
      users =  self.users
      user_squads = UserSquad.where(:user_id => users)
-     
   end
 
 
