@@ -4,8 +4,9 @@ module MySchool::ManageHelper
     (session[:operates]||[]).include?(controller_view)
   end
   def calculated_figures
-    str = current_user.name + current_user.role.try(:name).to_s
-    200-str.size
+    # str = current_user.name + current_user.role.try(:name).to_s
+    # 200-str.size
+    72
   end
 
   def paginate(scope, options = {}, &block)
