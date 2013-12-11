@@ -8,4 +8,5 @@ class CreditCofig < ActiveRecord::Base
   validates :number, :uniqueness => true
   validates_format_of :number,:without=>/a-Z/,:message=>"只能填英文字母"
 
+
 end

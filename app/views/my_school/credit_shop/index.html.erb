@@ -1,1 +1,26 @@
-积分商城
+<% if @logo %>
+  <% if @logo.page_img %>
+    <img src='<%= @logo.page_img.public_filename(:middle)  %>' alt="<%= @logo.name %>" title="<%= @logo.name %>"/><br/>
+  <% end %>
+  <%= @logo.name %><br/>
+  <%= @logo.note %>
+<% end %>
+<br/><br/>
+<h1>商品信息</h1>
+<%= link_to "全部商品",:action=>:products,:controller=>"/my_school/credit_shop" %>
+<hr/>
+<% unless @tags.blank? %>
+  <% @tags.each do |tag| %>
+    <h2><%= tag.name %></h2>
+    <% products = Product.tagged_with(tag.name).by_join_date.page(1).per(3) %>
+    <% if products.blank? %>
+    <% else %>
+      <ul>
+        <% products.each do |product| %>
+          <li><%= product.name %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <hr/>
+  <% end %>
+<% end %>

@@ -43,7 +43,7 @@ ActiveAdmin.register Merchant do
         if obj.asset_img.blank?
           raw "图片不存在"
         else
-          raw "<img src='#{obj.asset_img.public_filename(:middle)}'  onerror='this.src='/assets/no_img.png'"
+          raw "<img src='#{obj.asset_img.public_filename(:middle)}'  onerror='this.src='/assets/no_img.png'/>"
         end
       end
       row :note do
