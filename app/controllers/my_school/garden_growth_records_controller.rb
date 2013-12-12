@@ -119,6 +119,7 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
         end
       end
       if @growth_record.save!
+        current_user.save_user_credit("growth_record",2,@growth_record.student_info.user)
         flash[:success] = "添加宝宝在园成长记录成功"
         redirect_to :controller => "/my_school/garden_growth_records", :action => :show, :id => @growth_record.id
       else

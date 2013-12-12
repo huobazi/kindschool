@@ -77,6 +77,13 @@ class MySchool::CommentsController < MySchool::ManageController
       :resource_id=>params[:resource_id],
       :resource_type=>params[:resource_type])
     comment.save
+    #自己回复的不能进行加积分
+    if comment.resource.creater.id != current_user.id
+      if current_user.save_user_credit("comment",1,comment.resource)
+       #反馈意见的要给发帖人加分
+       comment.resource.creater.save_creater_credit("comment",comment.resource) if comment.resource.creater
+      end
+    end
     render :text=>""
   end
 

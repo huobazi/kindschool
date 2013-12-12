@@ -20,6 +20,8 @@ class GrowthRecord < ActiveRecord::Base
   has_many :comments, :as => :resource
   has_many :asset_imgs, :class_name => "AssetImg", :as => :resource, :dependent => :destroy
   # has_many :messages
+  has_many   :credit_logs,:class_name=>"CreditLog", :as => :business
+
 
   just_define_datetime_picker :start_at, :add_to_attr_accessible => true
   just_define_datetime_picker :end_at, :add_to_attr_accessible => true

@@ -5,5 +5,10 @@ class PersonalCredit < ActiveRecord::Base
   belongs_to :user
   belongs_to :kindergarten
   validates :credit,:presence => true
+  before_save :save_credit_log
+  private
+  def save_credit_log
+  	# CreditLog.new(:kindergarten_id=>self.kindergarten,:credit=>login_credit.credit,)
 
+  end
 end

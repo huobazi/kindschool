@@ -141,6 +141,8 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
       end
     end
     if @growth_record.save
+      #这个地方添加宝宝在家积分
+      current_user.save_user_credit("growth_record",2)
       flash[:success] = "创建宝宝在家成长记录成功"
       redirect_to :action => :show, :id => @growth_record.id
     else

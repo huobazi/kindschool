@@ -130,6 +130,7 @@ class Weixin::GardenGrowthRecordsController < Weixin::ManageController
       end
       if @growth_record.save
         flash[:success] = "创建宝宝在园成长记录成功"
+        current_user.save_user_credit("growth_record",2,@growth_record.student_info.user)
         redirect_to :action => :show, :id => @growth_record.id
       else
         flash[:error] = "创建宝宝在园成长记录失败"

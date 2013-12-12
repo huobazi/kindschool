@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_one    :staff, :dependent => :destroy
   has_one    :asset_logo, :class_name => "AssetLogo", :as => :resource, :dependent => :destroy #logo，只有一个
   has_one    :approve_entry
+  has_one    :personal_credit
   has_many   :messages, :class_name => "Message",:foreign_key=>:sender_id
   has_many   :reports, :class_name => 'Report', :foreign_key => :informants_id
   has_many   :user_squads , :class_name=>"UserSquad"
@@ -24,6 +25,9 @@ class User < ActiveRecord::Base
   has_many   :personal_sets ,:class_name=>"PersonalSet"
   has_many   :ret_password_records
   has_many   :sys_logs
+  has_many   :credit_logs,:class_name=>"CreditLog", :as => :resource, :dependent => :destroy
+  # has_many   :credit_logs,:class_name=>"CreditLog", :as => :business, :dependent => :destroy
+
 
   before_save :encrypt_password #,:automatically_generate_account
   before_create :automatically_generate_account, :unless => :role_student?
@@ -82,6 +86,54 @@ class User < ActiveRecord::Base
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"
   end
 
+  def save_user_credit(number,tp,business=nil)
+   if self.kindergarten.enable_credit
+    if login_credit=CreditCofig.find_by_number(number)
+     time1 = Date.today.strftime("%Y-%m-%d %H:%M:%S")
+     time2 = (Date.today+1.day).strftime("%Y-%m-%d %H:%M:%S")
+     if personal_credit = self.personal_credit
+     #如果有业务上面的操作比如宝宝在园
+     if tp==1
+       return false unless self.credit_logs.where("tp= ? and business_type=? and business_id= ? ",tp,business.class.to_s,business.id).blank?
+     else
+      if business.nil?
+       return false unless self.credit_logs.where("tp= ?  and  created_at between  ? and ?  ",tp,time1,time2).blank?
+      else
+       return false unless self.credit_logs.where("tp= ?  and  created_at between  ? and ? and business_type=? and business_id= ? ",tp,time1,time2,business.class.to_s,business.id).blank?
+      end 
+     end
+      credit = personal_credit.credit + login_credit.credit
+      personal_credit.credit=credit
+      personal_credit.save
+
+    else
+      self.personal_credit = PersonalCredit.new(:kindergarten_id=>self.kindergarten_id,:credit=>login_credit.credit)  
+    end
+    credit_log = CreditLog.new(:kindergarten_id=>self.kindergarten_id,:credit=>login_credit.credit,:tp=>tp)
+    credit_log.business = business
+    self.credit_logs << credit_log
+    self.save
+    return true
+   end
+   end
+   return false
+  end
+  #自动的给创建贴子的人加分
+  def save_creater_credit(number,business=nil)
+    if login_credit=CreditCofig.find_by_number(number)
+      if personal_credit = self.personal_credit
+        credit = personal_credit.credit + login_credit.credit
+        personal_credit.credit=credit
+        personal_credit.save!
+      else
+        self.personal_credit = PersonalCredit.new(:kindergarten_id=>self.kindergarten_id,:credit=>login_credit.credit)  
+      end
+        credit_log = CreditLog.new(:kindergarten_id=>self.kindergarten_id,:credit=>login_credit.credit,:tp=>tp)
+        credit_log.business = business
+        self.credit_logs << credit_log
+        self.save
+    end
+  end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password,kind_id)
