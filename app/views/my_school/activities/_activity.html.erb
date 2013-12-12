@@ -5,7 +5,7 @@
   <% else %>
     <div class="pull-left place place-input-position"></div>
   <% end %>
-  <div class="avatar pull-left"><img src="<%= activity.creater.try(:asset_logo) ? activity.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
+  <div class="avatar pull-left"><img src="<%= activity.creater && activity.creater.asset_logo ? activity.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
   </div>
   <div class="right_info">
     <div class="replies pull-right">
