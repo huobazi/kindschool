@@ -38,7 +38,7 @@
           <%= link_to topic.title, my_school_topic_path(topic) %>
         <% end %>
         <% if current_user.id == topic.creater_id %>
-          <span class="icon-customecomment"></span><span class="adjust">评论(<%= topic.unread_comment_count %>)</span>
+          <span class="icon-customecomment"></span><span class="adjust">(<%= topic.unread_comment_count %>)</span>
         <% end %>
       </div>
       <div class="info">

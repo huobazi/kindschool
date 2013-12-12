@@ -8,4 +8,8 @@ class Product < ActiveRecord::Base
   validates :name,:presence => true
   validates :keywords,:presence => true
   validates :status,:presence => true
+
+  acts_as_taggable
+  scope :by_join_date, order("created_at DESC")
+  
 end

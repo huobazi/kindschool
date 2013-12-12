@@ -100,3 +100,17 @@ end
 
 gem "thin"
 gem "mail"
+
+#rails generate acts_as_taggable_on:migration
+# 添加标签的功能
+#  acts_as_taggable
+# 标签
+#  acts_as_taggable_on :tags
+#  class Post < ActiveRecord::Base
+#    acts_as_taggable
+#  end
+#  p = Post.find(:first)
+#  p.tag_list # []
+#  p.tag_list = "Funny, Silly"
+#  p.save
+gem 'acts-as-taggable-on',"2.4.1"
