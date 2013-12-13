@@ -113,6 +113,8 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     end
     if @growth_record.save!
       flash[:success] = "添加宝宝在家成长记录成功"
+      #这个地方添加宝宝在家积分
+      current_user.save_user_credit("growth_record",2)
       redirect_to :action => :show, :id => @growth_record.id
     else
       flash[:error] = "添加宝宝在家成长记录失败"

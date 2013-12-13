@@ -8,4 +8,12 @@ class OrderInfo < ActiveRecord::Base
   belongs_to :kindergarten
   validates :phone,:presence => true
   validates :address,:presence => true
+  def self.for_product(product)
+     item = self.new
+     item.count = 1
+     item.product = product
+     #商品的单价
+     item.amount = product.price
+     item
+   end
 end
