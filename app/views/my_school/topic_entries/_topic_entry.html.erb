@@ -5,7 +5,7 @@
 <div id="topic_entry_<%= topic_entry.id %>" class="show_entry">
   <div class="content_left">
     <% if topic_entry.is_show %>
-      <div class="user_head_logo"><img src="<%= topic_entry.creater.try(:asset_logo) ? topic_entry.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="48" alt="头像"/></div>
+      <div class="user_head_logo"><img src="<%= topic_entry.try(:creater) && topic_entry.creater.asset_logo ? topic_entry.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="48" alt="头像"/></div>
     <% end %>
   </div>
   <div class="content_right">

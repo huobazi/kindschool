@@ -5,7 +5,7 @@
   <div id="activity_entry_<%= activity_entry.id %>" class="show_entry">
     <div class="content_left">
       <% if activity_entry.is_show %>
-        <div class="user_head_logo"><img src="<%= activity_entry.creater.asset_logo ? activity_entry.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="48" alt="头像"/></div>
+        <div class="user_head_logo"><img src="<%= activity_entry.try(:creater) && activity_entry.creater.asset_logo ? activity_entry.creater.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="48" alt="头像"/></div>
       <% end %>
     </div>
     <div class="content_right">
