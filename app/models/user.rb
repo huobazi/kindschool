@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   before_create :automatically_generate_account, :unless => :role_student?
 
 
-  validates :name, :length => { maximum: 20 }
+  validates :name, :length => { :maximum=> 20 }
   validates :password, :confirmation=> { :allow_blank=> true }, :length=>{:maximum=>20,:minimum=>6} ,:if => :password_required?
   validates :phone,:presence => true, :format=> {:with=> /^(\+\d+-)?[1-9]{1}[0-9]{10}$/, :message=> "手机格式不正确"}#{ :scope => :kindergarten_id}
   validates :name, :kindergarten_id,:presence => true
@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
 #  validates :login, :uniqueness => true
   validates_uniqueness_of_without_deleted :login
   validates_uniqueness_of_without_deleted :email,:scope => :kindergarten_id, :allow_blank => true
-  validates_uniqueness_of_without_deleted :phone,:scope => :kindergarten_id, :allow_blank => true
+  #validates_uniqueness_of_without_deleted :phone,:scope => :kindergarten_id, :allow_blank => true
 
 
   GENDER_DATA = {"M"=>"女","G"=>"男"}
