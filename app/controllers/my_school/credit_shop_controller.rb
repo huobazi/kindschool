@@ -22,6 +22,11 @@ class MySchool::CreditShopController < MySchool::ManageController
     end
     @products = (products || Product).search(params[:product] || {}).page(params[:page] || 1).per(25)
   end
+
+  
+  def show_product
+   @product = Product.find_by_id(params[:id])
+  end
   
   #添加购物车
   def add_to_cart
