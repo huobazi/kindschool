@@ -1,0 +1,31 @@
+　<div id="cartmenu">
+　　　　　　<ul>
+　　　　　　　　　　<li><%= link_to '继续购物', :action => "products" %></li>
+　　　　　　　　　　<li><%= link_to 'Empty cart', :action => "empty_cart" %></li>
+　　　　　　　　　　<li><%= link_to 'Checkout', :action => "checkout"  %></li>
+　　　　　　</ul>
+　　</div>
+　　<table cellpadding="10" cellspacing="0">
+　　　　　　<tr class="carttitle">
+　　　　　　　　　　<td rowspan="2">数量</td>
+　　　　　　　　　　<td rowspan="2">描述</td>
+　　　　　　　　　　<td colspan="2">价格</td>
+　　　　　　</tr>
+　　　　　　<tr class="carttitle">
+　　　　　　　　　　<td>单价</td>
+　　　　　　　　　　<td>总价</td>
+　　　　　　</tr>
+　　　　　　<%(@items||[]).each do |item|%>
+             <%product = item.product%>
+　　　　　　　　　　<tr>
+　　　　　　　　　　　　　　<td><%= item.count %></td>
+　　　　　　　　　　　　　　<td><%= h(product.name) %></td>
+　　　　　　　　　　　　　　<td align="right"><%= item.amount %></td>
+　　　　　　　　　　　　　　<td align="right"><%= item.amount * item.count %></td>
+　　　　　　　　　　</tr>
+　　　　　　<% end %>
+　　　　　　<tr>
+　　　　　　　　　　<td colspan="3" align="right"><strong>Total:</strong></td>
+　　　　　　　　　　<td id="totalcell"><%= @cart.total_price %></td>
+　　　　　　</tr>
+　　</table>
