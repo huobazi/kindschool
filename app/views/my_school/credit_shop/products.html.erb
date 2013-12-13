@@ -11,9 +11,13 @@
 <%= form_tag '/my_school/credit_shop/products' , :method=>"get" do %>
   <b>名称：</b>
   <%= text_field :product,:name_like ,:value=>"#{params[:product][:name_like] if params[:product] }"%>
+  
   <%= submit_tag "搜索"  , :class => "btn btn-primary"%>
 <%end%>
 
+<%= link_to  "积分",{:controller=>"/my_school/credit_shop",:action=>:products,:serarch=>"credit",:serarch_type=>(@serarch == "credit" ? (@serarch_type == "ascend" ? "descend" : "ascend") : "descend")}.merge(:product=>params[:product]) %>
+<%= link_to  "价格",{:controller=>"/my_school/credit_shop",:action=>:products,:serarch=>"price",:serarch_type=>(@serarch == "price" ? (@serarch_type == "ascend" ? "descend" : "ascend") : "descend")}.merge(:product=>params[:product]) %>
+  <%#= order @products, :by => :credit, :as =>"积分" %>
 <% @products.each do |product| %>
   <div style="width: 300px;float: left;border: 1px solid #008FDC;margin: 5px;">
     商品名称：<%= product.name %><br/>

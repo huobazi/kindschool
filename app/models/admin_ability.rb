@@ -29,6 +29,7 @@ class AdminAbility
           can [:loading,:default_role,:pay_sms,:pay_sms_count], Kindergarten
           can [:delete_img],[GardenActivitie,WeiyiConfig]
           can [:read],[SysLog,SmsLog]
+          can [:read, :update], Report
           #        cannot :reset_password, User
         when "bazaar"
           then
