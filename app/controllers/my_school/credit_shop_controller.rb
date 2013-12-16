@@ -55,7 +55,7 @@ class MySchool::CreditShopController < MySchool::ManageController
     @cart = find_cart
     @items = @cart.items
     if @items.empty?
-     redirect_to_index("There's nothing in your cart!")
+     redirect_to(:action=>"index")
     else
      @order = Order.new
     end
