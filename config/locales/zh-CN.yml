@@ -697,6 +697,7 @@ zh-CN:
         status: "状态"
         approve_status: "审核状态"
         approver_id: "审核人"
+        approver: "审核人"
         topic_category: "论坛分类"
         topic_category_label: "论坛分类"
         show_count: "浏览次数"

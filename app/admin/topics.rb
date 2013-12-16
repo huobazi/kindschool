@@ -53,8 +53,10 @@ ActiveAdmin.register Topic do
       row :is_top do |topic|
         topic.is_top ? "是" : "否"
       end
-      row :approve_status
-      row :approver_id
+      row :approve_status do |topic|
+        Topic::STATUS[topic.approve_status]
+      end
+      row :approver
       row :show_count
       row :content do |topic|
         raw topic.content
