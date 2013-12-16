@@ -20,7 +20,7 @@
   <%#= order @products, :by => :credit, :as =>"积分" %>
 <% @products.each do |product| %>
   <div style="width: 300px;float: left;border: 1px solid #008FDC;margin: 5px;">
-    商品名称：<%= product.name %><br/>
+    商品名称：<%= link_to product.name ,:controller=>"/my_school/credit_shop",:action=>"show_product",:id=>product.id %><br/>
     价格：<%= product.price %><br/>
     积分：<%= product.credit %><br/>
     <%= link_to 'Add to Cart',

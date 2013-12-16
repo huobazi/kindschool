@@ -18,4 +18,8 @@ class Product < ActiveRecord::Base
   scope :descend_by_price, order("price DESC")
   scope :ascend_by_credit, order("credit ASC")
   scope :ascend_by_price, order("price ASC")
+
+  STATUS_DATA = {"0"=>"下架","1"=>"待审核","2"=>"上架","3"=>"无货"}
+
+
 end

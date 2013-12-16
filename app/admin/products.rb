@@ -37,7 +37,9 @@ ActiveAdmin.register Product  do
     column :market_price
     column :keywords
     column :meaning
-    column :status
+    column :status do |record|
+      STATUS::STATUS_DATA["#{record.status}"]
+    end
     default_actions
   end
 
@@ -52,7 +54,7 @@ ActiveAdmin.register Product  do
       f.input :market_price
       f.input :keywords
       f.input :meaning
-      f.input :status
+      f.input :status, :as=>:select,:collection=>STATUS::STATUS_DATA.invert, :required => true
       f.inputs "商品描述" do
         f.kindeditor :description,:allowFileManager => false
       end
@@ -69,7 +71,9 @@ ActiveAdmin.register Product  do
       row :market_price
       row :keywords
       row :meaning
-      row :status
+      row :status do
+        STATUS::STATUS_DATA["#{record.status}"]
+      end
       row :description do
         raw(record.description)
       end
