@@ -29,6 +29,33 @@ ActiveAdmin.register Product  do
       redirect_to(:controller=>"/admin/products", :action=>:index)
     end
   end
+
+  member_action :delete_img, :method => :get do
+    if(@product = Product.find_by_id(params[:id])) && (page_img = @product.product_imgs.find(params[:img_id]))
+      if page_img.destroy
+        flash[:notice] ="操作成功."
+      else
+        flash[:error] = "操作失败."
+      end
+      redirect_to(:controller=>"/admin/products", :action=>:show,:id=>params[:id])
+    else
+      flash[:error] = "记录不存在."
+      redirect_to(:controller=>"/admin/products", :action=>:index)
+    end
+  end
+  member_action :main_img, :method => :get do
+    if(@product = Product.find_by_id(params[:id])) && (page_img = @product.product_imgs.find(params[:img_id]))
+      if @product.update_attribute(:img_id, page_img.id)
+        flash[:notice] ="操作成功."
+      else
+        flash[:error] = "操作失败."
+      end
+      redirect_to(:controller=>"/admin/products", :action=>:show,:id=>params[:id])
+    else
+      flash[:error] = "记录不存在."
+      redirect_to(:controller=>"/admin/products", :action=>:index)
+    end
+  end
   
   index do
     column :name
@@ -38,7 +65,14 @@ ActiveAdmin.register Product  do
     column :keywords
     column :meaning
     column :status do |record|
-      STATUS::STATUS_DATA["#{record.status}"]
+      Product::STATUS_DATA["#{record.status}"]
+    end
+    column :img do |obj|
+      if obj.img.blank?
+        raw "图片不存在"
+      else
+        raw "<img src='#{obj.img.public_filename(:tiny)}' />"
+      end
     end
     default_actions
   end
@@ -54,9 +88,17 @@ ActiveAdmin.register Product  do
       f.input :market_price
       f.input :keywords
       f.input :meaning
-      f.input :status, :as=>:select,:collection=>STATUS::STATUS_DATA.invert, :required => true
+      f.input :status, :as=>:select,:collection=>Product::STATUS_DATA.invert, :required => true
       f.inputs "商品描述" do
         f.kindeditor :description,:allowFileManager => false
+      end
+      f.inputs "上传照片,建议比率800*800"  do
+        f.has_many :product_imgs do |record|
+          if !record.object.new_record?
+            record.input :created_at, :as => :string, :input_html => {:disabled => true }
+          end
+          record.input :uploaded_data,:as=>:file
+        end
       end
     end
     f.actions
@@ -72,7 +114,7 @@ ActiveAdmin.register Product  do
       row :keywords
       row :meaning
       row :status do
-        STATUS::STATUS_DATA["#{record.status}"]
+        Product::STATUS_DATA["#{record.status}"]
       end
       row :description do
         raw(record.description)
@@ -91,6 +133,23 @@ ActiveAdmin.register Product  do
       panel "该商品的标签" do
         record.tag_list.each do |tag|
           "#{tag}"
+        end
+      end
+      row :img do |obj|
+        if obj.img.blank?
+          raw "图片不存在"
+        else
+          raw "<img src='#{obj.img.public_filename(:tiny)}' />"
+        end
+      end
+      div do
+        br
+        panel "产品图片" do
+          table_for(record.product_imgs) do |t|
+            t.column("图片") {|item| raw "<img src='#{item.public_filename(:tiny)}' />"}
+            t.column("删除") {|item| link_to "删除" ,:action=>:delete_img,:id=>record.id,:img_id=>item.id}
+            t.column("主图片") {|item| link_to "设置主图" ,:action=>:main_img,:id=>record.id,:img_id=>item.id}
+          end
         end
       end
     end

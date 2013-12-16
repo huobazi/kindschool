@@ -14,6 +14,19 @@
   积分：<%= @product.credit %><br/>
   教育理念：<%= @product.meaning %><br/>
   状态：<%= Product::STATUS_DATA["#{@product.status}"] %><br/>
+  默认图片：<br/>
+  <% if @product.get_head_img %>
+    <img src='<%=  @product.get_head_img.public_filename(:tiny) %>' alt=""/>
+  <% else %>
+    无图片
+  <% end %>
+    <br/>
+  图片：<br/>
+  <% @product.product_imgs.each do |img| %>
+    <img src='<%=  img.public_filename(:tiny) %>' alt=""/>
+  <% end %>
+
+
 <% else %>
   该商品不存在
 <% end %>
