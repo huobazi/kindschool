@@ -4,7 +4,7 @@
       <%if index==0%>
         <li class="root"><div class="option_root"></div><%= link_to "常用功能","/" %></li>
       <%end%>
-      <% if sm.option_operate.operate %>
+      <% if sm.option_operate && sm.option_operate.operate %>
         <li>
             <%=link_to sm.option_operate.operate.try(:name),{:controller=>sm.option_operate.operate.controller,:action=>sm.option_operate.operate.action} %>
         </li>
