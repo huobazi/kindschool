@@ -697,6 +697,7 @@ zh-CN:
         status: "状态"
         approve_status: "审核状态"
         approver_id: "审核人"
+        approver: "审核人"
         topic_category: "论坛分类"
         topic_category_label: "论坛分类"
         show_count: "浏览次数"
@@ -775,6 +776,10 @@ zh-CN:
         phone: "手机号"
         content: "内容"
         read_status_label: "阅读状态"
+        created_at: "创建时间"
+        updated_at: "更新时间"
+        deleted_at: "删除时间"
+        receiver: "接收者"
       growth_record:
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"
@@ -997,6 +1002,7 @@ zh-CN:
         resource_type: "举报的对象"
         resource_id: "举报的对象id"
         kindergarten: "幼儿园"
+        resource_link: "举报对象链接"
     errors:
       <<: *errors
   views:

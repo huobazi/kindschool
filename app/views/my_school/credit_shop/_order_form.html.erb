@@ -1,1 +1,24 @@
-  <%= f.text_field(:number , :validate => true, placeholder: "") %>
+<table>
+	<tr>
+		<td>编码</td>
+		<td><%= f.text_field(:number , :validate => true, placeholder: "") %></td>
+	</tr>
+	<tr>
+		<td>邮编</td>
+		<td><%= f.text_field(:postage , :validate => true, placeholder: "") %></td>
+	</tr>
+	<tr>
+		<td>phone</td>
+		<td><%= f.text_field(:phone , :validate => true, placeholder: "") %></td>
+	</tr>
+	<tr>
+		<td>address</td>
+		<td><%= f.text_field(:address,:validate => true, placeholder: "") %></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><%= f.submit('保存',:class=>"btn btn-large btn-primary", disable_with: "正在提交") %></td>
+	</tr>
+	
+  
+</table>

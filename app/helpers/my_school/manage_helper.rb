@@ -27,7 +27,7 @@ EOF
       str << raw("<ul id='redirect_page'><li><span>每页#{scope.limit_value.to_s}条/总共#{scope.total_count.to_s}条记录</span>&nbsp;&nbsp;")
       if PAGE_CONTROLLER.include?("#{controller_name}/#{action_name}")
         str << raw("<span>
-        跳到第<input type='' class='input-mini' id='page_number' value='#{params[:page] ? params[:page] : ""}' />页
+        跳到第<input type='' class='input-mini' id='page_number' value='#{params[:page] ? params[:page] : ""}' />页&nbsp;<input type='submit' value='确定' />
         </span>")
       end
       str << raw("</li></ul>")

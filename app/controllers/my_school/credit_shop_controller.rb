@@ -66,7 +66,15 @@ class MySchool::CreditShopController < MySchool::ManageController
   end
   
   def save_order
-    
+    @cart = find_cart
+    @order = Order.new(params[:order])
+    @order.order_infos << @cart.items
+    if @order.save!
+      @cart.empty!
+      redirect_to(:action=>'products')
+    else
+      render(:action=>'checkout')
+    end
   end
 
   private

@@ -11,7 +11,7 @@
       <div>
         <% unless @syslogs.blank? %>
           <% if staff && !staff.user.blank? %>
-            <% TEACHER_STAT.each do |k,v|  %>
+            <% TEACHER_STAT.except("my_school/growth_records/create","weixin/growth_records/create").each do |k,v|  %>
               <p>
                 <%= v %>:
                 <% syslog_count = 0 %>
