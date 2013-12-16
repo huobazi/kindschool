@@ -5,7 +5,7 @@
     <li class="root"><div class="option_root"></div><%= link_to "常用功能","/" %></li>
     <%end%>
     <li>
-      <%=link_to sm.option_operate.operate.try(:name),{:controller=>sm.option_operate.operate.controller,:action=>sm.option_operate.operate.action} %>
+      <%=link_to sm.option_operate.try(:operate).try(:name),{:controller=>sm.option_operate.try(:operate).controller,:action=>sm.option_operate.try(:operate).action} %>
     </li>
     <%end%>
   </ul>

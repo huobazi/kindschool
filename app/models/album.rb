@@ -55,4 +55,9 @@ class Album < ActiveRecord::Base
   def squad_label
     self.squad ? self.squad.name : "全园可见"
   end
+
+  def self.squad_albums(kind)
+    select("count(albums.squad_id) as squad_count, sq.name as squad_name").joins("LEFT JOIN squads as sq on (sq.id = albums.squad_id)").where("albums.kindergarten_id = ?", kind.id).group("albums.squad_id")
+  end
+
 end
