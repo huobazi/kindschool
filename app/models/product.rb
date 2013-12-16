@@ -21,5 +21,6 @@ class Product < ActiveRecord::Base
 
   STATUS_DATA = {"0"=>"下架","1"=>"待审核","2"=>"上架","3"=>"无货"}
 
+  
 
 end

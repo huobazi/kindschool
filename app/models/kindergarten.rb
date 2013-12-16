@@ -167,6 +167,7 @@ class Kindergarten < ActiveRecord::Base
       if !roles.blank?
         roles.each do |k,v|
           operates = v.delete("operates")
+          operates.uniq!
           role = Role.new(v)
           role.kindergarten = self
           unless operates.blank?

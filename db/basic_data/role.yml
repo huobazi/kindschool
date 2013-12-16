@@ -682,9 +682,6 @@ role6:
   number: "teacher"
   admin: false
   operates:
-    - 6001
-    - 7001
-    - 8001
     - 2001
     - 2004
     - 2005
