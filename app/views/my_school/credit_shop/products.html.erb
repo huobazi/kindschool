@@ -23,7 +23,7 @@
     商品名称：<%= product.name %><br/>
     价格：<%= product.price %><br/>
     积分：<%= product.credit %><br/>
-    <%= link_to 'Add to Cart',
+    <%= link_to '添加购物车',
       {:action => 'add_to_cart', :id => product },
         :class => 'addtocart' %>
     </div>

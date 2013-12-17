@@ -5,10 +5,18 @@ class Order < ActiveRecord::Base
   belongs_to :kindergarten
   belongs_to :user
   has_many :order_infos#, :class_name=>"OrderInfo"
+  belongs_to :delivery_address
   validates :status,:presence => true
   validates :number,:presence => true
   validates :number, :uniqueness => true
   validates :phone,:presence => true
   validates :address,:presence => true
+
+  def self.pending_shipping
+  	where("shipment_at is null")
+  end
+  def mark_as_shipped
+  	self.shipment_at = Time.now
+  end
 
 end

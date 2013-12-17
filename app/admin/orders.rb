@@ -12,6 +12,10 @@ ActiveAdmin.register Order  do
     column :credit
     column :postage
     column :shipment_at
+    column :address_info
+    column :phone
+    column :address
+    column :delivery_address
     default_actions
   end
 
@@ -30,6 +34,10 @@ ActiveAdmin.register Order  do
       f.input :shipment_at
       f.input :express_code
       f.input :note
+      f.input :address_info
+      f.input :phone
+      f.input :address
+      f.input :delivery_address
     end
     f.actions
   end
@@ -46,6 +54,10 @@ ActiveAdmin.register Order  do
       row :shipment_at
       row :express_code
       row :note
+      row :address_info
+      row :phone
+      row :address
+      row :delivery_address
     end
   end
 end

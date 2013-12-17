@@ -1,19 +1,19 @@
 <table>
 	<tr>
-		<td>编码</td>
-		<td><%= f.text_field(:number , :validate => true, placeholder: "") %></td>
+		<td>邮编:</td>
+		<td><%= f.text_field(:postage , placeholder: "") %></td>
 	</tr>
 	<tr>
-		<td>邮编</td>
-		<td><%= f.text_field(:postage , :validate => true, placeholder: "") %></td>
-	</tr>
-	<tr>
-		<td>phone</td>
+		<td>电话号码:</td>
 		<td><%= f.text_field(:phone , :validate => true, placeholder: "") %></td>
 	</tr>
 	<tr>
-		<td>address</td>
+		<td>地址:</td>
 		<td><%= f.text_field(:address,:validate => true, placeholder: "") %></td>
+	</tr>
+	<tr>
+		<td>详细地址:</td>
+		<td><%= f.text_field(:address_info , placeholder: "") %></td>
 	</tr>
 	<tr>
 		<td></td>

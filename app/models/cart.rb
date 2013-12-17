@@ -2,7 +2,7 @@
 #购物车
 class Cart
  attr_reader :items
- attr_reader :total_price
+ attr_reader :total_credit
 
  def initialize
  	empty!
@@ -16,10 +16,11 @@ class Cart
     item = OrderInfo.for_product(product)
     @items << item unless @items.nil?
    end
-    @total_price += product.price if @total_price
+    # @total_price += product.price if @total_price
+    @total_credit += product.credit if @total_credit
  end
  def empty!
  	@items = []
- 	@total_price = 0.0
+ 	@total_credit = 0.0
   end
 end

@@ -13,6 +13,8 @@ School::Application.routes.draw do
       get :empty_cart, :on => :collection
       get :checkout, :on => :collection
       post :save_order, :on => :collection
+      get :ship, :on => :collection
+      post :ship, :on => :collection
     end
     resources :reports do
       get :create, :on => :collection

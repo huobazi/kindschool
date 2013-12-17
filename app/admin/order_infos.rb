@@ -12,10 +12,6 @@ ActiveAdmin.register OrderInfo  do
     column :count
     column :comment
     column :quality
-    column :address_info
-    column :phone
-    column :address
-    column :delivery_address
     default_actions
   end
 
@@ -32,10 +28,6 @@ ActiveAdmin.register OrderInfo  do
       f.input :count
       f.input :comment
       f.input :quality
-      f.input :address_info
-      f.input :phone
-      f.input :address
-      f.input :delivery_address
     end
     f.actions
   end
@@ -50,10 +42,6 @@ ActiveAdmin.register OrderInfo  do
       row :count
       row :comment
       row :quality
-      row :address_info
-      row :phone
-      row :address
-      row :delivery_address
     end
   end
 end
