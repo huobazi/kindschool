@@ -60,4 +60,8 @@ class Album < ActiveRecord::Base
     select("count(albums.squad_id) as squad_count, sq.name as squad_name").joins("LEFT JOIN squads as sq on (sq.id = albums.squad_id)").where("albums.kindergarten_id = ?", kind.id).group("albums.squad_id")
   end
 
+  def self.creater_albums(kind)
+    select("count(albums.creater_id) as creater_count, us.name as creater_name").joins("INNER JOIN users as us on (us.id = albums.creater_id)").where("albums.kindergarten_id = ?", kind.id).group("albums.creater_id")
+  end
+
 end

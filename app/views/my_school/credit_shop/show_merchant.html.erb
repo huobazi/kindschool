@@ -1,0 +1,23 @@
+<% if @logo %>
+  <% if @logo.page_img %>
+    <img src='<%= @logo.page_img.public_filename(:middle)  %>' alt="<%= @logo.name %>" title="<%= @logo.name %>"/><br/>
+  <% end %>
+  <%= @logo.name %><br/>
+  <%= @logo.note %>
+<% end %>
+<br/><br/>
+<h1>商家信息</h1>
+<% if @merchant %>
+  商家名称：<%= @merchant.name %><br/>
+  状态：<%= Merchant::STATUS_DATA["#{@merchant.status}"] %><br/>
+  logo：
+  <% if @merchant.asset_img.blank? %>
+    图片不存在
+  <% else %>
+    <img src="<%= @merchant.asset_img.public_filename(:middle) %>" alt="" />
+  <% end %><br/>
+    商家详情：
+    <%= raw(@merchant.note) %>
+<% else %>
+  该商家不存在
+<% end %>
