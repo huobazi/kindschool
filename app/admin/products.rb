@@ -62,8 +62,7 @@ ActiveAdmin.register Product  do
     column :credit
     column :price
     column :market_price
-    column :keywords
-    column :meaning
+    column :merchant
     column :status do |record|
       Product::STATUS_DATA["#{record.status}"]
     end
@@ -82,15 +81,17 @@ ActiveAdmin.register Product  do
   form do |f|
     f.inputs "上传商品" do
       f.input :name
+      f.input :merchant
       f.input :credit
       f.input :product_category
       f.input :price
       f.input :market_price
       f.input :keywords
+      f.input :description
       f.input :meaning
       f.input :status, :as=>:select,:collection=>Product::STATUS_DATA.invert, :required => true
       f.inputs "商品描述" do
-        f.kindeditor :description,:allowFileManager => false
+        f.kindeditor :note,:allowFileManager => false
       end
       f.inputs "上传照片,建议比率800*800"  do
         f.has_many :product_imgs do |record|
@@ -107,17 +108,19 @@ ActiveAdmin.register Product  do
   show do |record|
     attributes_table do
       row :name
+      row :merchant
       row :credit
       row :product_category
       row :price
       row :market_price
       row :keywords
+      row :description
       row :meaning
       row :status do
         Product::STATUS_DATA["#{record.status}"]
       end
-      row :description do
-        raw(record.description)
+      row :note do
+        raw(record.note)
       end
       panel "所有标签" do
         Product.tag_counts.each do |tag|

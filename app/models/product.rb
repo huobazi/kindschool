@@ -1,8 +1,8 @@
 #encoding:utf-8
 class Product < ActiveRecord::Base
   attr_accessible :approve_id, :credit, :description, :keywords, :market_price,:img_id,
-    :meaning, :name, :price, :product_category_id, :shop_id, :status, :user_id,
-    :view_asset_id
+    :meaning, :name, :price, :product_category_id, :shop_id, :status, :user_id,:merchant_id,
+    :view_asset_id,:note
   belongs_to :product_category
 
   
@@ -26,6 +26,7 @@ class Product < ActiveRecord::Base
 
   has_many :product_imgs, :class_name => "ProductImg", :as => :resource, :dependent => :destroy
   belongs_to :img, :class_name => "ProductImg"
+  belongs_to :merchant
 
   attr_accessible :product_imgs_attributes
   accepts_nested_attributes_for :product_imgs
