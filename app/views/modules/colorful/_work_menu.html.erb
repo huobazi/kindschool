@@ -1,12 +1,14 @@
 <div class="work_menu">
   <ul>
     <%(useful_features_menu || []).each_with_index do |sm,index|%>
-    <%if index==0%>
-    <li class="root"><div class="option_root"></div><%= link_to "常用功能","/" %></li>
-    <%end%>
-    <li>
-      <%=link_to sm.option_operate.operate.try(:name),{:controller=>sm.option_operate.operate.controller,:action=>sm.option_operate.operate.action} %>
-    </li>
+      <%if index==0%>
+        <li class="root"><div class="option_root"></div><%= link_to "常用功能","/" %></li>
+      <%end%>
+      <% if sm.option_operate && sm.option_operate.operate %>
+        <li>
+            <%=link_to sm.option_operate.operate.try(:name),{:controller=>sm.option_operate.operate.controller,:action=>sm.option_operate.operate.action} %>
+        </li>
+      <% end %>
     <%end%>
   </ul>
   <ul class="work_ul">

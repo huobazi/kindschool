@@ -25,7 +25,11 @@ class MySchool::CreditShopController < MySchool::ManageController
 
   
   def show_product
-   @product = Product.find_by_id(params[:id])
+    @product = Product.find_by_id(params[:id])
+    if @product
+      @description = @product.description
+      @keywords = @product.keywords
+    end
   end
   
   #添加购物车
@@ -34,10 +38,10 @@ class MySchool::CreditShopController < MySchool::ManageController
     @cart = find_cart
     @cart.add_product(product)
     redirect_to(:action => 'display_cart')
-   rescue
-     logger.error("Attempt to access invalid product #{params[:id]}")
-　　 flash[:notice] = '无效商品'
-　　 redirect_to(:action => 'products')
+  rescue
+    logger.error("Attempt to access invalid product #{params[:id]}")
+    flash[:notice] = "无效商品"
+    redirect_to(:action => 'products')
   end
 
   def display_cart
@@ -72,8 +76,8 @@ class MySchool::CreditShopController < MySchool::ManageController
     @order.user = current_user
     if @order.save!
       @cart.empty!
-      flash[:notice] = '支付成功'
-      redirect_to(:action=>'products')
+      flash[:notice] = '下订单成功'
+      redirect_to(:action=>'ship')
     else
       render(:action=>'checkout')
     end

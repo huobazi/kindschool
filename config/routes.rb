@@ -8,6 +8,7 @@ School::Application.routes.draw do
   namespace :my_school do
     resources :credit_shop do
       get :products, :on => :collection
+      get :show_product, :on => :member
       get :add_to_cart, :on => :collection
       get :display_cart, :on => :collection
       get :empty_cart, :on => :collection

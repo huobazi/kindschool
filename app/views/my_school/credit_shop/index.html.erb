@@ -17,7 +17,7 @@
     <% else %>
       <ul>
         <% products.each do |product| %>
-          <li><%= product.name %></li>
+          <li>商品名称：<%= link_to product.name ,:controller=>"/my_school/credit_shop",:action=>"show_product",:id=>product.id %><br/></li>
         <% end %>
       </ul>
     <% end %>

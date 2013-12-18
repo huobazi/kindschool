@@ -37,6 +37,7 @@ class MySchool::SmartiesController < MySchool::ManageController
       smarty.destroy
     end
     if params[:operate] && option_operates = @role.option_operates.where(:operate_id=>params[:operate][:ids])
+    option_operates.uniq!
       option_operates.each do |option_operate|
         @smarty = Smarty.new(:option_operate_id=>option_operate.id,:role_id=>@role.id)
         @smarty.save!

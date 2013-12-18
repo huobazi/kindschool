@@ -16,7 +16,15 @@ class Order < ActiveRecord::Base
   	where("shipment_at is null")
   end
   def mark_as_shipped
-  	self.shipment_at = Time.now
+    if self.user && self.user.personal_credit  &&  self.user.personal_credit.credit >= self.credit
+      self.shipment_at = Time.zone.now
+      credit_value  = self.user.personal_credit.credit - self.credit
+      self.user.personal_credit.update_attributes(:credit=>credit_value)
+      tp = 8 #"积分消费"
+      credit_log = CreditLog.new(:kindergarten_id=>self.kindergarten_id,:credit=>self.credit,:tp=>tp)
+      credit_log.business = self
+      self.user.credit_logs << credit_log
+    end
   end
 
 end

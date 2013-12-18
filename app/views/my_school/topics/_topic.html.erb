@@ -32,10 +32,10 @@
     <div class="infos clearfix">
       <div class="title">
         <% if topic.is_top == true %>
-          <a href="<%= my_school_topic_path(topic) %>" alt="[置顶]<%= topic.title %>" title="[置顶]<%= topic.title %>"><%= topic.title %></a>
+          <a href="<%= my_school_topic_path(topic) %>" alt="[置顶]<%= topic.title %>" title="[置顶]<%= topic.title %>"><%= truncate(topic.title) %></a>
           <span><img src="/t/colorful/is_top.gif" alt="" /></span>
         <% else %>
-          <%= link_to topic.title, my_school_topic_path(topic) %>
+          <%= link_to truncate(topic.title), my_school_topic_path(topic) %>
         <% end %>
         <% if current_user.id == topic.creater_id %>
           <span class="icon-customecomment"></span><span class="adjust">(<%= topic.unread_comment_count %>)</span>
@@ -56,7 +56,7 @@
         <% end %>
       </div>
       <div class="info">
-        <abbr><%= topic.creater.try(:name) %>&nbsp;发表于&nbsp;<%= topic.created_at.try(:to_long_datetime) %></abbr>
+        <abbr><%= topic.try(:creater).try(:name) %>&nbsp;发表于&nbsp;<%= topic.created_at.try(:to_long_datetime) %></abbr>
       </div>
     </div>
   </div>

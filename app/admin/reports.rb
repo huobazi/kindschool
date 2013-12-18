@@ -6,11 +6,14 @@ ActiveAdmin.register Report do
     column :informants
     column :process_label
     column :kindergarten
-    column :content do |report|
-      truncate(report.content)
-    end
+    # column :content do |report|
+    #   truncate(report.content)
+    # end
     column :resource_type
     column :resource_id
+    column :resource_link do |report|
+      link_to "查看举报对象的内容", :controller => "#{report.resource_type.downcase.pluralize}", :action => "show", :id => report.resource_id
+    end
     default_actions
   end
 

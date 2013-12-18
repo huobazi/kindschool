@@ -1,0 +1,32 @@
+<% if @logo %>
+  <% if @logo.page_img %>
+    <img src='<%= @logo.page_img.public_filename(:middle)  %>' alt="<%= @logo.name %>" title="<%= @logo.name %>"/><br/>
+  <% end %>
+  <%= @logo.name %><br/>
+  <%= @logo.note %>
+<% end %>
+<br/><br/>
+<h1>商品信息</h1>
+<% if @product %>
+  商品名称：<%= @product.name %><br/>
+  市场价格：<%= @product.market_price %><br/>
+  价格：<%= @product.price %><br/>
+  积分：<%= @product.credit %><br/>
+  教育理念：<%= @product.meaning %><br/>
+  状态：<%= Product::STATUS_DATA["#{@product.status}"] %><br/>
+  默认图片：<br/>
+  <% if @product.get_head_img %>
+    <img src='<%=  @product.get_head_img.public_filename(:tiny) %>' alt=""/>
+  <% else %>
+    无图片
+  <% end %>
+    <br/>
+  图片：<br/>
+  <% @product.product_imgs.each do |img| %>
+    <img src='<%=  img.public_filename(:tiny) %>' alt=""/>
+  <% end %>
+
+
+<% else %>
+  该商品不存在
+<% end %>

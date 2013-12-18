@@ -13,6 +13,7 @@ class Topic < ActiveRecord::Base
   belongs_to :kindergarten
   belongs_to :topic_category
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
+  belongs_to :approver, :class_name => "User", :foreign_key => "approver_id"
   belongs_to :squad
   has_many :appurtenances, :class_name => "Appurtenance", :as => :resource, :dependent => :destroy
   has_many :topic_entries
@@ -23,6 +24,8 @@ class Topic < ActiveRecord::Base
 
   before_save :news_approve_status_start
   before_destroy :ensure_not_topic_entries
+
+  STATUS = { 0=>"审核通过",1=> "待审核", 2=>"审核不通过"}
 
   def unread_comment_count
     if accessed_at

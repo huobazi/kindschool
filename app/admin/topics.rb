@@ -47,12 +47,20 @@ ActiveAdmin.register Topic do
       row :title
       row :creater_id
       row :kindergarten
-      row :is_show
-      row :is_top
-      row :approve_status
-      row :approver_id
+      row :is_show do |topic|
+        topic.is_show ? "是" : "否"
+      end
+      row :is_top do |topic|
+        topic.is_top ? "是" : "否"
+      end
+      row :approve_status do |topic|
+        Topic::STATUS[topic.approve_status]
+      end
+      row :approver
       row :show_count
-      row :content
+      row :content do |topic|
+        raw topic.content
+      end
     end
   end
 end

@@ -130,7 +130,7 @@ class  MySchool::StatisticsController < MySchool::ManageController
     @staffs       = @kind.staffs
     @squads       = @kind.squads
 
-    @squad_albums = Album.select("count(albums.squad_id) as squad_count, sq.name as squad_name").joins("LEFT JOIN squads as sq on (sq.id = albums.squad_id)").where("albums.kindergarten_id = ?", @kind.id).group("albums.squad_id")
+    @squad_albums = Album.squad_albums(@kind)
 
     @creater_albums = Album.select("count(albums.creater_id) as creater_count, us.name as creater_name").joins("INNER JOIN users as us on (us.id = albums.creater_id)").where("albums.kindergarten_id = ?", @kind.id).group("albums.creater_id")
 
