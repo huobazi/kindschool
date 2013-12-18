@@ -26,7 +26,7 @@
         </tr>
         <% (@content_patterns || []).each do |content_pattern| %>
           <tr>
-            <td style="width:60%"><%=raw content_pattern.content %></td>
+            <td style="width:300px;overflow:hidden;display:inline-block;"><%=raw content_pattern.content %></td>
             <!-- <td><%#= content_pattern.number %></td> -->
             <td><%= content_pattern.name %></td>
             <td><%= link_to '编辑', edit_my_school_content_pattern_path(content_pattern) %>|<%#= link_to '删除',my_school_cook_book_path(cook_book) , method: :delete, data: { confirm: '确定要删除么?' } %></td>
