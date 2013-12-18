@@ -9,6 +9,9 @@
 <h1>商品信息</h1>
 <% if @product %>
   商品名称：<%= @product.name %><br/>
+  <% if @product.merchant %>
+    商家信息：<%= link_to @product.merchant.name ,:action=>:show_merchant,:id=>@product.merchant_id %><br/>
+  <% end %>
   市场价格：<%= @product.market_price %><br/>
   价格：<%= @product.price %><br/>
   积分：<%= @product.credit %><br/>
@@ -20,7 +23,7 @@
   <% else %>
     无图片
   <% end %>
-    <br/>
+  <br/>
   图片：<br/>
   <% @product.product_imgs.each do |img| %>
     <img src='<%=  img.public_filename(:tiny) %>' alt=""/>

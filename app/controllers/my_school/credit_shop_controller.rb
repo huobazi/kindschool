@@ -32,6 +32,10 @@ class MySchool::CreditShopController < MySchool::ManageController
     end
   end
   
+  def show_merchant
+    @merchant = Merchant.find_by_id(params[:id])
+  end
+  
   #添加购物车
   def add_to_cart
     product = Product.find(params[:id])
