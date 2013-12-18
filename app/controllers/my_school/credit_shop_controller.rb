@@ -31,6 +31,11 @@ class MySchool::CreditShopController < MySchool::ManageController
       @keywords = @product.keywords
     end
   end
+
+  # 用户个人信息
+  def user_center
+   @personal_credits = current_user.personal_credits
+  end
   
   #添加购物车
   def add_to_cart
