@@ -93,25 +93,6 @@
       phone_num = $(this).val().replace(/\s*$/,'') ;
       $(this).val(phone_num);
      });
-  $("#staff_user_attributes_phone").blur(function() {
-    $.ajax({
-      url: "/my_school/staffs/phone_uniqueness_validator",
-      data: {
-        phone: $(this).val(),
-        element: $(this).attr("id"),
-        staff_id: $("#staff_id").text()
-      },
-      method: "get",
-      beforeSend: function() {
-      },
-      success: function() {
-
-      },
-      error: function() {
-
-      }
-    })
-  })
   $("#staff_user_attributes_login").blur(function() {
     $.ajax({
       url: "/my_school/staffs/login_uniqueness_validator",

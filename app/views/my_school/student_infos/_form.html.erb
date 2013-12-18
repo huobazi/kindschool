@@ -242,26 +242,3 @@ $("#grade").change(function() {
     }
   })
 </script>
-
-<script type="text/javascript">
-  $("#student_info_user_attributes_phone").blur(function() {
-    $.ajax({
-      url: "/my_school/student_infos/phone_uniqueness_validator",
-      data: {
-        phone: $(this).val(),
-        element: $(this).attr("id"),
-        student_info_id: $("#student_info_id").text()
-      },
-      method: "get",
-      beforeSend: function() {
-      },
-      success: function() {
-
-      },
-      error: function() {
-
-      }
-    })
-  })
-
-</script>
