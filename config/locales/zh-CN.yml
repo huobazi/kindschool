@@ -391,6 +391,7 @@ zh-CN:
         title: "标题"
         creater: "创建人"
         creater_id: "创建人"
+        created_at: "创建时间"
       help_movie:
         name: "名字"
         content: "内容"
