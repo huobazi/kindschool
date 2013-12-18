@@ -13,7 +13,7 @@
           </a>
           <ul>
             <li>
-              统计
+            统计
             </li>
             <li>/</li>
             <li>照片集锦统计</li>
@@ -27,57 +27,43 @@
 
     <div class="work_list">
       <div class="stat-content">
-            <div class="panel">
-              <div class="header">照片集锦统计</div>
-              <div class="inner">
-                <p>总数量:<span><%= @albums_count %></span></p>
-              </div>
+        <div class="search_form_s">
+          <%= form_tag '/my_school/statistics/albums_stat' , :method=>"get" do %>
+            <b>开始时间：</b>
+            <%= text_field :growth_record,:start_at_greater_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:start_at_greater_than_or_equal_to] if params[:growth_record] }"  %>
+            <%= submit_tag "搜索" , :class => "btn search_btn btn-primary"%>
+          <%end%>
+        </div>
+        <div class="panel">
+          <div class="header">照片集锦统计</div>
+          <div class="inner">
+            <p>总数量:<span><%= @albums_count %></span></p>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="header">每个班级的照片集锦</div>
+          <div class="inner">
+            <div>
+              <% @squad_albums.each do |squad_album| %>
+                <p><%= squad_album.squad_name ||= "全园可见" %>:<span><%= squad_album.try(:squad_count) %></span></p>
+              <% end %>
             </div>
-            <div class="panel">
-              <div class="header">每个班级的照片集锦</div>
-              <div class="inner">
-                <div>
-                  <% @squad_albums.each do |squad_album| %>
-                    <p><%= squad_album.squad_name ||= "全园可见" %>:<span><%= squad_album.try(:squad_count) %></span></p>
-                  <% end %>
-                </div>
-              </div>
-            </div>
+          </div>
+        </div>
 
-            <div class="panel">
-              <div class="header">每个老师的照片集锦</div>
-              <div class="inner">
-                <div>
-                  <% @creater_albums.each do |creater_album| %>
-                    <p><%= creater_album.try(:creater_name) %>:<span><%= creater_album.try(:creater_count) %></span></p>
-                  <% end %>
-                </div>
-              </div>
+        <div class="panel">
+          <div class="header">每个老师的照片集锦</div>
+          <div class="inner">
+            <div>
+              <% @creater_albums.each do |creater_album| %>
+                <p><%= creater_album.try(:creater_name) %>:<span><%= creater_album.try(:creater_count) %></span></p>
+              <% end %>
             </div>
+          </div>
+        </div>
       </div>
+    </div>
+
   </div>
 
 </div>
-
-</div>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $(".fold").each(function() {
-
-      $(this).click(function(event) {
-        event.preventDefault();
-        $(this).parent().parent().children(".detail_stat").slideToggle("fast", function() {
-          if ( $(this).parent().find("i.f").hasClass("icon-plus") ) {
-            $(this).parent().find("i.f").removeClass("icon-plus").addClass("icon-minus");
-          } else {
-            $(this).parent().find("i.f").removeClass("icon-minus").addClass("icon-plus");
-          }
-        });
-
-      })
-
-    })
-  })
-</script>
-
