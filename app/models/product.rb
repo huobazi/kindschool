@@ -10,6 +10,7 @@ class Product < ActiveRecord::Base
   validates :market_price,:presence => true
   validates :price,:presence => true
   validates :name,:presence => true
+  validates :credit,:presence => true
   validates :keywords,:presence => true
   validates :status,:presence => true
 
