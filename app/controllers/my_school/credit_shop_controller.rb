@@ -20,7 +20,7 @@ class MySchool::CreditShopController < MySchool::ManageController
         products = @serarch_type == "descend" ? Product.descend_by_price : Product.ascend_by_price
       end
     end
-    @products = (products || Product).search(params[:product] || {}).page(params[:page] || 1).per(25)
+    @products = (products || Product).search(params[:product] || {}).where(:status=>2).page(params[:page] || 1).per(25)
   end
 
   
@@ -34,6 +34,9 @@ class MySchool::CreditShopController < MySchool::ManageController
   
   def show_merchant
     @merchant = Merchant.find_by_id(params[:id])
+    if @merchant
+     @products = @merchant.products.where(:status=>2).order("updated_at DESC").limit(5)
+    end
   end
   
   #添加购物车

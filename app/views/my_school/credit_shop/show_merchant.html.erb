@@ -16,8 +16,15 @@
   <% else %>
     <img src="<%= @merchant.asset_img.public_filename(:middle) %>" alt="" />
   <% end %><br/>
-    商家详情：
-    <%= raw(@merchant.note) %>
+  商家详情：
+  <%= raw(@merchant.note) %>
+  <br/>
+  <ul>
+    <% @products.each do |product| %>
+      <li>商品名称：<%= link_to product.name ,:controller=>"/my_school/credit_shop",:action=>"show_product",:id=>product.id %><br/></li>
+    <% end %>
+  </ul>
+
 <% else %>
   该商家不存在
 <% end %>
