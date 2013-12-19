@@ -126,14 +126,12 @@ class  MySchool::StatisticsController < MySchool::ManageController
   end
 
   def albums_stat
-    @albums_count = @kind.albums.count
+    @albums_count = @kind.albums.search(params[:album] || {}).count
     @staffs       = @kind.staffs
     @squads       = @kind.squads
 
-    @squad_albums = Album.squad_albums(@kind)
-
-    @creater_albums = Album.select("count(albums.creater_id) as creater_count, us.name as creater_name").joins("INNER JOIN users as us on (us.id = albums.creater_id)").where("albums.kindergarten_id = ?", @kind.id).group("albums.creater_id")
-
+    @squad_albums = Album.squad_albums(@kind).search(params[:album] || {})
+    @creater_albums = Album.creater_albums(@kind).search(params[:album] || {})
   end
 
 end
