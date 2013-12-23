@@ -11,16 +11,15 @@
 <hr/>
 <% unless @tags.blank? %>
   <% @tags.each do |tag| %>
-    <h2><%= tag.name %></h2>
-    <% products = Product.tagged_with(tag.name).by_join_date.where(:status=>2).page(1).per(3) %>
-    <% if products.blank? %>
-    <% else %>
+    <% products = Product.tagged_with(tag.name).by_join_date.where(:status=>2,:shop_id=>@shop_tp).page(1).per(3) %>
+    <% unless products.blank? %>
+      <h2><%= tag.name %></h2>
       <ul>
         <% products.each do |product| %>
           <li>商品名称：<%= link_to product.name ,:controller=>"/my_school/credit_shop",:action=>"show_product",:id=>product.id %><br/></li>
         <% end %>
       </ul>
+      <hr/>
     <% end %>
-    <hr/>
   <% end %>
 <% end %>

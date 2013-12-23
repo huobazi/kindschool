@@ -90,6 +90,7 @@ ActiveAdmin.register Product  do
       f.input :description
       f.input :meaning
       f.input :status, :as=>:select,:collection=>Product::STATUS_DATA.invert, :required => true
+      f.input :shop_id, :as=>:select,:collection=>Product::SHOP_DATA.invert, :required => true
       f.inputs "商品描述" do
         f.kindeditor :note,:allowFileManager => false
       end
@@ -118,6 +119,9 @@ ActiveAdmin.register Product  do
       row :meaning
       row :status do
         Product::STATUS_DATA["#{record.status}"]
+      end
+      row :shop_id do
+        Product::SHOP_DATA["#{record.shop_id}"]
       end
       row :note do
         raw(record.note)

@@ -14,7 +14,7 @@ class CreateProducts < ActiveRecord::Migration
       t.text :description
       t.integer :view_asset_id
       t.string :meaning
-      t.integer :shop_id
+      t.integer :shop_id,:default=>0
       t.integer :status,:default=>0
 
       t.timestamps

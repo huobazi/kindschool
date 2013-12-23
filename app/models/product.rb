@@ -23,6 +23,7 @@ class Product < ActiveRecord::Base
   scope :ascend_by_price, order("price ASC")
 
   STATUS_DATA = {"0"=>"下架","1"=>"待审核","2"=>"上架","3"=>"无货"}
+  SHOP_DATA = {"0"=>"学生商城","1"=>"幼儿园商城"}
 
 
   has_many :product_imgs, :class_name => "ProductImg", :as => :resource, :dependent => :destroy
