@@ -6,6 +6,13 @@ class MySchool::CreditShopController < MySchool::ManageController
 
   def index
     @tags = Product.tag_counts
+    @product_categories = []
+    ProductCategory.roots.each do |n|
+        n.self_and_descendants.each_with_level do |item, level|
+          item[:lvl] = level
+          @product_categories << item
+        end
+    end
   end
 
   def products
@@ -34,7 +41,9 @@ class MySchool::CreditShopController < MySchool::ManageController
 
   # 用户个人信息
   def user_center
-   @personal_credits = current_user.personal_credits
+   @personal_credits = current_user.personal_credit
+   @un_orders = current_user.orders.pending_shipping
+   @en_orders = current_user.orders.where("shipment_at is not null")
   end
   
   def show_merchant
@@ -101,7 +110,14 @@ class MySchool::CreditShopController < MySchool::ManageController
           flash.now[:notice] = "#{count_text} marked as shipped"
         end
     end
-    @pending_orders = Order.pending_shipping
+    @pending_orders = current_user.orders.pending_shipping unless current_user.orders.blank?
+  end
+
+  def show_product_categories
+    category_id = params[:group_id]
+    product_category = ProductCategory.find(category_id.to_i) 
+    @products=product_category.products.page(params[:page] || 1).per(25)
+    render :partial =>"show_product_categories"
   end
 
   private

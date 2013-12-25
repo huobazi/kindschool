@@ -36,15 +36,15 @@ class StudentInfo < ActiveRecord::Base
         number = i
       end
         phone << row["手机号码"].gsub!(/\s*$/, '')
-        if user = User.find_by_phone(row["手机号码"].gsub!(/\s*$/, ''))
-          exist_phone << user.phone
-        end
+        # if user = User.find_by_phone(row["手机号码"].gsub!(/\s*$/, ''))
+        #   exist_phone << user.phone
+        # end
         unless squads = Squad.find_by_name_and_kindergarten_id(row["班级名称"],kind_id)
           unexist_squads << row["班级名称"]
         end
     end
-    repeat_phone=phone.dups
-    if !number.blank? || !exist_phone.blank? || !unexist_squads.blank? || !repeat_phone.blank?
+    repeat_phone=[]  #phone.dups
+    if !number.blank? || !exist_phone.blank? || !unexist_squads.blank? #|| !repeat_phone.blank?
       return number,exist_phone,unexist_squads,repeat_phone
     end
   end

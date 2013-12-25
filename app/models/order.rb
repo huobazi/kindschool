@@ -21,6 +21,7 @@ class Order < ActiveRecord::Base
       credit_value  = self.user.personal_credit.credit - self.credit
       self.user.personal_credit.update_attributes(:credit=>credit_value)
       tp = 8 #"积分消费"
+      self.status = 1 #表示订单状态发生了改变
       credit_log = CreditLog.new(:kindergarten_id=>self.kindergarten_id,:credit=>self.credit,:tp=>tp)
       credit_log.business = self
       self.user.credit_logs << credit_log

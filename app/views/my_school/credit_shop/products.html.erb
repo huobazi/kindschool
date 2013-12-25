@@ -17,7 +17,7 @@
 <%=link_to "积分兑换" ,ship_my_school_credit_shop_index_path %>
 <%= link_to  "积分",{:controller=>"/my_school/credit_shop",:action=>:products,:serarch=>"credit",:serarch_type=>(@serarch == "credit" ? (@serarch_type == "ascend" ? "descend" : "ascend") : "descend")}.merge(:product=>params[:product]) %>
 <%= link_to  "价格",{:controller=>"/my_school/credit_shop",:action=>:products,:serarch=>"price",:serarch_type=>(@serarch == "price" ? (@serarch_type == "ascend" ? "descend" : "ascend") : "descend")}.merge(:product=>params[:product]) %>
-<%= link_to "我的兑换中心","###"%>
+<%= link_to "我的兑换中心",user_center_my_school_credit_shop_index_path%>
 
   <%#= order @products, :by => :credit, :as =>"积分" %>
 <% @products.each do |product| %>

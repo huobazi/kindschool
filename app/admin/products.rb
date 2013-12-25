@@ -83,7 +83,7 @@ ActiveAdmin.register Product  do
       f.input :name
       f.input :merchant
       f.input :credit
-      f.input :product_category
+      f.input :product_category,:as=>:select,:collection=> nested_set_options(ProductCategory){|i, level| "#{'-' * level} #{i.name}" },:include_blank=>'===请选择==='
       f.input :price
       f.input :market_price
       f.input :keywords

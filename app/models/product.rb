@@ -32,8 +32,19 @@ class Product < ActiveRecord::Base
   attr_accessible :product_imgs_attributes
   accepts_nested_attributes_for :product_imgs
 
+  after_save  :change_products_status   #这个进行修改视频中的状态和是否发布
+
   def get_head_img
     self.img.blank? ? self.product_imgs.first : self.img
+  end
+  protected
+  #add by zhangfang
+  #修改商品后进行修改状态
+  def change_products_status
+    if self.status != 1 && !self.status_changed? && self.status != 0
+      self.status = 1
+      self.save
+    end
   end
 
 end

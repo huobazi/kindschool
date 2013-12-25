@@ -17,6 +17,8 @@ School::Application.routes.draw do
       post :save_order, :on => :collection
       get :ship, :on => :collection
       post :ship, :on => :collection
+      get :user_center,:on => :collection
+      get :show_product_categories,:on => :collection
     end
     resources :reports do
       get :create, :on => :collection
