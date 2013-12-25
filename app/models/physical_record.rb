@@ -1,4 +1,5 @@
 #encoding:utf-8
+#体检记录
 class PhysicalRecord < ActiveRecord::Base
   attr_accessible :content, :creater_id, :kindergarten_id, :send_date, :student_info_id
    # attr_accessible :content_like
