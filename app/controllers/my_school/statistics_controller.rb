@@ -126,12 +126,12 @@ class  MySchool::StatisticsController < MySchool::ManageController
   end
 
   def albums_stat
-    @albums_count = @kind.albums.count
+    @albums_count = @kind.albums.search(params[:album] || {}).count
     @staffs       = @kind.staffs
     @squads       = @kind.squads
 
-    @squad_albums = Album.squad_albums(@kind)
-    @creater_albums = Album.creater_albums(@kind)
+    @squad_albums = Album.squad_albums(@kind).search(params[:album] || {})
+    @creater_albums = Album.creater_albums(@kind).search(params[:album] || {})
   end
 
 end

@@ -1,3 +1,20 @@
+<script type="text/javascript">
+  jQuery(function() {
+    $('#album_created_at_greater_than_or_equal_to').datepicker({
+      language: "zh-CN",
+      format: "yyyy-mm-dd"
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });
+    $('#album_created_at_less_than_or_equal_to').datepicker({
+      language: "zh-CN",
+      format:"yyyy-mm-dd"
+    }).on("changeDate", function() {
+      $(this).datepicker('hide')
+    });
+
+  });
+</script>
 <div class="show_work">
   <%= render :partial => "/modules/#{view_layout}/work_menu" %>
   <div class="work">
@@ -30,7 +47,9 @@
         <div class="search_form_s">
           <%= form_tag '/my_school/statistics/albums_stat' , :method=>"get" do %>
             <b>开始时间：</b>
-            <%= text_field :growth_record,:start_at_greater_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:start_at_greater_than_or_equal_to] if params[:growth_record] }"  %>
+            <%= text_field :album,:created_at_greater_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:album][:start_at_greater_than_or_equal_to] if params[:album] }"  %>
+            <b>结束时间：</b>
+            <%= text_field :album,:created_at_less_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:album][:end_at_less_than_or_equal_to] if params[:album] }"  %>
             <%= submit_tag "搜索" , :class => "btn search_btn btn-primary"%>
           <%end%>
         </div>

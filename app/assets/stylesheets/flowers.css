@@ -3180,3 +3180,19 @@ input.flaot_but{
   width: 17px;
   margin-right: 2px;
 }
+
+#integral_flash {
+  position: fixed;
+  left: 40%;
+  top: 30%;
+  width: 150px;
+  height: 70px;
+  text-align: center;
+  background: rgb(255, 153, 0);
+  color: #fff;
+  font-size: 1.2em;
+  line-height: 70px;
+  border: 5px solid #fff;
+  border-radius: 5px;
+  z-index: 999;
+}
