@@ -331,6 +331,7 @@ zh-CN:
         kindergarten: "幼儿园"
         user: "用户"
         credit: "积分"
+        heap_credit: "累积积分"
       squad_credit: 
         kindergarten: "幼儿园"
         squad: "班级名称"
