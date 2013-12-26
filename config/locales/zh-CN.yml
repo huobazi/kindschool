@@ -1013,8 +1013,7 @@ zh-CN:
       credit_grade:
         tp: "类型"
         name: "名称"
-        credit_num: "积分数值"
-        kindergarten: "幼儿园"
+        credit_num: "积分范围"
         tp_label: "类型"
     errors:
       <<: *errors

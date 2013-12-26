@@ -16,7 +16,10 @@ class PersonalCredit < ActiveRecord::Base
 
   def credit_grade_name
     if user && user.tp && c = CreditGrade.find(user.tp)
-      c.name
+      credit_num_str = c.credit_num.split('~')
+      if credit >= credit_num_str[0].to_i && credit <= credit_num_str[1].to_i
+        c.name
+      end
     end
   end
 

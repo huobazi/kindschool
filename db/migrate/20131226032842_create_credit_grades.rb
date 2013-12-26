@@ -3,8 +3,7 @@ class CreateCreditGrades < ActiveRecord::Migration
     create_table :credit_grades do |t|
       t.integer :tp
       t.string :name
-      t.integer :credit_num
-      t.integer :kindergarten_id
+      t.string :credit_num
 
       t.timestamps
     end
