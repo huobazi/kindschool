@@ -268,6 +268,7 @@ zh-CN:
       order_info: "订单详细"
       report: "举报"
       shop_config: "商城配置"
+      credit_grade: "积分等级"
     attributes:
       shop_config:
         name: "名称"
@@ -1009,6 +1010,12 @@ zh-CN:
         resource_id: "举报的对象id"
         kindergarten: "幼儿园"
         resource_link: "举报对象链接"
+      credit_grade:
+        tp: "类型"
+        name: "名称"
+        credit_num: "积分数值"
+        kindergarten: "幼儿园"
+        tp_label: "类型"
     errors:
       <<: *errors
   views:
