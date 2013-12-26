@@ -9,6 +9,17 @@ class PersonalCredit < ActiveRecord::Base
 
   before_save :save_credit_log
   after_save :save_heap_credit
+
+  def credit_grade_tp_label
+    user.tp_label if user && user.tp
+  end
+
+  def credit_grade_name
+    if user && user.tp && c = CreditGrade.find(user.tp)
+      c.name
+    end
+  end
+
   private
   def save_credit_log
   	# CreditLog.new(:kindergarten_id=>self.kindergarten,:credit=>login_credit.credit,)
