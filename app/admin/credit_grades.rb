@@ -6,7 +6,7 @@ ActiveAdmin.register CreditGrade do
     column :tp_label
     column :credit_num
     column :name
-    # default_actions
+    default_actions
   end
 
   filter :tp, :as => :select, :collection => CreditGrade::TP_DATA.invert
