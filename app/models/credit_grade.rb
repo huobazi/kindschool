@@ -9,6 +9,12 @@ class CreditGrade < ActiveRecord::Base
   validates :name, :credit_num, :tp, :presence => true
   validates :credit_num, format: { with: /\A\d+~\d+\Z/, message: "必须包含数字加~(波浪线)数字,不能包含空格,例如0~50000"}
 
+  has_one :page_img, :class_name => "PageImg", :as => :resource, :dependent => :destroy
+
+  attr_accessible :page_img_attributes
+  accepts_nested_attributes_for :page_img
+
+
   TP_DATA = {"0" => "学员", "1" => "教职工", "2" => "管理员"}
 
   def tp_label
