@@ -16,12 +16,12 @@
     <div class="pull-right replies">
 
       <% if choose_operate_show("#{params[:controller]}/show") %>
-        <a title="查看<%= growth_record.student_info_label %>的成长记录" alt="要看<%= growth_record.student_info_label %>的成长记录" href="<%= url_for(:controller => "#{params[:controller]}", :action => :show, :id => growth_record.id) %>"><i class="img-icon icon-eye-open"></i></a>
+        <a title="查看<%= growth_record.student_info_label %>的成长记录" alt="要看<%= growth_record.student_info_label %>的成长记录" href="<%= url_for(:controller => "#{params[:controller]}", :action => :show, :id => growth_record.id) %>">查看</a>
         </a>
       <% end %>
 
       <% if choose_operate_show("#{params[:controller]}/edit") %>
-        <a title="编辑<%= growth_record.student_info_label %>的成长记录" alt="编辑<%= growth_record.student_info_label %>的成长记录" href="<%= url_for(:controller => "#{params[:controller]}", :action => "edit", :id => growth_record.id) %>"><i class="img-icon icon-edit"></i></a>
+        <a title="编辑<%= growth_record.student_info_label %>的成长记录" alt="编辑<%= growth_record.student_info_label %>的成长记录" href="<%= url_for(:controller => "#{params[:controller]}", :action => "edit", :id => growth_record.id) %>">编辑</a>
       <% end %>
 
       <%= link_to raw("<span class='badge badge-info badge-info-margin'>#{growth_record.comments.count}</span>"), url_for(:controller => "#{params[:controller]}", :action => "show", id: growth_record.id, anchor: "load_comments"), class: "count" %>

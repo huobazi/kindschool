@@ -15,17 +15,20 @@ class PersonalCredit < ActiveRecord::Base
   end
 
   def credit_grade_name
-    if user && user.tp && c = CreditGrade.find(user.tp)
-      credit_num_str = c.credit_num.split('~')
-      if credit >= credit_num_str[0].to_i && credit <= credit_num_str[1].to_i
-        c.name
-      end
-    end
+    credit_grade.name if credit_grade.name?
+  end
+
+  def credit_grade
+    CreditGrade.where("tp = ? and down_credit <= ? and up_credit >= ?", user.tp, credit, credit).first if user && user.tp
+  end
+
+  def credit_grade_label
+    credit_grade.credit_label
   end
 
   private
   def save_credit_log
-  	# CreditLog.new(:kindergarten_id=>self.kindergarten,:credit=>login_credit.credit,)
+    # CreditLog.new(:kindergarten_id=>self.kindergarten,:credit=>login_credit.credit,)
 
   end
 
