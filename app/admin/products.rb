@@ -63,6 +63,7 @@ ActiveAdmin.register Product  do
     column :price
     column :market_price
     column :merchant
+    column :product_storage
     column :status do |record|
       Product::STATUS_DATA["#{record.status}"]
     end
@@ -89,6 +90,7 @@ ActiveAdmin.register Product  do
       f.input :keywords
       f.input :description
       f.input :meaning
+      f.input :product_storage
       f.input :status, :as=>:select,:collection=>Product::STATUS_DATA.invert, :required => true
       f.input :shop_id, :as=>:select,:collection=>Product::SHOP_DATA.invert, :required => true
       f.inputs "商品描述" do
@@ -117,6 +119,7 @@ ActiveAdmin.register Product  do
       row :keywords
       row :description
       row :meaning
+      row :product_storage
       row :status do
         Product::STATUS_DATA["#{record.status}"]
       end

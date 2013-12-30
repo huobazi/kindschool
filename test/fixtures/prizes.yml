@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  beep: MyString
+  beep_url: MyString
+  content: MyString
+  content_url: MyString
+  status: 1
+
+two:
+  name: MyString
+  beep: MyString
+  beep_url: MyString
+  content: MyString
+  content_url: MyString
+  status: 1

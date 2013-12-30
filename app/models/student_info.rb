@@ -35,16 +35,20 @@ class StudentInfo < ActiveRecord::Base
       if row["手机号码"].blank? || row["班级名称"].blank?
         number = i
       end
+      if row["号码能够重复"] != "是"
         phone << row["手机号码"].gsub!(/\s*$/, '')
-        # if user = User.find_by_phone(row["手机号码"].gsub!(/\s*$/, ''))
-        #   exist_phone << user.phone
-        # end
+      end
+        if user = User.find_by_phone(row["手机号码"].gsub!(/\s*$/, ''))
+          if !user.repeat || row["号码能够重复"] != "是"
+            exist_phone << user.phone
+          end
+        end
         unless squads = Squad.find_by_name_and_kindergarten_id(row["班级名称"],kind_id)
           unexist_squads << row["班级名称"]
         end
     end
-    repeat_phone=[]  #phone.dups
-    if !number.blank? || !exist_phone.blank? || !unexist_squads.blank? #|| !repeat_phone.blank?
+    repeat_phone=phone.dups
+    if !number.blank? || !exist_phone.blank? || !unexist_squads.blank? || !repeat_phone.blank?
       return number,exist_phone,unexist_squads,repeat_phone
     end
   end
@@ -64,6 +68,7 @@ class StudentInfo < ActiveRecord::Base
             user.kindergarten_id = kind_id
             student_info.kindergarten_id = kind_id
             user.gender = row["性别"]=="男" ?  "G" : "M"
+            user.repeat = row["号码能够重复"] == "是" ? true : false
             #给user生成帐号跟密码
             #user.login =
             password = Standard.rand_password

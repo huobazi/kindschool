@@ -106,11 +106,15 @@ class MySchool::CreditShopController < MySchool::ManageController
 
   def ship
     count = 0
+    products = []
     if things_to_ship = params[:to_be_shipped]
-      count = do_shipping(things_to_ship)
+      count,products = do_shipping(things_to_ship)
         if count > 0
           count_text = pluralize(count, "order")
           flash.now[:notice] = "#{count_text} marked as shipped"
+        end
+        unless products.blank?
+          flash[:notice] = "#{products.collect{|x|x.name}}没有库存了."
         end
     end
     @pending_orders = current_user.orders.pending_shipping unless current_user.orders.blank?
@@ -135,15 +139,22 @@ class MySchool::CreditShopController < MySchool::ManageController
   
   def do_shipping(things_to_ship)
     count = 0
+    products=[]
     things_to_ship.each do |order_id, do_it|
       if do_it == "yes"
         order = Order.find(order_id)
-        order.mark_as_shipped
-        order.save
-        count += 1
+        #判断是否库存够了
+        if order.product_storage_able.blank?
+           order.product_storage_off
+           order.mark_as_shipped
+           order.save
+           count += 1
+        else
+          products << order.product_storage_able
+        end
       end
     end
-    count
+    return count,products
   end
  
  def pluralize(count, noun)

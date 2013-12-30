@@ -1,7 +1,7 @@
 #encoding:utf-8
 #商品
 class Product < ActiveRecord::Base
-  attr_accessible :approve_id, :credit, :description, :keywords, :market_price,:img_id,
+  attr_accessible :product_storage,:storage,:approve_id, :credit, :description, :keywords, :market_price,:img_id,
     :meaning, :name, :price, :product_category_id, :shop_id, :status, :user_id,:merchant_id,
     :view_asset_id,:note
   belongs_to :product_category
@@ -30,20 +30,35 @@ class Product < ActiveRecord::Base
   has_many :product_imgs, :class_name => "ProductImg", :as => :resource, :dependent => :destroy
   belongs_to :img, :class_name => "ProductImg"
   belongs_to :merchant
+  has_many :product_storages
 
   attr_accessible :product_imgs_attributes
   accepts_nested_attributes_for :product_imgs
 
-  after_save  :change_products_status   #这个进行修改视频中的状态和是否发布
+  after_save  :change_products_status   #更改了就进行修改状态
 
   def get_head_img
     self.img.blank? ? self.product_imgs.first : self.img
   end
+
+  def product_storage
+     self.storage
+  end
+
+  def product_storage=(str)
+    if self.product_storages
+      self.product_storages<<ProductStorage.new(:count=>str.to_i-self.storage,:note=>"编辑商品改了库存")
+    else
+      self.product_storages<<ProductStorage.new(:count=>str.to_i,:note=>"编辑商品改了库存")
+    end 
+    self.storage = str.to_i
+  end
+
   protected
   #add by zhangfang
   #修改商品后进行修改状态
   def change_products_status
-    if self.status != 1 && !self.status_changed? && self.status != 0
+    if self.name_changed? || self.price_changed?  || self.credit_changed? || self.description_changed?
       self.status = 1
       self.save
     end

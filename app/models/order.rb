@@ -15,6 +15,31 @@ class Order < ActiveRecord::Base
   def self.pending_shipping
   	where("shipment_at is null")
   end
+  
+  def product_storage_off
+   if self.order_infos
+    self.order_infos.each do |info|
+      product=info.product
+      storage = product.storage
+      product.update_attribute(:storage,storage-info.count)
+      product.product_storages<<ProductStorage.new(:count=>0-info.count,:note=>"下订单")
+      product.save
+    end
+   end 
+  end
+
+  def product_storage_able
+    if self.order_infos
+      self.order_infos.each do |info|
+        count_product =info.product.product_storages.select("sum(count) as oo ")
+       if count_product.first.oo.to_i < info.count
+         return info.product
+       end 
+      end
+      return false
+    end
+  end
+
   def mark_as_shipped
     if self.user && self.user.personal_credit  &&  self.user.personal_credit.credit >= self.credit
       self.shipment_at = Time.zone.now

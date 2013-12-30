@@ -540,6 +540,8 @@ zh-CN:
         is_receive: '是否能够接受短信'
         is_receive_label: '能够接受短信'
         chain_code: "短信扩展码"
+        repeat: "手机允许重复"
+        repeat_label: "手机允许重复"
       grade:
         kindergarten_label: "所属幼儿园"
         kindergarten: "所属幼儿园"
