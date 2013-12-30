@@ -1,0 +1,49 @@
+
+<div id="main">
+  <div class="egg">
+    <ul class="eggList">
+      <p class="hammer" id="hammer">锤子</p>
+      <p class="resultTip" id="resultTip"><b id="result"></b></p>
+      <li><span>1</span><sup></sup></li>
+    </ul>
+  </div>
+</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+  function eggClick(obj) {
+    var _this = obj;
+    $.getJSON("/my_school/eggs/get_egg",function(res){
+      if(_this.hasClass("curr")){
+        alert("蛋都碎了，别砸了！刷新再来.");
+        return false;
+      }
+      //_this.unbind('click');
+      $(".hammer").css({"top":_this.position().top-55,"left":_this.position().left+185});
+      $(".hammer").animate({
+        "top":_this.position().top-25,
+        "left":_this.position().left+125
+      },30,function(){
+        _this.addClass("curr"); //蛋碎效果
+        _this.find("sup").show(); //金花四溅
+        $(".hammer").hide();
+        $('.resultTip').css({display:'block',top:'100px',left:_this.position().left+45,opacity:0}).animate({top: '50px',opacity:1},300,function(){
+          if(res.msg==1){
+            $("#result").html("恭喜，您中得"+res.prize+"!");
+          }else{
+            $("#result").html("很遗憾,您没能中奖!");
+          }
+        });
+      }
+    );
+    });
+  }
+  $(".eggList li").click(function() {
+    $(this).children("span").hide();
+    eggClick($(this));
+  });
+
+  $(".eggList li").hover(function() {
+    var posL = $(this).position().left + $(this).width();
+    $("#hammer").show().css('left', posL);
+  })
+</script>

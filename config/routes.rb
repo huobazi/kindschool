@@ -20,6 +20,9 @@ School::Application.routes.draw do
       get :user_center,:on => :collection
       get :show_product_categories,:on => :collection
     end
+    resources :eggs do
+      get :get_egg,:on=>:collection
+    end
     resources :reports do
       get :create, :on => :collection
     end
