@@ -1015,7 +1015,9 @@ zh-CN:
       credit_grade:
         tp: "类型"
         name: "名称"
-        credit_num: "积分范围"
+        down_credit: "积分下限"
+        up_credit: "积分上限"
+        credit_label: "积分范围"
         tp_label: "类型"
         created_at: "创建时间"
         updated_at: "更新时间"

@@ -1,13 +1,14 @@
 #encoding:utf-8
 # 积分等级
 # name: 名称
-# credit_num: 积分值
+# down_credit: 积分下限
+# up_credit: 积分上限
 # tp: 类型(学生或老师,管理员)
 class CreditGrade < ActiveRecord::Base
-  attr_accessible :credit_num, :name, :tp
+  attr_accessible :down_credit, :up_credit, :name, :tp
 
-  validates :name, :credit_num, :tp, :presence => true
-  validates :credit_num, format: { with: /\A\d+~\d+\Z/, message: "必须包含数字加~(波浪线)数字,不能包含空格,例如0~50000"}
+  validates :name, :down_credit, :up_credit, :tp, :presence => true
+  validate :up_credit, :must_large_than_down_credit
 
   has_one :page_img, :class_name => "PageImg", :as => :resource, :dependent => :destroy
 
@@ -19,5 +20,16 @@ class CreditGrade < ActiveRecord::Base
 
   def tp_label
     CreditGrade::TP_DATA[self.tp.to_s]
+  end
+
+  def credit_label
+    "#{down_credit}~#{up_credit}" if down_credit? && up_credit?
+  end
+
+  protected
+  def must_large_than_down_credit
+    if down_credit? && up_credit? && down_credit >= up_credit
+      errors.add(:up_credit, "积分上限的值必须大于积分下限的值")
+    end
   end
 end
