@@ -13,17 +13,17 @@
         <span>审核状态: <%= News::STATUS[topic.approve_status] %></span>
       <%end%>
       <% if choose_operate_show("my_school/topics/show") %>
-        <a href="<%= my_school_topic_path(topic) %>" title="查看<%= topic.title %>" alt="查看<%= topic.title %>"><i class="img-icon icon-eye-open"></i></a>
+        <a href="<%= my_school_topic_path(topic) %>" title="查看<%= topic.title %>" alt="查看<%= topic.title %>">查看</i></a>
       <% else %>
         <a class="place place-icon-position"></a>
       <% end %>
       <% if choose_operate_show("my_school/topics/edit") and edit_topic?(topic) %>
-        <a href="<%= edit_my_school_topic_path(topic) %>" title="编辑<%= topic.title %>" alt="编辑<%= topic.title %>"><i class="img-icon icon-edit"></i></a>
+        <a href="<%= edit_my_school_topic_path(topic) %>" title="编辑<%= topic.title %>" alt="编辑<%= topic.title %>">编辑</i></a>
       <% else %>
         <a class="place place-icon-position"></a>
       <% end %>
       <% if choose_operate_show("my_school/topics/destroy") and delete_topic?(topic) %>
-        <a href="<%= my_school_topic_path(topic) %>" data-confirm="您确定删除该贴子吗" data-method="delete" title="删除<%= topic.title %>" alt="删除<%= topic.title %>"><i class="img-icon icon-remove-sign"></i></a>
+        <a href="<%= my_school_topic_path(topic) %>" data-confirm="您确定删除该贴子吗" data-method="delete" title="删除<%= topic.title %>" alt="删除<%= topic.title %>">删除</i></a>
       <% else %>
         <a class="place place-icon-position"></a>
       <% end %>
