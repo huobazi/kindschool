@@ -73,6 +73,9 @@ ActiveAdmin.register User do
     column :weiyi_code do |user|
       user.weiyi_code.blank? ? "未绑定" : "已绑定"
     end
+    column :repeat do |user|
+      user.repeat ? "允许" : "不允许"
+    end
     column :is_send_label
     column :is_receive_label
     default_actions
@@ -107,6 +110,7 @@ ActiveAdmin.register User do
       f.input :tp,:as=>:hidden
       f.input :is_send
       f.input :is_receive
+      f.input :repeat
       f.input :kindergarten_id,:as=>:hidden
       f.input :kindergarten_id,:as=>:hidden, :input_html => { :name => "kindergarten_id" }
     end
@@ -129,6 +133,7 @@ ActiveAdmin.register User do
       row :created_at
       row :updated_at
       row :is_send_label
+      row :repeat_label
       row :is_receive_label
       div do
         br

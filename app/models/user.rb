@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   acts_as_paranoid
   validates_as_paranoid
 
-  attr_accessible :kindergarten_id, :logo,:login, :name, :note, :number, :status,:chain_code,
+  attr_accessible :repeat,:kindergarten_id, :logo,:login, :name, :note, :number, :status,:chain_code,
     :tp,:crypted_password,:salt,:role_id,:remember_token,:remember_token_expires_at,:chain_delete,
     :gender,:phone,:area_id,:weixin_code,:weiyi_code,:token_key,:token_secret,:token_at, :email,:is_send,:is_receive
   attr_accessible :password, :password_confirmation
@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
 #  validates :login, :uniqueness => true
   validates_uniqueness_of_without_deleted :login
   validates_uniqueness_of_without_deleted :email,:scope => :kindergarten_id, :allow_blank => true
-  #validates_uniqueness_of_without_deleted :phone,:scope => :kindergarten_id, :allow_blank => true
+  validates_uniqueness_of_without_deleted :phone,:scope => :kindergarten_id, :allow_blank => true ,:if=>:repeat_allow?
 
 
   GENDER_DATA = {"M"=>"女","G"=>"男"}
@@ -59,6 +59,10 @@ class User < ActiveRecord::Base
 
   def is_send_label
     is_send ? "是" : "否"
+  end
+
+  def repeat_label
+    repeat ? "是" : "否"
   end
 
   def is_receive_label
@@ -386,5 +390,9 @@ class User < ActiveRecord::Base
   end
   def role_student?
     self.tp != 0
+  end
+
+  def repeat_allow?
+    !self.repeat
   end
 end

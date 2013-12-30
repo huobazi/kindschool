@@ -67,6 +67,11 @@
             <label class="field_prompt">班级</label>
             <%= select_tag "squad_id", options_for_select(@squads.collect{|s|[s.name, s.id]}), :class => "select span2", :style => "margin-left: 130px;", :name => "student_info[squad_id]" %>
           </div>
+          <div class="select_field">
+            <label class="field_prompt"></label>
+            <%= p.input :repeat%>
+          </div>
+          
         <% elsif current_user.get_users_ranges[:tp] == :all %>
           <div class="select_field">
             <label class="control-label"><abbr title="required">*</abbr>选择班级</label>
@@ -82,6 +87,10 @@
             </div>
           </div>
         <% end %>
+        <div class="select_field">
+            <label class="field_prompt"></label>
+            <%= p.input :repeat%>
+          </div>
       <% else %>
         <% if current_user.get_users_ranges[:tp] == :student %>
           <%= f.input :grade_label, :as => :string, :disabled => true %>
@@ -106,7 +115,6 @@
           <%= select_tag "squad_id", options_for_select((@squads.collect{|s|[s.name,s.id]} || []), :selected => @squad_id), :class => "select span2", :name => "student_info[squad_id]", :style => "margin-left: 120px;"  %>
         <% end %>
       <% end %>
-
       <%= p.input :tp,:as=>:hidden %>
       <%= p.input :kindergarten_id,:as=>:hidden %>
     </div>

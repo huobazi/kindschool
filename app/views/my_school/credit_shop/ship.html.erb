@@ -1,4 +1,5 @@
 <h1>积分兑换</h1>
+<%=flash[:notice]%>
 <%unless @pending_orders.blank?%>
 <%= form_tag(:action => "ship") do%>
 <table cellpadding="5" cellspacing="0">

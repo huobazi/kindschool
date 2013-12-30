@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  kindergarten_id: 1
+  resource_id: MyString
+  resource_id: 1
+  status: 1
+  stage_credit: MyString
+
+two:
+  user_id: 1
+  kindergarten_id: 1
+  resource_id: MyString
+  resource_id: 1
+  status: 1
+  stage_credit: MyString

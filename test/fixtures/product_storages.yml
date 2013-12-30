@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  product_id: 1
+  count: 1
+  tp: 1
+  note: MyText
+
+two:
+  product_id: 1
+  count: 1
+  tp: 1
+  note: MyText

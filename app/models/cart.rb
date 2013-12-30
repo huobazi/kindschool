@@ -23,4 +23,5 @@ class Cart
  	@items = []
  	@total_credit = 0.0
   end
+  
 end

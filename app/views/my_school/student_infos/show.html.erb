@@ -151,6 +151,15 @@
                 </label>
               </div>
             </div>
+            <div class="control-group">
+              <label class="control-label" >手机号码是否重复</label>
+              <div class="controls">
+                <label class="show_label">
+                  <%= @student_info.try(:user).try(:repeat) ? "是" : "否" %>
+                </label>
+              </div>
+            </div>
+
 
           </div>
 
