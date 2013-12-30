@@ -5,7 +5,7 @@ class CreatePrizeLogs < ActiveRecord::Migration
       t.integer :kindergarten_id
       t.string :resource_id
       t.integer :resource_id
-      t.integer :status
+      t.integer :status,:default=>0
       t.string :stage_credit
 
       t.timestamps
