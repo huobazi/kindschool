@@ -16,6 +16,7 @@
       <div class="info">
         <em><%= news.creater.try(:name) %></em>
         <em>新闻发布于</em><abbr><%= news.try(:start_data).try(:to_short_datetime) %></abbr>
+        <em><%= "总共浏览了#{news.show_count}次" if news.show_count %></em>
       </div>
     </div>
   </div>
