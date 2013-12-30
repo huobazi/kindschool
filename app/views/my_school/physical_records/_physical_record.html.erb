@@ -4,15 +4,15 @@
   <% else %>
     <div class="pull-left place place-input-position"></div>
   <% end %>
-  <div class="avatar pull-left"><img src="<%= physical_record.student_info.try(:user) && physical_record.student_info.user.asset_logo ? physical_record.student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
+  <div class="avatar pull-left"><img src="<%= physical_record.student_info && physical_record.student_info.user && physical_record.student_info.user.asset_logo ? physical_record.student_info.user.asset_logo.public_filename(:thumb) : '/t/colorful/user_logo.png' %>" width="83" alt="头像"/>
   </div>
   <div class="right_info">
     <div class="pull-right">
       <% if choose_operate_show("my_school/physical_records/show") %>
-        <a href="<%= my_school_physical_record_path(physical_record) %>" title="查看<%= physical_record.student_info_label %>的体检记录" alt="要看<%= physical_record.student_info_label %>的体检记录"><i class="img-icon icon-eye-open"></i></a>
+        <a href="<%= my_school_physical_record_path(physical_record) %>" title="查看<%= physical_record.student_info_label %>的体检记录" alt="要看<%= physical_record.student_info_label %>的体检记录">查看</i></a>
       <% end %>
       <% if choose_operate_show("my_school/physical_records/edit") %>
-        <a href="<%= edit_my_school_physical_record_path(physical_record) %>" title="编辑<%= physical_record.student_info_label %>的体检记录" alt="编辑<%= physical_record.student_info_label %>的体检记录"><i class="img-icon icon-edit"></i></a>
+        <a href="<%= edit_my_school_physical_record_path(physical_record) %>" title="编辑<%= physical_record.student_info_label %>的体检记录" alt="编辑<%= physical_record.student_info_label %>的体检记录">编辑</i></a>
       <% end %>
     </div>
     <div class="infos">
