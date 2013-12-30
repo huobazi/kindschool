@@ -6,11 +6,14 @@ ActiveAdmin.register PersonalCredit do
     column :user
     column :credit
     column :kindergarten
+    column :heap_credit
     default_actions
   end
 
   filter :user
   filter :kindergarten
+  filter :credit
+  filter :heap_credit
 
 
   form do |f|
@@ -27,6 +30,7 @@ ActiveAdmin.register PersonalCredit do
       row :user
       row :credit
       row :kindergarten
+      row :heap_credit
     end
   end
 end

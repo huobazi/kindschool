@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  tp: 1
+  name: MyString
+  personal_credit_id: 
+  credit_num: 1
+
+two:
+  tp: 1
+  name: MyString
+  personal_credit_id: 
+  credit_num: 1
