@@ -16,7 +16,9 @@ ActiveAdmin.register Prize do
     f.inputs "奖品" do
       f.input :name, :required => true
       f.input :beep
-      f.input :content
+      f.inputs "奖品内容" do
+        f.kindeditor :content,:allowFileManager => false
+      end
       f.input :content_url,:as=>:file,:required => true
     end
     f.actions

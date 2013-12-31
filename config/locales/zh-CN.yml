@@ -269,7 +269,21 @@ zh-CN:
       report: "举报"
       shop_config: "商城配置"
       credit_grade: "积分等级"
+      prize: "奖品"
+      prize_log: "奖品列表"
     attributes:
+      prize_log:
+        kindergarten: "幼儿园"
+        resource: "资源对象"
+        stage_credit: "阶段积分"
+        status: "状态"
+      prize:
+        beep: "提示音"
+        beep_url: "提示音地址"
+        content: "内容"
+        content_url: "内容地址"
+        name: "名称"
+        status: "状态"
       shop_config:
         name: "名称"
         number: "编码"
