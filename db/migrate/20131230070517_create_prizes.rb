@@ -4,9 +4,9 @@ class CreatePrizes < ActiveRecord::Migration
       t.string :name
       t.string :beep
       t.string :beep_url
-      t.string :content
+      t.text :content
       t.string :content_url
-      t.integer :status
+      t.integer :status,:default=>0
 
       t.timestamps
     end

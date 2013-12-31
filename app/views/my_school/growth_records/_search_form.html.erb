@@ -6,6 +6,12 @@
     <%= text_field :growth_record,:start_at_greater_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:start_at_greater_than_or_equal_to] if params[:growth_record] }"  %>
     <b>结束时间：</b>
     <%= text_field :growth_record,:end_at_less_than_or_equal_to,:style=>"width:100px;" ,:value=>"#{params[:growth_record][:end_at_less_than_or_equal_to] if params[:growth_record] }"  %>
+    <% if @all_squads %>
+      <br />
+      <br />
+      <b>班级：</b>
+      <%= select_tag("growth_record[student_info_squad_id_equals]", options_for_select(([["全部",""]]+@all_squads),(params[:growth_record].blank? ?  "" : params[:growth_record][:student_info_squad_id_equals])),:style=>"width:100px;margin-top: 10px;") %>
+    <% end %>
     <%= submit_tag "搜索" , :class => "btn btn-primary" %>
   <%end%>
 </div>

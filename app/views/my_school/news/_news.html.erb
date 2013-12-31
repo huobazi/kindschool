@@ -2,9 +2,9 @@
   <div class="pull-left"><input type="checkbox" class="check" name="news[]" id="news_<%= news.id %>" value="<%= news.id %>" /></div>
   <div class="right_info" style="padding-left: 10px;">
     <div class="pull-right">
-      <a title="查看<%= news.title %>" alt="要看<%= news.title %>" href="<%= my_school_news_path(news) %>"><i class="img-icon icon-eye-open"></i></a>
+      <a title="查看<%= news.title %>" alt="要看<%= news.title %>" href="<%= my_school_news_path(news) %>">查看</i></a>
       <% if choose_operate_show("my_school/news/edit") %>
-        <a title="编辑<%= news.title %>" alt="编辑<%= news.title %>" href="<%= edit_my_school_news_path(news) %>"><i class="img-icon icon-edit"></i></a>
+        <a title="编辑<%= news.title %>" alt="编辑<%= news.title %>" href="<%= edit_my_school_news_path(news) %>">编辑</a>
       <% end %>
     </div>
     <div class="infos">
@@ -16,6 +16,7 @@
       <div class="info">
         <em><%= news.creater.try(:name) %></em>
         <em>新闻发布于</em><abbr><%= news.try(:start_data).try(:to_short_datetime) %></abbr>
+        <em><%= "总共浏览了#{news.show_count}次" if news.show_count %></em>
       </div>
     </div>
   </div>

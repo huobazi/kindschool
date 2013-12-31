@@ -9,8 +9,10 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
       @growth_records = GrowthRecord.search(params[:growth_record] || {}).where("tp = ? and student_info_id = ?", 0, current_user.student_info.id).page(params[:page] || 1)
     elsif current_user.get_users_ranges[:tp] == :teachers
       @growth_records = GrowthRecord.search(params[:growth_record] || {}).joins("INNER JOIN student_infos as s on(s.id = growth_records.student_info_id)").where("growth_records.tp = 0 and ( s.squad_id in (select teachers.squad_id from teachers where teachers.staff_id = ?) or creater_id = ? )",current_user.staff.id, current_user.id).page(params[:page] || 1)
+      @all_squads = current_user.staff.squads.where(:graduate=>false).collect{|x|["#{x.name}   #{x.historyreview}",x.id]}
     else
       @growth_records = @kind.growth_records.search(params[:growth_record] || {}).where(:tp => 0).page(params[:page] || 1)
+      @all_squads = @kind.squads.where(:graduate=>false).collect{|x|["#{x.name}   #{x.historyreview}",x.id]}
     end
     store_search_location
     if request.xhr?
