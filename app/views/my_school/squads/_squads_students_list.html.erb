@@ -32,14 +32,16 @@
           <th>幼儿园公共账号</th>
         </tr>
         <% @squad.student_infos.each do |student| %>
-          <tr>
-            <td><%= student.user.name %></td>
-            <td><%= student.user.login %></td>
-            <td><%= student.user.gender == "M" ? "女" : "男"  %></td>
-            <td><%= student.birthday ? student.birthday.to_short_datetime : "" %></td>
-            <td><%= student.user.weiyi_code.blank? ? "未绑定" : "已绑定" %></td>
-            <td><%= student.user.weixin_code.blank? ? "未绑定" : "已绑定" %></td>
-          </tr>
+          <% if student.user %>
+            <tr>
+              <td><%= student.user.name %></td>
+              <td><%= student.user.login %></td>
+              <td><%= student.user.gender == "M" ? "女" : "男"  %></td>
+              <td><%= student.birthday ? student.birthday.to_short_datetime : "" %></td>
+              <td><%= student.user.weiyi_code.blank? ? "未绑定" : "已绑定" %></td>
+              <td><%= student.user.weixin_code.blank? ? "未绑定" : "已绑定" %></td>
+            </tr>
+          <% end %>
         <% end %>
       </table>
     <% else %>
