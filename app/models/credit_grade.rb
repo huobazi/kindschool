@@ -23,12 +23,12 @@ class CreditGrade < ActiveRecord::Base
   end
 
   def credit_label
-    "#{down_credit}~#{up_credit}" if down_credit? && up_credit?
+    "#{down_credit}~#{up_credit}" if down_credit && up_credit
   end
 
   protected
   def must_large_than_down_credit
-    if down_credit? && up_credit? && down_credit >= up_credit
+    if down_credit && up_credit && down_credit >= up_credit
       errors.add(:up_credit, "积分上限的值必须大于积分下限的值")
     end
   end

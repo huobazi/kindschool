@@ -15,7 +15,7 @@ class PersonalCredit < ActiveRecord::Base
   end
 
   def credit_grade_name
-    credit_grade.name if credit_grade.name?
+    credit_grade.name if credit_grade.name
   end
 
   def credit_grade
