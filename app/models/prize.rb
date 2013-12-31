@@ -9,7 +9,7 @@ class Prize < ActiveRecord::Base
   	if self.beep_changed?
   	  if self.beep_url.blank?
          name ||= Digest::MD5.hexdigest("#{Time.now.to_i.to_s}")
-  	     self.beep_url = "prizes/"+"#{name}.mp3"
+  	     self.beep_url = "/public/prizes/"+"#{name}.mp3"
   	  end
   	   Sound.output_beep_url(self.beep,self.beep_url)
     end

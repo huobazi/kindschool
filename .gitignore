@@ -18,6 +18,7 @@
 /public/assets/*
 /public/activity_imgs/*
 /public/uploads/*
+/public/prizes/*
 /public/photo_galleries/*
 /Gemfile.lock
 # Ignore all logfiles and tempfiles.
@@ -25,4 +26,4 @@
 /tmp
 /config/email.yml
 /.idea/*
-/prizes/*
+
