@@ -24,3 +24,5 @@
 /log/*.log
 /tmp
 /config/email.yml
+/.idea/*
+/prizes/*
