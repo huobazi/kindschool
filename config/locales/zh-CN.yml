@@ -271,7 +271,11 @@ zh-CN:
       credit_grade: "积分等级"
       prize: "奖品"
       prize_log: "奖品列表"
+      audio: "资料音频"
     attributes:
+      audio:
+        kindergarten: "幼儿园"
+        user: "用户"
       prize_log:
         kindergarten: "幼儿园"
         resource: "资源对象"

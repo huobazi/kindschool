@@ -14,5 +14,4 @@ class Prize < ActiveRecord::Base
   	   Sound.output_beep_url(self.beep,self.beep_url)
     end
   end
-
 end
