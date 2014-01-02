@@ -1027,6 +1027,7 @@ zh-CN:
         process: "处理情况"
         process_label: "处理情况"
         resource_type: "举报的对象"
+        resource_type_label: "举报的对象"
         resource_id: "举报的对象id"
         kindergarten: "幼儿园"
         resource_link: "举报对象链接"

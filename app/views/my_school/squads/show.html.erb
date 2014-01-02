@@ -125,11 +125,11 @@
         </form>
       </div>
     </div>
-    <%=render "squads_teachers_list"%>
-    <%if @flag==true%>
-    <%=render "squads_students_list" %>
-    <%=render "virtual_squads_students_list" %>
-    <%end%>
+    <%= render "squads_teachers_list" %>
+    <% if @flag == true %>
+      <%= render "squads_students_list" %>
+      <%= render "virtual_squads_students_list" %>
+    <% end %>
   </div>
 
 </div>
