@@ -10,15 +10,15 @@ ActiveAdmin.register CreditGrade do
   end
 
   filter :tp, :as => :select, :collection => CreditGrade::TP_DATA.invert
-  filter :from_credit
+  filter :down_credit
   filter :up_credit
   filter :name
 
   form do |f|
     f.inputs "积分等级管理" do
       f.input :tp, :as=>:select,:collection=>CreditGrade::TP_DATA.invert, :required => true
-      f.input :down_credit
-      f.input :up_credit
+      f.input :down_credit, :required => true
+      f.input :up_credit, :required => true
       f.input :name
     end
     f.inputs "上传积分等级图片", :for => [:page_img, f.object.page_img || PageImg.new] do |page_img|

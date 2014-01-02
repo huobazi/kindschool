@@ -19,7 +19,7 @@ ActiveAdmin.register Report do
   filter :process, :as => :select, :collection => Report::PROCESS.invert
   filter :informants
   filter :kindergarten
-  filter :resource_type, :as => :select, :collection => I18n.t("activerecord.models").invert { |k,v| r = {}; r[k] = v.to_s; r}
+  filter :resource_type
   filter :resource_id
   filter :created_at
 
