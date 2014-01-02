@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>微一资讯</title>
+    <%= stylesheet_link_tag "app_bootstrap", :media => "all" %>
+    <%= stylesheet_link_tag "eggs", :media => "all" %>
+    <%= javascript_include_tag "eggs" %>
+    <%= csrf_meta_tags %>
+    <script language='javascript' type="text/javascript">
+      function ResumeError() {
+        return true;
+      }
+      window.onerror = ResumeError;
+    </script>
+    <!--[if IE 6]>
+    <%= javascript_include_tag "DD_belatedPNG" %>
+<script type="text/javascript">
+  /* EXAMPLE */
+  DD_belatedPNG.fix('div, ul, img, li, input , a');
+</script>
+<![endif]-->
+    <meta charset="utf-8"/>
+  </head>
+  <body onload="ResumeError()">
+    <%= yield %>
+    <div style="display: none;">
+      <script type="text/javascript">
+        try{
+          var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cdiv id='cnzz_stat_icon_1000041998'%3E%3C/div%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000041998%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+        }catch(ex){}
+      </script>
+    </div>
+  </body>
+</html>

@@ -16,7 +16,6 @@ class CreateProducts < ActiveRecord::Migration
       t.string :meaning
       t.integer :shop_id,:default=>0
       t.integer :status,:default=>0
-
       t.timestamps
     end
   end
