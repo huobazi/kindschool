@@ -22,6 +22,8 @@ School::Application.routes.draw do
     end
     resources :eggs do
       get :get_egg,:on=>:collection
+      get :prizes,:on=>:collection
+      get :get_prize,:on=>:member
     end
     resources :reports do
       get :create, :on => :collection
