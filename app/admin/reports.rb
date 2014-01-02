@@ -4,26 +4,36 @@ ActiveAdmin.register Report do
 
   index do
     column :informants
-    column :process_label
     column :kindergarten
     # column :content do |report|
     #   truncate(report.content)
     # end
-    column :resource_type
-    column :resource_id
+    column :resource_type_label
     column :resource_link do |report|
-      link_to "查看举报对象的内容", :controller => "#{report.resource_type.downcase.pluralize}", :action => "show", :id => report.resource_id
+      link_to "查看举报对象的内容", :controller => "#{report.resource_type.underscore.pluralize}", :action => "show", :id => report.resource_id
     end
+    column :process_label
     default_actions
   end
 
-  filter :content
   filter :process, :as => :select, :collection => Report::PROCESS.invert
   filter :informants
   filter :kindergarten
-  filter :resource_type
+  filter :resource_type, :as => :select, :collection => I18n.t("activerecord.models").invert { |k,v| r = {}; r[k] = v.to_s; r}
   filter :resource_id
   filter :created_at
+
+
+  form do |f|
+    f.inputs "举报的内容" do
+      f.input :informants
+      f.input :kindergarten
+      f.input :resource_type_label, :as => :string, :input_html => { :disabled => true }
+      f.input :resource_id, :as => :string, :input_html => { :disabled => true }
+      f.input :process, :as => :select, :collection => Report::PROCESS.invert
+    end
+    f.actions
+  end
 
   show do
     attributes_table do
@@ -31,7 +41,7 @@ ActiveAdmin.register Report do
       row :process_label
       row :kindergarten
       row :content
-      row :resource_type
+      row :resource_type_label
       row :resource_id
     end
   end

@@ -1,6 +1,6 @@
 #encoding:utf-8
 class Report < ActiveRecord::Base
-  attr_accessible :content, :informants_id, :process, :resource_id, :resource_type
+  attr_accessible :content, :informants_id, :process, :resource_id, :resource_type, :kindergarten_id
 
   belongs_to :informants, :class_name => 'User', :foreign_key => "informants_id"
   belongs_to :kindergarten
@@ -25,6 +25,10 @@ class Report < ActiveRecord::Base
     self.resource_type = resource_type
     self.kindergarten = kind
     self.save
+  end
+
+  def resource_type_label
+    I18n.t("activerecord.models.#{resource_type.underscore}")
   end
 
 end
