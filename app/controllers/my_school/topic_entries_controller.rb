@@ -1,9 +1,12 @@
 #encoding:utf-8
+#论坛帖子的回复
 class  MySchool::TopicEntriesController < MySchool::ManageController
   def create
     @topic_entry = TopicEntry.new(params[:topic_entry])
 
     @topic = Topic.find_by_id(params[:topic_entry][:topic_id])
+   
+
 
     if @topic.nil?
       flash[:error] = "非法操作"
