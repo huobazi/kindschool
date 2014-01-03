@@ -34,7 +34,7 @@
 </script>
 <![endif]-->
   </head>
-  <body style="background-color: #d9edfa" onload="ResumeError()">
+  <body style="background-color: <%= @shop_tp == 0 ? "#d9edfa" : "#F9EDFA" %>" onload="ResumeError()">
     <div  class="wrapper">
       <div class="main_work">
         <%= yield %>

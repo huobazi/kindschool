@@ -44,14 +44,14 @@ class SmsLog < ActiveRecord::Base
         buy_count = SmsLog.where(["id>:smslog AND tp=1 AND kindergarten_id=:kind",{:kind=>kind.id,:smslog=>smslog.id}]).sum(:count)
         vip_count = SmsLog.where(["id>:smslog AND tp=4 AND kindergarten_id=:kind",{:kind=>kind.id,:smslog=>smslog.id}]).sum(:count)
         balance_count = 0 #本月月结短信
-        if use_count > free_count
-          balance_count = (smslog.count + buy_count + free_count) - use_count
+        if use_count.abs > free_count
+          balance_count = (smslog.count + buy_count + free_count) + use_count
           SmsLog.create(:count=>balance_count,:kindergarten_id=>kind.id,:tp=>2,:note=>"月结短信#{balance_count}条。上月月结条数:#{smslog.count}。上月免费条数:#{free_count}。使用条数:#{use_count}。购买条数:#{buy_count}。付费用户条数:#{vip_count}")
           SmsLog.create(:count=>kind.sms_count,:kindergarten_id=>kind.id,:tp=>3,:note=>"每月免费短信#{kind.sms_count}条")
           kind.update_attributes(:balance_count=> (kind.sms_count + balance_count)) #更新幼儿园的剩余短信数量
         else
-          balance_count = (smslog.count + buy_count + free_count) - use_count
-          surplus_count = free_count - use_count  #剩余免费条数
+          balance_count = (smslog.count + buy_count + free_count) + use_count
+          surplus_count = free_count + use_count  #剩余免费条数
           SmsLog.create(:count=>(smslog.count + buy_count),:kindergarten_id=>kind.id,:tp=>2,:note=>"月结短信#{balance_count}条。上月月结条数:#{smslog.count}。上月免费条数:#{free_count}。使用条数:#{use_count}。购买条数:#{buy_count}。付费用户条数:#{vip_count}")
           SmsLog.create(:count=>surplus_count,:kindergarten_id=>kind.id,:tp=>3,:note=>"每月剩余免费短信#{surplus_count}条")
           replenish_count = 0

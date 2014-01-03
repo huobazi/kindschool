@@ -104,7 +104,7 @@ class User < ActiveRecord::Base
       if business.nil?
        return false unless self.credit_logs.where("tp= ?  and  created_at between  ? and ?  ",tp,time1,time2).blank?
       else
-       return false unless self.credit_logs.where("tp= ?  and  created_at between  ? and ? and business_type=? and business_id= ? ",tp,time1,time2,business.class.to_s,business.id).blank?
+       return false unless self.credit_logs.where("tp= ?  and  business_type=? and business_id= ? ",tp,business.class.to_s,business.id).blank?
       end 
      end
       credit = personal_credit.credit + login_credit.credit

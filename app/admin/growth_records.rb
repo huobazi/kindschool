@@ -54,7 +54,7 @@ ActiveAdmin.register GrowthRecord do
       end
       div do
         panel "评论" do
-          render :partial=>"/my_school/comments/load_comments" ,:locals=>{:resource_type=>record.class.to_s,:resource_id=>record.id}
+          render :partial=>"/my_school/comments/load_comments" ,:locals=>{:resource_type=>record.class.to_s,:resource_id=>record.id}, :layout => false
         end
       end
     end

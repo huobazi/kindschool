@@ -6,7 +6,7 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
 
     @topic = Topic.find_by_id(params[:topic_entry][:topic_id])
    
-
+    
 
     if @topic.nil?
       flash[:error] = "非法操作"
@@ -15,6 +15,15 @@ class  MySchool::TopicEntriesController < MySchool::ManageController
     end
 
     if @topic_entry.save
+      #自己回复的不能进行加积分
+     if @topic.creater.id != current_user.id
+       if current_user.save_user_credit("topic",1,@topic)
+        #反馈意见的要给发帖人加分
+        @topic.creater.save_creater_credit("topic",@topic) if @topic.creater
+
+       end
+     end
+
       redirect_to my_school_topic_path(@topic_entry.topic_id, page: @topic.last_page, anchor: "topic_entry_#{@topic_entry.id}")
     else
       render :action => "new"
