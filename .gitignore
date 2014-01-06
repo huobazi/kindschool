@@ -19,6 +19,7 @@
 /public/activity_imgs/*
 /public/uploads/*
 /public/prizes/*
+public/audios/*
 /public/photo_galleries/*
 /public/contents/*
 /Gemfile.lock
