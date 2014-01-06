@@ -107,3 +107,10 @@ Template.transaction do
     print "."
   end
 end
+  puts "\n后台积分配置"  
+  credit_configs = YAML.load_file("#{Rails.root}/db/basic_data/credit_config.yml")
+  unless credit_configs.blank?
+   credit_configs.each do |k,v|
+     CreditCofig.create(v)
+    end
+  end

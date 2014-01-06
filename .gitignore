@@ -20,6 +20,7 @@
 /public/uploads/*
 /public/prizes/*
 /public/photo_galleries/*
+/public/contents/*
 /Gemfile.lock
 # Ignore all logfiles and tempfiles.
 /log/*.log
