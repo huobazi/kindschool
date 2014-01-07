@@ -30,6 +30,7 @@ class StudentInfo < ActiveRecord::Base
     phone = []
     unexist_squads = []
     number = []
+    user_exist_phone=[] #
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       if row["手机号码"].blank? || row["班级名称"].blank?
@@ -39,7 +40,11 @@ class StudentInfo < ActiveRecord::Base
         phone << row["手机号码"].gsub!(/\s*$/, '')
       end
         if user = User.find_by_phone(row["手机号码"].gsub!(/\s*$/, ''))
-          if !user.repeat || row["号码能够重复"] != "是"
+          user_exist_phone<<user.phone
+          if row["号码能够重复"] != "是"
+          # if !user.repeat || row["号码能够重复"] != "是"
+          #   exist_phone << user.phone
+          # end
             exist_phone << user.phone
           end
         end
@@ -48,8 +53,8 @@ class StudentInfo < ActiveRecord::Base
         end
     end
     repeat_phone=phone.dups
-    if !number.blank? || !exist_phone.blank? || !unexist_squads.blank? || !repeat_phone.blank?
-      return number,exist_phone,unexist_squads,repeat_phone
+    if !number.blank? || !exist_phone.blank? || !unexist_squads.blank? || !repeat_phone.blank? || !user_exist_phone.blank?
+      return number,exist_phone,unexist_squads,repeat_phone,user_exist_phone
     end
   end
 

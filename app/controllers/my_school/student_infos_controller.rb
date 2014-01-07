@@ -46,9 +46,10 @@ class  MySchool::StudentInfosController < MySchool::ManageController
  
   def import
     unless params[:file].blank?
-      x,a,b,c=StudentInfo.verification_import(params[:file],@kind.id)
+      x,a,b,c,d=StudentInfo.verification_import(params[:file],@kind.id)
       if x.blank? && a.blank? && b.blank? && c.blank?
         StudentInfo.import(params[:file],@kind.id)
+        User.update_repeat_phone(d) unless d.blank?
         redirect_to my_school_student_infos_path(:importing=>1,:add_node=>params[:add_node]), :notice=> "学生信息导入成功."
         return
       else
