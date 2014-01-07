@@ -247,6 +247,19 @@ class User < ActiveRecord::Base
     mymenus
   end
 
+  #
+  def self.update_repeat_phone(d)
+    (d||[]).each do |phone|
+     if users = User.where(:phone=>phone)
+      users.each do |user|
+        user.update_attributes(:repeat=>true)
+      end
+     end
+    end
+  end
+
+
+
 
   #获取所有关联班级
   def get_users_squads
