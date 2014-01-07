@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
 #  validates :login, :uniqueness => true
   validates_uniqueness_of_without_deleted :login
   validates_uniqueness_of_without_deleted :email,:scope => :kindergarten_id, :allow_blank => true
-#  validates_uniqueness_of_without_deleted :phone,:scope => :kindergarten_id, :allow_blank => true ,:if=>:repeat_allow?
+  validates_uniqueness_of_without_deleted :phone,:scope => :kindergarten_id, :allow_blank => true ,:if=>:repeat_allow?
 
 
   GENDER_DATA = {"M"=>"女","G"=>"男"}
