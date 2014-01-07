@@ -733,6 +733,7 @@ zh-CN:
         created_at: "创建时间"
         updated_at: "更新时间"
         accessed_at: "最近访问时间"
+        topic_category_id: "所属论坛分类"
       topic_entry:
         topic: "回复的贴子"
         content: "内容"

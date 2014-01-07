@@ -1,0 +1,15 @@
+credit_config1:
+  number: "topic"
+  name: "论坛回复配置"
+credit_config2:
+  number: "growth_record"
+  name: "宝宝在家在园的配置"
+credit_config3:
+  number: "comment"
+  name: "回复菜谱，成长记录，照片集锦积分配置"
+credit_config4:
+  number: "prize_credit"
+  name: "砸金蛋的积分配置"
+credit_config5:
+  number: "login"
+  name: "登录的积分配置"
