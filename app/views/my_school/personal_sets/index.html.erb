@@ -79,6 +79,7 @@
               <%if set.resource_type=="PhotoGallery"%>
                 <img src="<%= set.resource.try(:public_filename) %>" width="256px" height="256px"  class="img-rounded" />
               <%else%>
+                <h1>
                 <% if set.resource.tp == 1 && !set.resource.audio.blank? %>
                   <object width="100" height="20" classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
                     <param name="src" value="<%=set.resource.audio%>">
@@ -91,7 +92,8 @@
                     <embed src="<%=set.resource.audio%>" width="100" height="20" controller="true" align="middle" bgcolor="black" target="myself" type="video/quicktime" pluginspage="http://www.apple.com/quicktime/download/index.html"></embed>
                   </object>
                 <% end %>
-                <h1><%=set.resource.try(:content)%></h1>
+                <%=set.resource.try(:content)%>
+                </h1>
               <%end%>
               <%if @flag=="student"%>
                 <%=link_to "添加到成长记录" , new_my_school_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
