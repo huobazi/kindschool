@@ -269,7 +269,7 @@ class Weixin::ApiController < Weixin::BaseController
                 audio = weixin_token.down_media(xml_data[:MediaId])
                 puts "=============audio=====#{audio}"
                 if audio != "error"
-                  text = TextSet.new(:content=>xml_data[:Content],:tp=>1,:audio=>audio)
+                  text = TextSet.new(:content=>xml_data[:Recognition],:tp=>1,:audio=>audio)
                   personal = PersonalSet.new()
                   personal.resource = text
                   user.personal_sets << personal
