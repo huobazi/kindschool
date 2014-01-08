@@ -2,6 +2,7 @@
 require 'net/http'
 require 'net/https'
 require 'uri'
+require 'open-uri'
 class WeixinToken < ActiveRecord::Base
   attr_accessible :number,:appid, :secret, :access_token, :expires_in, :expires_at
 
@@ -9,7 +10,7 @@ class WeixinToken < ActiveRecord::Base
   def get_access_token(load_token=false)
     if !appid.blank? && !secret.blank?
       if (Time.now.to_i - expires_at.to_i > expires_in) || load_token
-        opt = {:grant_type => "client_credential1", :appid => self.appid ,:secret =>self.secret }
+        opt = {:grant_type => "client_credential", :appid =>self.appid ,:secret =>self.secret }
         url = URI.parse(WEBSITE_CONFIG["weixin_token_url"])
         begin
           url.query = URI.encode_www_form(opt)
@@ -34,15 +35,14 @@ class WeixinToken < ActiveRecord::Base
       url = URI.parse(WEBSITE_CONFIG["weixin_media_down_url"])
       begin
         url.query = URI.encode_www_form(opt)
-        response = WeixinToken.http_get(url, opt)
-        if (200..210).include?(response.code.to_i)
-          puts "=========response====#{response.inspect}"
-#          data = JSON(response.body)
-#          if data["errcode"].blank?
-#
-#          end
+        file_url = "/audios/weixin/#{Time.now.to_i}-#{media_id}.amr"
+        file_patch =  "#{Rails.root}/public#{file_url}"
+        open(url) do |http|
+          File.open(file_patch,'wb') do |f|
+            f.syswrite(http.read)
+          end
         end
-        return "error"
+        return file_url
       rescue Exception => e
         p e.message
         return "error"
@@ -75,7 +75,7 @@ class WeixinToken < ActiveRecord::Base
   
   def self.call_cloud(http,req,url,json_data,username,password)
     #    puts "Contacting #{url.scheme}://#{url.host}"
-    req.set_form_data(json_data)
+    #    req.set_form_data(json_data)
     http = http.new(url.host, url.port)
     req.basic_auth username,password if !username.blank? && !password.blank?
     if url.scheme == "https"
