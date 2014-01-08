@@ -272,7 +272,15 @@ zh-CN:
       prize: "奖品"
       prize_log: "奖品列表"
       audio: "资料音频"
+      weixin_token: "服务号token"
     attributes:
+      weixin_token:
+        number: "编码"
+        appid: "appid"
+        secret: "secret"
+        access_token: "token号"
+        expires_in: "有效时间(秒)"
+        expires_at: "获取时间"
       audio:
         kindergarten: "幼儿园"
         user: "用户"
