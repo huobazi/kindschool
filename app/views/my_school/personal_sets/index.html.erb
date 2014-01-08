@@ -80,7 +80,7 @@
               <img src="<%= set.resource.try(:public_filename) %>" width="256px" height="256px"  class="img-rounded" />
             <%else%>
               <% if set.resource.tp == 1 && !set.resource.audio.blank? %>
-              <embed src="<%=set.resource.audio%>" width="50" height="15" type="audio/mpeg" loop="false" autostart="false" ></embed>
+              <EMBED src="<%=set.resource.audio%>" width="50" height="15" type="audio/mpeg" loop="false" autostart="false" />
               <% end %>
               <h1><%=set.resource.try(:content)%></h1>
             <%end%>
