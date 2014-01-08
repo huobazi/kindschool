@@ -1,17 +1,17 @@
 <%= stylesheet_link_tag    "css/style_v.css" %> 
 <%= javascript_include_tag "js/jquery.timelinr-0.9.53.js" %>
-  <script>
-    $(function(){
-      $().timelinr({
-        orientation:  'vertical',
-        issuesSpeed:  300,
-        datesSpeed:   100,
-        arrowKeys:    'true',
-        startAt:    3
-      })
-    });
-  </script>
-  <script type="text/javascript">
+<script>
+  $(function(){
+    $().timelinr({
+      orientation:  'vertical',
+      issuesSpeed:  300,
+      datesSpeed:   100,
+      arrowKeys:    'true',
+      startAt:    3
+    })
+  });
+</script>
+<script type="text/javascript">
   jQuery(function() {
     $('#personal_set_created_at_greater_than_or_equal_to').datepicker({
       language: "zh-CN",
@@ -48,15 +48,15 @@
       <ul class="work_action">
         <li>
 
-        <%=(link_to "<div class='work_action_add'>
+          <%=(link_to "<div class='work_action_add'>
   </div><div class='work_action_add_move'>
   </div>".html_safe ,new_my_school_personal_set_path)%>
-  <% 
-    #if choose_operate_show('my_school/personal_sets/new')
-  %>
+          <%
+          #if choose_operate_show('my_school/personal_sets/new')
+          %>
 
-  </li>
-</ul>
+        </li>
+      </ul>
     </div>
 
     <%= render partial: "search_form" %>
@@ -68,19 +68,40 @@
         <ul id="dates">
           <% (@sets || []).each do |set| %>
             <li>
-            <a href="#<%=set.created_at.try(:to_long_datetime)%>" class="selected"><%=set.created_at.try(:to_long_datetime)%>
-            </a>
+              <a href="#<%=set.created_at.try(:to_long_datetime)%>" class="selected"><%=set.created_at.try(:to_long_datetime)%>
+              </a>
             </li>
           <%end%>
         </ul>
         <ul id="issues">
           <% (@sets || []).each do |set| %>
             <li id="<%=set.created_at.try(:to_long_datetime)%>" class="selected">
-            <%if set.resource_type=="PhotoGallery"%>
-              <img src="<%= set.resource.try(:public_filename) %>" width="256px" height="256px"  class="img-rounded" />
-            <%else%>
-              <% if set.resource.tp == 1 && !set.resource.audio.blank? %>
-              <EMBED src="<%=set.resource.audio%>" width="50" height="15" type="audio/mpeg" loop="false" autostart="false" />
+              <%if set.resource_type=="PhotoGallery"%>
+                <img src="<%= set.resource.try(:public_filename) %>" width="256px" height="256px"  class="img-rounded" />
+              <%else%>
+                <% if set.resource.tp == 1 && !set.resource.audio.blank? %>
+                <%#*<EMBED src="<%=set.resource.audio%>" width="50" height="15" type="audio/mpeg" loop="false" autostart="false" />%>
+                <object id="NSPlay" width=400 height=300 classid="CLSID:22d6f312-b0f6-11d0-94ab-0080c74c7e95" codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,4,5,715"
+                        standby="Loading Microsoft Windows Media Player components..." type="application/x-oleobject" align="right" hspace="5">
+                  <param name="AutoRewind" value=1>
+                  <param name="FileName" value="<%=set.resource.audio%>">
+                  <param name="ShowControls" value="1">
+                  <param name="ShowPositionControls" value="0">
+                  <param name="ShowAudioControls" value="1">
+                  <param name="ShowTracker" value="0">
+                  <param name="ShowDisplay" value="0">
+                  <param name="ShowStatusBar" value="0">
+                  <param name="ShowGotoBar" value="0">
+                  <param name="ShowCaptioning" value="0">
+                  <param name="AutoStart" value=1>
+                  <param name="Volume" value="100">
+                  <param name="AnimationAtStart" value="0">
+                  <param name="TransparentAtStart" value="0">
+                  <param name="AllowChangeDisplaySize" value="0">
+                  <param name="AllowScan" value="0">
+                  <param name="EnableContextMenu" value="0">
+                  <param name="ClickToPlay" value="0">
+                </object>
               <% end %>
               <h1><%=set.resource.try(:content)%></h1>
             <%end%>
