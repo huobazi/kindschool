@@ -267,9 +267,8 @@ class Weixin::ApiController < Weixin::BaseController
             if user = User.find_by_weiyi_code(xml_data[:FromUserName])
               if weixin_token = WeixinToken.find_by_number("weiyizixun")
                 audio = weixin_token.down_media(xml_data[:MediaId])
-                puts "=============audio=====#{audio}"
                 if audio != "error"
-                  text = TextSet.new(:content=>xml_data[:Recognition],:tp=>1,:audio=>audio)
+                  text = TextSet.new(:content=>xml_data[:Recognition],:tp=>1,:audio=>"#{audio}.amr",:audio_turn=>"#{audio}.mp3")
                   personal = PersonalSet.new()
                   personal.resource = text
                   user.personal_sets << personal

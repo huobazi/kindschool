@@ -35,14 +35,16 @@ class WeixinToken < ActiveRecord::Base
       url = URI.parse(WEBSITE_CONFIG["weixin_media_down_url"])
       begin
         url.query = URI.encode_www_form(opt)
-        file_url = "/audios/weixin/#{Time.now.to_i}-#{media_id}.amr"
-        file_patch =  "#{Rails.root}/public#{file_url}"
+        auto_url = "/audios/weixin/#{Time.now.to_i}-#{media_id}"
+        file_patch =  "#{Rails.root}/public#{auto_url}.amr"
+        file_turn_patch =  "#{Rails.root}/public#{auto_url}.mp3"
+        `ffmpeg -i #{file_patch} #{file_turn_patch}`
         open(url) do |http|
           File.open(file_patch,'wb') do |f|
             f.syswrite(http.read)
           end
         end
-        return file_url
+        return auto_url
       rescue Exception => e
         p e.message
         return "error"
