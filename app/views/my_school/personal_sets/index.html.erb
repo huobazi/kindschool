@@ -80,19 +80,23 @@
                 <img src="<%= set.resource.try(:public_filename) %>" width="256px" height="256px"  class="img-rounded" />
               <%else%>
                 <h1>
-                <% if set.resource.tp == 1 && !set.resource.audio.blank? %>
-                  <object width="100" height="20" classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="/weiyi/qtplugin.cab">
-                    <param name="src" value="<%=set.resource.audio%>">
-                    <param name="controller" value="true">
-                    <param name="type" value="video/quicktime">
-                    <param name="autoplay" value="false">
-                    <param name="target" value="myself">
-                    <param name="bgcolor" value="black">
-                    <param name="pluginspage" value="http://www.apple.com/quicktime/download/index.html">
-                    <embed src="<%=set.resource.audio%>" autoplay="false" width="200" height="50" controller="true" align="middle" bgcolor="black" target="myself" type="video/quicktime" pluginspage="http://www.apple.com/quicktime/download/index.html"></embed>
-                  </object><br/>
-                <% end %>
-                <%=set.resource.try(:content)%>
+                  <% if set.resource.tp == 1 && !set.resource.audio.blank? %>
+                  <%#=set.resource.audio%>
+                    <object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" id="MediaPlayer1" > 
+                      <param name="Filename" value="/audios/weixin/a.mp3"> <!--你文件的位置-->
+                      <param name="PlayCount" value="1"><!--控制重复次数: “x”为几重复播放几次; x=0，无限循环。--> 
+                      <param name="AutoStart" value="0"><!--控制播放方式: x=1，打开网页自动播放; x=0，按播放键播放。--> 
+                      <param name="ClickToPlay" value="1"><!--控制播放开关: x=1，可鼠标点击控制播放或暂停状态; x=0，禁用此功能。--> 
+                      <param name="DisplaySize" value="0"><!--控制播放画面: x=0，原始大小; x=1，一半大小; x=2，2倍大小。--> 
+                      <param name="EnableFullScreen Controls" value="1"><!--控制切换全屏: x=1，允许切换为全屏; x=0，禁用此功能。--> 
+                      <param name="ShowAudio Controls" value="1"><!--控制音量: x=1，允许调节音量; x=0，禁止音量调节。--> 
+                      <param name="EnableContext Menu" value="1"><!--控制快捷菜单: x=1，允许使用右键菜单; x=0，禁用右键菜单。--> 
+                      <param name="ShowDisplay" value="1"><!--控制版权信息: x=1，显示电影及作者信息;x=0，不显示相关信息--> 
+                    </object > 
+                    <embed src="/audios/weixin/a.mp3" autostart="true" loop="true" width="200" height="50" >
+                      <br/>
+                    <% end %>
+                    <%=set.resource.try(:content)%>
                 </h1>
               <%end%>
               <%if @flag=="student"%>
