@@ -33,7 +33,7 @@
               <span><%= growth_record.created_at.try(:to_long_datetime) %></span>
             </p>
             <% unless  growth_record.audio_turn.blank? %>
-            <embed src="<%=growth_record.resource.audio_turn%>" loop=false autostart=false name=bgss width="120" height="20"/>
+            <embed src="<%=growth_record.audio_turn%>" loop=false autostart=false name=bgss width="120" height="20"/>
             <br/>
           <% end %>
           <%= simple_format growth_record.content %>
