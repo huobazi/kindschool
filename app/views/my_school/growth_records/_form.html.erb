@@ -75,26 +75,30 @@
 <% end %>
 aaaaaa
 <%= f.object.audio_turn %>
-<% !if f.object.audio_turn.blank? %>
-aaaaaabbbb
+<% unless f.object.audio_turn.blank? %>
+  aaaaaabbbb
   <script type="text/javascript" src="/swfobject/swfobject.js"></script>
   <script type="text/javascript">
     swfobject.registerObject("audio_obj", "9.0.0", "/swfobject/expressInstall.swf");
   </script>
-  <object id="audio_obj" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="200" height="50">
-    <param name="movie" value="/dewplayer-vol.swf?mp3=<%=f.object.audio_turn%>" />
-    <!--[if !IE]>-->
-    <object type="application/x-shockwave-flash" data="/dewplayer-vol.swf?mp3=<%=f.object.audio_turn%>" width="200" height="50">
-      <!--<![endif]-->
-      <div>
-        <h1>Alternative content</h1>
-        <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
-      </div>
-      <!--[if !IE]>-->
-    </object>
-    <!--<![endif]-->
-  </object>
-  <br/>
+  <div class="control-group">
+    <label class="control-label">声音</label>&nbsp;&nbsp;
+    <div class="controls">
+      <object id="audio_obj" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="200" height="50">
+        <param name="movie" value="/dewplayer-vol.swf?mp3=<%=f.object.audio_turn%>" />
+        <!--[if !IE]>-->
+        <object type="application/x-shockwave-flash" data="/dewplayer-vol.swf?mp3=<%=f.object.audio_turn%>" width="200" height="50">
+          <!--<![endif]-->
+          <div>
+            <h1>Alternative content</h1>
+            <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
+          </div>
+          <!--[if !IE]>-->
+        </object>
+        <!--<![endif]-->
+      </object>
+    </div>
+  </div>
 <% end %>
 <%= f.input :content, :required => true, placeholder: "请输入孩子的表现", hint: "长度不少于5个字符", :input_html => {:rows => "10", :class => "span5"}%>
 <div class="control-group">
