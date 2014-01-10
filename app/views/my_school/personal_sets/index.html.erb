@@ -81,18 +81,7 @@
               <%else%>
                 <h1>
                   <% if set.resource.tp == 1 && !set.resource.audio_turn.blank? %>
-                    <object>
-                      <param name="Filename" value="<%=set.resource.audio_turn%>"> <!--你文件的位置-->
-                      <param name="PlayCount" value="1"><!--控制重复次数: “x”为几重复播放几次; x=0，无限循环。-->
-                      <param name="AutoStart" value="0"><!--控制播放方式: x=1，打开网页自动播放; x=0，按播放键播放。-->
-                      <param name="ClickToPlay" value="1"><!--控制播放开关: x=1，可鼠标点击控制播放或暂停状态; x=0，禁用此功能。-->
-                      <param name="DisplaySize" value="0"><!--控制播放画面: x=0，原始大小; x=1，一半大小; x=2，2倍大小。-->
-                      <param name="EnableFullScreen Controls" value="0"><!--控制切换全屏: x=1，允许切换为全屏; x=0，禁用此功能。-->
-                      <param name="ShowAudio Controls" value="1"><!--控制音量: x=1，允许调节音量; x=0，禁止音量调节。-->
-                      <param name="EnableContext Menu" value="0"><!--控制快捷菜单: x=1，允许使用右键菜单; x=0，禁用右键菜单。-->
-                      <param name="ShowDisplay" value="0"><!--控制版权信息: x=1，显示电影及作者信息;x=0，不显示相关信息-->
-                      <embed src="<%=set.resource.audio_turn%>" autostart="true" loop="true" width="200" height="50" >
-                    </object>
+                    <embed src="<%=set.resource.audio_turn%>" loop=false autostart=false name=bgss width="200" height="40"/>
                     <br/>
                   <% end %>
                   <%=set.resource.try(:content)%>
