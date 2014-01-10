@@ -11,16 +11,17 @@
     <% unless @sets.blank? %>
       <ul class="data_list">
         <% (@sets || []).each do |set| %>
-          <li>
-            <%if set.resource_type=="PhotoGallery"%>
-              <a href="<%= set.resource.try(:public_filename) %>" class="fancybox"  title="<%=set.created_at.try(:to_long_datetime)%>">
-                <div class="album_entry_img">
-                  <img src="<%= set.resource.public_filename(:thumb) %>" width="226px" height="226px" alt="<%=set.created_at.try(:to_long_datetime)%>"/>
-                </div>
-              </a>
-            <%else%>
-              <h1><%=set.resource.try(:content)%></h1>
-              <% if set.resource.tp == 1 && !set.resource.audio_turn.blank? %>
+          <% if set.resource %>
+            <li>
+              <%if set.resource_type=="PhotoGallery"%>
+                <a href="<%= set.resource.try(:public_filename) %>" class="fancybox"  title="<%=set.created_at.try(:to_long_datetime)%>">
+                  <div class="album_entry_img">
+                    <img src="<%= set.resource.public_filename(:thumb) %>" width="226px" height="226px" alt="<%=set.created_at.try(:to_long_datetime)%>"/>
+                  </div>
+                </a>
+              <%else%>
+                <h1><%=set.resource.try(:content)%></h1>
+                <% if set.resource.tp == 1 && !set.resource.audio_turn.blank? %>
                 <embed src="<%=set.resource.audio_turn%>" loop=false autostart=false name=bgss width="100" height="40"/>
                 <br/>
               <% end %>
@@ -31,7 +32,8 @@
               <%=link_to "添加到成长记录" ,new_weixin_garden_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn btn-warning"%>
             <%end%>
             <%= link_to '删除', weixin_personal_set_path(set), :method=> :delete, :data=> { :confirm=> '你确定删除该信息吗' },:class=> "destroy" ,:class=>"personal_set_delete btn btn-danger" ,:style=>"float:right;"%>
-          </li>
+            </li>
+          <% end %>
         <% end %>
       </ul>
       <div class="paginate_div">
