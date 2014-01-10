@@ -83,12 +83,12 @@
 <div class="field">
   <label class="field_prompt" for="growth_record_siesta">午休:</label>
 <%= f.text_field :siesta, class: "text-content" %>
-  </div>
-
-  <div class="field">
-    <label class="field_prompt" for="growth_record_dine">进餐:</label>
-  <%= f.text_field :dine, class: "text-content" %>
     </div>
+
+    <div class="field">
+      <label class="field_prompt" for="growth_record_dine">进餐:</label>
+  <%= f.text_field :dine, class: "text-content" %>
+        </div>
     -->
     <div class="field">
       <label class="field_prompt">评价星数:</label>
@@ -126,11 +126,14 @@
         <% end %>
       <% end %>
     </div>
-    <div class="field" id="content_field">
-      <% if !f.object.audio_turn.blank? %>
+    <% if !f.object.audio_turn.blank? %>
+      <div class="field">
+        <label class="field_prompt">声音:</label>
         <embed src="<%=f.object.audio_turn%>" loop=false autostart=false name=bgss width="120" height="20"/>
         <br/>
-      <% end %>
+      </div>
+    <% end %>
+    <div class="field" id="content_field">
       <label class="field_prompt" for="growth_record_content">内容:</label>
       <%= f.text_area :content, validate: true, class: "text-area" %>
       </div>
