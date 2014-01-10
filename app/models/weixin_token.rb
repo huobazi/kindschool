@@ -19,7 +19,6 @@ class WeixinToken < ActiveRecord::Base
             data = JSON(response.body)
             self.update_attributes!(:access_token=>data["access_token"],:expires_in=>data["expires_in"]||0,:expires_at=>Time.now) if data["errcode"].blank?
           end
-          return "error"
         rescue Exception => e
           p e.message
           return "error"
