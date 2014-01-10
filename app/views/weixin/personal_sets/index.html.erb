@@ -9,7 +9,6 @@
   </div>
   <div class="message_list">
     <% unless @sets.blank? %>
-      <script type="text/javascript" src="/swfobject/swfobject.js"></script>
       <ul class="data_list">
         <% (@sets || []).each do |set| %>
           <li>
@@ -22,22 +21,7 @@
             <%else%>
               <h1><%=set.resource.try(:content)%></h1>
               <% if set.resource.tp == 1 && !set.resource.audio_turn.blank? %>
-                <script type="text/javascript">
-                  swfobject.registerObject("<%=set.resource.audio_turn%>", "9.0.0", "/swfobject/expressInstall.swf");
-                </script>
-                <object id="<%=set.resource.audio_turn%>" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100" height="40">
-                  <param name="movie" value="/dewplayer-vol.swf?mp3=<%=set.resource.audio_turn%>" />
-                  <!--[if !IE]>-->
-                  <object type="application/x-shockwave-flash" data="/dewplayer-vol.swf?mp3=<%=set.resource.audio_turn%>" width="200" height="50">
-                    <!--<![endif]-->
-                    <div>
-                      <h1>Alternative content</h1>
-                      <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
-                    </div>
-                    <!--[if !IE]>-->
-                  </object>
-                  <!--<![endif]-->
-                </object>
+               <embed src="<%=set.resource.audio_turn%>" loop=false autostart=false name=bgss width="100" height="40"/>
                 <br/>
               <% end %>
             <%end%>
