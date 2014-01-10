@@ -63,7 +63,7 @@
 
 
     <div class="work_list" >
-
+      <script type="text/javascript" src="/swfobject/swfobject.js"></script>
       <div id="timeline">
         <ul id="dates">
           <% (@sets || []).each do |set| %>
@@ -83,7 +83,22 @@
                   <%=set.resource.try(:content)%>
                 </h1>
                 <% if set.resource.tp == 1 && !set.resource.audio_turn.blank? %>
-                  <object type="application/x-shockwave-<tuihighlight class='tuihighlight'>flash</tuihighlight>" data="/dewplayer-vol.swf?mp3=<%=set.resource.audio_turn%>" width="240" height="20" id="dewplayer-vol"><param name="wmode" value="transparent" /><param name="movie" value="/dewplayer-vol.swf?mp3=<%=set.resource.audio_turn%>" /></object>
+                  <script type="text/javascript">
+                    swfobject.registerObject("<%=set.resource.audio_turn%>", "9.0.0", "/swfobject/expressInstall.swf");
+                  </script>
+                  <object id="<%=set.resource.audio_turn%>" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="200" height="50">
+                    <param name="movie" value="/dewplayer-vol.swf?mp3=<%=set.resource.audio_turn%>" />
+                    <!--[if !IE]>-->
+                    <object type="application/x-shockwave-flash" data="/dewplayer-vol.swf?mp3=<%=set.resource.audio_turn%>" width="200" height="50">
+                      <!--<![endif]-->
+                      <div>
+                        <h1>Alternative content</h1>
+                        <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
+                      </div>
+                      <!--[if !IE]>-->
+                    </object>
+                    <!--<![endif]-->
+                  </object>
                   <br/>
                 <% end %>
               <%end%>
