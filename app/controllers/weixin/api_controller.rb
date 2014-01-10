@@ -40,7 +40,7 @@ class Weixin::ApiController < Weixin::BaseController
         end
       else
         if logged_in?
-          if xml_data[:MsgType] == "text"
+          if xml_data[:MsgType] == "text" || xml_data[:MsgType] == "voice"
             #查看消息
             if xml_data[:Content] == "1"
               #未读消息
@@ -116,9 +116,7 @@ class Weixin::ApiController < Weixin::BaseController
                 })
             else
               content_data = ""
-              puts "==========aaa1"
               if xml_data[:MsgType]=="voice"
-                puts "==========aaa2#{xml_data[:Recognition]}===#{xml_data[:Recognition].size}=====#{xml_data[:Recognition].size > 5}"
                 content_data = xml_data[:Recognition] if xml_data[:Recognition].size > 5
               else
                 content_data = xml_data[:Content]
