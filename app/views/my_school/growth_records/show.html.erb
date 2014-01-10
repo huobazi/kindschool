@@ -106,8 +106,7 @@
                 swfobject.registerObject("audio_obj", "9.0.0", "/swfobject/expressInstall.swf");
               </script>
               <object id="audio_obj" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="120" height="20">
-                <param name="movie" value="/dewplayer-vol.swf?mp3=<%=@growth_record.audio_turn%>" />
-                <param name="autostart" value="1" />
+                <param name="movie" value="/dewplayer-vol.swf?mp3=<%=@growth_record.audio_turn%>&autostart=1" />
                 <!--[if !IE]>-->
                 <object type="application/x-shockwave-flash" data="/dewplayer-vol.swf?mp3=<%=@growth_record.audio_turn%>" width="120" height="20">
                   <!--<![endif]-->
