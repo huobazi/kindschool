@@ -66,7 +66,8 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
           @growth_record.asset_imgs << AssetImg.new(:uploaded_data=>@set.resource.uploaded_data) 
          @set_imge = @set.resource.public_filename
        elsif @set.resource_type=="TextSet"
-         @growth_record.content = @set.resource.content 
+         @growth_record.content = @set.resource.content
+         @growth_record.audio_turn = @set.resource.audio_turn if @set.resource.tp == 1 && !@set.resource.audio_turn.blank?
        end
       end
     end
@@ -103,6 +104,8 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
            uploaded_data =  fixture_file_upload file_url, 'image/png' # (file_url, 'image/jpeg', false) 
            asset_img = AssetImg.new(:uploaded_data=>uploaded_data)
            @growth_record.asset_imgs  << asset_img
+         elsif set.resource_type == "TextSet"
+           @growth_record.audio_turn = set.resource.audio_turn if set.resource.tp == 1 && !set.resource.audio_turn.blank?
          end
        end
       end
