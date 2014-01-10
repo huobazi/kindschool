@@ -80,8 +80,8 @@
                 <img src="<%= set.resource.try(:public_filename) %>" width="256px" height="256px"  class="img-rounded" />
               <%else%>
                 <h1>
-                  <% if set.resource.tp == 1 && !set.resource.audio.blank? %>
-                    <object classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" id="MediaPlayer1" >
+                  <% if set.resource.tp == 1 && !set.resource.audio_turn.blank? %>
+                    <object>
                       <param name="Filename" value="<%=set.resource.audio_turn%>"> <!--你文件的位置-->
                       <param name="PlayCount" value="1"><!--控制重复次数: “x”为几重复播放几次; x=0，无限循环。-->
                       <param name="AutoStart" value="0"><!--控制播放方式: x=1，打开网页自动播放; x=0，按播放键播放。-->
@@ -92,7 +92,7 @@
                       <param name="EnableContext Menu" value="0"><!--控制快捷菜单: x=1，允许使用右键菜单; x=0，禁用右键菜单。-->
                       <param name="ShowDisplay" value="0"><!--控制版权信息: x=1，显示电影及作者信息;x=0，不显示相关信息-->
                       <embed src="<%=set.resource.audio_turn%>" autostart="true" loop="true" width="200" height="50" >
-                    </object >
+                    </object>
                     <br/>
                   <% end %>
                   <%=set.resource.try(:content)%>
