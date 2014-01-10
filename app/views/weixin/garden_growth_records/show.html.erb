@@ -38,7 +38,10 @@
         <p class="info">由<span class="author"><%= @growth_record.creater.try(:name) %></span>创建于&nbsp;<span><%= @growth_record.created_at.try(:to_long_datetime) %></span></p>
         <div class="content">
           <% if !@growth_record.audio_turn.blank? %>
-            <embed src="<%=@growth_record.audio_turn%>" loop=false autostart=false name=bgss width="120" height="20"/>
+            <!--<embed src="<%=@growth_record.audio_turn%>" loop=false autostart=false name=bgss width="120" height="20"/>-->
+            <audio src="<%=@growth_record.audio_turn%>">
+              您的浏览器不支持播放语音
+            </audio>
             <br/>
           <% end %>
           <%= simple_format raw @growth_record.content %>

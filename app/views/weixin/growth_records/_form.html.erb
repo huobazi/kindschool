@@ -114,7 +114,10 @@
 <% if !f.object.audio_turn.blank? %>
   <div class="field">
     <label class="field_prompt">声音:</label>
-    <embed src="<%=f.object.audio_turn%>" loop=false autostart=false name=bgss width="120" height="20"/>
+    <!--<embed src="<%=growth_record.audio_turn%>" loop=false autostart=false name=bgss width="120" height="20"/>-->
+    <audio src="<%=growth_record.audio_turn%>">
+      您的浏览器不支持播放语音
+    </audio>
     <br/>
   </div>
 <% end %>
