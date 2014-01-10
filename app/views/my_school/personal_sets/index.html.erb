@@ -81,7 +81,7 @@
               <%else%>
                 <h1>
                   <% if set.resource.tp == 1 && !set.resource.audio_turn.blank? %>
-                    <object type="application/x-shockwave-<tuihighlight class='tuihighlight'>flash</tuihighlight>" data="dewplayer-vol.swf?mp3=<%=set.resource.audio_turn%>" width="240" height="20" id="dewplayer-vol"><param name="wmode" value="transparent" /><param name="movie" value="dewplayer-vol.swf?mp3=<%=set.resource.audio_turn%>" /></object>
+                    <object type="application/x-shockwave-<tuihighlight class='tuihighlight'>flash</tuihighlight>" data="/dewplayer-vol.swf?mp3=<%=set.resource.audio_turn%>" width="240" height="20" id="dewplayer-vol"><param name="wmode" value="transparent" /><param name="movie" value="/dewplayer-vol.swf?mp3=<%=set.resource.audio_turn%>" /></object>
                     <br/>
                   <% end %>
                   <%=set.resource.try(:content)%>
