@@ -38,12 +38,12 @@ class WeixinToken < ActiveRecord::Base
         auto_url = "/audios/weixin/#{Time.now.to_i}-#{media_id}"
         file_patch =  "#{Rails.root}/public#{auto_url}.amr"
         file_turn_patch =  "#{Rails.root}/public#{auto_url}.mp3"
-        `ffmpeg -i #{file_patch} #{file_turn_patch}`
         open(url) do |http|
           File.open(file_patch,'wb') do |f|
             f.syswrite(http.read)
           end
         end
+        `ffmpeg -i #{file_patch} #{file_turn_patch}`
         return auto_url
       rescue Exception => e
         p e.message
