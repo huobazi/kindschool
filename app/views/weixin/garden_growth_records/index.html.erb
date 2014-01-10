@@ -9,7 +9,7 @@
   <div class="message_list">
     <% unless current_user.get_users_ranges[:tp] == :student %>
       <div class="btn-new-wrap">
-      <%= link_to "添加成长记录", new_weixin_garden_growth_record_path, :class => "btn btn-warning btn-large btn-block" %>
+        <%= link_to "添加成长记录", new_weixin_garden_growth_record_path, :class => "btn btn-warning btn-large btn-block" %>
       </div>
     <% end %>
     <ul class="data_list">
@@ -27,6 +27,10 @@
             </p>
             <p class="info"><span class="time"><%= growth_record.try(:start_at).try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span><%= growth_record.try(:end_at).try(:to_short_datetime) %></span>&nbsp;由<span class="author"><%= growth_record.try(:creater).try(:name) %></span>创建于<span>&nbsp;<%= growth_record.created_at.try(:to_long_datetime) %></span></p>
             <div class="content">
+              <% unless  growth_record.audio_turn.blank? %>
+                <embed src="<%=growth_record.resource.audio_turn%>" loop=false autostart=false name=bgss width="120" height="20"/>
+                <br/>
+              <% end %>
               <%= simple_format growth_record.content %>
             </div>
           </li>
@@ -47,9 +51,9 @@
 <%= render :partial => "/modules/colorful/weixin_menu_one"%>
 
 <script type="text/javascript">
-$(".show").each(function() {
-  $(this).click(function() {
-    window.location.href = "garden_growth_records/" + $(this).attr("data-id")
+  $(".show").each(function() {
+    $(this).click(function() {
+      window.location.href = "garden_growth_records/" + $(this).attr("data-id")
+    })
   })
-})
 </script>
