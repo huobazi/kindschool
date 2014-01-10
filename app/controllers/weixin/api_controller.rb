@@ -115,8 +115,14 @@ class Weixin::ApiController < Weixin::BaseController
                   :FuncFlag=>0
                 })
             else
-              if xml_data[:Content].size > 5
-                text = TextSet.new(:content=>xml_data[:Content])
+              content_data = ""
+              if xml_data[:MsgType]=="voice"
+                content_data = xml_data[:Recognition] if xml_data[:Recognition].size > 5
+              else
+                content_data = xml_data[:Content]
+              end
+              if content_data.size > 5
+                text = TextSet.new(:content=>content_data)
                 personal = PersonalSet.new()
                 personal.resource = text
                 current_user.personal_sets << personal
