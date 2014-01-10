@@ -75,40 +75,42 @@
         </ul>
         <ul id="issues">
           <% (@sets || []).each do |set| %>
-            <li id="<%=set.created_at.try(:to_long_datetime)%>" class="selected">
-              <%if set.resource_type=="PhotoGallery"%>
-                <img src="<%= set.resource.try(:public_filename) %>" width="256px" height="256px"  class="img-rounded" />
-              <%else%>
-                <h1>
-                  <%=set.resource.try(:content)%>
-                </h1>
-                <% if set.resource.tp == 1 && !set.resource.audio_turn.blank? %>
-                  <script type="text/javascript">
-                    swfobject.registerObject("<%=set.resource.audio_turn%>", "9.0.0", "/swfobject/expressInstall.swf");
-                  </script>
-                  <object id="<%=set.resource.audio_turn%>" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="200" height="50">
-                    <param name="movie" value="/dewplayer-vol.swf?mp3=<%=set.resource.audio_turn%>" />
-                    <!--[if !IE]>-->
-                    <object type="application/x-shockwave-flash" data="/dewplayer-vol.swf?mp3=<%=set.resource.audio_turn%>" width="200" height="50">
-                      <!--<![endif]-->
-                      <div>
-                        <h1>Alternative content</h1>
-                        <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
-                      </div>
+            <% if set.resource %>
+              <li id="<%=set.created_at.try(:to_long_datetime)%>" class="selected">
+                <%if set.resource_type=="PhotoGallery"%>
+                  <img src="<%= set.resource.try(:public_filename) %>" width="256px" height="256px"  class="img-rounded" />
+                <%else%>
+                  <h1>
+                    <%=set.resource.try(:content)%>
+                  </h1>
+                  <% if set.resource.tp == 1 && !set.resource.audio_turn.blank? %>
+                    <script type="text/javascript">
+                      swfobject.registerObject("<%=set.resource.audio_turn%>", "9.0.0", "/swfobject/expressInstall.swf");
+                    </script>
+                    <object id="<%=set.resource.audio_turn%>" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="200" height="50">
+                      <param name="movie" value="/dewplayer-vol.swf?mp3=<%=set.resource.audio_turn%>" />
                       <!--[if !IE]>-->
+                      <object type="application/x-shockwave-flash" data="/dewplayer-vol.swf?mp3=<%=set.resource.audio_turn%>" width="200" height="50">
+                        <!--<![endif]-->
+                        <div>
+                          <h1>Alternative content</h1>
+                          <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
+                        </div>
+                        <!--[if !IE]>-->
+                      </object>
+                      <!--<![endif]-->
                     </object>
-                    <!--<![endif]-->
-                  </object>
-                  <br/>
-                <% end %>
-              <%end%>
-              <%if @flag=="student"%>
-                <%=link_to "添加到成长记录" , new_my_school_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
-              <%else%>
-                <%=link_to "添加到成长记录" ,new_my_school_garden_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
-              <%end%>
-              <%= link_to '删除', my_school_personal_set_path(set), :method=> :delete, :data=> { :confirm=> '你确定删除该信息吗' },:class=> "destroy" ,:class=>"personal_set_delete btn"%>
-            </li>
+                    <br/>
+                  <% end %>
+                <%end%>
+                <%if @flag=="student"%>
+                  <%=link_to "添加到成长记录" , new_my_school_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
+                <%else%>
+                  <%=link_to "添加到成长记录" ,new_my_school_garden_growth_record_path(:personal_set_id=>set.id),:class=>"link_to_grow btn"%>
+                <%end%>
+                <%= link_to '删除', my_school_personal_set_path(set), :method=> :delete, :data=> { :confirm=> '你确定删除该信息吗' },:class=> "destroy" ,:class=>"personal_set_delete btn"%>
+              </li>
+            <% end %>
           <% end %>
         </ul>
         <div id="grad_top"></div>
