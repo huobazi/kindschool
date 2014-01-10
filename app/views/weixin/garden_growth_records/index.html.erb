@@ -29,7 +29,7 @@
             <div class="content">
               <% unless  growth_record.audio_turn.blank? %>
                 <!--<embed src="<%=growth_record.audio_turn%>" loop=false autostart=false name=bgss width="120" height="20"/>-->
-                <audio src="<%=growth_record.audio_turn%>">
+                <audio src="<%=growth_record.audio_turn%>" controls="controls">
                   您的浏览器不支持播放语音
                 </audio>
                 <br/>
