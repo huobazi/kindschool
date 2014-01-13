@@ -2,7 +2,7 @@
 #积分商城
 class MySchool::CreditShopController < MySchool::ManageController
   layout "shop_center"
-  # layout "credit_shop" , :only=>"index"
+  
   before_filter :get_shop_config
 
   def index
@@ -14,6 +14,7 @@ class MySchool::CreditShopController < MySchool::ManageController
           @product_categories << item
         end
     end
+   render :layout =>"credit_shop"
   end
 
   def products
