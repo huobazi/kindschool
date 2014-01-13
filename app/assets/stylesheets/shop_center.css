@@ -20,8 +20,8 @@ body{
 	background:url(/star_imgs/shop/center_user/center_bg_top2.png)  ;
 	background-repeat: no-repeat;
     height: 100px;
-    padding-top: 50px;
-    padding-left: 50px;
+    padding-top: 30px;
+    padding-left: 20px;
     padding-right: 5px;
 
 }
@@ -49,6 +49,7 @@ body{
     background-repeat: repeat-y;
     height: 400px;
     width: 230px;
+    padding-left: 30px;
     position: relative;
     z-index: 100;
 }
@@ -67,7 +68,7 @@ body{
 }
 .center_right{
 	float: right;
-	width: 750px;
+	width: 780px;
 }
 .center_conment_right{
 	background:url(/star_imgs/shop/center_user/center_conment_right_top.png) ;
@@ -92,4 +93,14 @@ body{
     background-repeat: repeat-y;
     height: 500px;
     width: 100%;
+}
+.my_credit_show{
+	background:url(/star_imgs/shop/center_user/button_center.png) ;
+    background-position: -0px -575px;
+    color: #FFFFFF;
+    font-size: 16px;
+    height: 40px;
+    line-height: 38px;
+    padding-left: 35px;
+    width: 180px;
 }
