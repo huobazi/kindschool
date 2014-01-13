@@ -20,7 +20,7 @@
                   </div>
                 </a>
               <%else%>
-                <h1><%=set.resource.try(:content)%></h1>
+                <h1><%= truncate(set.resource.try(:content)) %></h1>
                 <% if set.resource.tp == 1 && !set.resource.audio_turn.blank? %>
                   <!--<embed src="<%=set.resource.audio_turn%>" loop=false autostart=false name=bgss width="100" height="40"/>-->
                 <audio src="<%=set.resource.audio_turn%>" controls="controls">
