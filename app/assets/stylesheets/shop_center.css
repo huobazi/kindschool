@@ -13,10 +13,17 @@ body{
 	margin-top: -60px;
 	padding-bottom: 50px;
 }
+.center_user_work{
+	width: 1070px;
+}
 .center_user_conment{
 	background:url(/star_imgs/shop/center_user/center_bg_top2.png)  ;
 	background-repeat: no-repeat;
     height: 100px;
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 5px;
+
 }
 .center_user_conment_mid{
     background:url(/star_imgs/shop/center_user/bg_mid.png)  repeat-y  ;
@@ -28,7 +35,72 @@ body{
     height: 195px;
 }
 .center_conment_left{
-	background:url(/star_imgs/shop/center_user/center_left_top.png) ;
+	background:url(/star_imgs/shop/center_user/center_bg_top1.png) ;
     background-repeat: no-repeat;
-    height: 195px;
+    height: 70px;
+    width: 230px;
+    font-size: 26px;
+    color: #8d490b ;
+    line-height: 80px;
+    padding-left: 30px;
+}
+.center_conment_mid{
+	background:url(/star_imgs/shop/center_user/center_conment_mid.png) ;
+    background-repeat: repeat-y;
+    height: 400px;
+    width: 230px;
+    padding-left: 30px;
+    position: relative;
+    z-index: 100;
+}
+.center_conment_bottom{
+	background:url(/star_imgs/shop/center_user/center_conment_bottom.png) ;
+    background-repeat: no-repeat;
+    height: 65px;
+    width: 230px;
+    position: relative;
+    z-index: 100;
+}
+.center_left{
+	float: left;
+	height: 700px;
+    width: 230px;
+}
+.center_right{
+	float: right;
+	width: 780px;
+}
+.center_conment_right{
+	background:url(/star_imgs/shop/center_user/center_conment_right_top.png) ;
+    background-repeat: no-repeat;
+    height: 85px;
+    width: 100%;
+}
+.center_conment_right_mid{
+	background:url(/star_imgs/shop/center_user/center_conment_right_mid.png) ;
+    background-repeat: repeat-y;
+    height: 80px;
+    width: 100%;
+}
+.center_conment_right_bottom{
+	background:url(/star_imgs/shop/center_user/center_conment_right_bottom.png) ;
+    background-repeat: no-repeat;
+    height: 85px;
+    width: 100%;
+}
+.center_right_bottom_mid{
+	background:url(/star_imgs/shop/center_user/center_conment_right_mid.png) ;
+    background-repeat: repeat-y;
+    height: 500px;
+    width: 100%;
+}
+.my_credit_show{
+	background:url(/star_imgs/shop/center_user/button_center.png) ;
+    background-position: -0px -575px;
+    color: #FFFFFF;
+    font-size: 16px;
+    height: 40px;
+    line-height: 38px;
+    padding-left: 35px;
+    width: 180px;
 }
