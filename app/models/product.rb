@@ -35,7 +35,7 @@ class Product < ActiveRecord::Base
   attr_accessible :product_imgs_attributes
   accepts_nested_attributes_for :product_imgs
 
-  after_save  :change_products_status   #更改了就进行修改状态
+  before_save  :change_products_status   #更改了就进行修改状态
 
   def get_head_img
     self.img.blank? ? self.product_imgs.first : self.img
@@ -46,7 +46,7 @@ class Product < ActiveRecord::Base
   end
 
   def product_storage=(str)
-    if self.product_storages
+    if !self.product_storages.blank? 
       self.product_storages<<ProductStorage.new(:count=>str.to_i-self.storage,:note=>"编辑商品改了库存")
     else
       self.product_storages<<ProductStorage.new(:count=>str.to_i,:note=>"编辑商品改了库存")
@@ -60,7 +60,7 @@ class Product < ActiveRecord::Base
   def change_products_status
     if self.name_changed? || self.price_changed?  || self.credit_changed? || self.description_changed?
       self.status = 1
-      self.save
+      # self.save
     end
   end
 

@@ -1,0 +1,34 @@
+/*
+ *= require jquery.ui.all
+*/
+*{margin: 0}
+body{
+    background: #90b816 ;
+	height:1300px;
+	/*margin:0 auto*/
+}
+.top_background{
+	background:url(/star_imgs/shop/center_user/bg_top.png)  repeat-x  ;
+	height: 55px;
+	margin-top: -60px;
+	padding-bottom: 50px;
+}
+.center_user_conment{
+	background:url(/star_imgs/shop/center_user/center_bg_top2.png)  ;
+	background-repeat: no-repeat;
+    height: 100px;
+}
+.center_user_conment_mid{
+    background:url(/star_imgs/shop/center_user/bg_mid.png)  repeat-y  ;
+    height: 1000px;
+}
+.center_user_conment_bottom{
+    background:url(/star_imgs/shop/center_user/bg_bottom.png) ;
+    background-repeat: no-repeat;
+    height: 195px;
+}
+.center_conment_left{
+	background:url(/star_imgs/shop/center_user/center_left_top.png) ;
+    background-repeat: no-repeat;
+    height: 195px;
+}
