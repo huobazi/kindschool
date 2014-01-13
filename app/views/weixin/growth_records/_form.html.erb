@@ -111,6 +111,16 @@
     <% end %>
   <% end %>
 </div>
+<% if !f.object.audio_turn.blank? %>
+  <div class="field">
+    <label class="field_prompt">声音:</label>
+    <!--<embed src="<%=growth_record.audio_turn%>" loop=false autostart=false name=bgss width="120" height="20"/>-->
+    <audio src="<%=growth_record.audio_turn%>" controls="controls">
+      您的浏览器不支持播放语音
+    </audio>
+    <br/>
+  </div>
+<% end %>
 <div class="field" id="content_field">
   <label class="field_prompt" for="growth_record_content">内容:</label>
   <%= f.text_area :content, validate: true, :class => "text-area" %>

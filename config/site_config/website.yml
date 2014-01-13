@@ -7,6 +7,9 @@
   #备案号
   record_code: "粤ICP备13072833-1"
 
+  weixin_token_url: "https://api.weixin.qq.com/cgi-bin/token"
+  weixin_media_down_url: "http://file.api.weixin.qq.com/cgi-bin/media/get"
+  
 development:
   weixin_blind: false
   <<: *defaults

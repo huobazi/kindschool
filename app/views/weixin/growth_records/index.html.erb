@@ -18,39 +18,50 @@
       <% else %>
         <% @growth_records.each do |growth_record| %>
           <li class="show" data-id="<%= growth_record.id %>">
-            <p class="title"><span class="name"><%= growth_record.student_info_label %></span>
+            <p class="title">
+              <span class="name"><%= growth_record.student_info_label %></span>
               <span>
                 <% if current_user.id == growth_record.creater_id %>
                   <span class="icon-customecomment"></span><span class="adjust">评论(<%= growth_record.unread_comment_count %>)</span>
                 <% end %>
               </span>
             </p>
-            <p class="info"><span><%= growth_record.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span><%= growth_record.end_at.try(:to_short_datetime) %></span>&nbsp;由<span class="author"><%= growth_record.try(:creater).try(:name) %></span>创建于&nbsp;<span><%= growth_record.created_at.try(:to_long_datetime) %></span>
-            
+            <p class="info">
+              <span><%= growth_record.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;
+              <span><%= growth_record.end_at.try(:to_short_datetime) %></span>&nbsp;由
+              <span class="author"><%= growth_record.try(:creater).try(:name) %></span>创建于&nbsp;
+              <span><%= growth_record.created_at.try(:to_long_datetime) %></span>
             </p>
-              <%= simple_format growth_record.content %>
-            </div>
+            <% unless  growth_record.audio_turn.blank? %>
+               <!--<embed src="<%=growth_record.audio_turn%>" loop=false autostart=false name=bgss width="120" height="20"/>-->
+            <audio src="<%=growth_record.audio_turn%>" controls="controls">
+              您的浏览器不支持播放语音
+            </audio>
+            <br/>
+          <% end %>
+          <%= simple_format growth_record.content %>
           </li>
         <% end %>
       <% end %>
     </ul>
-    <br/>
   </div>
-  <% unless  @growth_records.blank? %>
-    <div class="message_more">
-      <div class="paginate_div">
-        <%= paginate @growth_records, :window => 1%>
-      </div>
+  <br/>
+</div>
+<% unless  @growth_records.blank? %>
+  <div class="message_more">
+    <div class="paginate_div">
+      <%= paginate @growth_records, :window => 1%>
     </div>
-  <% end %>
+  </div>
+<% end %>
 </div>
 <%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
 <%= render :partial => "/modules/colorful/weixin_menu_one"%>
 
 <script type="text/javascript">
-$(".show").each(function() {
-  $(this).click(function() {
-    window.location.href = "growth_records/" + $(this).attr("data-id")
+  $(".show").each(function() {
+    $(this).click(function() {
+      window.location.href = "growth_records/" + $(this).attr("data-id")
+    })
   })
-})
 </script>

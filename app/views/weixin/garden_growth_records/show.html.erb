@@ -16,12 +16,12 @@
         <span id="growth_record_reward" style="display: none;" value="<%= @growth_record.reward %>"></span>
         <div class="info">
           <table class="attributes">
-          <tr>
-            <th>班级</th>
-            <td class="text-center">
-              <%= @growth_record.try(:squad_name) %>
-            </td>
-          </tr>
+            <tr>
+              <th>班级</th>
+              <td class="text-center">
+                <%= @growth_record.try(:squad_name) %>
+              </td>
+            </tr>
           </table>
         </div>
         <div class="info">
@@ -37,6 +37,13 @@
         <p class="info"><span><%= @growth_record.start_at.try(:to_short_datetime) %></span>&nbsp;~&nbsp;<span><%= @growth_record.end_at.try(:to_short_datetime) %></span></p>
         <p class="info">由<span class="author"><%= @growth_record.creater.try(:name) %></span>创建于&nbsp;<span><%= @growth_record.created_at.try(:to_long_datetime) %></span></p>
         <div class="content">
+          <% if !@growth_record.audio_turn.blank? %>
+            <!--<embed src="<%=@growth_record.audio_turn%>" loop=false autostart=false name=bgss width="120" height="20"/>-->
+            <audio src="<%=@growth_record.audio_turn%>" controls="controls">
+              您的浏览器不支持播放语音
+            </audio>
+            <br/>
+          <% end %>
           <%= simple_format raw @growth_record.content %>
         </div>
         <div class="spra" style="margin-top: 40px;">

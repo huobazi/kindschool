@@ -40,7 +40,7 @@ class Weixin::ApiController < Weixin::BaseController
         end
       else
         if logged_in?
-          if xml_data[:MsgType] == "text"
+          if xml_data[:MsgType] == "text" || xml_data[:MsgType] == "voice"
             #查看消息
             if xml_data[:Content] == "1"
               #未读消息
@@ -115,8 +115,14 @@ class Weixin::ApiController < Weixin::BaseController
                   :FuncFlag=>0
                 })
             else
-              if xml_data[:Content].size > 5
-                text = TextSet.new(:content=>xml_data[:Content])
+              content_data = ""
+              if xml_data[:MsgType]=="voice"
+                content_data = xml_data[:Recognition] if xml_data[:Recognition].size > 5
+              else
+                content_data = xml_data[:Content]
+              end
+              if content_data.size > 5
+                text = TextSet.new(:content=>content_data)
                 personal = PersonalSet.new()
                 personal.resource = text
                 current_user.personal_sets << personal
@@ -256,13 +262,52 @@ class Weixin::ApiController < Weixin::BaseController
         elsif xml_data[:Content] == "3"
           x_data = weiyi_about(xml_data,"contact")
         else
-          x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
-              :FromUserName=>xml_data[:ToUserName],
-              :CreateTime=>Time.now.to_i,
-              :MsgType=>"text",
-              :Content=>"微服务，一公益 \n #{get_weiyi_menu} ",
-              :FuncFlag=>0
-            })
+          if xml_data[:MsgType]=="voice"
+            #            {"xml"=>{"ToUserName"=>"gh_86e6d2489290",
+            #                "FromUserName"=>"onASsuIYHAsFZeMVxQ8PvfAfjhQg",
+            #                "CreateTime"=>"1389150752", "MsgType"=>"voice",
+            #                "MediaId"=>"todHWk2cf2imbRvpb8X3fAIqUlbm_tKanbgTh_bYZ9OdagqDmvVJIeFslmprdM0d",
+            #                "Format"=>"amr", "MsgId"=>"5966357049053806592", "Recognition"=>"你好你好听见请回答"},
+            #              "signature"=>"c3f67333c44ba6effe704a22ca89bc9aa6fd9308", "timestamp"=>"1389150757", "nonce"=>"1389217007"}
+            load_bol = true
+            if user = User.find_by_weiyi_code(xml_data[:FromUserName])
+              if weixin_token = WeixinToken.find_by_number("weiyizixun")
+                audio = weixin_token.down_media(xml_data[:MediaId])
+                if audio != "error"
+                  text = TextSet.new(:content=>xml_data[:Recognition],:tp=>1,:audio=>"#{audio}.amr",:audio_turn=>"#{audio}.mp3")
+                  personal = PersonalSet.new()
+                  personal.resource = text
+                  user.personal_sets << personal
+                  load_bol = false if user.save
+                end
+              end
+            end
+            if load_bol
+              x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
+                  :FromUserName=>xml_data[:ToUserName],
+                  :CreateTime=>Time.now.to_i,
+                  :MsgType=>"text",
+                  :Content=>"#{user.name}您好! \n 语音记录上传失败，请重试。",
+                  :FuncFlag=>0
+                })
+            else
+              x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
+                  :FromUserName=>xml_data[:ToUserName],
+                  :CreateTime=>Time.now.to_i,
+                  :MsgType=>"text",
+                  :Content=>"#{user.name}您好! \n 语音记录上传成功，您可以在照片集锦的个人集锦中查看。",
+                  :FuncFlag=>0
+                })
+            end
+          else
+            x_data = mas_data({:ToUserName=>xml_data[:FromUserName],
+                :FromUserName=>xml_data[:ToUserName],
+                :CreateTime=>Time.now.to_i,
+                :MsgType=>"text",
+                :Content=>"微服务，一公益 \n #{get_weiyi_menu} ",
+                :FuncFlag=>0
+              })
+          end
         end
       end
     end

@@ -80,7 +80,7 @@ class ShortMessage
   def self.http_post(url,json_data)
     http = Net::HTTP
     req = http::Post.new(url.path)
-    puts "Contacting #{url.scheme}://#{url.host}"
+#    puts "Contacting #{url.scheme}://#{url.host}"
     req.set_form_data(json_data)
     http = http.new(url.host, url.port)
     response = http.start {|con| con.request(req)}
@@ -99,7 +99,7 @@ class ShortMessage
     url = URI.parse("#{url}#{params}")
     site = Net::HTTP.new(url.host, url.port)
     path = url.query.blank? ? url.path : url.path+"?"+url.query
-    puts "Contacting #{url.scheme}://#{url.host}?#{url.query}====="
+#    puts "Contacting #{url.scheme}://#{url.host}?#{url.query}====="
     response =site.get2(path)
   end
 
