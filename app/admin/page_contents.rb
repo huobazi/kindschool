@@ -16,6 +16,14 @@ ActiveAdmin.register PageContent do
     end
   end
 
+  filter :kindergarten
+  filter :number
+  filter :name
+  filter :note
+  filter :created_at
+  filter :updated_at
+  filter :tp, :as => :select, :collection => PageContent::TP.invert
+
   index do
     column :kindergarten
     column :name
