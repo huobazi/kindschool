@@ -15,6 +15,7 @@ body{
 }
 .center_user_work{
 	width: 1070px;
+	padding-top: 100px;
 }
 .center_user_conment{
 	background:url(/star_imgs/shop/center_user/center_bg_top2.png)  ;
@@ -102,10 +103,5 @@ body{
     height: 40px;
     line-height: 38px;
     padding-left: 35px;
-    width: 180px;
-}
-.center_conment_mid ul li {
-    line-height: 25px;
-    text-align: center;
-  /*  width: 200px;*/
+    width: 140px;
 }
