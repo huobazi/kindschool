@@ -95,6 +95,17 @@ body{
     height: 500px;
     width: 100%;
 }
+
+.center_conment_mid ul li {
+    line-height: 40px;
+}
+.my_credit_a{
+	color: #FFFFFF;
+    margin: 0 auto ;
+    padding-left: 30px;
+    font-size: 16px;
+    color: #794917;
+}
 .my_credit_show{
 	background:url(/star_imgs/shop/center_user/button_center.png) ;
     background-position: -0px -575px;
@@ -102,6 +113,5 @@ body{
     font-size: 16px;
     height: 40px;
     line-height: 38px;
-    padding-left: 35px;
-    width: 140px;
+    width: 180px;
 }
