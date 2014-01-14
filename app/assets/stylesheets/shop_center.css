@@ -169,3 +169,46 @@ td.pay_credit{
     height: 120px;
     width: 170px;
 }
+.credit_title{
+    color:#dd1f1d;
+    font-size:31px;
+    line-height:80px;
+    padding-left: 30px;
+}
+.credit_user{
+	position: relative;
+	z-index: 100px;
+	padding-left: 10px;
+}
+.credit_user ul li {
+	border-right: 1px dotted #000000;
+	float:left;
+	width:340px;
+	height: 100px;
+	
+}
+.credit_user ul li:last-child {
+    border: medium none;
+}
+.user_credit_show{
+	background:url(/star_imgs/shop/center_user/button_center.png) ;
+    background-position: -200px -10px;
+    height: 30px;
+    width: 30px;
+    float: left;
+}
+.user_credit_v {
+    line-height: 30px;
+    margin: 0 auto;
+    width: 120px;
+}
+.credit_buttom{
+	background:url(/star_imgs/shop/center_user/button_center.png) ;
+    background-position: -132px -462px;
+    height: 50px;
+    width: 130px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 50px;
+    text-align: center;
+}
