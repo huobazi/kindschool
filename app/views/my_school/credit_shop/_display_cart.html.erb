@@ -40,11 +40,16 @@
 　　</table>
 
    <div id="cartmenu">
-　　　　　　<ul>
-　　　　　　　　　　<li><%= link_to '继续购物', :action => "products" %></li>
-　　　　　　　　　　<li><%= link_to '清空购物车', :action => "empty_cart" %></li>
-　　　　　　　　　　<li><%= link_to '兑换', :action => "checkout"  %></li>
-　　　　　　</ul>
+     <table cellpadding="10" cellspacing="0" class="cart_data">
+　　　　　　<tr class="carttitle thbrank">
+              <td>#</td>
+              <td></td>
+              <td><%= link_to '清空购物车', :action => "empty_cart" %></td>
+              <td></td>
+              <td></td>
+              <td><%= link_to '兑换', :action => "checkout"  %></td>
+　　　　　　</tr>
+     </table>
 　　</div>
 
         </div>

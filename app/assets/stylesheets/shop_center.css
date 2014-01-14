@@ -124,6 +124,24 @@ body{
     color: #794917;
 
 }
+table.cart_data{
+    width: 770px;
+    margin: 0 auto;
+}
+table .carttitle{
+    background-color: #F9EBCB;
+}
+.thbrank{
+    border-top: 6px solid #5C3200;
+}
+td.pay_credit{
+    color: #289424;
+}
+#cartmenu {
+    background-color: #F1F1F1;
+    width: 770px;
+    margin: 0 auto;
+}
 .my_credit_a{
 	color: #FFFFFF;	
 }
@@ -144,27 +162,6 @@ body{
 .go_shop a{
     padding-right: 20px;
     color: red;
-}
-table.cart_data{
-    width: 770px;
-    margin: 0 auto;
-}
-table .carttitle{
-    background-color: #F9EBCB;
-}
-.thbrank{
-    border-top: 6px solid #5C3200;
-}
-td.pay_credit{
-    color: #289424;
-}
-#cartmenu {
-    background-color: #F1F1F1;
-    width: 740px;
-    margin: 0 auto;
-}
-#cartmenu li{
-    float: left;
 }
 .question_img{
     background:url(/star_imgs/shop/center_user/question_img.png) ;
