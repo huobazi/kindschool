@@ -114,6 +114,12 @@ body{
     font-size: 16px;
     color: #794917;
 }
+.question_li ul li a{
+	padding-left: 0px;
+	font-size: 16px;
+    color: #794917;
+
+}
 .my_credit_a{
 	color: #FFFFFF;	
 }
