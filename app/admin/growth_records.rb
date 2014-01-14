@@ -18,6 +18,16 @@ ActiveAdmin.register GrowthRecord do
     default_actions
   end
 
+  filter :kindergarten
+  filter :student_info
+  filter :creater
+  filter :tp, :as => :select, :collection => GrowthRecord::TP_DATA.invert
+  filter :start_at
+  filter :end_at
+  filter :content
+  filter :created_at
+  filter :updated_at
+
   form do |f|
     f.inputs "学员成长记录" do
       f.input :kindergarten_label, :required => true, :input_html => { :disabled => true }

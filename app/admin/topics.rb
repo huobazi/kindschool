@@ -30,6 +30,16 @@ ActiveAdmin.register Topic do
     default_actions
   end
 
+  filter :kindergarten
+  filter :topic_category
+  filter :creater
+  filter :squad
+  filter :title
+  filter :content
+  filter :is_show
+  filter :is_top
+  filter :approve_status, :as => :select, :collection => Topic::STATUS.invert
+
   form do |f|
     f.inputs "发贴子" do
       f.input :title, :required => true
