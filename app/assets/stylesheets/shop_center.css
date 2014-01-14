@@ -203,7 +203,7 @@ td.pay_credit{
     width: 120px;
 }
 .credit_buttom{
-	background:url(/star_imgs/shop/center_user/button_center.png) ;
+	background-image:url(/star_imgs/shop/center_user/button_center.png) ;
     background-position: -132px -462px;
     height: 50px;
     width: 130px;
@@ -211,4 +211,16 @@ td.pay_credit{
     font-size: 18px;
     line-height: 50px;
     text-align: center;
+    display: block;
+}
+.credit_buttom:hover{
+	background-image:url(/star_imgs/shop/center_user/button_center.png) ;
+    background-position: -132px -510px;
+    height: 50px;
+    width: 130px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 50px;
+    text-align: center;
+    display: block;
 }
