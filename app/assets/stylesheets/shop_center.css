@@ -224,3 +224,8 @@ td.pay_credit{
     text-align: center;
     display: block;
 }
+td.check label,td.check input{
+    padding: 0px;
+    float: left;
+    margin-right: 2px;
+}
