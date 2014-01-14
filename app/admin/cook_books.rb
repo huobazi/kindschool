@@ -26,6 +26,14 @@ ActiveAdmin.register CookBook do
     default_actions
   end
 
+  filter :kindergarten
+  filter :creater
+  filter :start_at
+  filter :end_at
+  filter :range_tp, :as => :select, :collection => CookBook::RANGE_TP_DATA.invert
+  filter :created_at
+  filter :updated_at
+
   form do |f|
     f.inputs "菜谱信息" do
       f.input :kindergarten_label, :required => true, :input_html => { :disabled => true }
