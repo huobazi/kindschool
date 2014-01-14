@@ -19,53 +19,53 @@ ul, li {
     padding: 0;
 }
 .credit_logo {
+    margin: 0 auto;
     padding-bottom: 25px;
     padding-top: 15px;
     position: relative;
+    width: 1180px;
+}
+.head_logo{
+    float: left;
+    height: 90px;
+    width: 209px;
 }
 .credit_navigation{
-    /*float: left;*/
+    float: left;
+    width: 910px;
 }
 .left_navigation {
     background-image: url("/star_imgs/shop/navigation_left.png");
     background-repeat: no-repeat;
     height: 63px;
-    position: absolute;
-    left: 230px;
-    top: 30px;
     width: 55px;
+    float: left;
 }
 .right_navigation {
     background-image: url("/star_imgs/shop/navigation_right.png");
     background-repeat: no-repeat;
     height: 63px;
-    position: absolute;
-    left: 1060px;
-    top: 30px;
     width: 55px;
+    float: left
 }
 .center_navigation{
     background-image: url("/star_imgs/shop/navigation_center.png");
     background-repeat: repeat-x;
     height: 63px;
-    position: absolute;
-    left: 275px;
-    top: 30px;
     width: 800px;
+    float: left;
+    margin-left: -1px;
 }
 .back_to_school{
     height: 33px;
-    position: absolute;
-    left: 280px;
-    top: 0px;
     width: 125px;
+    float: left;
 }
 .login_to_user{
     height: 33px;
-    position: absolute;
-    left: 760px;
-    top: 10px;
-    width: 100%;
+    width: 60%;
+    float: right;
+    text-align: right;
 }
 .login_to_user a.login_hello{
     color: red ;
@@ -323,4 +323,10 @@ a:hover{text-decoration: none};
     width: 705px;
 }
 .head_top{
+    width: 100%;
+    float: left;
+}
+.head_menu{
+    width: 100%;
+    float: left;
 }
