@@ -106,9 +106,26 @@ body{
 .my_credit_a{
     color: #FFFFFF;
     margin: 0 auto ;
+}
+.question_li ul li{
+	line-height: 30px;
+}
+.question_li ul li a{
+    color: #794917;
+}
+.center_conment_mid ul li a{
     padding-left: 30px;
     font-size: 16px;
     color: #794917;
+}
+.question_li ul li a{
+	padding-left: 0px;
+	font-size: 16px;
+    color: #794917;
+
+}
+.my_credit_a{
+	color: #FFFFFF;	
 }
 .my_credit_show{
     background:url(/star_imgs/shop/center_user/button_center.png) ;
@@ -148,4 +165,10 @@ td.pay_credit{
 }
 #cartmenu li{
     float: left;
+}
+.question_img{
+    background:url(/star_imgs/shop/center_user/question_img.png) ;
+    background-repeat: no-repeat;
+    height: 120px;
+    width: 170px;
 }
