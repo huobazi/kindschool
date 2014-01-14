@@ -104,3 +104,8 @@ body{
     padding-left: 35px;
     width: 180px;
 }
+.center_conment_mid ul li {
+    line-height: 25px;
+    text-align: center;
+  /*  width: 200px;*/
+}
