@@ -28,12 +28,15 @@ body{
 }
 .center_user_conment_mid{
     background:url(/star_imgs/shop/center_user/bg_mid.png)  repeat-y  ;
-    height: 1000px;
+/*    height: 1000px;*/
+    _height:500px;
+    min-height: 500px;
 }
 .center_user_conment_bottom{
     background:url(/star_imgs/shop/center_user/bg_bottom.png) ;
     background-repeat: no-repeat;
     height: 195px;
+    margin-top: -1px;
 }
 .center_conment_left{
 	background:url(/star_imgs/shop/center_user/center_bg_top1.png) ;
@@ -88,6 +91,7 @@ body{
     background-repeat: no-repeat;
     height: 85px;
     width: 100%;
+    margin-top: -1px;
 }
 .center_right_bottom_mid{
 	background:url(/star_imgs/shop/center_user/center_conment_right_mid.png) ;

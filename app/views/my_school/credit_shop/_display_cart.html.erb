@@ -1,3 +1,23 @@
+<div class="center_user_work">
+  <div class="center_user_conment">
+    <%=render "center_left"%>
+    <div class="center_right">
+      <div class="center_right_line"></div>
+      <div class="center_right_bottom">
+        <div class="center_conment_right">
+        </div>
+        <div class="center_right_bottom_mid">
+        </div>
+        <div class="center_conment_right_bottom">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="center_user_conment_mid">
+  </div>
+  <div class="center_user_conment_bottom">
+  </div>
+</div>
 <div id="cartmenu">
 　　　　　　<ul>
 　　　　　　　　　　<li><%= link_to '继续购物', :action => "products" %></li>
@@ -15,15 +35,15 @@
 　　　　　　　　　　<td>单积分</td>
 　　　　　　　　　　<td>总积分</td>
 　　　　　　</tr>
-　　　　　　<%(@items||[]).each do |item|%>
-             <%product = item.product%>
-　　　　　　　　　　<tr>
-　　　　　　　　　　　　　　<td><%= item.count %></td>
-　　　　　　　　　　　　　　<td><%= h(product.name) %></td>
-　　　　　　　　　　　　　　<td align="right"><%= product.credit %></td>
-　　　　　　　　　　　　　　<td align="right"><%= product.credit * item.count %></td>
-　　　　　　　　　　</tr>
-　　　　　　<% end %>
+  <%(@items||[]).each do |item|%>
+    <%product = item.product%>
+            <tr>
+                <td><%= item.count %></td>
+                <td><%= h(product.name) %></td>
+                <td align="right"><%= product.credit %></td>
+                <td align="right"><%= product.credit * item.count %></td>
+            </tr>
+  <% end %>
 　　　　　　<tr>
 　　　　　　　　　　<td colspan="3" align="right"><strong>总额:</strong></td>
 　　　　　　　　　　<td id="totalcell"><%#= @cart.total_price %><%= @cart.total_credit %></td>
