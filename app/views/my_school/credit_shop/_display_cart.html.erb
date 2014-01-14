@@ -7,6 +7,46 @@
         <div class="center_conment_right">
         </div>
         <div class="center_right_bottom_mid">
+          <div class="go_shop">
+            <%= link_to '去积分商城兑换礼品>>', :action => "products" %>
+          </div>
+　　<table cellpadding="10" cellspacing="0" class="cart_data table table-hover">
+　　　　　　<tr class="carttitle thbrank">
+              <td>选择</td>
+              <td>礼品名称</td>
+              <td>数量</td>
+              <td>单个积分</td>
+              <td>所花积分</td>
+              <td>操作</td>
+　　　　　　</tr>
+            <tbody>
+              <%(@items||[]).each do |item|%>
+                <%product = item.product%>
+                <tr>
+                  <td>#</td>
+                  <td><%= h(product.name) %></td>
+                  <td><%= item.count %></td>
+                  <td class="pay_credit"><%= product.credit %></td>
+                  <td class="pay_credit"><%= product.credit * item.count %></td>
+                  <td>移除</td>
+                </tr>
+              <% end %>
+　　　　　　<tr>
+　　　　　　　　　　<td colspan="4"></td>
+　　　　　　　　　　<td align="right"><strong>总额:</strong></td>
+　　　　　　　　　　<td id="totalcell"><%#= @cart.total_price %><%= @cart.total_credit %></td>
+　　　　　　</tr>
+            </tbody>
+　　</table>
+
+   <div id="cartmenu">
+　　　　　　<ul>
+　　　　　　　　　　<li><%= link_to '继续购物', :action => "products" %></li>
+　　　　　　　　　　<li><%= link_to '清空购物车', :action => "empty_cart" %></li>
+　　　　　　　　　　<li><%= link_to '兑换', :action => "checkout"  %></li>
+　　　　　　</ul>
+　　</div>
+
         </div>
         <div class="center_conment_right_bottom">
         </div>
@@ -18,34 +58,3 @@
   <div class="center_user_conment_bottom">
   </div>
 </div>
-<div id="cartmenu">
-　　　　　　<ul>
-　　　　　　　　　　<li><%= link_to '继续购物', :action => "products" %></li>
-　　　　　　　　　　<li><%= link_to '清空购物车', :action => "empty_cart" %></li>
-　　　　　　　　　　<li><%= link_to '兑换', :action => "checkout"  %></li>
-　　　　　　</ul>
-　　</div>
-　　<table cellpadding="10" cellspacing="0">
-　　　　　　<tr class="carttitle">
-　　　　　　　　　　<td rowspan="2">数量</td>
-　　　　　　　　　　<td rowspan="2">描述</td>
-　　　　　　　　　　<td colspan="2">积分</td>
-　　　　　　</tr>
-　　　　　　<tr class="carttitle">
-　　　　　　　　　　<td>单积分</td>
-　　　　　　　　　　<td>总积分</td>
-　　　　　　</tr>
-  <%(@items||[]).each do |item|%>
-    <%product = item.product%>
-            <tr>
-                <td><%= item.count %></td>
-                <td><%= h(product.name) %></td>
-                <td align="right"><%= product.credit %></td>
-                <td align="right"><%= product.credit * item.count %></td>
-            </tr>
-  <% end %>
-　　　　　　<tr>
-　　　　　　　　　　<td colspan="3" align="right"><strong>总额:</strong></td>
-　　　　　　　　　　<td id="totalcell"><%#= @cart.total_price %><%= @cart.total_credit %></td>
-　　　　　　</tr>
-　　</table>

@@ -4,22 +4,22 @@
 *{margin: 0}
 body{
     background: #90b816 ;
-	height:1300px;
-	/*margin:0 auto*/
+    height:1300px;
+    /*margin:0 auto*/
 }
 .top_background{
-	background:url(/star_imgs/shop/center_user/bg_top.png)  repeat-x  ;
-	height: 55px;
-	margin-top: -60px;
-	padding-bottom: 50px;
+    background:url(/star_imgs/shop/center_user/bg_top.png)  repeat-x  ;
+    height: 55px;
+    margin-top: -60px;
+    padding-bottom: 50px;
 }
 .center_user_work{
-	width: 1070px;
-	padding-top: 100px;
+    width: 1070px;
+    padding-top: 100px;
 }
 .center_user_conment{
-	background:url(/star_imgs/shop/center_user/center_bg_top2.png)  ;
-	background-repeat: no-repeat;
+    background:url(/star_imgs/shop/center_user/center_bg_top2.png)  ;
+    background-repeat: no-repeat;
     height: 100px;
     padding-top: 30px;
     padding-left: 20px;
@@ -28,7 +28,7 @@ body{
 }
 .center_user_conment_mid{
     background:url(/star_imgs/shop/center_user/bg_mid.png)  repeat-y  ;
-/*    height: 1000px;*/
+    /*    height: 1000px;*/
     _height:500px;
     min-height: 500px;
 }
@@ -39,7 +39,7 @@ body{
     margin-top: -1px;
 }
 .center_conment_left{
-	background:url(/star_imgs/shop/center_user/center_bg_top1.png) ;
+    background:url(/star_imgs/shop/center_user/center_bg_top1.png) ;
     background-repeat: no-repeat;
     height: 70px;
     width: 230px;
@@ -49,7 +49,7 @@ body{
     padding-left: 30px;
 }
 .center_conment_mid{
-	background:url(/star_imgs/shop/center_user/center_conment_mid.png) ;
+    background:url(/star_imgs/shop/center_user/center_conment_mid.png) ;
     background-repeat: repeat-y;
     height: 400px;
     width: 230px;
@@ -58,7 +58,7 @@ body{
     z-index: 100;
 }
 .center_conment_bottom{
-	background:url(/star_imgs/shop/center_user/center_conment_bottom.png) ;
+    background:url(/star_imgs/shop/center_user/center_conment_bottom.png) ;
     background-repeat: no-repeat;
     height: 65px;
     width: 230px;
@@ -66,35 +66,35 @@ body{
     z-index: 100;
 }
 .center_left{
-	float: left;
-	height: 700px;
+    float: left;
+    height: 700px;
     width: 230px;
 }
 .center_right{
-	float: right;
-	width: 780px;
+    float: right;
+    width: 780px;
 }
 .center_conment_right{
-	background:url(/star_imgs/shop/center_user/center_conment_right_top.png) ;
+    background:url(/star_imgs/shop/center_user/center_conment_right_top.png) ;
     background-repeat: no-repeat;
     height: 85px;
     width: 100%;
 }
 .center_conment_right_mid{
-	background:url(/star_imgs/shop/center_user/center_conment_right_mid.png) ;
+    background:url(/star_imgs/shop/center_user/center_conment_right_mid.png) ;
     background-repeat: repeat-y;
     height: 80px;
     width: 100%;
 }
 .center_conment_right_bottom{
-	background:url(/star_imgs/shop/center_user/center_conment_right_bottom.png) ;
+    background:url(/star_imgs/shop/center_user/center_conment_right_bottom.png) ;
     background-repeat: no-repeat;
     height: 85px;
     width: 100%;
     margin-top: -1px;
 }
 .center_right_bottom_mid{
-	background:url(/star_imgs/shop/center_user/center_conment_right_mid.png) ;
+    background:url(/star_imgs/shop/center_user/center_conment_right_mid.png) ;
     background-repeat: repeat-y;
     height: 500px;
     width: 100%;
@@ -102,6 +102,10 @@ body{
 
 .center_conment_mid ul li {
     line-height: 40px;
+}
+.my_credit_a{
+    color: #FFFFFF;
+    margin: 0 auto ;
 }
 .question_li ul li{
 	line-height: 30px;
@@ -124,13 +128,43 @@ body{
 	color: #FFFFFF;	
 }
 .my_credit_show{
-	background:url(/star_imgs/shop/center_user/button_center.png) ;
+    background:url(/star_imgs/shop/center_user/button_center.png) ;
     background-position: -0px -575px;
     color: #FFFFFF;
     font-size: 16px;
     height: 40px;
     line-height: 38px;
     width: 180px;
+}
+.go_shop{
+    float: left;
+    width: 100%;
+    text-align: right;
+}
+.go_shop a{
+    padding-right: 20px;
+    color: red;
+}
+table.cart_data{
+    width: 770px;
+    margin: 0 auto;
+}
+table .carttitle{
+    background-color: #F9EBCB;
+}
+.thbrank{
+    border-top: 6px solid #5C3200;
+}
+td.pay_credit{
+    color: #289424;
+}
+#cartmenu {
+    background-color: #F1F1F1;
+    width: 740px;
+    margin: 0 auto;
+}
+#cartmenu li{
+    float: left;
 }
 .question_img{
     background:url(/star_imgs/shop/center_user/question_img.png) ;
