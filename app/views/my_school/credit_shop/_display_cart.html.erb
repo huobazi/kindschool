@@ -10,7 +10,7 @@
           <div class="go_shop">
             <%= link_to '去积分商城兑换礼品>>', :action => "products" %>
           </div>
-　　<table cellpadding="10" cellspacing="0" class="cart_data table table-hover">
+　　<table cellpadding="10" cellspacing="0" class="cart_data table table-hover" id="cart_data_table">
 　　　　　　<tr class="carttitle thbrank">
               <td>选择</td>
               <td>礼品名称</td>
@@ -25,33 +25,32 @@
                 <tr>
                   <td><input id="cart_<%= product.id %>" class="check" name="cart[]" type="checkbox" value="<%= product.id %>" /></td>
                   <td><%= h(product.name) %></td>
-                  <td><%= item.count %></td>
+                  <td class="pay_count"><%= item.count %></td>
                   <td class="pay_credit"><%= product.credit %></td>
-                  <td class="pay_credit"><%= product.credit * item.count %></td>
-                  <td>移除</td>
+                  <td class="pay_credit pay_all_credit"><%= product.credit * item.count %></td>
+                  <td><%=link_to "移除",:action=>"delete_to_cart",:id=>product.id%></td>
                 </tr>
               <% end %>
 　　　　　　<tr>
-　　　　　　　　　　<td colspan="4"></td>
+　　　　　　　　　　<td colspan="3"></td>
 　　　　　　　　　　<td align="right"><strong>总额:</strong></td>
 　　　　　　　　　　<td id="totalcell"><%#= @cart.total_price %><%= @cart.total_credit %></td>
+                <td></td>
 　　　　　　</tr>
             </tbody>
 　　</table>
-
-   <div id="cartmenu">
-     <table cellpadding="10" cellspacing="0" class="cart_data">
-　　　　　　<tr>
-        <td class="check"><input id="cart_all" class="check" name="allcart" type="checkbox" value="1" /><label for="cart_all">全选</label></td>
-              <td></td>
-              <td><%= link_to '清空购物车', :action => "empty_cart" %></td>
-              <td></td>
-              <td></td>
-              <td><%= link_to '兑换', {:action => "checkout"},:class=>"credit_buttom"  %></td>
-　　　　　　</tr>
-     </table>
+          <div id="cartmenu">
+            <table cellpadding="10" cellspacing="0" class="cart_data">
+              <tr>
+                <td class="check"><input id="cart_all" class="check" name="allcart" type="checkbox" value="1" /><label for="cart_all">全选</label></td>
+                <td></td>
+                <td><%= link_to '清空购物车', :action => "empty_cart" %></td>
+                <td>已选<span class="check_count">0</span>件</td>
+                <td>合计积分<span class="check_credit">0</span></td>
+                <td><%= link_to '兑换', "#cart_data_table",:class=>"credit_buttom",:id=>"checkout"  %></td>
+              </tr>
+            </table>
 　　</div>
-
         </div>
         <div class="center_conment_right_bottom">
         </div>
@@ -63,3 +62,36 @@
   <div class="center_user_conment_bottom">
   </div>
 </div>
+<script type="text/javascript">
+  $("#cart_all").click(function(){
+    $(".cart_data input").attr("checked", this.checked)
+    load_cartmenu()
+  });
+  $(".cart_data input").click(function(){
+    load_cartmenu();
+  })
+  $("#checkout").click(function(){
+    var data = $(".cart_data :checkbox:checked");
+    if(data.size() > 0){
+      var ids = [];
+      data.each(function(){
+        ids.push($(this).val());
+      })
+      location.href="<%=url_for(:action=>:checkout)%>?ids="+ids.join(",");
+    }else{
+      alert("请选择需要兑换的礼品");
+    }
+  })
+  function load_cartmenu(){
+    var pay_count = 0;
+    var pay_all_credit = 0;
+    $(".cart_data :checkbox:checked").each(function(){
+      var count = $(this).parent().parent().find(".pay_count").text();
+      var all_credit = $(this).parent().parent().find(".pay_all_credit").text();
+      pay_count += (count * 1);
+      pay_all_credit += (all_credit * 1);
+    })
+    $(".check_count").text(pay_count);
+    $(".check_credit").text(pay_all_credit);
+  }
+</script>

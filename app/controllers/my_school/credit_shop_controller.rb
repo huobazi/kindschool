@@ -10,12 +10,12 @@ class MySchool::CreditShopController < MySchool::ManageController
     @tags = Product.tag_counts
     @product_categories = []
     ProductCategory.roots.each do |n|
-        n.self_and_descendants.each_with_level do |item, level|
-          item[:lvl] = level
-          @product_categories << item
-        end
+      n.self_and_descendants.each_with_level do |item, level|
+        item[:lvl] = level
+        @product_categories << item
+      end
     end
-   render :layout =>"credit_shop"
+    render :layout =>"credit_shop"
   end
 
   def products
@@ -44,15 +44,15 @@ class MySchool::CreditShopController < MySchool::ManageController
 
   # 用户个人信息
   def user_center
-   @personal_credits = current_user.personal_credit
-   @un_orders = current_user.orders.pending_shipping
-   @en_orders = current_user.orders.where("shipment_at is not null")
+    @personal_credits = current_user.personal_credit
+    @un_orders = current_user.orders.pending_shipping
+    @en_orders = current_user.orders.where("shipment_at is not null")
   end
   
   def show_merchant
     @merchant = Merchant.find_by_id(params[:id])
     if @merchant
-     @products = @merchant.products.where(:status=>2,:shop_id=>@shop_tp).order("updated_at DESC").limit(5)
+      @products = @merchant.products.where(:status=>2,:shop_id=>@shop_tp).order("updated_at DESC").limit(5)
     end
   end
   
@@ -61,6 +61,17 @@ class MySchool::CreditShopController < MySchool::ManageController
     product = Product.find(params[:id])
     @cart = find_cart
     @cart.add_product(product)
+    redirect_to(:action => 'display_cart')
+  rescue
+    logger.error("Attempt to access invalid product #{params[:id]}")
+    flash[:notice] = "无效商品"
+    redirect_to(:action => 'products')
+  end
+  #删除购物车中某个商品
+  def delete_to_cart
+    product = Product.find(params[:id])
+    @cart = find_cart
+    @cart.delete_product(product)
     redirect_to(:action => 'display_cart')
   rescue
     logger.error("Attempt to access invalid product #{params[:id]}")
@@ -81,12 +92,14 @@ class MySchool::CreditShopController < MySchool::ManageController
   
   def checkout
     @cart = find_cart
-    @items = @cart.items
+    #    @items = @cart.items
+    @items = @cart.find_by_id(params[:ids])
+    @total_credit = @items.sum{|record| record.product.credit * record.count }
     if @items.empty?
-     redirect_to(:action=>"index")
+      redirect_to(:action=>"index")
     else
-     @order = Order.new
-     @order.number=Time.now.to_i.to_s + rand(100).to_s
+      @order = Order.new
+      @order.number=Time.now.to_i.to_s + rand(100).to_s
     end
   end
   
@@ -94,12 +107,18 @@ class MySchool::CreditShopController < MySchool::ManageController
     @cart = find_cart
     @order = Order.new(params[:order])
     @order.number=Time.now.to_i.to_s + rand(100).to_s
-    @order.order_infos << @cart.items
-    @order.credit = @cart.total_credit
+    @items = @cart.find_by_id(params[:ids])
+    @order.order_infos << @items
+    @total_credit = @items.sum{|record| record.product.credit * record.count }
+    @order.credit = @total_credit
     @order.kindergarten = @kind
     @order.user = current_user
     if @order.save!
-      @cart.empty!
+      ids = @items.collect(&:product_id)
+      ids.each do |product_id|
+        product = Product.find(product_id)
+        @cart.delete_product(product)
+      end
       flash[:notice] = '下订单成功'
       redirect_to(:action=>'ship')
     else
@@ -112,13 +131,13 @@ class MySchool::CreditShopController < MySchool::ManageController
     products = []
     if things_to_ship = params[:to_be_shipped]
       count,products = do_shipping(things_to_ship)
-        if count > 0
-          count_text = pluralize(count, "order")
-          flash.now[:notice] = "#{count_text} marked as shipped"
-        end
-        unless products.blank?
-          flash[:notice] = "#{products.collect{|x|x.name}}没有库存了."
-        end
+      if count > 0
+        count_text = pluralize(count, "order")
+        flash.now[:notice] = "#{count_text} marked as shipped"
+      end
+      unless products.blank?
+        flash[:notice] = "#{products.collect{|x|x.name}}没有库存了."
+      end
     end
     @pending_orders = current_user.orders.pending_shipping unless current_user.orders.blank?
   end
@@ -148,10 +167,10 @@ class MySchool::CreditShopController < MySchool::ManageController
         order = Order.find(order_id)
         #判断是否库存够了
         if order.product_storage_able.blank?
-           order.product_storage_off
-           order.mark_as_shipped
-           order.save
-           count += 1
+          order.product_storage_off
+          order.mark_as_shipped
+          order.save
+          count += 1
         else
           products << order.product_storage_able
         end
@@ -160,13 +179,13 @@ class MySchool::CreditShopController < MySchool::ManageController
     return count,products
   end
  
- def pluralize(count, noun)
-     if 0 == count
-       "No #{noun.pluralize}"
-     elsif 1 == count
-       "One #{noun}"
-     else
-       "#{count} #{noun.pluralize}"
-     end 
- end
+  def pluralize(count, noun)
+    if 0 == count
+      "No #{noun.pluralize}"
+    elsif 1 == count
+      "One #{noun}"
+    else
+      "#{count} #{noun.pluralize}"
+    end
+  end
 end
