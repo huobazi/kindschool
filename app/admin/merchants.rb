@@ -25,7 +25,7 @@ ActiveAdmin.register Merchant do
       f.inputs "上传logo图片", :for => [:asset_img, f.object.asset_img || AssetImg.new] do |img|
         img.input :uploaded_data,:as=>:file,:name => "asset_img"
       end
-      
+
     end
     f.inputs "商家页面内容" do
       f.kindeditor :note,:allowFileManager => false

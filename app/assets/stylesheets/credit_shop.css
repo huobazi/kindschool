@@ -12,6 +12,7 @@ body{
     padding-bottom: 25px;
     margin: 0 auto;
     width: 1080px;
+    clear: both;
 }
 ul, li {
     list-style-type: none;
