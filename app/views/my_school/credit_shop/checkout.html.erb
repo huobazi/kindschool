@@ -1,4 +1,54 @@
-<%= render   ("display_cart") %>
-<%= form_for(@order, :validate => true,:url=>{:action=>"save_order"}, :html =>{:class=>"form-horizontal"}) do |f| %>
-          <%= render 'order_form', :f=>f %>
-       <% end %>
+<div class="center_user_work">
+  <div class="center_user_conment">
+    <%=render "center_left"%>
+    <div class="center_right">
+      <div class="center_right_line"></div>
+      <div class="center_right_bottom">
+        <div class="center_conment_right">
+        </div>
+        <div class="center_right_bottom_mid">
+          <div class="go_shop">
+            <%= link_to '去积分商城兑换礼品>>', :action => "products" %>
+          </div>
+          <%= form_for(@order, :validate => true,:url=>{:action=>"save_order"}, :html =>{:class=>"form-horizontal"}) do |f| %>
+          <div class="div_left">
+            <table cellpadding="10" cellspacing="0" class="cart_data table table-hover">
+              <tr class="carttitle thbrank">
+                <td></td>
+                <td>礼品名称</td>
+                <td>数量</td>
+                <td>单个积分</td>
+                <td>所花积分</td>
+              </tr>
+              <tbody>
+                <%(@items||[]).each do |item|%>
+                  <%product = item.product%>
+                  <tr>
+                    <td><input class="check" name="ids[]" type="hidden" value="<%= product.id %>" /></td>
+                    <td><%= h(product.name) %></td>
+                    <td class="pay_count"><%= item.count %></td>
+                    <td class="pay_credit"><%= product.credit %></td>
+                    <td class="pay_credit pay_all_credit"><%= product.credit * item.count %></td>
+                  </tr>
+                <% end %>
+                <tr>
+                  <td colspan="3"></td>
+                  <td align="right"><strong>总额:</strong></td>
+                  <td id="totalcell"><%= @total_credit %></td>
+                </tr>
+              </tbody>
+            </table>
+             </div>
+            <%= render 'order_form', :f=>f %>
+          <% end %>
+        </div>
+        <div class="center_conment_right_bottom">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="center_user_conment_mid">
+  </div>
+  <div class="center_user_conment_bottom">
+  </div>
+</div>

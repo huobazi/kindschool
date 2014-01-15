@@ -1,24 +1,25 @@
-<table>
-	<tr>
-		<td>邮编:</td>
-		<td><%= f.text_field(:postage , placeholder: "") %></td>
-	</tr>
-	<tr>
-		<td>电话号码:</td>
-		<td><%= f.text_field(:phone , :validate => true, placeholder: "") %></td>
-	</tr>
-	<tr>
-		<td>地址:</td>
-		<td><%= f.text_field(:address,:validate => true, placeholder: "") %></td>
-	</tr>
-	<tr>
-		<td>详细地址:</td>
-		<td><%= f.text_field(:address_info , placeholder: "") %></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td><%= f.submit('保存',:class=>"btn btn-large btn-primary", disable_with: "正在提交") %></td>
-	</tr>
-	
-  
-</table>
+
+<div class="control-group">
+  <%=f.label :postage, raw('<abbr title="required"></abbr> 邮编:') ,:class=>"control-label"%>
+  <div class="controls">
+    <%= f.text_field(:postage , :placeholder=>"") %>
+  </div>
+</div>
+<div class="control-group">
+  <%=f.label :phone, raw('<abbr title="required">*</abbr> 手机号:') ,:class=>"control-label"%>
+  <div class="controls">
+    <%= f.text_field(:phone ,:validate => true, :placeholder=>"") %>
+  </div>
+</div>
+<div class="control-group">
+  <%=f.label :address, raw('<abbr title="required">*</abbr> 详细地址:') ,:class=>"control-label"%>
+  <div class="controls">
+    <%= f.text_area(:address,:size=>"20x5",:class => "span5",:validate => true, :placeholder=>"") %>
+  </div>
+</div>
+<%#= f.text_field(:address_info , :placeholder=>"") %>
+<div class="control-group">
+  <div class="controls">
+    <%= f.submit('保存',:class=>"btn btn-large btn-primary", :disable_with=> "正在提交") %>
+  </div>
+</div>

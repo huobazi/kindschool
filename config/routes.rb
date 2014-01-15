@@ -11,6 +11,7 @@ School::Application.routes.draw do
       get :show_product, :on => :member
       get :show_merchant, :on => :member
       get :add_to_cart, :on => :collection
+      get :delete_to_cart, :on => :collection
       get :display_cart, :on => :collection
       get :empty_cart, :on => :collection
       get :checkout, :on => :collection

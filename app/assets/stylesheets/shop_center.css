@@ -24,7 +24,7 @@ body{
     padding-top: 30px;
     padding-left: 20px;
     padding-right: 5px;
-
+    margin-top: -1px;
 }
 .center_user_conment_mid{
     background:url(/star_imgs/shop/center_user/bg_mid.png)  repeat-y  ;
@@ -98,6 +98,7 @@ body{
     background-repeat: repeat-y;
     height: 500px;
     width: 100%;
+    margin-top: -1px;
 }
 
 .center_conment_mid ul li {
@@ -108,7 +109,7 @@ body{
     margin: 0 auto ;
 }
 .question_li ul li{
-	line-height: 30px;
+    line-height: 30px;
 }
 .question_li ul li a{
     color: #794917;
@@ -119,8 +120,8 @@ body{
     color: #794917;
 }
 .question_li ul li a{
-	padding-left: 0px;
-	font-size: 16px;
+    padding-left: 0px;
+    font-size: 16px;
     color: #794917;
 
 }
@@ -143,7 +144,7 @@ td.pay_credit{
     margin: 0 auto;
 }
 .my_credit_a{
-	color: #FFFFFF;	
+    color: #FFFFFF;
 }
 .my_credit_show{
     background:url(/star_imgs/shop/center_user/button_center.png) ;
@@ -176,22 +177,22 @@ td.pay_credit{
     padding-left: 30px;
 }
 .credit_user{
-	position: relative;
-	z-index: 100px;
-	padding-left: 10px;
+    position: relative;
+    z-index: 100px;
+    padding-left: 10px;
 }
 .credit_user ul li {
-	border-right: 1px dotted #000000;
-	float:left;
-	width:340px;
-	height: 100px;
-	
+    border-right: 1px dotted #000000;
+    float:left;
+    width:340px;
+    height: 100px;
+
 }
 .credit_user ul li:last-child {
     border: medium none;
 }
 .user_credit_show{
-	background:url(/star_imgs/shop/center_user/button_center.png) ;
+    background:url(/star_imgs/shop/center_user/button_center.png) ;
     background-position: -200px -10px;
     height: 30px;
     width: 30px;
@@ -388,4 +389,16 @@ td.pay_credit{
 .product_list ul li {
     float: left;
     width: 235px;
+}
+td.check label,td.check input{
+    padding: 0px;
+    float: left;
+    margin-right: 2px;
+}
+.check_count,.check_credit{
+    color: red;
+}
+.div_left{
+    float: left;
+    margin-left: 5px;
 }
