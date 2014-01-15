@@ -202,25 +202,190 @@ td.pay_credit{
     margin: 0 auto;
     width: 120px;
 }
-.credit_buttom{
+.credit_buttom:hover{
 	background-image:url(/star_imgs/shop/center_user/button_center.png) ;
-    background-position: -132px -462px;
-    height: 50px;
+    background-position: -132px -465px;
+    height: 48px;
     width: 130px;
     color: #fff;
     font-size: 18px;
-    line-height: 50px;
+    line-height: 48px;
+    text-align: center;
+    display: block;
+
+}
+.credit_buttom{
+	background-image:url(/star_imgs/shop/center_user/button_center.png) ;
+    background-position: -132px -512px;
+    height: 48px;
+    width: 130px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 48px;
     text-align: center;
     display: block;
 }
-.credit_buttom:hover{
+.credit_details_info{
 	background-image:url(/star_imgs/shop/center_user/button_center.png) ;
-    background-position: -132px -510px;
-    height: 50px;
-    width: 130px;
-    color: #fff;
-    font-size: 18px;
+    background-position: -2px -244px;
+    display: block;
+    height: 48px;
+    width: 132px;
+    float: left;
     line-height: 50px;
     text-align: center;
+    font-size: 20px;
+    color: #fff;
+}
+.credit_details_info:hover{
+	background-image:url(/star_imgs/shop/center_user/button_center.png) ;
+    background-position: -2px -294px;
     display: block;
+    height: 48px;
+    width: 132px;
+    float: left;
+    line-height: 50px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+}
+.earn_record{
+	background-image:url(/star_imgs/shop/center_user/button_center.png) ;
+    background-position: -135px -244px;
+    display: block;
+    float: left;
+    height: 48px;
+    width: 132px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+}
+.earn_record:hover{
+	background-image:url(/star_imgs/shop/center_user/button_center.png) ;
+    background-position: -135px -294px;
+    display: block;
+    float: left;
+    height: 48px;
+    width: 132px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+}
+.use_record{
+	background-image:url(/star_imgs/shop/center_user/button_center.png) ;
+    background-position: -268px -244px;
+    display: block;
+    float: left;
+    height: 48px;
+    width: 132px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+}
+.use_record:hover{
+	background-image:url(/star_imgs/shop/center_user/button_center.png) ;
+    background-position: -268px -294px;
+    display: block;
+    float: left;
+    height: 48px;
+    width: 132px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+}
+.credit_details{
+	margin: 0 auto;
+    width: 770px;
+}
+.center_product_right {
+    float: right;
+}
+.center_product_left{
+    float: left;
+    width: 780px;
+}
+
+.all_product_title{
+    padding-top: 20px;
+    padding-left: 20px;
+    width: 200px;
+    height: 50px;
+}
+.all_product_round{
+    background-image:url(/star_imgs/shop/center_user/button_center.png) ;
+    background-position: -278px -13px;
+    float: left;
+    height: 20px;
+    width: 20px;
+}
+.all_product_text{
+    color: #DD1F1D;
+    font-size: 31px;
+}
+.sort_by_default{
+    background-image:url(/star_imgs/shop/center_user/button_center.png) ;
+    background-position: 0 -0px;
+    display: block;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    width: 138px;
+    font-size: 23px;
+    color: #686868;
+    float: left;
+}
+.sort_by_default:hover{
+    background-image:url(/star_imgs/shop/center_user/button_center.png) ;
+    background-position: 0 -45px;
+    display: block;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    width: 138px;
+    font-size: 23px;
+    color: #fff;
+    float: left;
+}
+.product_list_top{
+    background:url(/star_imgs/shop/center_user/product_list_top.png) ;
+    background-repeat: no-repeat;
+    height: 215px;
+    width: 780px;
+}
+
+.product_list{
+    padding-top: 30px;
+    padding-left: 20px;
+}
+.product_list_mid{
+    background:url(/star_imgs/shop/center_user/product_list_mid.png) ;
+    background-repeat: no-repeat;
+    height: 225px;
+    width: 780px;
+}
+.product_list_bottom{
+    background:url(/star_imgs/shop/center_user/product_list_bottom.png) ;
+    background-repeat: no-repeat;
+    height: 230px;
+    width: 780px;
+}
+.product_list_top ul {
+    padding-left: 35px;
+    padding-top: 16px;
+}
+.product_list_mid ul {
+    padding-left: 35px;
+    padding-top: 26px;
+}
+.product_list_bottom ul {
+    padding-left: 35px;
+    padding-top: 27px;
+}
+.product_list ul li {
+    float: left;
+    width: 235px;
 }

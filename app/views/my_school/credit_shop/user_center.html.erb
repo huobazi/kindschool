@@ -14,7 +14,7 @@
             <p style="font-size:16px;color:#000">我的积分</p>
             <div>
               <div class="user_credit_show"></div>
-              <p style="font-size:30px;color:#5b8b0f">76565</p>
+              <p style="font-size:30px;color:#5b8b0f"><%=@personal_credits.credit%></p>
             </div>
             <div>
               <a style="font-size:14px;color:#e5251c;text-decoration:underline;">我能兑换的礼品&gt;</a>
@@ -23,9 +23,7 @@
          </li>
          <li>
          <a class="credit_buttom">
-            <!-- <div class="credit_buttom"> -->
               去兑换礼品
-           <!--  </div> -->
           </a>
           </li>
        </ul>
@@ -39,6 +37,56 @@
      <div class="center_conment_right">
      </div>
      <div class="center_right_bottom_mid">
+      <div>
+       <div class="credit_details">
+         <a class="credit_details_info">积分明细</a>
+         <a class="earn_record">赚取记录</a>
+         <a class="use_record">使用记录</a>
+       </div>
+       <div>
+        <table cellpadding="10" cellspacing="0" class="cart_data table table-hover">
+　　　　　　<tr class="carttitle thbrank">
+              <td>用途/来源</td>
+              <td>积分数</td>
+              <td colspan="2">日期</td>
+              <td colspan="2">备注</td>
+　　　　　　</tr>
+            <tbody>
+                <tr>
+                  <td>每日登录</td>
+                  <td class="pay_credit">+1</td>
+                  <td colspan="2">2014-1-4</td>
+                  <td colspan="2">每日登录</td>
+                </tr>
+            </tbody>
+　      </table>
+       </div>
+      </div>
+       <div>
+         <div class="">
+          <span class="credit_title"><b>积分规则及说明</b></span>
+         </div>
+        <div >
+        <table cellpadding="10" cellspacing="0" class="cart_data table table-hover">
+　　　　　　<tr class="carttitle thbrank">
+              <td>动作名称</td>
+              <td>周期范围</td>
+              <td colspan="2">周期内最多奖励次数</td>
+              <td>积分</td>
+              <td>操作</td>
+　　　　　　</tr>
+            <tbody>
+                <tr>
+                  <td>每日登录</td>
+                  <td class="pay_credit">+1</td>
+                  <td colspan="2">1</td>
+                  <td>+1</td>
+                  <td>-</td>
+                </tr>
+            </tbody>
+　      </table>
+      </div>
+     </div>
      </div>
      <div class="center_conment_right_bottom">
      </div>
