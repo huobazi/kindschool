@@ -1,10 +1,127 @@
-<% if @logo %>
-  <% if @logo.page_img %>
-    <img src='<%= @logo.page_img.public_filename(:middle)  %>' alt="<%= @logo.name %>" title="<%= @logo.name %>"/><br/>
+<div id="show_product" class='show_product'>
+  <div class="bg-top">
+    实物礼品。。。
+  </div>
+  <div class="bg-middle clearfix">
+
+    <div class="left pull-left">
+      <div class="media">
+        <div class="pull-left product_bg">
+          <img alt="" src="/t/colorful/483-5552.jpg">
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading" style="font-weight: bold;">小宝棉衣</h4>
+          <h4 class="media-credit">所需积分: <span class="strong-font"><%= @product.credit %></span><span class="large">分</span></h4>
+          <h4 class="media-price">原价￥<del><%= @product.price %></del></h4>
+          <h4 class="media-count">兑换数量:</h4>
+          <div class="media">
+            <a href="#" class="btn-change btn-shop">立刻兑换</a>
+            <a href="#" class="btn-card btn-shop">添加到购物车</a>
+          </div>
+        </div>
+      </div>
+      <!-- end media -->
+
+      <div class="product-detail">
+        <h4>商品描述</h4>
+        <div class="detail-content" style="text-indent: 20px;">
+          <%= @product.note %>
+        </div>
+      </div>
+
+      <div class="product-detail">
+        <h4>商品图片</h4>
+        <div class="detail-content">
+          <% @product.product_imgs.each do |img| %>
+            <img src='<%=  img.public_filename(:middle) %>' alt=""/>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="product-detail">
+        <h4>所属商家</h4>
+        <div class="detail-content">
+          <% if @product.merchant %>
+            <div class="merchant-img">
+              <% if @product.merchant.asset_img.blank? %>
+                <%= raw "图片不存在" %>
+              <% else %>
+                <%= raw "<img src='#{@product.merchant.asset_img.public_filename(:middle)}'  onerror='this.src='/assets/no_img.png' class='img-polaroid' />" %>
+              <% end %>
+            </div>
+            <div class="img-text">
+              <%= link_to @product.merchant.name ,:action=>:show_merchant,:id=>@product.merchant_id %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="product-detail">
+        <h4>教育理念</h4>
+        <div class="detail-content">
+          <%= @product.meaning %>
+        </div>
+      </div>
+
+      <div class="product-detail">
+        <h3>使用反馈</h3>
+        <div class="detail-content">
+          <form>
+            <p>
+              <textarea class="feedback" name="" cols="30" rows="10"></textarea>
+            </p>
+            <p style="text-align: right;margin-top: -10px;">
+              <input type="submit" class="btn-shop btn-feedback" value="发表评论">
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <div id="feedback-content">
+        <div class="show-feedback">
+          <p class="feedback-info clearfix"><span>来自。。。。</span><span class="pull-right">2012.09.11</span></p>
+          <div class="feedback-content">
+            非常不错，给老公买的。
+          </div>
+        </div>
+        <div class="show-feedback">
+          <p class="feedback-info clearfix"><span>。。。。</span><span class="pull-right">2012.09.11</span></p>
+          <div class="feedback-content">
+            非常不错，给老公买的。
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end left -->
+
+    <div class="right">
+      <div class="media" style="margin-bottom: 15px;">
+        <div class="pull-left">
+          <img alt="" src="/t/colorful/483-5552.jpg" style="width: 70px;height: 70px;">
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">小宝棉衣</h4>
+        </div>
+      </div>
+      <!-- end media -->
+      <%= render :partial => "/my_school/credit_shop/shop_question" %>
+    </div>
+
+
+  </div>
+  <div class="bg-bottom"></div>
+</div>
+
+<!--
+<div style="clear: both;">
+  <% if @logo %>
+    <% if @logo.page_img %>
+      <img src='<%= @logo.page_img.public_filename(:middle)  %>' alt="<%= @logo.name %>" title="<%= @logo.name %>"/><br/>
+    <% end %>
+    <%= @logo.name %><br/>
+    <%= @logo.note %>
   <% end %>
-  <%= @logo.name %><br/>
-  <%= @logo.note %>
-<% end %>
+</div>
 <br/><br/>
 <h1>商品信息</h1>
 <% if @product %>
@@ -31,3 +148,4 @@
 <% else %>
   该商品不存在
 <% end %>
+-->
