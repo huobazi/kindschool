@@ -485,8 +485,8 @@ td.check label,td.check input{
 
 .btn-shop {
   width: 150px;
-  height: 55px;
-  line-height: 55px;
+  height: 53px;
+  line-height: 53px;
   font-size: 15px;
   color: #fff;
   display: inline-block;
@@ -494,23 +494,21 @@ td.check label,td.check input{
 }
 
 .show_product .btn-change {
-  background: url("/star_imgs/shop/center_user/button_center.png") no-repeat 0 -350px;
+  background: url("/star_imgs/shop/center_user/button_center.png") no-repeat 0 -404px;
 }
 
 .show_product .btn-change:hover {
-  /*background: url("/star_imgs/shop/center_user/button_center.png") no-repeat 0 -403px;*/
+  background: url("/star_imgs/shop/center_user/button_center.png") no-repeat 0 -352px;
   color: #fff;
-  text-decoration: underline;
 }
 
 .show_product .btn-card {
-  background: url("/star_imgs/shop/center_user/button_center.png") no-repeat -160px -350px;
+  background: url("/star_imgs/shop/center_user/button_center.png") no-repeat -160px -404px;
 }
 
 .show_product .btn-card:hover {
-  /*background: url("/star_imgs/shop/center_user/button_center.png") no-repeat -160px -403px;*/
+  background: url("/star_imgs/shop/center_user/button_center.png") no-repeat -160px -352px;
   color: #fff;
-  text-decoration: underline;
 }
 
 .show_product .product-detail h4 {
@@ -629,4 +627,9 @@ td.check label,td.check input{
 .show_product .sidebar-bottom {
   background: url("/star_imgs/shop/center_user/center_conment_bottom.png") no-repeat;
   height: 60px;
+}
+
+.show_product .product-title {
+  background: url("/star_imgs/shop/center_user/button_center.png") no-repeat -278px -13px;
+  padding-left: 20px;
 }
