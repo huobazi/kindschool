@@ -187,17 +187,6 @@
     </div>
   </div>
 </div>
-<% if @logo %>
-  <% if @logo.page_img %>
-    <img src='<%= @logo.page_img.public_filename(:middle)  %>' alt="<%= @logo.name %>" title="<%= @logo.name %>"/><br/>
-  <% end %>
-  <%= @logo.name %><br/>
-  <%= @logo.note %>
-<% end %>
-<br/><br/>
-<h1>商品信息</h1>
-<%= link_to "全部商品",:action=>:products,:controller=>"/my_school/credit_shop" %>
-<hr/>
 <div id="left_tree" style="float:left;width:200px">
   <h3>商品分类</h3>
   <ul id="sys_function_groups_tree">

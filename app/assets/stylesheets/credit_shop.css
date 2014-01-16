@@ -10,6 +10,7 @@ body{
 }
 .main_work{
     padding-bottom: 25px;
+    padding-top: 50px;
     margin: 0 auto;
     width: 1080px;
     clear: both;
@@ -95,6 +96,19 @@ ul, li {
     line-height: 60px;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     width: 190px;
+    display: block;
+}
+.all_products:hover{
+    background-image: url("/star_imgs/shop/button.png");
+    background-position: 0 -110px;
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+    display: block;
+    font-size: 23px;
+    height: 61px;
+    line-height: 60px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    width: 190px;
 }
 .credit_activity{
     background-image: url("/star_imgs/shop/button.png");
@@ -106,6 +120,19 @@ ul, li {
     line-height: 60px;
     font-size: 23px;
     color: #fff;
+    display: block;
+}
+.credit_activity:hover{
+    background-image: url("/star_imgs/shop/button.png");
+    background-position: -202px -110px;
+    background-repeat: no-repeat;
+    height: 61px;
+    width: 190px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    line-height: 60px;
+    font-size: 23px;
+    color: #fff;
+    display: block;
 }
 .earn_credit{
     background-image: url("/star_imgs/shop/button.png");
@@ -117,6 +144,19 @@ ul, li {
     line-height: 60px;
     font-size: 23px;
     color: #fff;
+    display: block;
+}
+.earn_credit:hover{
+    background-image: url("/star_imgs/shop/button.png");
+    background-position: -404px -110px;
+    background-repeat: no-repeat;
+    height: 61px;
+    width: 190px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    line-height: 60px;
+    font-size: 23px;
+    color: #fff;
+    display: block;
 }
 .personal_center{
     background-image: url("/star_imgs/shop/button.png");
@@ -128,6 +168,19 @@ ul, li {
     line-height: 60px;
     font-size: 23px;
     color: #fff;
+    display: block;
+}
+.personal_center:hover{
+    background-image: url("/star_imgs/shop/button.png");
+    background-position: -607px -110px;
+    background-repeat: no-repeat;
+    height: 61px;
+    width: 190px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    line-height: 60px;
+    font-size: 23px;
+    color: #fff;
+    display: block;
 }
 .btn-danger123 {
     background-color: #DA4E49;
