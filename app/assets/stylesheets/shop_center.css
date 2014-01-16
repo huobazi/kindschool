@@ -562,11 +562,11 @@ td.check label,td.check input{
 .show-feedback {
   margin-bottom: 20px;
 }
-.show_product .bg-middle .left .product-detail .detail-content .img-text {
+.show_product .detail-content .img-text {
   text-align: center;
   width: 140px;
 }
-.show_product .bg-middle .left .product-detail .detail-content .merchant-img {
+.show_product .detail-content .merchant-img {
   height: 140px;
   width: 140px;
 }
