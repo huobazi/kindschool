@@ -1,40 +1,44 @@
 <div class="center_left">
-    <div class="center_conment_left">
-     个人积分
-    </div>
-    <div class="center_conment_mid">
+  <div class="center_conment_left">
+    个人积分
+  </div>
+  <div class="center_conment_mid">
     <ul>
-     <li>
-       <div class="my_credit_show">
-      	 <a class="my_credit_a">我的积分</a>
-       </div>
-     </li>
-     <li>
-     	<a class="">购物车</a>
-     </li>
-     <li>
-     	<a class="">已兑换的礼品</a>
-     </li>
+      <li>
+      <div class="my_credit_show">
+        <a class="my_credit_a">我的积分</a>
+      </div>
+      </li>
+      <li>
+      <div class=<%= action_name == 'display_cart' ? "my_credit_show" : nil %>>
+        <a href="/my_school/credit_shop/display_cart" >购物车</a>
+      </div>
+      </li>
+      <li>
+      <div class=<%= action_name == 'user_center' ? "my_credit_show" : nil %>>
+          <a href="/my_school/credit_shop/user_center">已兑换的礼品</a>
+        </div>
+      </li>
     </ul>
     <div class="question_img">
     </div>
     <div class="question_li">
-    <ul>
-     <li>
-         <a class="">什么是v1积分?</a>
-     </li>
-     <li>
+      <ul>
+        <li>
+        <a class="">什么是v1积分?</a>
+        </li>
+        <li>
         <a class="">如何赚取积分?</a>
-     </li>
-     <li>
+        </li>
+        <li>
         <a class="">兑换及抽奖流程</a>
-     </li>
-     <li>
+        </li>
+        <li>
         <a class="">规则帮助</a>
-     </li>
-    </ul>
+        </li>
+      </ul>
     </div>
-    </div>
-    <div class="center_conment_bottom">
-    </div>
- </div>
+  </div>
+  <div class="center_conment_bottom">
+  </div>
+</div>
