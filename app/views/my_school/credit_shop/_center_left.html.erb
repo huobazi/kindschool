@@ -5,8 +5,8 @@
   <div class="center_conment_mid">
     <ul>
       <li>
-      <div class="my_credit_show">
-        <a class="my_credit_a">我的积分</a>
+      <div class=<%= action_name == 'user_center' ? "my_credit_show" : nil %>>
+        <a href="/my_school/credit_shop/user_center">我的积分</a>
       </div>
       </li>
       <li>
@@ -15,8 +15,8 @@
       </div>
       </li>
       <li>
-      <div class=<%= action_name == 'user_center' ? "my_credit_show" : nil %>>
-          <a href="/my_school/credit_shop/user_center">已兑换的礼品</a>
+        <div>
+            <a>已兑换的礼品</a>
         </div>
       </li>
     </ul>
