@@ -13,9 +13,7 @@
           <span style='text-decoration:underline;color:#ffd637;font-size:14px'>我能兑换的礼品&gt;</span>
         </div>
       </div>
-      <div class="credit_cart">
-        <%=link_to "购物车(#{@count})",{:action=>"display_cart"},:style=>"margin-left:120px;color:#fff;font-size:23px"%>
-      </div>
+        <%=link_to "购物车(#{@count})",{:action=>"display_cart"},:class=>"credit_cart"%>
       <div style="clear:both"></div>
     </div>
     <div class="frequently_asked_questions">

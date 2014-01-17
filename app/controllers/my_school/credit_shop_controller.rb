@@ -47,6 +47,11 @@ class MySchool::CreditShopController < MySchool::ManageController
         products = @serarch_type == "descend" ? Product.descend_by_price : Product.ascend_by_price
       end
     end
+    @cart = find_cart
+    @count = 0
+    (@cart.items||[]).each do |item|
+       @count += item.count
+    end
     @products = (products || Product).search(params[:product] || {}).where(:status=>2,:shop_id=>@shop_tp).page(params[:page] || 1).per(25)
   end
 

@@ -15,7 +15,6 @@ body{
 }
 .center_user_work{
     width: 1070px;
-    padding-top: 50px;
 }
 .center_user_conment{
     background:url(/star_imgs/shop/center_user/center_bg_top2.png)  ;
@@ -626,6 +625,16 @@ td.check label,td.check input{
 }
 .display_btn{
   background: url("/star_imgs/shop/center_user/button_center.png") no-repeat 0 -100px;
+  color: #fff;
+  width: 200px;
+  height: 68px;
+  line-height: 68px;
+  display: block;
+  font-size: 23px;
+  text-align: center;
+}
+.display_btn:hover{
+  background: url("/star_imgs/shop/center_user/button_center.png") no-repeat 0 -170px;
   color: #fff;
   width: 200px;
   height: 68px;
