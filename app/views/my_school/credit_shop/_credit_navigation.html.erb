@@ -18,17 +18,13 @@
                 <%= link_to "全部商品",{:action=>:products,:controller=>"/my_school/credit_shop"},:class=>"#{action_name == 'products' ? 'all_products_hover' : 'all_products'}" %>
                 </li>
                 <li>
-                  <a href="###" class="credit_activity">
-                    积分活动
-                  </a>
+                  <%= link_to "积分活动",{:action=>:credit_activity,:controller=>"/my_school/credit_shop"},:class=>"#{action_name == 'credit_activity' ? 'credit_activity_hover' : 'credit_activity'}" %>
                 </li>
                 <li>
-                  <a href="###">
-                    <div class="earn_credit">赚取积分</div>
-                  </a>
+                  <%= link_to "赚取积分",{:action=>:get_credit,:controller=>"/my_school/credit_shop"},:class=>"#{action_name == 'get_credit' ? 'earn_credit_hover' : 'earn_credit'}" %>
                 </li>
                 <li>
-                <%= link_to "个人中心",user_center_my_school_credit_shop_index_path,:class=>"#{action_name == 'user_center' ? 'personal_center_hover' : 'personal_center'}" %>
+                <%= link_to "个人中心",user_center_my_school_credit_shop_index_path,:class=>"#{action_name == 'user_center' || action_name == 'display_cart' || action_name == 'my_order' ? 'personal_center_hover' : 'personal_center'}" %>
                 </li>
               </ul>
             </div>
