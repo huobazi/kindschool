@@ -21,6 +21,8 @@ School::Application.routes.draw do
       get :user_center,:on => :collection
       get :show_product_categories,:on => :collection
       get :my_order, :on => :collection
+      get :credit_activity, :on => :collection
+      get :get_credit, :on => :collection
     end
     resources :eggs do
       get :get_egg,:on=>:collection

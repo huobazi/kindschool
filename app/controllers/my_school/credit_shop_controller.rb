@@ -29,6 +29,12 @@ class MySchool::CreditShopController < MySchool::ManageController
     @en_orders = current_user.orders.where("shipment_at is not null")
   end
 
+  def credit_activity
+  end
+
+  def get_credit
+  end
+
   def products
     @serarch_type = params[:serarch_type]
     if @serarch =  params[:serarch]

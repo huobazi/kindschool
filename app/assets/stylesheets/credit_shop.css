@@ -98,7 +98,7 @@ ul, li {
     width: 190px;
     display: block;
 }
-.all_products:hover{
+.all_products:hover, .all_products_hover {
     background-image: url("/star_imgs/shop/button.png");
     background-position: 0 -110px;
     background-repeat: no-repeat;
@@ -109,6 +109,9 @@ ul, li {
     line-height: 60px;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     width: 190px;
+}
+.all_products_hover:hover {
+  color: #fff;
 }
 .credit_activity{
     background-image: url("/star_imgs/shop/button.png");
@@ -170,7 +173,7 @@ ul, li {
     color: #fff;
     display: block;
 }
-.personal_center:hover{
+.personal_center:hover, .personal_center_hover {
     background-image: url("/star_imgs/shop/button.png");
     background-position: -607px -110px;
     background-repeat: no-repeat;
@@ -181,6 +184,10 @@ ul, li {
     font-size: 23px;
     color: #fff;
     display: block;
+}
+
+.personal_center_hover:hover {
+  color: #fff;
 }
 .btn-danger123 {
     background-color: #DA4E49;
