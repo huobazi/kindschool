@@ -263,12 +263,6 @@ class Weixin::ApiController < Weixin::BaseController
           x_data = weiyi_about(xml_data,"contact")
         else
           if xml_data[:MsgType]=="voice"
-            #            {"xml"=>{"ToUserName"=>"gh_86e6d2489290",
-            #                "FromUserName"=>"onASsuIYHAsFZeMVxQ8PvfAfjhQg",
-            #                "CreateTime"=>"1389150752", "MsgType"=>"voice",
-            #                "MediaId"=>"todHWk2cf2imbRvpb8X3fAIqUlbm_tKanbgTh_bYZ9OdagqDmvVJIeFslmprdM0d",
-            #                "Format"=>"amr", "MsgId"=>"5966357049053806592", "Recognition"=>"你好你好听见请回答"},
-            #              "signature"=>"c3f67333c44ba6effe704a22ca89bc9aa6fd9308", "timestamp"=>"1389150757", "nonce"=>"1389217007"}
             load_bol = true
             if user = User.find_by_weiyi_code(xml_data[:FromUserName])
               if weixin_token = WeixinToken.find_by_number("weiyizixun")
