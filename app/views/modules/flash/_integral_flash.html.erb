@@ -1,4 +1,4 @@
-<% if @add_credit %>
+<% unless @add_credit.blank? %>
   <div id="integral_flash" class="integral_flash" style="display: none;">
     <p>积分 <span id="integral" class="integral">+<%=@add_credit || 1%><span></p>
   </div>

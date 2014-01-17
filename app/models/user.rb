@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   validates :login,:presence => true, :if => :role_student? #,format: {with: /^wys/, message: "注册名不能以#{PRE_STUDENT}"} , :if => :role_student?
   validates_format_of :login,:without=>/^#{PRE_STUDENT}/,:message=>"帐户不能以#{PRE_STUDENT}开头" , :if => :role_student?
   # validates :login,:presence => true,:uniqueness => true, format: {with: /^(\+\d+-)?[1-9]{1}[0-9]{10}$/, message: "手机格式不正确"}#{ :scope => :kindergarten_id}
-#  validates :login, :uniqueness => true
+  #  validates :login, :uniqueness => true
   validates_uniqueness_of_without_deleted :login
   validates_uniqueness_of_without_deleted :email,:scope => :kindergarten_id, :allow_blank => true
   validates_uniqueness_of_without_deleted :phone,:scope => :kindergarten_id, :allow_blank => true ,:if=>:repeat_allow?
@@ -71,14 +71,14 @@ class User < ActiveRecord::Base
   end
 
   def automatically_generate_account
-   #kind = self.kindergarten
-   #user = kind.users.order("id desc").where(:tp=>0).first
-   user = User.with_deleted.where(:tp=>0).order("id desc").first
-   if !user.blank?
-    self.login = user.login.next_number
-   else
-    self.login = PRE_STUDENT+"0001"
-   end
+    #kind = self.kindergarten
+    #user = kind.users.order("id desc").where(:tp=>0).first
+    user = User.with_deleted.where(:tp=>0).order("id desc").first
+    if !user.blank?
+      self.login = user.login.next_number
+    else
+      self.login = PRE_STUDENT+"0001"
+    end
   end
 
   def gender_label
@@ -93,51 +93,69 @@ class User < ActiveRecord::Base
   end
 
   def save_user_credit(number,tp,business=nil)
-   if self.kindergarten.enable_credit
-    if login_credit=CreditCofig.find_by_number(number)
-     time1 = Date.today.strftime("%Y-%m-%d %H:%M:%S")
-     time2 = (Date.today+1.day).strftime("%Y-%m-%d %H:%M:%S")
-     if personal_credit = self.personal_credit
-     #如果有业务上面的操作比如宝宝在园
-     if tp==1
-       return false unless self.credit_logs.where("tp= ? and business_type=? and business_id= ? ",tp,business.class.to_s,business.id).blank?
-     else
-      if business.nil?
-       return false unless self.credit_logs.where("tp= ?  and  created_at between  ? and ?  ",tp,time1,time2).blank?
+    if self.kindergarten.enable_credit
+      redis_credit = CreditCofig.redis.get("CreditCofig_#{number}")
+      if redis_credit.blank?
+        if record = CreditCofig.find_by_number(number)
+          CreditCofig.redis.set("CreditCofig_#{number}",record.credit)
+          redis_credit = record.credit
+        end
       else
-       return false unless self.credit_logs.where("tp= ?  and  business_type=? and business_id= ? ",tp,business.class.to_s,business.id).blank?
-      end 
-     end
-      credit = personal_credit.credit + login_credit.credit
-      personal_credit.credit=credit
-      personal_credit.save
+        redis_credit = redis_credit.to_i
+      end
 
-    else
-      self.personal_credit = PersonalCredit.new(:kindergarten_id=>self.kindergarten_id,:credit=>login_credit.credit)  
+      if redis_credit
+        time1 = Date.today.strftime("%Y-%m-%d %H:%M:%S")
+        time2 = (Date.today+1.day).strftime("%Y-%m-%d %H:%M:%S")
+        if personal_credit = self.personal_credit
+          #如果有业务上面的操作比如宝宝在园
+          if tp==1
+            return false unless self.credit_logs.where("tp= ? and business_type=? and business_id= ? ",tp,business.class.to_s,business.id).blank?
+          else
+            if business.nil?
+              return nil unless self.credit_logs.where("tp= ?  and  created_at between  ? and ?  ",tp,time1,time2).blank?
+            else
+              return nil unless self.credit_logs.where("tp= ?  and  business_type=? and business_id= ? ",tp,business.class.to_s,business.id).blank?
+            end
+          end
+          credit = personal_credit.credit + redis_credit
+          personal_credit.credit=credit
+          personal_credit.save
+        else
+          self.personal_credit = PersonalCredit.new(:kindergarten_id=>self.kindergarten_id,:credit=>redis_credit)
+        end
+        credit_log = CreditLog.new(:kindergarten_id=>self.kindergarten_id,:credit=>redis_credit,:tp=>tp)
+        credit_log.business = business
+        self.credit_logs << credit_log
+        return redis_credit if self.save
+      end
     end
-    credit_log = CreditLog.new(:kindergarten_id=>self.kindergarten_id,:credit=>login_credit.credit,:tp=>tp)
-    credit_log.business = business
-    self.credit_logs << credit_log
-    self.save
-    return true
-   end
-   end
-   return false
+    return nil
   end
   #自动的给创建贴子的人加分
   def save_creater_credit(number,business=nil)
-    if login_credit=CreditCofig.find_by_number(number)
+    redis_credit = CreditCofig.redis.get("CreditCofig_#{number}")
+      if redis_credit.blank?
+        if record = CreditCofig.find_by_number(number)
+          CreditCofig.redis.set("CreditCofig_#{number}",record.credit)
+          redis_credit = record.credit
+        end
+      else
+        redis_credit = redis_credit.to_i
+      end
+
+    if redis_credit
       if personal_credit = self.personal_credit
-        credit = personal_credit.credit + login_credit.credit
+        credit = personal_credit.credit + redis_credit
         personal_credit.credit=credit
         personal_credit.save!
       else
-        self.personal_credit = PersonalCredit.new(:kindergarten_id=>self.kindergarten_id,:credit=>login_credit.credit)  
+        self.personal_credit = PersonalCredit.new(:kindergarten_id=>self.kindergarten_id,:credit=>redis_credit)
       end
-        credit_log = CreditLog.new(:kindergarten_id=>self.kindergarten_id,:credit=>login_credit.credit,:tp=>tp)
-        credit_log.business = business
-        self.credit_logs << credit_log
-        self.save
+      credit_log = CreditLog.new(:kindergarten_id=>self.kindergarten_id,:credit=>redis_credit,:tp=>1)
+      credit_log.business = business
+      self.credit_logs << credit_log
+      self.save
     end
   end
 
@@ -251,11 +269,11 @@ class User < ActiveRecord::Base
   #
   def self.update_repeat_phone(d)
     (d||[]).each do |phone|
-     if users = User.where(:phone=>phone)
-      users.each do |user|
-        user.update_attributes(:repeat=>true)
+      if users = User.where(:phone=>phone)
+        users.each do |user|
+          user.update_attributes(:repeat=>true)
+        end
       end
-     end
     end
   end
 
