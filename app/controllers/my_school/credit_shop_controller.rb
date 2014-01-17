@@ -9,11 +9,16 @@ class MySchool::CreditShopController < MySchool::ManageController
   def index
     @tags = Product.tag_counts
     @product_categories = []
-    ProductCategory.roots.each do |n|
-      n.self_and_descendants.each_with_level do |item, level|
-        item[:lvl] = level
-        @product_categories << item
-      end
+    # ProductCategory.roots.each do |n|
+    #   n.self_and_descendants.each_with_level do |item, level|
+    #     item[:lvl] = level
+    #     @product_categories << item
+    #   end
+    # end
+    @cart = find_cart
+    @count = 0
+    (@cart.items||[]).each do |item|
+       @count += item.count
     end
     render :layout =>"credit_shop"
   end

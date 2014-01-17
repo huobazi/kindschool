@@ -41,47 +41,7 @@
         <div class="head_logo">
            <img class="logo_vertical"  alt="Logo" src="/star_imgs/shop/center_user/credit_logo.png" />
         </div>
-        <div class="credit_navigation">
-          <div class="head_top">
-            <div class="back_to_school">
-              <a class="btn btn-danger" href="/my_school/home">返回家园互动</a>
-            </div>
-            <div class="login_to_user">
-              <a class="login_hello" href="###">早上好，贝贝妈咪</a>
-              <a class="logout_a" href="/my_school/users/logout">退出</a>
-            </div>
-          </div>
-          <div class="head_menu">
-            <div class="left_navigation">
-            </div>
-            <div class="center_navigation">
-              <ul>
-                <li>
-                  <a href="/my_school/credit_shop/products">
-                    <div class=<%= action_name == 'products' ? 'all_products_hover' : 'all_products' %>>全部商品</div>
-                  </a>
-                </li>
-                <li>
-                  <a href="###">
-                    <div class="credit_activity">积分活动</div>
-                  </a>
-                </li>
-                <li>
-                  <a href="###">
-                    <div class="earn_credit">赚取积分</div>
-                  </a>
-                </li>
-                <li>
-                  <a href="/my_school/credit_shop/user_center">
-                    <div class=<%= action_name == 'user_center' ? 'personal_center_hover' : 'personal_center' %>>个人中心</div>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="right_navigation">
-            </div>
-          </div>
-        </div>
+        <%=render :partial=>"credit_navigation"%>
       </div>
       <div class="main_work">
         <%= yield %>
