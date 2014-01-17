@@ -6,9 +6,9 @@
       <span class="all_product_text"><b>实物礼品</b></span>
    </div>
    <div class="all_product_sort">
-     <a class="sort_by_default">默认排序</a>
-     <a class="sort_by_default">热门排序</a>
-     <a class="sort_by_default">积分排序</a>
+     <%= link_to  "默认排序",{:controller=>"/my_school/credit_shop",:action=>:products}.merge(:product=>params[:product]),:class=>"sort_by_default  #{@serarch.blank? ? 'focus' : ''}" %>
+     <%= link_to  "热门排序",{:controller=>"/my_school/credit_shop",:action=>:products,:serarch=>"price",:serarch_type=>(@serarch == "price" ? (@serarch_type == "ascend" ? "descend" : "ascend") : "descend")}.merge(:product=>params[:product]),:class=>"sort_by_default #{@serarch == 'price' ? 'focus' : ''}" %>
+     <%= link_to  "积分排序",{:controller=>"/my_school/credit_shop",:action=>:products,:serarch=>"credit",:serarch_type=>(@serarch == "credit" ? (@serarch_type == "ascend" ? "descend" : "ascend") : "descend")}.merge(:product=>params[:product]),:class=>"sort_by_default #{@serarch == 'credit' ? 'focus' : ''}"%>
    </div>
   </div>
     <div class="center_product_right">
@@ -59,7 +59,8 @@
    <div class="product_list">
      <div class="product_list_top">
         <ul>
-        <li>
+        <% @products.each do |product| %>
+        <!-- <li>
           <div class="show_list_product">
             <div class="product_img">
               <a>
@@ -72,167 +73,41 @@
               <p style="float:right;">33人兑换</p>
             </div>
           </div>
-        </li>
-        <li>
+        </li> -->
+         <li>
           <div class="show_list_product">
             <div class="product_img">
-              <a>
-                <img alt="" src="/t/colorful/483-5552.jpg">
-              </a>
+              <%=link_to({:controller=>"/my_school/credit_shop",:action=>"show_product",:id=>product.id}, html_options = {}) do%>
+              <%if !product.img.blank?%>
+                  <img src='<%=  product.img.public_filename(:middle) %>' alt=""/>
+               <%elsif !product.product_imgs.blank?%>
+                  <img src='<%=  product.product_imgs.first.public_filename(:middle) %>' alt=""/>
+                <%else%>
+                  <img alt="" src="/t/colorful/483-5552.jpg">
+               <%end%>
+              <%end%>
             </div>
             <div class="product_sale_credit">
-              <p>coco姐不要钱你随便买</p>
-              <p class="product_sale_credit_p">1900分</p>
-              <p style="float:right;">33人兑换</p>
+              <%= link_to product.name ,{:controller=>"/my_school/credit_shop",:action=>"show_product",:id=>product.id},:style=>"display:block;" %>
+              <p class="product_sale_credit_p"><%=product.credit.to_i%>分</p>
+              <p style="float:right;"><%= link_to '添加购物车',
+                          {:action => 'add_to_cart', :id => product },
+                           :class => 'btn btn-mini btn-primary' %></p>
             </div>
           </div>
         </li>
-        <li>
-          <div class="show_list_product">
-            <div class="product_img">
-              <a>
-                <img alt="" src="/t/colorful/483-5552.jpg">
-              </a>
-            </div>
-            <div class="product_sale_credit">
-              <p>coco姐不要钱你随便买</p>
-              <p class="product_sale_credit_p">1900分</p>
-              <p style="float:right;">33人兑换</p>
-            </div>
-          </div>
-        </li>
+        <%end%>
       </ul>
      </div>
      <div class="product_list_mid">
-        <ul>
-        <li>
-          <div class="show_list_product">
-            <div class="product_img">
-              <a>
-                <img alt="" src="/t/colorful/483-5552.jpg">
-              </a>
-            </div>
-            <div class="product_sale_credit">
-              <p>coco姐不要钱你随便买</p>
-              <p class="product_sale_credit_p">1900分</p>
-              <p style="float:right;">33人兑换</p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="show_list_product">
-            <div class="product_img">
-              <a>
-                <img alt="" src="/t/colorful/483-5552.jpg">
-              </a>
-            </div>
-            <div class="product_sale_credit">
-              <p>coco姐不要钱你随便买</p>
-              <p class="product_sale_credit_p">1900分</p>
-              <p style="float:right;">33人兑换</p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="show_list_product">
-            <div class="product_img">
-              <a>
-                <img alt="" src="/t/colorful/483-5552.jpg">
-              </a>
-            </div>
-            <div class="product_sale_credit">
-              <p>coco姐不要钱你随便买</p>
-              <p class="product_sale_credit_p">1900分</p>
-              <p style="float:right;">33人兑换</p>
-            </div>
-          </div>
-        </li>
-      </ul>
      </div>
      <div class="product_list_bottom">
-        <ul>
-        <li>
-          <div class="show_list_product">
-            <div class="product_img">
-              <a>
-                <img alt="" src="/t/colorful/483-5552.jpg">
-              </a>
-            </div>
-            <div class="product_sale_credit">
-              <p>coco姐不要钱你随便买</p>
-              <p class="product_sale_credit_p">1900分</p>
-              <p style="float:right;">33人兑换</p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="show_list_product">
-            <div class="product_img">
-              <a>
-                <img alt="" src="/t/colorful/483-5552.jpg">
-              </a>
-            </div>
-            <div class="product_sale_credit">
-              <p>coco姐不要钱你随便买</p>
-              <p class="product_sale_credit_p">1900分</p>
-              <p style="float:right;">33人兑换</p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="show_list_product">
-            <div class="product_img">
-              <a>
-                <img alt="" src="/t/colorful/483-5552.jpg">
-              </a>
-            </div>
-            <div class="product_sale_credit">
-              <p>coco姐不要钱你随便买</p>
-              <p class="product_sale_credit_p">1900分</p>
-              <p style="float:right;">33人兑换</p>
-            </div>
-          </div>
-        </li>
-      </ul>
+
      </div>
+     <%= paginate @products %>
    </div>
 </div>
 <div class="center_user_conment_bottom">
 </div>
 </div>
 
-
-<% if @logo %>
-  <% if @logo.page_img %>
-    <img src='<%= @logo.page_img.public_filename(:middle)  %>' alt="<%= @logo.name %>" title="<%= @logo.name %>"/><br/>
-  <% end %>
-  <%= @logo.name %><br/>
-  <%= @logo.note %>
-<% end %>
-<br/><br/>
-<h1>商品信息</h1>
-<hr/>
-<%= form_tag '/my_school/credit_shop/products' , :method=>"get" do %>
-  <b>名称：</b>
-  <%= text_field :product,:name_like ,:value=>"#{params[:product][:name_like] if params[:product] }"%>
-
-  <%= submit_tag "搜索"  , :class => "btn btn-primary"%>
-<%end%>
-<%=link_to "积分兑换" ,ship_my_school_credit_shop_index_path %>
-<%= link_to  "积分",{:controller=>"/my_school/credit_shop",:action=>:products,:serarch=>"credit",:serarch_type=>(@serarch == "credit" ? (@serarch_type == "ascend" ? "descend" : "ascend") : "descend")}.merge(:product=>params[:product]) %>
-<%= link_to  "价格",{:controller=>"/my_school/credit_shop",:action=>:products,:serarch=>"price",:serarch_type=>(@serarch == "price" ? (@serarch_type == "ascend" ? "descend" : "ascend") : "descend")}.merge(:product=>params[:product]) %>
-<%= link_to "我的兑换中心",user_center_my_school_credit_shop_index_path%>
-
-  <%#= order @products, :by => :credit, :as =>"积分" %>
-<% @products.each do |product| %>
-  <div style="width: 300px;float: left;border: 1px solid #008FDC;margin: 5px;">
-    商品名称：<%= link_to product.name ,:controller=>"/my_school/credit_shop",:action=>"show_product",:id=>product.id %><br/>
-    价格：<%= product.price %><br/>
-    积分：<%= product.credit %><br/>
-    库存：<%= product.product_storage %><br/>
-    <%= link_to '添加购物车',
-      {:action => 'add_to_cart', :id => product },
-        :class => 'addtocart' %>
-    </div>
-<% end %>
-<%= paginate @products %>
