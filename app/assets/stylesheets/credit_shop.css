@@ -125,7 +125,7 @@ ul, li {
     color: #fff;
     display: block;
 }
-.credit_activity:hover{
+.credit_activity:hover, .credit_activity_hover {
     background-image: url("/star_imgs/shop/button.png");
     background-position: -202px -110px;
     background-repeat: no-repeat;
@@ -136,6 +136,9 @@ ul, li {
     font-size: 23px;
     color: #fff;
     display: block;
+}
+.credit_activity_hover:hover {
+  color: #fff;
 }
 .earn_credit{
     background-image: url("/star_imgs/shop/button.png");
@@ -149,7 +152,7 @@ ul, li {
     color: #fff;
     display: block;
 }
-.earn_credit:hover{
+.earn_credit:hover, .earn_credit_hover{
     background-image: url("/star_imgs/shop/button.png");
     background-position: -404px -110px;
     background-repeat: no-repeat;
@@ -160,6 +163,9 @@ ul, li {
     font-size: 23px;
     color: #fff;
     display: block;
+}
+.earn_credit_hover:hover {
+  color: #fff;
 }
 .personal_center{
     background-image: url("/star_imgs/shop/button.png");
