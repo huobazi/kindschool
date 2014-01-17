@@ -1,0 +1,37 @@
+      <div class="credit_navigation">
+          <div class="head_top">
+            <div class="back_to_school">
+              <a class="btn btn-danger" href="/my_school/home">返回家园互动</a>
+            </div>
+            <div class="login_to_user">
+              <a class="login_hello" href="###">早上好，贝贝妈咪</a>
+              <a class="logout_a" href="/my_school/users/logout">退出</a>
+            </div>
+          </div>
+          <div class="head_menu">
+            <div class="left_navigation">
+            </div>
+            <div class="center_navigation">
+              <ul>
+                <li>
+                  <%= link_to "全部商品",{:action=>:products,:controller=>"/my_school/credit_shop"},:class=>"all_products" %>
+                </li>
+                <li>
+                  <a href="###" class="credit_activity">
+                    积分活动
+                  </a>
+                </li>
+                <li>
+                  <a href="###">
+                    <div class="earn_credit">赚取积分</div>
+                  </a>
+                </li>
+                <li>
+                  <%= link_to "个人中心",user_center_my_school_credit_shop_index_path,:class=>"personal_center"%>
+                </li>
+              </ul>
+            </div>
+            <div class="right_navigation">
+            </div>
+          </div>
+        </div>

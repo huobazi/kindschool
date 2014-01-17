@@ -3,6 +3,6 @@ class ProductImg < PageImg
     :jpeg_quality=>75,
     :storage => :file_system,
     :max_size => 10.megabytes,
-    :thumbnails => { :thumb => '400x400>', :tiny => '80x80>',:middle=>'200x200>' },
+    :thumbnails => { :thumb => '540x345>', :tiny => '90x58>',:middle=>'180x115>' },
     :processor => :MiniMagick#:Rmagick
 end

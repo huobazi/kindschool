@@ -10,6 +10,7 @@ credit_config3:
 credit_config4:
   number: "prize_credit"
   name: "砸金蛋的积分配置"
+  credit: 50
 credit_config5:
   number: "login"
   name: "登录的积分配置"
