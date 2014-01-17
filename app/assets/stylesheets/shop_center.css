@@ -29,6 +29,7 @@ body{
 .center_user_conment_mid{
     background:url(/star_imgs/shop/center_user/bg_mid.png)  repeat-y  ;
     /*    height: 1000px;*/
+    margin-top: -1px;
     _height:500px;
     min-height: 500px;
 }
@@ -655,4 +656,21 @@ td.check label,td.check input{
 .show_product .product-title {
   background: url("/star_imgs/shop/center_user/button_center.png") no-repeat -278px -13px;
   padding-left: 20px;
+}
+
+.center_user_work a:hover {
+  cursor: pointer;
+}
+
+.product_house a:hover {
+  cursor: pointer;
+}
+
+.en_order {
+  padding-left: 10px;
+}
+
+.un_order {
+  padding-lefT: 10px;
+  margin-top: 30px;
 }

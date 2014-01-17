@@ -23,12 +23,12 @@
       </div>
     </div>
     <div class="center_conment_mid">
-    <div class="user_picture credit_line_user" >我的积分&nbsp;<span style="font-size:18px;color:#07aa3c">700</span></div>    
+    <div class="user_picture credit_line_user" >我的积分&nbsp;<span style="font-size:18px;color:#07aa3c">700</span></div>
     <div class="credit_line">
        <a href="#" style="font-size: 16px;color: #794917;text-decoration:underline;">我能兑换的礼品></a>
     </div>
     <div class="btn_display_cart">
-      <a href="#" class="display_btn">购物车(6)</a>
+      <a href="/my_school/credit_shop/display_cart" class="display_btn">购物车(6)</a>
     </div>
     <div class="question_img">
     </div>
@@ -53,7 +53,7 @@
     </div>
     </div>
 </div>
-  
+
 </div>
 <div class="center_user_conment_mid">
    <div class="product_list">
@@ -194,7 +194,7 @@
           </div>
         </li>
       </ul>
-     </div>     
+     </div>
    </div>
 </div>
 <div class="center_user_conment_bottom">
@@ -215,7 +215,7 @@
 <%= form_tag '/my_school/credit_shop/products' , :method=>"get" do %>
   <b>名称：</b>
   <%= text_field :product,:name_like ,:value=>"#{params[:product][:name_like] if params[:product] }"%>
-  
+
   <%= submit_tag "搜索"  , :class => "btn btn-primary"%>
 <%end%>
 <%=link_to "积分兑换" ,ship_my_school_credit_shop_index_path %>

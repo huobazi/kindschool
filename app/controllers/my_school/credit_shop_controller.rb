@@ -23,6 +23,12 @@ class MySchool::CreditShopController < MySchool::ManageController
     render :layout =>"credit_shop"
   end
 
+  def my_order
+    @personal_credits = current_user.personal_credit
+    @un_orders = current_user.orders.pending_shipping
+    @en_orders = current_user.orders.where("shipment_at is not null")
+  end
+
   def products
     @serarch_type = params[:serarch_type]
     if @serarch =  params[:serarch]
@@ -193,4 +199,6 @@ class MySchool::CreditShopController < MySchool::ManageController
       "#{count} #{noun.pluralize}"
     end
   end
+
+
 end

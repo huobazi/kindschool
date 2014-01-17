@@ -83,8 +83,8 @@ class MySchool::UsersController < MySchool::ManageController
         session[:operates] = operates_data
         flash[:notice] = "登录成功."
         session[:login_error_count] = 0
-        #这个地方加登录添加积分
-        user.save_user_credit("login",0)
+#        #这个地方加登录添加积分
+#        user.save_user_credit("login",0)
         redirect_to :action => :index,:controller=>"/my_school/home"
         cookies.delete :login_times
       else
