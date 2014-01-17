@@ -110,6 +110,9 @@ ul, li {
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     width: 190px;
 }
+.all_products_hover:hover {
+  color: #fff;
+}
 .credit_activity{
     background-image: url("/star_imgs/shop/button.png");
     background-position: -202px -50px;
@@ -181,6 +184,10 @@ ul, li {
     font-size: 23px;
     color: #fff;
     display: block;
+}
+
+.personal_center_hover:hover {
+  color: #fff;
 }
 .btn-danger123 {
     background-color: #DA4E49;
