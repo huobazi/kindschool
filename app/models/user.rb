@@ -3,7 +3,8 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   acts_as_paranoid
   validates_as_paranoid
-
+  include Redis::Objects
+  hash_key :config  #redis的配置项，就是一个hash
   attr_accessible :repeat,:kindergarten_id, :logo,:login, :name, :note, :number, :status,:chain_code,
     :tp,:crypted_password,:salt,:role_id,:remember_token,:remember_token_expires_at,:chain_delete,
     :gender,:phone,:area_id,:weixin_code,:weiyi_code,:token_key,:token_secret,:token_at, :email,:is_send,:is_receive

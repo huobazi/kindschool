@@ -29,6 +29,7 @@ body{
 .center_user_conment_mid{
     background:url(/star_imgs/shop/center_user/bg_mid.png)  repeat-y  ;
     /*    height: 1000px;*/
+    margin-top: -1px;
     _height:500px;
     min-height: 500px;
 }

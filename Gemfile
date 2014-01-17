@@ -114,3 +114,5 @@ gem "mail"
 #  p.tag_list = "Funny, Silly"
 #  p.save
 gem 'acts-as-taggable-on',"2.4.1"
+#https://github.com/nateware/redis-objects
+gem 'redis-objects'
