@@ -272,9 +272,30 @@ a:hover{text-decoration: none};
     background-position: 0 -195px;
     float: right;
     margin-right: 80px; 
-    height: 70px;
+    height: 75px;
     width: 260px;
     line-height: 70px;
+    display: block;
+    margin-left:120px;
+    color:#fff;
+    font-size:23px;
+    padding-left: 30px;
+    text-align: center;
+}
+.credit_cart:hover{
+    background-image: url(/star_imgs/shop/button.png);
+    background-position: 0 -270px;
+    float: right;
+    margin-right: 80px; 
+    height: 75px;
+    width: 260px;
+    line-height: 70px;
+    display: block;
+    margin-left:120px;
+    color:#fff;
+    font-size:23px;
+    padding-left: 30px;
+    text-align: center;
 }
 .frequently_asked_questions{
     background-image: url(/star_imgs/shop/frequently_asked_questions.png);
