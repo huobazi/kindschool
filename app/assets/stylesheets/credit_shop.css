@@ -98,7 +98,7 @@ ul, li {
     width: 190px;
     display: block;
 }
-.all_products:hover{
+.all_products:hover, .all_products_hover {
     background-image: url("/star_imgs/shop/button.png");
     background-position: 0 -110px;
     background-repeat: no-repeat;
@@ -170,7 +170,7 @@ ul, li {
     color: #fff;
     display: block;
 }
-.personal_center:hover{
+.personal_center:hover, .personal_center_hover {
     background-image: url("/star_imgs/shop/button.png");
     background-position: -607px -110px;
     background-repeat: no-repeat;
