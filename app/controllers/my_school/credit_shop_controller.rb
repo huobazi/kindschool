@@ -52,7 +52,7 @@ class MySchool::CreditShopController < MySchool::ManageController
     (@cart.items||[]).each do |item|
        @count += item.count
     end
-    @products = (products || Product).search(params[:product] || {}).where(:status=>2,:shop_id=>@shop_tp).page(params[:page] || 1).per(25)
+    @products = (products || Product).search(params[:product] || {}).where(:status=>2,:shop_id=>@shop_tp).page(params[:page] || 1).per(9)
   end
 
   
