@@ -16,11 +16,7 @@
         <% @img.each do |entry| %>
           <% if entry.page_img %>
             <a  href="<%= entry.page_img.public_filename %>" class="fancybox"  title="<%= entry.title %>">
-              <%if image_type == "middle"%>
-                <img onload="$(this).parent().css('display','')" src="<%= entry.page_img.public_filename(:middle)%>" onerror="<%=entry.page_img.public_filename%>" alt="" height="370"/>
-              <%else%>
-                <img onload="$(this).parent().css('display','')"  src="<%= entry.page_img.public_filename %>" alt="" height="370"/>
-              <%end%>
+              <img onload="$(this).parent().css('display','')" src="<%= entry.page_img.public_filename(:middle)%>" onerror="<%=entry.page_img.public_filename%>" alt="" height="370"/>
             </a>
           <%end%>
         <%end%>

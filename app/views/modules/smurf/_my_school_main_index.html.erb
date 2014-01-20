@@ -1,0 +1,184 @@
+<div class="home_left">
+  <div class="home_login">
+    <%= form_tag "/my_school/users/login",:id=>"longin_form", :autocomplete=>"off" do  %>
+      <div class="smurf_bg_title">
+        <span class="one">用户<span class="one two">登陆</span></span>
+      </div>
+      <div class="div_left">
+        <div class="login_div">
+          <%= text_field_tag :login,"",:placeholder=>"账号", :class => 'login_input_one'%>
+        </div>
+        <div class="login_div">
+          <%= password_field :password,"",:name=>"password", :class => 'login_input_one',:placeholder=>"登录密码"%>
+        </div>
+      </div>
+      <div class="div_right">
+        <a href="###" class="button_xun" id="button_xun"><div>登陆</div></a>
+      </div>
+    <% end %>
+    <script type="text/javascript">
+      $(function(){
+        $(".button_xun,#button_xun").click(function(){
+          $("#longin_form").submit();
+        })
+        $("#longin_form").keydown(function(e){
+          var e = e || event,
+          keycode = e.which || e.keyCode;
+          if (keycode==13) {
+            $(".button_xun").trigger("click");
+          }
+        });
+      });
+    </script>
+  </div>
+  <div class="home_news">
+    <div class="smurf_bg_title">
+      <span class="one">新闻动态<%=link_to "<strong>+ MORE</strong>".html_safe ,show_new_list_my_school_main_index_path %></span>
+    </div>
+    <ul class="official_home_news_list">
+      <%(@news||[]).each do |n_ew|%>
+        <li>
+          <div class="official_square"></div>
+          <div class="official_font">
+            <%= link_to truncate(n_ew.title || "",:length=>12), show_one_new_my_school_main_index_path(:new_id=>n_ew.id),:title=>n_ew.title %>
+          </div>
+          <div class="official_time">
+            <%= n_ew.start_data.try(:to_short_datetime)%>
+          </div>
+        </li>
+      <%end%>
+    </ul>
+  </div>
+</div>
+<div class="home_right">
+  <div class="home_work_center">
+    <%= @img.size %><br/><br/><br/>
+    <%if @img.blank?%>
+      <a href="/t/colorful/483-5552.jpg" class="fancybox" title="">
+        <img src="/t/colorful/483-5552.jpg" alt="" height="370"/>
+      </a>
+    <%elsif @img.size==1%>
+      <a  href="<%= @img.first.try(:page_img).public_filename %>" class="fancybox"  title="<%= @img.first.title %>">
+        <img src="<%= @img.first.try(:page_img).public_filename %>" alt="" height="370"/>
+      </a>
+    <%else%>
+      <link rel="stylesheet" type="text/css" href="/javascripts/3dcarousel/css/carousel.css" />
+      <script type="text/javascript" src="/javascripts/3dcarousel/js/jquery.carousel.min.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function($){
+          $('#carousel').carousel({
+            width: 450,
+            height: 350,
+            itemWidth:120,
+            horizontalRadius:270,
+            verticalRadius:85,
+            resize:false,
+            mouseScroll:false,
+            mouseDrag:true,
+            scaleRatio:0.4,
+            scrollbar:true,
+            tooltip:true,
+            mouseWheel:true,
+            mouseWheelReverse:true
+          });
+        });
+      </script>
+      <ul id="carousel">
+        <% @img.each do |entry| %>
+          <% if entry.page_img %>
+            <li>
+              <a  href="<%= entry.page_img.public_filename %>" class="fancybox"  title="<%= entry.title %>">
+                <%if image_type == "middle"%>
+                  <img onload="$(this).parent().css('display','')" src="<%= entry.page_img.public_filename(:middle)%>" onerror="<%=entry.page_img.public_filename%>" alt="" height="370"/>
+                <%else%>
+                  <img onload="$(this).parent().css('display','')"  src="<%= entry.page_img.public_filename %>" alt="" height="370"/>
+                <%end%>
+                <% unless entry.title.blank? %>
+                  <div class="tooltip"><%= entry.title %></div>
+                <% end %>
+              </a>
+            </li>
+          <%end%>
+        <%end%>
+      </ul>
+    <%end%>
+    <script  type="text/javascript">
+      $(function() {
+        $(".fancybox").fancybox();
+      });
+    </script>
+  </div>
+</div>
+
+
+
+
+
+
+
+<%= stylesheet_link_tag    "css/banner"%>
+<%= javascript_include_tag "js/banner.js"%>
+<div class="official_home_index">
+  <div class="official_home_info">
+    <div class="official_right_work">
+      <div class = "official_home_news">
+        <div class="official_home_news_image">
+          最新消息
+          <div class="officail_news_more">
+            <%=link_to "<strong>查看更多</strong>".html_safe ,show_new_list_my_school_main_index_path %>
+          </div>
+        </div>
+        <div class="official_home_news_content">
+          <ul class="official_home_news_list">
+            <%(@news||[]).each do |n_ew|%>
+              <li>
+                <div class="official_square"></div>
+                <div class="official_font">
+                  <%= link_to truncate(n_ew.title || "",:length=>29), show_one_new_my_school_main_index_path(:new_id=>n_ew.id),:title=>n_ew.title %>
+                </div>
+                <div class="official_time">
+                  <%= n_ew.start_data.try(:to_short_datetime)%>
+                </div>
+              </li>
+            <%end%>
+          </ul>
+        </div>
+      </div>
+      <div class = "official_home_address">
+        <div class="official_home_address_image">
+        </div>
+        <div class="official_home_address_content">
+          <div class="official_home_address_logo">
+
+          </div>
+          <div class="official_home_address_info">
+            <div class="official_label">
+              <div class="official_label_left"></div>
+              <div class="official_label_center">地址</div>
+              <div class="official_label_right"></div>
+            </div>
+            <p><%=@kind.address.blank? ? "幼儿园暂时没有填写地址" : @kind.address %></p>
+            <div class="official_label">
+              <div class="official_label_left"></div>
+              <div class="official_label_center">联系电话</div>
+              <div class="official_label_right"></div>
+            </div>
+            <p><%=@kind.telephone.blank? ? "暂时没有填写" : @kind.telephone%></p>
+            <% if @kind.has_choose_operate?(11100) %>
+              <div class="official_label">
+                <div class="official_label_left"></div>
+                <div class="official_label_center">园长信箱</div>
+                <div class="official_label_right"></div>
+              </div>
+              <span>
+                <a href="<%= url_for(:controller=>"/my_school/main",:action=>"dean_email_list") %>" >
+                  <img src="/star_imgs/dean_emails.png" alt="园长信箱" />
+                </a>
+              </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

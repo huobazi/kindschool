@@ -1,0 +1,34 @@
+<div class="note_info">
+  <div class="note">
+    <div class="note_title">
+      欢迎来我们的幼儿园！
+    </div>
+    <div style="text-indent: 10px;padding-top: 10px;">
+      <%= raw @kind.note %>
+    </div>
+  </div>
+</div>
+<div class="show_publicity_div">
+  <div class="flower_home_zp">
+    <a href="/my_school/albums">
+      <img src="/t/flowers/home_zp.png" alt="查看照片集锦" />
+    </a>
+  </div>
+  <div class="flower_home_ys">
+    <a href="/my_school/cook_books">
+      <img src="/t/flowers/home_ys.png" alt="查看饮食保健" />
+    </a>
+  </div>
+  <div class="flower_home_cz">
+    <a href="/my_school/garden_growth_records/garden">
+      <img src="/t/flowers/home_cz.png" alt="查看成长记录" />
+    </a>
+  </div>
+</div>
+<div class="home_index_work">
+  <div class="center">
+<%#= render :partial => "/modules/colorful/showcase" %>
+    <%= render :partial => "/modules/colorful/new_showcase" %>
+<%#= render :partial => "/modules/colorful/activity" %>
+  </div>
+</div>
