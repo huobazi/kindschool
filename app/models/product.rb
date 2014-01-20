@@ -54,6 +54,10 @@ class Product < ActiveRecord::Base
     self.storage = str.to_i
   end
 
+  def self.user_credit(credit)
+    self.where("credit < #{credit}")
+  end
+
   protected
   #add by zhangfang
   #修改商品后进行修改状态

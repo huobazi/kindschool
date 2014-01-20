@@ -37,6 +37,7 @@ class MySchool::CreditShopController < MySchool::ManageController
 
   def products
     @serarch_type = params[:serarch_type]
+    @personal_credits = current_user.personal_credit
     if @serarch =  params[:serarch]
       case @serarch
       when "credit"
@@ -45,6 +46,12 @@ class MySchool::CreditShopController < MySchool::ManageController
       when "price"
         then
         products = @serarch_type == "descend" ? Product.descend_by_price : Product.ascend_by_price
+      when "tag"
+        then
+        products = Product.tagged_with(@serarch_type).by_join_date
+      when "user_credit"
+        then 
+        products = Product.user_credit(current_user.personal_credit.credit) if current_user.personal_credit
       end
     end
     @cart = find_cart
