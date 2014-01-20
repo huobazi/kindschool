@@ -1,0 +1,26 @@
+<div class="contact_us_kinder">
+  <div class="contact_title">
+    <div class="contact_title_img"></div>
+    <div class="contact_title_label">幼儿园介绍</div>
+  </div>
+  <div class="contact_us_content">
+    <%=raw @entry.try(:content)%>
+  </div>
+  <div class="contact_title">
+    <div class="contact_title_img"></div>
+    <div class="contact_title_label"><%= @entry_title.try(:title)%></div>
+  </div>
+  <div class="contact_us_class_image">
+    <div class="class_big_image" style="width: 560px;height:370px;">
+      <img src="<%=@entry_img.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_img.page_img.public_filename  %>" alt="" style="width: 560px;height:370px;"/>
+    </div>
+    <div class="class_middle_image">
+      <div class="class_middle_top_image" style="width: 275px;height: 180px;">
+        <img src="<%=@entry_top.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_top.page_img.public_filename%>" alt="" style="width: 275px;height: 180px;"/>
+      </div>
+      <div class="class_middle_bottom_image" style="width: 275px;height: 180px;">
+        <img src="<%=@entry_bottom.try(:page_img).blank? ? '/t/colorful/483-5552.jpg' : @entry_bottom.page_img.public_filename%>" alt="" style="width: 275px;height: 180px;"   />
+      </div>
+    </div>
+  </div>
+</div>

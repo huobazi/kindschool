@@ -2,7 +2,7 @@
 <html>
   <head>
     <title><%= @kind ? @kind.name : "School" %></title>
-    <%= stylesheet_link_tag    "app_bootstrap","flowers","jquery.rater", :media => "all" %>
+    <%= stylesheet_link_tag    "app_bootstrap","smurf","jquery.rater", :media => "all" %>
     <%= stylesheet_link_tag    "fancybox/jquery.fancybox",
       "fancybox/jquery.fancybox-buttons",
       "fancybox/jquery.fancybox-thumbs",
@@ -31,12 +31,12 @@
     <meta charset="utf-8"/>
     <%= csrf_meta_tags %>
 
-   <script language='javascript' type="text/javascript">
-      function ResumeError() {
-        return true;
-      }
-      window.onerror = ResumeError;
-    </script>
+   <%#*<script language='javascript' type="text/javascript">%>
+      <%#*function ResumeError() {%>
+        <%#*return true;%>
+      <%#*}%>
+      <%#*window.onerror = ResumeError;%>
+    <%#*</script>%>
     <!--[if IE 6]>
     <%= javascript_include_tag "DD_belatedPNG" %>
 <script type="text/javascript">
@@ -44,8 +44,9 @@
   /* string argument can be any CSS selector */
 </script>
 <![endif]-->
+    <%#*onload="ResumeError()"%>
   </head>
-  <body onload="ResumeError()">
+  <body >
     <div class="wrapper">
       <%= render :partial => "/modules/flowers/head" %>
       <%= render :partial => "/modules/flash/integral_flash" %>
