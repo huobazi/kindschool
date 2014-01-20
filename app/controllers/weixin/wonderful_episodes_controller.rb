@@ -1,8 +1,8 @@
 #encoding:utf-8
-#精彩视频管理
-class MySchool::WonderfulEpisodesController < MySchool::ManageController
+#微信端精彩视频管理
+class Weixin::WonderfulEpisodesController < Weixin::ManageController
   def index
-    @wonderful_episodes = @kind.wonderful_episodes.page(params[:page] || 1)
+    @wonderful_episodes = WonderfulEpisode.all
   end
 
   def show

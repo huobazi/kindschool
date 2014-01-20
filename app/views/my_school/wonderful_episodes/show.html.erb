@@ -1,0 +1,63 @@
+<div class="show_work">
+  <%= render :partial => "/modules/#{view_layout}/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>精彩视频</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li><%= link_to "精彩视频", my_school_wonderful_episodes_path %></li>
+            <li>/</li>
+            <li>查看精彩视频</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+        </li>
+        <li>
+        </li>
+        <li>
+        </li>
+      </ul>
+    </div>
+
+    <div class="work_form">
+      <div class="form_div">
+
+        <div id="wonderful_episode_show" class="show">
+          <div class="content_up">
+            <p class="title">
+              <span><%= @wonderful_episode.title %><span>
+              <% if @wonderful_episode.is_top %>
+                <span><img src="/t/colorful/is_top.gif" alt="" /></span>
+              <% end %>
+            </p>
+            <table class="attributes">
+              <tr>
+                <th>分类</th>
+                <% if @wonderful_episode.squad.present? %>
+                  <th>班级</th>
+                  <td style="width: 30%;" class="text-center"><%= @wonderful_episode.squad.try(:name) %></td>
+                <% else %>
+                  <th colspan="2" class="text-center">全园可见</th>
+                <% end %>
+              </tr>
+            </table>
+            <p class="info">
+              <span class="link">
+                <%= @wonderful_episode.creater.try(:name) %>
+              </span>&nbsp;创建于&nbsp;<span class="time"><%= @wonderful_episode.try(:created_at).try(:to_long_datetime) %></span>
+            </p>
+          </div>
+          <div class="content">放内容</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

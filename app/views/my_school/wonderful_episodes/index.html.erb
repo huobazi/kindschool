@@ -18,15 +18,39 @@
       </div>
 
       <ul class="work_action">
-        <li>
+        <%if choose_operate_show('my_school/wonderful_episodes/new')%>
+         <li>
+            <%=(link_to "<div class='work_action_add'>
+  </div><div class='work_action_add_move'>
+  </div>".html_safe ,new_my_school_wonderful_episode_path) %>
 
         </li>
+        <%end%>
+         <%if choose_operate_show('my_school/wonderful_episodes/destroy')%>
         <li>
+          <a href="javascript: void(0);" title="删除" id="destroy_multiple">
+            <%= render partial: "/my_school/commons/delete_action" %>
+          </a>
         </li>
+        <%end%>
       </ul>
     </div>
     <div class="work_list">
-      <div class="topics" id="topics" style="position: relative;">
+      <div class="topics" style="margin-top: 20px;">
+        <% unless @wonderful_episodes.empty? %>
+          <div class="select_all_wrap clearfix" style="display: none;">
+            <label class="input_select_all checkbox inline ">
+              <input type="checkbox" id="check_all" /> 全选
+            </label>
+            <a class="hidden-wrap" href="javascript: void(0)" rel="nofollow"><i class="img-icon icon-remove-circle pull-right"></i></a>
+          </div>
+          <%= form_tag my_school_wonderful_episodes_path(@wonderful_episodes), method: :delete, :id => "destroy_multi_form" do %>
+            <%= render partial: "wonderful_episodes", collection: @wonderful_episodes, :as => :wonderful_episode %>
+          <% end %>
+          <%= paginate @wonderful_episodes  %>
+        <% else %>
+          暂无新闻
+        <% end %>
       </div>
     </div>
   </div>

@@ -1,8 +1,5 @@
 School::Application.routes.draw do
 
-  resources :wonderful_episodes
-
-
   root :to => 'main#index'
   match 'code/code_image' => 'code#code_image'
   match 'code/recode' => 'code#recode'
@@ -201,6 +198,7 @@ School::Application.routes.draw do
   match 'weixin/about' => 'weixin/main#about'
   match 'weixin/contact_us' => 'weixin/main#contact_us'
   namespace :weixin do
+    resources :wonderful_episodes
     resources :api do
       post :index, :on => :collection
       get :index, :on => :collection
