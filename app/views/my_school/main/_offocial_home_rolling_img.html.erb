@@ -16,7 +16,11 @@
         <% @img.each do |entry| %>
           <% if entry.page_img %>
             <a  href="<%= entry.page_img.public_filename %>" class="fancybox"  title="<%= entry.title %>">
-              <img onload="$(this).parent().css('display','')" src="<%= entry.page_img.public_filename(:middle)%>" onerror="<%=entry.page_img.public_filename%>" alt="" height="370"/>
+              <%if image_type == "middle"%>
+                <img onload="$(this).parent().css('display','')" src="<%= entry.page_img.public_filename(:middle)%>" onerror="<%=entry.page_img.public_filename%>" alt="" height="370"/>
+              <%else%>
+                <img onload="$(this).parent().css('display','')"  src="<%= entry.page_img.public_filename %>" alt="" height="370"/>
+              <%end%>
             </a>
           <%end%>
         <%end%>
@@ -26,28 +30,28 @@
     </div>
   </div>
   <script  type="text/javascript">
-  $(function() {
-    $(".fancybox").fancybox();
-    var speed=20;
-    var tab=document.getElementById("demo_rolling");
-    if (tab)
-    {
-    var tab1=document.getElementById("demo1");
-    var tab2=document.getElementById("demo2");
-    tab2.innerHTML=tab1.innerHTML;
-    function Marquee(){
-      if(tab2.offsetWidth-tab.scrollLeft<=0)
-        tab.scrollLeft-=tab1.offsetWidth
-      else{
-        tab.scrollLeft++;
+    $(function() {
+      $(".fancybox").fancybox();
+      var speed=20;
+      var tab=document.getElementById("demo_rolling");
+      if (tab)
+      {
+        var tab1=document.getElementById("demo1");
+        var tab2=document.getElementById("demo2");
+        tab2.innerHTML=tab1.innerHTML;
+        function Marquee(){
+          if(tab2.offsetWidth-tab.scrollLeft<=0)
+            tab.scrollLeft-=tab1.offsetWidth
+          else{
+            tab.scrollLeft++;
+          }
+        }
+        var MyMar=setInterval(Marquee,speed);
+        tab.onmouseover=function() {clearInterval(MyMar)};
+        tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
       }
-    }
-    var MyMar=setInterval(Marquee,speed);
-    tab.onmouseover=function() {clearInterval(MyMar)};
-    tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
-  }
-  });
-</script>
+    });
+  </script>
 <%end%>
 <!-- </div>
 </div> -->
