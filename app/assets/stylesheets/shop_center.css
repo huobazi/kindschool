@@ -490,7 +490,7 @@ td.check label,td.check input{
   width: 150px;
   height: 53px;
   line-height: 53px;
-  font-size: 15px;
+  font-size: 18px;
   color: #fff;
   display: inline-block;
   text-align: center;
@@ -685,4 +685,17 @@ td.check label,td.check input{
 .un_order {
   padding-lefT: 10px;
   margin-top: 30px;
+}
+
+.show_product .bg-middle .right .btn_display_cart a {
+  font-size: 23px;
+  color: #fff;
+}
+.show_product .bg-middle .right .btn_display_cart a:hover {
+  text-decoration: none;
+}
+
+.product_list .paginate_div ul li {
+  width: auto;
+  height: auto;
 }
