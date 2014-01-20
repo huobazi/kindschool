@@ -17,7 +17,7 @@
               <p style="font-size:30px;color:#5b8b0f"><%=@personal_credits.credit%></p>
             </div>
             <div>
-              <a style="font-size:14px;color:#e5251c;text-decoration:underline;">我能兑换的礼品&gt;</a>
+              <%= link_to  "我能兑换的礼品>",{:controller=>"/my_school/credit_shop",:action=>:products,:serarch=>"user_credit"}.merge(:product=>params[:product]),:style=>"font-size:14px;color:#e5251c;text-decoration:underline;" %>
             </div>
            </div>
          </li>
