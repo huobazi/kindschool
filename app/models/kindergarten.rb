@@ -47,6 +47,7 @@ class Kindergarten < ActiveRecord::Base
   has_many   :sys_logs
   has_many   :access_status
   has_many   :reports
+  has_many   :wonderful_episodes
 
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img

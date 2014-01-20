@@ -298,6 +298,33 @@ ActiveAdmin.register Kindergarten do
 
       div do
         br
+        panel "精彩视频信息" do
+          unless kind.wonderful_episodes.blank?
+            table_for(kind.wonderful_episodes.limit(10).order("id DESC")) do |t|
+              t.column("标题") {|item| item.title}
+              t.column("url地址") {|item| item.url_address}
+              t.column("创建人") { |item| item.creater.name if item.creater }
+              t.column("可见性") { |item| item.squad_label }
+              tr :class => "odd" do
+                td "精彩视频总数", :style => "text-align: right;"
+                td "#{kind.wonderful_episodes.count}"
+              end
+            end
+          else
+            "未创建精彩视频"
+          end
+          ul do
+            li do
+              span :class => "action_item" do
+                link_to "创建精彩视频", :controller => "/admin/wonderful_episodes", :action => :new, :kindergarten_id => kind.id
+              end
+            end
+          end
+        end
+      end
+
+      div do
+        br
         panel "通知信息" do
           unless kind.notices.blank?
             table_for(kind.notices.limit(10).order("id DESC")) do |t|

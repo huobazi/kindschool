@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  kindergarten_id: 1
+  squad_id: 1
+  url_address: MyString
+  is_top: false
+
+two:
+  title: MyString
+  kindergarten_id: 1
+  squad_id: 1
+  url_address: MyString
+  is_top: false

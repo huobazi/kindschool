@@ -1,11 +1,15 @@
 School::Application.routes.draw do
 
+  resources :wonderful_episodes
+
+
   root :to => 'main#index'
   match 'code/code_image' => 'code#code_image'
   match 'code/recode' => 'code#recode'
   match 'my_school' => 'my_school/main#index'
   match "my_school/evaluate/:id/:basename.:extension", :controller => "my_school/evaluate_vtocs", :action => "download", :conditions => { :method => :get }
   namespace :my_school do
+    resources :wonderful_episodes
     resources :credit_shop do
       get :products, :on => :collection
       get :show_product, :on => :member
