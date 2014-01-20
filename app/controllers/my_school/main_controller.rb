@@ -11,6 +11,7 @@ class MySchool::MainController < MySchool::BaseController
         @teacher_infos = root_showcase.content_entries.where(:number=>"official_home_teacher")
         @img= root_showcase.content_entries.where(:number=>'official_home_pub_img')     
       end
+      @notices = @kind.notices.where(:send_range=>[0,2]).limit(6)
     end
   end
 

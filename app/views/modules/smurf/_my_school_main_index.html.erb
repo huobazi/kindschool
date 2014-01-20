@@ -42,9 +42,6 @@
           <div class="official_font">
             <%= link_to truncate(n_ew.title || "",:length=>12), show_one_new_my_school_main_index_path(:new_id=>n_ew.id),:title=>n_ew.title %>
           </div>
-          <div class="official_time">
-            <%= n_ew.start_data.try(:to_short_datetime)%>
-          </div>
         </li>
       <%end%>
     </ul>
@@ -144,7 +141,16 @@
     </div>
   </div>
   <div class="home_work_right">
-  
+    <div class="work_right_title"><span class="tip">&nbsp;&nbsp;&nbsp;</span>通知公告<%=link_to "<strong>+ MORE</strong>".html_safe ,show_new_list_my_school_main_index_path %></div>
+    <div class="work_right_notice">
+      <ul>
+        <%(@notices||[]).each do |notice|%>
+          <li>
+              <%= link_to truncate(notice.title || "",:length=>15), url_for(:controller=>"/my_school/notices",:action=>:show,:id=>notice.id),:title=>notice.title %>
+          </li>
+        <%end%>
+      </ul>
+    </div>
   </div>
 </div>
 
