@@ -1,4 +1,65 @@
-<h1>积分兑换</h1>
+<div class="center_user_work">
+  <div class="center_user_conment">
+    <%=render "center_left"%>
+    <div class="center_right">
+      <div class="center_right_line"></div>
+      <div class="center_right_bottom">
+        <div class="center_conment_right">
+        <span class="credit_title"><b>积分兑换</b></p>
+        </div>
+        <div class="center_right_bottom_mid">
+          <div class="go_shop">
+            <%= link_to '去积分商城兑换礼品>>', :action => "products" %>
+          </div>
+          <%= form_tag(:action => "ship") do%>
+          <div class="div_left">
+            <table cellpadding="10" cellspacing="0" class="cart_data table table-hover">
+              <tr class="carttitle thbrank">
+                <td></td>
+                <td>订单号</td>
+                <td>订单地址</td>
+                <td>订单详细</td>
+              </tr>
+              <tbody>
+                <%@pending_orders.each do |order_line|%>
+                  <tr>
+                    <td><%= check_box("to_be_shipped", order_line.id, {}, "yes", "no") %></td>
+                    <td><%= h(order_line.number)%></td>
+                    <td class="pay_count"><%= h(order_line.address) %></td>
+                    <td class="pay_credit">
+                       <% order_line.order_infos.each do |li| %>
+　　　　　　　　　　         <div class="olitem">
+                             <p>
+　　　　　　　　　　　　　　　　　  <span ><%= li.product.name %></span>
+                             <span ><%= li.product.credit %></span>
+                             <span ><%= li.count %></span>
+                             </p>  
+　　　　　　　　　　         </div>
+　　　　　　　　　　       <% end %>
+                     </td>
+                  </tr>
+                <%end%>
+              </tbody>
+            </table>
+             </div>
+            <%#= render 'order_form', :f=>f %>
+          <%# end %>
+          <input type="submit" value="确定" />
+          <%end%>
+        </div>
+        <div class="center_conment_right_bottom">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="center_user_conment_mid">
+  </div>
+  <div class="center_user_conment_bottom">
+  </div>
+</div>
+
+
+
 <%=flash[:notice]%>
 <%unless @pending_orders.blank?%>
 <%= form_tag(:action => "ship") do%>
