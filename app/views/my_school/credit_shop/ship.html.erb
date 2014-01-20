@@ -5,7 +5,8 @@
       <div class="center_right_line"></div>
       <div class="center_right_bottom">
         <div class="center_conment_right">
-        <span class="credit_title"><b>积分兑换</b></p>
+        <span class="credit_title"><b>积分兑换</b></span>
+        <p><%=flash[:notice]%></p>
         </div>
         <div class="center_right_bottom_mid">
           <div class="go_shop">
@@ -21,7 +22,7 @@
                 <td>订单详细</td>
               </tr>
               <tbody>
-                <%@pending_orders.each do |order_line|%>
+                <%(@pending_orders||[]).each do |order_line|%>
                   <tr>
                     <td><%= check_box("to_be_shipped", order_line.id, {}, "yes", "no") %></td>
                     <td><%= h(order_line.number)%></td>
@@ -29,11 +30,9 @@
                     <td class="pay_credit">
                        <% order_line.order_infos.each do |li| %>
 　　　　　　　　　　         <div class="olitem">
-                             <p>
 　　　　　　　　　　　　　　　　　  <span ><%= li.product.name %></span>
                              <span ><%= li.product.credit %></span>
                              <span ><%= li.count %></span>
-                             </p>  
 　　　　　　　　　　         </div>
 　　　　　　　　　　       <% end %>
                      </td>
@@ -44,7 +43,7 @@
              </div>
             <%#= render 'order_form', :f=>f %>
           <%# end %>
-          <input type="submit" value="确定" />
+          <input type="submit" value="确定下单" class="btn btn btn-success"/>
           <%end%>
         </div>
         <div class="center_conment_right_bottom">
@@ -60,7 +59,7 @@
 
 
 
-<%=flash[:notice]%>
+
 <%unless @pending_orders.blank?%>
 <%= form_tag(:action => "ship") do%>
 <table cellpadding="5" cellspacing="0">
