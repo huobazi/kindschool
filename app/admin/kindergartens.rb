@@ -303,7 +303,7 @@ ActiveAdmin.register Kindergarten do
             table_for(kind.wonderful_episodes.limit(10).order("id DESC")) do |t|
               t.column("标题") {|item| item.title}
               t.column("url地址") {|item| item.url_address}
-              t.column("创建人") { |item| item.creater }
+              t.column("创建人") { |item| item.creater.name if item.creater }
               t.column("可见性") { |item| item.squad_label }
               tr :class => "odd" do
                 td "精彩视频总数", :style => "text-align: right;"
