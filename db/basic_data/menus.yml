@@ -328,6 +328,14 @@
     title: "个人集锦"
     height_level: "b"
     sequence: 1201
+  - id: 83000
+    name: "精彩视频"
+    operate_id: 9200
+    number: 83000
+    url: "/my_school/wonderful_episodes"
+    title: "精彩视频"
+    height_level: "b"
+    sequence: 1202
 
 - id: 90000
   number: 90000

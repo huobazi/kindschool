@@ -1709,6 +1709,66 @@ personnel_sets_index:
   protocol: ""
   <<: *DEFAULTS
 
+wonderful_episodes_index:
+  id: 9200
+  parent_id: 9
+  name: "精彩视频"
+  level: 2
+  sequence: 0
+  note: "精彩视频"
+  controller: "my_school/wonderful_episodes"
+  action: "index"
+  protocol: ""
+  <<: *DEFAULTS
+
+wonderful_episodes_new:
+  id: 9201
+  parent_id: 9
+  name: "创建精彩视频"
+  level: 2
+  sequence: 0
+  note: "创建精彩视频"
+  controller: "my_school/wonderful_episodes"
+  action: "new"
+  protocol: ""
+  <<: *DEFAULTS
+
+wonderful_episodes_edit:
+  id: 9202
+  parent_id: 9
+  name: "更新精彩视频"
+  level: 2
+  sequence: 0
+  note: "更新精彩视频"
+  controller: "my_school/wonderful_episodes"
+  action: "edit"
+  protocol: ""
+  <<: *DEFAULTS
+
+wonderful_episodes_destroy:
+  id: 9203
+  parent_id: 9
+  name: "删除精彩视频"
+  level: 2
+  sequence: 0
+  note: "删除精彩视频"
+  controller: "my_school/wonderful_episodes"
+  action: "destroy"
+  protocol: ""
+  <<: *DEFAULTS
+
+wonderful_episodes_show:
+  id: 9204
+  parent_id: 9
+  name: "展示精彩视频"
+  level: 2
+  sequence: 0
+  note: "展示精彩视频"
+  controller: "my_school/wonderful_episodes"
+  action: "show"
+  protocol: ""
+  <<: *DEFAULTS
+
 activity_index:
   id: 10000
   parent_id: 10

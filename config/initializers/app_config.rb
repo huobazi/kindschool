@@ -125,6 +125,9 @@ MENUS ={"home"=>{
       },
       "82000" => {
         "my_school/personal_sets" => DEFULT_ACTION
+      },
+      "83000" => {
+        "my_school/wonderful_episodes" => DEFULT_ACTION
       }
     },
     "70000" => {

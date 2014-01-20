@@ -27,6 +27,7 @@ class Squad < ActiveRecord::Base
   has_many :user_squads_student_users,:through=>:user_squads,:source=>:user,:conditions => "users.tp = 0"  #所有延时班的学生
   has_many :activities
   has_many :topics
+  has_many :wonderful_episodes
 
   def full_name
     "#{self.grade ? self.grade.name + "-" : ""}#{self.name}"

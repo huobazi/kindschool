@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @wonderful_episode.title %>
+</p>
+
+<p>
+  <b>Kindergarten:</b>
+  <%= @wonderful_episode.kindergarten_id %>
+</p>
+
+<p>
+  <b>Squad:</b>
+  <%= @wonderful_episode.squad_id %>
+</p>
+
+<p>
+  <b>Url address:</b>
+  <%= @wonderful_episode.url_address %>
+</p>
+
+<p>
+  <b>Is top:</b>
+  <%= @wonderful_episode.is_top %>
+</p>
+
+
+<%= link_to 'Edit', edit_wonderful_episode_path(@wonderful_episode) %> |
+<%= link_to 'Back', wonderful_episodes_path %>

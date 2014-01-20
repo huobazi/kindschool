@@ -273,6 +273,7 @@ zh-CN:
       prize_log: "奖品列表"
       audio: "资料音频"
       weixin_token: "服务号token"
+      wonderful_episode: "精彩视频"
     attributes:
       weixin_token:
         number: "编码"
@@ -1051,6 +1052,17 @@ zh-CN:
         tp_label: "类型"
         created_at: "创建时间"
         updated_at: "更新时间"
+      wonderful_episode:
+        title: "标题"
+        url_address: "url地址"
+        squad: "班级"
+        squad_id: "班级"
+        squad_label: "可见性"
+        kindergarten: "幼儿园"
+        kindergarten_label: "所属幼儿园"
+        creater: "创建人"
+        is_top: "置顶"
+        is_top_label: "置顶"
     errors:
       <<: *errors
   views:
