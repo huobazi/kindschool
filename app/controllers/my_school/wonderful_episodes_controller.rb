@@ -11,11 +11,30 @@ class MySchool::WonderfulEpisodesController < MySchool::ManageController
 
   def new
     @wonderful_episode = WonderfulEpisode.new
+    if current_user.get_users_ranges[:tp] == :student
+      flash[:error] = "没有权限"
+      redirect_to :action=> :index
+      return
+    else current_user.get_users_ranges[:tp] == :teachers
+      @squads = current_user.get_users_ranges[:squads]
+    end
+    if @grades = @kind.grades
+      #    if @squads = @grades.first.squads
+      #    end
+    end
   end
 
   def create
     @wonderful_episode = WonderfulEpisode.new(params[:wonderful_episode])
-    @wonderful_episode.save
+    @wonderful_episode.kindergarten_id = @kind.id
+    @wonderful_episode.user_id = current_user.id
+    if @wonderful_episode.save
+      flash[:success] = "创建成功"
+      redirect_to :action => :show, :id => @wonderful_episode.id
+    else
+      flash[:error] = "创建失败"
+      render :new
+    end
   end
 
   def edit

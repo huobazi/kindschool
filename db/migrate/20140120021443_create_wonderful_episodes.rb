@@ -6,7 +6,7 @@ class CreateWonderfulEpisodes < ActiveRecord::Migration
       t.integer :squad_id
       t.integer :user_id
       t.string :url_address
-      t.boolean :is_top
+      t.boolean :is_top, :default => 0, :null => false
 
       t.timestamps
     end
