@@ -52,7 +52,6 @@
 </div>
 <div class="home_right">
   <div class="home_work_center">
-    <%= @img.size %><br/><br/><br/>
     <%if @img.blank?%>
       <a href="/t/colorful/483-5552.jpg" class="fancybox" title="">
         <img src="/t/colorful/483-5552.jpg" alt="" height="370"/>
@@ -66,12 +65,13 @@
       <script type="text/javascript" src="/javascripts/3dcarousel/js/jquery.carousel.min.js"></script>
       <script type="text/javascript">
         $(document).ready(function($){
+          $("#carousel").show();
           $('#carousel').carousel({
-            width: 450,
-            height: 350,
+            width: 420,
+            height: 250,
             itemWidth:120,
-            horizontalRadius:270,
-            verticalRadius:85,
+            horizontalRadius:120,
+            verticalRadius:35,
             resize:false,
             mouseScroll:false,
             mouseDrag:true,
@@ -83,16 +83,12 @@
           });
         });
       </script>
-      <ul id="carousel">
+      <ul id="carousel" style="display: none;">
         <% @img.each do |entry| %>
           <% if entry.page_img %>
             <li>
               <a  href="<%= entry.page_img.public_filename %>" class="fancybox"  title="<%= entry.title %>">
-                <%if image_type == "middle"%>
-                  <img onload="$(this).parent().css('display','')" src="<%= entry.page_img.public_filename(:middle)%>" onerror="<%=entry.page_img.public_filename%>" alt="" height="370"/>
-                <%else%>
-                  <img onload="$(this).parent().css('display','')"  src="<%= entry.page_img.public_filename %>" alt="" height="370"/>
-                <%end%>
+                <img onload="$(this).parent().css('display','')" src="<%= entry.page_img.public_filename(:middle)%>" onerror="<%=entry.page_img.public_filename%>" alt="" height="370"/>
                 <% unless entry.title.blank? %>
                   <div class="tooltip"><%= entry.title %></div>
                 <% end %>
@@ -105,8 +101,50 @@
     <script  type="text/javascript">
       $(function() {
         $(".fancybox").fancybox();
+        $(".home_link a").hover(function(){
+          $(this).next().toggle();
+        })
       });
     </script>
+    <div class="home_link">
+      <ul>
+        <li><a href="###" class="cookbook" title="每周菜谱"></a>
+          <div class="home_link_div cookbook">
+            每周菜谱
+            <div class="home_link_note">
+              关心孩子每一天的饮食
+            </div>
+          </div>
+        </li>
+        <li><a href="###" class="video" title="精彩视频"></a>
+          <div class="home_link_div video">
+            精彩视频
+            <div class="home_link_note">
+              记录孩子的点点滴滴
+            </div>
+          </div>
+        </li>
+        <li><a href="/my_school/home" class="my_home" title="家园互动"></a>
+          <div class="home_link_div my_home">
+            家园互动
+            <div class="home_link_note">
+              登陆家园互动
+            </div>
+          </div>
+        </li>
+        <li><a href="/my_school/main/admissions_information" class="my_user" title="招生信息"></a>
+          <div class="home_link_div my_user">
+            招生信息
+            <div class="home_link_note">
+              查看详细的入园条件要求
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="home_work_right">
+  
   </div>
 </div>
 
