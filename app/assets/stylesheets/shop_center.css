@@ -694,3 +694,8 @@ td.check label,td.check input{
 .show_product .bg-middle .right .btn_display_cart a:hover {
   text-decoration: none;
 }
+
+.product_list .paginate_div ul li {
+  width: auto;
+  height: auto;
+}
