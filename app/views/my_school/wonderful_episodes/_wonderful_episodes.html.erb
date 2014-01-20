@@ -9,7 +9,12 @@
     </div>
     <div class="infos">
       <div class="title">
-        <%= link_to wonderful_episode.title, my_school_wonderful_episode_path(wonderful_episode) %>
+        <% if wonderful_episode.is_top == true %>
+          <a href="<%= my_school_wonderful_episode_path(wonderful_episode) %>" alt="[置顶]<%= wonderful_episode.title %>" title="[置顶]<%= wonderful_episode.title %>"><%= truncate(wonderful_episode.title) %></a>
+          <span><img src="/t/colorful/is_top.gif" alt="" /></span>
+        <% else %>
+          <%= link_to truncate(wonderful_episode.title), my_school_wonderful_episode_path(wonderful_episode) %>
+        <% end %>
       </div>
       <div class="title">
       </div>

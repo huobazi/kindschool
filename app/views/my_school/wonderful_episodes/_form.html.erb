@@ -1,0 +1,89 @@
+<div class="control-group">
+  <%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
+  <div class="controls">
+    <%= text_field_tag(:kindergarten,@kind.name, disabled: true) %>
+  </div>
+</div>
+<div class="control-group">
+  <%=f.label :title, '标题:' ,:class=>"control-label"%>
+  <div class="controls">
+    <%= f.text_field(:title , :validate => true, placeholder: "请输入视频的标题") %>
+
+    <p class="help-block">长度不能小于3。</p>
+  </div>
+</div>
+<div class="control-group">
+  <%=f.label :title, 'url地址:' ,:class=>"control-label"%>
+  <div class="controls">
+    <%= f.text_field(:url_address, :validate => true, placeholder: "请输入视频的url地址") %>
+  </div>
+</div>
+<% unless current_user.get_users_ranges[:tp] == :student %>
+  <% if current_user.get_users_ranges[:tp] == :teachers %>
+    <div class="control-group">
+      <% unless @squads.empty? %>
+        <%= f.label :squad, class: "control-label" %>
+        <div class="controls">
+          <% if action_name == "new" or action_name == "create" %>
+            <%= select_tag "class_number", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+          <% else %>
+            <%= select_tag "class_number", options_for_select((@squads.collect{|s|[s.name,s.id]} || []), @squad.id), :class => "select" %>
+          <% end %>
+        </div>
+      <% else %>
+        <label>没有负责的班级,请先分配负责的班级才能继续操作</label>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="control-group">
+      <label class="control-label" >选择班级:</label>
+      <div class="controls">
+
+        <span>年级&nbsp;<%= select_tag "grade", options_for_select(@grades.collect{|s|[s.name,s.id]}.unshift(["全部",0]),(@grade.id unless @grade.blank?) ) %></span>
+        <br />
+        <br />
+        <div id="class_number_partial">
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="control-group">
+    <%= f.label :squad, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :squad_label, disabled: true %>
+    </div>
+  </div>
+<% end %>
+<div class="control-group">
+  <div class="controls">
+    <%= f.submit('保存',:class=>"btn btn-large btn-primary", disable_with: "正在提交") %>
+  </div>
+</div>
+<script type="text/javascript">
+  $("#grade").change(function(){
+    if($("#graduate").is(":checked")) {
+      var graduate = true
+    } else {
+      var graduate = false
+    }
+    $.get( "/my_school/albums/grade_class",
+      {
+        <% if @squad.present? %>
+          grade: $('#grade').val(),
+          graduate: graduate,
+          squad_id: <%= @squad.id %>
+        <% else %>
+          graduate: graduate,
+          grade: $('#grade').val()
+        <% end %>
+      },
+    function(result){
+      $("#class_number_partial").html(result);
+    })
+  }).trigger('change');
+
+  $("#graduate").change(function() {
+    $("#grade").trigger('change');
+  })
+</script>
