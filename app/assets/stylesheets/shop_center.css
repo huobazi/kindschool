@@ -699,3 +699,6 @@ td.check label,td.check input{
   width: auto;
   height: auto;
 }
+.olitem{
+  vertical-align: center;
+}

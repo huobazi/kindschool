@@ -1,0 +1,71 @@
+<div class="work_menu">
+  <ul>
+    <%(useful_features_menu || []).each_with_index do |sm,index|%>
+    <%if index==0%>
+    <li class="root"><div class="option_root"></div><%= link_to "常用功能","/" %></li>
+    <%end%>
+    <li>
+      <%=link_to sm.option_operate.operate.try(:name),{:controller=>sm.option_operate.operate.controller,:action=>sm.option_operate.operate.action} %>
+    </li>
+    <%end%>
+  </ul>
+  <ul class="work_ul">
+    <% sys_admin_menus.each do |menu| %>
+         <% if menu[:current]==true%>
+         <%if menu[:children].size >0%>
+            <li class='root'><div class='messages_root'></div>
+              <%= link_to  menu[:name].match(/^\//) ? image_tag("/t/colorful/#{menu[:name]}.png") : menu[:name], menu[:url]%> 
+            </li>
+         <%end%>
+         <%menu[:children].each do |mm|%>
+          <%#= menu[:name]==mm[:name] ? "".html_safe : "<li>".html_safe%>
+          <%if menu[:number]!=mm[:number] %>
+          <li>
+            <%="<div class='work_selected work_selected_#{@menu_int}'></div>".html_safe if mm[:current] %>
+            <%= link_to  mm[:name].match(/^\//) ? image_tag("/t/colorful/#{mm[:name]}.png") : mm[:name], mm[:url] ,:class=>"#{mm[:current] ? 'a_selected' : ''}"%> 
+          </li>
+          <%end%>
+         <%end%>
+         <%end%>
+        <% end %>
+        <%if controller_name == "approves"%>
+        <%if choose_operate_show("my_school/approves") %>
+         <li class="root">
+            <div class="messages_root"></div>
+              <a href="###">审核发布</a>
+         </li>
+         <%if choose_operate_show("my_school/approves/news_list")%>
+          <li>
+            <div class="<%=['news_list','news_show'].include?(action_name) ?  "work_selected work_selected_#{@menu_int}" : ''%>"></div>
+          <a class="" href="/my_school/approves/news_list">新闻内容审核</a>
+         </li>
+         <%end%>
+         <%if choose_operate_show("my_school/approves/activities_list")%>
+         <li>
+          <div class="<%=['activities_list','activity_show'].include?(action_name) ?  "work_selected work_selected_#{@menu_int}" : ''%>"></div>
+         <a href="/my_school/approves/activities_list">活动信息审核</a>
+         </li>
+         <%end%>
+         <%if choose_operate_show("my_school/approves/notices_list")%>
+        <li>
+          <div class="<%=['notices_list','notice_show'].include?(action_name) ?  "work_selected work_selected_#{@menu_int}" : ''%>"></div>
+         <a href="/my_school/approves/notices_list">通知信息审核</a>
+        </li>
+        <%end%>
+        <%if choose_operate_show("my_school/approves/messages_list")%>
+        <li>
+          <div class="<%=['messages_list','message_show'].include?(action_name) ?  "work_selected work_selected_#{@menu_int}" : ''%>"></div>
+         <a href="/my_school/approves/messages_list">消息审核</a>
+        </li>
+        <%end%>
+        <%if choose_operate_show("my_school/approves/topics_list")%>
+        <li>
+          <div class="<%=['topics_list','topic_show'].include?(action_name) ?  "work_selected work_selected_#{@menu_int}" : ''%>"></div>
+         <a href="/my_school/approves/topics_list">帖子论坛审核</a>
+        </li>
+        <%end%>
+         <%end%>
+         <%end%>
+
+   </ul>
+</div>

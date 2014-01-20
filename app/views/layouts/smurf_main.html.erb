@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title><%= @kind ? @kind.name : "School" %></title>
+
+    <%= stylesheet_link_tag    "app_bootstrap", :media => "all" %>
+    <%= stylesheet_link_tag    "smurf","fancybox/jquery.fancybox",
+      "fancybox/jquery.fancybox-buttons",
+      "fancybox/jquery.fancybox-thumbs","smurf_main", :media => "all" %>
+
+    <meta name="description" content="<%=@description%>" />
+    <meta name="keywords" content="<%=@keywords%>" />
+    <meta charset="utf-8"/>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "application","colorful","highcharts/highcharts","highcharts/highcharts-more","colorful_main","jquery.lettering","fancybox/jquery.mousewhee",
+      "fancybox/jquery.fancybox",
+      "fancybox/jquery.fancybox-buttons",
+      "fancybox/jquery.fancybox-thumbs",
+      "fancybox/jquery.fancybox-media","jquery.jcarouselLite" %>
+    <%= csrf_meta_tags %>
+    <%#*<script language='javascript' type="text/javascript">%>
+      <%#*function ResumeError() {%>
+        <%#*return true;%>
+      <%#*}%>
+      <%#*window.onerror = ResumeError;%>
+    <%#*</script>%>
+    <!--[if IE 6]>
+    <%= javascript_include_tag "DD_belatedPNG" %>
+<script type="text/javascript">
+  /* EXAMPLE */
+  DD_belatedPNG.fix('div, ul, img, li, input , a');
+
+  /* string argument can be any CSS selector */
+  /* .png_bg example is unnecessary */
+  /* change it to what suits you! */
+</script>
+<![endif]-->
+  </head>
+  <%#*onload="ResumeError()"%>
+  <body style="background-color: #ffffff" >
+    <div  class="wrapper">
+      <div class="main_logo">
+        <% if @kind %>
+          <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" width="100" height="79" alt="Logo" class="logo_vertical"/>
+          <span id="kind_name"><%= @kind.name %></span>
+          <script type="text/javascript">
+            $(function() {
+              $("#dialog_users_guide" ).dialog({
+                dialogClass: "no-close",
+                autoOpen: false,
+                height:500,
+                width:700,
+                buttons: {
+                  "关闭": function () {
+                    $(this).dialog("close");
+                  }
+                }
+              });
+            });
+          </script>
+        <% end %>
+      </div>
+      <div id="main" class="menu">
+        <div class="menu_center official_menu_center">
+          <ul>
+            <li class="<%= "selected" if @menu == "home"%>">
+              <%= link_to "首页",:controller=>"/my_school/main",:action=>:index %>
+            </li>
+            <li class="<%= "selected" if @menu == "show_official_about_us"%>">
+              <%= link_to "关于幼儿园",:controller=>"/my_school/main",:action=>:show_official_about_us %>
+            </li>
+            <li class="<%= "selected" if @menu == "feature"%>">
+              <%= link_to "园所特色",:controller=>"/my_school/main",:action=>:feature %>
+            </li>
+            <li class="<%= "selected" if @menu == "admissions_information"%>">
+              <%= link_to "招生信息",:controller=>"/my_school/main",:action=>:admissions_information %>
+            </li>
+            <li>
+              <%= link_to "家园互动",{:controller=>"/my_school/home",:action=>:index} ,{:target=>"_blank"}%>
+            </li>
+          </ul>
+        </div>
+        <div class="submenu_center">
+          &nbsp;
+        </div>
+      </div>
+      <div class="home_billboards">
+      </div>
+      <div class="hint">
+        <div class="hint_label">温馨提示：</div>
+        <div class="hint_text">这几天天气转凉，请注意穿衣。</div>
+      </div>
+      <div class="main_work <%= controller_path == "my_school/main" && action_name == "index" ? "" : "flowers_work" %>">
+        <%= yield %>
+      </div>
+      <div class="<%= controller_path == "my_school/main" && action_name == "index" ? 'food_min_div' : 'food_max_div' %>">
+        <%= render :partial => "/modules/flowers/foot" %>
+      </div>
+      <div id="dialog_users_guide"  title="用户登录指南">
+        <%if @kind%>
+          <%= render :partial => "/modules/colorful/users_guide" %>
+        <%end%>
+      </div>
+    </div>
+    <div style="display: none;">
+      <script type="text/javascript">
+        try{
+          var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cdiv id='cnzz_stat_icon_1000041998'%3E%3C/div%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000041998%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+        }catch(ex){}
+      </script>
+    </div>
+    <script type="text/javascript">
+      $(function(){
+        $.floatingAd({
+          //频率
+          delay: 60,
+          //超链接后是否关闭漂浮
+          isLinkClosed: false,
+          'click': function(){
+            $( "#dialog_users_guide" ).dialog("open");
+          },
+          //漂浮内容
+          ad:	[{
+              //关闭区域背景透明度(0.1-1)
+              headFilter: 0.3,
+              //图片
+              'img': '/star_imgs/help.gif',
+              //图片高度
+              //'imgHeight': 220,
+              //图片宽度
+              //'imgWidth': 100,
+              'divWidth': 103,
+              //图片链接
+              'linkUrl': '###',
+              'linkWindow':"",
+              //浮动层级别
+              'z-index': 100,
+              //标题
+              'title': '用户指南'
+              
+            }],
+          //关闭事件
+          onClose: function(elem){
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

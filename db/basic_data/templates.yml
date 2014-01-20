@@ -8,3 +8,8 @@ flowers:
   number: flowers
   is_default: 0
   image_url: "/t/flowers.jpg"
+smurf:
+  name: "蓝精灵"
+  number: smurf
+  is_default: 0
+  image_url: "/t/smurf.jpg"

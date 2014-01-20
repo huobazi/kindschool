@@ -1,0 +1,178 @@
+<div class="login" id="longin_form_head">
+  <div class="logo" >
+    <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename(:middle) : '/t/colorful/logo.png' %>" alt="Logo" class="logo_vertical png_bg"/>
+    <% if @kind %>
+      <span id="kind_name" style="color: #474747;"><%= @kind.name %></span>
+      <script type="text/javascript">
+        $(function(){
+          $("#kind_name").lettering();
+          function load_color(){
+            var kind_color = ["#EF554C","#f6ab1d","violet","#00c0f6","#a4c500","#f7a200"];
+            $("#kind_name span").each(function(index, Element){
+              var color = kind_color[index%kind_color.length];
+              $(this).css("color",color);
+            });
+          }
+          load_color();
+        });
+      </script>
+    <% end %>
+  </div>
+  <div class="login_window">
+    <div class="login_head png_bg"></div>
+    <div class="login_span png_bg">
+      <div class="login_imgs">
+        <div class="login_img_left">
+        <%=render "offocial_home_rolling_img"%>
+          <!-- <div class="login_img_small">
+            <img src="/t/colorful/login_img1.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img2.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img3.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img4.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img5.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img6.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img7.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img8.png" alt="效果"/>
+          </div>
+          <div class="login_img_small">
+            <img src="/t/colorful/login_img9.png" alt="效果"/>
+          </div> -->
+        </div>
+        <div class="login_img_right" title='您需要先关注"微一园讯通"和幼儿园的公共账号后，才能登陆系统。'>
+          <div class="login_img_big">
+            <a href="/qrcode/qrcode_weiyi.jpg" class="fancybox">
+              <img src="/qrcode/qrcode_weiyi.jpg" alt="微一园讯通二维码" class="login_qrcode"/>
+            </a>
+            <div class="login_qrcode_label">微一园讯通公共账号</div>
+          </div>
+          <div class="login_img_big login_img_foot ">
+            <%if @kind.asset_logo%>
+              <a href="<%= @kind.asset_logo.public_filename %>" class="fancybox">
+                <img src="<%= @kind.asset_logo.public_filename %>" alt="微一园讯通二维码" class="login_qrcode"/>
+              </a>
+              <div class="login_qrcode_label">幼儿园公共账号</div>
+            <% else %>
+              <div class="login_img_small img_small_foot">
+                <img alt="效果" src="/t/colorful/login_img11.png"/>
+              </div>
+              <div class="login_img_small img_small_foot">
+                <img alt="效果" src="/t/colorful/login_img12.png"/>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="login_form">
+        <div class="login_welcome">
+          <img src="/t/colorful/welcome.png" alt="欢迎来到我们幼儿园!"/>
+        </div>
+        <div class="login_form_span">
+          <%= form_tag url_for(:action=>:login),:id=>"longin_form", :autocomplete=>"off" do  %>
+            <%= text_field_tag :login,"",:placeholder=>"账号", :class => 'login_input'%>
+            <div class="<%= @can_auth ? 'auth_code_div' : 'auth_code_div_s'%>">
+              <%= password_field :password,"",:placeholder=>"登录密码",:name=>"password", :class => 'password_input'%>
+            </div>
+            <% if @can_auth %>
+              <div class="<%= @can_auth ? 'auth_code_div' : 'auth_code_div_s'%>">
+                <%= text_field_tag :auth_code,"",:placeholder=>"验证码", :class => 'auth_input'%>
+                <div class="auth_code_img">
+                  <img id="code_image" src="/code/code_image?<%=Time.now.to_i%>" alt="验证码"/>
+                  <div id="auth_loading">
+                    <img src="/t/colorful/ajax-loader.gif" alt="加载..."/>
+                  </div>
+                </div>
+              </div>
+            <% else %>
+              <div class="auth_code_div_s">
+                <br/>
+              </div>
+            <% end %>
+            <div class="login_submit_div">
+              <div class="login_submit">
+                <a href="###" class="button_xun" id="button_xun">&nbsp;</a>
+              </div>
+            </div>
+            <div class="error_div">
+              <% if @user_errors %>
+                <label class="error_label">
+                  <%= raw @user_errors %>
+                </label>
+              <% else %>
+                <label class="notice_info">
+                  <a href="#login_course" id="link_course">查看账号激活指南</a>&nbsp;&nbsp;<a href="<%= download_guides_pdf %>">下载指南(pdf格式)</a>
+                </label>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div id="login_course">
+        <div class="course_div">
+          <h2>帐号激活与微信绑定操作指南</h2>
+          <p>第一次使用本系统，您必须完成以下步骤，以正常使用微一园讯通平台与幼儿园互动</p>
+          <p><b>第一步</b>： 帐号激活<br/>
+            1、打开微信扫一扫，扫描本页面上部微一园讯通公众帐号二维码，点击“关注” （如何打开微信扫一扫） <br/>
+            如有疑问，请拨打微一服务热线：4000 915 985<br/>
+            2、点击：“查看消息”进入对话框，点击左下角“绑定帐号“<br/>
+            3、点击“点击绑定”链接，进入输入帐号页面<br/>
+            4、按提示输入短信上提供的用户名和密码，点击“提交”完成激活！<br/>
+          </p>
+          <p><b>第二步</b>： 绑定幼儿园微信<br/>
+            1、打开微信扫一扫，扫描本页面中部幼儿园公众帐号二维码，点击“关注”<br/>
+            2、点击：“查看消息”进入对话框，在对话框中输入数字“1”<br/>
+            3、在返回的消息上点击“点击绑定”链接，进入输入帐号页面<br/>
+            4、按提示输入短信上提供的用户名和密码，点击“提交”完成激活!&nbsp;&nbsp;<a href="#longin_form_head" style="color:blue;" class="btn-login">回到登录</a><br/>
+          </p>
+
+          如何打开微信“扫一扫”：<br/>
+          <div class="sao_weixin_img">
+            <img src="/star_imgs/weixin.png" alt="微信扫一扫" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="login_food">
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $(function(){
+    $(".button_xun,#button_xun").click(function(){
+      $("#longin_form").submit();
+    })
+    $("#longin_form").keydown(function(e){
+      var e = e || event,
+      keycode = e.which || e.keyCode;
+      if (keycode==13) {
+        $(".button_xun").trigger("click");
+      }
+    });
+    $("#code_image").click(function(){
+      $("#auth_loading").show();
+      $.get("/code/recode",function(){
+        $("#code_image").attr("src","/code/code_image?" + (new Date()).valueOf());
+        $("#auth_loading").hide();
+      })
+    })
+    $(".fancybox").fancybox();
+    $("#link_course").click(function(){
+      $("#login_course").show();
+    })
+  })
+</script>
