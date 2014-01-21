@@ -24,7 +24,7 @@
       <% unless @squads.empty? %>
         <%= f.label :squad, class: "control-label" %>
         <div class="controls">
-          <%= select_tag "class_number", options_for_select((@squads.collect{|s|[s.name,s.id]} || [])), :class => "select" %>
+          <%= select_tag "class_number", options_for_select((@squads.collect{|s|[s.name,s.id]} || []), @squad.id), :class => "select", :name => "wonderful_episode[squad_id]" %>
         </div>
       <% else %>
         <label>没有负责的班级,请先分配负责的班级才能继续操作</label>

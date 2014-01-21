@@ -6,13 +6,13 @@
 class WonderfulEpisode < ActiveRecord::Base
   attr_accessible :is_top, :kindergarten_id, :squad_id, :title, :url_address, :user_id
 
-  belongs_to :creater, :class_name => "User", :foreign_key => "user_id"
-
   validates :kindergarten_id, :url_address, :title, :presence => true
 
   belongs_to :kindergarten
-
   belongs_to :squad
+  belongs_to :creater, :class_name => "User", :foreign_key => "user_id"
+
+  default_scope order("is_top DESC, created_at DESC")
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"

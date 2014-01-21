@@ -19,6 +19,14 @@ module TopicsHelper
     end
   end
 
+  def can_destroy_index?
+    if current_user.get_users_ranges[:tp] == :student
+      false
+    else
+      true
+    end
+  end
+
   def destroy_topic_entry?(topic_entry)
     if current_user.get_users_ranges[:tp] == :all
       true

@@ -1,0 +1,40 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    <a href="<%= weixin_path %>" title="返回" class="weixin_return">返回</a>精彩视频列表
+  </div>
+  <div class="message_filter">
+    <%#= form_tag '/weixin/notices' , :method=>"get",:id=>"message_search" do %>
+      <%#= select_tag "send_date",options_for_select(@send_date,(params[:send_date]).to_s) %>
+    <%#end%>
+  </div>
+  <div class="message_list">
+    <ul class="data_list">
+      <% if @wonderful_episodes.blank? %>
+        <li><div class="message_content">没有精彩视频</div></li>
+      <% else %>
+        <% @wonderful_episodes.each do |record| %>
+          <li class="<%= record.id.blank? ? "" : "show"%>">
+            <a href="<%= url_for(:action=>:show,:id=>record.id) %>" title="查看通知信息">
+              <p class="title">标题:<%= record.title %></p>
+              <p class="info"><span>发布人:<%=record.creater.try(:name)%> *<%= record.squad_label %>*</span></p>
+              <p class="info"><span><%= record.created_at.try(:to_long_datetime) %></span></p>
+            </a>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+    <br/>
+  </div>
+  <% unless  @wonderful_episodes.blank? %>
+    <div class="message_more">
+      <div class="paginate_div">
+        <%= paginate @wonderful_episodes, :window => 1%>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>

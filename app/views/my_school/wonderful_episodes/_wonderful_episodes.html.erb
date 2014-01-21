@@ -1,9 +1,13 @@
 <div class="topic topic_line pull-left">
-  <div class="pull-left"><input type="checkbox" class="check" name="wonderful_episode[]" id="wonderful_episode_<%= wonderful_episode.id %>" value="<%= wonderful_episode.id %>" /></div>
+  <% if choose_operate_show("my_school/wonderful_episodes/destroy") and can_destroy?(wonderful_episode) %>
+    <div class="pull-left"><input type="checkbox" class="check" name="wonderful_episode[]" id="wonderful_episode_<%= wonderful_episode.id %>" value="<%= wonderful_episode.id %>" /></div>
+  <% else %>
+    <div class="pull-left place place-input-position"></div>
+  <% end %>
   <div class="right_info" style="padding-left: 10px;">
     <div class="pull-right">
       <a title="查看<%= wonderful_episode.title %>" alt="要看<%= wonderful_episode.title %>" href="<%= my_school_wonderful_episode_path(wonderful_episode) %>">查看</i></a>
-      <% if choose_operate_show("my_school/wonderful_episodes/edit") %>
+      <% if choose_operate_show("my_school/wonderful_episodes/edit") && can_edit?(wonderful_episode) %>
         <a title="编辑<%= wonderful_episode.title %>" alt="编辑<%= wonderful_episode.title %>" href="<%= edit_my_school_wonderful_episode_path(wonderful_episode) %>">编辑</a>
       <% end %>
     </div>
@@ -20,7 +24,7 @@
       </div>
       <div class="info">
         <em><%= wonderful_episode.creater.try(:name) %></em>
-        <em>视频创建于</em><abbr><%= wonderful_episode.try(:created_at).try(:to_short_datetime) %></abbr>
+        <em> *<%= wonderful_episode.squad_label %>* 创建于</em><abbr><%= wonderful_episode.try(:created_at).try(:to_short_datetime) %></abbr>
         <em><%= "总共浏览了#{wonderful_episode.show_count}次" if wonderful_episode.show_count %></em>
       </div>
     </div>

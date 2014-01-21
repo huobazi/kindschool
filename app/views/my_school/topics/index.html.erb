@@ -26,7 +26,7 @@
           <% end %>
         </li>
         <li>
-          <% if choose_operate_show("my_school/topics/destroy") %>
+          <% if choose_operate_show("my_school/topics/destroy") && can_destroy_index? %>
             <a href="javascript: void(0)" rel="nofollow" title="删除" id="destroy_multiple">
               <%= render partial: "/my_school/commons/delete_action" %>
             </a>
