@@ -2,7 +2,7 @@
 #幼儿园
 class Kindergarten < ActiveRecord::Base
   attr_accessible :enable_credit,:init_status,:logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token,:latlng,:address,
-    :aliases_url,:sms_count,:sms_user_count,:telephone,:allsms_count,:open_allsms,:begin_allsms,:login_note,:balance_count,:hint_tp
+    :aliases_url,:sms_count,:sms_user_count,:telephone,:allsms_count,:open_allsms,:begin_allsms,:login_note,:balance_count,:hint_tp,:show_cookbook
 
   has_many   :users   #所有用户
   has_many   :dean_emails
@@ -60,6 +60,7 @@ class Kindergarten < ActiveRecord::Base
   validates :note, :length => { :maximum => 800}
   validates :login_note, :length=>{:maximum=>120 }
 
+  SHOW_COOKBOOK_DATA = {"false"=>"不展示","true"=>"展示"}
   HINT_TP_DATA = {"0"=>"不发短信","1"=>"发短信"}
   STATUS_DATA = {"0"=>"正常","1"=>"锁定"}
   WEIXIN_STATUS_DATA = {"0"=>"未授权绑定","1"=>"已授权绑定"}

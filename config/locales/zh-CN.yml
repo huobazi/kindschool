@@ -539,6 +539,7 @@ zh-CN:
         begin_allsms_label: "可使用短信群发"
         telephone: "联系电话"
         init_status: "幼儿园初始化值"
+        show_cookbook: "展示菜谱到首页"
       user:
         name: "姓名"
         login: "账号"

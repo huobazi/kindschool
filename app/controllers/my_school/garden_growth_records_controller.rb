@@ -123,7 +123,10 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
         end
       end
       if @growth_record.save!
-        current_user.save_user_credit("growth_record",2,@growth_record.student_info.user)
+       credit = current_user.save_user_credit("growth_record",2,@growth_record.student_info.user)
+      unless credit.blank?
+        session[:add_credit] = credit
+      end
         flash[:success] = "添加宝宝在园成长记录成功"
         redirect_to :controller => "/my_school/garden_growth_records", :action => :show, :id => @growth_record.id
       else
@@ -134,6 +137,10 @@ class  MySchool::GardenGrowthRecordsController < MySchool::ManageController
   end
 
   def show
+    unless session[:add_credit].blank?
+      @add_credit = session[:add_credit]
+      session[:add_credit]=nil
+    end
     if current_user.get_users_ranges[:tp] == :student
       @growth_record = @kind.growth_records.where("tp = ? and student_info_id = ?", 0, current_user.student_info.id).find_by_id(params[:id])
     elsif current_user.get_users_ranges[:tp] == :teachers

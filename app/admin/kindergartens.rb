@@ -110,6 +110,7 @@ ActiveAdmin.register Kindergarten do
       f.input :weixin_code
       f.input :weixin_token
       f.input :telephone
+      f.input :show_cookbook,:as=>:select,:collection=>Kindergarten::SHOW_COOKBOOK_DATA.invert
       f.input :latlng
       f.input :address
       f.input :aliases_url
@@ -146,6 +147,9 @@ ActiveAdmin.register Kindergarten do
       row :weixin_status_label
       row :weixin_code
       row :weixin_token
+      row :show_cookbook do |obj|
+        Kindergarten::SHOW_COOKBOOK_DATA["#{obj.show_cookbook}"]
+      end
       row :telephone
       row :latlng
       row :address
