@@ -48,9 +48,14 @@ class MySchool::WonderfulEpisodesController < MySchool::ManageController
   end
 
   def edit
-    @wonderful_episode = WonderfulEpisode.find(params[:id])
-    unless @wonderful_episode.nil?
-      @squad = @wonderful_episode.squad
+    if current_user.get_users_ranges[:tp] == :student
+      flash[:error] = "没有权限"
+      redirect_to :action=> :index
+      return
+    elsif current_user.get_users_ranges[:tp] == :teachers
+      @album = @kind.wonderful_episodes.where("squad_id in (select squad_id from teachers where staff_id = ?) or user_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
+    else
+      @album = @kind.wonderful_episodes.find(params[:id])
     end
     if @grades = @kind.grades
       if current_user.get_users_ranges[:tp] == :all
