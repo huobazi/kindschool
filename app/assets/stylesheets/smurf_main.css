@@ -205,7 +205,7 @@ body{
     color: #9a9aa3;
 }
 .home_work_right{
-    width: 200px;
+    width: 208px;
     float: left;
 }
 .work_right_title{
@@ -240,6 +240,58 @@ body{
     color: #6388A0;
     text-decoration: -moz-anchor-decoration;
 }
+.call_me{
+    margin-top: 50px;
+}
+.call_label{
+    font-size: 14px;
+    color: #6D6D6D;
+    padding-left: 3px;
+}
+.call_phone{
+    font-size: 21px;
+    color: #2E332D;
+    padding-left: 3px;
+}
+.float_left{
+    float: left;
+}
+.full_left{
+    float: left;
+    width: 100%;
+}
+.dean_email{
+    background-color: #EDF0F4;
+    float: left;
+    padding: 5px;
+    margin-right: 10px;
+}
+.dean_address{
+    background-color: #EDF0F4;
+    float: left;
+    padding: 5px;
+    margin-right: 10px;
+    cursor:pointer;
+}
+.show_case{
+    background-image: url("/t/smurf/show_case.png");
+    background-repeat: no-repeat;
+    width: 900px;
+    height: 200px;
+    float: left;
+    margin-top: 10px;
+}
+.show_case_label{
+    padding: 10px;
+    font-size: 14px;
+    color: #164C86;
+}
+
+
+
+
+
+
 
 
 
