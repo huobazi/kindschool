@@ -110,7 +110,7 @@ class User < ActiveRecord::Base
         if personal_credit = self.personal_credit
           #如果有业务上面的操作比如宝宝在园
           if tp==1
-            return false unless self.credit_logs.where("tp= ? and business_type=? and business_id= ? ",tp,business.class.to_s,business.id).blank?
+            return nil unless self.credit_logs.where("tp= ? and business_type=? and business_id= ? ",tp,business.class.to_s,business.id).blank?
           else
             if business.nil?
               return nil unless self.credit_logs.where("tp= ?  and  created_at between  ? and ?  ",tp,time1,time2).blank?

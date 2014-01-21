@@ -7,7 +7,9 @@ ActiveAdmin.register Order  do
     column :kindergarten
     column :user
     column :number
-    column :status
+    column :status do |record|
+      Order::STATUS["#{record.status}"]
+    end
     column :amount
     column :credit
     column :postage
@@ -27,7 +29,7 @@ ActiveAdmin.register Order  do
       f.input :kindergarten
       f.input :user
       f.input :number
-      f.input :status
+      f.input :status, :as=>:select,:collection=>Order::STATUS.invert, :required => true
       f.input :amount
       f.input :credit
       f.input :postage
@@ -47,7 +49,10 @@ ActiveAdmin.register Order  do
       row :kindergarten
       row :user
       row :number
-      row :status
+      # row :status
+      row :status do
+        Order::STATUS["#{menu.status}"]
+      end
       row :amount
       row :credit
       row :postage
