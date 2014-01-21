@@ -13,7 +13,7 @@
   <div class="message_list">
     <ul class="data_list">
       <% if @wonderful_episodes.blank? %>
-        <li><div class="message_content">没有新闻。</div></li>
+        <li><div class="message_content">没有精彩视频</div></li>
       <% else %>
         <% @wonderful_episodes.each do |record| %>
           <li class="<%= record.id.blank? ? "" : "show"%>">
