@@ -28,6 +28,10 @@ module WonderfulEpisodesHelper
   end
 
   def basic_index?
-true
+    if current_user.get_users_ranges[:tp] == :student
+      false
+    else
+      true
+    end
   end
 end

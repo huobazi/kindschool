@@ -1,0 +1,28 @@
+<div class="container">
+  <%= render :partial => "/modules/colorful/weixin_head" %>
+</div>
+<div class="message_div">
+  <div class="message_title">
+    <a href="<%= url_for(:action=>:index) %>" title="返回" class="weixin_return">返回</a>新闻详情
+  </div>
+  <div class="show_title">
+    <div class="title">
+      <label>标 题:<%= @wonderful_episode.title %></label>
+    </div>
+    <div class="title">
+      <label>发布人:<%= @wonderful_episode.creater.try(:name)%> *<%= @wonderful_episode.squad_label %>*</label>
+    </div>
+    <div class="limit_title">
+      <label>时 间:<%=@wonderful_episode.created_at.try(:to_long_datetime)%></label>
+    </div>
+    <div class="title">
+      <label>浏览次数: <%= @wonderful_episode.show_count %></label>
+    </div>
+  </div>
+  <div class="message_list">
+    放内容
+    <br/>
+  </div>
+</div>
+<%= render :partial => "/modules/colorful/weixin_menu_navbar"%>
+<%= render :partial => "/modules/colorful/weixin_menu_one"%>
