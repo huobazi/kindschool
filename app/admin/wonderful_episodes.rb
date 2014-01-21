@@ -39,6 +39,7 @@ ActiveAdmin.register WonderfulEpisode do
     f.inputs "创建精彩视频" do
       f.input :title, :required => true
       f.input :url_address, :required => true
+      f.input :is_top
       f.input :squad_id, :as => :select, :collection=>Hash[f.object.kindergarten.squads.map{|squad| ["#{squad.name}",squad.id]}]
       f.input :kindergarten_label, :as => :string, :input_html => { :disabled => true }
       f.input :kindergarten_id,:as=>:hidden

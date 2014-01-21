@@ -1,0 +1,40 @@
+<div class="show_work">
+  <%= render :partial => "/modules/#{view_layout}/work_menu" %>
+  <div class="work">
+    <div class="headline">
+      <div class="headline_title">
+        <div class="messages_root"></div>
+        <label>精彩视频</label>
+        <div class="crumbs">
+          <a href="/my_school/home" title="返回首页">
+            <div class="icon_home"></div>
+          </a>
+          <ul>
+            <li><%= link_to "精彩视频", my_school_wonderful_episodes_path %></li>
+            <li>/</li>
+            <li>编辑精彩视频</li>
+          </ul>
+        </div>
+      </div>
+      <ul class="work_action">
+        <li>
+        <a href="<%=url_for(:controller=>"/my_school/wonderful_episodes",:action=>:index)%>" title="返回">
+          <div class="work_action_return">
+          </div>
+          <div class="work_action_return_move">
+          </div>
+        </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="work_form">
+      <div class="form_div">
+        <%= form_for(@wonderful_episode,:method=>'put' , :validate => true, :url=>{:controller=>'my_school/wonderful_episodes',:action=>'update',:id=>@wonderful_episode}, :html =>{:class=>"form-horizontal"}) do |f| %>
+          <%= render 'form', :f=>f %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>

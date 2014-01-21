@@ -9,64 +9,64 @@
   });
 </script>
 <div class="control-group">
- 	<%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
-<div class="controls">
-     <%= text_field_tag(:kindergarten,@kind.name, disabled: true) %>
+  <%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
+  <div class="controls">
+    <%= text_field_tag(:kindergarten,@kind.name, disabled: true) %>
+  </div>
 </div>
-</div>
- <div class="control-group">
- 	<%=f.label :title, '新闻标题:' ,:class=>"control-label"%>
-<div class="controls">
-  <%= f.text_field(:title , :validate => true, placeholder: "请输入新闻的标题") %>
-
-  <p class="help-block">长度不能小于3。</p>
-</div>
- </div>
- <div class="control-group">
-  <%=f.label :start_data, '发布时间:' ,:class=>"control-label" %>
-<div class="controls">
-    <%= f.text_field(:start_data , :validate => true, :class => "time_datepicker",:value => @new.start_data.try(:to_short_datetime), placeholder: "单击此处选择新闻发布时间") %>
-</div>
- </div>
 <div class="control-group">
-	<%=f.label :content, '新闻内容: ' ,:class=>"control-label"%>
-<div class="controls">
-  <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:items=>ITEMS-['multiimage'],:allowFileManager => false,:allowUpload=>false%>
-  <span class="help-block">长度不能小于3</span>
+  <%=f.label :title, '新闻标题:' ,:class=>"control-label"%>
+  <div class="controls">
+    <%= f.text_field(:title , :validate => true, placeholder: "请输入新闻的标题") %>
+
+    <p class="help-block">长度不能小于3。</p>
+  </div>
 </div>
+<div class="control-group">
+  <%=f.label :start_data, '发布时间:' ,:class=>"control-label" %>
+  <div class="controls">
+    <%= f.text_field(:start_data , :validate => true, :class => "time_datepicker",:value => @new.start_data.try(:to_short_datetime), placeholder: "单击此处选择新闻发布时间") %>
+  </div>
+</div>
+<div class="control-group">
+  <%=f.label :content, '新闻内容: ' ,:class=>"control-label"%>
+  <div class="controls">
+    <%= f.kindeditor :content, :class => 'profile_input required', :editor_id => 'topic_content',:items=>ITEMS-['multiimage'],:allowFileManager => false,:allowUpload=>false%>
+    <span class="help-block">长度不能小于3</span>
+  </div>
 </div>
 <%if  action_name=="edit" || action_name=="update" %>
-<div class="control-group">
-  <%=f.label :start_data, '已上传图片:' ,:class=>"control-label" %>
-<div class="controls">
-    <ul>
-          <% (@new.page_imgs||[]).each do |page_img| %>
-              <li>
-                <a href="<%= page_img.public_filename(:thumb) %>" class="fancybox"  title="<%=@new.title%>">
-                  <img src="<%= page_img.public_filename(:middle) %>" alt="" width="239" height="177"/>
-                  <%=link_to "删除",page_img_destroy_my_school_news_path(:id=>@new.id,:img_id=>page_img.id),:class=>"btn"%>
-                </a>
+  <div class="control-group">
+    <%=f.label :start_data, '已上传图片:' ,:class=>"control-label" %>
+    <div class="controls">
+      <ul>
+        <% (@new.page_imgs||[]).each do |page_img| %>
+          <li>
+          <a href="<%= page_img.public_filename(:thumb) %>" class="fancybox"  title="<%=@new.title%>">
+            <img src="<%= page_img.public_filename(:middle) %>" alt="" width="239" height="177"/>
+            <%=link_to "删除",page_img_destroy_my_school_news_path(:id=>@new.id,:img_id=>page_img.id),:class=>"btn"%>
+          </a>
 
-              </li>
-          <% end %>
-        </ul>
-</div>
- </div>
-<div class="control-group">
-  <%#=f.label nil, '批量上传照片:' ,:class=>"control-label"%>
-  <div class="controls">
-    <div id="upload_notice">
-            <input type="text" name="uploaded_data" id="uploadify"/>
-            <div id="uploadify_queue_div">
-            </div>
+          </li>
+        <% end %>
+      </ul>
     </div>
- </div>
-</div>
+  </div>
+  <div class="control-group">
+    <%#=f.label nil, '批量上传照片:' ,:class=>"control-label"%>
+    <div class="controls">
+      <div id="upload_notice">
+        <input type="text" name="uploaded_data" id="uploadify"/>
+        <div id="uploadify_queue_div">
+        </div>
+      </div>
+    </div>
+  </div>
 <%end%>
 <div class="control-group">
-<div class="controls">
-<%= f.submit('保存',:class=>"btn btn-large btn-primary", disable_with: "正在提交") %>
-</div>
+  <div class="controls">
+    <%= f.submit('保存',:class=>"btn btn-large btn-primary", disable_with: "正在提交") %>
+  </div>
 </div>
 <script type="text/javascript">
   $("input[type='submit']").click(function(){
