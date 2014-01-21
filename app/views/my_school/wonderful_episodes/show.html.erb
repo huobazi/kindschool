@@ -18,7 +18,7 @@
       </div>
       <ul class="work_action">
         <li>
-          <% if choose_operate_show("my_school/wonderful_episodes/edit" && can_edit?(@wonderful_episode)) %>
+          <% if choose_operate_show("my_school/wonderful_episodes/edit") && can_edit?(@wonderful_episode) %>
             <a href="<%=url_for(:controller=>"/my_school/wonderful_episodes",:action=>:edit,:id=>@wonderful_episode.id)%>" title="编辑">
               <%= render partial: "/my_school/commons/edit_action" %>
             </a>
