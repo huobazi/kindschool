@@ -117,7 +117,10 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
     if @growth_record.save!
       flash[:success] = "添加宝宝在家成长记录成功"
       #这个地方添加宝宝在家积分
-      current_user.save_user_credit("growth_record",2)
+     credit =  current_user.save_user_credit("growth_record",2,@growth_record.creater)
+      unless credit.blank?
+        session[:add_credit] = credit
+      end
       redirect_to :action => :show, :id => @growth_record.id
     else
       flash[:error] = "添加宝宝在家成长记录失败"
@@ -126,6 +129,10 @@ class  MySchool::GrowthRecordsController < MySchool::ManageController
   end
 
   def show
+    unless session[:add_credit].blank?
+      @add_credit = session[:add_credit]
+      session[:add_credit]=nil
+    end
     if current_user.get_users_ranges[:tp] == :student
       @growth_record = @kind.growth_records.where("tp = ? and (creater_id = ? or student_info_id = ?)", 1, current_user.id, current_user.student_info.id).find_by_id(params[:id])
     elsif current_user.get_users_ranges[:tp] == :teachers

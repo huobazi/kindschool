@@ -161,7 +161,12 @@ class MySchool::AlbumsController  < MySchool::ManageController
         if @squads = @grades.first.squads.where(:graduate => false)
         end
       elsif current_user.get_users_ranges[:tp] == :teachers
-        @squads = current_user.get_users_ranges[:squads]
+        if @album.squad
+          @squads = current_user.get_users_ranges[:squads]
+        else
+          flash[:error] = "没有权限"
+          redirect_to :action => :index
+        end
       end
     end
     if @squad = @album.squad

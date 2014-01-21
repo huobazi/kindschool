@@ -11,6 +11,7 @@ class Order < ActiveRecord::Base
   validates :number, :uniqueness => true
   validates :phone,:presence => true
   validates :address,:presence => true
+  STATUS = { "0"=>"下单没有支付","1"=> "下单支付", "2"=>"发货"}
 
   def self.pending_shipping
   	where("shipment_at is null")

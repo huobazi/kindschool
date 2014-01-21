@@ -162,7 +162,7 @@ class MySchool::CreditShopController < MySchool::ManageController
       count,products = do_shipping(things_to_ship)
       if count > 0
         count_text = pluralize(count, "order")
-        flash.now[:notice] = "#{count_text} marked as shipped"
+        flash.now[:notice] = "#{count_text} 已经成功扣除积分并进行配送"
       end
       unless products.blank?
         flash[:notice] = "#{products.collect{|x|x.name}}没有库存了."
