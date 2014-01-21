@@ -18,7 +18,7 @@
       </div>
 
       <ul class="work_action">
-        <%if choose_operate_show('my_school/wonderful_episodes/new')%>
+        <%if choose_operate_show('my_school/wonderful_episodes/new' && can_add_index?)%>
          <li>
             <%=(link_to "<div class='work_action_add'>
   </div><div class='work_action_add_move'>
@@ -26,7 +26,7 @@
 
         </li>
         <%end%>
-         <%if choose_operate_show('my_school/wonderful_episodes/destroy')%>
+         <%if choose_operate_show('my_school/wonderful_episodes/destroy') && can_destroy_index? %>
         <li>
           <a href="javascript: void(0);" title="删除" id="destroy_multiple">
             <%= render partial: "/my_school/commons/delete_action" %>
@@ -44,7 +44,7 @@
             </label>
             <a class="hidden-wrap" href="javascript: void(0)" rel="nofollow"><i class="img-icon icon-remove-circle pull-right"></i></a>
           </div>
-          <%= form_tag my_school_wonderful_episodes_path(@wonderful_episodes), method: :delete, :id => "destroy_multi_form" do %>
+          <%= form_tag my_school_wonderful_episode_path(@wonderful_episodes), method: :delete, :id => "destroy_multi_form" do %>
             <%= render partial: "wonderful_episodes", collection: @wonderful_episodes, :as => :wonderful_episode %>
           <% end %>
           <%= paginate @wonderful_episodes  %>
@@ -56,3 +56,12 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+   $("#destroy_multiple").click(function(){
+    if (confirm('您确定删除选中的精彩贴子吗')) {
+      $("#destroy_multi_form").submit();
+    }
+  });
+
+</script>

@@ -18,10 +18,25 @@
       </div>
       <ul class="work_action">
         <li>
+          <% if choose_operate_show("my_school/wonderful_episodes/edit" && can_edit?(@wonderful_episode)) %>
+            <a href="<%=url_for(:controller=>"/my_school/wonderful_episodes",:action=>:edit,:id=>@wonderful_episode.id)%>" title="编辑">
+              <%= render partial: "/my_school/commons/edit_action" %>
+            </a>
+          <% end %>
         </li>
         <li>
+          <% if choose_operate_show("my_school/wonderful_episodes/destroy") && can_destroy?(@wonderful_episode) %>
+            <%= link_to(url_for(:controller=>"/my_school/wonderful_episodes",:action=>:destroy,:id=>@wonderful_episode.id),:method=>:delete, :confirm => "您确定删除该精彩视频吗?") do %>
+              <%= render partial: "/my_school/commons/delete_action" %>
+            <% end %>
+          <% end %>
         </li>
         <li>
+          <% if choose_operate_show("my_school/wonderful_episodes/index") %>
+            <a href="<%=url_for(:controller=>"/my_school/wonderful_episodes",:action=>:index, params: session[:return_to])%>" title="返回">
+              <%= render partial: "/my_school/commons/return_action" %>
+            </a>
+          <% end %>
         </li>
       </ul>
     </div>

@@ -1,6 +1,7 @@
 #encoding:utf-8
 #精彩视频管理
 class MySchool::WonderfulEpisodesController < MySchool::ManageController
+  include WonderfulEpisodesHelper
   def index
     if current_user.get_users_ranges[:tp] == :student
       @wonderful_episodes = @kind.wonderful_episodes.where("squad_id = ? or squad_id is null", current_user.student_info.squad_id).page(params[:page] || 1)
@@ -53,9 +54,9 @@ class MySchool::WonderfulEpisodesController < MySchool::ManageController
       redirect_to :action=> :index
       return
     elsif current_user.get_users_ranges[:tp] == :teachers
-      @album = @kind.wonderful_episodes.where("squad_id in (select squad_id from teachers where staff_id = ?) or user_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
+      @wonderful_episode = @kind.wonderful_episodes.where("squad_id in (select squad_id from teachers where staff_id = ?) or user_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).find_by_id(params[:id])
     else
-      @album = @kind.wonderful_episodes.find(params[:id])
+      @wonderful_episode = @kind.wonderful_episodes.find(params[:id])
     end
     if @grades = @kind.grades
       if current_user.get_users_ranges[:tp] == :all
@@ -86,7 +87,23 @@ class MySchool::WonderfulEpisodesController < MySchool::ManageController
   end
 
   def destroy
-    @wonderful_episode = WonderfulEpisode.find(params[:id])
-    @wonderful_episode.destroy
+    unless params[:wonderful_episode].blank? 
+      @wonderful_episodes = @kind.wonderful_episodes.where(:id=>params[:wonderful_episode])
+    else
+      @wonderful_episodes = @kind.wonderful_episodes.where(:id=>params[:id])
+    end
+    if @wonderful_episodes.blank?
+      flash[:error] = "请选择精彩视频"
+      redirect_to :action => :index
+      return
+    end
+    @wonderful_episodes.each do |wonderful_episode|
+      wonderful_episode.destroy
+    end
+    respond_to do |format|
+      flash[:success] = "删除精彩视频成功"
+      format.html { redirect_to my_school_wonderful_episodes_path }
+      format.json { head :no_content }
+    end
   end
 end

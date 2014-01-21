@@ -18,14 +18,14 @@
       </div>
       <ul class="work_action">
         <li>
-          <% if choose_operate_show("my_school/topics/edit") %>
+        <% if choose_operate_show("my_school/topics/edit") && edit_topic?(@topic) %>
             <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:edit,:id=>@topic.id)%>" title="编辑">
               <%= render partial: "/my_school/commons/edit_action" %>
             </a>
           <% end %>
         </li>
         <li>
-          <% if choose_operate_show("my_school/topics/destroy") %>
+        <% if choose_operate_show("my_school/topics/destroy") && delete_topic?(@topic) %>
             <%= link_to(url_for(:controller=>"/my_school/topics",:action=>:destroy,:id=>@topic.id),:method=>:delete, :confirm => "您确定删除该贴子吗?") do %>
               <%= render partial: "/my_school/commons/delete_action" %>
             <% end %>
