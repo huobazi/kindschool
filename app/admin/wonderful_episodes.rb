@@ -19,7 +19,7 @@ ActiveAdmin.register WonderfulEpisode do
 
   index do
     column :title do |wonderful_episode|
-      link_to truncate(wonderful_episode.title), :controller => "/admin/wonderful_episode", :action => :show, :id => wonderful_episode.id
+      link_to truncate(wonderful_episode.title), :controller => "/admin/wonderful_episodes", :action => :show, :id => wonderful_episode.id
     end
     column :url_address
     column :creater

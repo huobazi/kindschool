@@ -23,9 +23,12 @@
       "jquery.lettering",
       "plupload.full.min"
   %>
+    <%= stylesheet_link_tag    "/css/jplayer.blue.monday.css", :media => "all" %>
     <%= javascript_include_tag "rails.validations" %>
     <%= javascript_include_tag "rails.validations.simple_form" %>
     <%= javascript_include_tag "rails.validations.customValidators" %>
+    <%= javascript_include_tag "/js/jquery.jplayer.min.js" %>
+    <%= yield :jplayer %>
     <%= csrf_meta_tags %>
     <!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
   </head>
