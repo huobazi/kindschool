@@ -114,6 +114,10 @@ class MySchool::MainController < MySchool::BaseController
     end
   end
 
+  def show_wonderful_episodes
+    @wonderful_episodes = @kind.wonderful_episodes.page(params[:page] || 1).per(1).order("created_at DESC")
+  end
+
   private
   def find_shrink_record
     if @kind && @kind.shrink_record
