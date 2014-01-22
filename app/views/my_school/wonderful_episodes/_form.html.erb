@@ -8,6 +8,7 @@
   <%=f.label :title, '标题:' ,:class=>"control-label"%>
   <div class="controls">
     <%= f.text_field(:title , :validate => true, placeholder: "请输入视频的标题") %>
+    <p class="help-block">支持的扩展名为<%= WonderfulEpisode::SUPPORT_VIDEO_FORMAT.to_s %>等,示例: http://www.jplayer.org/video/m4v/Big_Buck_Bunny_Trailer_480x270_h264aac.m4v</p>
   </div>
 </div>
 <div class="control-group">

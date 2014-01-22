@@ -39,6 +39,10 @@ class MySchool::WonderfulEpisodesController < MySchool::ManageController
     @wonderful_episode = WonderfulEpisode.new(params[:wonderful_episode])
     @wonderful_episode.kindergarten_id = @kind.id
     @wonderful_episode.user_id = current_user.id
+    if @grades = @kind.grades
+      #    if @squads = @grades.first.squads
+      #    end
+    end
     if @wonderful_episode.save
       flash[:success] = "创建成功"
       redirect_to :action => :show, :id => @wonderful_episode.id
