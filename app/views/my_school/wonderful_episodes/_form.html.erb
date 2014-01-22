@@ -8,14 +8,18 @@
   <%=f.label :title, '标题:' ,:class=>"control-label"%>
   <div class="controls">
     <%= f.text_field(:title , :validate => true, placeholder: "请输入视频的标题") %>
-
-    <p class="help-block">长度不能小于3。</p>
   </div>
 </div>
 <div class="control-group">
   <%=f.label :title, 'url地址:' ,:class=>"control-label"%>
   <div class="controls">
     <%= f.text_field(:url_address, :validate => true, placeholder: "请输入视频的url地址") %>
+  </div>
+</div>
+<div class="control-group">
+  <%=f.label :is_top, '置顶' ,:class=>"control-label"%>
+  <div class="controls">
+    <%= f.check_box(:is_top) %>
   </div>
 </div>
 <% unless current_user.get_users_ranges[:tp] == :student %>
