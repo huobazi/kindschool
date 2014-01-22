@@ -45,7 +45,7 @@ EOF
   end
 
   def jplayer_get_video_url(url_address)
-    url_extname = File.extname(url_address).tr!('.', '')
+    url_extname = File.extname(url_address).tr!('.', '') if File.extname(url_address)
     if url_extname && WonderfulEpisode::SUPPORT_VIDEO_FORMAT.include?(url_extname)
       {url_extname => url_address.to_s}.to_json.to_s.html_safe
     end
