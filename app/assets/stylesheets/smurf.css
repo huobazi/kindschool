@@ -1835,16 +1835,17 @@ ul.feature_list li{
 }
 .admissions_info_title h2{
     margin:50px;
-    color: #a5c500;
+    color: #65AB3A;
+    margin-bottom: 10px;
 }
 .admissions_info_content{
-    margin:50px;
+    margin: 10px 50px 50px;
 }
 .show_admiss_info_center{
     float: left;
     width: 960px;
     height: 47px;
-    background-color: #ACCD93;
+    background-color: #D8FCFB;
 
 }
 .show_admiss_info_menu_center{

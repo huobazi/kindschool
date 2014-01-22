@@ -554,8 +554,9 @@ a.main_link:hover{
 .contact_title_label{
     float: left;
     font-size: 21px;
-    color: #589f10;
+    color: #65AB3A;
     margin: 5px;
+    font-weight: bold;
 }
 .flowers_work{
     background-image: url("/t/smurf/work_bg.png");
