@@ -18,12 +18,12 @@
       "fancybox/jquery.fancybox-thumbs",
       "fancybox/jquery.fancybox-media","jquery.jcarouselLite" %>
     <%= csrf_meta_tags %>
-    <%#*<script language='javascript' type="text/javascript">%>
-      <%#*function ResumeError() {%>
-        <%#*return true;%>
-      <%#*}%>
-      <%#*window.onerror = ResumeError;%>
-    <%#*</script>%>
+<%#*<script language='javascript' type="text/javascript">%>
+<%#*function ResumeError() {%>
+<%#*return true;%>
+<%#*}%>
+<%#*window.onerror = ResumeError;%>
+<%#*</script>%>
     <!--[if IE 6]>
     <%= javascript_include_tag "DD_belatedPNG" %>
 <script type="text/javascript">
@@ -36,7 +36,7 @@
 </script>
 <![endif]-->
   </head>
-  <%#*onload="ResumeError()"%>
+<%#*onload="ResumeError()"%>
   <body style="background-color: #ffffff" >
     <div  class="wrapper">
       <div class="main_logo">
@@ -84,12 +84,14 @@
           &nbsp;
         </div>
       </div>
-      <div class="home_billboards">
+      <div class="home_billboards  <%= controller_path == "my_school/main" && action_name == "index" ? "" : "wrapper2" %>">
       </div>
-      <div class="hint">
-        <div class="hint_label">温馨提示：</div>
-        <div class="hint_text">这几天天气转凉，请注意穿衣。</div>
-      </div>
+      <% if controller_path == "my_school/main" && action_name == "index" %>
+        <div class="hint">
+          <div class="hint_label">温馨提示：</div>
+          <div class="hint_text">这几天天气转凉，请注意穿衣。</div>
+        </div>
+      <% end %>
       <div class="main_work <%= controller_path == "my_school/main" && action_name == "index" ? "" : "flowers_work" %>">
         <%= yield %>
       </div>

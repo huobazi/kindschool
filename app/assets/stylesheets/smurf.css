@@ -1739,13 +1739,9 @@ legend label{
 }
 .feature{
     float:left;
-    width: 947px;
-    background-color: #FBFBFB;
+    width: 100%;
     position: relative;
-    border: 1px solid #E3E3E3;
     margin-top: 42px;
-    border: 2px solid #ACCD93;
-    border-radius: 6px;
 }
 ul.feature_list li{
     padding: 30px 2px;
@@ -1833,24 +1829,23 @@ ul.feature_list li{
 }
 .admissions_information{
     float: left;
-    background-color: #FBFBFB;
-    border: 2px solid #ACCD93;
     width:947px;
     margin-top: 42px;
     position: relative;
 }
 .admissions_info_title h2{
     margin:50px;
-    color: #a5c500;
+    color: #65AB3A;
+    margin-bottom: 10px;
 }
 .admissions_info_content{
-    margin:50px;
+    margin: 10px 50px 50px;
 }
 .show_admiss_info_center{
     float: left;
     width: 960px;
     height: 47px;
-    background-color: #ACCD93;
+    background-color: #D8FCFB;
 
 }
 .show_admiss_info_menu_center{
@@ -1953,12 +1948,9 @@ ul.feature_list li{
 }
 .contact_us_kinder{
     float:left;
-    width: 947px;
-    background-color: #FBFBFB;
-    border: 2px solid #ACCD93;
+    width: 100%;
     margin-top: 42px;
     position: relative;
-    border-radius: 6px 6px 6px 6px;
 }
 
 .official_home_index{

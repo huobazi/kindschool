@@ -107,6 +107,13 @@ class MySchool::MainController < MySchool::BaseController
     @dean_email = @kind.dean_emails.find(params[:dean_email_id],:conditions=>"visible=1")
   end
 
+  def show_cookbooks
+    @can_show = @kind.show_cookbook
+    if @kind.show_cookbook
+      @cookbooks = @kind.cook_books.page(params[:page] || 1).per(1).order("created_at DESC")
+    end
+  end
+
   private
   def find_shrink_record
     if @kind && @kind.shrink_record
