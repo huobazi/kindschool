@@ -8,6 +8,7 @@
       "fancybox/jquery.fancybox-thumbs",
       "galleriffic",
       "datepicker", :media => "all" %>
+    <%= stylesheet_link_tag    "/css/jplayer.blue.monday.css", :media => "all" %>
     <%= javascript_include_tag "colorful","highcharts/highcharts","highcharts/highcharts-more","jquery.jcarouselLite","jquery.validate"%>
 
     <%= javascript_include_tag "fancybox/jquery.mousewhee",
@@ -28,6 +29,8 @@
     <%= javascript_include_tag "rails.validations" %>
     <%= javascript_include_tag "rails.validations.simple_form" %>
     <%= javascript_include_tag "rails.validations.customValidators" %>
+    <%= javascript_include_tag "/js/jquery.jplayer.min.js" %>
+    <%= yield :jplayer %>
     <meta charset="utf-8"/>
     <%= csrf_meta_tags %>
 
