@@ -30,6 +30,7 @@ class AdminAbility
           can [:delete_img],[GardenActivitie,WeiyiConfig]
           can [:read],[SysLog,SmsLog]
           can [:read, :update], Report
+          can :manage, KindZone
           #        cannot :reset_password, User
         when "bazaar"
           then
