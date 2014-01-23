@@ -544,6 +544,7 @@ a{
     position: relative;
     margin-bottom:10px;
     text-align: center;
+    display: none;
 }
 .show_publicity_div{
     float: right;
