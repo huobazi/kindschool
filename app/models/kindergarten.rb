@@ -2,7 +2,7 @@
 #幼儿园
 class Kindergarten < ActiveRecord::Base
   attr_accessible :enable_credit,:init_status,:logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token,:latlng,:address,
-    :aliases_url,:sms_count,:sms_user_count,:telephone,:allsms_count,:open_allsms,:begin_allsms,:login_note,:balance_count,:hint_tp,:show_cookbook
+    :aliases_url,:sms_count,:sms_user_count,:telephone,:allsms_count,:open_allsms,:begin_allsms,:login_note,:balance_count,:hint_tp,:show_cookbook, :kind_zone_id
 
   has_many   :users   #所有用户
   has_many   :dean_emails
@@ -48,6 +48,7 @@ class Kindergarten < ActiveRecord::Base
   has_many   :access_status
   has_many   :reports
   has_many   :wonderful_episodes
+  belongs_to :kind_zone
 
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img

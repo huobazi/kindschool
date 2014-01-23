@@ -3,7 +3,7 @@ class CreatePolicies < ActiveRecord::Migration
     create_table :policies do |t|
       t.string :title
       t.text :content
-      t.integer :kindergarten_id
+      t.integer :kind_zone_id
 
       t.timestamps
     end

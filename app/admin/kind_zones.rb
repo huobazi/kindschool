@@ -16,7 +16,7 @@ ActiveAdmin.register KindZone do
   filter :created_at
 
   form do |f|
-    f.inputs "新建视频分类" do
+    f.inputs "幼儿园地区信息" do
       f.input :parent_id, :as=>:select,:collection=> nested_set_options(KindZone){|i, level| "#{'-' * level} #{i.name}" },:include_blank=>'===请选择==='
       f.input :name
       f.input :code

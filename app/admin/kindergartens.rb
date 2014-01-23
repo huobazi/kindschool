@@ -126,8 +126,8 @@ ActiveAdmin.register Kindergarten do
       f.input :init_status
     end
 
-    f.inputs "选择幼儿园所属地区" do
-      f.input :kind_zone_id
+    f.inputs "选择幼儿园的地区" do
+      KindZone.city_select(f.object).to_s.html_safe
     end
 
     f.inputs "LOGO", :for => [:asset_img, f.object.asset_img || AssetImg.new] do |img|
@@ -141,6 +141,7 @@ ActiveAdmin.register Kindergarten do
 
   show do |kind|
     attributes_table do
+
       row :id
       row :number
       row :name
@@ -157,6 +158,9 @@ ActiveAdmin.register Kindergarten do
       row :telephone
       row :latlng
       row :address
+      row :kind_zone do |obj|
+        obj.kind_zone.try(:zone_name)
+      end
       row :aliases_url
       row :sms_count
       row :balance_count
