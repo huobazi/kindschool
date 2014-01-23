@@ -4,17 +4,22 @@ class  MySchool::HomeController < MySchool::ManageController
   def index
     @activities = @kind.activities.limit(8).order("created_at DESC")
     @recent_activities = @kind.activities.limit(2).order("created_at DESC")
+    @news = @kind.news.where(:approve_status=>0).limit(6)
+    root_showcase = @kind.page_contents.find_by_number("official_website_home")
+    if root_showcase && !root_showcase.content_entries.blank?
+      @teacher_infos = root_showcase.content_entries.where(:number=>"official_home_teacher")
+    end
   end
   def help_videos
     @help_categories = []
     tp = current_user.get_users_ranges
     HelpCategory.roots.each do |n|
-        n.self_and_descendants.each_with_level do |item, level|
-          item[:lvl] = level
-         next if tp[:tp] == :student && item[:tp_id] != 0 
-         next if tp[:tp] == :teachers && item[:tp_id] == 2
-          @help_categories << item
-        end
+      n.self_and_descendants.each_with_level do |item, level|
+        item[:lvl] = level
+        next if tp[:tp] == :student && item[:tp_id] != 0
+        next if tp[:tp] == :teachers && item[:tp_id] == 2
+        @help_categories << item
+      end
     end
   end
   def show_videos

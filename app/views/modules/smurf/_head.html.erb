@@ -108,10 +108,9 @@
       <% end %>
     </div>
   </div>
-  <% menu_head = controller_path == "my_school/home" && action_name == "index" ? "menu_head" : "menu_head_#{@menu_int}" %>
-  <div class="menu <%= menu_head %>" id="home_menu">
-    <div class="home_menu_right <%= 'home_menu_right_to' if menu_head != 'menu_head' %>"></div>
-    <div class="home_menu_center <%= 'home_menu_center_to' if menu_head != 'menu_head' %>">
+  <div class="menu menu_head" id="home_menu">
+    <div class="home_menu_right home_menu_right_to"></div>
+    <div class="home_menu_center home_menu_center_to">
       <ul>
         <% sys_admin_menus("b").each do |menu| %>
           <li class="<%= 'menu_selected' if menu[:current] %>">
@@ -126,6 +125,6 @@
         <% end %>
       </ul>
     </div>
-    <div class="home_menu_left <%= 'home_menu_left_to' if menu_head != 'menu_head' %>"></div>
+    <div class="home_menu_left home_menu_left_to"></div>
   </div>
 </div>

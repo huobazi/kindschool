@@ -1,34 +1,87 @@
-<div class="note_info">
-  <div class="note">
+<div class="home_div">
+  <div class="note_div">
     <div class="note_title">
-      欢迎来我们的幼儿园！
+      <p>幼儿园介绍</p>
     </div>
-    <div style="text-indent: 10px;padding-top: 10px;">
+    <pre style="text-indent: 10px;margin-top: 10px;color: #6388A0;">
       <%= raw @kind.note %>
+    </pre>
+  </div>
+  <div class="news_div">
+    <div class="news_title">
+      <div class="home_left_title home_moe_title">
+      </div>
+      <div class="home_center_title">
+        新闻消息<%=link_to "<strong>+ MORE</strong>".html_safe ,"/my_school/news" %>
+      </div>
+      <div class="home_right_title home_moe_title">
+      </div>
     </div>
+    <ul class="official_home_news_list">
+      <%(@news||[]).each do |n_ew|%>
+        <li>
+          <div class="official_square"></div>
+          <div class="official_font">
+            <%= link_to truncate(n_ew.title || "",:length=>12), {:action=>:show,:controller=>"/my_school/news",:id=>n_ew.id},:title=>n_ew.title %>
+          </div>
+        </li>
+      <%end%>
+    </ul>
   </div>
-</div>
-<div class="show_publicity_div">
-  <div class="flower_home_zp">
-    <a href="/my_school/albums">
-      <img src="/t/flowers/home_zp.png" alt="查看照片集锦" />
-    </a>
-  </div>
-  <div class="flower_home_ys">
-    <a href="/my_school/cook_books">
-      <img src="/t/flowers/home_ys.png" alt="查看饮食保健" />
-    </a>
-  </div>
-  <div class="flower_home_cz">
-    <a href="/my_school/garden_growth_records/garden">
-      <img src="/t/flowers/home_cz.png" alt="查看成长记录" />
-    </a>
+  <div class="user_div">
+    <div class="news_title">
+      <div class="home_left_title home_moe_title">
+      </div>
+      <div class="home_center_title">
+        园长介绍
+      </div>
+      <div class="home_right_title home_moe_title">
+      </div>
+    </div>
+    <div class="teacher_info_div">
+      <ul>
+        <% i = 1 %>
+        <%(@teacher_infos||[]).each do |info|%>
+          <li class="tearcher_li <%= "full" if i == 1 %>">
+            <div class="show_info">
+              <div class="official_home_teacher_img">
+                <img src="<%=info.page_img.blank? ? '/t/colorful/activity_logo1.jpg' : info.page_img.public_filename %>" alt="" width="200px"   />
+              </div>
+              <div class="teacher_info">
+                <div class="teacher_title">
+                  <h3><%=info.title%></h3>
+                </div>
+                <div class="teacher_content">
+                  <%=raw info.content%>
+                </div>
+              </div>
+            </div>
+            <div class="show_title">
+              <%=info.title%>
+            </div>
+            <% i+= 1 %>
+          </li>
+        <%end%>
+      </ul>
+      <script type="text/javascript">
+        $(function(){
+          $(".tearcher_li").hover(function(){
+            $(".tearcher_li").removeClass("full");
+            $(this).addClass("full");
+          },function(){
+            $(".tearcher_li").removeClass("full");
+            $(this).addClass("full");
+          })
+        });
+      </script>
+    </div>
   </div>
 </div>
 <div class="home_index_work">
-  <div class="center">
-<%#= render :partial => "/modules/colorful/showcase" %>
+  <div class="show_case">
+    <div class="show_case_label">
+      经常图片展示
+    </div>
     <%= render :partial => "/modules/colorful/new_showcase" %>
-<%#= render :partial => "/modules/colorful/activity" %>
   </div>
 </div>
