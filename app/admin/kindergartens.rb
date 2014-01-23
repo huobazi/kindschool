@@ -126,6 +126,10 @@ ActiveAdmin.register Kindergarten do
       f.input :init_status
     end
 
+    f.inputs "选择幼儿园所属地区" do
+      f.input :kind_zone_id
+    end
+
     f.inputs "LOGO", :for => [:asset_img, f.object.asset_img || AssetImg.new] do |img|
       img.input :uploaded_data,:as=>:file,:name => "asset_img"
     end

@@ -274,6 +274,7 @@ zh-CN:
       audio: "资料音频"
       weixin_token: "服务号token"
       wonderful_episode: "精彩视频"
+      kind_zone: "幼儿园地区"
     attributes:
       weixin_token:
         number: "编码"
@@ -436,6 +437,14 @@ zh-CN:
         tp_id: "角色"
         help_movie_id: "帮助视频"
         help_movie: "帮助视频"
+        created_at: "创建于"
+        updated_at: "更新于"
+      kind_zone:
+        parent_id: "父类"
+        parent: "父类"
+        name: "名字"
+        code: "编号"
+        remark: "标记"
         created_at: "创建于"
         updated_at: "更新于"
       sms_log:
