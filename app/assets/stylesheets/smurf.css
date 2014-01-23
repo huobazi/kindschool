@@ -6,6 +6,9 @@ body{
     margin: 0;
     padding: 0;
     position: relative;
+    background-image: url(/t/smurf/body_bg.png);
+    background-repeat: repeat-x;
+    background-position: top center;
 }
 input {
     width:expression(this.type=="radio" ?"auto":"Default");
@@ -52,9 +55,12 @@ a{
     text-decoration: none;
 }
 .wrapper{
-    width: 951px;
+    width: 1024px;
     margin: 0 auto;
     display: block;
+    background-image: url(/t/smurf/bg.png);
+    background-repeat: no-repeat;
+    background-position: top center;
 }
 .wrapper_all{
     width: 980px;
@@ -252,10 +258,11 @@ a{
 
 /*------------菜单-------------*/
 .menu_head{
-    background-image: url(/t/flowers/home-banner.png);
+    background-image: url(/t/smurf/school_bg.png);
     background-repeat: no-repeat;
     width: 987px;
-    height: 321px;
+    height: 199px;
+    margin-top: 75px;
 }
 .menu_head_1{
     background-image: url(/t/flowers/banner-1.png);
@@ -325,7 +332,7 @@ a{
     height: 54px;
     background-image: url(/t/flowers/home_menu_center.png);
     background-repeat: repeat-x;
-    margin-top: -10px;
+    margin-top: -30px;
 }
 #home_menu .home_menu_left{
     float: right;
@@ -333,7 +340,8 @@ a{
     width: 26px;
     background-image: url(/t/flowers/home_menu_left.png);
     background-repeat: no-repeat;
-    margin-top: -10px;
+    margin-top: -30px;
+    margin-right: -1px;
 }
 #home_menu .home_menu_right{
     float: right;
@@ -341,24 +349,22 @@ a{
     width: 26px;
     background-image: url(/t/flowers/home_menu_right.png);
     background-repeat: no-repeat;
-    margin-top: -10px;
+    margin-top: -30px;
+    margin-left: -1px;
 }
 #home_menu .home_menu_center_to{
     background-image: url(/t/flowers/home_menu_center_to.png);
     height: 44px;
-    margin-top: -4px;
 }
 #home_menu .home_menu_left_to{
     background-image: url(/t/flowers/home_menu_left_to.png);
     height: 44px;
     width: 22px;
-    margin-top: -4px;
 }
 #home_menu .home_menu_right_to{
     background-image: url(/t/flowers/home_menu_right_to.png);
     height: 44px;
     width: 22px;
-    margin-top: -4px;
 }
 .home_menu_center ul{
     padding-left: 30px;
@@ -552,6 +558,133 @@ a{
 }
 
 /*---首页主题页面-----------------------*/
+.home_div{
+    width: 950px;
+    margin: 10px auto;
+}
+.note_div{
+    float: left;
+    margin-right: 5px;
+    width: 270px;
+}
+.news_div{
+    float: left;
+    margin-right: 5px;
+    width: 300px;
+}
+.user_div{
+    float: left;
+    width: 370px;
+}
+.note_title{
+    background-image: url(/t/smurf/note_title.png);
+    background-repeat: no-repeat;
+    background-position: top center;
+    width: 243px;
+    height: 29px;
+}
+.note_title p{
+    font-size: 14px;
+    color: #256CB4;
+    line-height: 28px;
+    font-weight: bold;
+    padding-left: 18px;
+}
+.home_moe_title{
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 26px;
+    float: left;
+}
+.home_left_title{
+    background-image: url(/t/smurf/left_title.png);
+}
+.home_right_title{
+    background-image: url(/t/smurf/right_title.png);
+}
+.home_center_title{
+    background-image: url(/t/smurf/center_title.png);
+    background-repeat: repeat-x;
+    width: 240px;
+    height: 26px;
+    float: left;
+    font-size: 14px;
+    text-align: center;
+    color: #FFFFFF;
+    line-height: 28px;
+}
+.news_title{
+    width: 100%;
+    float: left;
+}
+.news_title strong{
+    float: right;
+    color: #FFFFFF;
+}
+.show_info{
+    border: 2px solid #C9DDE6;
+    width: 230px;
+    float: left;
+    min-height: 140px;
+    padding: 10px 0px;
+    border-radius: 6px;
+    _height: 140px;
+}
+.show_title{
+    background-color: #C9DDE6;
+    width: 20px;
+    line-height: 24px;
+    color: #304f61;
+    font-weight: bold;
+    padding: 10px;
+    float: left;
+    min-height: 140px;
+    border: 2px solid #C9DDE6;
+    border-radius: 6px;
+    _height: 140px;
+}
+.teacher_info_div{
+    float: left;
+    margin-top: 10px;
+    width: 100%;
+}
+.teacher_info_div li{
+    float: left;
+    padding-right: 2px;
+}
+.teacher_info_div li.full{
+    width: 230px;
+}
+.teacher_info_div li.full .show_title{
+    display: none;
+}
+.teacher_info_div li.full .show_info{
+    display: block;
+}
+.teacher_info_div li .show_info{
+    display: none;
+}
+.show_case {
+    background-image: url("/t/smurf/show_case.png");
+    background-repeat: no-repeat;
+    height: 200px;
+    margin: 20px auto;
+    width: 900px;
+}
+.show_case_label {
+    color: #164C86;
+    font-size: 14px;
+    padding: 10px;
+}
+
+
+
+
+
+
+
+
+
 .home_index_work{
     float: left;
     width: 100%;
@@ -561,11 +694,6 @@ a{
     background-color: white;
     float: left;
     overflow: hidden;
-}
-.note_title{
-    color: #a5c600;
-    font-size: 28px;
-    line-height: 30px;
 }
 .note_logo{
     width: 150px;
@@ -2065,7 +2193,7 @@ ul.official_home_news_list li .official_font{
     text-align: center;
 }
 ul.official_home_news_list li .official_font a{
-    color: black;
+    color: #6388A0;
 }
 ul.official_home_news_list li .official_time{
     float: right;
@@ -2190,16 +2318,18 @@ ul.teacher_list{
     margin-top: 50px;
 }
 .teacher_info{
-    float: right;
-    margin-top: -20px;
-    margin-right: 5px;
-    width: 50%;
+    float: left;
+    margin-left: 5px;
+    width: 115px;
 }
 .teacher_title h3{
     width:95%;
-    border-bottom: 2px solid #fdb968;
-    color: #fdb968;
+    border-bottom: 2px solid #256CB4;
+    color: #256CB4;
     font-size: 16px;
+}
+.teacher_content{
+    color: #4A5456;
 }
 .official_home_address_info h3{
     width:95%;
@@ -3140,45 +3270,45 @@ input.flaot_but{
 }
 
 .adjust {
-  color: rgb(53, 123, 28);
-  font-size: 12px;
+    color: rgb(53, 123, 28);
+    font-size: 12px;
 }
 
 .icon-customecomment {
-  background: url("/t/colorful/has_comments.png") no-repeat 0px -4px;
-  display: inline-block;
-  height: 17px;
-  line-height: 17px;
-  margin-top: 1px;
-  vertical-align: text-top;
-  width: 17px;
-  margin-right: 2px;
+    background: url("/t/colorful/has_comments.png") no-repeat 0px -4px;
+    display: inline-block;
+    height: 17px;
+    line-height: 17px;
+    margin-top: 1px;
+    vertical-align: text-top;
+    width: 17px;
+    margin-right: 2px;
 }
 
 #integral_flash {
-  position: fixed;
-  left: 40%;
-  top: 30%;
-  width: 150px;
-  height: 70px;
-  text-align: center;
-  background: rgb(255, 153, 0);
-  color: #fff;
-  font-size: 1.2em;
-  line-height: 70px;
-  border: 5px solid #fff;
-  border-radius: 5px;
-  z-index: 999;
+    position: fixed;
+    left: 40%;
+    top: 30%;
+    width: 150px;
+    height: 70px;
+    text-align: center;
+    background: rgb(255, 153, 0);
+    color: #fff;
+    font-size: 1.2em;
+    line-height: 70px;
+    border: 5px solid #fff;
+    border-radius: 5px;
+    z-index: 999;
 }
 
 div.jp-audio,
 div.jp-video {
-  /* Edit the font-size to counteract inherited font sizing.
-   * Eg. 1.25em = 1 / 0.8em
-   */
-  font-size:1.25em;
+    /* Edit the font-size to counteract inherited font sizing.
+     * Eg. 1.25em = 1 / 0.8em
+    */
+    font-size:1.25em;
 }
 
 .jp-video-270p .jp-jplayer {
-  margin-left: -20px;
+    margin-left: -20px;
 }
