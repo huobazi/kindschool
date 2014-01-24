@@ -30,18 +30,18 @@ class KindZone < ActiveRecord::Base
   def self.city_select(obj)
     js = <<EOF
       <div class="control-group">
-        <label class="control-label" for="province">省份</label>
+        <label class="control-label" for="province">城市</label>
         <div class="controls">
           <select id="province">
-            <option value="载入中">载入中</option>
+            <option value="载入中">请先创建城市</option>
           </select>
         </div>
       </div>
       <div class="control-group">
-        <label class="control-label" for="city">城市</label>
+        <label class="control-label" for="city">区或县</label>
         <div class="controls">
           <select id="city" name="#{obj.class.to_s.underscore}[kind_zone_id]">
-            <option value="载入中">载入中</option>
+            <option value="载入中">该城市下没有区或县</option>
           </select>
         </div>
       </div>
