@@ -275,7 +275,7 @@ zh-CN:
       weixin_token: "服务号token"
       wonderful_episode: "精彩视频"
       kind_zone: "幼儿园地区"
-      policies: "政策法规"
+      policy: "政策法规"
     attributes:
       weixin_token:
         number: "编码"
@@ -1076,11 +1076,10 @@ zh-CN:
         creater: "创建人"
         is_top: "置顶"
         is_top_label: "置顶"
-      policies:
+      policy:
         title: "标题"
         content: "内容"
-        kind_zone: "所属地区"
-        kind_zone_id: "地区"
+        kind_zones_label: "所属地区"
         created_at: "创建于"
         updated_at: "更新于"
         asset_img: "图片"

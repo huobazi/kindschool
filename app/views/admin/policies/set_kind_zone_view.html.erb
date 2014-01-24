@@ -1,0 +1,47 @@
+<%= semantic_form_for @policy, :url =>url_for(:controller=>"/admin/policies",:action=>"set_kind_zone"), :method => :put, :html => {:class => "list-arrange"} do |f| %>
+  <%= f.inputs '政策法规信息' do %>
+    <%= f.input :title, :as => :string, :input_html => { :disabled => true } %>
+  <% end %>
+  <%= f.inputs "给政策法规分配地区" do %>
+    <% @kind_zone_roots.each do |c| %>
+      <li class='check_boxes'>
+      <fieldset>
+        <h4 class="label"><label><input class="flag_check" type="checkbox" name="" value="" alt="全选" id="flag_<%= c.id %>" /><%= c.name %></label></h4>
+        <ol style="background: #eee;">
+          <% c.children.each do |kind_zone| %>
+            <li style="width: 10%;">
+            <label for="kind_zone_<%= kind_zone.id %>">
+              <input id="kind_zone_<%= kind_zone.id %>" class="flag_<%= c.id %>_kind_zone" name="policy[kind_zone_ids][]" type="checkbox" value="<%= kind_zone.id %>" <%= @policy.kind_zones.include?(kind_zone) ? "checked=true default=true": nil %> /> <%= kind_zone.name %> </label>
+            </li>
+          <% end %>
+        </ol>
+      </fieldset>
+      </li>
+    <% end %>
+    <a href="javascript:void(0);" id="recovery">撤消</a>
+
+    <%= f.actions %>
+  <% end %>
+<% end %>
+
+<script type="text/javascript">
+  $(function() {
+
+    $(".flag_check").each(function() {
+      var check_val = "." + $(this).attr("id") + "_kind_zone"
+      $(this).click(function() {
+        $(check_val).attr("checked", this.checked)
+      })
+    })
+
+    $("#recovery").click(function() {
+      $("input").each(function() {
+        if ( $(this).attr("default") == "true" ) {
+          $(this).attr("checked", true);
+        } else {
+          $(this).attr("checked", false);
+        }
+      })
+    })
+  });
+</script>

@@ -5,7 +5,7 @@ class KindZone < ActiveRecord::Base
   acts_as_nested_set
 
   has_many :kindergartens
-  has_many :policies
+  has_and_belongs_to_many :policies
 
   before_save :save_kind_zone_level
 
