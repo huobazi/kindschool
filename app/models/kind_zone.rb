@@ -33,7 +33,7 @@ class KindZone < ActiveRecord::Base
         <label class="control-label" for="province">城市</label>
         <div class="controls">
           <select id="province">
-            <option value="载入中">请先创建城市</option>
+            <option value="载入中"></option>
           </select>
         </div>
       </div>
@@ -41,7 +41,7 @@ class KindZone < ActiveRecord::Base
         <label class="control-label" for="city">区或县</label>
         <div class="controls">
           <select id="city" name="#{obj.class.to_s.underscore}[kind_zone_id]">
-            <option value="载入中">该城市下没有区或县</option>
+            <option value="载入中"></option>
           </select>
         </div>
       </div>
