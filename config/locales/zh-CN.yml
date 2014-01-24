@@ -276,7 +276,16 @@ zh-CN:
       wonderful_episode: "精彩视频"
       kind_zone: "幼儿园地区"
       policy: "政策法规"
+      show_case: "作品展示"
     attributes:
+      show_case:
+        kindergarten: "幼儿园"
+        user: "用户"
+        note: "简述"
+        title: "标题"
+        creater: "创建人"
+        creater_id: "创建人"
+        asset_img: "作品图片"
       weixin_token:
         number: "编码"
         appid: "appid"
