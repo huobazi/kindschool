@@ -69,6 +69,9 @@
             <li class="<%= "selected" if @menu == "home"%>">
               <%= link_to "首页",:controller=>"/my_school/main",:action=>:index %>
             </li>
+            <li class="<%= "selected" if @menu == "policy"%>">
+              <%= link_to "政策法规",:controller=>"/my_school/main",:action=>:show_policies %>
+            </li>
             <li class="<%= "selected" if @menu == "show_official_about_us"%>">
               <%= link_to "关于幼儿园",:controller=>"/my_school/main",:action=>:show_official_about_us %>
             </li>

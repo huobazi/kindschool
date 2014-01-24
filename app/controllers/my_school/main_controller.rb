@@ -118,6 +118,13 @@ class MySchool::MainController < MySchool::BaseController
     @wonderful_episodes = @kind.wonderful_episodes.page(params[:page] || 1).per(1).order("created_at DESC")
   end
 
+  def show_policies
+    @menu = "policy"
+    if @kind.kind_zone
+      @policies = @kind.kind_zone.policies.page(params[:page] || 1).per(1).order("created_at DESC")
+    end
+  end
+
   private
   def find_shrink_record
     if @kind && @kind.shrink_record

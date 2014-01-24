@@ -617,3 +617,7 @@ div.jp-video {
 .jp-video-270p .jp-jplayer {
   margin-left: 0;
 }
+
+#main .menu_center {
+  width: 650px;
+}

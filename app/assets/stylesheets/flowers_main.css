@@ -373,3 +373,6 @@ a.main_link:hover{
     opacity: 0.90;
     filter: alpha(opacity = 90);
 }
+#main .menu_center {
+  width: 650px;
+}
