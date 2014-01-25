@@ -10,9 +10,9 @@
           <% @policies.each_with_index do |policy, index| %>
             <tr>
               <td>
+                <span class="pull-right"><%= policy.created_at.try(:to_long_datetime) %></span>
                 <%= index + 1 %>.
-                <%= link_to truncate(policy.title), {:controller => "/my_school/main", :action => :show_policy, :id => policy.id}, "target" => "_blank" %><br />
-                创建于<%= policy.created_at.try(:to_long_datetime) %>
+                <%= link_to truncate(policy.title), {:controller => "/my_school/main", :action => :show_policy, :id => policy.id}, "target" => "_blank" %>
               </td>
             </tr>
           <% end %>

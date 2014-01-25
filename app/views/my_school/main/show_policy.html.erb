@@ -1,6 +1,9 @@
 <div class="admissions_information">
   <div class="admissions_info_title">
     <h2><%= @policy.title %></h2>
+    <div style="padding-right: 20px">
+      <%= link_to "返回", {:controller => "/my_school/main", :action => "show_policies"}, :class => 'btn btn-primary pull-right' %>
+    </div>
   </div>
   <div class="admissions_info_content">
     <div class="work_main_list">
@@ -9,9 +12,6 @@
       <% end %>
       <%= raw @policy.content %>
 
-      <div>
-        <%= link_to "返回政策法规列表", {:controller => "/my_school/main", :action => "show_policies"}, :style => "color: #000;" %>
-      </div>
     </div>
   </div>
 </div>

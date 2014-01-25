@@ -19,15 +19,11 @@
      <% end %>
      <tr>
        <td>
-         <%= @wonderful_episode.title %>
-         <br/>
          由<%= @wonderful_episode.creater.try(:name) %>创建于<%= @wonderful_episode.created_at.try(:to_long_datetime) %>
+         <div><%= link_to "返回", {:controller => "/my_school/main", :action => "show_wonderful_episodes"}, :class => "btn btn-primary pull-right" %></div>
          <br/>
          <%= render partial: "/my_school/commons/jplayer_container"%>
        </td>
-     </tr>
-     <tr>
-       <td><%= link_to "返回精彩视频列表", {:controller => "/my_school/main", :action => "show_wonderful_episodes"}, :style => "color: #000;" %></td>
      </tr>
     </div>
   </div>
