@@ -51,11 +51,11 @@
   <div class="home_work_center">
     <%if @img.blank?%>
       <a href="/t/colorful/483-5552.jpg" class="fancybox" title="">
-        <img src="/t/colorful/483-5552.jpg" alt="" height="370"/>
+        <img src="/t/colorful/483-5552.jpg" alt="" width="430"/>
       </a>
     <%elsif @img.size==1%>
       <a  href="<%= @img.first.try(:page_img).public_filename %>" class="fancybox"  title="<%= @img.first.title %>">
-        <img src="<%= @img.first.try(:page_img).public_filename %>" alt="" height="370"/>
+        <img src="<%= @img.first.try(:page_img).public_filename %>" alt="" width="430"/>
       </a>
     <%else%>
       <link rel="stylesheet" type="text/css" href="/javascripts/3dcarousel/css/carousel.css" />
