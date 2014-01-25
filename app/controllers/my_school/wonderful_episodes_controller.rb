@@ -3,13 +3,7 @@
 class MySchool::WonderfulEpisodesController < MySchool::ManageController
   include WonderfulEpisodesHelper
   def index
-    if current_user.get_users_ranges[:tp] == :student
-      @wonderful_episodes = @kind.wonderful_episodes.where("squad_id = ? or squad_id is null", current_user.student_info.squad_id).page(params[:page] || 1)
-    elsif current_user.get_users_ranges[:tp] == :teachers
-      @wonderful_episodes = @kind.wonderful_episodes.where("squad_id in (select squad_id from teachers where staff_id = ?) or user_id = ? or squad_id is NULL", current_user.staff.id, current_user.id).page(params[:page] || 1)
-    else
-      @wonderful_episodes = @kind.wonderful_episodes.page(params[:page] || 1)
-    end
+    @wonderful_episodes = @kind.wonderful_episodes.page(params[:page] || 1)
   end
 
   def show

@@ -8,6 +8,7 @@
       "fancybox/jquery.fancybox-buttons",
       "fancybox/jquery.fancybox-thumbs", :media => "all" %>
     <%= stylesheet_link_tag    "colorful_main" , :media => "all"%>
+    <%= stylesheet_link_tag    "/css/jplayer.blue.monday.css", :media => "all" %>
     <meta name="description" content="<%=@description%>" />
     <meta name="keywords" content="<%=@keywords%>" />
     <meta charset="utf-8"/>
@@ -16,6 +17,8 @@
       "fancybox/jquery.fancybox-buttons",
       "fancybox/jquery.fancybox-thumbs",
       "fancybox/jquery.fancybox-media","jquery.jcarouselLite" %>
+    <%= javascript_include_tag "/js/jquery.jplayer.min.js" %>
+    <%= yield :jplayer %>
     <%= csrf_meta_tags %>
     <script language='javascript' type="text/javascript">
       function ResumeError() {

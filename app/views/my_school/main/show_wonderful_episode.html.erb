@@ -1,0 +1,32 @@
+<div class="admissions_information">
+  <div class="admissions_info_title">
+    <h2><%= @wonderful_episode.title %></h2>
+  </div>
+  <div class="admissions_info_content">
+    <div class="work_main_list">
+    <% content_for :jplayer do %>
+       <script type="text/javascript">
+         $(document).ready(function(){
+           $("#jquery_jplayer_1").jPlayer({
+             ready: function () {
+               $(this).jPlayer("setMedia", <%= jplayer_get_video_url(@wonderful_episode.url_address) %>);
+             },
+             swfPath: "/js",
+             supplied: "m4v, mp4, ogv"
+           });
+         });
+       </script>
+     <% end %>
+     <tr>
+       <td>
+         <%= @wonderful_episode.title %>
+         <br/>
+         由<%= @wonderful_episode.creater.try(:name) %>创建于<%= @wonderful_episode.created_at.try(:to_long_datetime) %>
+         <br/>
+         <%= render partial: "/my_school/commons/jplayer_container"%>
+       </td>
+     </tr>
+    </div>
+  </div>
+</div>
+

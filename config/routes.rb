@@ -71,6 +71,7 @@ School::Application.routes.draw do
       get :no_kindergarten, :about, :contact_us, :feature, :show_official_about_us,
           :admissions_information, :show_one_new, :show_new_list, :dean_email,
           :dean_email_list, :dean_email_show,:show_cookbooks, :show_wonderful_episodes, :show_policies, :on => :collection
+      get :show_policy, :show_wonderful_episode, :on => :member
       post :dean_email, :create_dean_email, :on => :collection
     end
     resources :virtual_squads  do

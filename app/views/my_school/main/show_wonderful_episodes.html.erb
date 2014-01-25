@@ -5,29 +5,15 @@
   <div class="admissions_info_content">
     <div class="work_main_list">
       <% unless @wonderful_episodes.blank? %>
-        <%= paginate @wonderful_episodes %>
         <table class="table table-striped table-hover">
-          <% @wonderful_episodes.each do |wonderful_episode| %>
-            <% content_for :jplayer do %>
-              <script type="text/javascript">
-                $(document).ready(function(){
-                  $("#jquery_jplayer_1").jPlayer({
-                    ready: function () {
-                      $(this).jPlayer("setMedia", <%= jplayer_get_video_url(wonderful_episode.url_address) %>);
-                    },
-                    swfPath: "/js",
-                    supplied: "m4v, ogv"
-                  });
-                });
-              </script>
-            <% end %>
+          <% @wonderful_episodes.each_with_index do |wonderful_episode, index| %>
             <tr>
               <td>
-                <%= wonderful_episode.title %>
+                <%= index + 1 %>.
+                <%= link_to truncate(wonderful_episode.title), :controller => "/my_school/main", :action => "show_wonderful_episode", :id => wonderful_episode.id %>
                 <br/>
                 由<%= wonderful_episode.creater.try(:name) %>创建于<%= wonderful_episode.created_at.try(:to_long_datetime) %>
                 <br/>
-                <%= render partial: "/my_school/commons/jplayer_container"%>
               </td>
             </tr>
           <% end %>

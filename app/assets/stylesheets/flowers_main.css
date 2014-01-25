@@ -376,3 +376,14 @@ a.main_link:hover{
 #main .menu_center {
   width: 650px;
 }
+div.jp-audio,
+div.jp-video {
+  /* Edit the font-size to counteract inherited font sizing.
+   * Eg. 1.25em = 1 / 0.8em
+   */
+  font-size:1.25em;
+}
+
+.jp-video-270p .jp-jplayer {
+  margin-left: 0;
+}

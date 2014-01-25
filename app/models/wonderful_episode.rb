@@ -15,7 +15,7 @@ class WonderfulEpisode < ActiveRecord::Base
 
   default_scope order("is_top DESC, created_at DESC")
 
-  SUPPORT_VIDEO_FORMAT = ["mp4", "ogv", "m4v", "ogg", "webm"]
+  SUPPORT_VIDEO_FORMAT = ["ogv", "m4v"]
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"

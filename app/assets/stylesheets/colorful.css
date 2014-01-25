@@ -2971,3 +2971,15 @@ input.flaot_but{
   border-radius: 5px;
   z-index: 999;
 }
+
+div.jp-audio,
+div.jp-video {
+  /* Edit the font-size to counteract inherited font sizing.
+   * Eg. 1.25em = 1 / 0.8em
+   */
+  font-size:1.25em;
+}
+
+.jp-video-270p .jp-jplayer {
+  margin-left: -20px;
+}

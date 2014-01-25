@@ -115,14 +115,25 @@ class MySchool::MainController < MySchool::BaseController
   end
 
   def show_wonderful_episodes
-    @wonderful_episodes = @kind.wonderful_episodes.page(params[:page] || 1).per(1).order("created_at DESC")
+    @wonderful_episodes = @kind.wonderful_episodes.page(params[:page] || 1).per(10).order("created_at DESC")
   end
 
   def show_policies
     @menu = "policy"
     if @kind.kind_zone
-      @policies = @kind.kind_zone.policies.page(params[:page] || 1).per(1).order("created_at DESC")
+      @policies = @kind.kind_zone.policies.page(params[:page] || 1).per(10).order("created_at DESC")
     end
+  end
+
+  def show_policy
+    @menu = "policy"
+    if @kind.kind_zone
+      @policy = @kind.kind_zone.policies.find_by_id(params[:id])
+    end
+  end
+
+  def show_wonderful_episode
+    @wonderful_episode = @kind.wonderful_episodes.find_by_id(params[:id])
   end
 
   private

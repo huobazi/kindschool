@@ -1,0 +1,14 @@
+<div class="admissions_information">
+  <div class="admissions_info_title">
+    <h2><%= @policy.title %></h2>
+  </div>
+  <div class="admissions_info_content">
+    <div class="work_main_list">
+      <% unless @policy.asset_img.blank? %>
+        <%= raw "<img src='#{@policy.asset_img.public_filename(:middle)}'  onerror='this.src='/assets/no_img.png' style='vertical-align: top;'/>" %>
+      <% end %>
+      <%= raw @policy.content %>
+    </div>
+  </div>
+</div>
+
