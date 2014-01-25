@@ -1,4 +1,8 @@
 #encoding:utf-8
+# 地区表
+# name: 为地区的名称
+# code: 是地区所在的城市编码
+# 分为两级，第一个是城市，第二个是区或县
 class KindZone < ActiveRecord::Base
   attr_accessible :code, :lft, :name, :parent_id, :remark, :rgt
 
@@ -9,7 +13,7 @@ class KindZone < ActiveRecord::Base
 
   before_save :save_kind_zone_level
 
-  validates :name, :presence => true
+  validates :name, :code, :presence => true
 
   # 返回二级选择菜单
   def self.data
@@ -70,6 +74,7 @@ EOF
     self.class.where(:parent_id => self.id)
   end
 
+  # 显示地区的名字,包括城市和区
   def zone_name
     _parent = self
     name = []
@@ -80,6 +85,7 @@ EOF
     name.reverse.join("-")
   end
 
+  # 复选框默认选中
   def select_default
     "selected: #{self_and_ancestors.map(&:id)}"
   end
