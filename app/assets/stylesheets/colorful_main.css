@@ -425,6 +425,14 @@ a.main_link:hover{
     height: 70px;
     float: left;
 }
+.home_link a.policy{
+    background-image: url("/t/smurf/policy.png");
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    width: 70px;
+    height: 70px;
+    float: left;
+}
 .home_link a.cookbook:hover{
     background-image: url("/t/smurf/link.png");
     background-position: 0px -76px;
