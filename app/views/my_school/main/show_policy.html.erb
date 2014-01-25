@@ -8,6 +8,10 @@
         <%= raw "<img src='#{@policy.asset_img.public_filename(:middle)}'  onerror='this.src='/assets/no_img.png' style='vertical-align: top;'/>" %>
       <% end %>
       <%= raw @policy.content %>
+
+      <div>
+        <%= link_to "返回政策法规列表", {:controller => "/my_school/main", :action => "show_policies"}, :style => "color: #000;" %>
+      </div>
     </div>
   </div>
 </div>

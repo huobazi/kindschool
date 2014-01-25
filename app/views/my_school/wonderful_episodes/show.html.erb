@@ -1,14 +1,18 @@
 <% content_for :jplayer do %>
   <script type="text/javascript">
-    $(document).ready(function(){
-      $("#jquery_jplayer_1").jPlayer({
-        ready: function () {
-          $(this).jPlayer("setMedia", <%= jplayer_get_video_url(@wonderful_episode.url_address) %>);
-        },
-        swfPath: "/js",
-        supplied: "m4v, ogv"
-      });
-    });
+    <% content_for :jplayer do %>
+       <script type="text/javascript">
+         $(document).ready(function(){
+           $("#jquery_jplayer_1").jPlayer({
+             ready: function () {
+               $(this).jPlayer("setMedia", <%= jplayer_get_video_url(@wonderful_episode) %>);
+             },
+             swfPath: "/js",
+             supplied: "<%= jplayer_encoding_list %>"
+           });
+         });
+       </script>
+     <% end %>
   </script>
 <% end %>
 <div class="show_work">

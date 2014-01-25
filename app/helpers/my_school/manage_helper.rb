@@ -44,11 +44,16 @@ EOF
     end
   end
 
-  def jplayer_get_video_url(url_address)
+  def jplayer_get_video_url(wonderful_episode)
+    url_address = wonderful_episode.url_address
     url_extname = File.extname(url_address).tr!('.', '') if File.extname(url_address)
-    if url_extname && WonderfulEpisode::SUPPORT_VIDEO_FORMAT.include?(url_extname)
-      {url_extname => url_address.to_s}.to_json.to_s.html_safe
+    if url_extname && code_name = WonderfulEpisode.jplayer_format(url_extname)
+      {code_name => url_address.to_s}.to_json.to_s.html_safe
     end
+  end
+
+  def jplayer_encoding_list
+    WonderfulEpisode::SUPPORT_VIDEO_FORMAT.keys.flatten.join(", ")
   end
 
 end

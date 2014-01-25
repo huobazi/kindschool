@@ -15,7 +15,16 @@ class WonderfulEpisode < ActiveRecord::Base
 
   default_scope order("is_top DESC, created_at DESC")
 
-  SUPPORT_VIDEO_FORMAT = ["ogv", "m4v"]
+  # key为视频编码格式,value为视频文件扩展名
+  SUPPORT_VIDEO_FORMAT = {"m4v" => ["mp4", "m4v"], "ogv" => ["ogv"], "webmv" => ["webm"]}
+
+  def self.jplayer_format(extname)
+    SUPPORT_VIDEO_FORMAT.invert.each do |key, value|
+      temp_value = value
+      return temp_value if key.include?(extname)
+    end
+  end
+
 
   def kindergarten_label
     self.kindergarten ? self.kindergarten.name : "没设定幼儿园"

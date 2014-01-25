@@ -9,10 +9,10 @@
          $(document).ready(function(){
            $("#jquery_jplayer_1").jPlayer({
              ready: function () {
-               $(this).jPlayer("setMedia", <%= jplayer_get_video_url(@wonderful_episode.url_address) %>);
+               $(this).jPlayer("setMedia", <%= jplayer_get_video_url(@wonderful_episode) %>);
              },
              swfPath: "/js",
-             supplied: "m4v, mp4, ogv"
+             supplied: "<%= jplayer_encoding_list %>"
            });
          });
        </script>
@@ -25,6 +25,9 @@
          <br/>
          <%= render partial: "/my_school/commons/jplayer_container"%>
        </td>
+     </tr>
+     <tr>
+       <td><%= link_to "返回精彩视频列表", {:controller => "/my_school/main", :action => "show_wonderful_episodes"}, :style => "color: #000;" %></td>
      </tr>
     </div>
   </div>
