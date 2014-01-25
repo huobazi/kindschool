@@ -402,20 +402,11 @@ a.main_link:hover{
     color: #005580;
 }
 
-
-
-
-.official_show_happy{
-    width: 33%;
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-}
 .home_link{
-    width: 90%;
-    margin-top: 50px;
     background-color: #FFFFFF;
     float: right;
+    margin-top: 10px;
+    width: 90%;
 }
 .home_link a.cookbook{
     background-image: url("/t/smurf/link.png");

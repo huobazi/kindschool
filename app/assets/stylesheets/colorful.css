@@ -1945,11 +1945,10 @@ ul.official_home_news_list li .official_time{
     z-index: 100;
 }
 .official_home_teacher_info {
-    background-color: white;
+    background-color: #FFFFFF;
     float: right;
     margin-left: 30px;
-    position: absolute;
-    top: 78px;
+    margin-top: 75px;
     width: 90%;
 }
 .official_home_teacher_img{
