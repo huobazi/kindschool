@@ -197,7 +197,7 @@ ul, li {
 }
 .btn-danger123 {
     background-color: #DA4E49;
-    background-image: background-image: url("/star_imgs/shop/button.png");
+    background-image: url("/star_imgs/shop/button.png");
     background-position: -607px -50px;
     background-repeat: repeat-x;
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
@@ -244,7 +244,7 @@ ul, li {
     z-index: -50;
 }
 a{text-decoration: none}
-a:hover{text-decoration: none};
+a:hover{text-decoration: none}
 .user_credit_v{
     margin-top:200px;
 }
