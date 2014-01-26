@@ -130,7 +130,8 @@
                 var result = JSON.stringify(data.query.results);
                 $content.text(result);
                 var obj = eval('('+result+')');
-                $("#hint_text").html("<marquee scrollamount='1'>" + obj.weatherinfo.city + " " + obj.weatherinfo.temp1 + " " + obj.weatherinfo.index_d + "</marquee>");
+                var temp_text = obj.weatherinfo.city + " " + obj.weatherinfo.temp1 + " " + obj.weatherinfo.index_d;
+                $("#hint_text").html("<marquee scrollamount='1' title='" + temp_text + "'" + ">" + temp_text + "</marquee>");
             } else {
                 $content.text('no such code: ' + code);
             }
