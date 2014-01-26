@@ -95,7 +95,7 @@
       <% if controller_path == "my_school/main" && action_name == "index" %>
         <div class="hint">
           <div class="hint_label">温馨提示：</div>
-          <div class="hint_text">这几天天气转凉，请注意穿衣。</div>
+          <div class="hint_text" id="hint_text">正在加载中</div>
         </div>
       <% end %>
       <div class="main_work <%= controller_path == "my_school/main" && action_name == "index" ? "" : "flowers_work" %>">
@@ -117,6 +117,28 @@
         }catch(ex){}
       </script>
     </div>
+    <script type="text/javascript">
+
+      <% if @kind.kind_zone %>
+        $(function(){
+            $.getJSON("http://query.yahooapis.com/v1/public/yql", {
+            q: "select * from json where url='http://m.weather.com.cn/data/<%= @kind.kind_zone.code %>.html'",
+            format: "json"
+        }, function(data) {
+            var $content = $("#content")
+            if (data.query.results) {
+                var result = JSON.stringify(data.query.results);
+                $content.text(result);
+                var obj = eval('('+result+')');
+                $("#hint_text").html("<marquee>" + obj.weatherinfo.city + " " + obj.weatherinfo.temp1 + " " + obj.weatherinfo.index_d + "</marquee>");
+            } else {
+                $content.text('no such code: ' + code);
+            }
+        });
+        });
+    <% end %>
+
+    </script>
     <script type="text/javascript">
       $(function(){
         $.floatingAd({
@@ -145,7 +167,6 @@
               'z-index': 100,
               //标题
               'title': '用户指南'
-              
             }],
           //关闭事件
           onClose: function(elem){
