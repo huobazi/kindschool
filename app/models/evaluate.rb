@@ -52,12 +52,12 @@ class Evaluate < ActiveRecord::Base
     end   
     filepath="#{File.dirname(__FILE__)}/evaluate.rb"
     ch_files = "#{File.dirname(__FILE__)}/../../stuff_to_zip/"
-    puts "fffffffffffffffffffffffffffff\n\n\n"
+    logger.info("fffffffffffffffffffffffffffff\n\n\n")
     data=File.stat(filepath)
     uid=data.uid 
     gid=data.gid 
-    File.chown(uid,gid,"#{ch_files}#{@kind.number}","#{ch_files}#{@kind.number}/#{@kind.number}.zip") 
-    puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\n\n\n"
+    filechown = File.chown(uid,gid,"#{ch_files}#{@kind.number}","#{ch_files}#{@kind.number}/#{@kind.number}.zip") 
+    logger.info("aaaaaaaaaaaaa#{filechown.inspect}aaaaaaaaaaaaaaaaaaaaaa\n\n\n\n")
     @kind.download_package.destroy if @kind.download_package
      package =DownloadPackage.new(:name=>"评估系统")
      package.package = "#{@kind.number}.zip"
