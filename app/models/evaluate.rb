@@ -20,7 +20,7 @@ class Evaluate < ActiveRecord::Base
     end
     dir_name="./stuff_to_zip/#{@kind.number}/"
     FileUtils.remove_dir(dir_name,true)
-    Dir.mkdir(File.join("./stuff_to_zip", "#{@kind.number}"), 0700) unless File.exists?(dir_name)
+    Dir.mkdir(File.join("./stuff_to_zip", "#{@kind.number}"), 0755) unless File.exists?(dir_name)
     zipfile_name = dir_name+"#{@kind.number}.zip"
     if File.exist?("#{File.dirname(__FILE__)}/../../../stuff_to_zip/#{@kind.number}.zip") 
       File.delete("#{File.dirname(__FILE__)}/../../../stuff_to_zip/#{@kind.number}.zip")  
