@@ -91,6 +91,16 @@ class AccessStatu < ActiveRecord::Base
 
         records = News.where("kindergarten_id = ? and approve_status = 0",kind.id)
 
+      elsif module_name == "WonderfulEpisode"
+
+        if user.get_users_ranges[:tp] == :student
+          records = kind.wonderful_episodes.where("squad_id = ? or squad_id is null", user.student_info.squad_id)
+        elsif user.get_users_ranges[:tp] == :teachers
+          records = kind.wonderful_episodes.where("squad_id in (select squad_id from teachers where staff_id = ?) or user_id = ? or squad_id is NULL", user.staff.id, user.id)
+        else
+          records = kind.wonderful_episodes
+        end
+
       end
 
 
