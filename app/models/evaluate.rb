@@ -56,8 +56,8 @@ class Evaluate < ActiveRecord::Base
     data=File.stat(filepath)
     uid=data.uid 
     gid=data.gid 
-#    filechown = File.chown(uid,gid,"#{ch_files}#{@kind.number}","#{ch_files}#{@kind.number}/#{@kind.number}.zip")
-    `chown -R www-data:www-data "#{ch_files}#{@kind.number}"`
+    filechown = File.chown(uid,gid,"#{ch_files}#{@kind.number}","#{ch_files}#{@kind.number}/#{@kind.number}.zip")
+#    `chown -R www-data:www-data "#{ch_files}#{@kind.number}"`
     if @kind.download_package
      package = @kind.download_package
     else
