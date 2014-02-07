@@ -10,7 +10,8 @@
         <div class="user_credit_v_img_rig" >
         </div>
         <div class="user_credit_v_text" >
-          <span style='text-decoration:underline;color:#ffd637;font-size:14px'>我能兑换的礼品&gt;</span>
+          <!-- <span style='text-decoration:underline;color:#ffd637;font-size:14px'>我能兑换的礼品&gt;</span> -->
+          <%= link_to  "我能兑换的礼品>",{:controller=>"/my_school/credit_shop",:action=>:products,:serarch=>"user_credit"}.merge(:product=>params[:product]),:style=>"text-decoration:underline;color:#ffd637;font-size:14px" %>
         </div>
       </div>
         <%=link_to "购物车(#{@count})",{:action=>"display_cart"},:class=>"credit_cart"%>

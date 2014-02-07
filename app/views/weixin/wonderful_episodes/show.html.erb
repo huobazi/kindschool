@@ -3,7 +3,7 @@
     $(document).ready(function(){
       $("#jquery_jplayer_1").jPlayer({
         ready: function () {
-          $(this).jPlayer("setMedia", <%= jplayer_get_video_url(@wonderful_episode.url_address) %>);
+          $(this).jPlayer("setMedia", <%= jplayer_get_video_url(@wonderful_episode) %>);
         },
         swfPath: "/js",
         supplied: "m4v, ogv"

@@ -15,6 +15,8 @@ class WonderfulEpisode < ActiveRecord::Base
 
   default_scope order("is_top DESC, created_at DESC")
 
+  include UnreadComment
+
   # key为视频编码格式,value为视频文件扩展名
   SUPPORT_VIDEO_FORMAT = {"m4v" => ["mp4", "m4v"], "ogv" => ["ogv"], "webmv" => ["webm"], "flv" => ["flv"], "m3u8v" => ["m3u8v"], "m3uv" => ["m3uv"]}
 
