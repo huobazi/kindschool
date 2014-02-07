@@ -32,11 +32,13 @@
       <% if choose_operate_show("my_school/evaluates/download_packages") %>
       <div class="download_package">
       <%if @download_package && @download_package.status %>
-      <%=link_to "正在打包中" , "###",:class=>"btn"%>
+      
       <%if @download_package.unsucc_status%>
        <%=link_to "上次打包失败重新打包" , download_packages_my_school_evaluates_path,:class=>"btn"%>
-       <%elsif @download_package.created_at + 0.5.hour < Time.now %>
-       <%=link_to "系统无响应重新打包" , download_packages_my_school_evaluates_path,:class=>"btn"%>
+       <%elsif (@download_package.created_at + 0.5.hour) < Time.now %>
+       <%=link_to "重新打包" , download_packages_my_school_evaluates_path,:class=>"btn"%>
+       <%else%>
+       <%=link_to "正在打包中" , "###",:class=>"btn"%>
        <%end%>
        <%else%>
        <%=link_to "打包下载" , download_packages_my_school_evaluates_path,:class=>"btn"%>
