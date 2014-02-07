@@ -6,6 +6,7 @@ class Evaluate < ActiveRecord::Base
   has_many :evaluate_entries, :dependent => :destroy
   after_save :export_demo
   def download_package
+  begin
   @kind=self.kindergarten
   evaluate_vtocs = @kind.evaluate_vtocs
     input_filenames,directory,directory_name = {},{},{}
@@ -56,12 +57,21 @@ class Evaluate < ActiveRecord::Base
     uid=data.uid 
     gid=data.gid 
     filechown = File.chown(uid,gid,"#{ch_files}#{@kind.number}","#{ch_files}#{@kind.number}/#{@kind.number}.zip") 
-    @kind.download_package.destroy if @kind.download_package
-     package =DownloadPackage.new(:name=>"评估系统")
+    if @kind.download_package
+     package = @kind.download_package
+    else
+     package = DownloadPackage.new(:name=>"评估系统")
+    end
      package.package = "#{@kind.number}.zip"
      package.kindergarten=@kind
      package.status = false
      package.save! 
+    rescue Exception => e
+     if @kind.download_package
+      @kind.download_package.unsucc_status=true
+      @kind.download_package.save
+     end
+    end
   end
   private
   #创建demo项目
