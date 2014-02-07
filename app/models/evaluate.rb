@@ -50,14 +50,12 @@ class Evaluate < ActiveRecord::Base
       File.delete("#{File.dirname(__FILE__)}/../../.#{dir_name}#{name}.zip")  
      end
     end   
-    filepath="#{File.dirname(__FILE__)}/evaluate.rb"
+    filepath="#{Rails.root}/config/initializers/session_store.rb"
     ch_files = "#{File.dirname(__FILE__)}/../../stuff_to_zip/"
-    logger.info("fffffffffffffffffffffffffffff\n\n\n")
     data=File.stat(filepath)
     uid=data.uid 
     gid=data.gid 
     filechown = File.chown(uid,gid,"#{ch_files}#{@kind.number}","#{ch_files}#{@kind.number}/#{@kind.number}.zip") 
-    logger.info("aaaaaaaaaaaaa#{filechown.inspect}aaaaaaaaaaaaaaaaaaaaaa\n\n\n\n")
     @kind.download_package.destroy if @kind.download_package
      package =DownloadPackage.new(:name=>"评估系统")
      package.package = "#{@kind.number}.zip"
