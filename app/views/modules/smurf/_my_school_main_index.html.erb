@@ -141,7 +141,7 @@
     </div>
   </div>
   <div class="home_work_right">
-    <div class="work_right_title"><span class="tip">&nbsp;&nbsp;&nbsp;</span>通知公告<%=link_to "<strong>+ MORE</strong>".html_safe ,show_new_list_my_school_main_index_path %></div>
+    <div class="work_right_title"><span class="tip">&nbsp;&nbsp;&nbsp;</span>通知公告<%=link_to "<strong>+ MORE</strong>".html_safe ,:controller=>"/my_school/notices",:action=>:index %></div>
     <div class="work_right_notice">
       <ul>
         <%(@notices||[]).each do |notice|%>

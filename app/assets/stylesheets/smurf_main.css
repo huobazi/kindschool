@@ -118,6 +118,7 @@ body{
 }
 .home_news{
     width: 235px;
+    padding-top: 12px;
 }
 .smurf_bg_title .one a,.work_right_title a{
     float: right;
