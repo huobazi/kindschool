@@ -15,11 +15,7 @@ class MySchool::CreditShopController < MySchool::ManageController
     #     @product_categories << item
     #   end
     # end
-    @cart = find_cart
-    @count = 0
-    (@cart.items||[]).each do |item|
-       @count += item.count
-    end
+    @count = cart_count
     render :layout =>"credit_shop"
   end
 
@@ -54,17 +50,14 @@ class MySchool::CreditShopController < MySchool::ManageController
         products = Product.user_credit(current_user.personal_credit.credit) if current_user.personal_credit
       end
     end
-    @cart = find_cart
-    @count = 0
-    (@cart.items||[]).each do |item|
-       @count += item.count
-    end
+    @count = cart_count
     @products = (products || Product).search(params[:product] || {}).where(:status=>2,:shop_id=>@shop_tp).page(params[:page] || 1).per(9)
   end
 
   
   def show_product
     @product = Product.find_by_id_and_shop_id(params[:id],@shop_tp)
+     @count = cart_count
     if @product
       @description = @product.description
       @keywords = @product.keywords
@@ -217,6 +210,13 @@ class MySchool::CreditShopController < MySchool::ManageController
       "#{count} #{noun.pluralize}"
     end
   end
-
-
+  
+  def cart_count
+   @cart = find_cart
+    count = 0
+    (@cart.items||[]).each do |item|
+       count += item.count
+    end 
+    count
+  end
 end

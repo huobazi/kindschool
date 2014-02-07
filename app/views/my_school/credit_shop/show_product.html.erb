@@ -18,7 +18,10 @@
           <h4 class="media-count">兑换数量:</h4>
           <div class="media">
             <a href="#" class="btn-change btn-shop">立刻兑换</a>
-            <a href="#" class="btn-card btn-shop">添加到购物车</a>
+            <!-- <a href="#" class="btn-card btn-shop">添加到购物车</a> -->
+            <%= link_to '添加购物车',
+                          {:action => 'add_to_cart', :id => @product },
+                           :class => 'btn-card btn-shop' %>
           </div>
         </div>
       </div>
@@ -112,7 +115,7 @@
         <p>我的积分&nbsp;<span class="credit">700</span></p>
         <p><a href="#" style="text-decoration: underline;">我能兑换的礼品</a></p>
         <div class="btn_display_cart">
-          <a href="/my_school/credit_shop/display_cart" class="display_btn">购物车(6)</a>
+          <a href="/my_school/credit_shop/display_cart" class="display_btn">购物车(<%=@count%>)</a>
         </div>
         <p><img src="/star_imgs/shop/center_user/q_and_a.png" alt=""></p>
         <p><a href="#">什么是v1积分?</a></p>
