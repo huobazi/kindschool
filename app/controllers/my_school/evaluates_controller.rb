@@ -40,7 +40,7 @@ class MySchool::EvaluatesController < MySchool::ManageController
      @kind.download_package = DownloadPackage.create(:status=>true) 
     end
     evaluate = @kind.evaluate
-    evaluate.download_package 
+    evaluate.delay.download_package 
     @download_package = @kind.download_package
     redirect_to my_school_evaluates_path
    end
