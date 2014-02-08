@@ -246,7 +246,9 @@ ul, li {
 a{text-decoration: none}
 a:hover{text-decoration: none}
 .user_credit_one_v{
-    margin-top:200px;
+    line-height: 30px;
+    margin: 0 auto;
+    width: 120px;
 }
 .user_credit_v_img{
     background-image: url(/star_imgs/shop/credit_v_img1.png);

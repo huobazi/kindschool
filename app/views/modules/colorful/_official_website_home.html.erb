@@ -94,6 +94,12 @@
     </div>
 </div>  
   <%end%>
+  <div class="control-group">
+  <div class="controls">
+    <%= button_tag "保存" ,:class=>"btn btn-large btn-primary", disable_with: "正在提交..." %>
+    <%= hidden_field_tag "tp","official_website_home" %>
+  </div>
+</div>
 <%else%>
   <%if @content_entries%>
    <%entry=@content_entries.where(:number=>"official_home_pub_img") %>
@@ -109,6 +115,12 @@
       </div>
     <%end%>
   <%end%>
+   <div class="control-group">
+  <div class="controls">
+    <%= button_tag "保存" ,:class=>"btn btn-large btn-primary", disable_with: "正在提交...",:value=>"home_img" %>
+    <%= hidden_field_tag "tp","official_website_home" %>
+  </div>
+</div>
 <div class="control-group">
   <label class="control-label">老师姓名及职位</label>
   <div class="controls">
@@ -139,10 +151,12 @@
       <span>建议高度为200像素,宽200像素</span>
     </div>
 </div>
-<%end%>
 <div class="control-group">
   <div class="controls">
-    <%= button_tag "保存" ,:class=>"btn btn-large btn-primary", disable_with: "正在提交..." %>
+    <%= button_tag "保存" ,:class=>"btn btn-large btn-primary", disable_with: "正在提交..." ,:value=>"home_teacher"%>
     <%= hidden_field_tag "tp","official_website_home" %>
   </div>
 </div>
+<%end%>
+
+
