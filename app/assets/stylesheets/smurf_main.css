@@ -42,6 +42,7 @@ body{
     float: left;
 }
 .hint .hint_text{
+    width: 700px;
     padding-left: 5px;
     padding-top: 10px;
     color: #FFFFFF;

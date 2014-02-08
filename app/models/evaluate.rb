@@ -6,6 +6,7 @@ class Evaluate < ActiveRecord::Base
   has_many :evaluate_entries, :dependent => :destroy
   after_save :export_demo
   def download_package
+  begin
   @kind=self.kindergarten
   evaluate_vtocs = @kind.evaluate_vtocs
     input_filenames,directory,directory_name = {},{},{}
@@ -19,7 +20,7 @@ class Evaluate < ActiveRecord::Base
     end
     dir_name="./stuff_to_zip/#{@kind.number}/"
     FileUtils.remove_dir(dir_name,true)
-    Dir.mkdir(File.join("./stuff_to_zip", "#{@kind.number}"), 0700) unless File.exists?(dir_name)
+    Dir.mkdir(File.join("./stuff_to_zip", "#{@kind.number}"), 0755) unless File.exists?(dir_name)
     zipfile_name = dir_name+"#{@kind.number}.zip"
     if File.exist?("#{File.dirname(__FILE__)}/../../../stuff_to_zip/#{@kind.number}.zip") 
       File.delete("#{File.dirname(__FILE__)}/../../../stuff_to_zip/#{@kind.number}.zip")  
@@ -50,20 +51,28 @@ class Evaluate < ActiveRecord::Base
       File.delete("#{File.dirname(__FILE__)}/../../.#{dir_name}#{name}.zip")  
      end
     end   
-    filepath="#{File.dirname(__FILE__)}/evaluate.rb"
+    filepath="#{Rails.root}/config/initializers/session_store.rb"
     ch_files = "#{File.dirname(__FILE__)}/../../stuff_to_zip/"
-    puts "fffffffffffffffffffffffffffff\n\n\n"
     data=File.stat(filepath)
     uid=data.uid 
     gid=data.gid 
-    File.chown(uid,gid,"#{ch_files}#{@kind.number}","#{ch_files}#{@kind.number}/#{@kind.number}.zip") 
-    puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\n\n\n"
-    @kind.download_package.destroy if @kind.download_package
-     package =DownloadPackage.new(:name=>"评估系统")
+    filechown = File.chown(uid,gid,"#{ch_files}#{@kind.number}","#{ch_files}#{@kind.number}/#{@kind.number}.zip")
+#    `chown -R www-data:www-data "#{ch_files}#{@kind.number}"`
+    if @kind.download_package
+     package = @kind.download_package
+    else
+     package = DownloadPackage.new(:name=>"评估系统")
+    end
      package.package = "#{@kind.number}.zip"
      package.kindergarten=@kind
      package.status = false
      package.save! 
+    rescue Exception => e
+     if @kind.download_package
+      @kind.download_package.unsucc_status=true
+      @kind.download_package.save
+     end
+    end
   end
   private
   #创建demo项目

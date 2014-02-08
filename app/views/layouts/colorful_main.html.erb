@@ -103,7 +103,14 @@
           </ul>
         </div>
         <div class="submenu_center">
+        <% if controller_path == "my_school/main" && action_name == "index" %>
+          <div class="hint">
+            <div class="hint_label">温馨提示：</div>
+            <%= render :partial => "/modules/share/hint" %>
+          </div>
+        <% else %>
           &nbsp;
+        <% end %>
         </div>
       </div>
       <div class="main_work">
@@ -124,28 +131,28 @@
       </script>
     </div>
     <script type="text/javascript">
-     var pa = location.pathname
-       $(function(){$('.official_menu_center ul li a').each(function(){
-        var url = $(this).attr('href')   
-        if (pa == url)
-        {
-        if( pa == '/my_school/main/show_official_about_us'){
-          return $("a>.offical_about_us").addClass('offical_about_us_selected'),false
-        }
-        else if(pa == '/my_school/main/feature') 
-        {
-          return $("a>.offical_feature").addClass('offical_feature_selected'),false
-        }
-        else if(pa == '/my_school/main/admissions_information') 
-        {
-          return $("a>.offical_admiss_infor").addClass('offical_admiss_infor_selected'),false
-        }
-        else if(pa == '/my_school' || pa == '/my_school/main/show_new_list' ||pa == '/my_school/main/show_one_new' ) 
-        {
-          return $("a>.offical_home").addClass('offical_home_selected'),false
-        }
-        }
-     })});
+      var pa = location.pathname
+      $(function(){$('.official_menu_center ul li a').each(function(){
+          var url = $(this).attr('href')
+          if (pa == url)
+          {
+            if( pa == '/my_school/main/show_official_about_us'){
+              return $("a>.offical_about_us").addClass('offical_about_us_selected'),false
+            }
+            else if(pa == '/my_school/main/feature')
+            {
+              return $("a>.offical_feature").addClass('offical_feature_selected'),false
+            }
+            else if(pa == '/my_school/main/admissions_information')
+            {
+              return $("a>.offical_admiss_infor").addClass('offical_admiss_infor_selected'),false
+            }
+            else if(pa == '/my_school' || pa == '/my_school/main/show_new_list' ||pa == '/my_school/main/show_one_new' )
+            {
+              return $("a>.offical_home").addClass('offical_home_selected'),false
+            }
+          }
+        })});
       $(function(){
         $.floatingAd({
           //频率
