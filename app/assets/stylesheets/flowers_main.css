@@ -1,6 +1,36 @@
 /*
  *= require jquery.ui.all
 */
+.submenu_center {
+    height: auto;
+    text-align: center;
+    width: 100%;
+    float: left;
+}
+.hint{
+    height: 43px;
+    margin: 0 auto;
+    width: 450px;
+    float: right;
+    background-color: #E5E5E5;
+}
+.hint .hint_label{
+   color: #6CB31D;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.hint .hint_text{
+    color: #6CB31D;
+    float: right;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-top: 10px;
+    width: 370px;
+    text-align: left;
+}
 #user_show_dialog{
     width: 80px;
     height: 30px;
