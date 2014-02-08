@@ -1,28 +1,9 @@
-<div class="control-group">
-  <%=f.label :kindergarten_id, '所属幼儿园*' ,:class=>"control-label"%>
-  <div class="controls">
-    <%= text_field_tag(:kindergarten,@kind.name, disabled: true) %>
-  </div>
-</div>
-<div class="control-group">
-  <%=f.label :title, '标题:' ,:class=>"control-label"%>
-  <div class="controls">
-    <%= f.text_field(:title , :validate => true, placeholder: "请输入视频的标题") %>
-    <p class="help-block">支持的扩展名为<%= WonderfulEpisode::SUPPORT_VIDEO_FORMAT.values.flatten.join(", ") %>,示例: http://www.jplayer.org/video/m4v/Big_Buck_Bunny_Trailer_480x270_h264aac.m4v</p>
-  </div>
-</div>
-<div class="control-group">
-  <%=f.label :title, 'url地址:' ,:class=>"control-label"%>
-  <div class="controls">
-    <%= f.text_field(:url_address, :validate => true, placeholder: "请输入视频的url地址") %>
-  </div>
-</div>
-<div class="control-group">
-  <%=f.label :is_top, '置顶' ,:class=>"control-label"%>
-  <div class="controls">
-    <%= f.check_box(:is_top) %>
-  </div>
-</div>
+<% f = form %>
+
+<%= f.input :title, :required => true, :validate => true, :placeholder => "请输入视频的标题" %>
+
+<%= f.input :url_address, :required => true, :validate => true, :hint => "支持的扩展名为#{WonderfulEpisode::SUPPORT_VIDEO_FORMAT.values.flatten.join(', ')},示例: http://www.jplayer.org/video/m4v/Big_Buck_Bunny_Trailer_480x270_h264aac.m4v", :placeholder => "请输入视频的url地址" %>
+
 <% unless current_user.get_users_ranges[:tp] == :student %>
   <% if current_user.get_users_ranges[:tp] == :teachers %>
     <div class="control-group">

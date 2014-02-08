@@ -25,8 +25,8 @@
 
     <div class="work_form">
       <div class="form_div">
-       <%= form_for(@wonderful_episode, :validate => true,:url=>my_school_wonderful_episodes_path(@wonderful_episode), :html =>{:class=>"form-horizontal"}) do |f| %>
-          <%= render 'form', :f=>f %>
+       <%= simple_form_for(@wonderful_episode, :validate => true, :url => my_school_wonderful_episodes_path(@wonderful_episode), :html => {:class => "form-horizontal"}) do |f| %>
+          <%= render :partial => "form", :object => f %>
        <% end %>
       </div>
     </div>
