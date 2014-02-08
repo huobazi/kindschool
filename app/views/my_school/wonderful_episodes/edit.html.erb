@@ -30,8 +30,8 @@
 
     <div class="work_form">
       <div class="form_div">
-        <%= form_for(@wonderful_episode,:method=>'put' , :validate => true, :url=>{:controller=>'my_school/wonderful_episodes',:action=>'update',:id=>@wonderful_episode}, :html =>{:class=>"form-horizontal"}) do |f| %>
-          <%= render 'form', :f=>f %>
+        <%= simple_form_for(@wonderful_episode,:method=>'put' , :validate => true, :url=>{:controller=>'my_school/wonderful_episodes',:action=>'update',:id=>@wonderful_episode}, :html =>{:class=>"form-horizontal"}) do |f| %>
+          <%= render :partial => "form", :object => f %>
         <% end %>
       </div>
     </div>
