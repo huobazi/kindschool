@@ -13,8 +13,14 @@ class MySchool::MainController < MySchool::BaseController
       end
       @notices = @kind.notices.where(:send_range=>[0,2]).limit(6)
       if @kind.kind_zone
-        today = Time.parse(Redis::Objects.redis.get("#{@kind.kind_zone.code}_today"))
-        if today && today <= Time.now && Time.now <= today.tomorrow
+        today,new_today = Redis::Objects.redis.get("#{@kind.kind_zone.code}_today"),false
+        if today
+          today_time = Time.parse(today)
+          if today_time <= Time.now && Time.now <= today_time.tomorrow
+            new_today = true
+          end
+        end
+        if new_today
           @temp_text = Redis::Objects.redis.get("#{@kind.kind_zone.code}")
         else
           begin
