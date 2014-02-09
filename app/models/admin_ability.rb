@@ -31,6 +31,7 @@ class AdminAbility
           can [:read],[SysLog,SmsLog]
           can [:read, :update], Report
           can :manage, KindZone
+          can :manage, Policy
           #        cannot :reset_password, User
         when "bazaar"
           then
@@ -43,7 +44,7 @@ class AdminAbility
         can :read, ActiveAdmin::Page, :name => "SmsStatistics"
       end
     end
-    
+
     # We operate with three role levels:
     # - Editor
     # - Moderator
