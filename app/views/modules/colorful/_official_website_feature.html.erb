@@ -28,6 +28,7 @@
         </td>
         <td>
           <%= link_to "编辑",:controller=>"/my_school/page_contents",:action=>:edit_content,:id=>page_content.id,:entry_id=>entry.id %>
+          <%= link_to "删除",:controller=>"/my_school/page_contents",:action=>:delete_content,:id=>page_content.id,:entry_id=>entry.id %>
         </td>
       </tr>
     <%end%>
