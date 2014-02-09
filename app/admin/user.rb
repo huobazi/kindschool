@@ -9,7 +9,7 @@ ActiveAdmin.register User do
     @user.password = password
     @kind = @user.kindergarten
     if @kind && @user.save
-      title = "您已经成功重置#{@kind.name}微壹校讯通平台密码."
+      title = "您已经成功重置#{@kind.name}微一在线平台密码."
       if @kind.aliases_url.blank?
         web_address = "http://#{@kind.number}.#{WEBSITE_CONFIG["web_host"]}"
       else
