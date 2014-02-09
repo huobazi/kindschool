@@ -38,11 +38,11 @@ class SmsLog < ActiveRecord::Base
   #处理幼儿园月结
   def self.load_monthly_balance_kind(kind)
     if smslog = SmsLog.find(:last,:conditions=>["kindergarten_id=:kind AND tp=2",{:kind=>kind.id}])
+      use_count = SmsLog.where(["id>:smslog AND tp=0 AND kindergarten_id=:kind",{:kind=>kind.id,:smslog=>smslog.id}]).sum(:count)
+      free_count = SmsLog.where(["id>:smslog AND tp=3 AND kindergarten_id=:kind",{:kind=>kind.id,:smslog=>smslog.id}]).sum(:count)
+      buy_count = SmsLog.where(["id>:smslog AND tp=1 AND kindergarten_id=:kind",{:kind=>kind.id,:smslog=>smslog.id}]).sum(:count)
+      vip_count = SmsLog.where(["id>:smslog AND tp=4 AND kindergarten_id=:kind",{:kind=>kind.id,:smslog=>smslog.id}]).sum(:count)
       if smslog.created_at.strftime("%Y-%m") != Time.now().strftime("%Y-%m")
-        use_count = SmsLog.where(["id>:smslog AND tp=0 AND kindergarten_id=:kind",{:kind=>kind.id,:smslog=>smslog.id}]).sum(:count)
-        free_count = SmsLog.where(["id>:smslog AND tp=3 AND kindergarten_id=:kind",{:kind=>kind.id,:smslog=>smslog.id}]).sum(:count)
-        buy_count = SmsLog.where(["id>:smslog AND tp=1 AND kindergarten_id=:kind",{:kind=>kind.id,:smslog=>smslog.id}]).sum(:count)
-        vip_count = SmsLog.where(["id>:smslog AND tp=4 AND kindergarten_id=:kind",{:kind=>kind.id,:smslog=>smslog.id}]).sum(:count)
         balance_count = 0 #本月月结短信
         if use_count.abs > free_count
           balance_count = (smslog.count + buy_count + free_count) + use_count
@@ -61,6 +61,8 @@ class SmsLog < ActiveRecord::Base
           end
           kind.update_attributes(:balance_count=> (balance_count + replenish_count)) #更新幼儿园的剩余短信数量
         end
+      else
+        kind.update_attributes(:balance_count=> (smslog.count + use_count + free_count + buy_count))
       end
     else
       SmsLog.create(:count=>0,:kindergarten_id=>kind.id,:tp=>2,:note=>"月结短信0条")
