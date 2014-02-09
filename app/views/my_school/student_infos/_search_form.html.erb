@@ -35,7 +35,7 @@
               web_address = kind.aliases_url
             end
           %>
-            <div class="import_div"><div class="import_label">导入后短信提示：</div><div class="import_text import_tip">您已经成功注册了<%= @kind.name %>微壹校讯通平台,您的登录名:???,密码:***,登录地址:<%= web_address %> </div></div>
+            <div class="import_div"><div class="import_label">导入后短信提示：</div><div class="import_text import_tip">您已经成功注册了<%= @kind.name %>微一在线平台,您的登录名:???,密码:***,登录地址:<%= web_address %> </div></div>
             <div class="import_div"><div class="import_label">短信追加描述：</div><div class="import_text import_tip"><%= @kind.login_note.blank? ? "无" : @kind.login_note %>
                 <span class="help-block">如需修改，请在"系统设置"->"幼儿园设置"中修改"注册短信追加内容"</span>
               </div>
