@@ -37,7 +37,7 @@
           </div>
         </li>
         <li class="menu_li">
-        <a href="###" class="phone" for="#phone_div"><div class="show_div"></div><img src="/t/colorful/phone_img.png" alt="照片集锦" /><label>照片集锦<% unless show_unread("Album").to_i + show_unread("PersonalSet").to_i == 0 %>(<%= show_unread("Album").to_i + show_unread("PersonalSet").to_i %>) <% end %>
+        <a href="###" class="phone" for="#phone_div"><div class="show_div"></div><img src="/t/colorful/phone_img.png" alt="照片集锦" /><label>照片集锦<% unless show_unread("Album").to_i + show_unread("PersonalSet").to_i + show_unread("WonderfulEpisode") == 0 %>(<%= show_unread("Album").to_i + show_unread("PersonalSet").to_i + show_unread("WonderfulEpisode").to_i %>) <% end %>
         </label></a>
           <div id="phone_div" class="hide menu_second">
             <ul class="list_menu_li">

@@ -1,3 +1,6 @@
+#encoding:utf-8
+# 微信新记录提醒(数字提醒)
+# 在需要使用记录提醒的表加字段accessed_at
 class AccessStatu < ActiveRecord::Base
   attr_accessible :accessed_at, :module_name, :user_id, :kindergarten_id
 
