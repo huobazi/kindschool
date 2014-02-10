@@ -1,6 +1,7 @@
 # encoding: utf-8
 module Weixin::WeixinStatusHelper
 
+  # 在菜单上显示未读记录的提醒数量
   def show_unread(module_name, search=nil, tp=nil)
     count = AccessStatu.unread_count(@kind, module_name, current_user, search, tp)
     unless count == 0

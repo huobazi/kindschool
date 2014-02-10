@@ -112,6 +112,7 @@ class AccessStatu < ActiveRecord::Base
     records
   end
 
+  # 显示未读记录提醒的数量
   def self.unread_count(kind, module_name, user, search, tp)
 
     records = self.records(kind, module_name, user, search, tp)
@@ -139,6 +140,7 @@ class AccessStatu < ActiveRecord::Base
     end
   end
 
+  # 更新未读的记录提醒，使其变成已读
   def self.update_unread(kind, module_name, user)
     if as = kind.access_status.find_by_module_name_and_user_id(module_name, user.id)
       as.accessed_at = Time.now.utc
