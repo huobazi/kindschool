@@ -1107,3 +1107,10 @@ ul.list_menu_li li{
   width: 17px;
   margin-right: 2px;
 }
+
+.hint_label {
+    background: url("/t/colorful/b_arr.png") no-repeat scroll right 8px rgba(0, 0, 0, 0);
+}
+.hint_label:hover {
+  cursor: pointer;
+}
