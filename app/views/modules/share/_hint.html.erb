@@ -24,7 +24,7 @@
 -->
 <div class="hint_text" id="hint_text">
   <% if @temp_text %>
-    <marquee scrollamount='1' title="<%= @temp_text %>"><%= @temp_text %></marquee>
+    <marquee scrollamount='1' title="<%= @temp_text %>" direction="left" behavior="alternate"><%= @temp_text %></marquee>
   <% else %>
     正在加載中
   <% end %>

@@ -12,7 +12,7 @@
               <li ><a href="/weixin/messages/outbox"><div class="s_arrow"></div><label>发件箱</label></a></li>
               <li ><a href="/weixin/messages/draft_box"><div class="s_arrow"></div><label>草稿箱</label></a></li>
               <!-- <li ><a href="/weixin/notices"><div class="s_arrow"></div><label>通知消息</label></a></li> -->
-              <li ><a href="/weixin/news"><div class="s_arrow"></div><label>新闻<%= show_unread_html("news") %></label></a></li>
+              <li ><a href="/weixin/news"><div class="s_arrow"></div><label>新闻<%= show_unread_html("news") unless show_unread_html("new").to_i == 0 %></label></a></li>
             </ul>
           </div>
         </li>
