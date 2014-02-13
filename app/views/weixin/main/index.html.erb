@@ -1,5 +1,23 @@
 <div class="container">
   <%= render :partial => "/modules/colorful/weixin_head" %>
+  <!-- 温馨提示开始 -->
+  <div class="submenu_center">
+    <% if controller_path == "weixin/main" && action_name == "index" %>
+      <div class="hint">
+        <div class="hint_label">温馨提示：</div>
+        <div class="hint_text" id="hint_text" style="display:none;">
+          <% if @temp_text %>
+            <p><%= @temp_text %></p>
+          <% else %>
+            正在加載中
+          <% end %>
+        </div>
+      </div>
+    <% else %>
+      &nbsp;
+    <% end %>
+  </div>
+  <!-- 温馨提示结束 -->
   <div class="weixin_ad">
     <img src="/t/colorful/small_publicity.jpg"  alt="广告"/>
   </div>
@@ -8,3 +26,8 @@
 
 <%= render :partial => "/modules/colorful/weixin_menu_one"%>
 
+<script type="text/javascript">
+$(".hint_label").click(function(){
+    $(".hint_text").slideToggle();
+})
+</script>

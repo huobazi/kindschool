@@ -11,6 +11,7 @@ class Weixin::WonderfulEpisodesController < Weixin::ManageController
     else
       @wonderful_episodes = @kind.wonderful_episodes.page(params[:page] || 1)
     end
+    AccessStatu.update_unread(@kind, "WonderfulEpisode", current_user)
   end
 
   def show

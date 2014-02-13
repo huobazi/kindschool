@@ -192,25 +192,27 @@ class MySchool::UsersController < MySchool::ManageController
   def set_send_sms
     if user = User.find_by_id_and_kindergarten_id(params[:id],@kind.id)
       can_count = @kind.sms_user_count - @kind.get_send_sms_count
-      if can_count > 0
-        if user.is_send
+      #点击了取消发送短信
+      if user.is_send
           user.update_attributes(:is_send=> false,:chain_delete=>true)
           can_count += 1
-        else
-          chain_code = @kind.get_chain_code
-          user.update_attributes(:is_send=> true,:chain_delete=>false,:chain_code=>chain_code)
-          can_count -= 1
-          #如果已经存在的编号，将去掉
-          chain_users = @kind.users.where(:chain_delete=>true,:chain_code=>chain_code)
-          unless chain_users.blank?
-            chain_users.each do |chain_user|
-              chain_user.update_attributes(:chain_delete=>false,:chain_code=>nil)
-            end
-          end
-        end
-        flash[:success] = "设置成功，您还可以设置#{can_count}个用户"
+          flash[:success] = "设置成功，您还可以设置#{can_count}个用户"
       else
-        flash[:error] = "设置失败，超过可设置的用户数量。"
+        if can_count > 0
+            chain_code = @kind.get_chain_code
+            user.update_attributes(:is_send=> true,:chain_delete=>false,:chain_code=>chain_code)
+            can_count -= 1
+            #如果已经存在的编号，将去掉
+            chain_users = @kind.users.where(:chain_delete=>true,:chain_code=>chain_code)
+            unless chain_users.blank?
+              chain_users.each do |chain_user|
+                chain_user.update_attributes(:chain_delete=>false,:chain_code=>nil)
+              end
+            end
+          flash[:success] = "设置成功，您还可以设置#{can_count}个用户"
+       else
+         flash[:error] = "设置失败，超过可设置的用户数量。"
+       end
       end
     else
       flash[:error] = "需要设置的用户不存在"
@@ -225,11 +227,17 @@ class MySchool::UsersController < MySchool::ManageController
   def set_gather_sms
     if user = User.find_by_id_and_kindergarten_id(params[:id],@kind.id)
       can_count = @kind.sms_user_count - @kind.get_gather_sms_count
-      if can_count > 0
-        user.update_attribute(:is_receive, !user.is_receive)
-        flash[:success] = "设置成功，您还可以设置#{can_count - 1}个用户"
+      #点击了取消发送短信
+      if user.is_receive
+          user.update_attribute(:is_receive, !user.is_receive)
+          flash[:success] = "设置成功，您还可以设置#{can_count - 1}个用户"
       else
-        flash[:error] = "设置失败，超过可设置的用户数量。"
+       if can_count > 0
+          user.update_attribute(:is_receive, !user.is_receive)
+          flash[:success] = "设置成功，您还可以设置#{can_count - 1}个用户"
+        else
+         flash[:error] = "设置失败，超过可设置的用户数量。"
+        end
       end
       
     else
@@ -254,7 +262,7 @@ class MySchool::UsersController < MySchool::ManageController
         password = Standard.rand_password
         user.password = password
         if user.save!
-          title = "您已经成功重置#{@kind.name}微壹校讯通平台密码."
+          title = "您已经成功重置#{@kind.name}微一在线平台密码."
           if @kind.aliases_url.blank?
             web_address = "http://#{@kind.number}.#{WEBSITE_CONFIG["web_host"]}"
           else

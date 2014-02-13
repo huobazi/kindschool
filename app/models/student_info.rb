@@ -105,7 +105,7 @@ class StudentInfo < ActiveRecord::Base
         user = u_password[:user]
         password = u_password[:password]
         kind = user.kindergarten
-        title = "您已经成功注册了#{kind.name}微壹校讯通平台"
+        title = "您已经成功注册了#{kind.name}微一在线平台"
         if kind.aliases_url.blank?
          web_address = "http://#{kind.number}.#{WEBSITE_CONFIG["web_host"]}"
         else
