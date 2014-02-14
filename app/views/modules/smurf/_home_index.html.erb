@@ -3,8 +3,10 @@
     <div class="note_title">
       <p>幼儿园介绍</p>
     </div>
-    <pre style="text-indent: 10px;margin-top: 10px;color: #6388A0;">
-      <%= raw @kind.note %>
+    <pre style="text-indent: 10px;margin-top: 10px;color: #6388A0;" title="<%= @kind.note %>">
+    <marquee direction="up" height="150" scrollamount="2">
+        <%= raw @kind.note %>
+    </marquee>
     </pre>
   </div>
   <div class="news_div">

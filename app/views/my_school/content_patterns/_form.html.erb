@@ -24,7 +24,9 @@
   var editor;
   KindEditor.ready(function(K) {
     editor = K.create('#content_pattern_content', {
-      allowFileManager : true , height:300
+      allowFileManager : false , 
+      height:300,
+      uploadJson:"/kindeditor/upload"
     });
   });
 </script>
