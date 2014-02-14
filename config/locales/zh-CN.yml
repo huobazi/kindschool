@@ -426,6 +426,7 @@ zh-CN:
       garden_picture:
         title: "标题"
         tp: "类型"
+        created_at: "创建于"
       garden_new:
         content: "详细内容"
         note: "简述"
