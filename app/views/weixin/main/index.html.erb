@@ -2,15 +2,17 @@
   <%= render :partial => "/modules/colorful/weixin_head" %>
   <!-- 温馨提示开始 -->
   <div class="submenu_center">
-    <% if controller_path == "weixin/main" && action_name == "index" && @temp %>
-      <div class="hint">
-        <div class="hint_label">温馨提示：<%= @temp %></div>
-        <div class="hint_text" id="hint_text" style="display:none;">
-          <% if @temp_text %>
+    <% if controller_path == "weixin/main" && action_name == "index" %>
+      <% if @temp %>
+        <div class="hint">
+          <div class="hint_label">温馨提示：<%= @temp %></div>
+          <div class="hint_text" id="hint_text" style="display:none;">
             <p><%= @temp_text %></p>
-          <% end %>
+          </div>
         </div>
-      </div>
+      <% else %>
+        <div>温馨提示: 正在加载中...</div>
+      <% end %>
     <% else %>
       &nbsp;
     <% end %>
