@@ -8,7 +8,7 @@ ActiveAdmin.register User do
     password = Standard.rand_password
     @user.password = password
     @kind = @user.kindergarten
-    if @kind && @user.save
+    if @kind && @user.save!
       title = "您已经成功重置#{@kind.name}微一在线平台密码."
       if @kind.aliases_url.blank?
         web_address = "http://#{@kind.number}.#{WEBSITE_CONFIG["web_host"]}"

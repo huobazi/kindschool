@@ -635,9 +635,14 @@ ul, li {
     background-image: url("/t/colorful/weixin_bg1.png");
     background-position: 0 -38px;
     background-repeat: repeat-x;
-    height: 80px;
+    height: 115px;
     position: relative;
 }
+
+.paginate_div > ul {
+    padding-top: 10px;
+}
+
 .message_div .message_more label{
     padding: 15px 10px 10px;
 }
@@ -1113,4 +1118,8 @@ ul.list_menu_li li{
 }
 .hint_label:hover {
   cursor: pointer;
+}
+
+.admissions_info_content a:hover {
+  color: #08c;
 }
