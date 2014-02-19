@@ -1119,3 +1119,7 @@ ul.list_menu_li li{
 .hint_label:hover {
   cursor: pointer;
 }
+
+.admissions_info_content a:hover {
+  color: #08c;
+}
