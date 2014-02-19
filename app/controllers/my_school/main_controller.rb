@@ -29,7 +29,7 @@ class MySchool::MainController < MySchool::BaseController
               weather = {'city' => weatherinfo['weatherinfo']['city'], 'temp1' => weatherinfo['weatherinfo']['temp1'], 'index_d' => weatherinfo['weatherinfo']['index_d']}
               @temp_text = "#{weather['city']} #{weather['temp1']} #{weather['index_d']}"
               Redis::Objects.redis.set("#{@kind.kind_zone.code}", @temp_text)
-              Redis::Objects.redis.set("#{@kind.kind_zone.code}_today", Time.now)
+              Redis::Objects.redis.set("#{@kind.kind_zone.code}_today", Time.now.beginning_of_day)
             end
           rescue Exception => e
           end
