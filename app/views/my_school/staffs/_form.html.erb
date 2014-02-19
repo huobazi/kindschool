@@ -38,6 +38,7 @@
       <span id="staff_id" style="display: none;"><%= @staff.user.id %></span>
     <% end %>
     <%= p.input :phone, :validate => true, placeholder: "请输入教职工的手机号码", hint: "格式为11位手机号,例如+86-15014006125 或 15014006125" %>
+    <%= p.input :repeat%>
     <% if action_name == "new" ||  action_name == "create" %>
       <%= p.input :login, :validate => true, placeholder: "请输入教职工的账号", :hint => "帐号只允许使用5到20位字符的英文、数字和下划线组合，保存之后不能改变" %>
     <% else %>
