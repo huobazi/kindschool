@@ -17,7 +17,7 @@ class Weixin::MainController < Weixin::BaseController
           today,new_today = Redis::Objects.redis.get("#{kind.kind_zone.code}_today"),false
           if today
             today_time = Time.parse(today)
-            if today_time <= Time.now && Time.now <= today_time.tomorrow
+            if today_time.to_date == Time.now.to_date
               new_today = true
             end
           end
@@ -33,7 +33,7 @@ class Weixin::MainController < Weixin::BaseController
                 @temp_text = "#{weather['index_d']}"
                 Redis::Objects.redis.set("#{kind.kind_zone.code}_temp", @temp)
                 Redis::Objects.redis.set("#{kind.kind_zone.code}_temp_text", @temp_text)
-                Redis::Objects.redis.set("#{kind.kind_zone.code}_today", Time.now.beginning_of_day)
+                Redis::Objects.redis.set("#{kind.kind_zone.code}_today", Time.now)
               end
             rescue Exception => e
             end
