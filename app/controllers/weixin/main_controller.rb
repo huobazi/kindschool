@@ -2,6 +2,7 @@
 class Weixin::MainController < Weixin::BaseController
   layout proc{ |controller| get_layout }
   include Weixin::WeixinStatusHelper
+  include KindWeather
 
   before_filter :login_from_cookie
   before_filter :login_required, :except => [:bind_user,:error_messages,:about,:contact_us,:bind_weiyi,:weiyi_error_messages]
@@ -13,32 +14,7 @@ class Weixin::MainController < Weixin::BaseController
       if kind = Kindergarten.find_by_number(@subdomain)
         #        redirect_to :controller=>"/weixin/main",:action=>"index"
         #        return
-        if kind.kind_zone
-          today,new_today = Redis::Objects.redis.get("#{kind.kind_zone.code}_today"),false
-          if today
-            today_time = Time.parse(today)
-            if today_time.to_date == Time.now.to_date
-              new_today = true
-            end
-          end
-          if new_today
-            @temp = Redis::Objects.redis.get("#{kind.kind_zone.code}_temp")
-            @temp_text = Redis::Objects.redis.get("#{kind.kind_zone.code}_temp_text")
-          else
-            begin
-              weatherinfo = JSON.parse(open("http://m.weather.com.cn/data/#{kind.kind_zone.code}.html").read)
-              if weatherinfo && weatherinfo['weatherinfo']
-                weather = {'city' => weatherinfo['weatherinfo']['city'], 'temp1' => weatherinfo['weatherinfo']['temp1'], 'index_d' => weatherinfo['weatherinfo']['index_d']}
-                @temp = "#{weather['city']} #{weather['temp1']}"
-                @temp_text = "#{weather['index_d']}"
-                Redis::Objects.redis.set("#{kind.kind_zone.code}_temp", @temp)
-                Redis::Objects.redis.set("#{kind.kind_zone.code}_temp_text", @temp_text)
-                Redis::Objects.redis.set("#{kind.kind_zone.code}_today", Time.now)
-              end
-            rescue Exception => e
-            end
-          end
-        end
+        cache_weather(kind)
       else
         @no_kind = true
       end

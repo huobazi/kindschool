@@ -1,40 +1,19 @@
 #encoding:utf-8
 class MySchool::MainController < MySchool::BaseController
   before_filter :find_shrink_record
+  include KindWeather
   #幼儿园首页
   #  layout "colorful_main"
   def index
-    if @kind 
+    if @kind
       @news = @kind.news.where(:approve_status=>0).limit(6)
       root_showcase = @kind.page_contents.find_by_number("official_website_home")
       if root_showcase && !root_showcase.content_entries.blank?
         @teacher_infos = root_showcase.content_entries.where(:number=>"official_home_teacher")
-        @img= root_showcase.content_entries.where(:number=>'official_home_pub_img')     
+        @img= root_showcase.content_entries.where(:number=>'official_home_pub_img')
       end
       @notices = @kind.notices.where(:send_range=>[0,2]).limit(6)
-      if @kind.kind_zone
-        today,new_today = Redis::Objects.redis.get("#{@kind.kind_zone.code}_today"),false
-        if today
-          today_time = Time.parse(today)
-          if today_time.to_date == Time.now.to_date
-            new_today = true
-          end
-        end
-        if new_today
-          @temp_text = Redis::Objects.redis.get("#{@kind.kind_zone.code}")
-        else
-          begin
-            weatherinfo = JSON.parse(open("http://m.weather.com.cn/data/#{@kind.kind_zone.code}.html").read)
-            if weatherinfo && weatherinfo['weatherinfo']
-              weather = {'city' => weatherinfo['weatherinfo']['city'], 'temp1' => weatherinfo['weatherinfo']['temp1'], 'index_d' => weatherinfo['weatherinfo']['index_d']}
-              @temp_text = "#{weather['city']} #{weather['temp1']} #{weather['index_d']}"
-              Redis::Objects.redis.set("#{@kind.kind_zone.code}", @temp_text)
-              Redis::Objects.redis.set("#{@kind.kind_zone.code}_today", Time.now)
-            end
-          rescue Exception => e
-          end
-        end
-      end
+      cache_weather(@kind)
     end
   end
 
