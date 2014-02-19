@@ -44,6 +44,7 @@
         <span id="student_info_id" style="display: none;"><%= @student_info.user.id %></span>
       <% end %>
       <%= p.input :phone, :validate => true, placeholder: "请输入学员的手机号", :hint => "格式为11位手机号,例如+86-15014006125 或 15014006125" %>
+        <%= p.input :repeat%>
     </div>
     <div class="right_table">
       <% if action_name == "new" %>
@@ -67,10 +68,7 @@
             <label class="field_prompt">班级</label>
             <%= select_tag "squad_id", options_for_select(@squads.collect{|s|[s.name, s.id]}), :class => "select span2", :style => "margin-left: 130px;", :name => "student_info[squad_id]" %>
           </div>
-          <div class="select_field">
-            <label class="field_prompt"></label>
-            <%= p.input :repeat%>
-          </div>
+         
           
         <% elsif current_user.get_users_ranges[:tp] == :all %>
           <div class="select_field">
