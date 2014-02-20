@@ -21,12 +21,16 @@
           <ul class="thumbs noscript">
             <% @garden_pictures.each do |garden_picture| %>
               <li>
-                <a class="thumb" href="<%=garden_picture.page_img.public_filename(:big)%>" title="<%=garden_picture.title%>">
-                  <img src="<%=garden_picture.page_img.public_filename(:big)%>" alt="<%=garden_picture.title%>" />
-                </a>
+                <% if garden_picture.page_img %>
+                  <a class="thumb" href="<%=garden_picture.page_img.public_filename(:big)%>" title="<%=garden_picture.title%>">
+                    <img src="<%=garden_picture.page_img.public_filename(:big)%>" alt="<%=garden_picture.title%>" />
+                  </a>
+                <% end %>
                 <div class="caption">
                   <div class="download">
+                    <% if garden_picture.page_img %>
                     <a href="<%=garden_picture.page_img.public_filename%>" target="_blank">浏览原图</a>
+                    <% end %>
                   </div>
                   <div class="image-title"><%=garden_picture.title%></div>
                   <div class="image-desc">创建时间<%= garden_picture.created_at.try(:to_long_datetime) %></div>
