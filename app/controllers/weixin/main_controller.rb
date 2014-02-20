@@ -36,7 +36,7 @@ class Weixin::MainController < Weixin::BaseController
     if @required_type == :www
       if request.get?
         if params[:code].blank?
-          flash[:error] = "数据不准确，请返回微信，点击“账号绑定”重新操作."
+          flash[:error] = "数据不准确，请返回微信，点击“账号绑定”重新操作.(有可能您的微信版本太低,请尝试升级后再重新绑定)"
           redirect_to :action => :weiyi_error_messages
           return
         end
@@ -53,7 +53,7 @@ class Weixin::MainController < Weixin::BaseController
       else
         begin
           if session[:weiyi_code].blank?
-            flash[:error] = "数据不准确，请返回微信，点击“账号绑定”重新操作."
+            flash[:error] = "数据不准确，请返回微信，点击“账号绑定”重新操作.(有可能您的微信版本太低,请尝试升级后再重新绑定)"
             redirect_to :action => :weiyi_error_messages
             return
           end
