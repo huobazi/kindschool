@@ -85,10 +85,6 @@
             </div>
           </div>
         <% end %>
-        <div class="select_field">
-            <label class="field_prompt"></label>
-            <%= p.input :repeat%>
-          </div>
       <% else %>
         <% if current_user.get_users_ranges[:tp] == :student %>
           <%= f.input :grade_label, :as => :string, :disabled => true %>
