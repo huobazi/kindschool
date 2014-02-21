@@ -48,6 +48,7 @@ class Kindergarten < ActiveRecord::Base
   has_many   :access_status
   has_many   :reports
   has_many   :wonderful_episodes
+  has_many   :weixin_codes
   belongs_to :kind_zone
 
   attr_accessible :asset_img_attributes
