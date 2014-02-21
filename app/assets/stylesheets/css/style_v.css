@@ -109,6 +109,8 @@ h1,h2,h4,h5,h6 {
 					text-shadow: #000 1px 1px 2px;
 				    padding-top: 200px;
 				    padding-bottom: 20px;
+				    height: 200px;
+                    overflow: auto;
 				}
 				#issues li p {
 					font-size: 14px;
