@@ -1,6 +1,6 @@
 #encoding:utf-8
 ActiveAdmin.register Topic do
-  menu :parent => "幼儿园管理", :priority => 41
+  menu :parent => "幼儿园管理", :priority => 42
 
   controller do
     def new
@@ -74,3 +74,4 @@ ActiveAdmin.register Topic do
     end
   end
 end
+

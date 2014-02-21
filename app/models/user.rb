@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   has_many   :sys_logs
   has_many   :credit_logs,:class_name=>"CreditLog", :as => :resource, :dependent => :destroy
   has_many   :orders,:class_name=>"Order"
+  has_many   :weixin_codes
   # has_many   :credit_logs,:class_name=>"CreditLog", :as => :business, :dependent => :destroy
 
 

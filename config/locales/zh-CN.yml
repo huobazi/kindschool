@@ -277,6 +277,7 @@ zh-CN:
       kind_zone: "幼儿园地区"
       policy: "政策法规"
       show_case: "作品展示"
+      weixin_code: "微信绑定code"
     attributes:
       show_case:
         kindergarten: "幼儿园"
@@ -1095,6 +1096,12 @@ zh-CN:
         created_at: "创建于"
         updated_at: "更新于"
         asset_img: "图片"
+      weixin_code:
+        weixin_code: "微信code"
+        user: "用戶"
+        kindergarten: "幼儿园"
+        weixin_tp: "公共账号类型"
+        tp_label: "公共账号类型"
     errors:
       <<: *errors
   views:

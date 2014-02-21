@@ -1,5 +1,8 @@
 School::Application.routes.draw do
 
+  resources :weixin_codes
+
+
   root :to => 'main#index'
   match 'code/code_image' => 'code#code_image'
   match 'code/recode' => 'code#recode'
