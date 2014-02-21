@@ -6,6 +6,7 @@
         <%= link_to current_user.name, :controller => "/my_school/users", :action => :show, :id => current_user.id -%>(<%= link_to (message_count > 99 ? "99" : message_count),{:controller=>"/my_school/messages",:action=>:index},:class=>"message_count_a" -%>)
       </div>
       <%= link_to "退出", {:controller=>"/my_school/users",:action=>:logout},:class=>"btn btn-inverse btn-mini" -%>
+      <%= render :partial => "/modules/colorful/kind_credit_status", :object => @kind %> 
     </div>
     <% sys_admin_menus("a").each do |menu| %>
       <div class='<%="center_menu small_#{menu[:number]}_menu"%>'>
