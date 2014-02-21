@@ -1,7 +1,7 @@
 #encoding:utf-8
 #幼儿园
 class Kindergarten < ActiveRecord::Base
-  attr_accessible :enable_credit,:init_status,:logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token,:latlng,:address,
+  attr_accessible :credit_status,:enable_credit,:init_status,:logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token,:latlng,:address,
     :aliases_url,:sms_count,:sms_user_count,:telephone,:allsms_count,:open_allsms,:begin_allsms,:login_note,:balance_count,:hint_tp,:show_cookbook, :kind_zone_id
 
   has_many   :users   #所有用户
@@ -65,6 +65,7 @@ class Kindergarten < ActiveRecord::Base
   HINT_TP_DATA = {"0"=>"不发短信","1"=>"发短信"}
   STATUS_DATA = {"0"=>"正常","1"=>"锁定"}
   WEIXIN_STATUS_DATA = {"0"=>"未授权绑定","1"=>"已授权绑定"}
+  CREDIR_STATUS = {"0"=>"所有用户不能用","1"=>"老师用户","2"=>"学生用户","3"=>"全部"}
 
   def begin_allsms_label
     begin_allsms ? "是" : "否"
@@ -72,6 +73,9 @@ class Kindergarten < ActiveRecord::Base
 
   def open_allsms_label
     open_allsms ? "是" : "否"
+  end
+  def enable_credit_label
+    enable_credit ? "是" : "否"
   end
 
   def hint_tp_label
