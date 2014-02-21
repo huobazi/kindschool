@@ -2,6 +2,7 @@
 class Weixin::MainController < Weixin::BaseController
   layout proc{ |controller| get_layout }
   include Weixin::WeixinStatusHelper
+  include KindWeather
 
   before_filter :login_from_cookie
   before_filter :login_required, :except => [:bind_user,:error_messages,:about,:contact_us,:bind_weiyi,:weiyi_error_messages]
@@ -13,32 +14,7 @@ class Weixin::MainController < Weixin::BaseController
       if kind = Kindergarten.find_by_number(@subdomain)
         #        redirect_to :controller=>"/weixin/main",:action=>"index"
         #        return
-        if kind.kind_zone
-          today,new_today = Redis::Objects.redis.get("#{kind.kind_zone.code}_today"),false
-          if today
-            today_time = Time.parse(today)
-            if today_time <= Time.now && Time.now <= today_time.tomorrow
-              new_today = true
-            end
-          end
-          if new_today
-            @temp = Redis::Objects.redis.get("#{kind.kind_zone.code}_temp")
-            @temp_text = Redis::Objects.redis.get("#{kind.kind_zone.code}_temp_text")
-          else
-            begin
-              weatherinfo = JSON.parse(open("http://m.weather.com.cn/data/#{kind.kind_zone.code}.html").read)
-              if weatherinfo && weatherinfo['weatherinfo']
-                weather = {'city' => weatherinfo['weatherinfo']['city'], 'temp1' => weatherinfo['weatherinfo']['temp1'], 'index_d' => weatherinfo['weatherinfo']['index_d']}
-                @temp = "#{weather['city']} #{weather['temp1']}"
-                @temp_text = "#{weather['index_d']}"
-                Redis::Objects.redis.set("#{kind.kind_zone.code}_temp", @temp)
-                Redis::Objects.redis.set("#{kind.kind_zone.code}_temp_text", @temp_text)
-                Redis::Objects.redis.set("#{kind.kind_zone.code}_today", Time.now)
-              end
-            rescue Exception => e
-            end
-          end
-        end
+        cache_weather(kind)
       else
         @no_kind = true
       end
@@ -60,7 +36,7 @@ class Weixin::MainController < Weixin::BaseController
     if @required_type == :www
       if request.get?
         if params[:code].blank?
-          flash[:error] = "数据不准确，请返回微信，点击“账号绑定”重新操作."
+          flash[:error] = "数据不准确，请返回微信，点击“账号绑定”重新操作.(有可能您的微信版本太低,请尝试升级后再重新绑定)"
           redirect_to :action => :weiyi_error_messages
           return
         end
@@ -77,7 +53,7 @@ class Weixin::MainController < Weixin::BaseController
       else
         begin
           if session[:weiyi_code].blank?
-            flash[:error] = "数据不准确，请返回微信，点击“账号绑定”重新操作."
+            flash[:error] = "数据不准确，请返回微信，点击“账号绑定”重新操作.(有可能您的微信版本太低,请尝试升级后再重新绑定)"
             redirect_to :action => :weiyi_error_messages
             return
           end

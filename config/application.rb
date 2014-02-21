@@ -65,6 +65,7 @@ module School
 end
 I18n.default_locale = "zh-CN"
 require "#{Rails.root}/lib/authenticated_system"
+require "#{Rails.root}/lib/kind_weather"
 require "#{Rails.root}/lib/file_size_validator"
 require "#{Rails.root}/lib/model_additions"
 require "flash_cookie_session"
