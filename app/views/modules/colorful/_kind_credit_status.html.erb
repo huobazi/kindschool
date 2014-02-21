@@ -1,0 +1,9 @@
+<%if @kind.enable_credit%>
+  <%if @kind.credit_status == 3%>
+      <%= link_to "积分乐园",{:controller=>"/my_school/credit_shop",:action=>:index}%>
+      <%elsif @kind.credit_status == 2 && current_user.get_users_ranges[:tp]==:student%>
+      <%= link_to "积分乐园",{:controller=>"/my_school/credit_shop",:action=>:index}%>
+      <%elsif @kind.credit_status == 1 && (current_user.get_users_ranges[:tp] == :teachers || current_user.get_users_ranges[:tp] == :all )%>
+      <%= link_to "积分乐园",{:controller=>"/my_school/credit_shop",:action=>:index}%>
+  <%end%>
+<%end%>

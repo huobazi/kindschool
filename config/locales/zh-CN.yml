@@ -530,6 +530,8 @@ zh-CN:
         content_type: "图片类型"
       kindergarten:
         enable_credit: "是否启用积分系统"
+        enable_credit_label: "是否启用积分系统"
+        credit_status: "积分用户群"
         hint_tp: "提醒系统化"
         hint_tp_label: "提醒系统化"
         name: "名称"
