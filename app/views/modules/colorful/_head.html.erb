@@ -52,6 +52,7 @@
     <% message_count =current_user.get_read_new_count %>
     <%= link_to current_user.name, :controller => "/my_school/users", :action => :show, :id => current_user.id %>(<%= link_to (message_count > 99 ? "99" : message_count),{:controller=>"/my_school/messages",:action=>:index},:class=>"message_count_a" %>)
     <%= link_to "退出", {:controller=>"/my_school/users",:action=>:logout},:class=>"logout_a"%>
+    <%= render :partial => "/modules/colorful/kind_credit_status", :object => @kind %>
   </div>
 </div>
 <div class="logo">
