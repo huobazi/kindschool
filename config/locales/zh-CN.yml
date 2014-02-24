@@ -565,6 +565,7 @@ zh-CN:
         show_cookbook: "展示菜谱到首页"
         kind_zone_id: "地区"
         kind_zone: "地区"
+        current_user_count: "当前用户总数"
       user:
         name: "姓名"
         login: "账号"
@@ -1099,6 +1100,7 @@ zh-CN:
       weixin_code:
         weixin_code: "微信code"
         user: "用戶"
+        user_name: "用户"
         kindergarten: "幼儿园"
         weixin_tp: "公共账号类型"
         tp_label: "公共账号类型"
