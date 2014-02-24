@@ -34,10 +34,20 @@ class Weixin::ApiController < Weixin::BaseController
             :FuncFlag=>0
           })
       elsif xml_data[:Event] == "unsubscribe"
-        user = User.find_by_weixin_code(xml_data[:FromUserName])
-        if user
-          user.update_attribute(:weixin_code,nil)
+        if weixin_code = WeixinCode.find_by_weixin_code_and_weixin_tp(xml_data[:FromUserName],0)
+          weixin_code_user_id = weixin_code.user_id
+          weixin_code.destroy
+          unless WeixinCode.find_by_user_id_and_weixin_tp(weixin_code_user_id,0)
+            if user = User.find_by_id(weixin_code_user_id)
+              user.update_attribute(:weixin_code,nil)
+            end
+          end
         end
+        #修改TODO：20140221
+        #        user = User.find_by_weixin_code(xml_data[:FromUserName])
+        #        if user
+        #          user.update_attribute(:weixin_code,nil)
+        #        end
       else
         if logged_in?
           if xml_data[:MsgType] == "text" || xml_data[:MsgType] == "voice"
@@ -250,10 +260,21 @@ class Weixin::ApiController < Weixin::BaseController
             })
         end
       elsif xml_data[:Event] == "unsubscribe"
-        if user = User.find_by_weiyi_code(xml_data[:FromUserName])
-          session[:weiyi_code] = nil
-          user.update_attribute(:weiyi_code,nil)
+        if weixin_code = WeixinCode.find_by_weixin_code_and_weixin_tp(xml_data[:FromUserName],1)
+          weixin_code_user_id = weixin_code.user_id
+          weixin_code.destroy
+          unless WeixinCode.find_by_user_id_and_weixin_tp(weixin_code_user_id,1)
+            if user = User.find_by_id(weixin_code_user_id)
+              session[:weiyi_code] = nil
+              user.update_attribute(:weiyi_code,nil)
+            end
+          end
         end
+        #TODO:20140221修改
+        #        if user = User.find_by_weiyi_code(xml_data[:FromUserName])
+        #          session[:weiyi_code] = nil
+        #          user.update_attribute(:weiyi_code,nil)
+        #        end
       else
         if xml_data[:Content] == "1"
           x_data = weiyi_bind(xml_data)
@@ -264,7 +285,9 @@ class Weixin::ApiController < Weixin::BaseController
         else
           if xml_data[:MsgType]=="voice"
             load_bol = true
-            if user = User.find_by_weiyi_code(xml_data[:FromUserName])
+            #TODO:20140221修改
+            if weixin_code = WeixinCode.find_by_weixin_code(xml_data[:FromUserName])
+              user = weixin_code.user
               if weixin_token = WeixinToken.find_by_number("weiyizixun")
                 audio = weixin_token.down_media(xml_data[:MediaId])
                 if audio != "error"
@@ -276,6 +299,18 @@ class Weixin::ApiController < Weixin::BaseController
                 end
               end
             end
+            #            if user = User.find_by_weiyi_code(xml_data[:FromUserName])
+            #              if weixin_token = WeixinToken.find_by_number("weiyizixun")
+            #                audio = weixin_token.down_media(xml_data[:MediaId])
+            #                if audio != "error"
+            #                  text = TextSet.new(:content=>xml_data[:Recognition],:tp=>1,:audio=>"#{audio}.amr",:audio_turn=>"#{audio}.mp3")
+            #                  personal = PersonalSet.new()
+            #                  personal.resource = text
+            #                  user.personal_sets << personal
+            #                  load_bol = false if user.save
+            #                end
+            #              end
+            #            end
             if load_bol
               x_data =mas_data({:ToUserName=>xml_data[:FromUserName],
                   :FromUserName=>xml_data[:ToUserName],
@@ -331,7 +366,9 @@ class Weixin::ApiController < Weixin::BaseController
   
   def weiyi_bind(xml_data)
     #绑定
-    if User.find_by_weiyi_code(xml_data[:FromUserName])
+    #TODO:20140221修改
+    if WeixinCode.find_by_weixin_code_and_weixin_tp(xml_data[:FromUserName],1)
+      #    if User.find_by_weiyi_code(xml_data[:FromUserName])
       mas_data({:ToUserName=>xml_data[:FromUserName],
           :FromUserName=>xml_data[:ToUserName],
           :CreateTime=>Time.now.to_i,

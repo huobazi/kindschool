@@ -68,7 +68,11 @@ class Weixin::BaseController < ApplicationController
         unless is_www?
           if xml_data = params[:xml]
             #            session[:FromUserName] = xml_data[:FromUserName]
-            if user = User.find_by_weixin_code_and_kindergarten_id(xml_data[:FromUserName],@kind.id)
+
+            #TODO:20140221修改
+            if weixin_code = WeixinCode.find_by_weixin_code_and_kindergarten_id(xml_data[:FromUserName],@kind.id)
+              user = weixin_code.user
+              #            if user = User.find_by_weixin_code_and_kindergarten_id(xml_data[:FromUserName],@kind.id)
               self.current_user = user
             else
               session[:user] = nil
@@ -83,15 +87,15 @@ class Weixin::BaseController < ApplicationController
     end
   end
   def load_layout
-#    if @kind && @kind.template
-#      @kind.template.number
-#    else
-#      if template = Template.find_by_is_default(1)
-#        template.number
-#      else
-#        raise "模板信息缺失，请联系管理员"
-#      end
-#    end
+    #    if @kind && @kind.template
+    #      @kind.template.number
+    #    else
+    #      if template = Template.find_by_is_default(1)
+    #        template.number
+    #      else
+    #        raise "模板信息缺失，请联系管理员"
+    #      end
+    #    end
     "colorful"
   end
 end
