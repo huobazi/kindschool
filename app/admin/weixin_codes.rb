@@ -25,7 +25,7 @@ ActiveAdmin.register WeixinCode do
   end
 
   filter :kindergarten
-  filter :user
+  filter :user_name, :as => :string
   filter :weixin_code
   filter :weixin_tp, :as => :select, :collection => WeixinCode::TP_DATA.invert
 

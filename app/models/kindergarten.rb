@@ -83,6 +83,11 @@ class Kindergarten < ActiveRecord::Base
     hint_tp ? "是" : "否"
   end
 
+  # 当前用户数
+  def current_user_count
+    users.count
+  end
+
   def weixin_status_label
     Kindergarten::WEIXIN_STATUS_DATA[self.weixin_status.to_s]
   end

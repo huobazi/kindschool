@@ -76,6 +76,7 @@ ActiveAdmin.register User do
     column :repeat do |user|
       user.repeat ? "允许" : "不允许"
     end
+    column :created_at
     column :is_send_label
     column :is_receive_label
     default_actions

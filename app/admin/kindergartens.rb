@@ -68,6 +68,7 @@ ActiveAdmin.register Kindergarten do
       Kindergarten::STATUS_DATA["#{obj.status}"]
     end
     column :template
+    column :current_user_count
     column :weixin_status_label
     # column :weixin_code
     column :asset_img do |obj|
