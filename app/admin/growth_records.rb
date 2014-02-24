@@ -19,8 +19,8 @@ ActiveAdmin.register GrowthRecord do
   end
 
   filter :kindergarten
-  filter :student_info
-  filter :creater
+  filter :student_info_user_name, :as => :string
+  filter :creater_name, :as => :string
   filter :tp, :as => :select, :collection => GrowthRecord::TP_DATA.invert
   filter :start_at
   filter :end_at
