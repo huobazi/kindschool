@@ -24,6 +24,12 @@ ActiveAdmin.register Message do
     default_actions
   end
 
+  filter :kindergarten
+  filter :sender_name, :as => :string
+  filter :title
+  filter :tp, :as => :select, :collection => Message::TP_DATA.invert
+  filter :content
+
   form do |f|
     f.inputs "消息信息" do
       f.input :kindergarten_label, :required => true, :input_html => { :disabled => true }

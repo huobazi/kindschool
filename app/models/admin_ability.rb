@@ -32,6 +32,7 @@ class AdminAbility
           can [:read, :update], Report
           can :manage, KindZone
           can :manage, Policy
+          can :read, WeixinCode
           #        cannot :reset_password, User
         when "bazaar"
           then
