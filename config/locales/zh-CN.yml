@@ -198,6 +198,7 @@ zh-CN:
       <<: *errors
   activerecord:
     models:
+      approve_module: "幼儿园审核模块"
       admin_user: "管理员"
       garden_new: "新闻"
       garden_picture: "照片集锦"
@@ -279,6 +280,11 @@ zh-CN:
       show_case: "作品展示"
       weixin_code: "微信绑定code"
     attributes:
+      approve_module:
+        kindergarten: "幼儿园"
+        name: "名字"
+        number: "编码"
+        status: "状态"
       show_case:
         kindergarten: "幼儿园"
         user: "用户"
