@@ -120,6 +120,8 @@ ActiveAdmin.register Kindergarten do
       f.input :begin_allsms
       f.input :open_allsms
       f.input :enable_credit
+      f.input :credit_status,:as=>:select,:collection=>Kindergarten::CREDIR_STATUS.invert
+
       f.input :hint_tp
       #      f.input :allsms_count
       f.input :login_note
@@ -167,6 +169,10 @@ ActiveAdmin.register Kindergarten do
       row :balance_count
       row :sms_user_count
       row :begin_allsms_label
+      row :enable_credit_label
+      row :credit_status do |obj|
+        Kindergarten::CREDIR_STATUS["#{obj.credit_status}"]
+      end
       row :open_allsms_label
       row :hint_tp_label
       #      row :allsms_count
