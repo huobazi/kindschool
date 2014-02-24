@@ -18,10 +18,10 @@ module KindWeather
         begin
           weatherinfo = JSON.parse(open("http://m.weather.com.cn/data/#{kind.kind_zone.code}.html").read)
           if weatherinfo && weatherinfo['weatherinfo']
-            weather = {'city' => weatherinfo['weatherinfo']['city'], 'temp1' => weatherinfo['weatherinfo']['temp1'], 'index_d' => weatherinfo['weatherinfo']['index_d']}
-            @temp = "#{weather['city']} #{weather['temp1']}"
-            @temp_text = "#{weather['index_d']}"
-            @long_temp_text = "#{weather['city']} #{weather['temp1']} #{weather['index_d']}"
+            weather = {'city' => weatherinfo['weatherinfo']['city'], 'temp6' => weatherinfo['weatherinfo']['temp6'], 'index48_d' => weatherinfo['weatherinfo']['index48_d']}
+            @temp = "#{weather['city']} #{weather['temp6']}"
+            @temp_text = "#{weather['index48_d']}"
+            @long_temp_text = "#{weather['city']} #{weather['temp6']} #{weather['index48_d']}"
             Redis::Objects.redis.set("#{kind.kind_zone.code}_temp", @temp)
             Redis::Objects.redis.set("#{kind.kind_zone.code}_temp_text", @temp_text)
             Redis::Objects.redis.set("#{kind.kind_zone.code}_long_temp_text", @long_temp_text)
