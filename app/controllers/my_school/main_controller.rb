@@ -143,6 +143,7 @@ class MySchool::MainController < MySchool::BaseController
     if @kind && @kind.shrink_record
       @keywords = @kind.shrink_record.keywords
       @description = @kind.shrink_record.description
+      @baidu_seo = @kind.baidu_seo
     end
     @menu = "home"
     data = HOME_MENU || []
