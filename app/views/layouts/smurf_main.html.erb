@@ -9,8 +9,7 @@
       "fancybox/jquery.fancybox-thumbs","smurf_main", :media => "all" %>
     <%= stylesheet_link_tag    "/css/jplayer.blue.monday.css", :media => "all" %>
 
-    <meta name="description" content="<%=@description%>" />
-    <meta name="keywords" content="<%=@keywords%>" />
+    <%=render :partial=>"/modules/share/seo"%>
     <meta charset="utf-8"/>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "application","colorful","highcharts/highcharts","highcharts/highcharts-more","colorful_main","jquery.lettering","fancybox/jquery.mousewhee",

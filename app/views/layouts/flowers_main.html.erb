@@ -9,8 +9,7 @@
       "fancybox/jquery.fancybox-thumbs","flowers_main", :media => "all" %>
     <%= stylesheet_link_tag    "/css/jplayer.blue.monday.css", :media => "all" %>
 
-    <meta name="description" content="<%=@description%>" />
-    <meta name="keywords" content="<%=@keywords%>" />
+    <%=render :partial=>"/modules/share/seo"%>
     <meta charset="utf-8"/>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "application","colorful","highcharts/highcharts","highcharts/highcharts-more","colorful_main","jquery.lettering","fancybox/jquery.mousewhee",
@@ -88,14 +87,14 @@
         </div>
         <div class="menu_left"> </div>
         <div class="submenu_center">
-        <% if (controller_path == "my_school/main" || controller_path == "main") && action_name == "index" %>
-          <div class="hint">
-            <div class="hint_label">温馨提示：</div>
-            <%= render :partial => "/modules/share/hint" %>
-          </div>
-        <% else %>
-          &nbsp;
-        <% end %>
+          <% if (controller_path == "my_school/main" || controller_path == "main") && action_name == "index" %>
+            <div class="hint">
+              <div class="hint_label">温馨提示：</div>
+              <%= render :partial => "/modules/share/hint" %>
+            </div>
+          <% else %>
+            &nbsp;
+          <% end %>
         </div>
       </div>
       <div class="main_work <%= (controller_path == "my_school/main" || controller_path == "main") && action_name == "index" ? "" : "flowers_work" %>">
