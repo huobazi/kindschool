@@ -5,6 +5,7 @@ class MySchool::CreditShopController < MySchool::ManageController
   layout "shop_center"
   
   before_filter :get_shop_config
+  before_filter :get_user_personal_credits,:only=>["index","my_order","products","user_center","show_product"]
 
   def index
     @tags = Product.tag_counts
@@ -20,7 +21,6 @@ class MySchool::CreditShopController < MySchool::ManageController
   end
 
   def my_order
-    @personal_credits = current_user.personal_credit
     @un_orders = current_user.orders.pending_shipping
     @en_orders = current_user.orders.where("shipment_at is not null")
   end
@@ -33,7 +33,6 @@ class MySchool::CreditShopController < MySchool::ManageController
 
   def products
     @serarch_type = params[:serarch_type]
-    @personal_credits = current_user.personal_credit
     if @serarch =  params[:serarch]
       case @serarch
       when "credit"
@@ -66,7 +65,6 @@ class MySchool::CreditShopController < MySchool::ManageController
 
   # 用户个人信息
   def user_center
-    @personal_credits = current_user.personal_credit
     @un_orders = current_user.orders.pending_shipping
     @en_orders = current_user.orders.where("shipment_at is not null")
   end
@@ -172,6 +170,11 @@ class MySchool::CreditShopController < MySchool::ManageController
   end
 
   private
+   
+  def get_user_personal_credits
+      @personal_credits = current_user.personal_credit
+  end
+
   def get_shop_config
     @logo = ShopConfig.find_by_number("logo")
     @shop_tp = current_user.tp == 0 ? 0 : 1 #如果是0表示学生商城，如果是1表示幼儿园商城
