@@ -1,4 +1,4 @@
-<div class="food <%= controller_path == "my_school/main" && action_name == "index" ? "" : "flowers_food" %>">
+<div class="food <%= (controller_path == "my_school/main" || controller_path == "main") && action_name == "index" ? "" : "flowers_food" %>">
   <div class="food_content">
     <%= link_to "首页","/" %>|
     <%= link_to "关于我们","/my_school/main/about" %>|

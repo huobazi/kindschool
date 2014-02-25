@@ -40,7 +40,7 @@
 <![endif]-->
   </head>
   <body style="background-color: #ffffff" onload="ResumeError()">
-    <div  class="wrapper <%= controller_path == "my_school/main" && action_name == "index" ? "home_bg" : "home_bg2" %>">
+    <div  class="wrapper <%= (controller_path == "my_school/main" || controller_path == "main") && action_name == "index" ? "home_bg" : "home_bg2" %>">
       <div class="main_logo">
         <% if @kind %>
           <img src="<%= @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png' %>" width="100" height="79" alt="Logo" class="logo_vertical"/>
@@ -88,7 +88,7 @@
         </div>
         <div class="menu_left"> </div>
         <div class="submenu_center">
-        <% if controller_path == "my_school/main" && action_name == "index" %>
+        <% if (controller_path == "my_school/main" || controller_path == "main") && action_name == "index" %>
           <div class="hint">
             <div class="hint_label">温馨提示：</div>
             <%= render :partial => "/modules/share/hint" %>
@@ -98,10 +98,10 @@
         <% end %>
         </div>
       </div>
-      <div class="main_work <%= controller_path == "my_school/main" && action_name == "index" ? "" : "flowers_work" %>">
+      <div class="main_work <%= (controller_path == "my_school/main" || controller_path == "main") && action_name == "index" ? "" : "flowers_work" %>">
         <%= yield %>
       </div>
-      <div class="<%= controller_path == "my_school/main" && action_name == "index" ? 'food_min_div' : 'food_max_div' %>">
+      <div class="<%= (controller_path == "my_school/main" || controller_path == "main") && action_name == "index" ? 'food_min_div' : 'food_max_div' %>">
         <%= render :partial => "/modules/flowers/foot" %>
       </div>
       <div id="dialog_users_guide"  title="用户登录指南">
