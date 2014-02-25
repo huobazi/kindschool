@@ -5,7 +5,7 @@
         <div class="user_credit_v_img" >
         </div>
         <div class="user_credit_v_img_mid" >
-           <%=current_user.personal_credit.try(:credit)%>
+           <%=@personal_credits.try(:credit)%>
         </div>
         <div class="user_credit_v_img_rig" >
         </div>
@@ -52,7 +52,7 @@
                <%elsif !product.product_imgs.blank?%>
                   <img src='<%=  product.product_imgs.first.public_filename(:middle) %>' alt=""/>
                 <%else%>
-                  <img alt="" src="/t/colorful/483-5552.jpg">
+                  <img alt="" src="/t/default_pic.jpg">
                <%end%>
               <%end%>
             </div>
