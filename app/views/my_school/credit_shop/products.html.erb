@@ -18,7 +18,7 @@
           <img alt="" src="/t/colorful/483-5552.jpg" style="width: 60px;height: 60px;">
         </div>
         <div class="media-body">
-          <h4 class="media-heading">小宝棉衣</h4>
+          <h4 class="media-heading"><%=current_user.name%></h4>
         </div>
       </div>
     </div>
@@ -83,7 +83,7 @@
                <%elsif !product.product_imgs.blank?%>
                   <img src='<%=  product.product_imgs.first.public_filename(:middle) %>' alt=""/>
                 <%else%>
-                  <img alt="" src="/t/colorful/483-5552.jpg">
+                  <img alt="" src="/t/default_pic.jpg">
                <%end%>
               <%end%>
             </div>
