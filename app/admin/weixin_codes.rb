@@ -26,8 +26,11 @@ ActiveAdmin.register WeixinCode do
 
   filter :kindergarten
   filter :user_name, :as => :string
+  filter :user_login, :as => :string
+  filter :user_phone, :as => :string
   filter :weixin_code
   filter :weixin_tp, :as => :select, :collection => WeixinCode::TP_DATA.invert
+  filter :created_at
 
   form do |f|
     f.inputs "更改微信code" do

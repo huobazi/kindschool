@@ -683,6 +683,10 @@ zh-CN:
         staff: "教职工名称"
         created_at: "创建时间"
         updated_at: "更新时间"
+        tp: "类型"
+        squad_name: "班级名"
+        staff_user_name: "教职工名"
+        created_at: "创建时间"
       staff:
         kindergarten_label: "所属幼儿园"
         name: "姓名"
@@ -1109,9 +1113,12 @@ zh-CN:
         weixin_code: "微信code"
         user: "用戶"
         user_name: "用户"
+        user_login: "登录名"
+        user_phone: "手机号"
         kindergarten: "幼儿园"
         weixin_tp: "公共账号类型"
         tp_label: "公共账号类型"
+        created_at: "创建时间"
     errors:
       <<: *errors
   views:
