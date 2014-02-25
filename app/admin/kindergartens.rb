@@ -121,7 +121,7 @@ ActiveAdmin.register Kindergarten do
       f.input :open_allsms
       f.input :enable_credit
       f.input :credit_status,:as=>:select,:collection=>Kindergarten::CREDIR_STATUS.invert
-
+      f.input :baidu_seo
       f.input :hint_tp
       #      f.input :allsms_count
       f.input :login_note
@@ -175,6 +175,7 @@ ActiveAdmin.register Kindergarten do
       end
       row :open_allsms_label
       row :hint_tp_label
+      row :baidu_seo
       #      row :allsms_count
       row :login_note
       row :note
