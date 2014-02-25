@@ -115,4 +115,9 @@ ActiveAdmin.register Teacher do
     default_actions
   end
 
+  filter :squad_name, :as => :string
+  filter :staff_user_name, :as => :string
+  filter :tp, :as => :select, :collection => Teacher::TP_DATA.invert
+  filter :created_at
+
 end
