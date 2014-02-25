@@ -1,7 +1,7 @@
 #encoding:utf-8
 #幼儿园
 class Kindergarten < ActiveRecord::Base
-  attr_accessible :credit_status,:enable_credit,:init_status,:logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token,:latlng,:address,
+  attr_accessible :baidu_seo,:credit_status,:enable_credit,:init_status,:logo, :name, :note, :number, :status, :template_id,:weixin_code,:weixin_status,:weixin_token,:latlng,:address,
     :aliases_url,:sms_count,:sms_user_count,:telephone,:allsms_count,:open_allsms,:begin_allsms,:login_note,:balance_count,:hint_tp,:show_cookbook, :kind_zone_id
 
   has_many   :users   #所有用户
