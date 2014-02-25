@@ -1113,9 +1113,12 @@ zh-CN:
         weixin_code: "微信code"
         user: "用戶"
         user_name: "用户"
+        user_login: "登录名"
+        user_phone: "手机号"
         kindergarten: "幼儿园"
         weixin_tp: "公共账号类型"
         tp_label: "公共账号类型"
+        created_at: "创建时间"
     errors:
       <<: *errors
   views:
