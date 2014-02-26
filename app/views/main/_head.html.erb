@@ -8,12 +8,11 @@
     <div class="weiyi_menu">
       <ul>
         <li class="<%= action_name == "index" ? "activate" : "" %>"><%= link_to "关于我们" ,"/"%></li>
+        <li><%= link_to "家园互动" ,"/garden",:target=>"_blank"%></li>
         <li class="<%= action_name == "weiyi_video" ? "activate" : "" %>"><%= link_to "移动视频" ,"/main/weiyi_video"%></li>
         <li class="<%= action_name == "weiyi_scheme" ? "activate" : "" %>"><%= link_to "影视策划" ,"/main/weiyi_scheme"%></li>
-        <li class="<%= action_name == "weiyi_cultivate" ? "activate" : "" %>"><%= link_to "动漫培训" ,"/main/weiyi_cultivate"%></li>
         <li class="<%= action_name == "weiyi_tourism" ? "activate" : "" %>"><%= link_to "科技旅游" ,"/main/weiyi_tourism"%></li>
         <li class="<%= action_name == "weiyi_benefit" ? "activate" : "" %>"><%= link_to "公益活动" ,"/main/weiyi_benefit"%></li>
-        <li><%= link_to "家园互动" ,"/garden",:target=>"_blank"%></li>
         <!--
         <li class="<%= action_name == "weiyi_solution" ? "activate" : "" %>"><%= link_to "解决方案" ,"/main/weiyi_solution"%></li>
         <li class="<%= action_name == "weiyi_interact" ? "activate" : "" %>"><%= link_to "家园互动" ,"/main/weiyi_interact"%></li>
