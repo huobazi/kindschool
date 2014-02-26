@@ -903,6 +903,7 @@ zh-CN:
         creater: "创建人"
         created_at: "创建时间"
         updated_at: "更新时间"
+        creater_name: "创建人"
       album:
         kindergarten: "幼儿园"
         kindergarten_label: "所属幼儿园"

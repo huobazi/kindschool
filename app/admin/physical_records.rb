@@ -19,6 +19,11 @@ ActiveAdmin.register PhysicalRecord do
     f.actions
   end
 
+  filter :kindergarten
+  filter :creater_name, :as => :string
+  filter :content
+  filter :created_at
+
   show do |menu|
     attributes_table do
       row :kindergarten
