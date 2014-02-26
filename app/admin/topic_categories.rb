@@ -24,6 +24,8 @@ ActiveAdmin.register TopicCategory do
     default_actions
   end
 
+  
+
   form do |f|
     f.inputs "论坛分类详细信息" do
       f.input :name

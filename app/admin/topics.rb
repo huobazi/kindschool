@@ -30,15 +30,16 @@ ActiveAdmin.register Topic do
     default_actions
   end
 
+
   filter :kindergarten
-  filter :topic_category
-  filter :creater
-  filter :squad
   filter :title
   filter :content
-  filter :is_show
-  filter :is_top
+  filter :creater_name, :as => :string
+  filter :squad_name, :as => :string
+  filter :topic_category_name, :as => :string
   filter :approve_status, :as => :select, :collection => Topic::STATUS.invert
+  filter :is_top, :as => :boolean
+  filter :created_at
 
   form do |f|
     f.inputs "发贴子" do
