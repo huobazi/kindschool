@@ -113,7 +113,14 @@ class MySchool::CreditShopController < MySchool::ManageController
   def checkout
     @cart = find_cart
     #    @items = @cart.items
-    @items = @cart.find_by_id(params[:ids])
+    unless params[:product].blank?
+      if product=Product.find(params[:product])
+        @cart.add_product(product)
+        @items = @cart.items
+      end
+    end
+
+    @items = @cart.find_by_id(params[:ids]) unless params[:ids].blank?
     @total_credit = @items.sum{|record| record.product.credit * record.count }
     if @items.empty?
       redirect_to(:action=>"index")
