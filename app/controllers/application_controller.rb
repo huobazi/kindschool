@@ -40,4 +40,22 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
+
+  #设置模板
+  def get_layout
+    "#{load_layout}_main"
+    #session[:main_layout] ||= "#{load_layout}_main"
+  end
+  def load_layout
+    if @kind && @kind.template
+      @kind.template.number
+    else
+      if template = Template.find_by_is_default(1)
+        template.number
+      else
+        raise "模板信息缺失，请联系管理员"
+      end
+    end
+  end
 end

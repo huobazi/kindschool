@@ -9,16 +9,20 @@
     <div class="left pull-left">
       <div class="media">
         <div class="pull-left product_bg">
-          <img alt="" src="/t/colorful/483-5552.jpg">
+          <% if @product.get_head_img %>
+            <img src='<%=  @product.get_head_img.public_filename(:middle) %>' alt=""/>
+          <% else %>
+            <img src='/t/default_pic.png' alt=""/>
+          <% end %>
         </div>
         <div class="media-body">
-          <h4 class="media-heading" style="font-weight: bold;">小宝棉衣</h4>
+          <h4 class="media-heading" style="font-weight: bold;"><%=@product.name%></h4>
           <h4 class="media-credit">所需积分: <span class="strong-font"><%= @product.credit %></span><span class="large">分</span></h4>
           <h4 class="media-price">原价￥<del><%= @product.price %></del></h4>
-          <h4 class="media-count">兑换数量:</h4>
           <div class="media">
-            <a href="#" class="btn-change btn-shop">立刻兑换</a>
+            <!-- <a href="#" class="btn-change btn-shop">立刻兑换</a> -->
             <!-- <a href="#" class="btn-card btn-shop">添加到购物车</a> -->
+            <%=link_to "立刻兑换",{:action=>"checkout",:product=>@product},:class=>"btn-change btn-shop"%>
             <%= link_to '添加购物车',
                           {:action => 'add_to_cart', :id => @product },
                            :class => 'btn-card btn-shop' %>
@@ -30,7 +34,7 @@
       <div class="product-detail">
         <h4>商品描述</h4>
         <div class="detail-content" style="text-indent: 20px;">
-          <%= @product.note %>
+          <%=raw @product.note %>
         </div>
       </div>
 
@@ -108,11 +112,11 @@
             <img alt="" src="/t/colorful/483-5552.jpg" style="width: 70px;height: 70px;">
           </div>
           <div class="media-body">
-            <h4 class="media-heading">小宝棉衣</h4>
+            <h4 class="media-heading"><%=current_user.name%></h4>
           </div>
         </div>
         <!-- end media -->
-        <p>我的积分&nbsp;<span class="credit">700</span></p>
+        <p>我的积分&nbsp;<span class="credit"><%=@personal_credits.credit%></span></p>
         <p><a href="#" style="text-decoration: underline;">我能兑换的礼品</a></p>
         <div class="btn_display_cart">
           <a href="/my_school/credit_shop/display_cart" class="display_btn">购物车(<%=@count%>)</a>

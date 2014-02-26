@@ -536,6 +536,7 @@ zh-CN:
         filename: "图片"
         content_type: "图片类型"
       kindergarten:
+        baidu_seo: "百度SEO"
         enable_credit: "是否启用积分系统"
         enable_credit_label: "是否启用积分系统"
         credit_status: "积分用户群"
