@@ -23,6 +23,8 @@ ActiveAdmin.register ShowCase do
   end
 
   filter :kindergarten
+  filter :user_name, :as => :string
+  filter :title
   filter :created_at
 
   form do |f|

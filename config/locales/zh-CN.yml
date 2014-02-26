@@ -293,6 +293,8 @@ zh-CN:
         creater: "创建人"
         creater_id: "创建人"
         asset_img: "作品图片"
+        created_at: "创建时间"
+        user_name: "用户名"
       weixin_token:
         number: "编码"
         appid: "appid"

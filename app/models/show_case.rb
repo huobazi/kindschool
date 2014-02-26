@@ -6,7 +6,7 @@ class ShowCase < ActiveRecord::Base
   belongs_to :kindergarten
   belongs_to :creater, :class_name => "User", :foreign_key => "creater_id"
   belongs_to :user
-  
+
   has_one :asset_img, :class_name => "AssetImg", :as => :resource, :dependent => :destroy
   attr_accessible :asset_img_attributes
   accepts_nested_attributes_for :asset_img
