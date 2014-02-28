@@ -109,17 +109,22 @@ class Kindergarten < ActiveRecord::Base
       roles.each do |k,v|
         operates = v.delete("operates")
         role_number = v["number"]
+        role_admin = v["admin"]
+        role_name = v['name']
         role = self.roles.find_by_number(role_number)
-        if !role.blank?
-          unless operates.blank?
-            operates.each do |operate_id|
-              if option = OptionOperate.find_by_operate_id_and_kindergarten_id(operate_id,self.id)
-                role.option_operates << option
-              end
+        if role.blank?
+          role = self.roles.create(:kindergarten_id => self.id, :admin => role_admin, :number => role_number, :name => role_name)
+        end
+        unless operates.blank?
+          operates.each do |operate_id|
+            if option = OptionOperate.find_by_operate_id_and_kindergarten_id(operate_id,self.id)
+              role.option_operates << option
             end
           end
-          role.save!
         end
+        role.name = role_name
+        role.admin = role_admin
+        role.save!
       end
     end
   end
