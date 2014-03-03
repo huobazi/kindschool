@@ -51,14 +51,14 @@
           <% end %>
         </div>
         <div class="actions">
-          <% if can_edit_comment?(comment) %>
+          <% if can_edit_comment?(comment) && comment.is_show %>
             <a style="cursor: pointer" type="button" data-toggle="modal" data-target="#edit_comment"><i class="icon-edit"></i></a>
           <% else %>
             <a class="place place-icon-position"></a>
           <% end %>
           <% if comment.is_show %>
             <% if can_destroy_comment?(comment) %>
-              <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "comments", :action=>:virtual_delete,:id=>comment.id, :level => level, :resource_id => params[:resource_id], :resource_type => params[:resource_type]), :method => :get, confirm: "你确定删除该贴子回复吗", remote: true %>
+              <%= link_to raw("<i class='icon-remove-sign'></i>"),url_for(:controller => "comments", :action=>:virtual_delete,:id=>comment.id, :level => level, :resource_id => params[:resource_id], :resource_type => params[:resource_type]), :method => :get, confirm: "你确定删除该回复吗", remote: true %>
             <% end %>
           <% end %>
         </div>
