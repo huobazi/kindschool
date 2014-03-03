@@ -68,6 +68,8 @@ class MySchool::CreditShopController < MySchool::ManageController
     @credit_cofigs=CreditCofig.all
     @un_orders = current_user.orders.pending_shipping
     @en_orders = current_user.orders.where("shipment_at is not null")
+    #查看个人积分情况
+    @user_credit_log = current_user.credit_logs.page(params[:page] || 1).per(10)#.order("created at desc")
   end
   
   def show_merchant
