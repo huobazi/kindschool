@@ -1,10 +1,12 @@
-
+<div class="text_title">砸开金蛋，发现惊喜！赶快瞧瞧我们给您准备的礼物吧~</div>
 <div id="main">
   <div class="egg">
     <ul class="eggList">
       <p class="hammer" id="hammer">锤子</p>
       <p class="resultTip" id="resultTip"><b id="result"></b></p>
-      <li><span>金蛋</span><sup></sup></li>
+      <li><span></span><sup></sup></li>
+      <li><span></span><sup></sup></li>
+      <li><span></span><sup></sup></li>
     </ul>
   </div>
 </div>
@@ -26,9 +28,9 @@
         _this.addClass("curr"); //蛋碎效果
         _this.find("sup").show(); //金花四溅
         $(".hammer").hide();
-        $('.resultTip').css({display:'block',top:'100px',left:_this.position().left+45,opacity:0}).animate({top: '50px',opacity:1},300,function(){
+        $('.resultTip').css({display:'block',top:'150px',left:_this.position().left+150,opacity:0}).animate({top: '50px',opacity:1},300,function(){
           if(res.msg==1){
-            $("#result").html("恭喜，您中得"+res.prize+"!");
+            $("#result").html("恭喜，您获得"+res.prize+"!");
           }else{
             $("#result").html("很遗憾,您没能中奖!");
           }
@@ -43,7 +45,7 @@
   });
 
   $(".eggList li").hover(function() {
-    var posL = $(this).position().left + $(this).width();
+    var posL = $(this).position().left + $(this).width() - 130;
     $("#hammer").show().css('left', posL);
   })
 </script>

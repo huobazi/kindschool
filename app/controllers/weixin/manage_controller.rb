@@ -2,7 +2,7 @@
 class  Weixin::ManageController < Weixin::BaseController
   #  include AuthenticatedSystem
   before_filter :login_from_cookie
-  before_filter :login_required,:load_config, :except => [:login] #if action_name != 'login'#:auth,
+  before_filter :login_required,:load_config,:load_add_credit, :except => [:login] #if action_name != 'login'#:auth,
   after_filter :auto_write_log
   layout proc{ |controller| get_layout }
   private
@@ -22,6 +22,28 @@ class  Weixin::ManageController < Weixin::BaseController
       session[:operates] = operates_data
     end
   end
+
+  #加载积分消息
+  def load_add_credit
+    if current_user != :false && @kind.enable_credit
+      if controller_path == "weixin/main" && action_name =="index"
+        #登陆加分效果
+        today_login,add_login_credit = current_user.config[:today_login],true
+        if !today_login.blank? && Time.now.to_date.to_s == today_login
+          add_login_credit = false
+        end
+        if add_login_credit
+          credit = current_user.save_user_credit("login",0)
+          unless credit.blank?
+            @add_credit = credit
+            current_user.config[:today_login] = Time.now.to_date.to_s
+          end
+        end
+      end
+    end
+  end
+  
+
   private
   #设置模板
   def get_layout

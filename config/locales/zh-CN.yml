@@ -343,7 +343,7 @@ zh-CN:
       delivery_address:
         kindergarten: "幼儿园"
         user: "收货人"
-        address_info: "详细地址"
+        address_info: "详细地址及收件人"
         phone: "电话"
         shipment_at: "发货时间"
         address: "地址"
@@ -371,7 +371,7 @@ zh-CN:
         comment: "评价"
         credit: "积分"
         quality: "评分"
-        address_info: "详细地址"
+        address_info: "详细地址及收件人"
         phone: "电话"
         address: "地址"
         delivery_address: "收货信息"

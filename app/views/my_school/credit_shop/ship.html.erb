@@ -6,15 +6,20 @@
       <div class="center_right_bottom">
         <div class="center_conment_right">
         <span class="credit_title"><b>积分兑换</b></span>
-        <p><%=flash[:notice]%></p>
         </div>
         <div class="center_right_bottom_mid">
+        <p><%=flash[:notice]%></p>
           <div class="go_shop">
             <%= link_to '去积分商城兑换礼品>>', :action => "products" %>
           </div>
           <%= form_tag(:action => "ship") do%>
+           
           <div class="div_left">
+            
             <table cellpadding="10" cellspacing="0" class="cart_data table table-hover">
+             <%if @pending_orders.blank?%>
+              <tr><td>没有未完成订单</td></tr>
+             <%else%>
               <tr class="carttitle thbrank">
                 <td></td>
                 <td>订单号</td>
@@ -22,7 +27,7 @@
                 <td>订单详细</td>
               </tr>
               <tbody>
-                <%(@pending_orders||[]).each do |order_line|%>
+                <%(@pending_orders).each do |order_line|%>
                   <tr>
                     <td><%= check_box("to_be_shipped", order_line.id, {}, "yes", "no") %></td>
                     <td><%= h(order_line.number)%></td>
@@ -39,11 +44,17 @@
                   </tr>
                 <%end%>
               </tbody>
+              <tr>
+              <td></td>
+                <td>
+                  <input type="submit" value="确定兑换" class="btn btn-success "/>
+                </td>
+              </tr>
+              <%end%>
             </table>
              </div>
             <%#= render 'order_form', :f=>f %>
           <%# end %>
-          <input type="submit" value="确定下单" class="btn btn-success"/>
           <%end%>
         </div>
         <div class="center_conment_right_bottom">
@@ -56,17 +67,3 @@
   <div class="center_user_conment_bottom">
   </div>
 </div>
-
-
-
-
-<%unless @pending_orders.blank?%>
-<%= form_tag(:action => "ship") do%>
-<table cellpadding="5" cellspacing="0">
-<%= render(:partial => "order_line", :collection =>@pending_orders) %>
-</table>
-<br />
-<input type="submit" value=" 确定 " />
-<%end %>
-<%end%>
-<br>

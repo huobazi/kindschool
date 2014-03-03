@@ -5,7 +5,7 @@ class Weixin::MainController < Weixin::BaseController
   include KindWeather
 
   before_filter :login_from_cookie
-  before_filter :login_required, :except => [:bind_user,:error_messages,:about,:contact_us,:bind_weiyi,:weiyi_error_messages]
+  before_filter :login_required,:load_add_credit, :except => [:bind_user,:error_messages,:about,:contact_us,:bind_weiyi,:weiyi_error_messages]
 
   #平台首页
   def index
@@ -20,6 +20,28 @@ class Weixin::MainController < Weixin::BaseController
       end
     end
   end
+
+
+  #加载积分消息
+  def load_add_credit
+    if current_user != :false && @kind.enable_credit
+      if controller_path == "weixin/main" && action_name =="index"
+        #登陆加分效果
+        today_login,add_login_credit = current_user.config[:today_login],true
+        if !today_login.blank? && Time.now.to_date.to_s == today_login
+          add_login_credit = false
+        end
+        if add_login_credit
+          credit = current_user.save_user_credit("login",0)
+          unless credit.blank?
+            @add_credit = credit
+            current_user.config[:today_login] = Time.now.to_date.to_s
+          end
+        end
+      end
+    end
+  end
+  
   #官网出错信息
   def weiyi_error_messages
     @logo_url =  @kind && @kind.asset_img ? @kind.asset_img.public_filename : '/t/colorful/logo.png'

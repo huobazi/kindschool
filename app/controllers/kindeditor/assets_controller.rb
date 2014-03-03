@@ -2,6 +2,13 @@
 require "find"
 class Kindeditor::AssetsController < MySchool::ManageController
   skip_before_filter :verify_authenticity_token
+  # before_filter :verify_session ,:only=>:create
+  protect_from_forgery# :except=>:create
+  def verify_session
+    unless session[:random_number] == params[:random_number]
+       return false
+    end
+  end
   def create
     @imgFile, @dir = params[:imgFile], params[:dir]
     unless @imgFile.nil?
