@@ -40,8 +40,8 @@
       <div>
        <div class="credit_details">
          <a class="credit_details_info">积分明细</a>
-         <a class="earn_record">赚取记录</a>
-         <a class="use_record">使用记录</a>
+        <!--  <a class="earn_record">赚取记录</a>
+         <a class="use_record">使用记录</a> -->
        </div>
        <div>
         <table cellpadding="10" cellspacing="0" class="cart_data table table-hover">
@@ -52,12 +52,19 @@
               <td colspan="2">备注</td>
 　　　　　　</tr>
             <tbody>
+            <%@user_credit_log.each do |log|%>
                 <tr>
-                  <td>每日登录</td>
-                  <td class="pay_credit">+1</td>
-                  <td colspan="2">2014-1-4</td>
-                  <td colspan="2">每日登录</td>
+                  <td><%=CreditLog::TP[log.tp]%></td>
+                  <td class="pay_credit"><%= log.tp=="8" ? "-" : "+"%><%=log.credit%></td>
+                  <td colspan="2"><%=log.created_at.try(:to_long_datetime)%></td>
+                  <td colspan="2"><%=log.business_name%></td>
                 </tr>
+            <%end%>
+            <tr>
+              <div class="paginate_div" style="clear: both;">
+                <%= paginate @user_credit_log %>
+              </div>
+            </tr>
             </tbody>
 　      </table>
        </div>
