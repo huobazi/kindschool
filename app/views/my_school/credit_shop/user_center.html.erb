@@ -56,7 +56,7 @@
                 <tr>
                   <td><%=CreditLog::TP[log.tp]%></td>
                   <td class="pay_credit"><%=log.credit%></td>
-                  <td colspan="2"><%=log.created_at%></td>
+                  <td colspan="2"><%=log.created_at.try(:to_long_datetime)%></td>
                   <td colspan="2"><%=log.business_name%></td>
                 </tr>
             <%end%>
