@@ -1,10 +1,30 @@
-.egg{width:660px; height:400px; margin:50px auto 20px auto;}
-.egg ul li{z-index:999;}
-.eggList{padding-top:110px;position:relative;width:660px;}
-.eggList li{float:left;background:url(/star_imgs/eggs/egg_1.png) no-repeat bottom;width:158px;height:187px;cursor:pointer;position:relative;margin-left:35px;}
+body{
+    background-image: url(/star_imgs/eggs/bg.png);
+    background-repeat: no-repeat;
+    background-position: top center;
+    padding: 0px;
+}
+#main{
+    width: 1080px;
+    margin: 0 auto;
+}
+.egg{width:1080px; height:400px; margin:130px auto 100px;}
+.egg ul li{z-index:999;list-style: none outside none;}
+.eggList{padding-top:50px;position:relative;width:1080px;}
+.eggList li{float:left;background:url(/star_imgs/eggs/egg.png) no-repeat bottom;width:349px;height:297px;cursor:pointer;position:relative;}
 .eggList li span{position:absolute;line-height: 40px; width:30px; height:60px; left:59px; top:46px; color:#ff0; font-size:42px; font-weight:bold}
-.eggList li.curr{background:url(/star_imgs/eggs/egg_2.png) no-repeat bottom;cursor:default;z-index:300;}
-.eggList li.curr sup{position:absolute;background:url(/star_imgs/eggs/img-4.png) no-repeat;width:232px; height:181px;top:-36px;left:-34px;z-index:800;}
-.hammer{background:url(/star_imgs/eggs/img-6.png) no-repeat;width:74px;height:87px;position:absolute; text-indent:-9999px;z-index:150;left:168px;top:100px;}
+.eggList li.curr{background:url(/star_imgs/eggs/egg_open.png) no-repeat bottom;cursor:default;z-index:300;}
+.eggList li.curr sup{position:absolute;background:url(/star_imgs/eggs/ayaka.png) no-repeat;width:349px; height:238px;top:-86px;left:0px;z-index:800;}
+.hammer{background:url(/star_imgs/eggs/hammer.png) no-repeat;width:196px;height:196px;position:absolute; text-indent:-9999px;z-index:150;left:219px;top:-15px;}
 .resultTip{position:absolute; background:#ffc ;width:148px;padding:6px;z-index:500;top:200px; left:10px; color:#f60; text-align:center;overflow:hidden;display:none;z-index:500;}
 .resultTip b{font-size:14px;line-height:24px;}
+
+.text_title{
+    color: #EDCA75;
+    font-size: 18px;
+    font-weight: bold;
+    height: 40px;
+    line-height: 28px;
+    margin: 190px auto 0;
+    width: 450px;
+}

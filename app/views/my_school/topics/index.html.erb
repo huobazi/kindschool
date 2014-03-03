@@ -19,7 +19,7 @@
 
       <ul class="work_action">
         <li>
-          <% if choose_operate_show("my_school/topics/new") %>
+          <% if choose_operate_show("my_school/topics/new") || current_user.tp == 2 %>
             <a href="<%=url_for(:controller=>"/my_school/topics",:action=>:new, :topic_category_id => params[:topic_category_id])%>" title="添加">
               <%= render partial: "/my_school/commons/add_action" %>
             </a>
