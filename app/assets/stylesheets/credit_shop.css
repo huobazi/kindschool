@@ -392,6 +392,10 @@ a:hover{text-decoration: none}
     font-size: 23px;
     color:#ff0000
 }
+.product_sale_credit a{
+    height: 20px;
+    overflow: hidden;
+}
 .product_physical{
     float: left;
     margin-left: 65px;
