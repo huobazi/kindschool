@@ -79,12 +79,18 @@ body{
     background-repeat: no-repeat;
     height: 85px;
     width: 100%;
+    float: left;
+}
+.center_right_bottom_mid p{
+    color: #0000FF;
+    font-size: 20px;
+    margin-left: 20px;
 }
 .center_conment_right_mid{
     background:url(/star_imgs/shop/center_user/center_conment_right_mid.png) ;
     background-repeat: repeat-y;
-    height: 80px;
     width: 100%;
+    float: left;
 }
 .center_conment_right_bottom{
     background:url(/star_imgs/shop/center_user/center_conment_right_bottom.png) ;
@@ -92,13 +98,15 @@ body{
     height: 85px;
     width: 100%;
     margin-top: -1px;
+    float:left;
 }
 .center_right_bottom_mid{
     background:url(/star_imgs/shop/center_user/center_conment_right_mid.png) ;
     background-repeat: repeat-y;
     height: 500px;
     width: 100%;
-    margin-top: -1px;
+    float: left;
+    height: 100%;
 }
 
 .center_conment_mid ul li {

@@ -54,4 +54,10 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def  personal_credit_less
+    if self.credit >= self.user.personal_credit.credit
+      return self
+    end
+  end
+
 end

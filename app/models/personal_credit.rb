@@ -41,10 +41,6 @@ class PersonalCredit < ActiveRecord::Base
           prize_credit = credit_cofig.credit
           if self.heap_credit_changed? #&& self.heap_credit-self.prize_credit>prize_credit
             count =(self.heap_credit-self.prize_credit)/prize_credit
-            puts "----------------"
-            puts "=self.heap_credit=#{self.heap_credit}=#{self.prize_credit}====prize_credit=#{prize_credit}==============="
-            puts "==========count====#{count}"
-            puts "----------------"
             count.to_i.times do |i|
              self.prize_credit += prize_credit
              prize_log=PrizeLog.new(:user_id=>self.user_id,:kindergarten_id=>self.kindergarten_id,)

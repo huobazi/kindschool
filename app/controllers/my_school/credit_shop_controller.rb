@@ -22,7 +22,7 @@ class MySchool::CreditShopController < MySchool::ManageController
 
   def my_order
     @un_orders = current_user.orders.pending_shipping
-    @en_orders = current_user.orders.where("shipment_at is not null")
+    @en_orders = current_user.orders.where("shipment_at is not null").page(params[:page] || 1).per(5)
   end
 
   def credit_activity
@@ -65,6 +65,7 @@ class MySchool::CreditShopController < MySchool::ManageController
 
   # 用户个人信息
   def user_center
+    @credit_cofigs=CreditCofig.all
     @un_orders = current_user.orders.pending_shipping
     @en_orders = current_user.orders.where("shipment_at is not null")
   end
@@ -156,14 +157,20 @@ class MySchool::CreditShopController < MySchool::ManageController
   def ship
     count = 0
     products = []
+    orders = []
     if things_to_ship = params[:to_be_shipped]
-      count,products = do_shipping(things_to_ship)
+      count,products,orders = do_shipping(things_to_ship)
+      flash[:notice] = ""
       if count > 0
-        count_text = pluralize(count, "order")
-        flash.now[:notice] = "#{count_text} 已经成功扣除积分并进行配送"
+        count_text = "#{count}个订单"#pluralize(count, "order")
+        flash[:notice] = "#{count_text} 已经成功扣除积分并进行配送."
+      end
+      orders.compact!
+      unless orders.blank?
+        flash[:notice] += "#{orders.collect{|x|x.number}.join(",")}订单没有完成,您的积分不够." 
       end
       unless products.blank?
-        flash[:notice] = "#{products.collect{|x|x.name}}没有库存了."
+        flash[:notice] += "#{products.collect{|x|x.name}.join(",")}没有库存了."
       end
     end
     @pending_orders = current_user.orders.pending_shipping unless current_user.orders.blank?
@@ -194,6 +201,7 @@ class MySchool::CreditShopController < MySchool::ManageController
   def do_shipping(things_to_ship)
     count = 0
     products=[]
+    orders = []
     things_to_ship.each do |order_id, do_it|
       if do_it == "yes"
         order = Order.find(order_id)
@@ -201,21 +209,26 @@ class MySchool::CreditShopController < MySchool::ManageController
         if order.product_storage_able.blank?
           order.product_storage_off
           order.mark_as_shipped
+          if order_credit = order.personal_credit_less
+            orders << order_credit
+          else
+             count += 1
+          end
           order.save
-          count += 1
+          
         else
           products << order.product_storage_able
         end
       end
     end
-    return count,products
+    return count,products,orders
   end
  
   def pluralize(count, noun)
     if 0 == count
       "No #{noun.pluralize}"
     elsif 1 == count
-      "One #{noun}"
+      "一个 #{noun}"
     else
       "#{count} #{noun.pluralize}"
     end

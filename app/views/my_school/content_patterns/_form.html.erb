@@ -26,7 +26,10 @@
     editor = K.create('#content_pattern_content', {
       allowFileManager : false , 
       height:300,
-      uploadJson:"/kindeditor/upload"
+      uploadJson:"/kindeditor/upload",
+      extraFileUploadParams : {
+        'random_number' : <%=@random_number%>
+        }
     });
   });
 </script>

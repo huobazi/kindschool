@@ -54,8 +54,8 @@ class Weixin::UsersController < Weixin::ManageController
         session[:operates] = operates_data
         flash[:notice] = "登录成功."
         session[:login_error_count] = 0
-        #这个地方加登录添加积分
-        user.save_user_credit("login",0)
+        # #这个地方加登录添加积分
+        # user.save_user_credit("login",0)
         redirect_back_or_default(weixin_main_index_path)
         cookies.delete :login_times
         return

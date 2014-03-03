@@ -6,6 +6,8 @@ class MySchool::ContentPatternsController < MySchool::ManageController
     @content_patterns =  @kind.content_patterns 
   end
   def edit
+    @random_number = Time.now.to_i.to_s + rand(100).to_s
+    session[:random_number] = @random_number
     @content_pattern =  @kind.content_patterns.find(params[:id])  
   end
 

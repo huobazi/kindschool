@@ -55,7 +55,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.user_credit(credit)
-    self.where("credit < #{credit}")
+    self.where("credit <= #{credit}")
   end
 
   protected

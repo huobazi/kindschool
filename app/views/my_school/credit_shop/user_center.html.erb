@@ -76,13 +76,15 @@
               <td>操作</td>
 　　　　　　</tr>
             <tbody>
+            <%@credit_cofigs.each do |credit_cofig|%>
                 <tr>
-                  <td>每日登录</td>
+                  <td><%=credit_cofig.name%></td>
                   <td class="pay_credit">+1</td>
                   <td colspan="2">1</td>
-                  <td>+1</td>
+                  <td>+<%=credit_cofig.credit%></td>
                   <td>-</td>
                 </tr>
+            <%end%>
             </tbody>
 　      </table>
       </div>
@@ -98,53 +100,3 @@
 <div class="center_user_conment_bottom">
 </div>
 </div>
-
-
-<p>我的积分为:<%=@personal_credits.credit%></p>
-<p>我的未完成订单:</p>
-<table>
-	<tr>
-		<td>订单号</td>
-		<td>商品</td>
-		<td>总积分</td>
-	</tr>
-	<% @un_orders.each do |order|%>
-	<tr>
-		<td><%=order.number%></td>
-		<td>
-			 <% order.order_infos.each do |li| %>
-　　　　　　　　　　 <div class="olitem">
-　　　　　　　　　　　　　<span class="olitemqty"><%= li.count %></span>
-　　　　　　　　　　　　　<span class="olitemtitle"><%= li.product.name %></span>
-                    <span class="olitemtitle"><%= li.product.credit %></span>
-　　　　　　　　　　 </div>
-　　　　　　　　　<% end %>
-		</td>
-		<td><%=order.credit%></td>
-	</tr>
-	<%end%>
-</table>
-<p>我的已完成订单:</p>
-<table>
-	<tr>
-		<td>订单号</td>
-		<td>商品</td>
-		<td>总积分</td>
-	</tr>
-	<% @en_orders.each do |order|%>
-	<tr>
-		<td><%=order.number%></td>
-		<td>
-			 <% order.order_infos.each do |li| %>
-　　　　　　　　　　 <div class="olitem">
-　　　　　　　　　　　　　<span class="olitemqty"><%= li.count %></span>
-　　　　　　　　　　　　　<span class="olitemtitle"><%= li.product.name %></span>
-                    <span class="olitemtitle"><%= li.product.credit %></span>
-　　　　　　　　　　 </div>
-　　　　　　　　　<% end %>
-		</td>
-		<td><%=order.credit%></td>
-	</tr>
-	<%end%>
-
-</table>

@@ -145,7 +145,10 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
     end
     if @growth_record.save
       #这个地方添加宝宝在家积分
-      current_user.save_user_credit("growth_record",2)
+     credit =  current_user.save_user_credit("growth_record",2,@growth_record.creater)
+      unless credit.blank?
+        session[:add_credit] = credit
+      end
       flash[:success] = "创建宝宝在家成长记录成功"
       redirect_to :action => :show, :id => @growth_record.id
     else
@@ -171,6 +174,10 @@ class Weixin::GrowthRecordsController < Weixin::ManageController
   end
 
   def show
+    unless session[:add_credit].blank?
+      @add_credit = session[:add_credit]
+      session[:add_credit]=nil
+    end
     if current_user.get_users_ranges[:tp] == :student
       @growth_record = @kind.growth_records.find_by_id_and_tp_and_creater_id(params[:id], 1, current_user.id)
     elsif current_user.get_users_ranges[:tp] == :teachers
