@@ -4,7 +4,9 @@ ActiveAdmin.register CreditLog do
 
   index do
     column :kindergarten
-    column :tp
+    column :tp do |t|
+      CreditLog::TP[t.tp]
+    end
     column :credit
     column :note
     column :resource
@@ -17,7 +19,9 @@ ActiveAdmin.register CreditLog do
   show do |menu|
     attributes_table do
       row :kindergarten
-      row :tp
+      row :tp do |t|
+        CreditLog::TP[t.tp]
+      end
       row :credit
       row :note
       row :resource

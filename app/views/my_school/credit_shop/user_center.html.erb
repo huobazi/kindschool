@@ -55,7 +55,7 @@
             <%@user_credit_log.each do |log|%>
                 <tr>
                   <td><%=CreditLog::TP[log.tp]%></td>
-                  <td class="pay_credit"><%=log.credit%></td>
+                  <td class="pay_credit"><%= log.tp=="8" ? "-" : "+"%><%=log.credit%></td>
                   <td colspan="2"><%=log.created_at.try(:to_long_datetime)%></td>
                   <td colspan="2"><%=log.business_name%></td>
                 </tr>
