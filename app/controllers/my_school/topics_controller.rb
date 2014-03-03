@@ -78,6 +78,11 @@ class  MySchool::TopicsController < MySchool::ManageController
       @topic.squad_id = current_user.student_info.squad_id
     elsif current_user.get_users_ranges[:tp] == :teachers
       @squads = current_user.get_users_ranges[:squads]
+      if @squads.blank?
+        flash[:error] = "没有分配班级，不能创建贴子"
+        redirect_to :action => :index
+        return
+      end
     end
     @topic.kindergarten_id = @kind.id
     @topic.creater_id = current_user.id

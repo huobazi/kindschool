@@ -39,6 +39,11 @@ class MySchool::AlbumsController  < MySchool::ManageController
       return
     else current_user.get_users_ranges[:tp] == :teachers
       @squads = current_user.get_users_ranges[:squads]
+      if @squads.blank?
+        flash[:error] = "没有分配班级，不能创建相册"
+        redirect_to :action => :index
+        return
+      end
     end
     if @grades = @kind.grades
       #    if @squads = @grades.first.squads

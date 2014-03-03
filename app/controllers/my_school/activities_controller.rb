@@ -85,6 +85,11 @@ class MySchool::ActivitiesController < MySchool::ManageController
   def new
     if current_user.get_users_ranges[:tp] == :teachers
       @squads = current_user.get_users_ranges[:squads]
+      if @squads.blank?
+        flash[:error] = "没有分配班级,不能创建活动"
+        redirect_to :action => :index
+        return
+      end
     end
     @activity = Activity.new
     @activity.kindergarten_id = @kind.id

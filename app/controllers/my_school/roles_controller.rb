@@ -16,6 +16,13 @@ class MySchool::RolesController < MySchool::ManageController
       @options = @role.option_operates.group_by{|option| option.operate && option.operate.parent ? option.operate.parent.name : ""}
     end
   end
+
+  def default_role
+    @kind.default_role!
+    flash[:success] = "操作成功"
+    redirect_to :action => :index
+  end
+
   def create
     @role = @kind.roles.new(params[:role])
     respond_to do |format|

@@ -14,6 +14,14 @@ ActiveAdmin.register SmsRecord do
     default_actions
   end
 
+  filter :kindergarten
+  filter :sender_name, :as => :string
+  filter :receiver_name, :as => :string
+  filter :status, :as => :select, :collection => SmsRecord::STATUS.invert
+  filter :content
+  filter :receiver_phone
+  filter :created_at
+
   show do
     attributes_table do
       row :content do |sms_record|

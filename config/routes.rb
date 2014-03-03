@@ -83,6 +83,7 @@ School::Application.routes.draw do
     resources :roles do
       get :set_operate_to_role, :on => :member
       post :save_operate_to_role, :on => :member
+      get :default_role, :on => :collection
     end
     resources :smarties do
       collection {get :role_operates}

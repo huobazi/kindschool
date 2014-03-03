@@ -53,7 +53,20 @@ class  MySchool::StudentInfosController < MySchool::ManageController
         redirect_to my_school_student_infos_path(:importing=>1,:add_node=>params[:add_node]), :notice=> "学生信息导入成功."
         return
       else
-        redirect_to my_school_student_infos_path(:importing=>1,:add_node=>params[:add_node]), :notice=> "#{x.join(',')}手机号或班级名字不能为空,#{a.join(',')}系统已经存在电话号码不能添加,#{b.join(',')}班级不存在,#{c.join(',')}手机号码重复"
+        notice = ""#"#{x.join(',')}手机号或班级名字不能为空,#{a.join(',')}系统已经存在电话号码不能添加,#{b.join(',')}班级不存在,#{c.join(',')}手机号码重复"
+        if !x.blank?
+          notice +=  "#{x.join(',')}手机号或班级名字不能为空."
+        end
+        if !a.blank?
+          notice += "#{a.join(',')}系统已经存在电话号码不能添加."
+        end
+        if !b.blank?
+          notice += "#{b.join(',')}班级不存在."
+        end
+        if !c.blank?
+          notice += "#{c.join(',')}手机号码重复."
+        end
+        redirect_to my_school_student_infos_path(:importing=>1,:add_node=>params[:add_node]), :notice=> notice
         return
       end
     else
