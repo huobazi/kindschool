@@ -88,6 +88,10 @@ class Kindergarten < ActiveRecord::Base
     users.count
   end
 
+  def binding_users_count
+    users.where("weixin_code IS NOT NULL and weiyi_code IS NOT NULL").count
+  end
+
   def weixin_status_label
     Kindergarten::WEIXIN_STATUS_DATA[self.weixin_status.to_s]
   end

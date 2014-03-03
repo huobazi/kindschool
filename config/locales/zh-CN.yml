@@ -576,6 +576,7 @@ zh-CN:
         kind_zone_id: "地区"
         kind_zone: "地区"
         current_user_count: "当前用户总数"
+        binding_users_count: "已绑定用户总数"
       user:
         name: "姓名"
         login: "账号"
